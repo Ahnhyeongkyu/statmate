@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { TTestCalculator } from "./calculator";
+import { RelatedCalculators } from "@/components/related-calculators";
 
 export const metadata: Metadata = {
   title: "Free T-Test Calculator Online - Independent & Paired",
@@ -96,6 +97,8 @@ export default function TTestPage() {
           .001 rather than the exact value.
         </p>
       </section>
+
+      <RelatedCalculators current="/calculators/t-test" />
     </div>
   );
 }

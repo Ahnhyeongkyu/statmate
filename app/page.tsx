@@ -18,7 +18,7 @@ const jsonLd = {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://www.google.com/search?q=site:statmate.cc+{search_term_string}",
+      urlTemplate: "https://www.google.com/search?q=site:statmate-red.vercel.app+{search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },

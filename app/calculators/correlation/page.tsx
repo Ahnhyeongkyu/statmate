@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CorrelationCalculator } from "./calculator";
+import { RelatedCalculators } from "@/components/related-calculators";
 
 export const metadata: Metadata = {
   title: "Free Correlation Calculator Online - Pearson r & Spearman rho",
@@ -93,6 +94,8 @@ export default function CorrelationPage() {
           coefficient, and the p-value.
         </p>
       </section>
+
+      <RelatedCalculators current="/calculators/correlation" />
     </div>
   );
 }

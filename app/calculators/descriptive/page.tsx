@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DescriptiveCalculator } from "./calculator";
+import { RelatedCalculators } from "@/components/related-calculators";
 
 export const metadata: Metadata = {
   title: "Free Descriptive Statistics Calculator - Mean, SD, Skewness",
@@ -93,6 +94,8 @@ export default function DescriptivePage() {
           suggest normality.
         </p>
       </section>
+
+      <RelatedCalculators current="/calculators/descriptive" />
     </div>
   );
 }

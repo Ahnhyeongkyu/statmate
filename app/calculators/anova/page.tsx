@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AnovaCalculator } from "./calculator";
+import { RelatedCalculators } from "@/components/related-calculators";
 
 export const metadata: Metadata = {
   title: "Free One-Way ANOVA Calculator Online - F-test & Post-Hoc",
@@ -91,6 +92,8 @@ export default function AnovaPage() {
           eta-squared as the effect size.
         </p>
       </section>
+
+      <RelatedCalculators current="/calculators/anova" />
     </div>
   );
 }

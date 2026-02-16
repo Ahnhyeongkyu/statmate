@@ -73,10 +73,10 @@ export default function AboutPage() {
         <p>
           Email:{" "}
           <a
-            href="mailto:hello@statmate.cc"
+            href="mailto:contact.statmate@gmail.com"
             className="text-blue-600 hover:underline"
           >
-            hello@statmate.cc
+            contact.statmate@gmail.com
           </a>
         </p>
       </div>

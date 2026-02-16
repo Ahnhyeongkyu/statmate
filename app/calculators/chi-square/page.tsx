@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ChiSquareCalculator } from "./calculator";
+import { RelatedCalculators } from "@/components/related-calculators";
 
 export const metadata: Metadata = {
   title: "Free Chi-Square Calculator Online - Independence & Goodness-of-Fit",
@@ -94,6 +95,8 @@ export default function ChiSquarePage() {
           of independence.
         </p>
       </section>
+
+      <RelatedCalculators current="/calculators/chi-square" />
     </div>
   );
 }
