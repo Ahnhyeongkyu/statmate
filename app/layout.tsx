@@ -65,6 +65,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "SJKzxgIMfb4cH-F8oxgQXRyFMQN2JMryg22qZH0CKDk",
+  },
 };
 
 const calculators = [
