@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MobileMenu } from "@/components/mobile-menu";
+import { HeaderProButton } from "@/components/header-pro-button";
 import "./globals.css";
 
 const inter = Inter({
@@ -105,19 +106,8 @@ export default function RootLayout({
               ))}
             </nav>
 
-            <div className="hidden items-center gap-3 md:flex">
-              <Link
-                href="/pricing"
-                className="rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/pricing"
-                className="rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-              >
-                Get Pro
-              </Link>
+            <div className="hidden md:block">
+              <HeaderProButton />
             </div>
 
             <MobileMenu />

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useIsPro } from "@/components/activate-pro";
+import { ActivateProModal } from "@/components/activate-pro";
 
 const calculators = [
   { name: "T-Test", href: "/calculators/t-test" },
@@ -14,7 +16,9 @@ const calculators = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const [showActivate, setShowActivate] = useState(false);
   const pathname = usePathname();
+  const isPro = useIsPro();
 
   return (
     <div className="md:hidden">
@@ -63,17 +67,39 @@ export function MobileMenu() {
               >
                 Pricing
               </Link>
-              <Link
-                href="/pricing"
-                onClick={() => setOpen(false)}
-                className="mt-2 block rounded-full bg-blue-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700"
-              >
-                Get Pro
-              </Link>
+              {isPro ? (
+                <div className="mt-2 rounded-full bg-green-50 px-4 py-2.5 text-center text-sm font-medium text-green-700">
+                  Pro Active
+                </div>
+              ) : (
+                <>
+                  <Link
+                    href="/pricing"
+                    onClick={() => setOpen(false)}
+                    className="mt-2 block rounded-full bg-blue-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700"
+                  >
+                    Get Pro
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      setShowActivate(true);
+                    }}
+                    className="mt-2 block w-full text-center text-xs text-gray-400 hover:text-gray-600"
+                  >
+                    Have a license key? Activate here
+                  </button>
+                </>
+              )}
             </div>
           </nav>
         </div>
       )}
+
+      <ActivateProModal
+        open={showActivate}
+        onClose={() => setShowActivate(false)}
+      />
     </div>
   );
 }

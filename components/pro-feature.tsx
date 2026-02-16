@@ -4,11 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-// TODO: Replace with actual auth/subscription check
-function useIsPro(): boolean {
-  return false;
-}
+import { useIsPro } from "@/components/activate-pro";
 
 // --- AI Interpretation Component ---
 
