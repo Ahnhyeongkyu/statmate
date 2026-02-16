@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing" },
 };
 
+const CHECKOUT_URL =
+  "https://statmate.lemonsqueezy.com/checkout/buy/27f3051f-83fd-4dbc-858d-f813a7f15cb1";
+
 const plans = [
   {
     name: "Free",
@@ -26,6 +29,7 @@ const plans = [
     ctaHref: "/calculators/t-test",
     ctaVariant: "outline" as const,
     highlight: false,
+    external: false,
     features: [
       { text: "All 5 statistical calculators", included: true },
       { text: "APA-formatted results display", included: true },
@@ -42,9 +46,10 @@ const plans = [
     period: "/month",
     description: "For active researchers and students",
     cta: "Start 7-Day Free Trial",
-    ctaHref: "#",
+    ctaHref: CHECKOUT_URL,
     ctaVariant: "default" as const,
     highlight: true,
+    external: true,
     features: [
       { text: "Everything in Free", included: true },
       { text: "APA Word export (unlimited)", included: true },
@@ -61,9 +66,10 @@ const plans = [
     description: "Best value — save 20%",
     subtext: "Billed $95.88/year",
     cta: "Start 7-Day Free Trial",
-    ctaHref: "#",
+    ctaHref: CHECKOUT_URL,
     ctaVariant: "outline" as const,
     highlight: false,
+    external: true,
     features: [
       { text: "Everything in Pro Monthly", included: true },
       { text: "Priority support", included: true },
@@ -157,14 +163,25 @@ export default function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <Link href={plan.ctaHref} className="mt-6 block">
-                <Button
-                  variant={plan.ctaVariant}
-                  className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
-                >
-                  {plan.cta}
-                </Button>
-              </Link>
+              {plan.external ? (
+                <a href={plan.ctaHref} target="_blank" rel="noopener noreferrer" className="mt-6 block">
+                  <Button
+                    variant={plan.ctaVariant}
+                    className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </a>
+              ) : (
+                <Link href={plan.ctaHref} className="mt-6 block">
+                  <Button
+                    variant={plan.ctaVariant}
+                    className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
+                  >
+                    {plan.cta}
+                  </Button>
+                </Link>
+              )}
             </CardContent>
           </Card>
         ))}
@@ -255,9 +272,11 @@ export default function PricingPage() {
         <p className="mt-2 text-blue-100">
           Start your 7-day free trial. No credit card required.
         </p>
-        <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
-          Start Free Trial
-        </Button>
+        <a href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer">
+          <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
+            Start Free Trial
+          </Button>
+        </a>
       </section>
     </div>
   );
