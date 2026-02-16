@@ -9,7 +9,6 @@ import {
   WidthType,
   BorderStyle,
   AlignmentType,
-  HeadingLevel,
 } from "docx";
 
 // APA 7th Edition table styling constants

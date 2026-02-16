@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,20 +12,25 @@ import {
 const PRO_STORAGE_KEY = "statmate_pro";
 
 export function useIsPro(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    const stored = localStorage.getItem(PRO_STORAGE_KEY);
-    if (!stored) return false;
-    const data = JSON.parse(stored);
-    // Check expiry
-    if (data.expiresAt && new Date(data.expiresAt) < new Date()) {
-      localStorage.removeItem(PRO_STORAGE_KEY);
-      return false;
+  const [isPro, setIsPro] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(PRO_STORAGE_KEY);
+      if (!stored) { setIsPro(false); return; }
+      const data = JSON.parse(stored);
+      if (data.expiresAt && new Date(data.expiresAt) < new Date()) {
+        localStorage.removeItem(PRO_STORAGE_KEY);
+        setIsPro(false);
+        return;
+      }
+      setIsPro(data.valid === true);
+    } catch {
+      setIsPro(false);
     }
-    return data.valid === true;
-  } catch {
-    return false;
-  }
+  }, []);
+
+  return isPro;
 }
 
 export function activatePro(data: {
@@ -52,6 +57,18 @@ export function ActivateProModal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) onClose();
+    },
+    [open, onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   if (!open) return null;
 
