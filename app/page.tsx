@@ -194,6 +194,178 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* How It Works */}
+      <section className="w-full pb-12 md:pb-16">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+          How It Works
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="rounded-lg border bg-white p-6 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+              1
+            </div>
+            <h3 className="mb-2 font-semibold">Enter Your Data</h3>
+            <p className="text-sm text-gray-500">
+              Paste your data directly or enter summary statistics. Supports
+              comma, space, or newline separated values.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-white p-6 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+              2
+            </div>
+            <h3 className="mb-2 font-semibold">Get APA Results</h3>
+            <p className="text-sm text-gray-500">
+              Click Calculate and get publication-ready results: test statistic,
+              p-value, effect size, and confidence intervals.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-white p-6 text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+              3
+            </div>
+            <h3 className="mb-2 font-semibold">Export &amp; Cite</h3>
+            <p className="text-sm text-gray-500">
+              Copy results to clipboard or export APA-formatted tables to Word.
+              Paste directly into your manuscript.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Validation & Trust */}
+      <section className="w-full pb-12 md:pb-16">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+          Trusted Calculations
+        </h2>
+        <div className="rounded-lg border border-green-100 bg-green-50/50 p-6 md:p-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-gray-900">
+                Validated Against R &amp; SPSS
+              </h3>
+              <p className="text-sm leading-relaxed text-gray-600">
+                Every calculator in StatMate has been cross-validated against R
+                (the gold standard for statistical computing) and SPSS. Our
+                results match to at least 4 decimal places across all test
+                statistics, p-values, and effect sizes.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  T-test: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">t.test()</code>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  ANOVA: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">aov()</code> + <code className="rounded bg-gray-100 px-1 text-xs">TukeyHSD()</code>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  Chi-square: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">chisq.test()</code>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  Correlation: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">cor.test()</code>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-gray-900">
+                Privacy by Design
+              </h3>
+              <p className="text-sm leading-relaxed text-gray-600">
+                Your data never leaves your device. All statistical calculations
+                run entirely in your browser using client-side JavaScript. No
+                data is uploaded, stored, or logged on our servers.
+              </p>
+              <div className="mt-4 space-y-2 text-sm text-gray-600">
+                <div className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  100% client-side computation
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  No account or login required
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  HTTPS encrypted connections
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                  Open methodology — uses jstat &amp; simple-statistics libraries
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Interpretation Preview */}
+      <section className="w-full pb-12 md:pb-16">
+        <h2 className="mb-3 text-center text-2xl font-bold text-gray-900">
+          AI-Powered Interpretation
+        </h2>
+        <p className="mb-8 text-center text-sm text-gray-500">
+          Pro feature — see how AI explains your results in plain language
+        </p>
+        <div className="rounded-lg border bg-white p-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-600">
+            Sample AI Output
+          </p>
+          <div className="space-y-4">
+            <div className="rounded-md bg-gray-50 p-4">
+              <p className="text-xs font-semibold text-gray-400">PAPER-READY SENTENCE</p>
+              <p className="mt-1 text-sm italic text-gray-700">
+                An independent-samples t-test revealed that participants in the
+                experimental condition (<em>M</em> = 88.07, <em>SD</em> = 4.94)
+                scored significantly higher than those in the control condition
+                (<em>M</em> = 79.07, <em>SD</em> = 3.15), <em>t</em>(23.47) =
+                5.87, <em>p</em> &lt; .001, <em>d</em> = 2.15, 95% CI [5.82,
+                12.18].
+              </p>
+            </div>
+            <div className="rounded-md bg-gray-50 p-4">
+              <p className="text-xs font-semibold text-gray-400">PLAIN-LANGUAGE INTERPRETATION</p>
+              <p className="mt-1 text-sm text-gray-700">
+                The new teaching method produced substantially higher exam
+                scores — about 9 points higher on average. This is a very large
+                effect, meaning the difference would be immediately noticeable
+                in a classroom setting. The probability of seeing this
+                difference by chance alone is less than 1 in 1,000.
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <Link
+              href="/pricing"
+              className="text-sm font-medium text-blue-600 hover:text-blue-700"
+            >
+              Get AI Interpretation with Pro &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="w-full pb-8">
+        <div className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
+          <h2 className="text-2xl font-bold">
+            Used by researchers worldwide
+          </h2>
+          <p className="mt-2 text-blue-100">
+            Free forever. No sign-up. No credit card. Just paste your data and
+            get APA-ready results.
+          </p>
+          <Link
+            href="/calculators/t-test"
+            className="mt-6 inline-block rounded-full bg-white px-6 py-3 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50"
+          >
+            Start Calculating
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
