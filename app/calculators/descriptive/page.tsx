@@ -14,11 +14,34 @@ export const metadata: Metadata = {
     "quartile calculator",
     "statistics calculator online",
   ],
+  alternates: { canonical: "/calculators/descriptive" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Descriptive Statistics Calculator - StatMate",
+  description:
+    "Free online descriptive statistics calculator. Mean, median, SD, skewness, kurtosis, quartiles, and 95% CI.",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "Mean, median, mode",
+    "Standard deviation and variance",
+    "Skewness and kurtosis",
+    "Quartiles and IQR",
+    "95% confidence interval",
+  ],
 };
 
 export default function DescriptivePage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">
           Descriptive Statistics Calculator

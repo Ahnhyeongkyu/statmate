@@ -14,11 +14,34 @@ export const metadata: Metadata = {
     "Cramer's V",
     "APA chi-square",
   ],
+  alternates: { canonical: "/calculators/chi-square" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Chi-Square Calculator - StatMate",
+  description:
+    "Free online chi-square calculator. Test of independence and goodness-of-fit with APA-formatted results.",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "Chi-square test of independence",
+    "Goodness-of-fit test",
+    "Cramer's V effect size",
+    "Expected frequencies",
+    "APA 7th edition formatted results",
+  ],
 };
 
 export default function ChiSquarePage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">
           Chi-Square Calculator

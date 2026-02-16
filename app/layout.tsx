@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,7 +10,14 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "StatMate - Free Online Statistics Calculators",
     template: "%s | StatMate",
@@ -20,20 +29,41 @@ export const metadata: Metadata = {
     "t-test calculator",
     "anova calculator",
     "chi-square calculator",
+    "correlation calculator",
+    "descriptive statistics",
     "APA format",
     "statistics",
     "p-value calculator",
+    "effect size",
+    "APA 7th edition",
   ],
   openGraph: {
     title: "StatMate - Free Online Statistics Calculators",
     description:
-      "Free online statistics calculators with APA-formatted results.",
+      "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation & more.",
     type: "website",
     locale: "en_US",
+    siteName: "StatMate",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StatMate - Free Online Statistics Calculators",
+    description:
+      "Free statistics calculators with APA-formatted results. Export to Word in one click.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
@@ -96,6 +126,9 @@ export default function RootLayout({
         <main className="mx-auto min-h-[calc(100vh-8rem)] max-w-6xl px-4 py-8">
           {children}
         </main>
+
+        <Analytics />
+        <SpeedInsights />
 
         {/* Footer */}
         <footer className="border-t bg-gray-50">

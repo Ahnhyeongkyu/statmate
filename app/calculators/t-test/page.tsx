@@ -13,11 +13,34 @@ export const metadata: Metadata = {
     "t-test p-value",
     "APA t-test",
   ],
+  alternates: { canonical: "/calculators/t-test" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "T-Test Calculator - StatMate",
+  description:
+    "Free online t-test calculator with APA-formatted results. Independent and paired samples t-test.",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "Independent samples t-test",
+    "Paired samples t-test",
+    "Cohen's d effect size",
+    "95% confidence interval",
+    "APA 7th edition formatted results",
+  ],
 };
 
 export default function TTestPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">
           T-Test Calculator

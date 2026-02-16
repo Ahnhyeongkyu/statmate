@@ -14,11 +14,34 @@ export const metadata: Metadata = {
     "scatter plot",
     "APA correlation",
   ],
+  alternates: { canonical: "/calculators/correlation" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Correlation Calculator - StatMate",
+  description:
+    "Free online correlation calculator. Pearson r and Spearman rho with scatter plot and APA-formatted results.",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "Pearson correlation (r)",
+    "Spearman correlation (rho)",
+    "Scatter plot with regression line",
+    "95% confidence interval",
+    "APA 7th edition formatted results",
+  ],
 };
 
 export default function CorrelationPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">
           Correlation Calculator

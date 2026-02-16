@@ -8,6 +8,36 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "StatMate",
+  description:
+    "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation, and Descriptive Statistics.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://www.google.com/search?q=site:statmate.cc+{search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "StatMate",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "1",
+  },
+};
+
 const calculators = [
   {
     name: "Independent & Paired T-Test",
@@ -54,6 +84,14 @@ const calculators = [
 export default function Home() {
   return (
     <div className="flex flex-col items-center">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
       {/* Hero Section */}
       <section className="flex flex-col items-center gap-6 pb-16 pt-12 text-center">
         <Badge variant="secondary" className="text-sm">

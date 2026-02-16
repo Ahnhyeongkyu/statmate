@@ -14,11 +14,34 @@ export const metadata: Metadata = {
     "eta squared",
     "APA anova",
   ],
+  alternates: { canonical: "/calculators/anova" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "One-Way ANOVA Calculator - StatMate",
+  description:
+    "Free online ANOVA calculator with F-statistic, eta-squared, and Bonferroni post-hoc tests. APA-formatted results.",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  featureList: [
+    "One-way ANOVA",
+    "F-statistic",
+    "Eta-squared effect size",
+    "Bonferroni post-hoc comparisons",
+    "APA 7th edition formatted results",
+  ],
 };
 
 export default function AnovaPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">
           One-Way ANOVA Calculator
