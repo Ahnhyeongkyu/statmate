@@ -93,30 +93,30 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
       {/* Hero Section */}
-      <section className="flex flex-col items-center gap-6 pb-16 pt-12 text-center">
+      <section className="flex flex-col items-center gap-6 pb-12 pt-8 text-center md:pb-16 md:pt-12">
         <Badge variant="secondary" className="text-sm">
           Free &middot; No sign-up required
         </Badge>
-        <h1 className="max-w-3xl text-5xl font-bold leading-tight tracking-tight text-gray-900">
+        <h1 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
           Statistics Made Simple.
           <br />
           <span className="text-blue-600">APA-Ready Results.</span>
         </h1>
-        <p className="max-w-xl text-lg text-gray-500">
+        <p className="max-w-xl text-base text-gray-500 md:text-lg">
           Run statistical tests instantly and get results formatted in APA 7th
           edition. Export to Word with one click. Built by statisticians, for
           researchers.
         </p>
-        <div className="flex gap-3">
+        <div className="flex w-full flex-col gap-3 px-4 sm:w-auto sm:flex-row sm:px-0">
           <Link
             href="/calculators/t-test"
-            className="rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="rounded-full bg-blue-600 px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-blue-700"
           >
             Try T-Test Calculator
           </Link>
           <Link
             href="#calculators"
-            className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            className="rounded-full border border-gray-300 px-6 py-3 text-center text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             View All Calculators
           </Link>
@@ -157,11 +157,11 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="w-full pb-16">
+      <section className="w-full pb-12 md:pb-16">
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
           Why StatMate?
         </h2>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
           <div className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-xl">
               &check;

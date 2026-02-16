@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Pricing",
   description:
     "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Start with a 7-day free trial.",
+  alternates: { canonical: "/pricing" },
 };
 
 const plans = [
@@ -104,7 +105,7 @@ export default function PricingPage() {
       <Badge variant="secondary" className="mb-4 text-sm">
         Pricing
       </Badge>
-      <h1 className="max-w-2xl text-center text-4xl font-bold leading-tight text-gray-900">
+      <h1 className="max-w-2xl text-center text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
         Start Free.{" "}
         <span className="text-blue-600">Go Pro When You Need It.</span>
       </h1>

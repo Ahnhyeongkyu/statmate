@@ -84,6 +84,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased`}>
+        {/* Skip to content */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to content
+        </a>
+
         {/* Header */}
         <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm">
           <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
@@ -115,7 +123,7 @@ export default function RootLayout({
         </header>
 
         {/* Main Content */}
-        <main className="mx-auto min-h-[calc(100vh-8rem)] max-w-6xl px-4 py-8">
+        <main id="main-content" className="mx-auto min-h-[calc(100vh-8rem)] max-w-6xl px-4 py-8">
           {children}
         </main>
 
@@ -125,7 +133,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t bg-gray-50">
           <div className="mx-auto max-w-6xl px-4 py-12">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               <div>
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
@@ -183,18 +191,24 @@ export default function RootLayout({
 
               <div>
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">
-                  Resources
+                  Legal
                 </h3>
                 <ul className="space-y-2">
                   <li>
-                    <span className="text-sm text-gray-500">
-                      APA 7th Edition Guide
-                    </span>
+                    <Link
+                      href="/about"
+                      className="text-sm text-gray-500 hover:text-gray-900"
+                    >
+                      About
+                    </Link>
                   </li>
                   <li>
-                    <span className="text-sm text-gray-500">
-                      Statistics Tutorials
-                    </span>
+                    <a
+                      href="mailto:contact.statmate@gmail.com"
+                      className="text-sm text-gray-500 hover:text-gray-900"
+                    >
+                      Contact
+                    </a>
                   </li>
                 </ul>
               </div>
