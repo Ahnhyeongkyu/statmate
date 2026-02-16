@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ChiSquareCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { AdUnit } from "@/components/adsense";
 
 export const metadata: Metadata = {
   title: "Free Chi-Square Calculator Online - Independence & Goodness-of-Fit",
@@ -54,6 +55,8 @@ export default function ChiSquarePage() {
       </div>
 
       <ChiSquareCalculator />
+
+      <AdUnit slot="chi-square-mid" format="horizontal" />
 
       <section className="mt-16 space-y-6">
         <h2 className="text-2xl font-bold text-gray-900">

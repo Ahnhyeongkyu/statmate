@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DescriptiveCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { AdUnit } from "@/components/adsense";
 
 export const metadata: Metadata = {
   title: "Free Descriptive Statistics Calculator - Mean, SD, Skewness",
@@ -55,6 +56,8 @@ export default function DescriptivePage() {
       </div>
 
       <DescriptiveCalculator />
+
+      <AdUnit slot="descriptive-mid" format="horizontal" />
 
       <section className="mt-16 space-y-6">
         <h2 className="text-2xl font-bold text-gray-900">

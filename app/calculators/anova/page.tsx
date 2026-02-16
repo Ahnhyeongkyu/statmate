@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AnovaCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { AdUnit } from "@/components/adsense";
 
 export const metadata: Metadata = {
   title: "Free One-Way ANOVA Calculator Online - F-test & Post-Hoc",
@@ -55,6 +56,8 @@ export default function AnovaPage() {
       </div>
 
       <AnovaCalculator />
+
+      <AdUnit slot="anova-mid" format="horizontal" />
 
       <section className="mt-16 space-y-6">
         <h2 className="text-2xl font-bold text-gray-900">What is ANOVA?</h2>

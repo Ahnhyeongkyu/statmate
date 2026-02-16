@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { MobileMenu } from "@/components/mobile-menu";
 import { HeaderProButton } from "@/components/header-pro-button";
+import { AdSenseScript } from "@/components/adsense";
 import "./globals.css";
 
 const inter = Inter({
@@ -83,6 +84,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <AdSenseScript />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {/* Skip to content */}
         <a
