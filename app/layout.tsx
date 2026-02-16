@@ -200,10 +200,18 @@ export default function RootLayout({
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="/about"
+                      href="/privacy"
                       className="text-sm text-gray-500 hover:text-gray-900"
                     >
-                      About
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/terms"
+                      className="text-sm text-gray-500 hover:text-gray-900"
+                    >
+                      Terms of Service
                     </Link>
                   </li>
                   <li>
