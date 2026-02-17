@@ -17,6 +17,7 @@ import "../globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "optional",
 });
 
 const BASE_URL = "https://statmate-red.vercel.app";
