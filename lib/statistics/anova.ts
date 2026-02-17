@@ -84,7 +84,7 @@ export function oneWayAnova(
     sd: sd(g),
   }));
 
-  // Post-hoc: Tukey HSD-like pairwise comparisons (using Bonferroni correction)
+  // Post-hoc: Pairwise t-tests with Bonferroni correction
   const postHoc: PostHocResult[] = [];
   const numComparisons = (k * (k - 1)) / 2;
 

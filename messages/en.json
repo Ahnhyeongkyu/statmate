@@ -1,0 +1,633 @@
+{
+  "layout": {
+    "skipToContent": "Skip to content",
+    "brand": "StatMate",
+    "brandDescription": "Your Statistics Companion. Free online calculators with APA-formatted results.",
+    "nav": {
+      "ttest": "T-Test",
+      "anova": "ANOVA",
+      "chiSquare": "Chi-Square",
+      "correlation": "Correlation",
+      "descriptive": "Descriptive",
+      "sampleSize": "Sample Size",
+      "oneSampleT": "One-Sample T",
+      "mannWhitney": "Mann-Whitney U",
+      "wilcoxon": "Wilcoxon",
+      "regression": "Regression"
+    },
+    "pricing": "Pricing",
+    "getPro": "Get Pro",
+    "activate": "Activate",
+    "signOut": "Sign out",
+    "proActive": "Pro Active",
+    "proLabel": "Pro",
+    "haveLicenseKey": "Have a license key? Activate here",
+    "footer": {
+      "calculators": "Calculators",
+      "calculatorSuffix": "Calculator",
+      "product": "Product",
+      "legal": "Legal",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "contact": "Contact",
+      "about": "About",
+      "copyright": "© {year} StatMate. All rights reserved."
+    },
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "badge": "Free · No sign-up required",
+    "heroTitle1": "Statistics Made Simple.",
+    "heroTitle2": "APA-Ready Results.",
+    "heroDescription": "Run statistical tests instantly and get results formatted in APA 7th edition. Export to Word with one click. Built by statisticians, for researchers.",
+    "ctaTry": "Try T-Test Calculator",
+    "ctaViewAll": "View All Calculators",
+    "calculatorsTitle": "Free Statistics Calculators",
+    "calculators": {
+      "ttest": {
+        "name": "Independent & Paired T-Test",
+        "description": "Compare means between two groups. Get t-value, p-value, Cohen's d, and 95% CI."
+      },
+      "anova": {
+        "name": "One-Way ANOVA",
+        "description": "Compare means across three or more groups. F-statistic, eta-squared, and post-hoc tests."
+      },
+      "chiSquare": {
+        "name": "Chi-Square Test",
+        "description": "Test of independence and goodness-of-fit. Chi-square statistic, Cramer's V."
+      },
+      "correlation": {
+        "name": "Correlation",
+        "description": "Pearson r and Spearman rho. Scatter plot visualization with regression line."
+      },
+      "descriptive": {
+        "name": "Descriptive Statistics",
+        "description": "Mean, median, SD, skewness, kurtosis, quartiles, and more."
+      },
+      "sampleSize": {
+        "name": "Sample Size Calculator",
+        "description": "Power analysis for t-tests, ANOVA, correlation, chi-square & proportions."
+      },
+      "oneSampleT": {
+        "name": "One-Sample T-Test",
+        "description": "Compare a sample mean against a known or hypothesized population value."
+      },
+      "mannWhitney": {
+        "name": "Mann-Whitney U Test",
+        "description": "Non-parametric comparison of two independent groups. Rank-based alternative to t-test."
+      },
+      "wilcoxon": {
+        "name": "Wilcoxon Signed-Rank",
+        "description": "Non-parametric test for paired samples. Alternative to paired t-test."
+      },
+      "regression": {
+        "name": "Simple Linear Regression",
+        "description": "Model the relationship between X and Y. Equation, R², scatter plot."
+      }
+    },
+    "badge_mostPopular": "Most Popular",
+    "whyTitle": "Why StatMate?",
+    "why": {
+      "apa": {
+        "title": "APA 7th Edition",
+        "description": "Results are automatically formatted to APA standards. No more manual formatting."
+      },
+      "instant": {
+        "title": "Instant Results",
+        "description": "All calculations run in your browser. No server needed. Fast and private."
+      },
+      "export": {
+        "title": "Export to Word",
+        "description": "One-click export to .docx with perfect APA tables. Copy-paste into your paper."
+      }
+    },
+    "howTitle": "How It Works",
+    "how": {
+      "step1": {
+        "title": "Enter Your Data",
+        "description": "Paste your data directly or enter summary statistics. Supports comma, space, or newline separated values."
+      },
+      "step2": {
+        "title": "Get APA Results",
+        "description": "Click Calculate and get publication-ready results: test statistic, p-value, effect size, and confidence intervals."
+      },
+      "step3": {
+        "title": "Export & Cite",
+        "description": "Copy results to clipboard or export APA-formatted tables to Word. Paste directly into your manuscript."
+      }
+    },
+    "trustTitle": "Trusted Calculations",
+    "trust": {
+      "validatedTitle": "Validated Against R & SPSS",
+      "validatedDescription": "Every calculator in StatMate has been cross-validated against R (the gold standard for statistical computing) and SPSS. Our results match to at least 4 decimal places across all test statistics, p-values, and effect sizes.",
+      "privacyTitle": "Privacy by Design",
+      "privacyDescription": "Your data never leaves your device. All statistical calculations run entirely in your browser using client-side JavaScript. No data is uploaded, stored, or logged on our servers.",
+      "clientSide": "100% client-side computation",
+      "noAccount": "No account or login required",
+      "https": "HTTPS encrypted connections",
+      "openMethodology": "Open methodology — uses jstat & simple-statistics libraries"
+    },
+    "aiTitle": "AI-Powered Interpretation",
+    "aiSubtitle": "Pro feature — see how AI explains your results in plain language",
+    "aiSampleLabel": "Sample AI Output",
+    "aiPaperReady": "PAPER-READY SENTENCE",
+    "aiPlainLanguage": "PLAIN-LANGUAGE INTERPRETATION",
+    "aiCta": "Get AI Interpretation with Pro →",
+    "bottomCta": {
+      "title": "Used by researchers worldwide",
+      "description": "Free forever. No sign-up. No credit card. Just paste your data and get APA-ready results.",
+      "button": "Start Calculating"
+    }
+  },
+  "calculator": {
+    "apaResult": "APA-Formatted Result",
+    "copyToClipboard": "Copy to clipboard",
+    "copied": "Copied to clipboard",
+    "significant": "Statistically Significant (p < .05)",
+    "notSignificant": "Not Statistically Significant (p ≥ .05)",
+    "detailedResults": "Detailed Results",
+    "groupStats": "Group Statistics",
+    "effectSizeLabel": "Effect size interpretation: ",
+    "negligibleEffect": "Negligible effect",
+    "smallEffect": "Small effect",
+    "mediumEffect": "Medium effect",
+    "largeEffect": "Large effect",
+    "calculate": "Calculate",
+    "loadExample": "Load Example",
+    "clear": "Clear",
+    "enterData": "Enter your data and click Calculate",
+    "tryExample": "or click \"Load Example\" to try it out",
+    "separatorHint": "(comma, space, or newline separated)",
+    "group": "Group",
+    "testType": "Test type",
+    "tStatistic": "t-statistic",
+    "df": "Degrees of freedom (df)",
+    "pValue": "p-value (two-tailed)",
+    "meanDiff": "Mean difference",
+    "cohensD": "Cohen's d",
+    "ci95": "95% Confidence Interval of the Difference",
+    "summary": "Summary",
+    "tryOther": "Try Other Calculators"
+  },
+  "ttest": {
+    "metaTitle": "Free T-Test Calculator Online - Independent & Paired",
+    "metaDescription": "Free online t-test calculator. Independent samples and paired t-test with APA-formatted results. Get t-value, p-value, Cohen's d, and 95% CI instantly.",
+    "title": "T-Test Calculator",
+    "description": "Compare means between two groups using an independent or paired samples t-test. Results are formatted in APA 7th edition style.",
+    "independent": "Independent Samples",
+    "paired": "Paired Samples",
+    "independentTitle": "Independent Samples T-Test",
+    "independentDescription": "Compare means from two separate, unrelated groups.",
+    "pairedTitle": "Paired Samples T-Test",
+    "pairedDescription": "Compare means from the same group at two time points (e.g., pre-test vs post-test).",
+    "group1": "Group 1 Data",
+    "group2": "Group 2 Data",
+    "preTest": "Pre-Test / Time 1",
+    "postTest": "Post-Test / Time 2",
+    "independentWelchs": "Independent Samples (Welch's)",
+    "pairedSamples": "Paired Samples",
+    "errorGroup1Min": "Group 1 needs at least 2 values.",
+    "errorGroup2Min": "Group 2 needs at least 2 values.",
+    "errorPairedEqual": "Paired t-test requires equal sample sizes in both groups."
+  },
+  "anova": {
+    "metaTitle": "Free One-Way ANOVA Calculator Online",
+    "metaDescription": "Free online one-way ANOVA calculator with APA-formatted results. F-statistic, p-value, eta-squared, and Bonferroni post-hoc tests.",
+    "title": "One-Way ANOVA Calculator",
+    "description": "Compare means across three or more groups. Results include F-statistic, p-value, eta-squared, and Bonferroni post-hoc tests in APA format.",
+    "groupLabel": "Group {n}",
+    "addGroup": "Add Group",
+    "removeGroup": "Remove",
+    "minGroups": "ANOVA requires at least 3 groups.",
+    "groupMinValues": "Each group needs at least 2 values.",
+    "fStatistic": "F-statistic",
+    "dfBetween": "df (between)",
+    "dfWithin": "df (within)",
+    "etaSquared": "Eta-squared (η²)",
+    "postHocTitle": "Bonferroni Post-Hoc Comparisons",
+    "comparison": "Comparison",
+    "meanDiffLabel": "Mean Diff",
+    "negligible": "Negligible",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "groupStatsTitle": "Group Descriptive Statistics",
+    "anovaTable": "ANOVA Table",
+    "source": "Source",
+    "between": "Between",
+    "within": "Within",
+    "total": "Total",
+    "sig": "Sig.",
+    "numGroups": "Number of Groups"
+  },
+  "chiSquare": {
+    "metaTitle": "Free Chi-Square Calculator Online",
+    "metaDescription": "Free online chi-square calculator. Test of independence and goodness-of-fit with APA-formatted results. Chi-square statistic, p-value, Cramer's V.",
+    "title": "Chi-Square Calculator",
+    "description": "Test of independence for contingency tables and goodness-of-fit. Results are formatted in APA 7th edition style.",
+    "independence": "Test of Independence",
+    "goodness": "Goodness-of-Fit",
+    "independenceTitle": "Chi-Square Test of Independence",
+    "independenceDescription": "Test whether two categorical variables are associated in a contingency table.",
+    "goodnessTitle": "Chi-Square Goodness-of-Fit",
+    "goodnessDescription": "Test whether observed frequencies match expected frequencies.",
+    "rows": "Rows",
+    "columns": "Columns",
+    "rowLabel": "Row {n}",
+    "colLabel": "Column {n}",
+    "observed": "Observed Frequencies",
+    "expected": "Expected Frequencies",
+    "categories": "Categories",
+    "observedFreq": "Observed",
+    "expectedFreq": "Expected",
+    "addRow": "Add Row",
+    "addCol": "Add Column",
+    "addCategory": "Add Category",
+    "cramersV": "Cramer's V",
+    "chiSquareStat": "Chi-square (χ²)",
+    "residuals": "Standardized Residuals",
+    "errorMinCells": "Please fill in all cells with valid numbers.",
+    "errorMinCategories": "Need at least 2 categories.",
+    "errorMinObserved": "Enter at least 2 observed frequencies.",
+    "errorEqualLength": "Observed and expected must have the same number of values.",
+    "total": "Total",
+    "category": "Category",
+    "residual": "Residual",
+    "observedVsExpected": "Observed vs Expected",
+    "dfLabel": "Degrees of freedom",
+    "pValueLabel": "p-value",
+    "totalN": "Total N",
+    "negligibleAssoc": "Negligible association",
+    "smallAssoc": "Small association",
+    "mediumAssoc": "Medium association",
+    "largeAssoc": "Large association"
+  },
+  "correlation": {
+    "metaTitle": "Free Correlation Calculator Online - Pearson & Spearman",
+    "metaDescription": "Free online correlation calculator. Pearson r and Spearman rho with APA-formatted results. Scatter plot visualization with regression line.",
+    "title": "Correlation Calculator",
+    "description": "Calculate Pearson r or Spearman rho between two variables. Results include scatter plot, p-value, and APA-formatted output.",
+    "pearson": "Pearson r",
+    "spearman": "Spearman ρ",
+    "pearsonTitle": "Pearson Correlation",
+    "pearsonDescription": "Measure the strength and direction of the linear relationship between two continuous variables.",
+    "spearmanTitle": "Spearman Rank Correlation",
+    "spearmanDescription": "Measure the strength and direction of the monotonic relationship between two variables.",
+    "variableX": "Variable X",
+    "variableY": "Variable Y",
+    "scatterPlot": "Scatter Plot",
+    "rValue": "Correlation coefficient (r)",
+    "rhoValue": "Correlation coefficient (ρ)",
+    "nPairs": "Number of pairs (N)",
+    "rSquared": "R² (coefficient of determination)",
+    "errorMinPairs": "Each variable needs at least 3 values.",
+    "errorEqualLength": "Both variables must have the same number of values.",
+    "strengthNegligible": "Negligible correlation",
+    "strengthWeak": "Weak correlation",
+    "strengthModerate": "Moderate correlation",
+    "strengthStrong": "Strong correlation",
+    "strengthVeryStrong": "Very strong correlation",
+    "correlationType": "Correlation type",
+    "tStatistic": "t-statistic",
+    "ci95r": "95% CI for r",
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "descriptive": {
+    "metaTitle": "Free Descriptive Statistics Calculator Online",
+    "metaDescription": "Free online descriptive statistics calculator. Mean, median, mode, SD, skewness, kurtosis, quartiles and more with APA-formatted results.",
+    "title": "Descriptive Statistics Calculator",
+    "description": "Calculate mean, median, mode, standard deviation, skewness, kurtosis, quartiles, and more. Results are formatted in APA 7th edition style.",
+    "dataInput": "Enter Your Data",
+    "inputDescription": "Enter a list of numbers to compute descriptive statistics.",
+    "errorMinValues": "Need at least 2 values for descriptive statistics.",
+    "centralTendency": "Central Tendency",
+    "variability": "Variability",
+    "distribution": "Distribution Shape",
+    "percentiles": "Percentiles & Quartiles",
+    "mean": "Mean (M)",
+    "median": "Median (Mdn)",
+    "mode": "Mode",
+    "sd": "Standard Deviation (SD)",
+    "variance": "Variance",
+    "range": "Range",
+    "iqr": "Interquartile Range (IQR)",
+    "sem": "Standard Error of Mean (SEM)",
+    "skewness": "Skewness",
+    "kurtosis": "Kurtosis",
+    "min": "Minimum",
+    "max": "Maximum",
+    "q1": "Q1 (25th percentile)",
+    "q2": "Q2 (50th percentile)",
+    "q3": "Q3 (75th percentile)",
+    "n": "Sample size (N)",
+    "sum": "Sum",
+    "ci95mean": "95% CI of Mean",
+    "noMode": "No mode (all values unique)",
+    "approxSymmetric": "Approximately symmetric",
+    "positiveSkew": "Positively skewed (right-tailed)",
+    "negativeSkew": "Negatively skewed (left-tailed)",
+    "mesokurtic": "Mesokurtic (normal-like)",
+    "leptokurtic": "Leptokurtic (heavy-tailed)",
+    "platykurtic": "Platykurtic (light-tailed)",
+    "histogram": "Histogram",
+    "boxplot": "Box Plot"
+  },
+  "pricing": {
+    "metaTitle": "Pricing",
+    "metaDescription": "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Start with a 7-day free trial.",
+    "badge": "Pricing",
+    "headline": "Start Free.",
+    "headlineHighlight": "Go Pro When You Need It.",
+    "subheadline": "All calculators are free forever. Upgrade to Pro for APA Word export, AI-powered interpretation, and publication-ready results.",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "forever",
+        "description": "Everything you need for basic analysis",
+        "cta": "Get Started",
+        "features": [
+          "All 5 statistical calculators",
+          "APA-formatted results display",
+          "Copy results to clipboard",
+          "Significance & effect size badges",
+          "Export APA tables to Word",
+          "AI-powered interpretation",
+          "Publication-ready sentences"
+        ]
+      },
+      "proMonthly": {
+        "name": "Pro Monthly",
+        "period": "/month",
+        "description": "For active researchers and students",
+        "cta": "Start 7-Day Free Trial",
+        "features": [
+          "Everything in Free",
+          "APA Word export (unlimited)",
+          "AI result interpretation (EN/KR)",
+          "Ad-free experience",
+          "Priority email support",
+          "Publication-ready sentences"
+        ]
+      },
+      "proAnnual": {
+        "name": "Pro Annual",
+        "period": "/month",
+        "description": "Best value — save 20%",
+        "subtext": "Billed $95.88/year",
+        "cta": "Start 7-Day Free Trial",
+        "features": [
+          "Everything in Pro Monthly",
+          "Early access to new features",
+          "Save 20% vs monthly"
+        ]
+      }
+    },
+    "mostPopular": "Most Popular",
+    "payPerUse": "Don't need a subscription? Pay $2.99 per export — no commitment required.",
+    "comparisonTitle": "Feature Comparison",
+    "featureLabel": "Feature",
+    "freeLabel": "Free",
+    "proLabel": "Pro",
+    "comparison": [
+      { "feature": "All 5 statistical calculators" },
+      { "feature": "APA-formatted results display" },
+      { "feature": "Copy results to clipboard" },
+      { "feature": "Significance & effect size badges" },
+      { "feature": "Export APA tables to Word (.docx)" },
+      { "feature": "AI-powered interpretation" },
+      { "feature": "Publication-ready sentences" },
+      { "feature": "Ad-free experience" },
+      { "feature": "Priority email support" }
+    ],
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "Can I use the calculators without signing up?",
+        "a": "Yes! All calculators are completely free and require no sign-up. You can calculate t-tests, ANOVA, chi-square, correlation, and descriptive statistics instantly."
+      },
+      {
+        "q": "What does the AI interpretation include?",
+        "a": "Our AI analyzes your statistical results and generates: (1) a publication-ready result sentence in APA format, (2) a plain-language interpretation anyone can understand, and (3) important caveats and limitations to consider."
+      },
+      {
+        "q": "What format is the Word export?",
+        "a": "We generate APA 7th edition formatted tables in .docx format. Tables follow APA guidelines: no vertical lines, proper header formatting, italic statistical symbols (M, SD, t, F, p), and Times New Roman 12pt font."
+      },
+      {
+        "q": "Can I cancel anytime?",
+        "a": "Yes. You can cancel your subscription at any time. You'll keep Pro access until the end of your billing period."
+      },
+      {
+        "q": "Is my data safe?",
+        "a": "All calculations run in your browser. Your raw data never leaves your device. For AI interpretation, only the computed statistics (not your raw data) are sent to our server."
+      },
+      {
+        "q": "Do you offer student discounts?",
+        "a": "We're planning student pricing soon. For now, the 7-day free trial and pay-per-use option ($2.99/export) make it affordable for any student."
+      }
+    ],
+    "ctaTitle": "Ready to save hours on formatting?",
+    "ctaDescription": "Start your 7-day free trial. No credit card required.",
+    "ctaButton": "Start Free Trial"
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "StatMate is a free online statistics calculator built by statisticians for researchers.",
+    "title": "About StatMate",
+    "intro": "<bold>StatMate</bold> is a free online statistics calculator designed for researchers, graduate students, and anyone who needs quick, accurate statistical analysis with publication-ready results.",
+    "missionTitle": "Our Mission",
+    "mission": "We believe statistical analysis should be accessible to everyone. Whether you're writing your first research paper or your hundredth, StatMate helps you get accurate results formatted in APA 7th edition style — no expensive software required.",
+    "differenceTitle": "What Makes StatMate Different",
+    "differences": {
+      "apa": "<bold>APA-Ready:</bold> Results are automatically formatted following APA 7th edition guidelines. Copy and paste directly into your paper.",
+      "privacy": "<bold>Privacy First:</bold> All calculations run in your browser. Your raw data never leaves your device.",
+      "builtBy": "<bold>Built by Statisticians:</bold> Every calculator is built and verified by statistics professionals with years of research experience.",
+      "free": "<bold>Always Free:</bold> Core calculators are free forever. No sign-up required."
+    },
+    "calculatorsTitle": "Available Calculators",
+    "calculatorsList": {
+      "ttest": "Independent & Paired Samples T-Test",
+      "anova": "One-Way ANOVA with Bonferroni Post-Hoc",
+      "chiSquare": "Chi-Square Test of Independence & Goodness-of-Fit",
+      "correlation": "Pearson & Spearman Correlation",
+      "descriptive": "Descriptive Statistics"
+    },
+    "contactTitle": "Contact",
+    "contactText": "Have feedback, found a bug, or want to request a new calculator? We'd love to hear from you.",
+    "contactEmail": "Email:",
+    "ctaButton": "Try a Calculator"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist. Try one of our free statistics calculators instead.",
+    "goHome": "Go Home",
+    "tryCta": "Try T-Test Calculator"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Your data hasn't been lost — try refreshing the page.",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Home"
+  },
+  "pro": {
+    "aiTitle": "AI Interpretation",
+    "paperReady": "Publication-Ready Sentence",
+    "plainLanguage": "Plain-Language Interpretation",
+    "caveats": "Caveats",
+    "copy": "Copy",
+    "unlockTitle": "Unlock AI Interpretation",
+    "unlockDescription": "Get publication-ready sentences in English or Korean",
+    "analyzing": "Analyzing...",
+    "generateAI": "Generate AI Interpretation",
+    "exportTitle": "Export as APA Table (.docx)",
+    "exportDescFree": "Download a perfectly formatted Word document",
+    "exportDescPro": "APA 7th edition formatted Word document",
+    "exporting": "Exporting...",
+    "download": "Download .docx",
+    "activateTitle": "Activate StatMate Pro",
+    "activateDescription": "Enter the license key you received after purchase.",
+    "activating": "Activating...",
+    "activateButton": "Activate",
+    "cancel": "Cancel",
+    "activatedSuccess": "Pro activated successfully!",
+    "reloading": "Reloading...",
+    "networkError": "Network error. Please try again."
+  },
+  "privacy": {
+    "metaTitle": "Privacy Policy",
+    "metaDescription": "StatMate Privacy Policy. All calculations run in your browser. Your data never leaves your device.",
+    "title": "Privacy Policy"
+  },
+  "terms": {
+    "metaTitle": "Terms of Service",
+    "metaDescription": "StatMate Terms of Service. Free online statistics calculators.",
+    "title": "Terms of Service"
+  },
+  "sampleSize": {
+    "metaTitle": "Free Sample Size Calculator Online - Power Analysis",
+    "metaDescription": "Free online sample size calculator. Power analysis for t-tests, ANOVA, correlation, chi-square, and proportions. Get required N with APA-formatted results.",
+    "title": "Sample Size Calculator",
+    "description": "Calculate the required sample size for your study using power analysis. Supports t-tests, ANOVA, correlation, chi-square, and proportion tests.",
+    "inputDescription": "Select your test type, effect size, significance level, and desired power.",
+    "testType": "Statistical Test",
+    "effectSize": "Effect Size",
+    "significanceLevel": "Significance Level",
+    "targetPower": "Target Power",
+    "numGroups": "Number of Groups",
+    "requiredN": "Required Total N",
+    "nPerGroup": "N per Group",
+    "effectSizeUsed": "Effect Size Used",
+    "achievedPower": "Achieved Power",
+    "perGroup": "per group",
+    "types": {
+      "twoSampleT": "Independent Samples T-Test",
+      "pairedT": "Paired Samples T-Test",
+      "oneSampleT": "One-Sample T-Test",
+      "anova": "One-Way ANOVA",
+      "correlation": "Correlation",
+      "chiSquare": "Chi-Square (2×2)",
+      "proportion": "Two-Proportion Test"
+    },
+    "preset": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    },
+    "errorEffectSize": "Effect size must be greater than 0.",
+    "errorAlpha": "Alpha must be between 0 and 1.",
+    "errorPower": "Power must be between 0 and 1."
+  },
+  "oneSampleT": {
+    "metaTitle": "Free One-Sample T-Test Calculator Online",
+    "metaDescription": "Free online one-sample t-test calculator. Compare your sample mean to a known value with APA-formatted results, Cohen's d, and 95% CI.",
+    "title": "One-Sample T-Test Calculator",
+    "description": "Compare your sample mean to a known or hypothesized value. Results include t-statistic, p-value, Cohen's d, and 95% CI in APA format.",
+    "dataInput": "Sample Data",
+    "testValue": "Test Value (μ₀)",
+    "testValueHint": "The population mean or hypothesized value to compare against",
+    "sampleStats": "Sample Statistics",
+    "errorMinValues": "Need at least 2 values.",
+    "mean": "Sample Mean (M)",
+    "sd": "Standard Deviation (SD)",
+    "se": "Standard Error (SE)",
+    "n": "Sample Size (N)",
+    "meanDiff": "Mean Difference (M - μ₀)"
+  },
+  "mannWhitney": {
+    "metaTitle": "Free Mann-Whitney U Test Calculator Online",
+    "metaDescription": "Free online Mann-Whitney U test calculator. Non-parametric test for comparing two independent groups with APA-formatted results.",
+    "title": "Mann-Whitney U Test Calculator",
+    "description": "Non-parametric alternative to the independent samples t-test. Compare two independent groups without assuming normal distribution.",
+    "group1": "Group 1 Data",
+    "group2": "Group 2 Data",
+    "uStatistic": "U statistic",
+    "zValue": "z-value",
+    "rankBiserial": "Rank-biserial r",
+    "median1": "Median (Group 1)",
+    "median2": "Median (Group 2)",
+    "meanRank1": "Mean Rank (Group 1)",
+    "meanRank2": "Mean Rank (Group 2)",
+    "errorGroup1Min": "Group 1 needs at least 2 values.",
+    "errorGroup2Min": "Group 2 needs at least 2 values."
+  },
+  "wilcoxon": {
+    "metaTitle": "Free Wilcoxon Signed-Rank Test Calculator Online",
+    "metaDescription": "Free online Wilcoxon signed-rank test calculator. Non-parametric paired test with APA-formatted results. Compare pre/post measurements.",
+    "title": "Wilcoxon Signed-Rank Test Calculator",
+    "description": "Non-parametric alternative to the paired samples t-test. Compare two related measurements without assuming normal distribution.",
+    "preTest": "Pre-Test / Time 1",
+    "postTest": "Post-Test / Time 2",
+    "wStatistic": "W statistic",
+    "wPlus": "W+ (positive ranks)",
+    "wMinus": "W- (negative ranks)",
+    "zValue": "z-value",
+    "rankBiserial": "Rank-biserial r",
+    "medianPre": "Median (Pre)",
+    "medianPost": "Median (Post)",
+    "medianDiff": "Median Difference",
+    "nTotal": "Total N",
+    "nExcluded": "Excluded (zero diff)",
+    "nEffective": "Effective N",
+    "errorEqualLength": "Pre and post arrays must have equal length.",
+    "errorMinPairs": "Need at least 5 paired observations."
+  },
+  "regression": {
+    "metaTitle": "Free Simple Linear Regression Calculator Online",
+    "metaDescription": "Free online simple linear regression calculator. R-squared, F-test, coefficients, scatter plot with APA-formatted results.",
+    "title": "Simple Linear Regression Calculator",
+    "description": "Fit a linear model to your data. Results include R², F-test, regression coefficients, scatter plot, and APA-formatted output.",
+    "variableX": "Variable X (Predictor)",
+    "variableY": "Variable Y (Outcome)",
+    "equation": "Regression Equation",
+    "modelSummary": "Model Summary",
+    "coefficients": "Coefficients",
+    "rSquared": "R²",
+    "adjustedRSquared": "Adjusted R²",
+    "correlationR": "Correlation (r)",
+    "fStatistic": "F-statistic",
+    "standardError": "Std. Error of Estimate",
+    "predictor": "Predictor",
+    "coefficient": "B",
+    "coeffSE": "SE",
+    "intercept": "Intercept (b₀)",
+    "slope": "Slope (b₁)",
+    "scatterPlot": "Scatter Plot with Regression Line",
+    "errorEqualLength": "X and Y must have the same number of values.",
+    "errorMinValues": "Need at least 3 data points."
+  },
+  "relatedCalculators": {
+    "title": "Try Other Calculators",
+    "ttest": { "name": "T-Test", "description": "Compare means between two groups" },
+    "anova": { "name": "ANOVA", "description": "Compare means across 3+ groups" },
+    "chiSquare": { "name": "Chi-Square", "description": "Test categorical associations" },
+    "correlation": { "name": "Correlation", "description": "Measure relationship strength" },
+    "descriptive": { "name": "Descriptive", "description": "Summarize your data" },
+    "sampleSize": { "name": "Sample Size", "description": "Power analysis & sample planning" },
+    "oneSampleT": { "name": "One-Sample T", "description": "Test against a known value" },
+    "mannWhitney": { "name": "Mann-Whitney U", "description": "Non-parametric group comparison" },
+    "wilcoxon": { "name": "Wilcoxon", "description": "Non-parametric paired test" },
+    "regression": { "name": "Regression", "description": "Model X-Y relationships" }
+  }
+}

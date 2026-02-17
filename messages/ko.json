@@ -1,0 +1,633 @@
+{
+  "layout": {
+    "skipToContent": "본문으로 건너뛰기",
+    "brand": "StatMate",
+    "brandDescription": "당신의 통계 도우미. APA 형식 결과를 제공하는 무료 온라인 통계 계산기.",
+    "nav": {
+      "ttest": "T-검정",
+      "anova": "분산분석",
+      "chiSquare": "카이제곱",
+      "correlation": "상관분석",
+      "descriptive": "기술통계",
+      "sampleSize": "표본 크기",
+      "oneSampleT": "일표본 T",
+      "mannWhitney": "Mann-Whitney U",
+      "wilcoxon": "Wilcoxon",
+      "regression": "회귀분석"
+    },
+    "pricing": "요금제",
+    "getPro": "Pro 시작",
+    "activate": "활성화",
+    "signOut": "로그아웃",
+    "proActive": "Pro 활성",
+    "proLabel": "Pro",
+    "haveLicenseKey": "라이선스 키가 있으신가요? 여기서 활성화하세요",
+    "footer": {
+      "calculators": "계산기",
+      "calculatorSuffix": "계산기",
+      "product": "제품",
+      "legal": "법적 고지",
+      "privacyPolicy": "개인정보처리방침",
+      "termsOfService": "이용약관",
+      "contact": "문의",
+      "about": "소개",
+      "copyright": "© {year} StatMate. All rights reserved."
+    },
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
+  },
+  "home": {
+    "badge": "무료 · 가입 불필요",
+    "heroTitle1": "통계, 간단하게.",
+    "heroTitle2": "APA 형식 결과.",
+    "heroDescription": "통계 검정을 즉시 실행하고 APA 7판 형식의 결과를 받으세요. 클릭 한 번으로 Word 내보내기. 통계학자가 연구자를 위해 만들었습니다.",
+    "ctaTry": "T-검정 계산기 사용해보기",
+    "ctaViewAll": "모든 계산기 보기",
+    "calculatorsTitle": "무료 통계 계산기",
+    "calculators": {
+      "ttest": {
+        "name": "독립표본 & 대응표본 T-검정",
+        "description": "두 집단의 평균을 비교합니다. t값, p값, Cohen's d, 95% 신뢰구간을 제공합니다."
+      },
+      "anova": {
+        "name": "일원배치 분산분석",
+        "description": "세 개 이상 집단의 평균을 비교합니다. F통계량, eta-squared, 사후검정을 제공합니다."
+      },
+      "chiSquare": {
+        "name": "카이제곱 검정",
+        "description": "독립성 검정과 적합도 검정. 카이제곱 통계량, Cramer's V를 제공합니다."
+      },
+      "correlation": {
+        "name": "상관분석",
+        "description": "Pearson r과 Spearman rho. 회귀선이 포함된 산점도를 제공합니다."
+      },
+      "descriptive": {
+        "name": "기술통계",
+        "description": "평균, 중앙값, 표준편차, 왜도, 첨도, 사분위수 등을 계산합니다."
+      },
+      "sampleSize": {
+        "name": "표본 크기 계산기",
+        "description": "T-검정, 분산분석, 상관분석, 카이제곱, 비율 검정을 위한 검정력 분석."
+      },
+      "oneSampleT": {
+        "name": "일표본 T-검정",
+        "description": "표본 평균을 알려진 모집단 값과 비교합니다."
+      },
+      "mannWhitney": {
+        "name": "Mann-Whitney U 검정",
+        "description": "두 독립 집단의 비모수 비교. T-검정의 순위 기반 대안."
+      },
+      "wilcoxon": {
+        "name": "Wilcoxon 부호순위 검정",
+        "description": "대응표본 비모수 검정. 대응표본 T-검정의 대안."
+      },
+      "regression": {
+        "name": "단순선형회귀",
+        "description": "X와 Y의 관계를 모델링합니다. 회귀식, R², 산점도."
+      }
+    },
+    "badge_mostPopular": "인기",
+    "whyTitle": "왜 StatMate인가요?",
+    "why": {
+      "apa": {
+        "title": "APA 7판 형식",
+        "description": "결과가 자동으로 APA 기준에 맞게 포맷됩니다. 더 이상 수동 포맷이 필요 없습니다."
+      },
+      "instant": {
+        "title": "즉시 결과",
+        "description": "모든 계산이 브라우저에서 실행됩니다. 서버 불필요. 빠르고 안전합니다."
+      },
+      "export": {
+        "title": "Word 내보내기",
+        "description": "완벽한 APA 표가 포함된 .docx를 한 번의 클릭으로 내보냅니다. 논문에 바로 붙여넣기."
+      }
+    },
+    "howTitle": "사용 방법",
+    "how": {
+      "step1": {
+        "title": "데이터 입력",
+        "description": "데이터를 직접 붙여넣거나 요약 통계량을 입력하세요. 쉼표, 공백, 줄바꿈으로 구분된 값을 지원합니다."
+      },
+      "step2": {
+        "title": "APA 결과 확인",
+        "description": "계산 버튼을 클릭하면 출판 준비된 결과를 받을 수 있습니다: 검정 통계량, p값, 효과 크기, 신뢰구간."
+      },
+      "step3": {
+        "title": "내보내기 & 인용",
+        "description": "결과를 클립보드에 복사하거나 APA 형식 표를 Word로 내보냅니다. 원고에 바로 붙여넣으세요."
+      }
+    },
+    "trustTitle": "신뢰할 수 있는 계산",
+    "trust": {
+      "validatedTitle": "R & SPSS 검증 완료",
+      "validatedDescription": "StatMate의 모든 계산기는 R(통계 컴퓨팅의 표준)과 SPSS와 교차 검증되었습니다. 모든 검정 통계량, p값, 효과 크기에서 소수점 4자리까지 일치합니다.",
+      "privacyTitle": "설계부터 보안",
+      "privacyDescription": "데이터가 기기를 떠나지 않습니다. 모든 통계 계산은 클라이언트 측 JavaScript를 사용하여 브라우저에서 완전히 실행됩니다. 서버에 데이터가 업로드, 저장 또는 기록되지 않습니다.",
+      "clientSide": "100% 클라이언트 측 계산",
+      "noAccount": "계정 또는 로그인 불필요",
+      "https": "HTTPS 암호화 연결",
+      "openMethodology": "개방형 방법론 — jstat & simple-statistics 라이브러리 사용"
+    },
+    "aiTitle": "AI 기반 해석",
+    "aiSubtitle": "Pro 기능 — AI가 결과를 쉬운 말로 설명합니다",
+    "aiSampleLabel": "AI 출력 예시",
+    "aiPaperReady": "논문용 문장",
+    "aiPlainLanguage": "쉬운 해석",
+    "aiCta": "Pro로 AI 해석 받기 →",
+    "bottomCta": {
+      "title": "전 세계 연구자가 사용합니다",
+      "description": "영원히 무료. 가입 불필요. 신용카드 불필요. 데이터를 붙여넣고 APA 형식 결과를 받으세요.",
+      "button": "계산 시작하기"
+    }
+  },
+  "calculator": {
+    "apaResult": "APA 형식 결과",
+    "copyToClipboard": "클립보드에 복사",
+    "copied": "클립보드에 복사됨",
+    "significant": "통계적으로 유의함 (p < .05)",
+    "notSignificant": "통계적으로 유의하지 않음 (p ≥ .05)",
+    "detailedResults": "상세 결과",
+    "groupStats": "집단 기술통계",
+    "effectSizeLabel": "효과 크기 해석: ",
+    "negligibleEffect": "무시할 수 있는 효과",
+    "smallEffect": "작은 효과",
+    "mediumEffect": "중간 효과",
+    "largeEffect": "큰 효과",
+    "calculate": "계산",
+    "loadExample": "예시 데이터",
+    "clear": "초기화",
+    "enterData": "데이터를 입력하고 계산을 클릭하세요",
+    "tryExample": "또는 \"예시 데이터\"를 클릭해 사용해보세요",
+    "separatorHint": "(쉼표, 공백 또는 줄바꿈으로 구분)",
+    "group": "집단",
+    "testType": "검정 유형",
+    "tStatistic": "t 통계량",
+    "df": "자유도 (df)",
+    "pValue": "p값 (양측검정)",
+    "meanDiff": "평균 차이",
+    "cohensD": "Cohen's d",
+    "ci95": "차이의 95% 신뢰구간",
+    "summary": "요약",
+    "tryOther": "다른 계산기 사용하기"
+  },
+  "ttest": {
+    "metaTitle": "무료 T-검정 계산기 - 독립표본 & 대응표본",
+    "metaDescription": "무료 온라인 T-검정 계산기. 독립표본 및 대응표본 t-검정으로 APA 형식 결과를 받으세요. t값, p값, Cohen's d, 95% 신뢰구간을 즉시 계산합니다.",
+    "title": "T-검정 계산기",
+    "description": "독립표본 또는 대응표본 t-검정을 사용하여 두 집단의 평균을 비교합니다. 결과는 APA 7판 형식으로 제공됩니다.",
+    "independent": "독립표본",
+    "paired": "대응표본",
+    "independentTitle": "독립표본 T-검정",
+    "independentDescription": "서로 다른 두 집단의 평균을 비교합니다.",
+    "pairedTitle": "대응표본 T-검정",
+    "pairedDescription": "같은 집단의 두 시점 데이터를 비교합니다 (예: 사전-사후 검사).",
+    "group1": "집단 1 데이터",
+    "group2": "집단 2 데이터",
+    "preTest": "사전검사 / 시점 1",
+    "postTest": "사후검사 / 시점 2",
+    "independentWelchs": "독립표본 (Welch's)",
+    "pairedSamples": "대응표본",
+    "errorGroup1Min": "집단 1에는 최소 2개의 값이 필요합니다.",
+    "errorGroup2Min": "집단 2에는 최소 2개의 값이 필요합니다.",
+    "errorPairedEqual": "대응표본 t-검정은 두 집단의 표본 크기가 같아야 합니다."
+  },
+  "anova": {
+    "metaTitle": "무료 일원배치 분산분석(ANOVA) 계산기",
+    "metaDescription": "무료 온라인 일원배치 분산분석 계산기. F통계량, p값, eta-squared, Bonferroni 사후검정이 포함된 APA 형식 결과를 제공합니다.",
+    "title": "일원배치 분산분석(ANOVA) 계산기",
+    "description": "세 개 이상 집단의 평균을 비교합니다. F통계량, p값, eta-squared, Bonferroni 사후검정이 APA 형식으로 제공됩니다.",
+    "groupLabel": "집단 {n}",
+    "addGroup": "집단 추가",
+    "removeGroup": "제거",
+    "minGroups": "분산분석은 최소 3개 집단이 필요합니다.",
+    "groupMinValues": "각 집단에는 최소 2개의 값이 필요합니다.",
+    "fStatistic": "F 통계량",
+    "dfBetween": "자유도 (집단 간)",
+    "dfWithin": "자유도 (집단 내)",
+    "etaSquared": "Eta-squared (η²)",
+    "postHocTitle": "Bonferroni 사후검정 비교",
+    "comparison": "비교",
+    "meanDiffLabel": "평균 차이",
+    "negligible": "무시",
+    "small": "작음",
+    "medium": "중간",
+    "large": "큼",
+    "groupStatsTitle": "집단별 기술통계",
+    "anovaTable": "분산분석표",
+    "source": "원천",
+    "between": "집단 간",
+    "within": "집단 내",
+    "total": "전체",
+    "sig": "유의",
+    "numGroups": "집단 수"
+  },
+  "chiSquare": {
+    "metaTitle": "무료 카이제곱 검정 계산기",
+    "metaDescription": "무료 온라인 카이제곱 계산기. 독립성 검정과 적합도 검정으로 APA 형식 결과를 받으세요. 카이제곱 통계량, p값, Cramer's V를 제공합니다.",
+    "title": "카이제곱 검정 계산기",
+    "description": "분할표의 독립성 검정과 적합도 검정. 결과는 APA 7판 형식으로 제공됩니다.",
+    "independence": "독립성 검정",
+    "goodness": "적합도 검정",
+    "independenceTitle": "카이제곱 독립성 검정",
+    "independenceDescription": "분할표에서 두 범주형 변수가 연관되어 있는지 검정합니다.",
+    "goodnessTitle": "카이제곱 적합도 검정",
+    "goodnessDescription": "관측 빈도가 기대 빈도와 일치하는지 검정합니다.",
+    "rows": "행",
+    "columns": "열",
+    "rowLabel": "행 {n}",
+    "colLabel": "열 {n}",
+    "observed": "관측 빈도",
+    "expected": "기대 빈도",
+    "categories": "범주",
+    "observedFreq": "관측값",
+    "expectedFreq": "기대값",
+    "addRow": "행 추가",
+    "addCol": "열 추가",
+    "addCategory": "범주 추가",
+    "cramersV": "Cramer's V",
+    "chiSquareStat": "카이제곱 (χ²)",
+    "residuals": "표준화 잔차",
+    "errorMinCells": "모든 칸에 유효한 숫자를 입력해주세요.",
+    "errorMinCategories": "최소 2개 범주가 필요합니다.",
+    "errorMinObserved": "최소 2개의 관측 빈도를 입력하세요.",
+    "errorEqualLength": "관측값과 기대값의 개수가 같아야 합니다.",
+    "total": "합계",
+    "category": "범주",
+    "residual": "잔차",
+    "observedVsExpected": "관측값 vs 기대값",
+    "dfLabel": "자유도",
+    "pValueLabel": "p값",
+    "totalN": "전체 N",
+    "negligibleAssoc": "무시할 수 있는 연관",
+    "smallAssoc": "약한 연관",
+    "mediumAssoc": "보통 연관",
+    "largeAssoc": "강한 연관"
+  },
+  "correlation": {
+    "metaTitle": "무료 상관분석 계산기 - Pearson & Spearman",
+    "metaDescription": "무료 온라인 상관분석 계산기. Pearson r과 Spearman rho로 APA 형식 결과를 받으세요. 회귀선이 포함된 산점도를 제공합니다.",
+    "title": "상관분석 계산기",
+    "description": "두 변수 간의 Pearson r 또는 Spearman rho를 계산합니다. 산점도, p값, APA 형식 결과를 제공합니다.",
+    "pearson": "Pearson r",
+    "spearman": "Spearman ρ",
+    "pearsonTitle": "Pearson 상관분석",
+    "pearsonDescription": "두 연속형 변수 간 선형 관계의 강도와 방향을 측정합니다.",
+    "spearmanTitle": "Spearman 순위 상관분석",
+    "spearmanDescription": "두 변수 간 단조 관계의 강도와 방향을 측정합니다.",
+    "variableX": "변수 X",
+    "variableY": "변수 Y",
+    "scatterPlot": "산점도",
+    "rValue": "상관계수 (r)",
+    "rhoValue": "상관계수 (ρ)",
+    "nPairs": "쌍의 수 (N)",
+    "rSquared": "R² (결정계수)",
+    "errorMinPairs": "각 변수에 최소 3개의 값이 필요합니다.",
+    "errorEqualLength": "두 변수의 값 개수가 같아야 합니다.",
+    "strengthNegligible": "무시할 수 있는 상관",
+    "strengthWeak": "약한 상관",
+    "strengthModerate": "보통 상관",
+    "strengthStrong": "강한 상관",
+    "strengthVeryStrong": "매우 강한 상관",
+    "correlationType": "상관 유형",
+    "tStatistic": "t 통계량",
+    "ci95r": "r의 95% 신뢰구간",
+    "positive": "양",
+    "negative": "음"
+  },
+  "descriptive": {
+    "metaTitle": "무료 기술통계 계산기",
+    "metaDescription": "무료 온라인 기술통계 계산기. 평균, 중앙값, 최빈값, 표준편차, 왜도, 첨도, 사분위수 등을 APA 형식으로 계산합니다.",
+    "title": "기술통계 계산기",
+    "description": "평균, 중앙값, 최빈값, 표준편차, 왜도, 첨도, 사분위수 등을 계산합니다. 결과는 APA 7판 형식으로 제공됩니다.",
+    "dataInput": "데이터 입력",
+    "inputDescription": "기술통계를 계산할 숫자 목록을 입력하세요.",
+    "errorMinValues": "기술통계를 위해 최소 2개의 값이 필요합니다.",
+    "centralTendency": "중심경향치",
+    "variability": "변산성",
+    "distribution": "분포 형태",
+    "percentiles": "백분위수 & 사분위수",
+    "mean": "평균 (M)",
+    "median": "중앙값 (Mdn)",
+    "mode": "최빈값",
+    "sd": "표준편차 (SD)",
+    "variance": "분산",
+    "range": "범위",
+    "iqr": "사분위범위 (IQR)",
+    "sem": "평균의 표준오차 (SEM)",
+    "skewness": "왜도",
+    "kurtosis": "첨도",
+    "min": "최솟값",
+    "max": "최댓값",
+    "q1": "Q1 (25번째 백분위수)",
+    "q2": "Q2 (50번째 백분위수)",
+    "q3": "Q3 (75번째 백분위수)",
+    "n": "표본 크기 (N)",
+    "sum": "합계",
+    "ci95mean": "평균의 95% 신뢰구간",
+    "noMode": "최빈값 없음 (모든 값이 고유)",
+    "approxSymmetric": "대략 대칭",
+    "positiveSkew": "양의 왜도 (오른쪽 꼬리)",
+    "negativeSkew": "음의 왜도 (왼쪽 꼬리)",
+    "mesokurtic": "정상첨도 (정규분포와 유사)",
+    "leptokurtic": "과첨도 (꼬리가 두꺼움)",
+    "platykurtic": "과소첨도 (꼬리가 얇음)",
+    "histogram": "히스토그램",
+    "boxplot": "상자 그림"
+  },
+  "pricing": {
+    "metaTitle": "요금제",
+    "metaDescription": "StatMate Pro: APA 표를 Word로 내보내고, AI 기반 해석을 받고, 출판 준비된 결과 문장을 생성하세요. 7일 무료 체험으로 시작하세요.",
+    "badge": "요금제",
+    "headline": "무료로 시작.",
+    "headlineHighlight": "필요할 때 Pro로.",
+    "subheadline": "모든 계산기는 영원히 무료입니다. APA Word 내보내기, AI 기반 해석, 출판 준비된 결과를 위해 Pro로 업그레이드하세요.",
+    "plans": {
+      "free": {
+        "name": "무료",
+        "period": "영원히",
+        "description": "기본 분석에 필요한 모든 것",
+        "cta": "시작하기",
+        "features": [
+          "5가지 통계 계산기 전체",
+          "APA 형식 결과 표시",
+          "결과 클립보드 복사",
+          "유의성 & 효과 크기 배지",
+          "APA 표 Word 내보내기",
+          "AI 기반 해석",
+          "출판 준비된 문장"
+        ]
+      },
+      "proMonthly": {
+        "name": "Pro 월간",
+        "period": "/월",
+        "description": "활발한 연구자와 학생을 위한",
+        "cta": "7일 무료 체험",
+        "features": [
+          "무료 플랜의 모든 기능",
+          "APA Word 내보내기 (무제한)",
+          "AI 결과 해석 (영어/한국어)",
+          "광고 없는 환경",
+          "우선 이메일 지원",
+          "출판 준비된 문장"
+        ]
+      },
+      "proAnnual": {
+        "name": "Pro 연간",
+        "period": "/월",
+        "description": "최고 가치 — 20% 절약",
+        "subtext": "연 $95.88 청구",
+        "cta": "7일 무료 체험",
+        "features": [
+          "Pro 월간의 모든 기능",
+          "신기능 조기 액세스",
+          "월간 대비 20% 절약"
+        ]
+      }
+    },
+    "mostPopular": "인기",
+    "payPerUse": "구독이 필요 없으신가요? 건당 $2.99 — 약정 없음.",
+    "comparisonTitle": "기능 비교",
+    "featureLabel": "기능",
+    "freeLabel": "무료",
+    "proLabel": "Pro",
+    "comparison": [
+      { "feature": "5가지 통계 계산기 전체" },
+      { "feature": "APA 형식 결과 표시" },
+      { "feature": "결과 클립보드 복사" },
+      { "feature": "유의성 & 효과 크기 배지" },
+      { "feature": "APA 표 Word 내보내기 (.docx)" },
+      { "feature": "AI 기반 해석" },
+      { "feature": "출판 준비된 문장" },
+      { "feature": "광고 없는 환경" },
+      { "feature": "우선 이메일 지원" }
+    ],
+    "faqTitle": "자주 묻는 질문",
+    "faqs": [
+      {
+        "q": "가입 없이 계산기를 사용할 수 있나요?",
+        "a": "네! 모든 계산기는 완전히 무료이며 가입이 필요 없습니다. t-검정, 분산분석, 카이제곱, 상관분석, 기술통계를 즉시 계산할 수 있습니다."
+      },
+      {
+        "q": "AI 해석에는 무엇이 포함되나요?",
+        "a": "AI가 통계 결과를 분석하여 생성합니다: (1) APA 형식의 출판 준비된 결과 문장, (2) 누구나 이해할 수 있는 쉬운 해석, (3) 고려해야 할 주의사항과 한계점."
+      },
+      {
+        "q": "Word 내보내기 형식은 어떤가요?",
+        "a": "APA 7판 형식의 표를 .docx 형식으로 생성합니다. 표는 APA 가이드라인을 따릅니다: 세로선 없음, 적절한 헤더 서식, 이탤릭 통계 기호(M, SD, t, F, p), Times New Roman 12pt 글꼴."
+      },
+      {
+        "q": "언제든 취소할 수 있나요?",
+        "a": "네. 언제든지 구독을 취소할 수 있습니다. 결제 기간이 끝날 때까지 Pro 접근이 유지됩니다."
+      },
+      {
+        "q": "내 데이터는 안전한가요?",
+        "a": "모든 계산은 브라우저에서 실행됩니다. 원시 데이터는 기기를 떠나지 않습니다. AI 해석 시에는 원시 데이터가 아닌 계산된 통계량만 서버로 전송됩니다."
+      },
+      {
+        "q": "학생 할인이 있나요?",
+        "a": "학생 가격을 곧 계획 중입니다. 현재는 7일 무료 체험과 건당 결제 옵션($2.99/건)으로 모든 학생이 부담 없이 이용할 수 있습니다."
+      }
+    ],
+    "ctaTitle": "포맷팅에 드는 시간을 절약하세요",
+    "ctaDescription": "7일 무료 체험을 시작하세요. 신용카드가 필요 없습니다.",
+    "ctaButton": "무료 체험 시작"
+  },
+  "about": {
+    "metaTitle": "소개",
+    "metaDescription": "StatMate는 통계학자가 연구자를 위해 만든 무료 온라인 통계 계산기입니다.",
+    "title": "StatMate 소개",
+    "intro": "<bold>StatMate</bold>는 연구자, 대학원생, 그리고 빠르고 정확한 통계 분석과 출판 준비된 결과가 필요한 모든 분을 위한 무료 온라인 통계 계산기입니다.",
+    "missionTitle": "우리의 사명",
+    "mission": "통계 분석은 모든 사람에게 접근 가능해야 한다고 믿습니다. 첫 번째 논문을 쓰든 백 번째 논문을 쓰든, StatMate는 APA 7판 형식에 맞는 정확한 결과를 제공합니다 — 비싼 소프트웨어가 필요 없습니다.",
+    "differenceTitle": "StatMate가 다른 점",
+    "differences": {
+      "apa": "<bold>APA 지원:</bold> APA 7판 가이드라인에 맞게 결과가 자동으로 포맷됩니다. 논문에 바로 복사해서 붙여넣으세요.",
+      "privacy": "<bold>프라이버시 우선:</bold> 모든 계산이 브라우저에서 실행됩니다. 원시 데이터는 기기를 떠나지 않습니다.",
+      "builtBy": "<bold>통계학자가 제작:</bold> 모든 계산기는 수년간의 연구 경험을 가진 통계 전문가가 제작하고 검증했습니다.",
+      "free": "<bold>항상 무료:</bold> 핵심 계산기는 영원히 무료입니다. 가입이 필요 없습니다."
+    },
+    "calculatorsTitle": "제공 계산기",
+    "calculatorsList": {
+      "ttest": "독립표본 & 대응표본 T-검정",
+      "anova": "일원배치 분산분석 (Bonferroni 사후검정)",
+      "chiSquare": "카이제곱 독립성 검정 & 적합도 검정",
+      "correlation": "Pearson & Spearman 상관분석",
+      "descriptive": "기술통계"
+    },
+    "contactTitle": "문의",
+    "contactText": "피드백이 있거나, 버그를 발견하거나, 새로운 계산기를 요청하고 싶으신가요? 연락 주세요.",
+    "contactEmail": "이메일:",
+    "ctaButton": "계산기 사용해보기"
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "찾으시는 페이지가 존재하지 않습니다. 무료 통계 계산기를 사용해보세요.",
+    "goHome": "홈으로",
+    "tryCta": "T-검정 계산기 사용해보기"
+  },
+  "error": {
+    "title": "문제가 발생했습니다",
+    "description": "예기치 않은 오류가 발생했습니다. 데이터는 유실되지 않았습니다 — 페이지를 새로고침해보세요.",
+    "tryAgain": "다시 시도",
+    "goHome": "홈으로 이동"
+  },
+  "pro": {
+    "aiTitle": "AI 해석",
+    "paperReady": "논문용 문장",
+    "plainLanguage": "쉬운 해석",
+    "caveats": "주의사항",
+    "copy": "복사",
+    "unlockTitle": "AI 해석 잠금 해제",
+    "unlockDescription": "영어 또는 한국어로 출판 준비된 문장을 받으세요",
+    "analyzing": "분석 중...",
+    "generateAI": "AI 해석 생성",
+    "exportTitle": "APA 표 내보내기 (.docx)",
+    "exportDescFree": "완벽하게 포맷된 Word 문서를 다운로드하세요",
+    "exportDescPro": "APA 7판 형식 Word 문서",
+    "exporting": "내보내는 중...",
+    "download": ".docx 다운로드",
+    "activateTitle": "StatMate Pro 활성화",
+    "activateDescription": "구매 후 받은 라이선스 키를 입력하세요.",
+    "activating": "활성화 중...",
+    "activateButton": "활성화",
+    "cancel": "취소",
+    "activatedSuccess": "Pro가 활성화되었습니다!",
+    "reloading": "새로고침 중...",
+    "networkError": "네트워크 오류입니다. 다시 시도해주세요."
+  },
+  "privacy": {
+    "metaTitle": "개인정보처리방침",
+    "metaDescription": "StatMate 개인정보처리방침. 모든 계산은 브라우저에서 실행됩니다. 데이터가 기기를 떠나지 않습니다.",
+    "title": "개인정보처리방침"
+  },
+  "terms": {
+    "metaTitle": "이용약관",
+    "metaDescription": "StatMate 이용약관. 무료 온라인 통계 계산기.",
+    "title": "이용약관"
+  },
+  "sampleSize": {
+    "metaTitle": "무료 표본 크기 계산기 - 검정력 분석",
+    "metaDescription": "무료 온라인 표본 크기 계산기. t-검정, 분산분석, 상관분석, 카이제곱, 비율 검정의 검정력 분석. APA 형식 결과로 필요한 표본 수를 계산합니다.",
+    "title": "표본 크기 계산기",
+    "description": "검정력 분석을 통해 연구에 필요한 표본 크기를 계산합니다. t-검정, 분산분석, 상관분석, 카이제곱, 비율 검정을 지원합니다.",
+    "inputDescription": "검정 유형, 효과 크기, 유의수준, 원하는 검정력을 선택하세요.",
+    "testType": "통계 검정",
+    "effectSize": "효과 크기",
+    "significanceLevel": "유의수준",
+    "targetPower": "목표 검정력",
+    "numGroups": "집단 수",
+    "requiredN": "필요 총 표본 수",
+    "nPerGroup": "집단당 표본 수",
+    "effectSizeUsed": "사용된 효과 크기",
+    "achievedPower": "달성 검정력",
+    "perGroup": "집단당",
+    "types": {
+      "twoSampleT": "독립표본 T-검정",
+      "pairedT": "대응표본 T-검정",
+      "oneSampleT": "일표본 T-검정",
+      "anova": "일원배치 분산분석",
+      "correlation": "상관분석",
+      "chiSquare": "카이제곱 (2×2)",
+      "proportion": "두 비율 검정"
+    },
+    "preset": {
+      "small": "소",
+      "medium": "중",
+      "large": "대"
+    },
+    "errorEffectSize": "효과 크기는 0보다 커야 합니다.",
+    "errorAlpha": "유의수준은 0과 1 사이여야 합니다.",
+    "errorPower": "검정력은 0과 1 사이여야 합니다."
+  },
+  "oneSampleT": {
+    "metaTitle": "무료 일표본 T-검정 계산기",
+    "metaDescription": "무료 온라인 일표본 t-검정 계산기. 표본 평균을 알려진 값과 비교합니다. APA 형식 결과, Cohen's d, 95% 신뢰구간을 제공합니다.",
+    "title": "일표본 T-검정 계산기",
+    "description": "표본 평균을 알려진 또는 가설화된 값과 비교합니다. t통계량, p값, Cohen's d, 95% 신뢰구간을 APA 형식으로 제공합니다.",
+    "dataInput": "표본 데이터",
+    "testValue": "검정값 (μ₀)",
+    "testValueHint": "비교할 모집단 평균 또는 가설 값",
+    "sampleStats": "표본 통계량",
+    "errorMinValues": "최소 2개의 값이 필요합니다.",
+    "mean": "표본 평균 (M)",
+    "sd": "표준편차 (SD)",
+    "se": "표준오차 (SE)",
+    "n": "표본 크기 (N)",
+    "meanDiff": "평균 차이 (M - μ₀)"
+  },
+  "mannWhitney": {
+    "metaTitle": "무료 Mann-Whitney U 검정 계산기",
+    "metaDescription": "무료 온라인 Mann-Whitney U 검정 계산기. 두 독립 집단의 비모수 검정으로 APA 형식 결과를 제공합니다.",
+    "title": "Mann-Whitney U 검정 계산기",
+    "description": "독립표본 t-검정의 비모수적 대안. 정규분포를 가정하지 않고 두 독립 집단을 비교합니다.",
+    "group1": "집단 1 데이터",
+    "group2": "집단 2 데이터",
+    "uStatistic": "U 통계량",
+    "zValue": "z값",
+    "rankBiserial": "순위양분상관 r",
+    "median1": "중앙값 (집단 1)",
+    "median2": "중앙값 (집단 2)",
+    "meanRank1": "평균 순위 (집단 1)",
+    "meanRank2": "평균 순위 (집단 2)",
+    "errorGroup1Min": "집단 1에는 최소 2개의 값이 필요합니다.",
+    "errorGroup2Min": "집단 2에는 최소 2개의 값이 필요합니다."
+  },
+  "wilcoxon": {
+    "metaTitle": "무료 Wilcoxon 부호순위 검정 계산기",
+    "metaDescription": "무료 온라인 Wilcoxon 부호순위 검정 계산기. 대응표본 비모수 검정으로 APA 형식 결과를 제공합니다.",
+    "title": "Wilcoxon 부호순위 검정 계산기",
+    "description": "대응표본 t-검정의 비모수적 대안. 정규분포를 가정하지 않고 두 관련 측정값을 비교합니다.",
+    "preTest": "사전검사 / 시점 1",
+    "postTest": "사후검사 / 시점 2",
+    "wStatistic": "W 통계량",
+    "wPlus": "W+ (양의 순위합)",
+    "wMinus": "W- (음의 순위합)",
+    "zValue": "z값",
+    "rankBiserial": "순위양분상관 r",
+    "medianPre": "중앙값 (사전)",
+    "medianPost": "중앙값 (사후)",
+    "medianDiff": "차이의 중앙값",
+    "nTotal": "전체 N",
+    "nExcluded": "제외 (차이 0)",
+    "nEffective": "유효 N",
+    "errorEqualLength": "사전과 사후 데이터의 개수가 같아야 합니다.",
+    "errorMinPairs": "최소 5개의 대응 관측값이 필요합니다."
+  },
+  "regression": {
+    "metaTitle": "무료 단순 선형 회귀 계산기",
+    "metaDescription": "무료 온라인 단순 선형 회귀 계산기. R², F검정, 회귀계수, 산점도를 APA 형식 결과로 제공합니다.",
+    "title": "단순 선형 회귀 계산기",
+    "description": "데이터에 선형 모형을 적합합니다. R², F검정, 회귀계수, 산점도, APA 형식 결과를 제공합니다.",
+    "variableX": "변수 X (예측변수)",
+    "variableY": "변수 Y (결과변수)",
+    "equation": "회귀 방정식",
+    "modelSummary": "모형 요약",
+    "coefficients": "회귀계수",
+    "rSquared": "R²",
+    "adjustedRSquared": "수정된 R²",
+    "correlationR": "상관계수 (r)",
+    "fStatistic": "F 통계량",
+    "standardError": "추정의 표준오차",
+    "predictor": "예측변수",
+    "coefficient": "B",
+    "coeffSE": "SE",
+    "intercept": "절편 (b₀)",
+    "slope": "기울기 (b₁)",
+    "scatterPlot": "회귀선이 포함된 산점도",
+    "errorEqualLength": "X와 Y의 값 개수가 같아야 합니다.",
+    "errorMinValues": "최소 3개의 데이터 포인트가 필요합니다."
+  },
+  "relatedCalculators": {
+    "title": "다른 계산기 사용하기",
+    "ttest": { "name": "T-검정", "description": "두 집단의 평균 비교" },
+    "anova": { "name": "분산분석", "description": "3개 이상 집단의 평균 비교" },
+    "chiSquare": { "name": "카이제곱", "description": "범주형 변수의 연관성 검정" },
+    "correlation": { "name": "상관분석", "description": "관계의 강도 측정" },
+    "descriptive": { "name": "기술통계", "description": "데이터 요약" },
+    "sampleSize": { "name": "표본 크기", "description": "검정력 분석 및 표본 계획" },
+    "oneSampleT": { "name": "일표본 T", "description": "알려진 값과 비교" },
+    "mannWhitney": { "name": "Mann-Whitney U", "description": "비모수 집단 비교" },
+    "wilcoxon": { "name": "Wilcoxon", "description": "비모수 대응표본 검정" },
+    "regression": { "name": "회귀분석", "description": "X-Y 관계 모델링" }
+  }
+}

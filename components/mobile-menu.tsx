@@ -1,17 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/routing";
 import { useIsPro } from "@/components/activate-pro";
 import { ActivateProModal } from "@/components/activate-pro";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const calculators = [
-  { name: "T-Test", href: "/calculators/t-test" },
-  { name: "ANOVA", href: "/calculators/anova" },
-  { name: "Chi-Square", href: "/calculators/chi-square" },
-  { name: "Correlation", href: "/calculators/correlation" },
-  { name: "Descriptive", href: "/calculators/descriptive" },
+  { key: "ttest" as const, href: "/calculators/t-test" as const },
+  { key: "anova" as const, href: "/calculators/anova" as const },
+  { key: "chiSquare" as const, href: "/calculators/chi-square" as const },
+  { key: "correlation" as const, href: "/calculators/correlation" as const },
+  { key: "descriptive" as const, href: "/calculators/descriptive" as const },
+  { key: "regression" as const, href: "/calculators/regression" as const },
+  { key: "sampleSize" as const, href: "/calculators/sample-size" as const },
+  { key: "oneSampleT" as const, href: "/calculators/one-sample-t" as const },
+  { key: "mannWhitney" as const, href: "/calculators/mann-whitney" as const },
+  { key: "wilcoxon" as const, href: "/calculators/wilcoxon" as const },
 ];
 
 export function MobileMenu() {
@@ -19,6 +25,7 @@ export function MobileMenu() {
   const [showActivate, setShowActivate] = useState(false);
   const pathname = usePathname();
   const isPro = useIsPro();
+  const t = useTranslations("layout");
 
   return (
     <div className="md:hidden">
@@ -26,7 +33,7 @@ export function MobileMenu() {
       <button
         onClick={() => setOpen(!open)}
         className="flex h-10 w-10 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? t("closeMenu") : t("openMenu")}
       >
         {open ? (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -55,7 +62,7 @@ export function MobileMenu() {
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                   }`}
                 >
-                  {calc.name} Calculator
+                  {t(`nav.${calc.key}`)} {t("footer.calculatorSuffix")}
                 </Link>
               ))}
             </div>
@@ -65,11 +72,14 @@ export function MobileMenu() {
                 onClick={() => setOpen(false)}
                 className="block rounded-md px-3 py-2.5 text-sm text-gray-600 hover:bg-gray-50"
               >
-                Pricing
+                {t("pricing")}
               </Link>
+              <div className="mt-2 flex items-center justify-between px-3">
+                <LanguageSwitcher />
+              </div>
               {isPro ? (
                 <div className="mt-2 rounded-full bg-green-50 px-4 py-2.5 text-center text-sm font-medium text-green-700">
-                  Pro Active
+                  {t("proActive")}
                 </div>
               ) : (
                 <>
@@ -78,7 +88,7 @@ export function MobileMenu() {
                     onClick={() => setOpen(false)}
                     className="mt-2 block rounded-full bg-blue-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700"
                   >
-                    Get Pro
+                    {t("getPro")}
                   </Link>
                   <button
                     onClick={() => {
@@ -87,7 +97,7 @@ export function MobileMenu() {
                     }}
                     className="mt-2 block w-full text-center text-xs text-gray-400 hover:text-gray-600"
                   >
-                    Have a license key? Activate here
+                    {t("haveLicenseKey")}
                   </button>
                 </>
               )}

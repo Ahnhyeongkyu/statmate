@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://statmate-red.vercel.app";
 
+const locales = ["en", "ko"] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = [
     "t-test",
@@ -9,46 +11,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "chi-square",
     "correlation",
     "descriptive",
+    "sample-size",
+    "one-sample-t",
+    "mann-whitney",
+    "wilcoxon",
+    "regression",
   ];
 
-  const calculatorEntries: MetadataRoute.Sitemap = calculators.map((calc) => ({
-    url: `${BASE_URL}/calculators/${calc}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
-
-  return [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    ...calculatorEntries,
-    {
-      url: `${BASE_URL}/pricing`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${BASE_URL}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+  const pages = [
+    { path: "", changeFrequency: "monthly" as const, priority: 1 },
+    ...calculators.map((calc) => ({
+      path: `/calculators/${calc}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+    { path: "/pricing", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/about", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
+    { path: "/terms", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
+
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const page of pages) {
+    for (const locale of locales) {
+      const prefix = locale === "en" ? "" : `/${locale}`;
+      entries.push({
+        url: `${BASE_URL}${prefix}${page.path}`,
+        lastModified: new Date(),
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+        alternates: {
+          languages: {
+            en: `${BASE_URL}${page.path}`,
+            ko: `${BASE_URL}/ko${page.path}`,
+          },
+        },
+      });
+    }
+  }
+
+  return entries;
 }

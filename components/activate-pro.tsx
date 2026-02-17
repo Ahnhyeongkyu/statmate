@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -53,6 +54,7 @@ export function ActivateProModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const t = useTranslations("pro");
   const [key, setKey] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -86,7 +88,7 @@ export function ActivateProModal({
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Activation failed");
+        setError(data.error || t("networkError"));
         return;
       }
 
@@ -97,7 +99,7 @@ export function ActivateProModal({
         window.location.reload();
       }, 1500);
     } catch {
-      setError("Network error. Please try again.");
+      setError(t("networkError"));
     } finally {
       setLoading(false);
     }
@@ -107,20 +109,20 @@ export function ActivateProModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <Card className="w-full max-w-md mx-4">
         <CardHeader>
-          <CardTitle className="text-lg">Activate StatMate Pro</CardTitle>
+          <CardTitle className="text-lg">{t("activateTitle")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {success ? (
             <div className="rounded-md bg-green-50 p-4 text-center">
               <p className="font-semibold text-green-800">
-                Pro activated successfully!
+                {t("activatedSuccess")}
               </p>
-              <p className="mt-1 text-sm text-green-600">Reloading...</p>
+              <p className="mt-1 text-sm text-green-600">{t("reloading")}</p>
             </div>
           ) : (
             <>
               <p className="text-sm text-gray-500">
-                Enter the license key you received after purchase.
+                {t("activateDescription")}
               </p>
               <input
                 type="text"
@@ -138,10 +140,10 @@ export function ActivateProModal({
                   disabled={loading || key.trim().length < 10}
                   className="flex-1"
                 >
-                  {loading ? "Activating..." : "Activate"}
+                  {loading ? t("activating") : t("activateButton")}
                 </Button>
                 <Button variant="outline" onClick={onClose}>
-                  Cancel
+                  {t("cancel")}
                 </Button>
               </div>
             </>

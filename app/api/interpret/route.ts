@@ -1,11 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
+
+// Simple in-memory license cache (valid for 10 minutes)
+const licenseCache = new Map<string, { valid: boolean; expiresAt: number }>();
+const CACHE_TTL = 10 * 60 * 1000;
+
+async function validateLicense(licenseKey: string): Promise<boolean> {
+  const cached = licenseCache.get(licenseKey);
+  if (cached && Date.now() < cached.expiresAt) {
+    return cached.valid;
+  }
+
+  try {
+    const res = await fetch(
+      "https://api.lemonsqueezy.com/v1/licenses/validate",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ license_key: licenseKey }),
+      }
+    );
+    const data = await res.json();
+    const valid = res.ok && data.valid === true;
+    licenseCache.set(licenseKey, { valid, expiresAt: Date.now() + CACHE_TTL });
+    return valid;
+  } catch {
+    return false;
+  }
+}
 
 interface InterpretRequest {
-  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive";
+  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon";
   results: Record<string, unknown>;
   language: "en" | "ko";
+  licenseKey?: string;
 }
 
 interface InterpretResponse {
@@ -26,6 +56,11 @@ function buildPrompt(req: InterpretRequest): string {
     "chi-square": "chi-square test",
     correlation: "correlation analysis",
     descriptive: "descriptive statistics",
+    regression: "simple linear regression",
+    "sample-size": "sample size / power analysis",
+    "one-sample-t": "one-sample t-test",
+    "mann-whitney": "Mann-Whitney U test",
+    wilcoxon: "Wilcoxon signed-rank test",
   };
 
   return `You are a statistics expert helping researchers interpret their results for academic publication.
@@ -85,6 +120,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Server-side Pro license validation
+    if (!body.licenseKey) {
+      return NextResponse.json(
+        { error: "Pro license required" },
+        { status: 403 }
+      );
+    }
+
+    const isValidLicense = await validateLicense(body.licenseKey);
+    if (!isValidLicense) {
+      return NextResponse.json(
+        { error: "Invalid or expired license" },
+        { status: 403 }
+      );
+    }
+
     const prompt = buildPrompt(body);
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -95,7 +146,7 @@ export async function POST(request: NextRequest) {
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-5-20250929",
+        model: ANTHROPIC_MODEL,
         max_tokens: 1024,
         messages: [{ role: "user", content: prompt }],
       }),

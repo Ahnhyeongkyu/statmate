@@ -51,20 +51,35 @@ export function pearsonCorrelation(x: number[], y: number[]): CorrelationResult 
     sumY2 += (y[i] - my) ** 2;
   }
 
-  const r = sumXY / Math.sqrt(sumX2 * sumY2);
+  const rRaw = sumXY / Math.sqrt(sumX2 * sumY2);
+  // Clamp to [-1, 1] to handle floating-point precision
+  const r = Math.max(-1, Math.min(1, rRaw));
   const df = n - 2;
-  const t = r * Math.sqrt(df / (1 - r * r));
-  const pValue = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
 
-  // Fisher z-transform for CI
-  const z = 0.5 * Math.log((1 + r) / (1 - r));
-  const se = 1 / Math.sqrt(n - 3);
-  const zLow = z - 1.96 * se;
-  const zHigh = z + 1.96 * se;
-  const ci95: [number, number] = [
-    (Math.exp(2 * zLow) - 1) / (Math.exp(2 * zLow) + 1),
-    (Math.exp(2 * zHigh) - 1) / (Math.exp(2 * zHigh) + 1),
-  ];
+  // Handle perfect correlation: t is infinite, p is 0
+  let t: number;
+  let pValue: number;
+  let ci95: [number, number];
+
+  if (Math.abs(r) >= 1) {
+    t = r > 0 ? Infinity : -Infinity;
+    pValue = 0;
+    ci95 = [r, r];
+  } else {
+    t = r * Math.sqrt(df / (1 - r * r));
+    pValue = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+
+    // Fisher z-transform for CI
+    const rClamped = Math.max(-0.9999, Math.min(0.9999, r));
+    const z = 0.5 * Math.log((1 + rClamped) / (1 - rClamped));
+    const se = 1 / Math.sqrt(n - 3);
+    const zLow = z - 1.96 * se;
+    const zHigh = z + 1.96 * se;
+    ci95 = [
+      (Math.exp(2 * zLow) - 1) / (Math.exp(2 * zLow) + 1),
+      (Math.exp(2 * zHigh) - 1) / (Math.exp(2 * zHigh) + 1),
+    ];
+  }
 
   return {
     type: "pearson",

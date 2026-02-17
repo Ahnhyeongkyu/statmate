@@ -1,0 +1,81 @@
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/routing";
+import { Button } from "@/components/ui/button";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: "/about" },
+  };
+}
+
+export default async function AboutPage() {
+  const t = await getTranslations("about");
+
+  return (
+    <div className="mx-auto max-w-2xl py-8">
+      <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
+
+      <div className="mt-8 space-y-6 text-gray-600 leading-relaxed">
+        <p>
+          <strong className="text-gray-900">StatMate</strong>{" "}
+          {t("mission")}
+        </p>
+
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("missionTitle")}
+        </h2>
+        <p>{t("mission")}</p>
+
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("differenceTitle")}
+        </h2>
+        <ul className="list-disc space-y-2 pl-6">
+          <li>{t("differences.apa")}</li>
+          <li>{t("differences.privacy")}</li>
+          <li>{t("differences.builtBy")}</li>
+          <li>{t("differences.free")}</li>
+        </ul>
+
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("calculatorsTitle")}
+        </h2>
+        <ul className="list-disc space-y-1 pl-6">
+          <li>{t("calculatorsList.ttest")}</li>
+          <li>{t("calculatorsList.anova")}</li>
+          <li>{t("calculatorsList.chiSquare")}</li>
+          <li>{t("calculatorsList.correlation")}</li>
+          <li>{t("calculatorsList.descriptive")}</li>
+        </ul>
+
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("contactTitle")}
+        </h2>
+        <p>{t("contactText")}</p>
+        <p>
+          {t("contactEmail")}{" "}
+          <a
+            href="mailto:contact.statmate@gmail.com"
+            className="text-blue-600 hover:underline"
+          >
+            contact.statmate@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <div className="mt-12">
+        <Link href="/calculators/t-test">
+          <Button>{t("ctaButton")}</Button>
+        </Link>
+      </div>
+    </div>
+  );
+}

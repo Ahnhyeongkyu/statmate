@@ -1,3 +1,5 @@
+import jStat from "jstat";
+
 export interface DescriptiveResult {
   n: number;
   mean: number;
@@ -67,6 +69,7 @@ function skewness(arr: number[]): number {
   const n = arr.length;
   const m = mean(arr);
   const s = sd(arr);
+  if (s === 0) return 0;
   const sum = arr.reduce((acc, x) => acc + ((x - m) / s) ** 3, 0);
   return (n / ((n - 1) * (n - 2))) * sum;
 }
@@ -75,6 +78,7 @@ function kurtosis(arr: number[]): number {
   const n = arr.length;
   const m = mean(arr);
   const s = sd(arr);
+  if (s === 0) return 0;
   const sum = arr.reduce((acc, x) => acc + ((x - m) / s) ** 4, 0);
   const k = ((n * (n + 1)) / ((n - 1) * (n - 2) * (n - 3))) * sum;
   return k - (3 * (n - 1) ** 2) / ((n - 2) * (n - 3));
@@ -86,8 +90,8 @@ export function descriptiveStats(data: number[]): DescriptiveResult {
   const s = sd(data);
   const se = s / Math.sqrt(n);
 
-  // 95% CI using t-distribution approximation
-  const tCrit = 1.96; // approximate for large n
+  // 95% CI using t-distribution
+  const tCrit = jStat.studentt.inv(0.975, n - 1);
   const ci95: [number, number] = [m - tCrit * se, m + tCrit * se];
 
   return {
