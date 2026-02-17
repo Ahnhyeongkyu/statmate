@@ -21,7 +21,7 @@ export function HeaderProButton() {
             deactivatePro();
             window.location.reload();
           }}
-          className="text-xs text-gray-400 hover:text-gray-600"
+          className="text-xs text-gray-500 hover:text-gray-700"
         >
           {t("signOut")}
         </button>
@@ -46,7 +46,7 @@ export function HeaderProButton() {
         </Link>
         <button
           onClick={() => setShowActivate(true)}
-          className="text-xs text-gray-400 hover:text-gray-600"
+          className="text-xs text-gray-500 hover:text-gray-700"
         >
           {t("activate")}
         </button>

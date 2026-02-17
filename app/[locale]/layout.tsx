@@ -299,7 +299,7 @@ export default async function LocaleLayout({
                 </div>
               </div>
 
-              <div className="mt-8 border-t pt-8 text-center text-sm text-gray-400">
+              <div className="mt-8 border-t pt-8 text-center text-sm text-gray-500">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
               </div>
             </div>

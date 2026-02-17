@@ -106,7 +106,7 @@ export function MobileMenu() {
                       setOpen(false);
                       setShowActivate(true);
                     }}
-                    className="mt-2 block w-full text-center text-xs text-gray-400 hover:text-gray-600"
+                    className="mt-2 block w-full text-center text-xs text-gray-500 hover:text-gray-700"
                   >
                     {t("haveLicenseKey")}
                   </button>

@@ -209,7 +209,7 @@ export default async function Home({
                   { label: locale === "ko" ? "상관분석" : "Correlation", fn: "cor.test()" },
                 ].map((item) => (
                   <li key={item.fn} className="flex items-start gap-2">
-                    <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                    <span className="mt-0.5 shrink-0 text-green-600">&check;</span>
                     {item.label}: {locale === "ko" ? "R" : "Validated against R"}{" "}
                     <code className="rounded bg-gray-100 px-1 text-xs">{item.fn}</code>
                     {locale === "ko" ? " 검증 완료" : ""}{item.extra ?? ""}
@@ -227,7 +227,7 @@ export default async function Home({
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 {(["clientSide", "noAccount", "https", "openMethodology"] as const).map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                    <span className="mt-0.5 shrink-0 text-green-600">&check;</span>
                     {t(`trust.${item}`)}
                   </div>
                 ))}
@@ -251,7 +251,7 @@ export default async function Home({
           </p>
           <div className="space-y-4">
             <div className="rounded-md bg-gray-50 p-4">
-              <p className="text-xs font-semibold text-gray-400">{t("aiPaperReady")}</p>
+              <p className="text-xs font-semibold text-gray-500">{t("aiPaperReady")}</p>
               <p className="mt-1 text-sm italic text-gray-700">
                 {locale === "ko" ? (
                   <>
@@ -272,7 +272,7 @@ export default async function Home({
               </p>
             </div>
             <div className="rounded-md bg-gray-50 p-4">
-              <p className="text-xs font-semibold text-gray-400">{t("aiPlainLanguage")}</p>
+              <p className="text-xs font-semibold text-gray-500">{t("aiPlainLanguage")}</p>
               <p className="mt-1 text-sm text-gray-700">
                 {locale === "ko"
                   ? "새로운 교수법은 시험 점수를 평균 약 9점 높였습니다. 이는 매우 큰 효과로, 교실 환경에서 즉시 체감할 수 있는 수준입니다. 이러한 차이가 우연히 발생할 확률은 1,000분의 1 미만입니다."

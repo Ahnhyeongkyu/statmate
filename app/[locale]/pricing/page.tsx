@@ -159,7 +159,7 @@ export default async function PricingPage() {
                     className={`flex items-start gap-2 ${f.included ? "" : "text-gray-400"}`}
                   >
                     <span
-                      className={`mt-0.5 shrink-0 ${f.included ? "text-green-500" : "text-gray-300"}`}
+                      className={`mt-0.5 shrink-0 ${f.included ? "text-green-600" : "text-gray-300"}`}
                     >
                       {f.included ? "\u2713" : "\u2715"}
                     </span>
@@ -227,14 +227,14 @@ export default async function PricingPage() {
                   <td className="py-2.5">{feature}</td>
                   <td className="py-2.5 text-center">
                     {free ? (
-                      <span className="text-green-500">{"\u2713"}</span>
+                      <span className="text-green-600">{"\u2713"}</span>
                     ) : (
                       <span className="text-gray-300">{"\u2014"}</span>
                     )}
                   </td>
                   <td className="py-2.5 text-center">
                     {pro ? (
-                      <span className="text-green-500">{"\u2713"}</span>
+                      <span className="text-green-600">{"\u2713"}</span>
                     ) : (
                       <span className="text-gray-300">{"\u2014"}</span>
                     )}
