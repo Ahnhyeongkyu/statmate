@@ -354,7 +354,7 @@
         "description": "Everything you need for basic analysis",
         "cta": "Get Started",
         "features": [
-          "All 5 statistical calculators",
+          "All 10 statistical calculators",
           "APA-formatted results display",
           "Copy results to clipboard",
           "Significance & effect size badges",
@@ -397,7 +397,7 @@
     "freeLabel": "Free",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "All 5 statistical calculators" },
+      { "feature": "All 10 statistical calculators" },
       { "feature": "APA-formatted results display" },
       { "feature": "Copy results to clipboard" },
       { "feature": "Significance & effect size badges" },
@@ -458,7 +458,12 @@
       "anova": "One-Way ANOVA with Bonferroni Post-Hoc",
       "chiSquare": "Chi-Square Test of Independence & Goodness-of-Fit",
       "correlation": "Pearson & Spearman Correlation",
-      "descriptive": "Descriptive Statistics"
+      "descriptive": "Descriptive Statistics",
+      "regression": "Simple Linear Regression",
+      "sampleSize": "Sample Size Calculator (Power Analysis)",
+      "oneSampleT": "One-Sample T-Test",
+      "mannWhitney": "Mann-Whitney U Test",
+      "wilcoxon": "Wilcoxon Signed-Rank Test"
     },
     "contactTitle": "Contact",
     "contactText": "Have feedback, found a bug, or want to request a new calculator? We'd love to hear from you.",
@@ -693,6 +698,7 @@
     "o_compare": "Compare groups (differences)",
     "o_relationship": "Examine a relationship between variables",
     "o_describe": "Describe / summarize data",
+    "o_plan_study": "Plan a study (determine sample size)",
 
     "q_how_many_groups": "How many groups are you comparing?",
     "o_one_group": "One group (vs. a known value)",
@@ -737,6 +743,8 @@
     "r_regression": "Simple Linear Regression",
     "r_regression_desc": "Models the relationship between a predictor (X) and outcome (Y) variable with an equation.",
     "r_descriptive": "Descriptive Statistics",
-    "r_descriptive_desc": "Summarizes your data with mean, median, standard deviation, and distribution charts."
+    "r_descriptive_desc": "Summarizes your data with mean, median, standard deviation, and distribution charts.",
+    "r_sample_size": "Sample Size Calculator",
+    "r_sample_size_desc": "Determine the required sample size for your study using power analysis. Supports t-tests, ANOVA, correlation, and more."
   }
 }

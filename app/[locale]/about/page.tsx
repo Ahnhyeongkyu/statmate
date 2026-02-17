@@ -54,6 +54,11 @@ export default async function AboutPage() {
           <li>{t("calculatorsList.chiSquare")}</li>
           <li>{t("calculatorsList.correlation")}</li>
           <li>{t("calculatorsList.descriptive")}</li>
+          <li>{t("calculatorsList.regression")}</li>
+          <li>{t("calculatorsList.sampleSize")}</li>
+          <li>{t("calculatorsList.oneSampleT")}</li>
+          <li>{t("calculatorsList.mannWhitney")}</li>
+          <li>{t("calculatorsList.wilcoxon")}</li>
         </ul>
 
         <h2 className="text-xl font-semibold text-gray-900">

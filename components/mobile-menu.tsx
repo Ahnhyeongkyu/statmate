@@ -68,6 +68,17 @@ export function MobileMenu() {
             </div>
             <div className="mt-3 border-t pt-3">
               <Link
+                href="/wizard"
+                onClick={() => setOpen(false)}
+                className={`block rounded-md px-3 py-2.5 text-sm transition-colors ${
+                  pathname === "/wizard"
+                    ? "bg-blue-50 font-medium text-blue-600"
+                    : "text-blue-600 hover:bg-blue-50"
+                }`}
+              >
+                {t("nav.wizard")}
+              </Link>
+              <Link
                 href="/pricing"
                 onClick={() => setOpen(false)}
                 className="block rounded-md px-3 py-2.5 text-sm text-gray-600 hover:bg-gray-50"

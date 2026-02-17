@@ -31,7 +31,8 @@ type NodeId =
   | "r_chi_square"
   | "r_correlation"
   | "r_regression"
-  | "r_descriptive";
+  | "r_descriptive"
+  | "r_sample_size";
 
 interface QuestionNode {
   type: "question";
@@ -56,6 +57,7 @@ const tree: Record<NodeId, TreeNode> = {
       { labelKey: "o_compare", next: "q_groups" },
       { labelKey: "o_relationship", next: "q_relationship" },
       { labelKey: "o_describe", next: "r_descriptive" },
+      { labelKey: "o_plan_study", next: "r_sample_size" },
     ],
   },
   q_groups: {
@@ -194,6 +196,12 @@ const tree: Record<NodeId, TreeNode> = {
     testKey: "r_descriptive",
     descriptionKey: "r_descriptive_desc",
     href: "/calculators/descriptive",
+  },
+  r_sample_size: {
+    type: "result",
+    testKey: "r_sample_size",
+    descriptionKey: "r_sample_size_desc",
+    href: "/calculators/sample-size",
   },
 };
 

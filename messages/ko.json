@@ -354,7 +354,7 @@
         "description": "기본 분석에 필요한 모든 것",
         "cta": "시작하기",
         "features": [
-          "5가지 통계 계산기 전체",
+          "10가지 통계 계산기 전체",
           "APA 형식 결과 표시",
           "결과 클립보드 복사",
           "유의성 & 효과 크기 배지",
@@ -397,7 +397,7 @@
     "freeLabel": "무료",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "5가지 통계 계산기 전체" },
+      { "feature": "10가지 통계 계산기 전체" },
       { "feature": "APA 형식 결과 표시" },
       { "feature": "결과 클립보드 복사" },
       { "feature": "유의성 & 효과 크기 배지" },
@@ -458,7 +458,12 @@
       "anova": "일원배치 분산분석 (Bonferroni 사후검정)",
       "chiSquare": "카이제곱 독립성 검정 & 적합도 검정",
       "correlation": "Pearson & Spearman 상관분석",
-      "descriptive": "기술통계"
+      "descriptive": "기술통계",
+      "regression": "단순 선형 회귀",
+      "sampleSize": "표본 크기 계산기 (검정력 분석)",
+      "oneSampleT": "일표본 T-검정",
+      "mannWhitney": "Mann-Whitney U 검정",
+      "wilcoxon": "Wilcoxon 부호순위 검정"
     },
     "contactTitle": "문의",
     "contactText": "피드백이 있거나, 버그를 발견하거나, 새로운 계산기를 요청하고 싶으신가요? 연락 주세요.",
@@ -693,6 +698,7 @@
     "o_compare": "집단 간 차이 비교",
     "o_relationship": "변수 간 관계 분석",
     "o_describe": "데이터 요약/기술",
+    "o_plan_study": "연구 설계 (표본 크기 결정)",
 
     "q_how_many_groups": "비교할 집단이 몇 개인가요?",
     "o_one_group": "1개 집단 (기준값과 비교)",
@@ -737,6 +743,8 @@
     "r_regression": "단순 선형 회귀",
     "r_regression_desc": "예측변수(X)와 결과변수(Y)의 관계를 방정식으로 모델링합니다.",
     "r_descriptive": "기술통계",
-    "r_descriptive_desc": "평균, 중앙값, 표준편차, 분포 차트 등으로 데이터를 요약합니다."
+    "r_descriptive_desc": "평균, 중앙값, 표준편차, 분포 차트 등으로 데이터를 요약합니다.",
+    "r_sample_size": "표본 크기 계산기",
+    "r_sample_size_desc": "검정력 분석으로 연구에 필요한 표본 크기를 결정합니다. t-검정, 분산분석, 상관분석 등을 지원합니다."
   }
 }

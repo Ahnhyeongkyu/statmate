@@ -13,16 +13,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "StatMate",
+  url: "https://statmate-red.vercel.app",
   description:
     "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation, and Descriptive Statistics.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://www.google.com/search?q=site:statmate-red.vercel.app+{search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const softwareJsonLd = {
@@ -47,7 +40,12 @@ const calculatorSlugs = [
   { key: "wilcoxon" as const, href: "/calculators/wilcoxon" as const, icon: "W", badge: false },
 ];
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("home");
 
   return (
@@ -204,22 +202,19 @@ export default async function Home() {
                 {t("trust.validatedDescription")}
               </p>
               <ul className="mt-4 space-y-2 text-sm text-gray-600">
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
-                  T-test: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">t.test()</code>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
-                  ANOVA: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">aov()</code> + Bonferroni post-hoc
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
-                  Chi-square: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">chisq.test()</code>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
-                  Correlation: Validated against R <code className="rounded bg-gray-100 px-1 text-xs">cor.test()</code>
-                </li>
+                {[
+                  { label: locale === "ko" ? "T-검정" : "T-test", fn: "t.test()" },
+                  { label: locale === "ko" ? "분산분석" : "ANOVA", fn: "aov()", extra: locale === "ko" ? " + Bonferroni 사후검정" : " + Bonferroni post-hoc" },
+                  { label: locale === "ko" ? "카이제곱" : "Chi-square", fn: "chisq.test()" },
+                  { label: locale === "ko" ? "상관분석" : "Correlation", fn: "cor.test()" },
+                ].map((item) => (
+                  <li key={item.fn} className="flex items-start gap-2">
+                    <span className="mt-0.5 shrink-0 text-green-500">&check;</span>
+                    {item.label}: {locale === "ko" ? "R" : "Validated against R"}{" "}
+                    <code className="rounded bg-gray-100 px-1 text-xs">{item.fn}</code>
+                    {locale === "ko" ? " 검증 완료" : ""}{item.extra ?? ""}
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -258,22 +253,30 @@ export default async function Home() {
             <div className="rounded-md bg-gray-50 p-4">
               <p className="text-xs font-semibold text-gray-400">{t("aiPaperReady")}</p>
               <p className="mt-1 text-sm italic text-gray-700">
-                An independent-samples t-test revealed that participants in the
-                experimental condition (<em>M</em> = 88.07, <em>SD</em> = 4.94)
-                scored significantly higher than those in the control condition
-                (<em>M</em> = 79.07, <em>SD</em> = 3.15), <em>t</em>(23.47) =
-                5.87, <em>p</em> &lt; .001, <em>d</em> = 2.15, 95% CI [5.82,
-                12.18].
+                {locale === "ko" ? (
+                  <>
+                    독립표본 t-검정 결과, 실험 조건(<em>M</em> = 88.07, <em>SD</em> = 4.94)의 참가자가
+                    통제 조건(<em>M</em> = 79.07, <em>SD</em> = 3.15)보다 유의하게 높은 점수를 받았다,{" "}
+                    <em>t</em>(23.47) = 5.87, <em>p</em> &lt; .001, <em>d</em> = 2.15, 95% CI [5.82, 12.18].
+                  </>
+                ) : (
+                  <>
+                    An independent-samples t-test revealed that participants in the
+                    experimental condition (<em>M</em> = 88.07, <em>SD</em> = 4.94)
+                    scored significantly higher than those in the control condition
+                    (<em>M</em> = 79.07, <em>SD</em> = 3.15), <em>t</em>(23.47) =
+                    5.87, <em>p</em> &lt; .001, <em>d</em> = 2.15, 95% CI [5.82,
+                    12.18].
+                  </>
+                )}
               </p>
             </div>
             <div className="rounded-md bg-gray-50 p-4">
               <p className="text-xs font-semibold text-gray-400">{t("aiPlainLanguage")}</p>
               <p className="mt-1 text-sm text-gray-700">
-                The new teaching method produced substantially higher exam
-                scores — about 9 points higher on average. This is a very large
-                effect, meaning the difference would be immediately noticeable
-                in a classroom setting. The probability of seeing this
-                difference by chance alone is less than 1 in 1,000.
+                {locale === "ko"
+                  ? "새로운 교수법은 시험 점수를 평균 약 9점 높였습니다. 이는 매우 큰 효과로, 교실 환경에서 즉시 체감할 수 있는 수준입니다. 이러한 차이가 우연히 발생할 확률은 1,000분의 1 미만입니다."
+                  : "The new teaching method produced substantially higher exam scores — about 9 points higher on average. This is a very large effect, meaning the difference would be immediately noticeable in a classroom setting. The probability of seeing this difference by chance alone is less than 1 in 1,000."}
               </p>
             </div>
           </div>
