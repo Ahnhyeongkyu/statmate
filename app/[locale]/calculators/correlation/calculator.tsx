@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +32,9 @@ import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analyti
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { AssumptionChecks } from "@/components/assumption-checks";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeCorrelation, decodeCorrelation, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ScatterPlot({ x, y }: { x: number[]; y: number[] }) {
   const width = 300;
@@ -223,6 +226,27 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportCorrelationPdf } = await import("@/lib/export-pdf");
+              const blob = exportCorrelationPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-correlation-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="correlation"
@@ -235,7 +259,7 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
   );
 }
 
-export function CorrelationCalculator() {
+function CorrelationCalculatorInner() {
   const t = useTranslations("calculator");
   const tc = useTranslations("correlation");
   const [corrType, setCorrType] = useState<"pearson" | "spearman">("pearson");
@@ -245,6 +269,31 @@ export function CorrelationCalculator() {
   const [xData, setXData] = useState<number[]>([]);
   const [yData, setYData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeCorrelation(searchParams);
+    if (state) {
+      setCorrType(state.corrType as "pearson" | "spearman");
+      setXInput(state.xInput);
+      setYInput(state.yInput);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && xInput && yInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("correlation", result ? encodeCorrelation({ corrType, xInput, yInput }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -284,12 +333,14 @@ export function CorrelationCalculator() {
     setYInput("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("correlation");
     setXInput("1, 2, 3, 4, 5, 6, 7, 8, 9, 10");
     setYInput("2.1, 3.8, 6.2, 7.9, 10.5, 12.1, 14.8, 15.9, 18.2, 20.1");
+    setScenario(tc("exampleScenario"));
   }
 
   return (
@@ -359,16 +410,19 @@ export function CorrelationCalculator() {
           </TabsContent>
         </Tabs>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">{t("calculate")}</Button>
           <Button variant="outline" onClick={handleExample}>{t("loadExample")}</Button>
           <Button variant="outline" onClick={handleClear}>{t("clear")}</Button>
+          {result && <ShareButton url={shareUrl} testName="correlation" />}
         </div>
       </div>
 
@@ -385,5 +439,13 @@ export function CorrelationCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function CorrelationCalculator() {
+  return (
+    <Suspense>
+      <CorrelationCalculatorInner />
+    </Suspense>
   );
 }

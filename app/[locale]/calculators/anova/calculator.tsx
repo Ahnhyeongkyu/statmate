@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,6 +31,9 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { GroupBoxplot } from "@/components/charts/group-boxplot";
 import { AssumptionChecks } from "@/components/assumption-checks";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeAnova, decodeAnova, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsData: { label: string; values: number[] }[] }) {
   const t = useTranslations("calculator");
@@ -219,6 +222,27 @@ function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsDat
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportAnovaPdf } = await import("@/lib/export-pdf");
+              const blob = exportAnovaPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-anova-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="anova"
@@ -231,7 +255,7 @@ function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsDat
   );
 }
 
-export function AnovaCalculator() {
+function AnovaCalculatorInner() {
   const t = useTranslations("calculator");
   const ta = useTranslations("anova");
   const [numGroups, setNumGroups] = useState(3);
@@ -240,6 +264,31 @@ export function AnovaCalculator() {
   const [result, setResult] = useState<AnovaResult | null>(null);
   const [parsedGroups, setParsedGroups] = useState<{ label: string; values: number[] }[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeAnova(searchParams);
+    if (state) {
+      setNumGroups(state.numGroups);
+      setGroupInputs(state.groupInputs);
+      setGroupNames(state.groupNames);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, groupInputs]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("anova", result ? encodeAnova({ numGroups, groupInputs, groupNames }) : {});
 
   function handleGroupCountChange(n: number) {
     setNumGroups(n);
@@ -279,6 +328,7 @@ export function AnovaCalculator() {
     setGroupInputs(Array(numGroups).fill(""));
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
@@ -290,6 +340,7 @@ export function AnovaCalculator() {
       "30, 32, 29, 35, 31, 33, 28",
       "18, 20, 22, 19, 21, 17, 23",
     ]);
+    setScenario(ta("exampleScenario"));
   }
 
   return (
@@ -346,16 +397,19 @@ export function AnovaCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">{t("calculate")}</Button>
           <Button variant="outline" onClick={handleExample}>{t("loadExample")}</Button>
           <Button variant="outline" onClick={handleClear}>{t("clear")}</Button>
+          {result && <ShareButton url={shareUrl} testName="anova" />}
         </div>
       </div>
 
@@ -372,5 +426,13 @@ export function AnovaCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function AnovaCalculator() {
+  return (
+    <Suspense>
+      <AnovaCalculatorInner />
+    </Suspense>
   );
 }

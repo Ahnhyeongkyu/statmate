@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +27,9 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { Histogram } from "@/components/descriptive-charts";
 import { AssumptionChecks } from "@/components/assumption-checks";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeOneSampleT, decodeOneSampleT, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: number[] }) {
   const t = useTranslations("calculator");
@@ -178,11 +181,32 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
         testType="one-sample-t"
         results={result as unknown as Record<string, unknown>}
       />
+
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportOneSampleTPdf } = await import("@/lib/export-pdf");
+              const blob = exportOneSampleTPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-one-sample-t-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-export function OneSampleTCalculator() {
+function OneSampleTCalculatorInner() {
   const t = useTranslations("calculator");
   const ts = useTranslations("oneSampleT");
   const [dataInput, setDataInput] = useState("");
@@ -190,6 +214,25 @@ export function OneSampleTCalculator() {
   const [result, setResult] = useState<OneSampleTResult | null>(null);
   const [parsedData, setParsedData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeOneSampleT(searchParams);
+    if (state) {
+      setDataInput(state.dataInput);
+      setTestValueInput(state.testValueInput);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && dataInput) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("one-sample-t", result ? encodeOneSampleT({ dataInput, testValueInput }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -223,12 +266,14 @@ export function OneSampleTCalculator() {
     setTestValueInput("0");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("one-sample-t");
     setDataInput("72, 85, 91, 68, 77, 83, 95, 88, 74, 79");
     setTestValueInput("80");
+    setScenario(ts("exampleScenario"));
   }
 
   return (
@@ -267,13 +312,15 @@ export function OneSampleTCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -283,6 +330,7 @@ export function OneSampleTCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="one-sample-t" />}
         </div>
       </div>
 
@@ -304,5 +352,13 @@ export function OneSampleTCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function OneSampleTCalculator() {
+  return (
+    <Suspense fallback={null}>
+      <OneSampleTCalculatorInner />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +26,9 @@ import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { PairedChart } from "@/components/charts/paired-chart";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeWilcoxon, decodeWilcoxon, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, preData, postData }: { result: WilcoxonResult; preData: number[]; postData: number[] }) {
   const t = useTranslations("calculator");
@@ -169,11 +172,32 @@ function ResultsDisplay({ result, preData, postData }: { result: WilcoxonResult;
         testType="wilcoxon"
         results={result as unknown as Record<string, unknown>}
       />
+
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportWilcoxonPdf } = await import("@/lib/export-pdf");
+              const blob = exportWilcoxonPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-wilcoxon-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-export function WilcoxonCalculator() {
+function WilcoxonCalculatorInner() {
   const t = useTranslations("calculator");
   const ts = useTranslations("wilcoxon");
   const [preInput, setPreInput] = useState("");
@@ -182,6 +206,25 @@ export function WilcoxonCalculator() {
   const [parsedPre, setParsedPre] = useState<number[]>([]);
   const [parsedPost, setParsedPost] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeWilcoxon(searchParams);
+    if (state) {
+      setPreInput(state.preInput);
+      setPostInput(state.postInput);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && preInput && postInput) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, preInput, postInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("wilcoxon", result ? encodeWilcoxon({ preInput, postInput }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -219,12 +262,14 @@ export function WilcoxonCalculator() {
     setPostInput("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("wilcoxon");
     setPreInput("72, 85, 91, 68, 77, 83, 95, 88, 74, 79");
     setPostInput("78, 89, 95, 73, 82, 87, 98, 92, 79, 83");
+    setScenario(ts("exampleScenario"));
   }
 
   return (
@@ -258,13 +303,15 @@ export function WilcoxonCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -274,6 +321,7 @@ export function WilcoxonCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="wilcoxon" />}
         </div>
       </div>
 
@@ -295,5 +343,13 @@ export function WilcoxonCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function WilcoxonCalculator() {
+  return (
+    <Suspense fallback={null}>
+      <WilcoxonCalculatorInner />
+    </Suspense>
   );
 }

@@ -160,6 +160,12 @@
     "calculate": "Calculate",
     "loadExample": "Load Example",
     "clear": "Clear",
+    "shareResult": "Share",
+    "shareLinkCopied": "Link copied!",
+    "pdfExportTitle": "Download PDF Report",
+    "pdfExportDesc": "Free basic report with results and APA text",
+    "downloadPdf": "PDF",
+    "exporting": "Exporting...",
     "enterData": "Enter your data and click Calculate",
     "tryExample": "or click \"Load Example\" to try it out",
     "separatorHint": "(comma, space, tab, or newline separated)",
@@ -195,7 +201,9 @@
     "pairedSamples": "Paired Samples",
     "errorGroup1Min": "Group 1 needs at least 2 values.",
     "errorGroup2Min": "Group 2 needs at least 2 values.",
-    "errorPairedEqual": "Paired t-test requires equal sample sizes in both groups."
+    "errorPairedEqual": "Paired t-test requires equal sample sizes in both groups.",
+    "exampleScenario": "A psychologist tested whether a cognitive training program improves working memory. 10 participants completed the program (experimental), and 10 did not (control). Working memory was measured by digit span scores.",
+    "exampleScenarioPaired": "A clinical researcher measured anxiety scores (1-100) of 10 patients before and after an 8-week mindfulness intervention."
   },
   "anova": {
     "metaTitle": "Free One-Way ANOVA Calculator Online",
@@ -225,7 +233,8 @@
     "within": "Within",
     "total": "Total",
     "sig": "Sig.",
-    "numGroups": "Number of Groups"
+    "numGroups": "Number of Groups",
+    "exampleScenario": "An education researcher compared exam scores across 3 teaching methods: traditional lecture, flipped classroom, and project-based learning. Each group had 10 students."
   },
   "chiSquare": {
     "metaTitle": "Free Chi-Square Calculator Online",
@@ -268,7 +277,9 @@
     "smallAssoc": "Small association",
     "mediumAssoc": "Medium association",
     "largeAssoc": "Large association",
-    "chart": "Chart"
+    "chart": "Chart",
+    "exampleScenario": "A market researcher surveyed 200 consumers to test whether product preference (A vs B) is independent of age group (under 30 vs 30+).",
+    "exampleScenarioGoodness": "A geneticist tested whether observed phenotype ratios match the expected 9:3:3:1 Mendelian ratio from 160 offspring."
   },
   "correlation": {
     "metaTitle": "Free Correlation Calculator Online - Pearson & Spearman",
@@ -299,7 +310,8 @@
     "tStatistic": "t-statistic",
     "ci95r": "95% CI for r",
     "positive": "positive",
-    "negative": "negative"
+    "negative": "negative",
+    "exampleScenario": "A university study examined the relationship between weekly study hours and final exam scores for 12 undergraduate students."
   },
   "descriptive": {
     "metaTitle": "Free Descriptive Statistics Calculator Online",
@@ -339,7 +351,8 @@
     "leptokurtic": "Leptokurtic (heavy-tailed)",
     "platykurtic": "Platykurtic (light-tailed)",
     "histogram": "Histogram",
-    "boxplot": "Box Plot"
+    "boxplot": "Box Plot",
+    "exampleScenario": "A teacher collected math test scores (out of 100) from a class of 15 students to understand the overall performance distribution."
   },
   "pricing": {
     "metaTitle": "Pricing",
@@ -550,7 +563,8 @@
     },
     "errorEffectSize": "Effect size must be greater than 0.",
     "errorAlpha": "Alpha must be between 0 and 1.",
-    "errorPower": "Power must be between 0 and 1."
+    "errorPower": "Power must be between 0 and 1.",
+    "exampleScenario": "A clinical researcher is planning an RCT to test a new anxiety medication. Using Cohen's d = 0.5 (medium effect), they need to determine the required sample size."
   },
   "oneSampleT": {
     "metaTitle": "Free One-Sample T-Test Calculator Online",
@@ -576,7 +590,8 @@
     "sampleSD": "Standard Deviation",
     "sampleSE": "Standard Error",
     "sampleN": "Sample Size",
-    "errorTestValue": "Please enter a valid test value."
+    "errorTestValue": "Please enter a valid test value.",
+    "exampleScenario": "A quality control engineer tests whether the average weight of cereal boxes differs from the labeled 500g, measuring 12 boxes from the production line."
   },
   "mannWhitney": {
     "metaTitle": "Free Mann-Whitney U Test Calculator Online",
@@ -593,7 +608,8 @@
     "meanRank1": "Mean Rank (Group 1)",
     "meanRank2": "Mean Rank (Group 2)",
     "errorGroup1Min": "Group 1 needs at least 2 values.",
-    "errorGroup2Min": "Group 2 needs at least 2 values."
+    "errorGroup2Min": "Group 2 needs at least 2 values.",
+    "exampleScenario": "A pain researcher compared pain ratings (1-10 ordinal scale) between patients receiving a new analgesic (n=8) vs placebo (n=8), where data is not normally distributed."
   },
   "wilcoxon": {
     "metaTitle": "Free Wilcoxon Signed-Rank Test Calculator Online",
@@ -623,7 +639,8 @@
     "effectiveN": "Effective N",
     "rankBiserialR": "Rank-biserial r",
     "errorPreMin": "Need at least 5 pre-test values.",
-    "errorPostMin": "Need at least 5 post-test values."
+    "errorPostMin": "Need at least 5 post-test values.",
+    "exampleScenario": "A hospital compared patient satisfaction ratings (1-5 Likert scale) before and after implementing a new care protocol for 10 patients."
   },
   "regression": {
     "metaTitle": "Free Simple Linear Regression Calculator Online",
@@ -659,7 +676,8 @@
     "standardErrorEstimate": "Std. Error of Estimate",
     "scatterPlotDesc": "Data points with fitted regression line",
     "residualPlot": "Residual Plot",
-    "qqPlot": "Q-Q Plot (Normality Check)"
+    "qqPlot": "Q-Q Plot (Normality Check)",
+    "exampleScenario": "A marketing analyst examined how monthly advertising spend (in $1000s) predicts quarterly sales revenue (in $1000s) using data from 10 quarters."
   },
   "relatedCalculators": {
     "title": "Try Other Calculators",

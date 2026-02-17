@@ -46,6 +46,15 @@ export function trackWordExport(testType: string) {
   gtag({ action: "word_export", category: "pro_feature", label: testType });
 }
 
+// Sharing & export events
+export function trackShareUrl(testType: string) {
+  gtag({ action: "share_url", category: "calculator", label: testType });
+}
+
+export function trackPdfExport(testType: string) {
+  gtag({ action: "pdf_export", category: "calculator", label: testType });
+}
+
 // Navigation events
 export function trackPageView(path: string) {
   gtag({ action: "page_view", category: "navigation", label: path });

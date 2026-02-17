@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +25,9 @@ import {
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { PowerCurve } from "@/components/charts/power-curve";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeSampleSize, decodeSampleSize, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 const TEST_TYPES: { value: SampleSizeTestType; labelKey: string }[] = [
   { value: "two-sample-t", labelKey: "twoSampleT" },
@@ -141,11 +144,32 @@ function ResultsDisplay({ result }: { result: SampleSizeResult }) {
         testType="descriptive"
         results={result as unknown as Record<string, unknown>}
       />
+
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportSampleSizePdf } = await import("@/lib/export-pdf");
+              const blob = exportSampleSizePdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-sample-size-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-export function SampleSizeCalculator() {
+function SampleSizeCalculatorInner() {
   const t = useTranslations("calculator");
   const ts = useTranslations("sampleSize");
   const [testType, setTestType] = useState<SampleSizeTestType>("two-sample-t");
@@ -155,6 +179,33 @@ export function SampleSizeCalculator() {
   const [numGroups, setNumGroups] = useState("3");
   const [result, setResult] = useState<SampleSizeResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeSampleSize(searchParams);
+    if (state) {
+      setTestType(state.testType as SampleSizeTestType);
+      setEffectSize(state.effectSize);
+      setAlpha(state.alpha);
+      setPower(state.power);
+      setNumGroups(state.numGroups);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, testType, effectSize, alpha, power]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("sample-size", result ? encodeSampleSize({ testType, effectSize, alpha, power, numGroups }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -200,6 +251,7 @@ export function SampleSizeCalculator() {
     setPower("0.80");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
@@ -208,6 +260,7 @@ export function SampleSizeCalculator() {
     setEffectSize("0.5");
     setAlpha("0.05");
     setPower("0.80");
+    setScenario(ts("exampleScenario"));
   }
 
   function handlePreset(size: "small" | "medium" | "large") {
@@ -325,13 +378,15 @@ export function SampleSizeCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -341,6 +396,7 @@ export function SampleSizeCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="sample-size" />}
         </div>
       </div>
 
@@ -357,5 +413,13 @@ export function SampleSizeCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function SampleSizeCalculator() {
+  return (
+    <Suspense>
+      <SampleSizeCalculatorInner />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +25,9 @@ import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analyti
 import { Histogram, Boxplot } from "@/components/descriptive-charts";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeDescriptive, decodeDescriptive, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: number[] }) {
   const t = useTranslations("calculator");
@@ -199,6 +202,27 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportDescriptivePdf } = await import("@/lib/export-pdf");
+              const blob = exportDescriptivePdf(result);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-descriptive-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="descriptive"
@@ -211,13 +235,36 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
   );
 }
 
-export function DescriptiveCalculator() {
+function DescriptiveCalculatorInner() {
   const t = useTranslations("calculator");
   const td = useTranslations("descriptive");
   const [dataInput, setDataInput] = useState("");
   const [result, setResult] = useState<DescriptiveResult | null>(null);
   const [parsedData, setParsedData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeDescriptive(searchParams);
+    if (state) {
+      setDataInput(state.dataInput);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && dataInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("descriptive", result ? encodeDescriptive({ dataInput }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -244,11 +291,13 @@ export function DescriptiveCalculator() {
     setResult(null);
     setParsedData([]);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("descriptive");
     setDataInput("72, 85, 91, 68, 77, 83, 95, 88, 74, 79, 86, 92, 71, 80, 87, 93, 76, 82, 89, 75");
+    setScenario(td("exampleScenario"));
   }
 
   return (
@@ -272,16 +321,19 @@ export function DescriptiveCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">{t("calculate")}</Button>
           <Button variant="outline" onClick={handleExample}>{t("loadExample")}</Button>
           <Button variant="outline" onClick={handleClear}>{t("clear")}</Button>
+          {result && <ShareButton url={shareUrl} testName="descriptive" />}
         </div>
       </div>
 
@@ -298,5 +350,13 @@ export function DescriptiveCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function DescriptiveCalculator() {
+  return (
+    <Suspense>
+      <DescriptiveCalculatorInner />
+    </Suspense>
   );
 }

@@ -160,6 +160,12 @@
     "calculate": "계산",
     "loadExample": "예시 데이터",
     "clear": "초기화",
+    "shareResult": "공유",
+    "shareLinkCopied": "링크 복사됨!",
+    "pdfExportTitle": "PDF 리포트 다운로드",
+    "pdfExportDesc": "결과와 APA 텍스트가 포함된 무료 기본 리포트",
+    "downloadPdf": "PDF",
+    "exporting": "내보내는 중...",
     "enterData": "데이터를 입력하고 계산을 클릭하세요",
     "tryExample": "또는 \"예시 데이터\"를 클릭해 사용해보세요",
     "separatorHint": "(쉼표, 공백, 탭 또는 줄바꿈으로 구분)",
@@ -195,7 +201,9 @@
     "pairedSamples": "대응표본",
     "errorGroup1Min": "집단 1에는 최소 2개의 값이 필요합니다.",
     "errorGroup2Min": "집단 2에는 최소 2개의 값이 필요합니다.",
-    "errorPairedEqual": "대응표본 t-검정은 두 집단의 표본 크기가 같아야 합니다."
+    "errorPairedEqual": "대응표본 t-검정은 두 집단의 표본 크기가 같아야 합니다.",
+    "exampleScenario": "심리학자가 인지 훈련 프로그램이 작업 기억력을 향상시키는지 검증했습니다. 실험군 10명은 프로그램을 이수했고, 대조군 10명은 이수하지 않았습니다. 숫자 폭 검사로 작업 기억을 측정했습니다.",
+    "exampleScenarioPaired": "임상 연구자가 8주간 마음챙김 중재 프로그램 전후로 환자 10명의 불안 점수(1-100)를 측정했습니다."
   },
   "anova": {
     "metaTitle": "무료 일원배치 분산분석(ANOVA) 계산기",
@@ -225,7 +233,8 @@
     "within": "집단 내",
     "total": "전체",
     "sig": "유의",
-    "numGroups": "집단 수"
+    "numGroups": "집단 수",
+    "exampleScenario": "교육 연구자가 3가지 교수법(전통 강의, 플립드 러닝, 프로젝트 기반 학습)에 따른 시험 점수 차이를 비교했습니다. 각 그룹에 10명의 학생이 배정되었습니다."
   },
   "chiSquare": {
     "metaTitle": "무료 카이제곱 검정 계산기",
@@ -268,7 +277,9 @@
     "smallAssoc": "약한 연관",
     "mediumAssoc": "보통 연관",
     "largeAssoc": "강한 연관",
-    "chart": "차트"
+    "chart": "차트",
+    "exampleScenario": "시장 조사원이 200명의 소비자를 대상으로 제품 선호도(A vs B)와 연령대(30세 미만 vs 30세 이상)의 독립성을 검정했습니다.",
+    "exampleScenarioGoodness": "유전학자가 160마리 자손의 표현형 비율이 멘델의 예상 비율 9:3:3:1과 일치하는지 검정했습니다."
   },
   "correlation": {
     "metaTitle": "무료 상관분석 계산기 - Pearson & Spearman",
@@ -299,7 +310,8 @@
     "tStatistic": "t 통계량",
     "ci95r": "r의 95% 신뢰구간",
     "positive": "양",
-    "negative": "음"
+    "negative": "음",
+    "exampleScenario": "대학교 연구에서 학부생 12명의 주간 학습 시간과 기말 시험 점수 간의 관계를 조사했습니다."
   },
   "descriptive": {
     "metaTitle": "무료 기술통계 계산기",
@@ -339,7 +351,8 @@
     "leptokurtic": "과첨도 (꼬리가 두꺼움)",
     "platykurtic": "과소첨도 (꼬리가 얇음)",
     "histogram": "히스토그램",
-    "boxplot": "상자 그림"
+    "boxplot": "상자 그림",
+    "exampleScenario": "교사가 15명 학생의 수학 시험 점수(100점 만점)를 수집하여 전체 성적 분포를 파악했습니다."
   },
   "pricing": {
     "metaTitle": "요금제",
@@ -550,7 +563,8 @@
     },
     "errorEffectSize": "효과 크기는 0보다 커야 합니다.",
     "errorAlpha": "유의수준은 0과 1 사이여야 합니다.",
-    "errorPower": "검정력은 0과 1 사이여야 합니다."
+    "errorPower": "검정력은 0과 1 사이여야 합니다.",
+    "exampleScenario": "임상 연구자가 새로운 불안 치료제의 무작위 대조 시험(RCT)을 계획 중입니다. Cohen's d = 0.5(중간 효과크기)을 기준으로 필요한 표본 크기를 산출합니다."
   },
   "oneSampleT": {
     "metaTitle": "무료 일표본 T-검정 계산기",
@@ -576,7 +590,8 @@
     "sampleSD": "표준편차",
     "sampleSE": "표준오차",
     "sampleN": "표본 크기",
-    "errorTestValue": "유효한 검정값을 입력해주세요."
+    "errorTestValue": "유효한 검정값을 입력해주세요.",
+    "exampleScenario": "품질 관리 엔지니어가 시리얼 박스의 평균 무게가 표기된 500g과 차이가 있는지 확인하기 위해 생산 라인에서 12개 박스를 측정했습니다."
   },
   "mannWhitney": {
     "metaTitle": "무료 Mann-Whitney U 검정 계산기",
@@ -593,7 +608,8 @@
     "meanRank1": "평균 순위 (집단 1)",
     "meanRank2": "평균 순위 (집단 2)",
     "errorGroup1Min": "집단 1에는 최소 2개의 값이 필요합니다.",
-    "errorGroup2Min": "집단 2에는 최소 2개의 값이 필요합니다."
+    "errorGroup2Min": "집단 2에는 최소 2개의 값이 필요합니다.",
+    "exampleScenario": "통증 연구자가 새 진통제 투여군(n=8)과 위약군(n=8)의 통증 등급(1-10 서열 척도)을 비교했습니다. 데이터가 정규분포를 따르지 않아 비모수 검정을 사용합니다."
   },
   "wilcoxon": {
     "metaTitle": "무료 Wilcoxon 부호순위 검정 계산기",
@@ -623,7 +639,8 @@
     "effectiveN": "유효 N",
     "rankBiserialR": "순위양분상관 r",
     "errorPreMin": "최소 5개의 사전검사 값이 필요합니다.",
-    "errorPostMin": "최소 5개의 사후검사 값이 필요합니다."
+    "errorPostMin": "최소 5개의 사후검사 값이 필요합니다.",
+    "exampleScenario": "병원에서 새 간호 프로토콜 도입 전후의 환자 만족도 평가(1-5 리커트 척도)를 10명의 환자에 대해 비교했습니다."
   },
   "regression": {
     "metaTitle": "무료 단순 선형 회귀 계산기",
@@ -659,7 +676,8 @@
     "standardErrorEstimate": "추정의 표준오차",
     "scatterPlotDesc": "적합된 회귀선과 데이터 포인트",
     "residualPlot": "잔차 플롯",
-    "qqPlot": "Q-Q 플롯 (정규성 검정)"
+    "qqPlot": "Q-Q 플롯 (정규성 검정)",
+    "exampleScenario": "마케팅 분석가가 월간 광고비(천 달러 단위)가 분기별 매출(천 달러 단위)을 얼마나 예측하는지 10개 분기의 데이터로 분석했습니다."
   },
   "relatedCalculators": {
     "title": "다른 계산기 사용하기",

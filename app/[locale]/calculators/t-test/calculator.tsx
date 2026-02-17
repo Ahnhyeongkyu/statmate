@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +33,9 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { GroupBoxplot } from "@/components/charts/group-boxplot";
 import { AssumptionChecks } from "@/components/assumption-checks";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeTTest, decodeTTest, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResult; group1Data: number[]; group2Data: number[] }) {
   const t = useTranslations("calculator");
@@ -227,6 +230,27 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportTTestPdf } = await import("@/lib/export-pdf");
+              const blob = exportTTestPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-ttest-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="t-test"
@@ -239,7 +263,7 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
   );
 }
 
-export function TTestCalculator() {
+function TTestCalculatorInner() {
   const t = useTranslations("calculator");
   const tt = useTranslations("ttest");
   const [testType, setTestType] = useState<"independent" | "paired">(
@@ -251,6 +275,31 @@ export function TTestCalculator() {
   const [parsedG1, setParsedG1] = useState<number[]>([]);
   const [parsedG2, setParsedG2] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeTTest(searchParams);
+    if (state) {
+      setTestType(state.testType as "independent" | "paired");
+      setGroup1Input(state.group1Input);
+      setGroup2Input(state.group2Input);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && group1Input && group2Input) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("t-test", result ? encodeTTest({ testType, group1Input, group2Input }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -291,6 +340,7 @@ export function TTestCalculator() {
     setGroup2Input("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
@@ -298,9 +348,11 @@ export function TTestCalculator() {
     if (testType === "independent") {
       setGroup1Input("23, 25, 28, 22, 27, 24, 26, 29, 25, 23");
       setGroup2Input("19, 21, 18, 22, 20, 17, 23, 19, 21, 20");
+      setScenario(tt("exampleScenario"));
     } else {
       setGroup1Input("85, 90, 78, 92, 88, 76, 95, 89, 84, 91");
       setGroup2Input("90, 95, 82, 96, 93, 80, 98, 94, 88, 95");
+      setScenario(tt("exampleScenarioPaired"));
     }
   }
 
@@ -380,13 +432,15 @@ export function TTestCalculator() {
           </TabsContent>
         </Tabs>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -396,6 +450,7 @@ export function TTestCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="t-test" />}
         </div>
       </div>
 
@@ -417,5 +472,13 @@ export function TTestCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function TTestCalculator() {
+  return (
+    <Suspense>
+      <TTestCalculatorInner />
+    </Suspense>
   );
 }

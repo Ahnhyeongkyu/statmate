@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +32,9 @@ import {
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
 import { DataTextarea } from "@/components/data-textarea";
 import { GoodnessBarChart, IndependenceBarChart } from "@/components/charts/chi-square-chart";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeChiSquare, decodeChiSquare, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceResult }) {
   const t = useTranslations("calculator");
@@ -207,6 +210,27 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportChiSquarePdf } = await import("@/lib/export-pdf");
+              const blob = exportChiSquarePdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-chi-square-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="chi-square"
@@ -341,6 +365,27 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
         results={result as unknown as Record<string, unknown>}
       />
 
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportChiSquarePdf } = await import("@/lib/export-pdf");
+              const blob = exportChiSquarePdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-chi-square-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
+
       {/* Export Button */}
       <ExportButton
         testName="chi-square"
@@ -360,7 +405,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
   );
 }
 
-export function ChiSquareCalculator() {
+function ChiSquareCalculatorInner() {
   const t = useTranslations("calculator");
   const tc = useTranslations("chiSquare");
   const [testType, setTestType] = useState<"independence" | "goodness">("independence");
@@ -374,6 +419,41 @@ export function ChiSquareCalculator() {
   const [expectedInput, setExpectedInput] = useState("");
   const [result, setResult] = useState<ChiSquareResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeChiSquare(searchParams);
+    if (state) {
+      setTestType(state.testType);
+      if (state.testType === "goodness") {
+        setGoodnessInput(state.goodnessInput);
+        if (state.expectedInput) setExpectedInput(state.expectedInput);
+      } else {
+        setRows(state.rows);
+        setCols(state.cols);
+        setCells(state.cells);
+      }
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, cells, goodnessInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("chi-square", result ? encodeChiSquare(
+    testType === "goodness"
+      ? { testType, goodnessInput, expectedInput }
+      : { testType, rows, cols, cells }
+  ) : {});
 
   function updateTableSize(newRows: number, newCols: number) {
     const newCells = Array.from({ length: newRows }, (_, i) =>
@@ -448,6 +528,7 @@ export function ChiSquareCalculator() {
     setExpectedInput("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
@@ -459,9 +540,11 @@ export function ChiSquareCalculator() {
       ]);
       setRows(2);
       setCols(2);
+      setScenario(tc("exampleScenario"));
     } else {
       setGoodnessInput("30, 25, 20, 25");
       setExpectedInput("");
+      setScenario(tc("exampleScenarioGoodness"));
     }
   }
 
@@ -584,13 +667,15 @@ export function ChiSquareCalculator() {
           </TabsContent>
         </Tabs>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -600,6 +685,7 @@ export function ChiSquareCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="chi-square" />}
         </div>
       </div>
 
@@ -620,5 +706,13 @@ export function ChiSquareCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function ChiSquareCalculator() {
+  return (
+    <Suspense>
+      <ChiSquareCalculatorInner />
+    </Suspense>
   );
 }

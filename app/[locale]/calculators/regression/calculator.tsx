@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +27,9 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { ResidualPlot, QQPlot } from "@/components/charts/residual-plots";
 import { AssumptionChecks } from "@/components/assumption-checks";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeRegression, decodeRegression, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
@@ -377,11 +380,32 @@ function ResultsDisplay({
         testType="regression"
         results={result as unknown as Record<string, unknown>}
       />
+
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportRegressionPdf } = await import("@/lib/export-pdf");
+              const blob = exportRegressionPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-regression-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-export function RegressionCalculator() {
+function RegressionCalculatorInner() {
   const t = useTranslations("calculator");
   const ts = useTranslations("regression");
   const [xInput, setXInput] = useState("");
@@ -390,6 +414,30 @@ export function RegressionCalculator() {
   const [xData, setXData] = useState<number[]>([]);
   const [yData, setYData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  // URL param loading
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeRegression(searchParams);
+    if (state) {
+      setXInput(state.xInput);
+      setYInput(state.yInput);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && xInput && yInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("regression", result ? encodeRegression({ xInput, yInput }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -427,12 +475,14 @@ export function RegressionCalculator() {
     setYInput("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("regression");
     setXInput("1, 2, 3, 4, 5, 6, 7, 8, 9, 10");
     setYInput("2.1, 4.0, 5.8, 8.2, 9.8, 12.1, 14.0, 15.9, 18.2, 19.8");
+    setScenario(ts("exampleScenario"));
   }
 
   return (
@@ -459,13 +509,15 @@ export function RegressionCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -475,6 +527,7 @@ export function RegressionCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="regression" />}
         </div>
       </div>
 
@@ -491,5 +544,13 @@ export function RegressionCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function RegressionCalculator() {
+  return (
+    <Suspense>
+      <RegressionCalculatorInner />
+    </Suspense>
   );
 }

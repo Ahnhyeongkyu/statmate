@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +26,9 @@ import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { GroupBoxplot } from "@/components/charts/group-boxplot";
+import { ShareButton } from "@/components/share-button";
+import { ExampleScenario } from "@/components/example-scenario";
+import { encodeMannWhitney, decodeMannWhitney, useShareUrl, useUrlParams } from "@/lib/url-params";
 
 function ResultsDisplay({ result, group1Data, group2Data }: { result: MannWhitneyResult; group1Data: number[]; group2Data: number[] }) {
   const t = useTranslations("calculator");
@@ -182,11 +185,32 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: MannWhitne
         testType="mann-whitney"
         results={result as unknown as Record<string, unknown>}
       />
+
+      {/* Free PDF Export */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { exportMannWhitneyPdf } = await import("@/lib/export-pdf");
+              const blob = exportMannWhitneyPdf(result, apa);
+              const { downloadBlob } = await import("@/lib/export-docx");
+              downloadBlob(blob, `statmate-mann-whitney-${Date.now()}.pdf`);
+            }}
+          >
+            {t("downloadPdf")}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
 
-export function MannWhitneyCalculator() {
+function MannWhitneyCalculatorInner() {
   const t = useTranslations("calculator");
   const ts = useTranslations("mannWhitney");
   const [group1Input, setGroup1Input] = useState("");
@@ -195,6 +219,25 @@ export function MannWhitneyCalculator() {
   const [parsedG1, setParsedG1] = useState<number[]>([]);
   const [parsedG2, setParsedG2] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [scenario, setScenario] = useState<string | null>(null);
+  const [autoCalc, setAutoCalc] = useState(false);
+
+  const searchParams = useUrlParams();
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeMannWhitney(searchParams);
+    if (state) {
+      setGroup1Input(state.group1Input);
+      setGroup2Input(state.group2Input);
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc && group1Input && group2Input) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("mann-whitney", result ? encodeMannWhitney({ group1Input, group2Input }) : {});
 
   function handleCalculate() {
     setError(null);
@@ -228,12 +271,14 @@ export function MannWhitneyCalculator() {
     setGroup2Input("");
     setResult(null);
     setError(null);
+    setScenario(null);
   }
 
   function handleExample() {
     trackLoadExample("mann-whitney");
     setGroup1Input("85, 72, 91, 68, 77, 95, 83, 89");
     setGroup2Input("65, 78, 71, 62, 73, 69, 75, 67");
+    setScenario(ts("exampleScenario"));
   }
 
   return (
@@ -267,13 +312,15 @@ export function MannWhitneyCalculator() {
           </CardContent>
         </Card>
 
+        <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
+
         {error && (
           <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button onClick={handleCalculate} className="flex-1">
             {t("calculate")}
           </Button>
@@ -283,6 +330,7 @@ export function MannWhitneyCalculator() {
           <Button variant="outline" onClick={handleClear}>
             {t("clear")}
           </Button>
+          {result && <ShareButton url={shareUrl} testName="mann-whitney" />}
         </div>
       </div>
 
@@ -304,5 +352,13 @@ export function MannWhitneyCalculator() {
         )}
       </div>
     </div>
+  );
+}
+
+export function MannWhitneyCalculator() {
+  return (
+    <Suspense fallback={null}>
+      <MannWhitneyCalculatorInner />
+    </Suspense>
   );
 }
