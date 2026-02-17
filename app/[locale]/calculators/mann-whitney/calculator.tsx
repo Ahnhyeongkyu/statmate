@@ -23,17 +23,11 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { GroupBoxplot } from "@/components/charts/group-boxplot";
 
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
-
-function ResultsDisplay({ result }: { result: MannWhitneyResult }) {
+function ResultsDisplay({ result, group1Data, group2Data }: { result: MannWhitneyResult; group1Data: number[]; group2Data: number[] }) {
   const t = useTranslations("calculator");
   const ts = useTranslations("mannWhitney");
   const apa = formatMannWhitneyAPA(result);
@@ -168,9 +162,24 @@ function ResultsDisplay({ result }: { result: MannWhitneyResult }) {
         </CardContent>
       </Card>
 
+      {/* Group Comparison Boxplot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{t("groupComparison")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <GroupBoxplot
+            groups={[
+              { label: `${t("group")} 1`, values: group1Data },
+              { label: `${t("group")} 2`, values: group2Data },
+            ]}
+          />
+        </CardContent>
+      </Card>
+
       {/* AI Interpretation */}
       <AiInterpretation
-        testType="t-test"
+        testType="mann-whitney"
         results={result as unknown as Record<string, unknown>}
       />
     </div>
@@ -183,6 +192,8 @@ export function MannWhitneyCalculator() {
   const [group1Input, setGroup1Input] = useState("");
   const [group2Input, setGroup2Input] = useState("");
   const [result, setResult] = useState<MannWhitneyResult | null>(null);
+  const [parsedG1, setParsedG1] = useState<number[]>([]);
+  const [parsedG2, setParsedG2] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   function handleCalculate() {
@@ -204,6 +215,8 @@ export function MannWhitneyCalculator() {
     try {
       const r = mannWhitneyU({ group1: g1, group2: g2 });
       setResult(r);
+      setParsedG1(g1);
+      setParsedG2(g2);
       trackCalculate("mann-whitney");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
@@ -237,38 +250,20 @@ export function MannWhitneyCalculator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="group1">
-                {ts("group1")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                id="group1"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 85, 72, 91, 68, 77"
-                value={group1Input}
-                onChange={(e) => setGroup1Input(e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="group2">
-                {ts("group2")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                id="group2"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 65, 78, 71, 62, 73"
-                value={group2Input}
-                onChange={(e) => setGroup2Input(e.target.value)}
-              />
-            </div>
+            <DataTextarea
+              id="group1"
+              label={ts("group1")}
+              placeholder="e.g., 85, 72, 91, 68, 77"
+              value={group1Input}
+              onChange={setGroup1Input}
+            />
+            <DataTextarea
+              id="group2"
+              label={ts("group2")}
+              placeholder="e.g., 65, 78, 71, 62, 73"
+              value={group2Input}
+              onChange={setGroup2Input}
+            />
           </CardContent>
         </Card>
 
@@ -294,7 +289,7 @@ export function MannWhitneyCalculator() {
       {/* Results Section */}
       <div>
         {result ? (
-          <ResultsDisplay result={result} />
+          <ResultsDisplay result={result} group1Data={parsedG1} group2Data={parsedG2} />
         ) : (
           <Card className="flex h-full items-center justify-center border-dashed">
             <CardContent className="py-16 text-center">

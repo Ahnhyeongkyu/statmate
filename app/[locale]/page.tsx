@@ -90,6 +90,20 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Wizard CTA */}
+      <section className="w-full pb-8">
+        <Link href="/wizard">
+          <div className="rounded-xl border-2 border-dashed border-blue-300 bg-blue-50/50 p-6 text-center transition-colors hover:border-blue-400 hover:bg-blue-50">
+            <p className="text-lg font-semibold text-blue-900">
+              {t("wizardCta")}
+            </p>
+            <p className="mt-1 text-sm text-blue-600">
+              {t("wizardCtaSub")}
+            </p>
+          </div>
+        </Link>
+      </section>
+
       {/* Calculators Grid */}
       <section id="calculators" className="w-full pb-16">
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">

@@ -23,15 +23,10 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
-
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { ResidualPlot, QQPlot } from "@/components/charts/residual-plots";
+import { AssumptionChecks } from "@/components/assumption-checks";
 
 function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
@@ -354,6 +349,29 @@ function ResultsDisplay({
         </CardContent>
       </Card>
 
+      {/* Residual Plot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{ts("residualPlot")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <ResidualPlot result={result} />
+        </CardContent>
+      </Card>
+
+      {/* Q-Q Plot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{ts("qqPlot")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <QQPlot result={result} />
+        </CardContent>
+      </Card>
+
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="regression" groups={[xData, yData]} />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="regression"
@@ -426,36 +444,18 @@ export function RegressionCalculator() {
             <CardDescription>{ts("inputDescription")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label>
-                {ts("variableX")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 1, 2, 3, 4, 5"
-                value={xInput}
-                onChange={(e) => setXInput(e.target.value)}
-              />
-            </div>
-            <div>
-              <Label>
-                {ts("variableY")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 2.1, 4.0, 5.8, 8.2, 9.8"
-                value={yInput}
-                onChange={(e) => setYInput(e.target.value)}
-              />
-            </div>
+            <DataTextarea
+              label={ts("variableX")}
+              placeholder="e.g., 1, 2, 3, 4, 5"
+              value={xInput}
+              onChange={setXInput}
+            />
+            <DataTextarea
+              label={ts("variableY")}
+              placeholder="e.g., 2.1, 4.0, 5.8, 8.2, 9.8"
+              value={yInput}
+              onChange={setYInput}
+            />
           </CardContent>
         </Card>
 

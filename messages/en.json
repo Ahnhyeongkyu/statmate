@@ -13,7 +13,8 @@
       "oneSampleT": "One-Sample T",
       "mannWhitney": "Mann-Whitney U",
       "wilcoxon": "Wilcoxon",
-      "regression": "Regression"
+      "regression": "Regression",
+      "wizard": "Which Test?"
     },
     "pricing": "Pricing",
     "getPro": "Get Pro",
@@ -43,6 +44,8 @@
     "heroDescription": "Run statistical tests instantly and get results formatted in APA 7th edition. Export to Word with one click. Built by statisticians, for researchers.",
     "ctaTry": "Try T-Test Calculator",
     "ctaViewAll": "View All Calculators",
+    "wizardCta": "Not sure which test to use? Try the Decision Wizard",
+    "wizardCtaSub": "Answer a few simple questions and get a recommendation →",
     "calculatorsTitle": "Free Statistics Calculators",
     "calculators": {
       "ttest": {
@@ -148,6 +151,7 @@
     "notSignificant": "Not Statistically Significant (p ≥ .05)",
     "detailedResults": "Detailed Results",
     "groupStats": "Group Statistics",
+    "groupComparison": "Group Comparison",
     "effectSizeLabel": "Effect size interpretation: ",
     "negligibleEffect": "Negligible effect",
     "smallEffect": "Small effect",
@@ -158,7 +162,9 @@
     "clear": "Clear",
     "enterData": "Enter your data and click Calculate",
     "tryExample": "or click \"Load Example\" to try it out",
-    "separatorHint": "(comma, space, or newline separated)",
+    "separatorHint": "(comma, space, tab, or newline separated)",
+    "valuesDetected": "values detected",
+    "pasteHint": "Paste from Excel or Google Sheets",
     "group": "Group",
     "testType": "Test type",
     "tStatistic": "t-statistic",
@@ -553,7 +559,17 @@
     "sd": "Standard Deviation (SD)",
     "se": "Standard Error (SE)",
     "n": "Sample Size (N)",
-    "meanDiff": "Mean Difference (M - μ₀)"
+    "meanDiff": "Mean Difference (M - μ₀)",
+    "distribution": "Data Distribution",
+    "dataLabel": "Sample Data",
+    "testValueLabel": "Test Value (μ₀)",
+    "inputTitle": "Enter Data",
+    "inputDescription": "Enter sample data to compare against a known or hypothesized value.",
+    "sampleMean": "Sample Mean",
+    "sampleSD": "Standard Deviation",
+    "sampleSE": "Standard Error",
+    "sampleN": "Sample Size",
+    "errorTestValue": "Please enter a valid test value."
   },
   "mannWhitney": {
     "metaTitle": "Free Mann-Whitney U Test Calculator Online",
@@ -591,7 +607,16 @@
     "nExcluded": "Excluded (zero diff)",
     "nEffective": "Effective N",
     "errorEqualLength": "Pre and post arrays must have equal length.",
-    "errorMinPairs": "Need at least 5 paired observations."
+    "errorMinPairs": "Need at least 5 paired observations.",
+    "inputTitle": "Enter Paired Data",
+    "inputDescription": "Enter pre-test and post-test measurements for each subject.",
+    "pairedComparison": "Pre-Post Comparison",
+    "totalN": "Total N",
+    "excluded": "Excluded (zero difference)",
+    "effectiveN": "Effective N",
+    "rankBiserialR": "Rank-biserial r",
+    "errorPreMin": "Need at least 5 pre-test values.",
+    "errorPostMin": "Need at least 5 post-test values."
   },
   "regression": {
     "metaTitle": "Free Simple Linear Regression Calculator Online",
@@ -615,7 +640,19 @@
     "slope": "Slope (b₁)",
     "scatterPlot": "Scatter Plot with Regression Line",
     "errorEqualLength": "X and Y must have the same number of values.",
-    "errorMinValues": "Need at least 3 data points."
+    "errorMinValues": "Need at least 3 data points.",
+    "errorMinPairs": "Need at least 3 data points.",
+    "inputTitle": "Enter Data",
+    "inputDescription": "Enter paired X and Y values to fit a linear regression model.",
+    "regressionEquation": "Regression Equation",
+    "slopeCoefficient": "Slope",
+    "interceptCoefficient": "Intercept",
+    "ci95Slope": "95% CI for Slope",
+    "ci95Intercept": "95% CI for Intercept",
+    "standardErrorEstimate": "Std. Error of Estimate",
+    "scatterPlotDesc": "Data points with fitted regression line",
+    "residualPlot": "Residual Plot",
+    "qqPlot": "Q-Q Plot (Normality Check)"
   },
   "relatedCalculators": {
     "title": "Try Other Calculators",
@@ -629,5 +666,77 @@
     "mannWhitney": { "name": "Mann-Whitney U", "description": "Non-parametric group comparison" },
     "wilcoxon": { "name": "Wilcoxon", "description": "Non-parametric paired test" },
     "regression": { "name": "Regression", "description": "Model X-Y relationships" }
+  },
+  "assumptions": {
+    "title": "Assumption Checks",
+    "warning": "Warning",
+    "passed": "Passed",
+    "normality": "Normality (Shapiro-Wilk)",
+    "equalVariance": "Equality of Variances (Levene's)",
+    "data": "Data",
+    "group": "Group",
+    "normal": "Normal",
+    "nonNormal": "Non-normal",
+    "equal": "Equal",
+    "unequal": "Unequal"
+  },
+  "wizard": {
+    "title": "Which Test Should I Use?",
+    "subtitle": "Answer a few questions and we'll recommend the right statistical test.",
+    "recommendation": "Recommended Test",
+    "goToCalculator": "Go to Calculator",
+    "startOver": "Start Over",
+    "back": "Back",
+    "yourPath": "Your answers:",
+
+    "q_goal": "What is your research goal?",
+    "o_compare": "Compare groups (differences)",
+    "o_relationship": "Examine a relationship between variables",
+    "o_describe": "Describe / summarize data",
+
+    "q_how_many_groups": "How many groups are you comparing?",
+    "o_one_group": "One group (vs. a known value)",
+    "o_two_groups": "Two groups",
+    "o_three_plus": "Three or more groups",
+
+    "q_paired_or_independent": "Are the two groups independent or paired?",
+    "o_independent": "Independent (different participants)",
+    "o_paired": "Paired / repeated measures (same participants)",
+
+    "q_data_normal": "Is your data approximately normally distributed?",
+    "o_yes": "Yes (or large sample, N > 30)",
+    "o_no": "No (skewed, ordinal, or small sample)",
+    "o_not_sure": "Not sure (use parametric as default)",
+
+    "q_dv_continuous_or_categorical": "Is your dependent variable continuous or categorical?",
+    "o_continuous": "Continuous (interval/ratio scale)",
+    "o_categorical": "Categorical (counts/frequencies)",
+
+    "q_predict_or_associate": "Do you want to predict or just measure association?",
+    "o_associate": "Measure association (correlation)",
+    "o_predict": "Predict one variable from another (regression)",
+
+    "r_independent_t": "Independent-Samples T-Test",
+    "r_independent_t_desc": "Compares the means of two independent groups. Uses Welch's correction for unequal variances.",
+    "r_paired_t": "Paired-Samples T-Test",
+    "r_paired_t_desc": "Compares means from the same participants measured twice (e.g., pre-test vs post-test).",
+    "r_mann_whitney": "Mann-Whitney U Test",
+    "r_mann_whitney_desc": "Non-parametric alternative to the independent t-test. Works with ordinal data or non-normal distributions.",
+    "r_wilcoxon": "Wilcoxon Signed-Rank Test",
+    "r_wilcoxon_desc": "Non-parametric alternative for paired/one-sample comparisons when normality is violated.",
+    "r_one_sample_t": "One-Sample T-Test",
+    "r_one_sample_t_desc": "Tests whether a sample mean differs significantly from a known or hypothesized value.",
+    "r_anova": "One-Way ANOVA",
+    "r_anova_desc": "Compares means across three or more groups. Includes post-hoc tests to identify which groups differ.",
+    "r_kruskal": "Kruskal-Wallis Test",
+    "r_kruskal_desc": "Non-parametric alternative to ANOVA for non-normal or ordinal data. StatMate's ANOVA page includes assumption checks.",
+    "r_chi_square": "Chi-Square Test",
+    "r_chi_square_desc": "Tests relationships between categorical variables or whether observed frequencies match expected frequencies.",
+    "r_correlation": "Correlation Analysis",
+    "r_correlation_desc": "Measures the strength and direction of the linear relationship between two continuous variables.",
+    "r_regression": "Simple Linear Regression",
+    "r_regression_desc": "Models the relationship between a predictor (X) and outcome (Y) variable with an equation.",
+    "r_descriptive": "Descriptive Statistics",
+    "r_descriptive_desc": "Summarizes your data with mean, median, standard deviation, and distribution charts."
   }
 }

@@ -178,6 +178,12 @@ export default async function LocaleLayout({
                     {t(`nav.${calc.key}`)}
                   </Link>
                 ))}
+                <Link
+                  href="/wizard"
+                  className="rounded-md bg-blue-50 px-3 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-100"
+                >
+                  {t("nav.wizard")}
+                </Link>
               </nav>
 
               <div className="hidden items-center gap-2 md:flex">

@@ -29,17 +29,12 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { GroupBoxplot } from "@/components/charts/group-boxplot";
+import { AssumptionChecks } from "@/components/assumption-checks";
 
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
-
-function ResultsDisplay({ result }: { result: TTestResult }) {
+function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResult; group1Data: number[]; group2Data: number[] }) {
   const t = useTranslations("calculator");
   const tt = useTranslations("ttest");
   const apa = formatAPA(result);
@@ -208,6 +203,24 @@ function ResultsDisplay({ result }: { result: TTestResult }) {
         </CardContent>
       </Card>
 
+      {/* Group Comparison Boxplot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{t("groupComparison")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <GroupBoxplot
+            groups={[
+              { label: `${t("group")} 1`, values: group1Data },
+              { label: `${t("group")} 2`, values: group2Data },
+            ]}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="t-test" groups={[group1Data, group2Data]} />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="t-test"
@@ -235,6 +248,8 @@ export function TTestCalculator() {
   const [group1Input, setGroup1Input] = useState("");
   const [group2Input, setGroup2Input] = useState("");
   const [result, setResult] = useState<TTestResult | null>(null);
+  const [parsedG1, setParsedG1] = useState<number[]>([]);
+  const [parsedG2, setParsedG2] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   function handleCalculate() {
@@ -263,6 +278,8 @@ export function TTestCalculator() {
           ? independentTTest(g1, g2)
           : pairedTTest(g1, g2);
       setResult(r);
+      setParsedG1(g1);
+      setParsedG2(g2);
       trackCalculate("t-test");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
@@ -315,38 +332,20 @@ export function TTestCalculator() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="group1">
-                    {tt("group1")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    id="group1"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 23, 25, 28, 22, 27"
-                    value={group1Input}
-                    onChange={(e) => setGroup1Input(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="group2">
-                    {tt("group2")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    id="group2"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 19, 21, 18, 22, 20"
-                    value={group2Input}
-                    onChange={(e) => setGroup2Input(e.target.value)}
-                  />
-                </div>
+                <DataTextarea
+                  id="group1"
+                  label={tt("group1")}
+                  placeholder="e.g., 23, 25, 28, 22, 27"
+                  value={group1Input}
+                  onChange={setGroup1Input}
+                />
+                <DataTextarea
+                  id="group2"
+                  label={tt("group2")}
+                  placeholder="e.g., 19, 21, 18, 22, 20"
+                  value={group2Input}
+                  onChange={setGroup2Input}
+                />
               </CardContent>
             </Card>
           </TabsContent>
@@ -362,38 +361,20 @@ export function TTestCalculator() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="pre">
-                    {tt("preTest")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    id="pre"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 85, 90, 78, 92, 88"
-                    value={group1Input}
-                    onChange={(e) => setGroup1Input(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="post">
-                    {tt("postTest")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    id="post"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 90, 95, 82, 96, 93"
-                    value={group2Input}
-                    onChange={(e) => setGroup2Input(e.target.value)}
-                  />
-                </div>
+                <DataTextarea
+                  id="pre"
+                  label={tt("preTest")}
+                  placeholder="e.g., 85, 90, 78, 92, 88"
+                  value={group1Input}
+                  onChange={setGroup1Input}
+                />
+                <DataTextarea
+                  id="post"
+                  label={tt("postTest")}
+                  placeholder="e.g., 90, 95, 82, 96, 93"
+                  value={group2Input}
+                  onChange={setGroup2Input}
+                />
               </CardContent>
             </Card>
           </TabsContent>
@@ -421,7 +402,7 @@ export function TTestCalculator() {
       {/* Results Section */}
       <div>
         {result ? (
-          <ResultsDisplay result={result} />
+          <ResultsDisplay result={result} group1Data={parsedG1} group2Data={parsedG2} />
         ) : (
           <Card className="flex h-full items-center justify-center border-dashed">
             <CardContent className="py-16 text-center">

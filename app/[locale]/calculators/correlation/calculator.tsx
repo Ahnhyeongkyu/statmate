@@ -29,15 +29,9 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
-
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { AssumptionChecks } from "@/components/assumption-checks";
 
 function ScatterPlot({ x, y }: { x: number[]; y: number[] }) {
   const width = 300;
@@ -220,6 +214,9 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
         </CardContent>
       </Card>
 
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="correlation" groups={[xData, yData]} />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="correlation"
@@ -320,32 +317,18 @@ export function CorrelationCalculator() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label>
-                    {tc("variableX")}
-                    <span className="ml-1 text-xs text-gray-400">{t("separatorHint")}</span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 1, 2, 3, 4, 5"
-                    value={xInput}
-                    onChange={(e) => setXInput(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>
-                    {tc("variableY")}
-                    <span className="ml-1 text-xs text-gray-400">{t("separatorHint")}</span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 2.1, 3.8, 6.2, 7.9, 10.5"
-                    value={yInput}
-                    onChange={(e) => setYInput(e.target.value)}
-                  />
-                </div>
+                <DataTextarea
+                  label={tc("variableX")}
+                  placeholder="e.g., 1, 2, 3, 4, 5"
+                  value={xInput}
+                  onChange={setXInput}
+                />
+                <DataTextarea
+                  label={tc("variableY")}
+                  placeholder="e.g., 2.1, 3.8, 6.2, 7.9, 10.5"
+                  value={yInput}
+                  onChange={setYInput}
+                />
               </CardContent>
             </Card>
           </TabsContent>
@@ -359,32 +342,18 @@ export function CorrelationCalculator() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label>
-                    {tc("variableX")}
-                    <span className="ml-1 text-xs text-gray-400">{t("separatorHint")}</span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 1, 2, 3, 4, 5"
-                    value={xInput}
-                    onChange={(e) => setXInput(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>
-                    {tc("variableY")}
-                    <span className="ml-1 text-xs text-gray-400">{t("separatorHint")}</span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={3}
-                    placeholder="e.g., 2.1, 3.8, 6.2, 7.9, 10.5"
-                    value={yInput}
-                    onChange={(e) => setYInput(e.target.value)}
-                  />
-                </div>
+                <DataTextarea
+                  label={tc("variableX")}
+                  placeholder="e.g., 1, 2, 3, 4, 5"
+                  value={xInput}
+                  onChange={setXInput}
+                />
+                <DataTextarea
+                  label={tc("variableY")}
+                  placeholder="e.g., 2.1, 3.8, 6.2, 7.9, 10.5"
+                  value={yInput}
+                  onChange={setYInput}
+                />
               </CardContent>
             </Card>
           </TabsContent>

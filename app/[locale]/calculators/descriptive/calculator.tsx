@@ -23,15 +23,8 @@ import {
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
 import { Histogram, Boxplot } from "@/components/descriptive-charts";
-
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
 
 function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: number[] }) {
   const t = useTranslations("calculator");
@@ -269,21 +262,13 @@ export function DescriptiveCalculator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label>
-                {td("dataInput")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={6}
-                placeholder="e.g., 72, 85, 91, 68, 77, 83, 95, 88"
-                value={dataInput}
-                onChange={(e) => setDataInput(e.target.value)}
-              />
-            </div>
+            <DataTextarea
+              label={td("dataInput")}
+              placeholder="e.g., 72, 85, 91, 68, 77, 83, 95, 88"
+              rows={6}
+              value={dataInput}
+              onChange={setDataInput}
+            />
           </CardContent>
         </Card>
 

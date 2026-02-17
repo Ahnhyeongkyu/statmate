@@ -23,17 +23,12 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { Histogram } from "@/components/descriptive-charts";
+import { AssumptionChecks } from "@/components/assumption-checks";
 
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
-
-function ResultsDisplay({ result }: { result: OneSampleTResult }) {
+function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: number[] }) {
   const t = useTranslations("calculator");
   const ts = useTranslations("oneSampleT");
   const apa = formatOneSampleTAPA(result);
@@ -165,9 +160,22 @@ function ResultsDisplay({ result }: { result: OneSampleTResult }) {
         </CardContent>
       </Card>
 
+      {/* Data Distribution */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{ts("distribution")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Histogram data={data} />
+        </CardContent>
+      </Card>
+
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="one-sample-t" groups={[data]} />
+
       {/* AI Interpretation */}
       <AiInterpretation
-        testType="t-test"
+        testType="one-sample-t"
         results={result as unknown as Record<string, unknown>}
       />
     </div>
@@ -180,6 +188,7 @@ export function OneSampleTCalculator() {
   const [dataInput, setDataInput] = useState("");
   const [testValueInput, setTestValueInput] = useState("0");
   const [result, setResult] = useState<OneSampleTResult | null>(null);
+  const [parsedData, setParsedData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   function handleCalculate() {
@@ -202,6 +211,7 @@ export function OneSampleTCalculator() {
     try {
       const r = oneSampleTTest({ data, testValue });
       setResult(r);
+      setParsedData(data);
       trackCalculate("one-sample-t");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
@@ -233,22 +243,14 @@ export function OneSampleTCalculator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="data">
-                {ts("dataLabel")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                id="data"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={4}
-                placeholder="e.g., 72, 85, 91, 68, 77, 83, 95, 88"
-                value={dataInput}
-                onChange={(e) => setDataInput(e.target.value)}
-              />
-            </div>
+            <DataTextarea
+              id="data"
+              label={ts("dataLabel")}
+              placeholder="e.g., 72, 85, 91, 68, 77, 83, 95, 88"
+              rows={4}
+              value={dataInput}
+              onChange={setDataInput}
+            />
             <div>
               <Label htmlFor="testValue">
                 {ts("testValueLabel")}
@@ -287,7 +289,7 @@ export function OneSampleTCalculator() {
       {/* Results Section */}
       <div>
         {result ? (
-          <ResultsDisplay result={result} />
+          <ResultsDisplay result={result} data={parsedData} />
         ) : (
           <Card className="flex h-full items-center justify-center border-dashed">
             <CardContent className="py-16 text-center">

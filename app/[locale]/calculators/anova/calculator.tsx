@@ -27,17 +27,12 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { GroupBoxplot } from "@/components/charts/group-boxplot";
+import { AssumptionChecks } from "@/components/assumption-checks";
 
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
-
-function ResultsDisplay({ result }: { result: AnovaResult }) {
+function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsData: { label: string; values: number[] }[] }) {
   const t = useTranslations("calculator");
   const ta = useTranslations("anova");
   const apa = formatAnovaAPA(result);
@@ -205,6 +200,19 @@ function ResultsDisplay({ result }: { result: AnovaResult }) {
         </CardContent>
       </Card>
 
+      {/* Group Comparison Boxplot */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{t("groupComparison")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <GroupBoxplot groups={groupsData} />
+        </CardContent>
+      </Card>
+
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="anova" groups={groupsData.map(g => g.values)} />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="anova"
@@ -230,6 +238,7 @@ export function AnovaCalculator() {
   const [groupInputs, setGroupInputs] = useState<string[]>(["", "", ""]);
   const [groupNames, setGroupNames] = useState<string[]>([ta("groupLabel", { n: 1 }), ta("groupLabel", { n: 2 }), ta("groupLabel", { n: 3 })]);
   const [result, setResult] = useState<AnovaResult | null>(null);
+  const [parsedGroups, setParsedGroups] = useState<{ label: string; values: number[] }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   function handleGroupCountChange(n: number) {
@@ -259,6 +268,7 @@ export function AnovaCalculator() {
     }
     try {
       setResult(oneWayAnova(groups, groupNames));
+      setParsedGroups(groups.map((g, i) => ({ label: groupNames[i], values: g })));
       trackCalculate("anova");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
@@ -307,30 +317,27 @@ export function AnovaCalculator() {
             </div>
             {Array.from({ length: numGroups }, (_, i) => (
               <div key={i}>
-                <div className="flex items-center gap-2">
-                  <Label htmlFor={`group-${i}`} className="flex-1">
-                    <input
-                      type="text"
-                      value={groupNames[i]}
-                      onChange={(e) => {
-                        const names = [...groupNames];
-                        names[i] = e.target.value;
-                        setGroupNames(names);
-                      }}
-                      className="w-24 border-b border-gray-300 bg-transparent text-sm font-medium focus:border-blue-500 focus:outline-none"
-                    />
-                    <span className="ml-1 text-xs text-gray-400">{t("separatorHint")}</span>
-                  </Label>
+                <div className="mb-1 flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={groupNames[i]}
+                    onChange={(e) => {
+                      const names = [...groupNames];
+                      names[i] = e.target.value;
+                      setGroupNames(names);
+                    }}
+                    className="w-24 border-b border-gray-300 bg-transparent text-sm font-medium focus:border-blue-500 focus:outline-none"
+                  />
                 </div>
-                <textarea
+                <DataTextarea
                   id={`group-${i}`}
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                  rows={2}
+                  label=""
                   placeholder="e.g., 23, 25, 28, 22, 27"
+                  rows={2}
                   value={groupInputs[i]}
-                  onChange={(e) => {
+                  onChange={(val) => {
                     const inputs = [...groupInputs];
-                    inputs[i] = e.target.value;
+                    inputs[i] = val;
                     setGroupInputs(inputs);
                   }}
                 />
@@ -354,7 +361,7 @@ export function AnovaCalculator() {
 
       <div>
         {result ? (
-          <ResultsDisplay result={result} />
+          <ResultsDisplay result={result} groupsData={parsedGroups} />
         ) : (
           <Card className="flex h-full items-center justify-center border-dashed">
             <CardContent className="py-16 text-center">

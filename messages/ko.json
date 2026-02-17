@@ -13,7 +13,8 @@
       "oneSampleT": "일표본 T",
       "mannWhitney": "Mann-Whitney U",
       "wilcoxon": "Wilcoxon",
-      "regression": "회귀분석"
+      "regression": "회귀분석",
+      "wizard": "검정 선택"
     },
     "pricing": "요금제",
     "getPro": "Pro 시작",
@@ -43,6 +44,8 @@
     "heroDescription": "통계 검정을 즉시 실행하고 APA 7판 형식의 결과를 받으세요. 클릭 한 번으로 Word 내보내기. 통계학자가 연구자를 위해 만들었습니다.",
     "ctaTry": "T-검정 계산기 사용해보기",
     "ctaViewAll": "모든 계산기 보기",
+    "wizardCta": "어떤 검정을 써야 할지 모르겠다면? 검정 선택 마법사",
+    "wizardCtaSub": "몇 가지 질문에 답하면 적합한 검정을 추천해드립니다 →",
     "calculatorsTitle": "무료 통계 계산기",
     "calculators": {
       "ttest": {
@@ -148,6 +151,7 @@
     "notSignificant": "통계적으로 유의하지 않음 (p ≥ .05)",
     "detailedResults": "상세 결과",
     "groupStats": "집단 기술통계",
+    "groupComparison": "집단 비교",
     "effectSizeLabel": "효과 크기 해석: ",
     "negligibleEffect": "무시할 수 있는 효과",
     "smallEffect": "작은 효과",
@@ -158,7 +162,9 @@
     "clear": "초기화",
     "enterData": "데이터를 입력하고 계산을 클릭하세요",
     "tryExample": "또는 \"예시 데이터\"를 클릭해 사용해보세요",
-    "separatorHint": "(쉼표, 공백 또는 줄바꿈으로 구분)",
+    "separatorHint": "(쉼표, 공백, 탭 또는 줄바꿈으로 구분)",
+    "valuesDetected": "개 값 감지됨",
+    "pasteHint": "Excel 또는 Google Sheets에서 붙여넣기",
     "group": "집단",
     "testType": "검정 유형",
     "tStatistic": "t 통계량",
@@ -553,7 +559,17 @@
     "sd": "표준편차 (SD)",
     "se": "표준오차 (SE)",
     "n": "표본 크기 (N)",
-    "meanDiff": "평균 차이 (M - μ₀)"
+    "meanDiff": "평균 차이 (M - μ₀)",
+    "distribution": "데이터 분포",
+    "dataLabel": "표본 데이터",
+    "testValueLabel": "검정값 (μ₀)",
+    "inputTitle": "데이터 입력",
+    "inputDescription": "알려진 또는 가설화된 값과 비교할 표본 데이터를 입력하세요.",
+    "sampleMean": "표본 평균",
+    "sampleSD": "표준편차",
+    "sampleSE": "표준오차",
+    "sampleN": "표본 크기",
+    "errorTestValue": "유효한 검정값을 입력해주세요."
   },
   "mannWhitney": {
     "metaTitle": "무료 Mann-Whitney U 검정 계산기",
@@ -591,7 +607,16 @@
     "nExcluded": "제외 (차이 0)",
     "nEffective": "유효 N",
     "errorEqualLength": "사전과 사후 데이터의 개수가 같아야 합니다.",
-    "errorMinPairs": "최소 5개의 대응 관측값이 필요합니다."
+    "errorMinPairs": "최소 5개의 대응 관측값이 필요합니다.",
+    "inputTitle": "대응 데이터 입력",
+    "inputDescription": "각 참가자의 사전검사와 사후검사 측정값을 입력하세요.",
+    "pairedComparison": "사전-사후 비교",
+    "totalN": "전체 N",
+    "excluded": "제외 (차이 0)",
+    "effectiveN": "유효 N",
+    "rankBiserialR": "순위양분상관 r",
+    "errorPreMin": "최소 5개의 사전검사 값이 필요합니다.",
+    "errorPostMin": "최소 5개의 사후검사 값이 필요합니다."
   },
   "regression": {
     "metaTitle": "무료 단순 선형 회귀 계산기",
@@ -615,7 +640,19 @@
     "slope": "기울기 (b₁)",
     "scatterPlot": "회귀선이 포함된 산점도",
     "errorEqualLength": "X와 Y의 값 개수가 같아야 합니다.",
-    "errorMinValues": "최소 3개의 데이터 포인트가 필요합니다."
+    "errorMinValues": "최소 3개의 데이터 포인트가 필요합니다.",
+    "errorMinPairs": "최소 3개의 데이터 포인트가 필요합니다.",
+    "inputTitle": "데이터 입력",
+    "inputDescription": "X와 Y 값을 입력하여 선형 회귀 모형을 적합합니다.",
+    "regressionEquation": "회귀 방정식",
+    "slopeCoefficient": "기울기",
+    "interceptCoefficient": "절편",
+    "ci95Slope": "기울기 95% 신뢰구간",
+    "ci95Intercept": "절편 95% 신뢰구간",
+    "standardErrorEstimate": "추정의 표준오차",
+    "scatterPlotDesc": "적합된 회귀선과 데이터 포인트",
+    "residualPlot": "잔차 플롯",
+    "qqPlot": "Q-Q 플롯 (정규성 검정)"
   },
   "relatedCalculators": {
     "title": "다른 계산기 사용하기",
@@ -629,5 +666,77 @@
     "mannWhitney": { "name": "Mann-Whitney U", "description": "비모수 집단 비교" },
     "wilcoxon": { "name": "Wilcoxon", "description": "비모수 대응표본 검정" },
     "regression": { "name": "회귀분석", "description": "X-Y 관계 모델링" }
+  },
+  "assumptions": {
+    "title": "가정 검증",
+    "warning": "경고",
+    "passed": "통과",
+    "normality": "정규성 (Shapiro-Wilk)",
+    "equalVariance": "등분산성 (Levene 검정)",
+    "data": "데이터",
+    "group": "집단",
+    "normal": "정규",
+    "nonNormal": "비정규",
+    "equal": "등분산",
+    "unequal": "이분산"
+  },
+  "wizard": {
+    "title": "어떤 검정을 사용해야 할까?",
+    "subtitle": "몇 가지 질문에 답하면 적합한 통계 검정을 추천해드립니다.",
+    "recommendation": "추천 검정",
+    "goToCalculator": "계산기로 이동",
+    "startOver": "처음부터",
+    "back": "뒤로",
+    "yourPath": "선택 경로:",
+
+    "q_goal": "연구 목적이 무엇인가요?",
+    "o_compare": "집단 간 차이 비교",
+    "o_relationship": "변수 간 관계 분석",
+    "o_describe": "데이터 요약/기술",
+
+    "q_how_many_groups": "비교할 집단이 몇 개인가요?",
+    "o_one_group": "1개 집단 (기준값과 비교)",
+    "o_two_groups": "2개 집단",
+    "o_three_plus": "3개 이상",
+
+    "q_paired_or_independent": "두 집단은 독립인가요, 대응인가요?",
+    "o_independent": "독립 (서로 다른 참가자)",
+    "o_paired": "대응 / 반복측정 (같은 참가자)",
+
+    "q_data_normal": "데이터가 정규분포를 따르나요?",
+    "o_yes": "예 (또는 표본 크기가 30 이상)",
+    "o_no": "아니오 (비대칭, 서열, 소표본)",
+    "o_not_sure": "잘 모르겠음 (모수 검정 기본 적용)",
+
+    "q_dv_continuous_or_categorical": "종속변수가 연속형인가요, 범주형인가요?",
+    "o_continuous": "연속형 (등간/비율 척도)",
+    "o_categorical": "범주형 (빈도/개수)",
+
+    "q_predict_or_associate": "예측이 목적인가요, 관련성 파악이 목적인가요?",
+    "o_associate": "관련성 측정 (상관분석)",
+    "o_predict": "한 변수로 다른 변수 예측 (회귀분석)",
+
+    "r_independent_t": "독립표본 T-검정",
+    "r_independent_t_desc": "두 독립 집단의 평균을 비교합니다. 등분산이 아닐 경우 Welch 보정이 적용됩니다.",
+    "r_paired_t": "대응표본 T-검정",
+    "r_paired_t_desc": "동일 참가자를 두 번 측정한 평균을 비교합니다 (예: 사전-사후 검사).",
+    "r_mann_whitney": "Mann-Whitney U 검정",
+    "r_mann_whitney_desc": "독립 t-검정의 비모수 대안입니다. 서열 데이터나 비정규 분포에 적합합니다.",
+    "r_wilcoxon": "Wilcoxon 부호순위 검정",
+    "r_wilcoxon_desc": "정규성이 위반된 대응/단일 표본 비교를 위한 비모수 대안입니다.",
+    "r_one_sample_t": "단일표본 T-검정",
+    "r_one_sample_t_desc": "표본 평균이 알려진 또는 가설적 값과 유의하게 다른지 검정합니다.",
+    "r_anova": "일원배치 분산분석 (ANOVA)",
+    "r_anova_desc": "3개 이상 집단의 평균을 비교합니다. 사후검정으로 어떤 집단이 다른지 확인합니다.",
+    "r_kruskal": "Kruskal-Wallis 검정",
+    "r_kruskal_desc": "비정규 또는 서열 데이터를 위한 ANOVA의 비모수 대안입니다. StatMate의 ANOVA 페이지에서 가정 검정을 제공합니다.",
+    "r_chi_square": "카이제곱 검정",
+    "r_chi_square_desc": "범주형 변수 간의 관련성 또는 관측 빈도와 기대 빈도의 일치 여부를 검정합니다.",
+    "r_correlation": "상관분석",
+    "r_correlation_desc": "두 연속 변수 간 선형 관계의 강도와 방향을 측정합니다.",
+    "r_regression": "단순 선형 회귀",
+    "r_regression_desc": "예측변수(X)와 결과변수(Y)의 관계를 방정식으로 모델링합니다.",
+    "r_descriptive": "기술통계",
+    "r_descriptive_desc": "평균, 중앙값, 표준편차, 분포 차트 등으로 데이터를 요약합니다."
   }
 }

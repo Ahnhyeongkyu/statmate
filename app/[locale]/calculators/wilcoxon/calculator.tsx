@@ -23,17 +23,11 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
+import { parseNumbers } from "@/lib/utils/parse";
+import { DataTextarea } from "@/components/data-textarea";
+import { PairedChart } from "@/components/charts/paired-chart";
 
-function parseNumbers(text: string): number[] {
-  return text
-    .split(/[\s,;\n]+/)
-    .map((s) => s.trim())
-    .filter((s) => s !== "")
-    .map(Number)
-    .filter((n) => !isNaN(n));
-}
-
-function ResultsDisplay({ result }: { result: WilcoxonResult }) {
+function ResultsDisplay({ result, preData, postData }: { result: WilcoxonResult; preData: number[]; postData: number[] }) {
   const t = useTranslations("calculator");
   const ts = useTranslations("wilcoxon");
   const apa = formatWilcoxonAPA(result);
@@ -155,9 +149,24 @@ function ResultsDisplay({ result }: { result: WilcoxonResult }) {
         </CardContent>
       </Card>
 
+      {/* Paired Comparison Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{ts("pairedComparison")}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex justify-center">
+          <PairedChart
+            pre={preData}
+            post={postData}
+            preLabel={ts("preTest")}
+            postLabel={ts("postTest")}
+          />
+        </CardContent>
+      </Card>
+
       {/* AI Interpretation */}
       <AiInterpretation
-        testType="correlation"
+        testType="wilcoxon"
         results={result as unknown as Record<string, unknown>}
       />
     </div>
@@ -170,6 +179,8 @@ export function WilcoxonCalculator() {
   const [preInput, setPreInput] = useState("");
   const [postInput, setPostInput] = useState("");
   const [result, setResult] = useState<WilcoxonResult | null>(null);
+  const [parsedPre, setParsedPre] = useState<number[]>([]);
+  const [parsedPost, setParsedPost] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   function handleCalculate() {
@@ -195,6 +206,8 @@ export function WilcoxonCalculator() {
     try {
       const r = wilcoxonSignedRank({ pre, post });
       setResult(r);
+      setParsedPre(pre);
+      setParsedPost(post);
       trackCalculate("wilcoxon");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
@@ -228,38 +241,20 @@ export function WilcoxonCalculator() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="pre">
-                {ts("preTest")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                id="pre"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 72, 85, 91, 68, 77"
-                value={preInput}
-                onChange={(e) => setPreInput(e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="post">
-                {ts("postTest")}
-                <span className="ml-1 text-xs text-gray-400">
-                  {t("separatorHint")}
-                </span>
-              </Label>
-              <textarea
-                id="post"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                rows={3}
-                placeholder="e.g., 78, 89, 95, 73, 82"
-                value={postInput}
-                onChange={(e) => setPostInput(e.target.value)}
-              />
-            </div>
+            <DataTextarea
+              id="pre"
+              label={ts("preTest")}
+              placeholder="e.g., 72, 85, 91, 68, 77"
+              value={preInput}
+              onChange={setPreInput}
+            />
+            <DataTextarea
+              id="post"
+              label={ts("postTest")}
+              placeholder="e.g., 78, 89, 95, 73, 82"
+              value={postInput}
+              onChange={setPostInput}
+            />
           </CardContent>
         </Card>
 
@@ -285,7 +280,7 @@ export function WilcoxonCalculator() {
       {/* Results Section */}
       <div>
         {result ? (
-          <ResultsDisplay result={result} />
+          <ResultsDisplay result={result} preData={parsedPre} postData={parsedPost} />
         ) : (
           <Card className="flex h-full items-center justify-center border-dashed">
             <CardContent className="py-16 text-center">

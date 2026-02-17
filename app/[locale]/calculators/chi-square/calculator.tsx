@@ -30,6 +30,7 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { DataTextarea } from "@/components/data-textarea";
 
 function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceResult }) {
   const t = useTranslations("calculator");
@@ -540,36 +541,20 @@ export function ChiSquareCalculator() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label>
-                    {tc("observedFreq")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={2}
-                    placeholder="e.g., 30, 25, 20, 25"
-                    value={goodnessInput}
-                    onChange={(e) => setGoodnessInput(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label>
-                    {tc("expectedFreq")}
-                    <span className="ml-1 text-xs text-gray-400">
-                      {t("separatorHint")}
-                    </span>
-                  </Label>
-                  <textarea
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                    rows={2}
-                    placeholder="e.g., 25, 25, 25, 25 (leave blank for equal)"
-                    value={expectedInput}
-                    onChange={(e) => setExpectedInput(e.target.value)}
-                  />
-                </div>
+                <DataTextarea
+                  label={tc("observedFreq")}
+                  placeholder="e.g., 30, 25, 20, 25"
+                  rows={2}
+                  value={goodnessInput}
+                  onChange={setGoodnessInput}
+                />
+                <DataTextarea
+                  label={tc("expectedFreq")}
+                  placeholder="e.g., 25, 25, 25, 25 (leave blank for equal)"
+                  rows={2}
+                  value={expectedInput}
+                  onChange={setExpectedInput}
+                />
               </CardContent>
             </Card>
           </TabsContent>
