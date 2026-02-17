@@ -267,7 +267,8 @@
     "negligibleAssoc": "무시할 수 있는 연관",
     "smallAssoc": "약한 연관",
     "mediumAssoc": "보통 연관",
-    "largeAssoc": "강한 연관"
+    "largeAssoc": "강한 연관",
+    "chart": "차트"
   },
   "correlation": {
     "metaTitle": "무료 상관분석 계산기 - Pearson & Spearman",
@@ -531,6 +532,7 @@
     "nPerGroup": "집단당 표본 수",
     "effectSizeUsed": "사용된 효과 크기",
     "achievedPower": "달성 검정력",
+    "powerCurve": "검정력 곡선",
     "perGroup": "집단당",
     "types": {
       "twoSampleT": "독립표본 T-검정",

@@ -31,6 +31,7 @@ import {
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
 import { DataTextarea } from "@/components/data-textarea";
+import { GoodnessBarChart, IndependenceBarChart } from "@/components/charts/chi-square-chart";
 
 function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceResult }) {
   const t = useTranslations("calculator");
@@ -190,6 +191,16 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
         </CardContent>
       </Card>
 
+      {/* Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{tc("chart")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <IndependenceBarChart observed={result.observed} />
+        </CardContent>
+      </Card>
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="chi-square"
@@ -308,6 +319,19 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
               </tbody>
             </table>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Chart */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{tc("chart")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <GoodnessBarChart
+            observed={result.observed as number[]}
+            expected={result.expected as number[]}
+          />
         </CardContent>
       </Card>
 

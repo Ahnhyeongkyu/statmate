@@ -267,7 +267,8 @@
     "negligibleAssoc": "Negligible association",
     "smallAssoc": "Small association",
     "mediumAssoc": "Medium association",
-    "largeAssoc": "Large association"
+    "largeAssoc": "Large association",
+    "chart": "Chart"
   },
   "correlation": {
     "metaTitle": "Free Correlation Calculator Online - Pearson & Spearman",
@@ -531,6 +532,7 @@
     "nPerGroup": "N per Group",
     "effectSizeUsed": "Effect Size Used",
     "achievedPower": "Achieved Power",
+    "powerCurve": "Power Curve",
     "perGroup": "per group",
     "types": {
       "twoSampleT": "Independent Samples T-Test",

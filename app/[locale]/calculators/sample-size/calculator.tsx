@@ -24,6 +24,7 @@ import {
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
+import { PowerCurve } from "@/components/charts/power-curve";
 
 const TEST_TYPES: { value: SampleSizeTestType; labelKey: string }[] = [
   { value: "two-sample-t", labelKey: "twoSampleT" },
@@ -118,6 +119,21 @@ function ResultsDisplay({ result }: { result: SampleSizeResult }) {
           <div className="mt-4 rounded-md bg-gray-50 p-3 text-sm">
             <p className="font-serif italic text-gray-700">{apa}</p>
           </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">{ts("powerCurve")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PowerCurve
+            effectSize={result.effectSize}
+            alpha={result.alpha}
+            power={result.power}
+            nPerGroup={result.nPerGroup}
+            testType={result.testType}
+          />
         </CardContent>
       </Card>
 
