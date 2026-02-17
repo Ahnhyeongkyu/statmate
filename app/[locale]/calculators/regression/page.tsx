@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { RegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { SeoContentKo } from "./seo-ko";
 
 export async function generateMetadata({
   params,
@@ -38,7 +39,12 @@ const jsonLd = {
   ],
 };
 
-export default async function RegressionPage() {
+export default async function RegressionPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("regression");
   return (
     <div>
@@ -56,6 +62,7 @@ export default async function RegressionPage() {
       <AdUnit slot="regression-mid" format="horizontal" />
 
       {/* SEO Content */}
+      {locale === "ko" ? <SeoContentKo /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Simple Linear Regression?
@@ -451,6 +458,7 @@ export default async function RegressionPage() {
           </p>
         </div>
       </section>
+      )}
 
       <RelatedCalculators current="/calculators/regression" />
     </div>

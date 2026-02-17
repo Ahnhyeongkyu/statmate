@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { OneSampleTCalculator } from "./calculator";
+import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 
@@ -36,7 +37,12 @@ const jsonLd = {
   ],
 };
 
-export default async function OneSampleTPage() {
+export default async function OneSampleTPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("oneSampleT");
   return (
     <div>
@@ -54,6 +60,7 @@ export default async function OneSampleTPage() {
       <AdUnit slot="one-sample-t-mid" format="horizontal" />
 
       {/* SEO Content */}
+      {locale === "ko" ? <SeoContentKo /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is a One-Sample T-Test?
@@ -384,6 +391,7 @@ export default async function OneSampleTPage() {
           </p>
         </div>
       </section>
+      )}
 
       <RelatedCalculators current="/calculators/one-sample-t" />
     </div>

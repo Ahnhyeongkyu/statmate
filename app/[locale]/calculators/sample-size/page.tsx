@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { SampleSizeCalculator } from "./calculator";
+import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 
@@ -36,7 +37,12 @@ const jsonLd = {
   ],
 };
 
-export default async function SampleSizePage() {
+export default async function SampleSizePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("sampleSize");
   return (
     <div>
@@ -54,6 +60,7 @@ export default async function SampleSizePage() {
       <AdUnit slot="sample-size-mid" format="horizontal" />
 
       {/* SEO Content */}
+      {locale === "ko" ? <SeoContentKo /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Sample Size Calculation?
@@ -323,6 +330,7 @@ export default async function SampleSizePage() {
           </p>
         </div>
       </section>
+      )}
 
       <RelatedCalculators current="/calculators/sample-size" />
     </div>

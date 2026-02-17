@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { MannWhitneyCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { SeoContentKo } from "./seo-ko";
 
 export async function generateMetadata({
   params,
@@ -36,7 +37,12 @@ const jsonLd = {
   ],
 };
 
-export default async function MannWhitneyPage() {
+export default async function MannWhitneyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("mannWhitney");
   return (
     <div>
@@ -54,6 +60,7 @@ export default async function MannWhitneyPage() {
       <AdUnit slot="mann-whitney-mid" format="horizontal" />
 
       {/* SEO Content */}
+      {locale === "ko" ? <SeoContentKo /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is the Mann-Whitney U Test?
@@ -329,6 +336,7 @@ export default async function MannWhitneyPage() {
           </p>
         </div>
       </section>
+      )}
 
       <RelatedCalculators current="/calculators/mann-whitney" />
     </div>

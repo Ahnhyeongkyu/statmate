@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
-/** Google AdSense script loader — add once in layout */
+/** Google AdSense script loader — lazy-loads after page interactive */
 export function AdSenseScript() {
   if (!ADSENSE_ID) return null;
 
   return (
     <script
       async
+      defer
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
       crossOrigin="anonymous"
     />
@@ -27,20 +28,37 @@ export function AdUnit({
   format?: "auto" | "horizontal" | "vertical" | "rectangle";
   className?: string;
 }) {
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     if (!ADSENSE_ID) return;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-    } catch {
-      // adsbygoogle not loaded yet
-    }
+
+    // Delay ad initialization to avoid blocking main thread
+    const timer = setTimeout(() => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+          {}
+        );
+        setLoaded(true);
+      } catch {
+        // adsbygoogle not loaded yet
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (!ADSENSE_ID) return null;
 
+  const minHeight =
+    format === "rectangle" ? 250 : format === "vertical" ? 600 : 100;
+
   return (
-    <div className={`my-6 text-center ${className}`}>
+    <div
+      className={`my-6 text-center overflow-hidden ${className}`}
+      style={{ minHeight: loaded ? undefined : minHeight }}
+    >
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}

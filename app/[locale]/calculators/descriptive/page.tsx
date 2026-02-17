@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { DescriptiveCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { SeoContentKo } from "./seo-ko";
 
 export async function generateMetadata({
   params,
@@ -36,7 +37,12 @@ const jsonLd = {
   ],
 };
 
-export default async function DescriptivePage() {
+export default async function DescriptivePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations("descriptive");
   return (
     <div>
@@ -54,6 +60,7 @@ export default async function DescriptivePage() {
       <AdUnit slot="descriptive-mid" format="horizontal" />
 
       {/* SEO Content */}
+      {locale === "ko" ? <SeoContentKo /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What are Descriptive Statistics?
@@ -530,6 +537,7 @@ export default async function DescriptivePage() {
           </p>
         </div>
       </section>
+      )}
 
       <RelatedCalculators current="/calculators/descriptive" />
     </div>
