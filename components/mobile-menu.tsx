@@ -18,6 +18,9 @@ const calculators = [
   { key: "oneSampleT" as const, href: "/calculators/one-sample-t" as const },
   { key: "mannWhitney" as const, href: "/calculators/mann-whitney" as const },
   { key: "wilcoxon" as const, href: "/calculators/wilcoxon" as const },
+  { key: "multipleRegression" as const, href: "/calculators/multiple-regression" as const },
+  { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const },
+  { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const },
 ];
 
 export function MobileMenu() {

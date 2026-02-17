@@ -38,3 +38,32 @@ export function parseTwoColumns(text: string): [number[], number[]] | null {
 
   return [col1, col2];
 }
+
+/**
+ * Parse a matrix from text. Rows = newlines, Cols = tabs or commas (auto-detect).
+ * Supports Excel paste (tab-separated).
+ */
+export function parseMatrix(text: string): { data: number[][]; nCases: number; nItems: number } | null {
+  const lines = text.trim().split(/\n/).filter(l => l.trim() !== "");
+  if (lines.length < 2) return null;
+
+  // Auto-detect delimiter: prefer tab, fallback to comma
+  const useTab = lines.every(l => l.includes("\t"));
+  const sep = useTab ? /\t/ : /[,;]/;
+
+  const data: number[][] = [];
+  let nItems = -1;
+
+  for (const line of lines) {
+    const parts = line.split(sep).map(s => s.trim()).filter(s => s !== "");
+    if (parts.length < 2) return null;
+    if (nItems === -1) nItems = parts.length;
+    else if (parts.length !== nItems) return null;
+
+    const row = parts.map(Number);
+    if (row.some(isNaN)) return null;
+    data.push(row);
+  }
+
+  return { data, nCases: data.length, nItems };
+}

@@ -11,7 +11,7 @@ import { useIsPro } from "@/components/activate-pro";
 // --- AI Interpretation Component ---
 
 interface AiInterpretationProps {
-  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "regression" | "sample-size";
+  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "regression" | "sample-size" | "multiple-regression" | "cronbach-alpha" | "logistic-regression";
   results: Record<string, unknown>;
 }
 

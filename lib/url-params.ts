@@ -127,6 +127,28 @@ export function decodeRegression(p: URLSearchParams) {
   return { xInput: x, yInput: y };
 }
 
+// Multiple Regression
+export function encodeMultipleRegression(state: { yInput: string; numPredictors: number; xInputs: string[]; xNames: string[] }): ParamMap {
+  const m: ParamMap = { y: state.yInput.replace(/\s+/g, ""), k: String(state.numPredictors) };
+  for (let i = 0; i < state.numPredictors; i++) {
+    if (state.xInputs[i]) m[`x${i}`] = state.xInputs[i].replace(/\s+/g, "");
+    if (state.xNames[i]) m[`n${i}`] = state.xNames[i];
+  }
+  return m;
+}
+export function decodeMultipleRegression(p: URLSearchParams) {
+  const y = p.get("y"), kStr = p.get("k");
+  if (!y || !kStr) return null;
+  const k = parseInt(kStr);
+  if (k < 2) return null;
+  const xInputs: string[] = [], xNames: string[] = [];
+  for (let i = 0; i < k; i++) {
+    xInputs.push(p.get(`x${i}`) ?? "");
+    xNames.push(p.get(`n${i}`) ?? `X${i + 1}`);
+  }
+  return { yInput: y, numPredictors: k, xInputs, xNames };
+}
+
 // Wilcoxon
 export function encodeWilcoxon(state: { preInput: string; postInput: string }): ParamMap {
   return { pre: state.preInput.replace(/\s+/g, ""), post: state.postInput.replace(/\s+/g, "") };
@@ -135,6 +157,38 @@ export function decodeWilcoxon(p: URLSearchParams) {
   const pre = p.get("pre"), post = p.get("post");
   if (!pre || !post) return null;
   return { preInput: pre, postInput: post };
+}
+
+// Cronbach's Alpha
+export function encodeCronbachAlpha(state: { matrixInput: string }): ParamMap {
+  return { m: state.matrixInput.replace(/\n/g, "|").replace(/\s+/g, "") };
+}
+export function decodeCronbachAlpha(p: URLSearchParams) {
+  const m = p.get("m");
+  if (!m) return null;
+  return { matrixInput: m.replace(/\|/g, "\n") };
+}
+
+// Logistic Regression
+export function encodeLogisticRegression(state: { yInput: string; xInputs: string[]; predictorNames: string[] }): ParamMap {
+  const m: ParamMap = { y: state.yInput.replace(/\s+/g, ""), k: String(state.xInputs.length) };
+  for (let i = 0; i < state.xInputs.length; i++) {
+    if (state.xInputs[i]) m[`x${i}`] = state.xInputs[i].replace(/\s+/g, "");
+    if (state.predictorNames[i]) m[`n${i}`] = state.predictorNames[i];
+  }
+  return m;
+}
+export function decodeLogisticRegression(p: URLSearchParams) {
+  const y = p.get("y"), kStr = p.get("k");
+  if (!y || !kStr) return null;
+  const k = parseInt(kStr);
+  if (k < 1) return null;
+  const xInputs: string[] = [], predictorNames: string[] = [];
+  for (let i = 0; i < k; i++) {
+    xInputs.push(p.get(`x${i}`) ?? "");
+    predictorNames.push(p.get(`n${i}`) ?? `X${i + 1}`);
+  }
+  return { yInput: y, xInputs, predictorNames };
 }
 
 // --- Share URL builder hook ---

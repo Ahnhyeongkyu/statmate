@@ -14,6 +14,9 @@ const calculatorKeys = [
   { key: "mannWhitney" as const, href: "/calculators/mann-whitney" as const },
   { key: "wilcoxon" as const, href: "/calculators/wilcoxon" as const },
   { key: "regression" as const, href: "/calculators/regression" as const },
+  { key: "multipleRegression" as const, href: "/calculators/multiple-regression" as const },
+  { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const },
+  { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const },
 ];
 
 export function RelatedCalculators({ current }: { current: string }) {

@@ -366,6 +366,163 @@ export function exportRegressionPdf(data: {
   return toBlob(doc);
 }
 
+// --- Cronbach's Alpha PDF ---
+export function exportCronbachAlphaPdf(data: {
+  alpha: number; interpretation: string; nItems: number; nCases: number;
+  scaleMean: number; scaleVariance: number;
+  standardizedAlpha: number; splitHalfReliability: number; spearmanBrownReliability: number;
+  itemStats: { name: string; mean: number; sd: number; correctedItemTotalR: number; alphaIfDeleted: number }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Cronbach's Alpha - Reliability Analysis");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["Cronbach's Alpha", data.alpha.toFixed(4)],
+      ["Interpretation", data.interpretation],
+      ["N Items", String(data.nItems)],
+      ["N Cases", String(data.nCases)],
+      ["Scale Mean", data.scaleMean.toFixed(4)],
+      ["Scale Variance", data.scaleVariance.toFixed(4)],
+      ["Standardized Alpha", data.standardizedAlpha.toFixed(4)],
+      ["Split-Half Reliability", data.splitHalfReliability.toFixed(4)],
+      ["Spearman-Brown", data.spearmanBrownReliability.toFixed(4)],
+    ]
+  );
+
+  y += 4;
+  if (y > 200) { doc.addPage(); y = MARGIN; }
+
+  y = addTable(doc, y,
+    ["Item", "Mean", "SD", "Item-Total r", "Alpha if Deleted"],
+    data.itemStats.map(item => [
+      item.name,
+      item.mean.toFixed(2),
+      item.sd.toFixed(2),
+      item.correctedItemTotalR.toFixed(4),
+      item.alphaIfDeleted.toFixed(4),
+    ])
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Multiple Regression PDF ---
+export function exportMultipleRegressionPdf(data: {
+  n: number; k: number; rSquared: number; adjustedRSquared: number; r: number;
+  fStatistic: number; dfRegression: number; dfResidual: number; pValue: number;
+  se: number; durbinWatson: number;
+  coefficients: { name: string; b: number; se: number; beta: number; t: number; p: number; ci95: [number, number]; vif: number }[];
+  anova: { source: string; ss: number; df: number; ms: number; f: number; p: number }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Multiple Regression Analysis");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["R²", data.rSquared.toFixed(4)],
+      ["Adjusted R²", data.adjustedRSquared.toFixed(4)],
+      ["Multiple R", data.r.toFixed(4)],
+      ["F", `F(${data.dfRegression}, ${data.dfResidual}) = ${data.fStatistic.toFixed(4)}`],
+      ["p", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
+      ["SE of Estimate", data.se.toFixed(4)],
+      ["Durbin-Watson", data.durbinWatson.toFixed(4)],
+      ["N", String(data.n)],
+      ["Predictors", String(data.k)],
+    ]
+  );
+
+  y = addTable(doc, y,
+    ["Predictor", "B", "SE", "Beta", "t", "p", "VIF"],
+    data.coefficients.map(c => [
+      c.name,
+      c.b.toFixed(4),
+      c.se.toFixed(4),
+      c.name === "(Intercept)" ? "—" : c.beta.toFixed(4),
+      c.t.toFixed(4),
+      c.p < 0.001 ? "< .001" : c.p.toFixed(3),
+      c.name === "(Intercept)" ? "—" : c.vif.toFixed(2),
+    ])
+  );
+
+  y = addTable(doc, y,
+    ["Source", "SS", "df", "MS", "F", "p"],
+    data.anova.map(row => [
+      row.source,
+      row.ss.toFixed(2),
+      String(row.df),
+      row.source === "Total" ? "" : row.ms.toFixed(2),
+      row.source === "Regression" ? row.f.toFixed(2) : "",
+      row.source === "Regression" ? (row.p < 0.001 ? "< .001" : row.p.toFixed(3)) : "",
+    ])
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Logistic Regression PDF ---
+export function exportLogisticRegressionPdf(data: {
+  n: number; k: number; converged: boolean; iterations: number;
+  neg2LL: number; neg2LLNull: number; omnibusChiSq: number; omnibusDf: number; omnibusP: number;
+  coxSnellR2: number; nagelkerkeR2: number;
+  coefficients: { name: string; b: number; se: number; wald: number; df: number; p: number; expB: number; expBCI95: [number, number] }[];
+  classification: { tn: number; fp: number; fn: number; tp: number; sensitivity: number; specificity: number; accuracy: number };
+  hosmerLemeshowChiSq: number; hosmerLemeshowDf: number; hosmerLemeshowP: number;
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Logistic Regression Analysis");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["Omnibus χ²", `χ²(${data.omnibusDf}) = ${data.omnibusChiSq.toFixed(4)}`],
+      ["Omnibus p", data.omnibusP < 0.001 ? "< .001" : data.omnibusP.toFixed(4)],
+      ["-2 Log Likelihood", data.neg2LL.toFixed(4)],
+      ["-2LL (Null)", data.neg2LLNull.toFixed(4)],
+      ["Cox & Snell R²", data.coxSnellR2.toFixed(4)],
+      ["Nagelkerke R²", data.nagelkerkeR2.toFixed(4)],
+      ["N", String(data.n)],
+      ["Predictors", String(data.k)],
+      ["Converged", data.converged ? "Yes" : "No"],
+      ["Iterations", String(data.iterations)],
+    ]
+  );
+
+  y = addTable(doc, y,
+    ["Variable", "B", "S.E.", "Wald", "p", "Exp(B)", "95% CI"],
+    data.coefficients.map(c => [
+      c.name,
+      c.b.toFixed(4),
+      c.se.toFixed(4),
+      c.wald.toFixed(4),
+      c.p < 0.001 ? "< .001" : c.p.toFixed(3),
+      c.expB.toFixed(4),
+      `[${c.expBCI95[0].toFixed(3)}, ${c.expBCI95[1].toFixed(3)}]`,
+    ])
+  );
+
+  y = addSection(doc, y, "Classification:",
+    `Accuracy: ${(data.classification.accuracy * 100).toFixed(1)}% | ` +
+    `Sensitivity: ${(data.classification.sensitivity * 100).toFixed(1)}% | ` +
+    `Specificity: ${(data.classification.specificity * 100).toFixed(1)}%`
+  );
+
+  y = addSection(doc, y, "Hosmer-Lemeshow:",
+    `χ²(${data.hosmerLemeshowDf}) = ${data.hosmerLemeshowChiSq.toFixed(4)}, ` +
+    `p = ${data.hosmerLemeshowP < 0.001 ? "< .001" : data.hosmerLemeshowP.toFixed(4)}`
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
 // --- Sample Size PDF ---
 export function exportSampleSizePdf(data: {
   nTotal: number; nPerGroup: number; effectSize: number;

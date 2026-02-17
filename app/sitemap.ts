@@ -16,6 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "mann-whitney",
     "wilcoxon",
     "regression",
+    "multiple-regression",
+    "cronbach-alpha",
+    "logistic-regression",
   ];
 
   const pages = [

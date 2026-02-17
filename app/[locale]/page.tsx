@@ -38,6 +38,9 @@ const calculatorSlugs = [
   { key: "oneSampleT" as const, href: "/calculators/one-sample-t" as const, icon: "t\u2081", badge: false },
   { key: "mannWhitney" as const, href: "/calculators/mann-whitney" as const, icon: "U", badge: false },
   { key: "wilcoxon" as const, href: "/calculators/wilcoxon" as const, icon: "W", badge: false },
+  { key: "multipleRegression" as const, href: "/calculators/multiple-regression" as const, icon: "R\u00B2", badge: true },
+  { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const, icon: "\u03B1", badge: true },
+  { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const, icon: "OR", badge: true },
 ];
 
 export default async function Home({
