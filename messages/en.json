@@ -17,6 +17,7 @@
       "multipleRegression": "Multiple Regression",
       "cronbachAlpha": "Cronbach's Alpha",
       "logisticRegression": "Logistic Regression",
+      "factorAnalysis": "Factor Analysis",
       "wizard": "Which Test?"
     },
     "pricing": "Pricing",
@@ -102,6 +103,10 @@
       "logisticRegression": {
         "name": "Logistic Regression",
         "description": "Predict binary outcomes. Odds ratios, classification table, Hosmer-Lemeshow test."
+      },
+      "factorAnalysis": {
+        "name": "Factor Analysis",
+        "description": "Explore latent factors. KMO, eigenvalues, factor loadings, Varimax & Promax rotation."
       }
     },
     "badge_mostPopular": "Most Popular",
@@ -495,7 +500,8 @@
       "wilcoxon": "Wilcoxon Signed-Rank Test",
       "multipleRegression": "Multiple Regression Analysis",
       "cronbachAlpha": "Cronbach's Alpha (Reliability Analysis)",
-      "logisticRegression": "Logistic Regression Analysis"
+      "logisticRegression": "Logistic Regression Analysis",
+      "factorAnalysis": "Exploratory Factor Analysis (EFA)"
     },
     "contactTitle": "Contact",
     "contactText": "Have feedback, found a bug, or want to request a new calculator? We'd love to hear from you.",
@@ -791,6 +797,62 @@
     "errorNoPredictors": "Enter at least one predictor variable.",
     "exampleScenario": "A marketing analyst investigated whether age and income predict product purchase (yes/no) for 20 customers."
   },
+  "factorAnalysis": {
+    "metaTitle": "Free Factor Analysis Calculator (EFA) Online",
+    "metaDescription": "Free online exploratory factor analysis calculator. KMO test, Bartlett's test, eigenvalues, factor loadings with Varimax and Promax rotation, and APA-formatted results.",
+    "title": "Factor Analysis Calculator",
+    "description": "Perform exploratory factor analysis (EFA) with KMO test, Bartlett's test, eigenvalue decomposition, factor loadings, and communalities. Supports PCA and PAF extraction with Varimax and Promax rotation.",
+    "matrixInput": "Data Matrix",
+    "matrixHint": "(rows = observations, columns = variables)",
+    "extractionMethod": "Extraction Method",
+    "pca": "PCA (Principal Component)",
+    "paf": "PAF (Principal Axis)",
+    "rotationMethod": "Rotation",
+    "noRotation": "None",
+    "varimax": "Varimax",
+    "promax": "Promax",
+    "numFactors": "Number of Factors",
+    "autoKaiser": "Auto (Kaiser: eigenvalue > 1)",
+    "manual": "Manual",
+    "variableNames": "Variable Names (optional)",
+    "variableNamesHint": "Comma-separated, e.g. V1, V2, V3",
+    "kmoTitle": "KMO & Bartlett's Test",
+    "kmoOverall": "KMO Measure",
+    "kmoPerVariable": "KMO per Variable",
+    "bartlettTitle": "Bartlett's Test of Sphericity",
+    "bartlettChiSq": "Chi-Square",
+    "bartlettDf": "df",
+    "bartlettP": "p-value",
+    "eigenvaluesTitle": "Eigenvalues & Variance Explained",
+    "varianceExplained": "Variance Explained",
+    "initialEigenvalues": "Initial Eigenvalues",
+    "rotatedSSL": "Rotation Sums of Squared Loadings",
+    "factor": "Factor",
+    "eigenvalue": "Eigenvalue",
+    "percentVariance": "% of Variance",
+    "cumulative": "Cumulative %",
+    "factorLoadings": "Factor Loadings",
+    "patternMatrix": "Pattern Matrix",
+    "structureMatrix": "Structure Matrix",
+    "communalities": "Communalities",
+    "initial": "Initial",
+    "extraction": "Extraction",
+    "variable": "Variable",
+    "factorCorrelation": "Factor Correlation Matrix",
+    "loadingHighlightHint": "Highlighted cells indicate loadings with |value| ≥ 0.40.",
+    "lowCommunalityHint": "Highlighted rows indicate low communality (< 0.40).",
+    "extractionInfo": "Extraction",
+    "rotationInfo": "Rotation",
+    "pafConverged": "PAF converged",
+    "pafNotConverged": "PAF did not converge",
+    "pafIterations": "iterations",
+    "errorInvalidMatrix": "Invalid matrix. Each row must have the same number of values.",
+    "errorMinVariables": "Need at least 2 variables (columns).",
+    "errorMinObservations": "Need more observations than variables.",
+    "errorMaxVariables": "Maximum 50 variables supported.",
+    "errorZeroVariance": "Variable has zero variance.",
+    "exampleScenario": "A researcher explores the factor structure of an 8-item personality questionnaire (N = 30). Three factors are expected: extraversion (items 1-3), conscientiousness (items 4-5), and openness (items 6-8)."
+  },
   "relatedCalculators": {
     "title": "Try Other Calculators",
     "ttest": { "name": "T-Test", "description": "Compare means between two groups" },
@@ -805,7 +867,8 @@
     "regression": { "name": "Regression", "description": "Model X-Y relationships" },
     "multipleRegression": { "name": "Multiple Regression", "description": "Multiple predictors" },
     "cronbachAlpha": { "name": "Cronbach's Alpha", "description": "Scale reliability" },
-    "logisticRegression": { "name": "Logistic Regression", "description": "Binary outcome prediction" }
+    "logisticRegression": { "name": "Logistic Regression", "description": "Binary outcome prediction" },
+    "factorAnalysis": { "name": "Factor Analysis", "description": "Explore latent factor structure" }
   },
   "assumptions": {
     "title": "Assumption Checks",

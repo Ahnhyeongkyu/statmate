@@ -17,6 +17,7 @@
       "multipleRegression": "다중회귀",
       "cronbachAlpha": "Cronbach's Alpha",
       "logisticRegression": "로지스틱 회귀",
+      "factorAnalysis": "요인분석",
       "wizard": "검정 선택"
     },
     "pricing": "요금제",
@@ -102,6 +103,10 @@
       "logisticRegression": {
         "name": "로지스틱 회귀",
         "description": "이항 결과 예측. 오즈비, 분류표, Hosmer-Lemeshow 검정."
+      },
+      "factorAnalysis": {
+        "name": "요인분석",
+        "description": "잠재 요인 탐색. KMO, 고유값, 요인 적재량, Varimax & Promax 회전."
       }
     },
     "badge_mostPopular": "인기",
@@ -495,7 +500,8 @@
       "wilcoxon": "Wilcoxon 부호순위 검정",
       "multipleRegression": "다중회귀분석",
       "cronbachAlpha": "Cronbach's Alpha (신뢰도 분석)",
-      "logisticRegression": "로지스틱 회귀분석"
+      "logisticRegression": "로지스틱 회귀분석",
+      "factorAnalysis": "탐색적 요인분석 (EFA)"
     },
     "contactTitle": "문의",
     "contactText": "피드백이 있거나, 버그를 발견하거나, 새로운 계산기를 요청하고 싶으신가요? 연락 주세요.",
@@ -791,6 +797,62 @@
     "errorNoPredictors": "최소 하나의 예측변수를 입력하세요.",
     "exampleScenario": "마케팅 분석가가 나이와 소득이 20명 고객의 제품 구매(예/아니오)를 예측하는지 조사했습니다."
   },
+  "factorAnalysis": {
+    "metaTitle": "무료 요인분석 계산기 (EFA) 온라인",
+    "metaDescription": "무료 온라인 탐색적 요인분석 계산기. KMO 검정, Bartlett 구형성 검정, 고유값, Varimax 및 Promax 회전 요인 적재량, APA 형식 결과.",
+    "title": "요인분석 계산기",
+    "description": "탐색적 요인분석(EFA)을 수행합니다. KMO 검정, Bartlett 구형성 검정, 고유값 분해, 요인 적재량, 공통성을 제공합니다. PCA 및 PAF 추출, Varimax 및 Promax 회전을 지원합니다.",
+    "matrixInput": "데이터 행렬",
+    "matrixHint": "(행 = 관측치, 열 = 변수)",
+    "extractionMethod": "추출 방법",
+    "pca": "PCA (주성분)",
+    "paf": "PAF (주축 요인)",
+    "rotationMethod": "회전",
+    "noRotation": "없음",
+    "varimax": "Varimax",
+    "promax": "Promax",
+    "numFactors": "요인 수",
+    "autoKaiser": "자동 (Kaiser: 고유값 > 1)",
+    "manual": "직접 지정",
+    "variableNames": "변수명 (선택)",
+    "variableNamesHint": "쉼표로 구분, 예: V1, V2, V3",
+    "kmoTitle": "KMO & Bartlett 검정",
+    "kmoOverall": "KMO 측도",
+    "kmoPerVariable": "변수별 KMO",
+    "bartlettTitle": "Bartlett 구형성 검정",
+    "bartlettChiSq": "카이제곱",
+    "bartlettDf": "자유도",
+    "bartlettP": "p-값",
+    "eigenvaluesTitle": "고유값 & 분산 설명량",
+    "varianceExplained": "분산 설명량",
+    "initialEigenvalues": "초기 고유값",
+    "rotatedSSL": "회전 제곱합 적재량",
+    "factor": "요인",
+    "eigenvalue": "고유값",
+    "percentVariance": "분산 비율(%)",
+    "cumulative": "누적(%)",
+    "factorLoadings": "요인 적재량",
+    "patternMatrix": "패턴 행렬",
+    "structureMatrix": "구조 행렬",
+    "communalities": "공통성",
+    "initial": "초기",
+    "extraction": "추출",
+    "variable": "변수",
+    "factorCorrelation": "요인 상관행렬",
+    "loadingHighlightHint": "강조된 셀은 |적재량| ≥ 0.40인 항목입니다.",
+    "lowCommunalityHint": "강조된 행은 낮은 공통성(< 0.40)을 나타냅니다.",
+    "extractionInfo": "추출",
+    "rotationInfo": "회전",
+    "pafConverged": "PAF 수렴 완료",
+    "pafNotConverged": "PAF 미수렴",
+    "pafIterations": "회 반복",
+    "errorInvalidMatrix": "잘못된 행렬입니다. 각 행의 값 개수가 같아야 합니다.",
+    "errorMinVariables": "최소 2개의 변수(열)가 필요합니다.",
+    "errorMinObservations": "관측치가 변수보다 많아야 합니다.",
+    "errorMaxVariables": "최대 50개 변수까지 지원됩니다.",
+    "errorZeroVariance": "분산이 0인 변수가 있습니다.",
+    "exampleScenario": "연구자가 8문항 성격 설문의 요인 구조를 탐색합니다 (N=30). 외향성(문항 1-3), 성실성(문항 4-5), 개방성(문항 6-8) 3개 요인이 예상됩니다."
+  },
   "relatedCalculators": {
     "title": "다른 계산기 사용하기",
     "ttest": { "name": "T-검정", "description": "두 집단의 평균 비교" },
@@ -805,7 +867,8 @@
     "regression": { "name": "회귀분석", "description": "X-Y 관계 모델링" },
     "multipleRegression": { "name": "다중회귀", "description": "다중 예측변수 분석" },
     "cronbachAlpha": { "name": "Cronbach's Alpha", "description": "척도 신뢰도 분석" },
-    "logisticRegression": { "name": "로지스틱 회귀", "description": "이항 결과 예측" }
+    "logisticRegression": { "name": "로지스틱 회귀", "description": "이항 결과 예측" },
+    "factorAnalysis": { "name": "요인분석", "description": "잠재 요인 구조 탐색" }
   },
   "assumptions": {
     "title": "가정 검증",

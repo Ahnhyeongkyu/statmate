@@ -21,6 +21,7 @@ const calculators = [
   { key: "multipleRegression" as const, href: "/calculators/multiple-regression" as const },
   { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const },
   { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const },
+  { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" as const },
 ];
 
 export function MobileMenu() {

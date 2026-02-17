@@ -523,6 +523,82 @@ export function exportLogisticRegressionPdf(data: {
   return toBlob(doc);
 }
 
+// --- Factor Analysis PDF ---
+export function exportFactorAnalysisPdf(data: {
+  nVariables: number; nObservations: number; nFactors: number;
+  extractionMethod: string; rotationMethod: string;
+  kmo: { overall: number; interpretation: string };
+  bartlett: { chiSquare: number; df: number; pValue: number };
+  varianceExplainedInitial: { factor: number; eigenvalue: number; percentOfVariance: number; cumulativePercent: number }[];
+  rotatedLoadings: number[][];
+  communalities: { variable: string; initial: number; extraction: number }[];
+  variableNames: string[];
+  patternMatrix?: number[][];
+  factorCorrelationMatrix?: number[][];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Exploratory Factor Analysis");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["N (observations)", String(data.nObservations)],
+      ["Variables", String(data.nVariables)],
+      ["Factors extracted", String(data.nFactors)],
+      ["Extraction", data.extractionMethod.toUpperCase()],
+      ["Rotation", data.rotationMethod === "none" ? "None" : data.rotationMethod.charAt(0).toUpperCase() + data.rotationMethod.slice(1)],
+      ["KMO", `${data.kmo.overall.toFixed(4)} (${data.kmo.interpretation})`],
+      ["Bartlett's chi-sq", `${data.bartlett.chiSquare.toFixed(2)} (df=${data.bartlett.df}, p ${data.bartlett.pValue < 0.001 ? "< .001" : "= " + data.bartlett.pValue.toFixed(3)})`],
+    ]
+  );
+
+  // Variance explained
+  y = addTable(doc, y,
+    ["Factor", "Eigenvalue", "% Variance", "Cumulative %"],
+    data.varianceExplainedInitial.filter(r => r.factor <= data.nFactors).map(r => [
+      String(r.factor),
+      r.eigenvalue.toFixed(4),
+      r.percentOfVariance.toFixed(2) + "%",
+      r.cumulativePercent.toFixed(2) + "%",
+    ])
+  );
+
+  // Factor loadings
+  const loadings = data.patternMatrix ?? data.rotatedLoadings;
+  const factorHeaders = ["Variable", ...Array.from({ length: data.nFactors }, (_, i) => `Factor ${i + 1}`)];
+  y = addTable(doc, y,
+    factorHeaders,
+    loadings.map((row, i) => [
+      data.variableNames[i] ?? `V${i + 1}`,
+      ...row.slice(0, data.nFactors).map(v => v.toFixed(3)),
+    ])
+  );
+
+  // Communalities
+  if (y > 220) { doc.addPage(); y = MARGIN; }
+  y = addTable(doc, y,
+    ["Variable", "Initial", "Extraction"],
+    data.communalities.map(c => [c.variable, c.initial.toFixed(4), c.extraction.toFixed(4)])
+  );
+
+  // Factor correlations (Promax)
+  if (data.factorCorrelationMatrix && data.factorCorrelationMatrix.length > 0) {
+    if (y > 240) { doc.addPage(); y = MARGIN; }
+    const corrHeaders = ["", ...Array.from({ length: data.nFactors }, (_, i) => `F${i + 1}`)];
+    y = addTable(doc, y,
+      corrHeaders,
+      data.factorCorrelationMatrix.map((row, i) => [
+        `Factor ${i + 1}`,
+        ...row.map(v => v.toFixed(3)),
+      ])
+    );
+  }
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
 // --- Sample Size PDF ---
 export function exportSampleSizePdf(data: {
   nTotal: number; nPerGroup: number; effectSize: number;

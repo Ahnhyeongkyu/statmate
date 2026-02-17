@@ -191,6 +191,23 @@ export function decodeLogisticRegression(p: URLSearchParams) {
   return { yInput: y, xInputs, predictorNames };
 }
 
+// Factor Analysis
+export function encodeFactorAnalysis(state: { matrixInput: string; extraction: string; rotation: string; nFactors: string }): ParamMap {
+  const m: ParamMap = { m: state.matrixInput.replace(/\n/g, "|").replace(/\s+/g, ""), e: state.extraction, r: state.rotation };
+  if (state.nFactors) m.k = state.nFactors;
+  return m;
+}
+export function decodeFactorAnalysis(p: URLSearchParams) {
+  const m = p.get("m");
+  if (!m) return null;
+  return {
+    matrixInput: m.replace(/\|/g, "\n"),
+    extraction: (p.get("e") ?? "pca") as "pca" | "paf",
+    rotation: (p.get("r") ?? "varimax") as "none" | "varimax" | "promax",
+    nFactors: p.get("k") ?? "",
+  };
+}
+
 // --- Share URL builder hook ---
 export function useShareUrl(calculatorType: string, params: ParamMap): string {
   const pathname = usePathname();

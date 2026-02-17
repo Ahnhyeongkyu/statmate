@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "multiple-regression",
     "cronbach-alpha",
     "logistic-regression",
+    "factor-analysis",
   ];
 
   const pages = [

@@ -41,6 +41,7 @@ const calculatorSlugs = [
   { key: "multipleRegression" as const, href: "/calculators/multiple-regression" as const, icon: "R\u00B2", badge: true },
   { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const, icon: "\u03B1", badge: true },
   { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const, icon: "OR", badge: true },
+  { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" as const, icon: "\u039B", badge: true },
 ];
 
 export default async function Home({

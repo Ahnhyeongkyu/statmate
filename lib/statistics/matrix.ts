@@ -90,3 +90,94 @@ export function diagMatrix(v: number[]): Matrix {
   for (let i = 0; i < n; i++) m[i][i] = v[i];
   return m;
 }
+
+export function copyMatrix(A: Matrix): Matrix {
+  return A.map(row => [...row]);
+}
+
+/** Frobenius norm of off-diagonal elements */
+export function offDiagNorm(A: Matrix): number {
+  const n = A.length;
+  let sum = 0;
+  for (let i = 0; i < n; i++)
+    for (let j = 0; j < n; j++)
+      if (i !== j) sum += A[i][j] * A[i][j];
+  return Math.sqrt(sum);
+}
+
+export interface EigenResult {
+  eigenvalues: number[];
+  eigenvectors: Matrix; // columns are eigenvectors
+}
+
+/**
+ * Jacobi eigenvalue algorithm for symmetric matrices.
+ * Returns eigenvalues sorted descending with corresponding eigenvector columns.
+ */
+export function eigenSymmetric(A: Matrix, maxIter?: number, tol?: number): EigenResult {
+  const n = A.length;
+  const S = copyMatrix(A);
+  const V = identity(n);
+  const tolerance = tol ?? 1e-10;
+  const maxIterations = maxIter ?? 100 * n * n;
+
+  for (let iter = 0; iter < maxIterations; iter++) {
+    // Find largest off-diagonal |S[p][q]|
+    let maxVal = 0, p = 0, q = 1;
+    for (let i = 0; i < n; i++)
+      for (let j = i + 1; j < n; j++) {
+        const v = Math.abs(S[i][j]);
+        if (v > maxVal) { maxVal = v; p = i; q = j; }
+      }
+
+    if (maxVal < tolerance) break;
+
+    // Compute rotation
+    const diff = S[q][q] - S[p][p];
+    let t: number;
+    if (Math.abs(diff) < 1e-15) {
+      t = 1;
+    } else {
+      const tau = diff / (2 * S[p][q]);
+      t = Math.sign(tau) / (Math.abs(tau) + Math.sqrt(1 + tau * tau));
+    }
+    const c = 1 / Math.sqrt(1 + t * t);
+    const s = t * c;
+
+    // Apply rotation to S
+    const Spp = S[p][p], Sqq = S[q][q], Spq = S[p][q];
+    S[p][p] = Spp - t * Spq;
+    S[q][q] = Sqq + t * Spq;
+    S[p][q] = 0;
+    S[q][p] = 0;
+
+    for (let i = 0; i < n; i++) {
+      if (i === p || i === q) continue;
+      const Sip = S[i][p], Siq = S[i][q];
+      S[i][p] = c * Sip - s * Siq;
+      S[p][i] = S[i][p];
+      S[i][q] = s * Sip + c * Siq;
+      S[q][i] = S[i][q];
+    }
+
+    // Update eigenvectors
+    for (let i = 0; i < n; i++) {
+      const Vip = V[i][p], Viq = V[i][q];
+      V[i][p] = c * Vip - s * Viq;
+      V[i][q] = s * Vip + c * Viq;
+    }
+  }
+
+  // Extract eigenvalues and sort descending
+  const eigenvalues = diag(S);
+  const indices = eigenvalues.map((_, i) => i);
+  indices.sort((a, b) => eigenvalues[b] - eigenvalues[a]);
+
+  const sortedValues = indices.map(i => eigenvalues[i]);
+  const sortedVectors = zeros(n, n);
+  for (let j = 0; j < n; j++)
+    for (let i = 0; i < n; i++)
+      sortedVectors[i][j] = V[i][indices[j]];
+
+  return { eigenvalues: sortedValues, eigenvectors: sortedVectors };
+}
