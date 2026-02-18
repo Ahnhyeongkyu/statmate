@@ -59,6 +59,16 @@ export default async function AboutPage() {
           <li>{t("calculatorsList.oneSampleT")}</li>
           <li>{t("calculatorsList.mannWhitney")}</li>
           <li>{t("calculatorsList.wilcoxon")}</li>
+          <li>{t("calculatorsList.multipleRegression")}</li>
+          <li>{t("calculatorsList.cronbachAlpha")}</li>
+          <li>{t("calculatorsList.logisticRegression")}</li>
+          <li>{t("calculatorsList.factorAnalysis")}</li>
+          <li>{t("calculatorsList.kruskalWallis")}</li>
+          <li>{t("calculatorsList.repeatedMeasures")}</li>
+          <li>{t("calculatorsList.twoWayAnova")}</li>
+          <li>{t("calculatorsList.friedman")}</li>
+          <li>{t("calculatorsList.fisherExact")}</li>
+          <li>{t("calculatorsList.mcnemar")}</li>
         </ul>
 
         <h2 className="text-xl font-semibold text-gray-900">

@@ -42,6 +42,12 @@ const calculatorSlugs = [
   { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const, icon: "\u03B1", badge: true },
   { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const, icon: "OR", badge: true },
   { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" as const, icon: "\u039B", badge: true },
+  { key: "kruskalWallis" as const, href: "/calculators/kruskal-wallis" as const, icon: "H", badge: true },
+  { key: "repeatedMeasures" as const, href: "/calculators/repeated-measures" as const, icon: "RM", badge: true },
+  { key: "twoWayAnova" as const, href: "/calculators/two-way-anova" as const, icon: "F\u00D7", badge: true },
+  { key: "friedman" as const, href: "/calculators/friedman" as const, icon: "\u03C7\u00B2r", badge: true },
+  { key: "fisherExact" as const, href: "/calculators/fisher-exact" as const, icon: "FE", badge: true },
+  { key: "mcnemar" as const, href: "/calculators/mcnemar" as const, icon: "Mc", badge: true },
 ];
 
 export default async function Home({
