@@ -5,7 +5,7 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
 
 interface InterpretRequest {
-  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon";
+  testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "multiple-regression" | "cronbach-alpha" | "logistic-regression" | "factor-analysis";
   results: Record<string, unknown>;
   language: "en" | "ko";
   licenseKey?: string;
@@ -34,6 +34,10 @@ function buildPrompt(req: InterpretRequest): string {
     "one-sample-t": "one-sample t-test",
     "mann-whitney": "Mann-Whitney U test",
     wilcoxon: "Wilcoxon signed-rank test",
+    "multiple-regression": "multiple linear regression",
+    "cronbach-alpha": "Cronbach's alpha reliability analysis",
+    "logistic-regression": "binary logistic regression",
+    "factor-analysis": "exploratory factor analysis (EFA)",
   };
 
   return `You are a statistics expert helping researchers interpret their results for academic publication.
