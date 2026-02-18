@@ -1,0 +1,191 @@
+---
+title: "Understanding Effect Sizes — A Complete Guide to Cohen's d, Eta Squared, and More"
+description: "Learn why p-values are not enough, how to interpret effect sizes like Cohen's d, eta squared, R², and Cramér's V, and how to report them correctly in APA 7th edition format."
+date: "2026-02-18"
+category: "Statistics Basics"
+tags: ["effect size statistics", "Cohen's d interpretation", "eta squared", "when to report effect size", "APA effect size"]
+---
+
+## Why P-Values Are Not Enough
+
+A result that is "statistically significant (*p* < .05)" tells you that an observed effect is unlikely due to chance. What it does not tell you is how large or meaningful that effect actually is.
+
+Consider this: a study with 10,000 participants finds a 0.3-point difference between groups and reports *p* < .001. Meanwhile, a study with 30 participants finds a 15-point difference but reports *p* = .08. The first result is significant while the second is not, yet the second may be far more meaningful. This happens because *p* values are heavily influenced by sample size.
+
+This is why **effect sizes** matter. An effect size quantifies the magnitude of a result independently of sample size. APA 7th edition guidelines require effect size reporting alongside significance tests, and most journals now treat it as essential.
+
+This guide covers the most commonly used effect size measures, their interpretation benchmarks, and how to report each one in APA format.
+
+## Cohen's d — Effect Size for Mean Differences
+
+### When to Use It
+
+Cohen's *d* measures the difference between two group means in standard deviation units. It is the standard effect size for independent samples t-tests and paired samples t-tests.
+
+### Interpretation Benchmarks
+
+Cohen (1988) proposed the following general guidelines:
+
+| Cohen's *d* | Interpretation |
+|-------------|----------------|
+| 0.20 | Small effect |
+| 0.50 | Medium effect |
+| 0.80 | Large effect |
+
+A *d* of 0.50 means the two group distributions overlap by about 67%. A *d* of 0.80 means the overlap drops to about 53%, a difference most people would readily notice.
+
+### APA Reporting Examples
+
+**Independent samples t-test:**
+
+> An independent samples t-test showed that the experimental group (*M* = 82.40, *SD* = 10.25) scored significantly higher than the control group (*M* = 74.60, *SD* = 11.30) on the post-test, *t*(58) = 2.89, *p* = .005, *d* = 0.75.
+
+**Paired samples t-test:**
+
+> A paired samples t-test revealed that depression scores were significantly lower after the intervention (*M* = 18.30, *SD* = 5.40) compared to before (*M* = 24.10, *SD* = 6.20), *t*(34) = 4.52, *p* < .001, *d* = 0.76.
+
+Note that Cohen's *d* can exceed 1.0, so you include a leading zero (e.g., *d* = 0.75, not *d* = .75).
+
+## Eta Squared and Partial Eta Squared — Effect Size for ANOVA
+
+### When to Use Them
+
+Eta squared (η²) and partial eta squared (partial η²) are the standard effect size measures for analysis of variance (ANOVA). They express the proportion of total variance in the dependent variable that is accounted for by an independent variable.
+
+### The Difference Between η² and Partial η²
+
+Confusing these two is one of the most common reporting errors in published research.
+
+- **η² (eta squared):** Proportion of **total variance** explained by a factor. All factors' η² values sum to at most 1.
+- **Partial η²:** Proportion of variance explained **after removing other factors' effects**. Values across factors can sum to more than 1.
+
+For one-way ANOVA they are identical. For factorial designs they differ. Most software, including SPSS, reports partial η² by default.
+
+### Interpretation Benchmarks
+
+| η² / partial η² | Interpretation |
+|-----------------|----------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+A partial η² of .10 means the independent variable accounts for 10% of the variance in the dependent variable after controlling for other factors.
+
+### APA Reporting Examples
+
+**One-way ANOVA:**
+
+> A one-way ANOVA revealed a statistically significant effect of teaching method on achievement scores, *F*(2, 87) = 5.34, *p* = .007, η² = .11.
+
+**Factorial ANOVA (interaction effect):**
+
+> The interaction between teaching method and gender was statistically significant, *F*(2, 84) = 3.92, *p* = .024, partial η² = .09.
+
+Because η² and partial η² are proportions bounded between 0 and 1, the leading zero is omitted in APA format (e.g., .11 rather than 0.11).
+
+## r and R² — Effect Size for Correlation and Regression
+
+### When to Use Them
+
+The Pearson correlation coefficient *r* measures the strength and direction of a linear relationship between two continuous variables. It serves as its own effect size. In regression analysis, the coefficient of determination *R²* indicates the proportion of variance in the outcome explained by the predictors.
+
+### Interpretation Benchmarks
+
+| *r* (absolute value) | Interpretation |
+|---------------------|----------------|
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+
+Since *R²* is the square of *r*, the corresponding benchmarks are:
+
+| *R²* | Interpretation |
+|------|----------------|
+| .01 | Small effect |
+| .09 | Medium effect |
+| .25 | Large effect |
+
+### APA Reporting Examples
+
+**Correlation:**
+
+> There was a statistically significant positive correlation between study hours and exam scores, *r*(48) = .42, *p* = .003.
+
+**Regression:**
+
+> The regression model was statistically significant, *F*(2, 97) = 18.45, *p* < .001, *R²* = .28, adjusted *R²* = .26, indicating that study hours and attendance explained 27.5% of the variance in exam scores.
+
+Both *r* and *R²* are bounded by 1, so the leading zero is omitted.
+
+## Cramér's V — Effect Size for Chi-Square Tests
+
+### When to Use It
+
+Cramér's *V* quantifies the strength of association between two categorical variables in a chi-square test of independence. For 2x2 tables it equals the phi coefficient (φ), but Cramér's *V* generalizes to larger tables.
+
+### Interpretation Benchmarks
+
+For df* = 1 (a 2x2 table):
+
+| Cramér's *V* | Interpretation |
+|--------------|----------------|
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+
+Here df* is the smaller of (rows - 1) and (columns - 1). As df* increases, the benchmark thresholds decrease, so always consider the table dimensions when interpreting *V*.
+
+### APA Reporting Example
+
+> A chi-square test of independence indicated a significant association between gender and major choice, χ²(2, *N* = 200) = 12.56, *p* = .002, *V* = .25.
+
+## Effect Size Summary Table
+
+The following table provides a quick reference for all major effect size measures and their interpretation benchmarks.
+
+| Statistical Test | Effect Size Measure | Small | Medium | Large |
+|-----------------|-------------------|-------|--------|-------|
+| t-test | Cohen's *d* | 0.20 | 0.50 | 0.80 |
+| ANOVA | η² / partial η² | .01 | .06 | .14 |
+| Correlation | *r* | .10 | .30 | .50 |
+| Regression | *R²* | .01 | .09 | .25 |
+| Chi-square | Cramér's *V* | .10 | .30 | .50 |
+
+**Important:** These are general guidelines, not rigid rules. Cohen himself called them conventions for when no better basis is available. In some fields, a "small" effect can have substantial real-world impact. Always interpret effect sizes within your research context.
+
+## Common Mistakes to Avoid
+
+### Confusing η² with Partial η²
+
+SPSS labels its output "Partial Eta Squared," but many researchers report the value as plain η². In factorial designs the two differ, so always specify which you are reporting using partial η² or ηp².
+
+### Reporting Only Significance Without Effect Size
+
+Stating "*p* < .05" without an effect size does not meet APA 7th edition standards. Report an effect size for every inferential test, whether significant or not. Non-significant effect sizes are valuable for power analyses and meta-analyses.
+
+### Mechanically Applying Cohen's Benchmarks
+
+Labeling every *d* = 0.45 as "medium" without considering context is an oversimplification. Compare your effect sizes to prior studies in your field for more meaningful interpretation.
+
+### Getting the Leading Zero Wrong
+
+Values that cannot exceed 1 (*p*, *r*, η², *R²*, *V*) omit the leading zero (e.g., .42). Values that can exceed 1 (Cohen's *d*, *M*, *SD*) include it (e.g., 0.75). Mixing up this rule is a frequent formatting error.
+
+### Omitting Effect Size from Chi-Square Results
+
+Many researchers report χ² and *p* without Cramér's *V*. Effect sizes should accompany all statistical tests, including those with categorical data.
+
+## Using StatMate to Calculate Effect Sizes Automatically
+
+StatMate's statistical calculators automatically compute effect sizes alongside every test result.
+
+- **T-test calculator:** Outputs Cohen's *d* with 95% confidence intervals
+- **ANOVA calculator:** Provides both η² and partial η²
+- **Correlation calculator:** Reports *r* and *R²* together
+- **Chi-square calculator:** Computes Cramér's *V* automatically
+
+All results follow APA 7th edition conventions, so you can paste them directly into your manuscript. This eliminates manual calculation errors and saves significant writing time.
+
+## Wrapping Up
+
+Effect sizes transform statistical results from a simple "significant or not" verdict into a meaningful statement about magnitude. While *p* values indicate whether an effect likely exists, effect sizes tell you whether it matters in practice. Mastering Cohen's *d*, η²/partial η², *r*/*R²*, and Cramér's *V* ensures your research communicates both statistical rigor and real-world relevance.

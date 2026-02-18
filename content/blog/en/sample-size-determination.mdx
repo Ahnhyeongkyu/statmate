@@ -1,0 +1,181 @@
+---
+title: "How to Determine Sample Size — A Practical Guide to Power Analysis"
+description: "How many participants do you actually need? This guide explains statistical power analysis and walks you through sample size calculation for t-tests, ANOVA, correlation, and chi-square tests."
+date: "2026-02-18"
+category: "Research Design"
+tags: ["sample size calculation", "statistical power analysis", "how many participants", "sample size determination", "G*Power"]
+---
+
+## Why Sample Size Matters More Than You Think
+
+One of the most common questions researchers face is deceptively simple: how many participants do I need? The answer has real consequences. Recruit too few participants and your study lacks the statistical power to detect a meaningful effect. Recruit too many and you waste time, funding, and participant goodwill, while also risking that trivially small effects reach statistical significance and distort your conclusions.
+
+**Power analysis** is the systematic method for determining the right sample size before data collection begins. Most institutional review boards and thesis committees now require a formal power analysis as part of the research proposal, making this an essential skill for any researcher.
+
+## Understanding Type I and Type II Errors
+
+Sample size planning revolves around controlling two types of statistical errors.
+
+| Error Type | What Happens | Consequence |
+|------------|-------------|-------------|
+| **Type I (α)** | You conclude an effect exists when it does not | False alarm |
+| **Type II (β)** | You miss a real effect and conclude nothing is there | Missed discovery |
+
+The **significance level (α)** is the maximum probability of a Type I error you are willing to accept, conventionally set at 0.05. **Statistical power (1 - β)** is the probability of correctly detecting a real effect when one exists, with 0.80 being the widely accepted minimum threshold.
+
+When sample size is too small, power drops and Type II errors become likely. You invest time and resources into a study that ultimately cannot answer its own research question.
+
+## The Four Components of Power Analysis
+
+Sample size is a function of four interconnected elements. Fix any three and the fourth is determined.
+
+### 1. Significance Level (α)
+
+The threshold for rejecting the null hypothesis. Most studies use α = 0.05. Exploratory research sometimes uses 0.10, while confirmatory studies may require 0.01.
+
+### 2. Statistical Power (1 - β)
+
+The probability of detecting a true effect. The conventional minimum is 0.80, meaning you accept a 20 percent chance of missing a real effect. For high-stakes clinical research, 0.90 or higher is common.
+
+### 3. Effect Size
+
+The minimum magnitude of the effect you want to detect. Smaller effects require larger samples. Each statistical test uses a different effect size metric.
+
+| Test | Effect Size Metric | Small | Medium | Large |
+|------|-------------------|-------|--------|-------|
+| t-test | Cohen's *d* | 0.20 | 0.50 | 0.80 |
+| ANOVA | Cohen's *f* | 0.10 | 0.25 | 0.40 |
+| Correlation | *r* | 0.10 | 0.30 | 0.50 |
+| Chi-square | Cohen's *w* | 0.10 | 0.30 | 0.50 |
+
+These benchmarks, proposed by Cohen (1988), serve as rough guidelines when prior research is unavailable. Whenever possible, base your effect size on previous studies or pilot data.
+
+### 4. Sample Size (N)
+
+Once the other three components are specified, the required sample size follows directly.
+
+**The key relationships:**
+
+- Smaller α → larger sample needed
+- Higher power → larger sample needed
+- Smaller expected effect → larger sample needed
+
+## Sample Size Tables by Analysis Type
+
+### Independent Samples t-Test
+
+The approximate per-group sample size can be calculated using the formula:
+
+> n ≈ 2 x ((z_α/2 + z_β) / d)²
+
+**Required sample size per group (α = .05, power = .80):**
+
+| Effect Size (Cohen's *d*) | Per Group | Total |
+|---------------------------|-----------|-------|
+| 0.20 (small) | 394 | 788 |
+| 0.50 (medium) | 64 | 128 |
+| 0.80 (large) | 26 | 52 |
+
+Detecting a medium effect between two groups requires roughly 64 participants per group.
+
+### One-Way ANOVA
+
+ANOVA uses Cohen's *f* as the effect size measure.
+
+**Required sample size per group (α = .05, power = .80, 3 groups):**
+
+| Effect Size (Cohen's *f*) | Per Group | Total |
+|---------------------------|-----------|-------|
+| 0.10 (small) | 322 | 966 |
+| 0.25 (medium) | 52 | 156 |
+| 0.40 (large) | 21 | 63 |
+
+Adding more groups increases the total sample requirement. For four groups with a medium effect, you need approximately 45 per group (180 total).
+
+### Correlation
+
+Sample sizes for testing the significance of a Pearson correlation coefficient.
+
+**Required total sample (α = .05, two-tailed, power = .80):**
+
+| Effect Size (*r*) | Total N |
+|-------------------|---------|
+| 0.10 (small) | 783 |
+| 0.30 (medium) | 85 |
+| 0.50 (large) | 29 |
+
+### Chi-Square Test of Independence
+
+Chi-square tests use Cohen's *w* and also depend on degrees of freedom.
+
+**Required total sample (α = .05, power = .80, 2x2 table, df = 1):**
+
+| Effect Size (Cohen's *w*) | Total N |
+|---------------------------|---------|
+| 0.10 (small) | 785 |
+| 0.30 (medium) | 88 |
+| 0.50 (large) | 32 |
+
+Larger contingency tables (more degrees of freedom) require proportionally larger samples.
+
+## G*Power vs Online Calculators
+
+**G*Power** is the most widely cited free software for power analysis. It supports virtually every common statistical test and offers a priori, post-hoc, and sensitivity analyses. However, it requires installation, has a steep learning curve for beginners, and can be unstable on some operating systems.
+
+**Online calculators** are accessible from any browser without installation. They offer simpler interfaces and faster results but may support fewer test types and lack transparency about the underlying algorithms.
+
+**Practical recommendation:** Use an online calculator for quick exploratory estimates during the planning phase. Use G*Power (or an equivalent tool) for the formal power analysis you report in your manuscript or proposal.
+
+## Common Mistakes to Avoid
+
+### Skipping power analysis entirely
+
+Choosing a sample size based on convenience ("30 should be enough" or "we can afford 50 participants") is the most frequent mistake. The central limit theorem ensures approximate normality with 30 observations, but normality and adequate power are entirely different things.
+
+### Always defaulting to a medium effect size
+
+When no prior research exists, researchers often default to Cohen's medium benchmark. This can be dangerously optimistic. If the true effect is small, your study will be severely underpowered. Consider pilot studies or meta-analyses in related fields to inform your estimate.
+
+### Ignoring attrition
+
+The calculated sample size represents the minimum number needed for analysis. In longitudinal studies or survey research, participants drop out. Inflate your recruitment target by 10 to 20 percent to account for expected attrition.
+
+> Adjusted N = Required N / (1 - expected attrition rate)
+
+### Relying on post-hoc power analysis
+
+Computing power after the study is complete using the observed effect size is logically circular. Post-hoc power is a direct mathematical transformation of the p-value and provides no additional information. Power analysis must be conducted a priori.
+
+### Forgetting subgroup analyses
+
+If you plan to compare results across subgroups (by gender, age bracket, or condition), each subgroup needs adequate power on its own. A study powered for the overall sample may be underpowered for subgroup comparisons.
+
+## How to Report Sample Size Determination
+
+A proper power analysis report in your manuscript should include:
+
+1. The planned statistical test
+2. The significance level and whether the test is one-tailed or two-tailed
+3. The target power level
+4. The assumed effect size and its justification
+5. The resulting sample size
+6. The software used for computation
+
+**Example:**
+
+> Sample size was determined using an a priori power analysis conducted in G*Power 3.1. For an independent samples t-test (two-tailed) with α = .05, power = .80, and an anticipated effect size of d = 0.50 based on prior findings (Kim, 2024), the minimum required sample was 64 per group (128 total). To account for an estimated 15% attrition rate, we set a recruitment target of 76 per group (152 total).
+
+## Calculate Your Sample Size with StatMate
+
+If formulas and software feel overwhelming, StatMate offers a sample size calculator that simplifies the entire process.
+
+1. **Select your test**: Choose from t-tests, ANOVA, correlation, or chi-square.
+2. **Enter parameters**: Specify your significance level, target power, and effect size. Guidelines are provided if you are unsure about effect size values.
+3. **Get instant results**: The required sample size is calculated immediately, along with a power curve visualization.
+4. **Export for your paper**: Copy the results in a format ready for inclusion in your manuscript or proposal.
+
+No installation, no complex formulas. Just the sample size you need to design a well-powered study.
+
+## Wrapping Up
+
+Determining the right sample size is not a formality. It is one of the most consequential decisions in your research design. By understanding how significance level, power, and effect size interact, and by running a proper a priori power analysis, you ensure that your study has a genuine chance of answering the question it sets out to investigate. Replace guesswork with calculation, and your research will be stronger for it.
