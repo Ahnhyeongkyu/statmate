@@ -223,6 +223,7 @@ export function twoWayAnova(
 
 export function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
+  if (p >= 1) return "= 1.000";
   return `= .${p.toFixed(3).slice(2)}`;
 }
 

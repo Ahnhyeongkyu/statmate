@@ -90,13 +90,31 @@ export function kruskalWallis(
     }
   }
 
+  // Compute tie correction factor
+  // C = 1 - sum(t_j^3 - t_j) / (N^3 - N)  where t_j = # tied obs in group j
+  let tieSum = 0;
+  {
+    const sorted = [...combined].sort((a, b) => a.value - b.value);
+    let ti = 0;
+    while (ti < sorted.length) {
+      let tj = ti;
+      while (tj < sorted.length && sorted[tj].value === sorted[ti].value) tj++;
+      const t = tj - ti;
+      if (t > 1) tieSum += t * t * t - t;
+      ti = tj;
+    }
+  }
+  const tieCorrection = 1 - tieSum / (N * N * N - N);
+
   // H statistic: H = (12 / (N*(N+1))) * Sum(Ri^2/ni) - 3*(N+1)
   let sumTerm = 0;
   for (let i = 0; i < k; i++) {
     const ni = groups[i].length;
     sumTerm += (rankSums[i] * rankSums[i]) / ni;
   }
-  const hStatistic = (12 / (N * (N + 1))) * sumTerm - 3 * (N + 1);
+  const hRaw = (12 / (N * (N + 1))) * sumTerm - 3 * (N + 1);
+  // Apply tie correction (if no ties, tieCorrection = 1)
+  const hStatistic = tieCorrection > 0 ? hRaw / tieCorrection : hRaw;
 
   const df = k - 1;
   const pValue = 1 - jStat.chisquare.cdf(hStatistic, df);
@@ -130,7 +148,8 @@ export function kruskalWallis(
       const ni = groups[i].length;
       const nj = groups[j].length;
 
-      const se = Math.sqrt((N * (N + 1) / 12) * (1 / ni + 1 / nj));
+      // Dunn's SE with tie correction
+      const se = Math.sqrt(((N * (N + 1) / 12 - tieSum / (12 * (N - 1))) * (1 / ni + 1 / nj)));
       const z = se === 0 ? 0 : (meanRankI - meanRankJ) / se;
       let pPair = 2 * (1 - jStat.normal.cdf(Math.abs(z), 0, 1));
       // Bonferroni correction
@@ -160,6 +179,7 @@ export function kruskalWallis(
 
 export function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
+  if (p >= 1) return "= 1.000";
   return `= .${p.toFixed(3).slice(2)}`;
 }
 

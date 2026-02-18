@@ -419,7 +419,7 @@
         "description": "Everything you need for basic analysis",
         "cta": "Get Started",
         "features": [
-          "All 10 statistical calculators",
+          "All 20 statistical calculators",
           "APA-formatted results display",
           "Copy results to clipboard",
           "Significance & effect size badges",
@@ -462,7 +462,7 @@
     "freeLabel": "Free",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "All 10 statistical calculators" },
+      { "feature": "All 20 statistical calculators" },
       { "feature": "APA-formatted results display" },
       { "feature": "Copy results to clipboard" },
       { "feature": "Significance & effect size badges" },

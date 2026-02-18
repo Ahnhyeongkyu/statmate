@@ -90,7 +90,6 @@ export function fisherExactTest(table: number[][]): FisherExactResult {
 
   // Two-tailed p-value: sum probabilities of all tables with P <= P_observed
   // Fix marginals, vary a from 0 to min(a+b, a+c)
-  const minA = Math.max(0, (a + b) - (c + d + b)); // = max(0, a+b - b-d) but simplified
   const aMin = Math.max(0, colTotals[0] - rowTotals[1]); // a >= (a+c) - (c+d) = a - d, but must be >= 0
   const aMax = Math.min(rowTotals[0], colTotals[0]); // a <= min(a+b, a+c)
 
@@ -115,8 +114,11 @@ export function fisherExactTest(table: number[][]): FisherExactResult {
   pValue = Math.min(1, Math.max(0, pValue));
 
   // Odds ratio: (a*d) / (b*c)
+  // Undefined when any marginal total is zero (entire row/column is 0)
   let oddsRatio: number;
-  if (b === 0 || c === 0) {
+  if (rowTotals[0] === 0 || rowTotals[1] === 0 || colTotals[0] === 0 || colTotals[1] === 0) {
+    oddsRatio = NaN;
+  } else if (b === 0 || c === 0) {
     oddsRatio = Infinity;
   } else if (a === 0 || d === 0) {
     oddsRatio = 0;
@@ -166,12 +168,13 @@ export function fisherExactTest(table: number[][]): FisherExactResult {
 
 export function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
+  if (p >= 1) return "= 1.000";
   return `= .${p.toFixed(3).slice(2)}`;
 }
 
 export function formatFisherExactAPA(result: FisherExactResult): string {
   const pStr = formatPValue(result.pValue);
-  const or = isFinite(result.oddsRatio) ? result.oddsRatio.toFixed(2) : "\u221E";
+  const or = isNaN(result.oddsRatio) ? "undefined" : isFinite(result.oddsRatio) ? result.oddsRatio.toFixed(2) : "\u221E";
   const ciLow = isFinite(result.oddsRatioCI[0]) ? result.oddsRatioCI[0].toFixed(2) : "0.00";
   const ciHigh = isFinite(result.oddsRatioCI[1]) ? result.oddsRatioCI[1].toFixed(2) : "\u221E";
   return `Fisher's exact test, p ${pStr}, OR = ${or}, 95% CI [${ciLow}, ${ciHigh}]`;

@@ -1,15 +1,19 @@
+const MAX_VALUES = 10_000;
+
 /**
  * Parse a text input into an array of numbers.
  * Supports comma, semicolon, space, tab, and newline separators.
  * Works with Excel/Google Sheets paste (tab-separated values).
+ * Capped at MAX_VALUES (10,000) to prevent browser hang.
  */
 export function parseNumbers(text: string): number[] {
-  return text
+  const result = text
     .split(/[\s,;\n]+/)
     .map((s) => s.trim())
     .filter((s) => s !== "")
     .map(Number)
     .filter((n) => !isNaN(n));
+  return result.length > MAX_VALUES ? result.slice(0, MAX_VALUES) : result;
 }
 
 /**
