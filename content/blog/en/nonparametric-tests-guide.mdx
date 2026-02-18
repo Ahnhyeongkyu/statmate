@@ -1,0 +1,71 @@
+---
+title: "When to Use Nonparametric Tests: A Practical Guide"
+description: "Learn when to choose nonparametric tests over parametric alternatives. Covers Mann-Whitney U, Wilcoxon, Kruskal-Wallis, and Friedman tests with real examples."
+date: "2026-02-19"
+category: "Analysis Methods"
+tags: ["nonparametric", "Mann-Whitney", "Wilcoxon", "Kruskal-Wallis", "Friedman", "assumptions"]
+---
+
+## When Parametric Tests Fall Short
+
+Parametric tests like the t-test and ANOVA are powerful tools, but they come with assumptions: normally distributed data, interval or ratio measurement scales, and homogeneity of variances. When your data violate these assumptions, nonparametric tests provide robust alternatives that make fewer distributional assumptions.
+
+This guide helps you decide which nonparametric test to use and when it is the right choice over its parametric counterpart.
+
+## The Parametric vs. Nonparametric Decision
+
+The key question is not whether your data are perfectly normal, but whether assumption violations are severe enough to invalidate parametric results. Consider nonparametric tests when:
+
+- **Small sample sizes** (n less than 30 per group) make normality hard to assess
+- **Ordinal data** such as Likert scales or rankings
+- **Severe skewness** or heavy outliers that resist transformation
+- **Non-normal distributions** confirmed by Shapiro-Wilk test (p less than .05)
+
+## Choosing the Right Nonparametric Test
+
+| Research Question | Parametric | Nonparametric |
+|---|---|---|
+| Compare 2 independent groups | Independent t-test | Mann-Whitney U |
+| Compare 2 paired/matched groups | Paired t-test | Wilcoxon signed-rank |
+| Compare 3+ independent groups | One-way ANOVA | Kruskal-Wallis H |
+| Compare 3+ related conditions | Repeated measures ANOVA | Friedman test |
+
+## Mann-Whitney U Test
+
+Use this when comparing two independent groups on an ordinal or non-normal continuous variable. The test compares the rank distributions of the two groups.
+
+**APA format example:**
+A Mann-Whitney U test indicated that satisfaction scores were significantly higher for Group A (Mdn = 4.50) than Group B (Mdn = 3.00), U = 45.00, p = .012, r = .38.
+
+## Wilcoxon Signed-Rank Test
+
+The paired equivalent of Mann-Whitney. Use this for before-after comparisons or matched pairs when the difference scores are non-normal.
+
+**APA format example:**
+A Wilcoxon signed-rank test showed a significant increase in scores from pre-test (Mdn = 65) to post-test (Mdn = 78), T = 12.00, p = .003, r = .52.
+
+## Kruskal-Wallis H Test
+
+The nonparametric alternative to one-way ANOVA. Use this when comparing three or more independent groups.
+
+**APA format example:**
+A Kruskal-Wallis H test showed a significant difference in performance across teaching methods, H(2) = 12.45, p = .002, eta-squared = .15.
+
+Follow up with Dunn's post-hoc test with Bonferroni correction to identify which groups differ.
+
+## Friedman Test
+
+Use this for repeated measures designs with three or more conditions when the normality assumption is violated.
+
+**APA format example:**
+A Friedman test indicated a significant difference across the four time points, chi-square(3) = 18.60, p less than .001, W = .62.
+
+## Common Mistakes to Avoid
+
+1. **Do not default to nonparametric tests out of caution.** When assumptions are met, parametric tests have more statistical power.
+2. **Check effect sizes.** Nonparametric tests have their own effect size measures (r for Mann-Whitney and Wilcoxon, eta-squared for Kruskal-Wallis, Kendall's W for Friedman).
+3. **Report medians, not means.** When using nonparametric tests, report medians and interquartile ranges rather than means and standard deviations.
+
+## Try It Yourself
+
+StatMate offers free calculators for all four nonparametric tests with APA-formatted results, effect sizes, and post-hoc comparisons. Try the Mann-Whitney U, Wilcoxon, Kruskal-Wallis, or Friedman calculator to analyze your data instantly.

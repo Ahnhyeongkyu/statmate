@@ -72,6 +72,19 @@ export default async function AboutPage() {
         </ul>
 
         <h2 className="text-xl font-semibold text-gray-900">
+          {t("teamTitle")}
+        </h2>
+        <p>{t("teamDescription")}</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {(["stat", "apa", "tech"] as const).map((key) => (
+            <div key={key} className="rounded-lg border bg-gray-50 p-4">
+              <h3 className="mb-2 font-semibold text-gray-900">{t(`team.${key}.title`)}</h3>
+              <p className="text-sm text-gray-600">{t(`team.${key}.description`)}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-xl font-semibold text-gray-900">
           {t("contactTitle")}
         </h2>
         <p>{t("contactText")}</p>

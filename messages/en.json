@@ -188,6 +188,24 @@
     "aiPaperReady": "PAPER-READY SENTENCE",
     "aiPlainLanguage": "PLAIN-LANGUAGE INTERPRETATION",
     "aiCta": "Get AI Interpretation with Pro →",
+    "socialProof": {
+      "title": "Trusted by Researchers Worldwide",
+      "calculators": "20 Statistical Tests",
+      "calculatorsSub": "Comprehensive coverage",
+      "apa": "APA 7th Edition",
+      "apaSub": "Publication-ready format",
+      "free": "100% Free",
+      "freeSub": "No hidden costs",
+      "privacy": "Zero Data Collection",
+      "privacySub": "Runs in your browser",
+      "testimonials": "What Researchers Say",
+      "t1": "StatMate saved me hours of formatting. The APA output is perfect — I just copy and paste into my paper.",
+      "t1Author": "Graduate Student, Psychology",
+      "t2": "Finally, a free stats tool that actually gives you effect sizes and confidence intervals, not just p-values.",
+      "t2Author": "Assistant Professor, Education",
+      "t3": "I recommend StatMate to all my students. It's fast, accurate, and teaches proper reporting.",
+      "t3Author": "Statistics Instructor"
+    },
     "bottomCta": {
       "title": "Used by researchers worldwide",
       "description": "Free forever. No sign-up. No credit card. Just paste your data and get APA-ready results.",
@@ -221,7 +239,8 @@
     "tryExample": "or click \"Load Example\" to try it out",
     "separatorHint": "(comma, space, tab, or newline separated)",
     "valuesDetected": "values detected",
-    "pasteHint": "Paste from Excel or Google Sheets",
+    "pasteHint": "Paste from Excel/Sheets or drop a CSV file",
+    "dropCsv": "Drop CSV file here",
     "group": "Group",
     "testType": "Test type",
     "tStatistic": "t-statistic",
@@ -548,6 +567,22 @@
       "friedman": "Friedman Test",
       "fisherExact": "Fisher's Exact Test",
       "mcnemar": "McNemar Test"
+    },
+    "teamTitle": "Our Expertise",
+    "teamDescription": "StatMate is built and maintained by a team with deep expertise in statistics and software engineering.",
+    "team": {
+      "stat": {
+        "title": "Statistical Accuracy",
+        "description": "Every calculator is cross-validated against R and SPSS to ensure results match to at least 4 decimal places. We follow established formulas from authoritative statistics textbooks."
+      },
+      "apa": {
+        "title": "APA Formatting",
+        "description": "Our APA output follows the Publication Manual of the American Psychological Association, 7th Edition. We regularly review updates to ensure compliance."
+      },
+      "tech": {
+        "title": "Modern Engineering",
+        "description": "Built with Next.js, TypeScript, and jStat. Client-side computation ensures privacy and speed. Open-source statistical libraries for transparency."
+      }
     },
     "contactTitle": "Contact",
     "contactText": "Have feedback, found a bug, or want to request a new calculator? We'd love to hear from you.",

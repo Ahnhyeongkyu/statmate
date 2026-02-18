@@ -112,6 +112,18 @@ export default async function Home({
         </Link>
       </section>
 
+      {/* Social Proof - Stats Banner */}
+      <section className="w-full pb-12">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {(["calculators", "apa", "free", "privacy"] as const).map((key) => (
+            <div key={key} className="rounded-lg border bg-white p-4 text-center">
+              <p className="text-lg font-bold text-gray-900">{t(`socialProof.${key}`)}</p>
+              <p className="text-xs text-gray-500">{t(`socialProof.${key}Sub`)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Calculators Grid */}
       <section id="calculators" className="w-full pb-16">
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
@@ -298,6 +310,25 @@ export default async function Home({
               {t("aiCta")}
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="w-full pb-12 md:pb-16">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+          {t("socialProof.testimonials")}
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {(["t1", "t2", "t3"] as const).map((key) => (
+            <div key={key} className="rounded-lg border bg-white p-6">
+              <p className="text-sm italic text-gray-600">
+                &ldquo;{t(`socialProof.${key}`)}&rdquo;
+              </p>
+              <p className="mt-3 text-xs font-medium text-gray-400">
+                &mdash; {t(`socialProof.${key}Author`)}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

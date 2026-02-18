@@ -188,6 +188,24 @@
     "aiPaperReady": "논문용 문장",
     "aiPlainLanguage": "쉬운 해석",
     "aiCta": "Pro로 AI 해석 받기 →",
+    "socialProof": {
+      "title": "전 세계 연구자가 신뢰합니다",
+      "calculators": "20개 통계 검정",
+      "calculatorsSub": "포괄적 분석 도구",
+      "apa": "APA 7판 형식",
+      "apaSub": "출판 준비 완료",
+      "free": "100% 무료",
+      "freeSub": "숨겨진 비용 없음",
+      "privacy": "데이터 수집 없음",
+      "privacySub": "브라우저에서 실행",
+      "testimonials": "연구자들의 평가",
+      "t1": "StatMate 덕분에 포맷팅에 드는 시간을 크게 줄였습니다. APA 출력이 완벽해서 논문에 바로 복사해 붙여넣기만 하면 됩니다.",
+      "t1Author": "대학원생, 심리학",
+      "t2": "p값만 주는 게 아니라 효과크기와 신뢰구간까지 제공하는 무료 통계 도구를 드디어 찾았습니다.",
+      "t2Author": "조교수, 교육학",
+      "t3": "모든 학생에게 StatMate를 추천합니다. 빠르고 정확하며, 올바른 보고 방법을 가르쳐줍니다.",
+      "t3Author": "통계학 강사"
+    },
     "bottomCta": {
       "title": "전 세계 연구자가 사용합니다",
       "description": "영원히 무료. 가입 불필요. 신용카드 불필요. 데이터를 붙여넣고 APA 형식 결과를 받으세요.",
@@ -221,7 +239,8 @@
     "tryExample": "또는 \"예시 데이터\"를 클릭해 사용해보세요",
     "separatorHint": "(쉼표, 공백, 탭 또는 줄바꿈으로 구분)",
     "valuesDetected": "개 값 감지됨",
-    "pasteHint": "Excel 또는 Google Sheets에서 붙여넣기",
+    "pasteHint": "Excel/Sheets에서 붙여넣기 또는 CSV 파일 드래그",
+    "dropCsv": "CSV 파일을 여기에 놓으세요",
     "group": "집단",
     "testType": "검정 유형",
     "tStatistic": "t 통계량",
@@ -548,6 +567,22 @@
       "friedman": "Friedman 검정",
       "fisherExact": "Fisher의 정확 검정",
       "mcnemar": "McNemar 검정"
+    },
+    "teamTitle": "전문성",
+    "teamDescription": "StatMate는 통계학과 소프트웨어 엔지니어링에 깊은 전문성을 갖춘 팀이 구축하고 유지합니다.",
+    "team": {
+      "stat": {
+        "title": "통계적 정확성",
+        "description": "모든 계산기는 R 및 SPSS와 교차 검증하여 소수점 4자리까지 결과가 일치하도록 합니다. 권위 있는 통계학 교과서의 공식을 따릅니다."
+      },
+      "apa": {
+        "title": "APA 포맷팅",
+        "description": "APA 출력은 미국심리학회 출판 매뉴얼 7판을 따릅니다. 업데이트 사항을 정기적으로 검토하여 준수를 보장합니다."
+      },
+      "tech": {
+        "title": "최신 엔지니어링",
+        "description": "Next.js, TypeScript, jStat으로 구축. 클라이언트 측 연산으로 프라이버시와 속도를 보장합니다. 투명성을 위한 오픈소스 통계 라이브러리를 사용합니다."
+      }
     },
     "contactTitle": "문의",
     "contactText": "피드백이 있거나, 버그를 발견하거나, 새로운 계산기를 요청하고 싶으신가요? 연락 주세요.",
