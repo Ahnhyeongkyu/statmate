@@ -131,6 +131,12 @@ const allCalculatorKeys = [
   { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" },
   { key: "logisticRegression" as const, href: "/calculators/logistic-regression" },
   { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" },
+  { key: "kruskalWallis" as const, href: "/calculators/kruskal-wallis" },
+  { key: "repeatedMeasures" as const, href: "/calculators/repeated-measures" },
+  { key: "twoWayAnova" as const, href: "/calculators/two-way-anova" },
+  { key: "friedman" as const, href: "/calculators/friedman" },
+  { key: "fisherExact" as const, href: "/calculators/fisher-exact" },
+  { key: "mcnemar" as const, href: "/calculators/mcnemar" },
 ];
 
 export default async function LocaleLayout({

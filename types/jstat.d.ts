@@ -18,6 +18,10 @@ declare module "jstat" {
       cdf(x: number, mean: number, sd: number): number;
       inv(p: number, mean: number, sd: number): number;
     };
+    binomial: {
+      cdf(k: number, n: number, p: number): number;
+      pdf(k: number, n: number, p: number): number;
+    };
     corrcoeff(arr1: number[], arr2: number[]): number;
     spearmancoeff(arr1: number[], arr2: number[]): number;
   };

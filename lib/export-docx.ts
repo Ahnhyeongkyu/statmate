@@ -282,7 +282,12 @@ interface ChiSquareExportData {
   cramersV?: number;
   observed: number[][] | number[];
   expected: number[][] | number[];
+  rowTotals?: number[];
+  colTotals?: number[];
   grandTotal?: number;
+  rows?: number;
+  cols?: number;
+  significant?: boolean;
 }
 
 export function exportChiSquare(data: ChiSquareExportData): Promise<Blob> {
@@ -513,6 +518,180 @@ export function exportDescriptive(data: DescriptiveExportData): Promise<Blob> {
           new Table({
             width: { size: 100, type: WidthType.PERCENTAGE },
             rows: [headerRow, ...rows],
+          }),
+        ],
+      },
+    ],
+  });
+
+  return Packer.toBlob(doc);
+}
+
+// --- Kruskal-Wallis Export ---
+
+interface KruskalWallisExportData {
+  hStatistic: number;
+  df: number;
+  pValue: number;
+  etaSquaredH: number;
+  effectSizeLabel: string;
+  groupStats: { name: string; n: number; median: number; meanRank: number }[];
+  postHoc: { group1: string; group2: string; z: number; pValue: number; significant: boolean }[];
+}
+
+export function exportKruskalWallis(data: KruskalWallisExportData): Promise<Blob> {
+  const headerRow = new TableRow({
+    children: [
+      apaCell([{ text: "Statistic" }], "header"),
+      apaCell([{ text: "Value" }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const rows = [
+    ["H", data.hStatistic.toFixed(4)],
+    ["df", String(data.df)],
+    ["p", formatP(data.pValue)],
+    ["\u03B7\u00B2H", data.etaSquaredH.toFixed(4)],
+  ].map((r, i, arr) =>
+    new TableRow({
+      children: [
+        apaCell([{ text: r[0] }], i === arr.length - 1 ? "last" : "body"),
+        apaCell([{ text: r[1] }], i === arr.length - 1 ? "last" : "body", AlignmentType.CENTER),
+      ],
+    })
+  );
+
+  const descHeaderRow = new TableRow({
+    children: [
+      apaCell([{ text: "Group" }], "header"),
+      apaCell([{ text: "N", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "Mdn", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "Mean Rank" }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const groupRows = data.groupStats.map((g, i) => {
+    const isLast = i === data.groupStats.length - 1;
+    return new TableRow({
+      children: [
+        apaCell([{ text: g.name }], isLast ? "last" : "body"),
+        apaCell([{ text: String(g.n) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: g.median.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: g.meanRank.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+      ],
+    });
+  });
+
+  const doc = new Document({
+    sections: [
+      {
+        children: [
+          new Paragraph({ children: [apaText("Table 1", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Kruskal-Wallis H Test Results", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [headerRow, ...rows],
+          }),
+          new Paragraph({ spacing: { before: 400 }, children: [] }),
+          new Paragraph({ children: [apaText("Table 2", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Group Statistics", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [descHeaderRow, ...groupRows],
+          }),
+        ],
+      },
+    ],
+  });
+
+  return Packer.toBlob(doc);
+}
+
+// --- Friedman Export ---
+
+interface FriedmanExportData {
+  chiSquare: number;
+  df: number;
+  pValue: number;
+  kendallW: number;
+  effectSizeLabel: string;
+  n: number;
+  k: number;
+  conditionStats: { name: string; n: number; median: number; meanRank: number }[];
+  postHoc: { condition1: string; condition2: string; z: number; pValue: number; significant: boolean }[];
+}
+
+export function exportFriedman(data: FriedmanExportData): Promise<Blob> {
+  const headerRow = new TableRow({
+    children: [
+      apaCell([{ text: "Statistic" }], "header"),
+      apaCell([{ text: "Value" }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const rows = [
+    ["\u03C7\u00B2", data.chiSquare.toFixed(4)],
+    ["df", String(data.df)],
+    ["p", formatP(data.pValue)],
+    ["Kendall's W", data.kendallW.toFixed(4)],
+  ].map((r, i, arr) =>
+    new TableRow({
+      children: [
+        apaCell([{ text: r[0] }], i === arr.length - 1 ? "last" : "body"),
+        apaCell([{ text: r[1] }], i === arr.length - 1 ? "last" : "body", AlignmentType.CENTER),
+      ],
+    })
+  );
+
+  const descHeaderRow = new TableRow({
+    children: [
+      apaCell([{ text: "Condition" }], "header"),
+      apaCell([{ text: "N", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "Mdn", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "Mean Rank" }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const condRows = data.conditionStats.map((c, i) => {
+    const isLast = i === data.conditionStats.length - 1;
+    return new TableRow({
+      children: [
+        apaCell([{ text: c.name }], isLast ? "last" : "body"),
+        apaCell([{ text: String(c.n) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: c.median.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: c.meanRank.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+      ],
+    });
+  });
+
+  const doc = new Document({
+    sections: [
+      {
+        children: [
+          new Paragraph({ children: [apaText("Table 1", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Friedman Test Results", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [headerRow, ...rows],
+          }),
+          new Paragraph({ spacing: { before: 400 }, children: [] }),
+          new Paragraph({ children: [apaText("Table 2", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Condition Statistics", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [descHeaderRow, ...condRows],
           }),
         ],
       },

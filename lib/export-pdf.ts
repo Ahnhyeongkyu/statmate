@@ -174,6 +174,8 @@ export function exportAnovaPdf(data: {
 export function exportChiSquarePdf(data: {
   type: string; chiSquare: number; df: number; pValue: number;
   cramersV?: number; observed: number[][] | number[]; expected: number[][] | number[];
+  rowTotals?: number[]; colTotals?: number[]; grandTotal?: number;
+  rows?: number; cols?: number; significant?: boolean;
 }, apa: string): Blob {
   const doc = new jsPDF();
   let y = addHeader(doc, data.type === "independence" ? "Chi-Square Test of Independence" : "Chi-Square Goodness-of-Fit");
@@ -621,6 +623,98 @@ export function exportSampleSizePdf(data: {
       ["Achieved power", `${(data.achievedPower * 100).toFixed(1)}%`],
     ]
   );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Kruskal-Wallis PDF ---
+export function exportKruskalWallisPdf(data: {
+  hStatistic: number; df: number; pValue: number; etaSquaredH: number;
+  effectSizeLabel: string;
+  groupStats: { name: string; n: number; median: number; meanRank: number }[];
+  postHoc: { group1: string; group2: string; z: number; pValue: number; significant: boolean }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Kruskal-Wallis H Test");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["H", data.hStatistic.toFixed(4)],
+      ["df", String(data.df)],
+      ["p (two-tailed)", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
+      ["Effect size (\u03B7\u00B2H)", data.etaSquaredH.toFixed(4)],
+      ["Effect size label", data.effectSizeLabel],
+    ]
+  );
+
+  y = addSection(doc, y, "Group Statistics:", "");
+  y = addTable(doc, y,
+    ["Group", "N", "Median", "Mean Rank"],
+    data.groupStats.map(g => [g.name, String(g.n), g.median.toFixed(2), g.meanRank.toFixed(2)])
+  );
+
+  if (data.postHoc.length > 0) {
+    y = addSection(doc, y, "Dunn's Post-Hoc Comparisons (Bonferroni):", "");
+    y = addTable(doc, y,
+      ["Comparison", "z", "p", "Sig."],
+      data.postHoc.map(ph => [
+        `${ph.group1} vs ${ph.group2}`,
+        ph.z.toFixed(2),
+        ph.pValue < 0.001 ? "< .001" : ph.pValue.toFixed(3),
+        ph.significant ? "*" : "ns",
+      ])
+    );
+  }
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Friedman PDF ---
+export function exportFriedmanPdf(data: {
+  chiSquare: number; df: number; pValue: number; kendallW: number;
+  effectSizeLabel: string; n: number; k: number;
+  conditionStats: { name: string; n: number; median: number; meanRank: number }[];
+  postHoc: { condition1: string; condition2: string; z: number; pValue: number; significant: boolean }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Friedman Test");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["\u03C7\u00B2", data.chiSquare.toFixed(4)],
+      ["df", String(data.df)],
+      ["p (two-tailed)", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
+      ["Kendall's W", data.kendallW.toFixed(4)],
+      ["Effect size label", data.effectSizeLabel],
+      ["N (subjects)", String(data.n)],
+      ["k (conditions)", String(data.k)],
+    ]
+  );
+
+  y = addSection(doc, y, "Condition Statistics:", "");
+  y = addTable(doc, y,
+    ["Condition", "N", "Median", "Mean Rank"],
+    data.conditionStats.map(c => [c.name, String(c.n), c.median.toFixed(2), c.meanRank.toFixed(2)])
+  );
+
+  if (data.postHoc.length > 0) {
+    y = addSection(doc, y, "Post-Hoc Pairwise Comparisons (Bonferroni):", "");
+    y = addTable(doc, y,
+      ["Comparison", "z", "p", "Sig."],
+      data.postHoc.map(ph => [
+        `${ph.condition1} vs ${ph.condition2}`,
+        ph.z.toFixed(2),
+        ph.pValue < 0.001 ? "< .001" : ph.pValue.toFixed(3),
+        ph.significant ? "*" : "ns",
+      ])
+    );
+  }
 
   y = addApa(doc, y, apa);
   addFooter(doc);

@@ -20,6 +20,11 @@ type NodeId =
   | "q_normality_1"
   | "q_dv_type"
   | "q_multi_normality"
+  | "q_multi_paired"
+  | "q_multi_normal_paired"
+  | "q_multi_design"
+  | "q_cat_sample_size"
+  | "q_cat_paired"
   | "q_relationship"
   | "r_independent_t"
   | "r_paired_t"
@@ -32,7 +37,13 @@ type NodeId =
   | "r_correlation"
   | "r_regression"
   | "r_descriptive"
-  | "r_sample_size";
+  | "r_sample_size"
+  | "r_kruskal_wallis"
+  | "r_repeated_measures"
+  | "r_two_way_anova"
+  | "r_friedman"
+  | "r_fisher_exact"
+  | "r_mcnemar";
 
 interface QuestionNode {
   type: "question";
@@ -108,8 +119,24 @@ const tree: Record<NodeId, TreeNode> = {
     type: "question",
     questionKey: "q_dv_continuous_or_categorical",
     options: [
-      { labelKey: "o_continuous", next: "q_multi_normality" },
-      { labelKey: "o_categorical", next: "r_chi_square" },
+      { labelKey: "o_continuous", next: "q_multi_paired" },
+      { labelKey: "o_categorical", next: "q_cat_sample_size" },
+    ],
+  },
+  q_multi_paired: {
+    type: "question",
+    questionKey: "q_paired_or_independent",
+    options: [
+      { labelKey: "o_independent", next: "q_multi_design" },
+      { labelKey: "o_paired", next: "q_multi_normal_paired" },
+    ],
+  },
+  q_multi_design: {
+    type: "question",
+    questionKey: "q_how_many_factors",
+    options: [
+      { labelKey: "o_one_factor", next: "q_multi_normality" },
+      { labelKey: "o_two_factors", next: "r_two_way_anova" },
     ],
   },
   q_multi_normality: {
@@ -117,8 +144,34 @@ const tree: Record<NodeId, TreeNode> = {
     questionKey: "q_data_normal",
     options: [
       { labelKey: "o_yes", next: "r_anova" },
-      { labelKey: "o_no", next: "r_kruskal" },
+      { labelKey: "o_no", next: "r_kruskal_wallis" },
       { labelKey: "o_not_sure", next: "r_anova" },
+    ],
+  },
+  q_multi_normal_paired: {
+    type: "question",
+    questionKey: "q_data_normal",
+    options: [
+      { labelKey: "o_yes", next: "r_repeated_measures" },
+      { labelKey: "o_no", next: "r_friedman" },
+      { labelKey: "o_not_sure", next: "r_repeated_measures" },
+    ],
+  },
+  q_cat_sample_size: {
+    type: "question",
+    questionKey: "q_expected_count_sufficient",
+    options: [
+      { labelKey: "o_yes", next: "q_cat_paired" },
+      { labelKey: "o_no", next: "r_fisher_exact" },
+      { labelKey: "o_not_sure", next: "r_fisher_exact" },
+    ],
+  },
+  q_cat_paired: {
+    type: "question",
+    questionKey: "q_paired_binary",
+    options: [
+      { labelKey: "o_yes", next: "r_mcnemar" },
+      { labelKey: "o_no", next: "r_chi_square" },
     ],
   },
   q_relationship: {
@@ -171,7 +224,7 @@ const tree: Record<NodeId, TreeNode> = {
     type: "result",
     testKey: "r_kruskal",
     descriptionKey: "r_kruskal_desc",
-    href: "/calculators/anova",
+    href: "/calculators/kruskal-wallis",
   },
   r_chi_square: {
     type: "result",
@@ -202,6 +255,42 @@ const tree: Record<NodeId, TreeNode> = {
     testKey: "r_sample_size",
     descriptionKey: "r_sample_size_desc",
     href: "/calculators/sample-size",
+  },
+  r_kruskal_wallis: {
+    type: "result",
+    testKey: "r_kruskal_wallis",
+    descriptionKey: "r_kruskal_wallis_desc",
+    href: "/calculators/kruskal-wallis",
+  },
+  r_repeated_measures: {
+    type: "result",
+    testKey: "r_repeated_measures",
+    descriptionKey: "r_repeated_measures_desc",
+    href: "/calculators/repeated-measures",
+  },
+  r_two_way_anova: {
+    type: "result",
+    testKey: "r_two_way_anova",
+    descriptionKey: "r_two_way_anova_desc",
+    href: "/calculators/two-way-anova",
+  },
+  r_friedman: {
+    type: "result",
+    testKey: "r_friedman",
+    descriptionKey: "r_friedman_desc",
+    href: "/calculators/friedman",
+  },
+  r_fisher_exact: {
+    type: "result",
+    testKey: "r_fisher_exact",
+    descriptionKey: "r_fisher_exact_desc",
+    href: "/calculators/fisher-exact",
+  },
+  r_mcnemar: {
+    type: "result",
+    testKey: "r_mcnemar",
+    descriptionKey: "r_mcnemar_desc",
+    href: "/calculators/mcnemar",
   },
 };
 

@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "cronbach-alpha",
     "logistic-regression",
     "factor-analysis",
+    "kruskal-wallis",
+    "repeated-measures",
+    "two-way-anova",
+    "friedman",
+    "fisher-exact",
+    "mcnemar",
   ];
 
   const pages = [

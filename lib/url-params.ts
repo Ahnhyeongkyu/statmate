@@ -222,6 +222,44 @@ export function useShareUrl(calculatorType: string, params: ParamMap): string {
   }, [pathname, params]);
 }
 
+// Fisher's Exact Test
+export function encodeFisherExact(state: { cells: string[][]; rowLabels: string[]; colLabels: string[] }): ParamMap {
+  const flat = state.cells.flat().join(",");
+  const m: ParamMap = { d: flat };
+  if (state.rowLabels[0] || state.rowLabels[1]) m.rl = state.rowLabels.join("|");
+  if (state.colLabels[0] || state.colLabels[1]) m.cl = state.colLabels.join("|");
+  return m;
+}
+export function decodeFisherExact(p: URLSearchParams) {
+  const d = p.get("d");
+  if (!d) return null;
+  const vals = d.split(",");
+  if (vals.length < 4) return null;
+  const cells: string[][] = [[vals[0], vals[1]], [vals[2], vals[3]]];
+  const rl = p.get("rl")?.split("|") ?? ["", ""];
+  const cl = p.get("cl")?.split("|") ?? ["", ""];
+  return { cells, rowLabels: [rl[0] ?? "", rl[1] ?? ""], colLabels: [cl[0] ?? "", cl[1] ?? ""] };
+}
+
+// McNemar Test
+export function encodeMcNemar(state: { cells: string[][]; rowLabels: string[]; colLabels: string[] }): ParamMap {
+  const flat = state.cells.flat().join(",");
+  const m: ParamMap = { d: flat };
+  if (state.rowLabels[0] || state.rowLabels[1]) m.rl = state.rowLabels.join("|");
+  if (state.colLabels[0] || state.colLabels[1]) m.cl = state.colLabels.join("|");
+  return m;
+}
+export function decodeMcNemar(p: URLSearchParams) {
+  const d = p.get("d");
+  if (!d) return null;
+  const vals = d.split(",");
+  if (vals.length < 4) return null;
+  const cells: string[][] = [[vals[0], vals[1]], [vals[2], vals[3]]];
+  const rl = p.get("rl")?.split("|") ?? ["", ""];
+  const cl = p.get("cl")?.split("|") ?? ["", ""];
+  return { cells, rowLabels: [rl[0] ?? "", rl[1] ?? ""], colLabels: [cl[0] ?? "", cl[1] ?? ""] };
+}
+
 // --- URL param loader hook ---
 export function useUrlParams(): URLSearchParams | null {
   const searchParams = useSearchParams();

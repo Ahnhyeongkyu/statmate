@@ -18,6 +18,12 @@ const calculatorKeys = [
   { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" as const },
   { key: "logisticRegression" as const, href: "/calculators/logistic-regression" as const },
   { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" as const },
+  { key: "kruskalWallis" as const, href: "/calculators/kruskal-wallis" as const },
+  { key: "repeatedMeasures" as const, href: "/calculators/repeated-measures" as const },
+  { key: "twoWayAnova" as const, href: "/calculators/two-way-anova" as const },
+  { key: "friedman" as const, href: "/calculators/friedman" as const },
+  { key: "fisherExact" as const, href: "/calculators/fisher-exact" as const },
+  { key: "mcnemar" as const, href: "/calculators/mcnemar" as const },
 ];
 
 export function RelatedCalculators({ current }: { current: string }) {
