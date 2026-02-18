@@ -132,6 +132,10 @@ function ResultsDisplay({ result }: { result: FisherExactResult }) {
                 {isFinite(result.relativeRisk)
                   ? result.relativeRisk.toFixed(4)
                   : "\u221E"}
+                {" "}
+                <span className="text-xs text-gray-400">
+                  95% CI [{result.relativeRiskCI[0].toFixed(2)}, {isFinite(result.relativeRiskCI[1]) ? result.relativeRiskCI[1].toFixed(2) : "\u221E"}]
+                </span>
               </p>
             </div>
             <div>

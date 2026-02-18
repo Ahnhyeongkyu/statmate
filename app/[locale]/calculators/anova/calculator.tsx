@@ -157,7 +157,7 @@ function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsDat
             <>
               <Separator className="my-4" />
               <h4 className="mb-3 text-sm font-semibold text-gray-900">
-                {ta("postHocTitle")}
+                {ta("postHocTitle")} <span className="text-xs font-normal text-gray-500">(Holm-Bonferroni)</span>
               </h4>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">

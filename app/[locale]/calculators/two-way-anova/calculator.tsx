@@ -369,6 +369,7 @@ function TwoWayAnovaCalculatorInner() {
   const [error, setError] = useState<string | null>(null);
   const [scenario, setScenario] = useState<string | null>(null);
   const [autoCalc, setAutoCalc] = useState(false);
+  const [inputCollapsed, setInputCollapsed] = useState(false);
 
   // URL param loading
   const searchParams = useUrlParams();
@@ -466,6 +467,7 @@ function TwoWayAnovaCalculatorInner() {
     setResult(null);
     setError(null);
     setScenario(null);
+    setInputCollapsed(false);
   }
 
   function handleExample() {
@@ -582,29 +584,49 @@ function TwoWayAnovaCalculatorInner() {
               </div>
             </div>
 
-            {/* Data grid */}
-            <div className="space-y-3">
-              {Array.from({ length: levelsA }, (_, i) => (
-                <div key={i}>
-                  {Array.from({ length: levelsB }, (_, j) => (
-                    <div key={j} className="mb-2">
-                      <DataTextarea
-                        id={`cell-${i}-${j}`}
-                        label={`${levelANames[i] || `A${i + 1}`} \u00D7 ${levelBNames[j] || `B${j + 1}`}`}
-                        placeholder="e.g., 85, 90, 78, 92, 88"
-                        rows={2}
-                        value={cellInputs[i]?.[j] || ""}
-                        onChange={(val) => {
-                          const inputs = cellInputs.map((row) => [...row]);
-                          if (!inputs[i]) inputs[i] = Array(levelsB).fill("");
-                          inputs[i][j] = val;
-                          setCellInputs(inputs);
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
+            {/* Data grid - collapsible on mobile after calculation */}
+            {result && inputCollapsed ? (
+              <button
+                type="button"
+                onClick={() => setInputCollapsed(false)}
+                className="w-full rounded-md border border-dashed border-gray-300 py-2 text-center text-sm text-gray-500 hover:bg-gray-50 sm:hidden"
+              >
+                {tw("showDataGrid")} ({levelsA} &times; {levelsB})
+              </button>
+            ) : null}
+            <div className={result && inputCollapsed ? "hidden sm:block" : ""}>
+              <div className="space-y-3">
+                {Array.from({ length: levelsA }, (_, i) => (
+                  <div key={i}>
+                    {Array.from({ length: levelsB }, (_, j) => (
+                      <div key={j} className="mb-2">
+                        <DataTextarea
+                          id={`cell-${i}-${j}`}
+                          label={`${levelANames[i] || `A${i + 1}`} \u00D7 ${levelBNames[j] || `B${j + 1}`}`}
+                          placeholder="e.g., 85, 90, 78, 92, 88"
+                          rows={2}
+                          value={cellInputs[i]?.[j] || ""}
+                          onChange={(val) => {
+                            const inputs = cellInputs.map((row) => [...row]);
+                            if (!inputs[i]) inputs[i] = Array(levelsB).fill("");
+                            inputs[i][j] = val;
+                            setCellInputs(inputs);
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              {result && (
+                <button
+                  type="button"
+                  onClick={() => setInputCollapsed(true)}
+                  className="mt-2 w-full rounded-md border border-dashed border-gray-300 py-1.5 text-center text-xs text-gray-400 hover:bg-gray-50 sm:hidden"
+                >
+                  {tw("hideDataGrid")}
+                </button>
+              )}
             </div>
           </CardContent>
         </Card>

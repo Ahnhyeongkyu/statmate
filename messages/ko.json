@@ -1026,7 +1026,9 @@
     "exA2": "능동학습",
     "exB1": "소규모",
     "exB2": "대규모",
-    "exampleScenario": "교육 연구자가 교수법(강의식 vs 능동학습)과 학급 크기(소규모 vs 대규모)가 40명 학생의 시험 점수에 미치는 효과를 분석했습니다."
+    "exampleScenario": "교육 연구자가 교수법(강의식 vs 능동학습)과 학급 크기(소규모 vs 대규모)가 40명 학생의 시험 점수에 미치는 효과를 분석했습니다.",
+    "showDataGrid": "데이터 입력 표시",
+    "hideDataGrid": "데이터 입력 숨기기"
   },
   "friedman": {
     "metaTitle": "무료 Friedman 검정 계산기",

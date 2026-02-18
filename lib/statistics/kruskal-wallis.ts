@@ -21,6 +21,7 @@ export interface KruskalWallisResult {
   df: number;
   pValue: number;
   etaSquaredH: number;
+  epsilonSquared: number;
   effectSizeLabel: string;
   groupStats: KruskalWallisGroupStats[];
   postHoc: KruskalWallisPostHoc[];
@@ -123,6 +124,9 @@ export function kruskalWallis(
   const etaSquaredH = (N - k) > 0 ? (hStatistic - k + 1) / (N - k) : 0;
   const clampedEta = Math.max(0, etaSquaredH);
 
+  // Epsilon-squared: ε² = (H - k + 1) / (N - 1)  [Kelley 1935]
+  const epsilonSquared = (N - 1) > 0 ? Math.max(0, (hStatistic - k + 1) / (N - 1)) : 0;
+
   let effectSizeLabel: string;
   if (clampedEta < 0.01) effectSizeLabel = "negligible";
   else if (clampedEta < 0.06) effectSizeLabel = "small";
@@ -170,6 +174,7 @@ export function kruskalWallis(
     df,
     pValue: Math.min(pValue, 1),
     etaSquaredH: clampedEta,
+    epsilonSquared,
     effectSizeLabel,
     groupStats,
     postHoc,
@@ -187,5 +192,6 @@ export function formatKruskalWallisAPA(result: KruskalWallisResult): string {
   const h = result.hStatistic.toFixed(2);
   const pStr = formatPValue(result.pValue);
   const eta = result.etaSquaredH.toFixed(2);
-  return `H(${result.df}) = ${h}, p ${pStr}, \u03B7\u00B2H = ${eta}`;
+  const eps = result.epsilonSquared.toFixed(3);
+  return `H(${result.df}) = ${h}, p ${pStr}, \u03B7\u00B2H = ${eta}, \u03B5\u00B2 = ${eps}`;
 }

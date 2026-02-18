@@ -632,7 +632,7 @@ export function exportSampleSizePdf(data: {
 // --- Kruskal-Wallis PDF ---
 export function exportKruskalWallisPdf(data: {
   hStatistic: number; df: number; pValue: number; etaSquaredH: number;
-  effectSizeLabel: string;
+  epsilonSquared?: number; effectSizeLabel: string;
   groupStats: { name: string; n: number; median: number; meanRank: number }[];
   postHoc: { group1: string; group2: string; z: number; pValue: number; significant: boolean }[];
 }, apa: string): Blob {
@@ -646,6 +646,7 @@ export function exportKruskalWallisPdf(data: {
       ["df", String(data.df)],
       ["p (two-tailed)", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
       ["Effect size (\u03B7\u00B2H)", data.etaSquaredH.toFixed(4)],
+      ["Effect size (\u03B5\u00B2)", data.epsilonSquared?.toFixed(4) ?? "N/A"],
       ["Effect size label", data.effectSizeLabel],
     ]
   );

@@ -6,6 +6,7 @@ export interface FisherExactResult {
   oddsRatioCI: [number, number];
   phi: number;
   relativeRisk: number;
+  relativeRiskCI: [number, number];
   observed: number[][];
   expected: number[][];
   rowTotals: number[];
@@ -151,12 +152,24 @@ export function fisherExactTest(table: number[][]): FisherExactResult {
     relativeRisk = risk2 === 0 ? Infinity : risk1 / risk2;
   }
 
+  // 95% CI for relative risk (log-transform method)
+  let relativeRiskCI: [number, number] = [0, Infinity];
+  if (a > 0 && c > 0 && rowTotals[0] > 0 && rowTotals[1] > 0 && isFinite(relativeRisk) && relativeRisk > 0) {
+    const logRR = Math.log(relativeRisk);
+    const seLogRR = Math.sqrt(1 / a - 1 / rowTotals[0] + 1 / c - 1 / rowTotals[1]);
+    relativeRiskCI = [
+      Math.exp(logRR - 1.96 * seLogRR),
+      Math.exp(logRR + 1.96 * seLogRR),
+    ];
+  }
+
   return {
     pValue,
     oddsRatio,
     oddsRatioCI,
     phi,
     relativeRisk,
+    relativeRiskCI,
     observed: [[a, b], [c, d]],
     expected,
     rowTotals,
@@ -177,5 +190,8 @@ export function formatFisherExactAPA(result: FisherExactResult): string {
   const or = isNaN(result.oddsRatio) ? "undefined" : isFinite(result.oddsRatio) ? result.oddsRatio.toFixed(2) : "\u221E";
   const ciLow = isFinite(result.oddsRatioCI[0]) ? result.oddsRatioCI[0].toFixed(2) : "0.00";
   const ciHigh = isFinite(result.oddsRatioCI[1]) ? result.oddsRatioCI[1].toFixed(2) : "\u221E";
-  return `Fisher's exact test, p ${pStr}, OR = ${or}, 95% CI [${ciLow}, ${ciHigh}]`;
+  const rr = isFinite(result.relativeRisk) ? result.relativeRisk.toFixed(2) : "\u221E";
+  const rrCiLow = isFinite(result.relativeRiskCI[0]) ? result.relativeRiskCI[0].toFixed(2) : "0.00";
+  const rrCiHigh = isFinite(result.relativeRiskCI[1]) ? result.relativeRiskCI[1].toFixed(2) : "\u221E";
+  return `Fisher's exact test, p ${pStr}, OR = ${or}, 95% CI [${ciLow}, ${ciHigh}], RR = ${rr}, 95% CI [${rrCiLow}, ${rrCiHigh}]`;
 }

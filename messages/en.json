@@ -990,7 +990,9 @@
     "minLevels": "Each factor needs at least 2 levels.",
     "cellMinValues": "Each cell needs at least 2 values.",
     "errorUnequalCells": "Unequal cell sizes detected. Type III sum of squares will be used.",
-    "exampleScenario": "An education researcher examined the effects of teaching method (lecture vs. active learning) and class size (small vs. large) on exam scores for 40 students."
+    "exampleScenario": "An education researcher examined the effects of teaching method (lecture vs. active learning) and class size (small vs. large) on exam scores for 40 students.",
+    "showDataGrid": "Show data grid",
+    "hideDataGrid": "Hide data grid"
   },
   "friedman": {
     "metaTitle": "Free Friedman Test Calculator Online",

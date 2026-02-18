@@ -104,6 +104,10 @@ function ResultsDisplay({ result, groupsData }: { result: KruskalWallisResult; g
               <p className="font-medium">{result.etaSquaredH.toFixed(4)}</p>
             </div>
             <div>
+              <span className="text-gray-500">&epsilon;&sup2;</span>
+              <p className="font-medium">{result.epsilonSquared.toFixed(4)}</p>
+            </div>
+            <div>
               <span className="text-gray-500">
                 {tk("effectSize")}
               </span>
@@ -198,7 +202,7 @@ function ResultsDisplay({ result, groupsData }: { result: KruskalWallisResult; g
                 : result.etaSquaredH < 0.14
                   ? t("mediumEffect")
                   : t("largeEffect")}{" "}
-            (<em>&eta;&sup2;</em><sub>H</sub> = {result.etaSquaredH.toFixed(2)})
+            (<em>&eta;&sup2;</em><sub>H</sub> = {result.etaSquaredH.toFixed(2)}, <em>&epsilon;&sup2;</em> = {result.epsilonSquared.toFixed(3)})
           </div>
         </CardContent>
       </Card>

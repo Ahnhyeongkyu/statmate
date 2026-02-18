@@ -97,8 +97,8 @@ export function oneWayAnova(
     sd: sd(g),
   }));
 
-  // Post-hoc: Pairwise t-tests with Bonferroni correction
-  const postHoc: PostHocResult[] = [];
+  // Post-hoc: Pairwise t-tests with Holm-Bonferroni correction
+  const rawPairs: { group1: string; group2: string; meanDiff: number; rawP: number }[] = [];
   const numComparisons = (k * (k - 1)) / 2;
 
   for (let i = 0; i < k; i++) {
@@ -112,19 +112,29 @@ export function oneWayAnova(
       const tVal = Math.abs(mi - mj) / se;
       const dfPair = dfWithin;
 
-      let pPair = 2 * (1 - jStat.studentt.cdf(tVal, dfPair));
-      // Bonferroni correction
-      pPair = Math.min(pPair * numComparisons, 1);
-
-      postHoc.push({
-        group1: names[i],
-        group2: names[j],
-        meanDiff: mi - mj,
-        pValue: pPair,
-        significant: pPair < 0.05,
-      });
+      const rawP = 2 * (1 - jStat.studentt.cdf(tVal, dfPair));
+      rawPairs.push({ group1: names[i], group2: names[j], meanDiff: mi - mj, rawP });
     }
   }
+
+  // Holm-Bonferroni step-down: sort by raw p ascending, multiply by (m - rank + 1)
+  const sorted = [...rawPairs].sort((a, b) => a.rawP - b.rawP);
+  const adjustedP = new Array(sorted.length);
+  for (let i = 0; i < sorted.length; i++) {
+    adjustedP[i] = Math.min(sorted[i].rawP * (numComparisons - i), 1);
+  }
+  // Enforce monotonicity: adjusted p can only increase
+  for (let i = 1; i < adjustedP.length; i++) {
+    if (adjustedP[i] < adjustedP[i - 1]) adjustedP[i] = adjustedP[i - 1];
+  }
+
+  const postHoc: PostHocResult[] = sorted.map((pair, i) => ({
+    group1: pair.group1,
+    group2: pair.group2,
+    meanDiff: pair.meanDiff,
+    pValue: adjustedP[i],
+    significant: adjustedP[i] < 0.05,
+  }));
 
   return {
     fStatistic,
