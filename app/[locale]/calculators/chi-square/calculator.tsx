@@ -22,7 +22,6 @@ import {
   type ChiSquareResult,
   type ChiSquareIndependenceResult,
 } from "@/lib/statistics/chi-square";
-import { exportChiSquare, downloadBlob } from "@/lib/export-docx";
 import {
   AiInterpretation,
   ExportButton,
@@ -235,6 +234,7 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
       <ExportButton
         testName="chi-square"
         onExport={async () => {
+          const { exportChiSquare, downloadBlob } = await import("@/lib/export-docx");
           const blob = await exportChiSquare(result);
           downloadBlob(blob, `statmate-chisquare-${Date.now()}.docx`);
         }}
@@ -390,7 +390,8 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
       <ExportButton
         testName="chi-square"
         onExport={async () => {
-          const blob = await exportChiSquare({
+          const { exportChiSquare: exportChiSq, downloadBlob: dlBlob } = await import("@/lib/export-docx");
+          const blob = await exportChiSq({
             type: "goodness",
             chiSquare: result.chiSquare,
             df: result.df,
@@ -398,7 +399,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
             observed: result.observed as number[],
             expected: result.expected as number[],
           });
-          downloadBlob(blob, `statmate-chisquare-${Date.now()}.docx`);
+          dlBlob(blob, `statmate-chisquare-${Date.now()}.docx`);
         }}
       />
     </div>

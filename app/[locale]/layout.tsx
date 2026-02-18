@@ -153,7 +153,6 @@ export default async function LocaleLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />
-        <AdSenseScript />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
@@ -216,6 +215,7 @@ export default async function LocaleLayout({
             {children}
           </main>
 
+          <AdSenseScript />
           <GoogleAnalytics />
           <Analytics />
           <SpeedInsights />

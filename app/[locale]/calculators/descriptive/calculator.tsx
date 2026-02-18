@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { descriptiveStats, type DescriptiveResult } from "@/lib/statistics/descriptive";
-import { exportDescriptive, downloadBlob } from "@/lib/export-docx";
 import {
   AiInterpretation,
   ExportButton,
@@ -227,6 +226,7 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
       <ExportButton
         testName="descriptive"
         onExport={async () => {
+          const { exportDescriptive, downloadBlob } = await import("@/lib/export-docx");
           const blob = await exportDescriptive(result);
           downloadBlob(blob, `statmate-descriptive-${Date.now()}.docx`);
         }}

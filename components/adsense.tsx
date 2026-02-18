@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Script from "next/script";
 
 const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
-/** Google AdSense script loader — lazy-loads after page interactive */
+/** Google AdSense script loader — lazy-loads after page idle */
 export function AdSenseScript() {
   if (!ADSENSE_ID) return null;
 
   return (
-    <script
-      async
-      defer
+    <Script
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+      strategy="lazyOnload"
       crossOrigin="anonymous"
     />
   );

@@ -21,7 +21,6 @@ import {
   formatPValue,
   type CorrelationResult,
 } from "@/lib/statistics/correlation";
-import { exportCorrelation, downloadBlob } from "@/lib/export-docx";
 import {
   AiInterpretation,
   ExportButton,
@@ -251,6 +250,7 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
       <ExportButton
         testName="correlation"
         onExport={async () => {
+          const { exportCorrelation, downloadBlob } = await import("@/lib/export-docx");
           const blob = await exportCorrelation(result);
           downloadBlob(blob, `statmate-correlation-${Date.now()}.docx`);
         }}

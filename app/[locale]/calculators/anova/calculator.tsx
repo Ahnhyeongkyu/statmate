@@ -19,7 +19,6 @@ import {
   formatPValue,
   type AnovaResult,
 } from "@/lib/statistics/anova";
-import { exportAnova, downloadBlob } from "@/lib/export-docx";
 import {
   AiInterpretation,
   ExportButton,
@@ -247,6 +246,7 @@ function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsDat
       <ExportButton
         testName="anova"
         onExport={async () => {
+          const { exportAnova, downloadBlob } = await import("@/lib/export-docx");
           const blob = await exportAnova(result);
           downloadBlob(blob, `statmate-anova-${Date.now()}.docx`);
         }}

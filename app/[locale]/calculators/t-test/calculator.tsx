@@ -21,7 +21,6 @@ import {
   formatPValue,
   type TTestResult,
 } from "@/lib/statistics/t-test";
-import { exportTTest, downloadBlob } from "@/lib/export-docx";
 import {
   AiInterpretation,
   ExportButton,
@@ -255,6 +254,7 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
       <ExportButton
         testName="t-test"
         onExport={async () => {
+          const { exportTTest, downloadBlob } = await import("@/lib/export-docx");
           const blob = await exportTTest(result);
           downloadBlob(blob, `statmate-ttest-${Date.now()}.docx`);
         }}
