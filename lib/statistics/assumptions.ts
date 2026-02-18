@@ -143,7 +143,7 @@ export function leveneTest(groups: number[][]): LeveneResult {
  * Run assumption checks for a given test type.
  */
 export function checkAssumptions(
-  testType: "t-test" | "anova" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "correlation" | "regression",
+  testType: "t-test" | "anova" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "correlation" | "regression" | "kruskal-wallis" | "repeated-measures" | "friedman",
   groups: number[][],
   language: "en" | "ko" = "en"
 ): AssumptionCheckResult {
@@ -160,9 +160,9 @@ export function checkAssumptions(
 
   const anyNonNormal = normality.some((n) => !n.isNormal);
 
-  // Levene's test (for 2+ groups)
+  // Levene's test (for 2+ groups, parametric tests)
   let levene: LeveneResult | undefined;
-  if (groups.length >= 2 && (testType === "t-test" || testType === "anova")) {
+  if (groups.length >= 2 && (testType === "t-test" || testType === "anova" || testType === "repeated-measures")) {
     levene = leveneTest(groups);
   }
 
@@ -179,6 +179,12 @@ export function checkAssumptions(
         recommendations.push("정규성 가정 위반: Spearman 순위상관 사용을 권장합니다.");
       } else if (testType === "regression") {
         recommendations.push("잔차 정규성 가정 위반: 데이터 변환 또는 비모수 회귀를 고려하세요.");
+      } else if (testType === "kruskal-wallis") {
+        recommendations.push("비정규 분포 확인: 비모수 검정(Kruskal-Wallis)이 적절합니다.");
+      } else if (testType === "repeated-measures") {
+        recommendations.push("정규성 가정 위반: Friedman 검정 사용을 권장합니다.");
+      } else if (testType === "friedman") {
+        recommendations.push("비정규 분포 확인: 비모수 검정(Friedman)이 적절합니다.");
       }
     }
     if (levene && !levene.isEqual) {
@@ -186,10 +192,18 @@ export function checkAssumptions(
         recommendations.push("등분산 가정 위반: Welch's t-검정이 자동 적용됩니다.");
       } else if (testType === "anova") {
         recommendations.push("등분산 가정 위반: Welch ANOVA 또는 비모수 검정을 고려하세요.");
+      } else if (testType === "repeated-measures") {
+        recommendations.push("등분산 가정 위반: 구형성 보정(Greenhouse-Geisser)이 적용됩니다.");
       }
     }
     if (recommendations.length === 0) {
-      recommendations.push("모든 가정이 충족되었습니다. 현재 검정을 사용해도 됩니다.");
+      if (testType === "kruskal-wallis") {
+        recommendations.push("데이터가 정규 분포를 따릅니다. One-Way ANOVA 사용도 가능합니다.");
+      } else if (testType === "friedman") {
+        recommendations.push("데이터가 정규 분포를 따릅니다. 반복측정 ANOVA 사용도 가능합니다.");
+      } else {
+        recommendations.push("모든 가정이 충족되었습니다. 현재 검정을 사용해도 됩니다.");
+      }
     }
   } else {
     if (anyNonNormal) {
@@ -203,6 +217,12 @@ export function checkAssumptions(
         recommendations.push("Normality violated: Consider Spearman rank correlation.");
       } else if (testType === "regression") {
         recommendations.push("Residual normality violated: Consider data transformation or non-parametric regression.");
+      } else if (testType === "kruskal-wallis") {
+        recommendations.push("Non-normal distribution confirmed: Kruskal-Wallis test is appropriate.");
+      } else if (testType === "repeated-measures") {
+        recommendations.push("Normality violated: Consider Friedman test.");
+      } else if (testType === "friedman") {
+        recommendations.push("Non-normal distribution confirmed: Friedman test is appropriate.");
       }
     }
     if (levene && !levene.isEqual) {
@@ -210,10 +230,18 @@ export function checkAssumptions(
         recommendations.push("Equal variance violated: Welch's t-test is automatically applied.");
       } else if (testType === "anova") {
         recommendations.push("Equal variance violated: Consider Welch ANOVA or non-parametric test.");
+      } else if (testType === "repeated-measures") {
+        recommendations.push("Equal variance violated: Greenhouse-Geisser correction is applied.");
       }
     }
     if (recommendations.length === 0) {
-      recommendations.push("All assumptions met. Current test is appropriate.");
+      if (testType === "kruskal-wallis") {
+        recommendations.push("Data appears normally distributed. One-Way ANOVA may also be appropriate.");
+      } else if (testType === "friedman") {
+        recommendations.push("Data appears normally distributed. Repeated Measures ANOVA may also be appropriate.");
+      } else {
+        recommendations.push("All assumptions met. Current test is appropriate.");
+      }
     }
   }
 

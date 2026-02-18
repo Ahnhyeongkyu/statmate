@@ -701,6 +701,129 @@ export function exportFriedman(data: FriedmanExportData): Promise<Blob> {
   return Packer.toBlob(doc);
 }
 
+// --- Two-Way ANOVA Export ---
+
+interface TwoWayAnovaExportData {
+  factorA: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  factorB: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  interaction: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  residual: { ss: number; df: number; ms: number };
+  total: { ss: number; df: number };
+  cellStats: { factorA: string; factorB: string; n: number; mean: number; sd: number }[];
+}
+
+export function exportTwoWayAnova(data: TwoWayAnovaExportData): Promise<Blob> {
+  const anovaHeaderRow = new TableRow({
+    children: [
+      apaCell([{ text: "Source" }], "header"),
+      apaCell([{ text: "SS" }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "df" }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "MS" }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "F", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "p", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "\u03B7\u00B2" }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const effects = [
+    { label: "Factor A", ...data.factorA },
+    { label: "Factor B", ...data.factorB },
+    { label: "A \u00D7 B", ...data.interaction },
+  ];
+
+  const effectRows = effects.map((e) =>
+    new TableRow({
+      children: [
+        apaCell([{ text: e.label }], "body"),
+        apaCell([{ text: e.ss.toFixed(2) }], "body", AlignmentType.CENTER),
+        apaCell([{ text: String(e.df) }], "body", AlignmentType.CENTER),
+        apaCell([{ text: e.ms.toFixed(2) }], "body", AlignmentType.CENTER),
+        apaCell([{ text: e.f.toFixed(2) }], "body", AlignmentType.CENTER),
+        apaCell([{ text: formatP(e.p) }], "body", AlignmentType.CENTER),
+        apaCell([{ text: e.etaSq.toFixed(4) }], "body", AlignmentType.CENTER),
+      ],
+    })
+  );
+
+  const residualRow = new TableRow({
+    children: [
+      apaCell([{ text: "Residual" }], "body"),
+      apaCell([{ text: data.residual.ss.toFixed(2) }], "body", AlignmentType.CENTER),
+      apaCell([{ text: String(data.residual.df) }], "body", AlignmentType.CENTER),
+      apaCell([{ text: data.residual.ms.toFixed(2) }], "body", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "body", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "body", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "body", AlignmentType.CENTER),
+    ],
+  });
+
+  const totalRow = new TableRow({
+    children: [
+      apaCell([{ text: "Total" }], "last"),
+      apaCell([{ text: data.total.ss.toFixed(2) }], "last", AlignmentType.CENTER),
+      apaCell([{ text: String(data.total.df) }], "last", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "last", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "last", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "last", AlignmentType.CENTER),
+      apaCell([{ text: "" }], "last", AlignmentType.CENTER),
+    ],
+  });
+
+  // Cell statistics table
+  const cellHeaderRow = new TableRow({
+    children: [
+      apaCell([{ text: "Factor A" }], "header"),
+      apaCell([{ text: "Factor B" }], "header"),
+      apaCell([{ text: "N", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "M", italic: true }], "header", AlignmentType.CENTER),
+      apaCell([{ text: "SD", italic: true }], "header", AlignmentType.CENTER),
+    ],
+  });
+
+  const cellRows = data.cellStats.map((c, i) => {
+    const isLast = i === data.cellStats.length - 1;
+    return new TableRow({
+      children: [
+        apaCell([{ text: c.factorA }], isLast ? "last" : "body"),
+        apaCell([{ text: c.factorB }], isLast ? "last" : "body"),
+        apaCell([{ text: String(c.n) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: c.mean.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+        apaCell([{ text: c.sd.toFixed(2) }], isLast ? "last" : "body", AlignmentType.CENTER),
+      ],
+    });
+  });
+
+  const doc = new Document({
+    sections: [
+      {
+        children: [
+          new Paragraph({ children: [apaText("Table 1", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Two-Way ANOVA Results", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [anovaHeaderRow, ...effectRows, residualRow, totalRow],
+          }),
+          new Paragraph({ spacing: { before: 400 }, children: [] }),
+          new Paragraph({ children: [apaText("Table 2", { bold: true })] }),
+          new Paragraph({
+            children: [apaText("Cell Descriptive Statistics", { italic: true })],
+            spacing: { after: 200 },
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [cellHeaderRow, ...cellRows],
+          }),
+        ],
+      },
+    ],
+  });
+
+  return Packer.toBlob(doc);
+}
+
 // --- Download helper ---
 
 export function downloadBlob(blob: Blob, filename: string) {

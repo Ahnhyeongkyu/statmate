@@ -1,9 +1,13 @@
 import jStat from "jstat";
 import { requireFinite } from "./validation";
 
+export type TailType = "two" | "greater" | "less";
+
 export interface OneSampleTInput {
   data: number[];
   testValue: number;
+  alpha?: number;
+  tail?: TailType;
 }
 
 export interface OneSampleTResult {
@@ -19,10 +23,12 @@ export interface OneSampleTResult {
   ci95: [number, number];
   cohensD: number;
   effectSizeLabel: string;
+  alpha: number;
+  tail: TailType;
 }
 
 export function oneSampleTTest(input: OneSampleTInput): OneSampleTResult {
-  const { data, testValue } = input;
+  const { data, testValue, alpha = 0.05, tail = "two" } = input;
   const n = data.length;
   if (n < 2) throw new Error("Need at least 2 values");
   requireFinite(data, "Data");
@@ -36,12 +42,18 @@ export function oneSampleTTest(input: OneSampleTInput): OneSampleTResult {
   const t = se === 0 ? (meanDiff === 0 ? 0 : Infinity) : meanDiff / se;
   const df = n - 1;
 
-  const pValue =
-    Math.abs(t) === Infinity
-      ? 0
-      : 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+  let pValue: number;
+  if (Math.abs(t) === Infinity) {
+    pValue = 0;
+  } else if (tail === "two") {
+    pValue = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+  } else if (tail === "greater") {
+    pValue = 1 - jStat.studentt.cdf(t, df);
+  } else {
+    pValue = jStat.studentt.cdf(t, df);
+  }
 
-  const tCrit = jStat.studentt.inv(0.975, df);
+  const tCrit = jStat.studentt.inv(1 - alpha / 2, df);
   const ci95: [number, number] = [
     meanDiff - tCrit * se,
     meanDiff + tCrit * se,
@@ -67,6 +79,8 @@ export function oneSampleTTest(input: OneSampleTInput): OneSampleTResult {
     ci95,
     cohensD,
     effectSizeLabel,
+    alpha,
+    tail,
   };
 }
 
@@ -76,13 +90,15 @@ export function formatOneSampleTAPA(result: OneSampleTResult): string {
     result.pValue < 0.001
       ? "< .001"
       : `= ${result.pValue.toFixed(3).replace(/^0/, "")}`;
+  const tailNote = result.tail !== "two" ? " (one-tailed)" : "";
+  const ciPct = Math.round((1 - result.alpha) * 100);
   return (
     `A one-sample t-test was conducted to compare the sample mean ` +
     `(M = ${result.mean.toFixed(2)}, SD = ${result.sd.toFixed(2)}) ` +
     `to the test value of ${result.testValue.toFixed(2)}. ` +
-    `The result was ${result.pValue < 0.05 ? "" : "not "}statistically significant, ` +
-    `t(${result.df}) = ${tStr}, p ${pStr}, ` +
+    `The result was ${result.pValue < result.alpha ? "" : "not "}statistically significant, ` +
+    `t(${result.df}) = ${tStr}, p ${pStr}${tailNote}, ` +
     `d = ${result.cohensD.toFixed(2)}, ` +
-    `95% CI [${result.ci95[0].toFixed(2)}, ${result.ci95[1].toFixed(2)}].`
+    `${ciPct}% CI [${result.ci95[0].toFixed(2)}, ${result.ci95[1].toFixed(2)}].`
   );
 }

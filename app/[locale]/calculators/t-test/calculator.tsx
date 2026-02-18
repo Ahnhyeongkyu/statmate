@@ -19,6 +19,7 @@ import {
   formatAPA,
   formatPValue,
   type TTestResult,
+  type TailType,
 } from "@/lib/statistics/t-test";
 import {
   AiInterpretation,
@@ -72,11 +73,20 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
       <div className="flex items-center gap-2">
         {result.significant ? (
           <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
-            {t("significant")}
+            {result.alpha !== 0.05
+              ? t("significantAt", { alpha: result.alpha.toFixed(2).replace(/^0/, "") })
+              : t("significant")}
           </Badge>
         ) : (
           <Badge variant="secondary">
-            {t("notSignificant")}
+            {result.alpha !== 0.05
+              ? t("notSignificantAt", { alpha: result.alpha.toFixed(2).replace(/^0/, "") })
+              : t("notSignificant")}
+          </Badge>
+        )}
+        {result.tail !== "two" && (
+          <Badge variant="outline" className="text-gray-600">
+            {result.tail === "greater" ? t("oneTailedGreater") : t("oneTailedLess")}
           </Badge>
         )}
       </div>
@@ -112,7 +122,7 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
             </div>
             <div>
               <span className="text-gray-500">
-                {t("pValue")}
+                {result.tail !== "two" ? t("pValueOneTailed") : t("pValue")}
               </span>
               <p className="font-medium">
                 {result.pValue < 0.001
@@ -126,11 +136,18 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
             </div>
             <div>
               <span className="text-gray-500">Cohen&apos;s <em>d</em></span>
-              <p className="font-medium">{result.cohensD.toFixed(4)}</p>
+              <p className="font-medium">
+                {result.cohensD.toFixed(4)}
+                <span className="ml-1 text-xs text-gray-400">
+                  [{result.cohensDCI[0].toFixed(2)}, {result.cohensDCI[1].toFixed(2)}]
+                </span>
+              </p>
             </div>
             <div className="col-span-2">
               <span className="text-gray-500">
-                {t("ci95")}
+                {result.alpha !== 0.05
+                  ? t("ciDynamic", { level: Math.round((1 - result.alpha) * 100).toString() })
+                  : t("ci95")}
               </span>
               <p className="font-medium">
                 [{result.ci95[0].toFixed(4)}, {result.ci95[1].toFixed(4)}]
@@ -270,6 +287,8 @@ function TTestCalculatorInner() {
   );
   const [group1Input, setGroup1Input] = useState("");
   const [group2Input, setGroup2Input] = useState("");
+  const [alpha, setAlpha] = useState("0.05");
+  const [tail, setTail] = useState<TailType>("two");
   const [result, setResult] = useState<TTestResult | null>(null);
   const [parsedG1, setParsedG1] = useState<number[]>([]);
   const [parsedG2, setParsedG2] = useState<number[]>([]);
@@ -321,10 +340,11 @@ function TTestCalculatorInner() {
     }
 
     try {
+      const a = parseFloat(alpha);
       const r =
         testType === "independent"
-          ? independentTTest(g1, g2)
-          : pairedTTest(g1, g2);
+          ? independentTTest(g1, g2, a, tail)
+          : pairedTTest(g1, g2, a, tail);
       setResult(r);
       setParsedG1(g1);
       setParsedG2(g2);
@@ -337,6 +357,8 @@ function TTestCalculatorInner() {
   function handleClear() {
     setGroup1Input("");
     setGroup2Input("");
+    setAlpha("0.05");
+    setTail("two");
     setResult(null);
     setError(null);
     setScenario(null);
@@ -430,6 +452,36 @@ function TTestCalculatorInner() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Advanced Options */}
+        <Card>
+          <CardContent className="grid grid-cols-2 gap-4 pt-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">{t("alphaLevel")}</label>
+              <select
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                value={alpha}
+                onChange={(e) => { setAlpha(e.target.value); setResult(null); }}
+              >
+                <option value="0.01">0.01</option>
+                <option value="0.05">0.05</option>
+                <option value="0.10">0.10</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">{t("tail")}</label>
+              <select
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                value={tail}
+                onChange={(e) => { setTail(e.target.value as TailType); setResult(null); }}
+              >
+                <option value="two">{t("twoTailed")}</option>
+                <option value="greater">{t("oneTailedGreater")}</option>
+                <option value="less">{t("oneTailedLess")}</option>
+              </select>
+            </div>
+          </CardContent>
+        </Card>
 
         <ExampleScenario scenario={scenario} onDismiss={() => setScenario(null)} />
 

@@ -1,10 +1,14 @@
 import jStat from "jstat";
 import { validateArray } from "./validation";
 
+export type TailType = "two" | "greater" | "less";
+
 export interface TTestInput {
   type: "independent" | "paired";
   group1: number[];
   group2: number[];
+  alpha?: number;
+  tail?: TailType;
 }
 
 export interface TTestResult {
@@ -13,11 +17,21 @@ export interface TTestResult {
   df: number;
   pValue: number;
   cohensD: number;
+  cohensDCI: [number, number];
   ci95: [number, number];
   meanDiff: number;
   group1Stats: { mean: number; sd: number; n: number };
   group2Stats: { mean: number; sd: number; n: number };
   significant: boolean;
+  alpha: number;
+  tail: TailType;
+}
+
+/** Approximate 95% CI for Cohen's d using Hedges & Olkin (1985) formula */
+function cohensDCI(d: number, n1: number, n2: number): [number, number] {
+  const se = Math.sqrt((n1 + n2) / (n1 * n2) + (d * d) / (2 * (n1 + n2)));
+  const z = 1.96;
+  return [d - z * se, d + z * se];
 }
 
 function mean(arr: number[]): number {
@@ -33,7 +47,13 @@ function sd(arr: number[]): number {
   return Math.sqrt(variance(arr));
 }
 
-export function independentTTest(group1: number[], group2: number[]): TTestResult {
+function computePValue(tStat: number, df: number, tail: TailType): number {
+  if (tail === "two") return 2 * (1 - jStat.studentt.cdf(Math.abs(tStat), df));
+  if (tail === "greater") return 1 - jStat.studentt.cdf(tStat, df);
+  return jStat.studentt.cdf(tStat, df); // "less"
+}
+
+export function independentTTest(group1: number[], group2: number[], alpha = 0.05, tail: TailType = "two"): TTestResult {
   validateArray(group1, 2, "Group 1");
   validateArray(group2, 2, "Group 2");
 
@@ -55,7 +75,7 @@ export function independentTTest(group1: number[], group2: number[]): TTestResul
   const v2 = variance(group2) / n2;
   const df = (v1 + v2) ** 2 / (v1 ** 2 / (n1 - 1) + v2 ** 2 / (n2 - 1));
 
-  const pValue = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+  const pValue = computePValue(t, df, tail);
 
   // Cohen's d
   const pooledSD = Math.sqrt(
@@ -63,8 +83,8 @@ export function independentTTest(group1: number[], group2: number[]): TTestResul
   );
   const cohensD = (m1 - m2) / pooledSD;
 
-  // 95% CI
-  const tCrit = jStat.studentt.inv(0.975, df);
+  // CI at (1-alpha) level
+  const tCrit = jStat.studentt.inv(1 - alpha / 2, df);
   const ci95: [number, number] = [
     (m1 - m2) - tCrit * pooledSE,
     (m1 - m2) + tCrit * pooledSE,
@@ -76,15 +96,18 @@ export function independentTTest(group1: number[], group2: number[]): TTestResul
     df,
     pValue,
     cohensD,
+    cohensDCI: cohensDCI(cohensD, n1, n2),
     ci95,
     meanDiff: m1 - m2,
     group1Stats: { mean: m1, sd: s1, n: n1 },
     group2Stats: { mean: m2, sd: s2, n: n2 },
-    significant: pValue < 0.05,
+    significant: pValue < alpha,
+    alpha,
+    tail,
   };
 }
 
-export function pairedTTest(group1: number[], group2: number[]): TTestResult {
+export function pairedTTest(group1: number[], group2: number[], alpha = 0.05, tail: TailType = "two"): TTestResult {
   validateArray(group1, 2, "Group 1");
   validateArray(group2, 2, "Group 2");
   if (group1.length !== group2.length) {
@@ -102,11 +125,11 @@ export function pairedTTest(group1: number[], group2: number[]): TTestResult {
   const df = n - 1;
   const t = meanDiff / seDiff;
 
-  const pValue = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+  const pValue = computePValue(t, df, tail);
 
   const cohensD = meanDiff / sdDiff;
 
-  const tCrit = jStat.studentt.inv(0.975, df);
+  const tCrit = jStat.studentt.inv(1 - alpha / 2, df);
   const ci95: [number, number] = [
     meanDiff - tCrit * seDiff,
     meanDiff + tCrit * seDiff,
@@ -121,11 +144,14 @@ export function pairedTTest(group1: number[], group2: number[]): TTestResult {
     df,
     pValue,
     cohensD,
+    cohensDCI: cohensDCI(cohensD, n, n),
     ci95,
     meanDiff,
     group1Stats: { mean: m1, sd: sd(group1), n },
     group2Stats: { mean: m2, sd: sd(group2), n },
-    significant: pValue < 0.05,
+    significant: pValue < alpha,
+    alpha,
+    tail,
   };
 }
 
@@ -142,6 +168,8 @@ export function formatAPA(result: TTestResult): string {
     : result.df.toString();
   const pStr = formatPValue(result.pValue);
   const dVal = Math.abs(result.cohensD).toFixed(2);
+  const tailNote = result.tail !== "two" ? ", one-tailed" : "";
+  const dCI = `95% CI [${result.cohensDCI[0].toFixed(2)}, ${result.cohensDCI[1].toFixed(2)}]`;
 
-  return `t(${dfVal}) = ${tVal}, p ${pStr}, d = ${dVal}`;
+  return `t(${dfVal}) = ${tVal}, p ${pStr}${tailNote}, d = ${dVal}, ${dCI}`;
 }

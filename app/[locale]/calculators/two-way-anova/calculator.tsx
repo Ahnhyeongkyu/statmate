@@ -198,8 +198,9 @@ function ResultsDisplay({
           <CardTitle className="text-base">{tw("anovaTable")}</CardTitle>
         </CardHeader>
         <CardContent>
+          <p className="mb-2 text-xs text-gray-400 sm:hidden">&larr; Scroll to see all columns &rarr;</p>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[500px] text-sm">
               <thead>
                 <tr className="border-b-2 border-t-2 border-gray-900">
                   <th className="py-2 text-left font-semibold">{tw("source")}</th>
@@ -337,6 +338,16 @@ function ResultsDisplay({
           </Button>
         </CardContent>
       </Card>
+
+      {/* DOCX Export */}
+      <ExportButton
+        testName="two-way-anova"
+        onExport={async () => {
+          const { exportTwoWayAnova, downloadBlob } = await import("@/lib/export-docx");
+          const blob = await exportTwoWayAnova(result);
+          downloadBlob(blob, `statmate-two-way-anova-${Date.now()}.docx`);
+        }}
+      />
     </div>
   );
 }

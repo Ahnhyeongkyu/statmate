@@ -14,7 +14,7 @@ import {
 } from "@/lib/statistics/assumptions";
 
 interface AssumptionChecksProps {
-  testType: "t-test" | "anova" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "correlation" | "regression";
+  testType: "t-test" | "anova" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "correlation" | "regression" | "kruskal-wallis" | "repeated-measures" | "friedman";
   groups: number[][];
 }
 

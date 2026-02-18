@@ -16,6 +16,7 @@ import {
   oneSampleTTest,
   formatOneSampleTAPA,
   type OneSampleTResult,
+  type TailType,
 } from "@/lib/statistics/one-sample-t";
 import {
   AiInterpretation,
@@ -55,6 +56,7 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
             {result.pValue < 0.001
               ? "< .001"
               : `= ${result.pValue.toFixed(3).replace(/^0/, "")}`}
+            {result.tail !== "two" && " (one-tailed)"}
             , <em>d</em> = {result.cohensD.toFixed(2)}
           </p>
           <button
@@ -68,13 +70,22 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
 
       {/* Significance Badge */}
       <div className="flex items-center gap-2">
-        {result.pValue < 0.05 ? (
+        {result.pValue < result.alpha ? (
           <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
-            {t("significant")}
+            {result.alpha !== 0.05
+              ? t("significantAt", { alpha: result.alpha.toFixed(2).replace(/^0/, "") })
+              : t("significant")}
           </Badge>
         ) : (
           <Badge variant="secondary">
-            {t("notSignificant")}
+            {result.alpha !== 0.05
+              ? t("notSignificantAt", { alpha: result.alpha.toFixed(2).replace(/^0/, "") })
+              : t("notSignificant")}
+          </Badge>
+        )}
+        {result.tail !== "two" && (
+          <Badge variant="outline" className="text-gray-600">
+            {result.tail === "greater" ? t("oneTailedGreater") : t("oneTailedLess")}
           </Badge>
         )}
       </div>
@@ -98,7 +109,7 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
             </div>
             <div>
               <span className="text-gray-500">
-                {t("pValue")}
+                {result.tail !== "two" ? t("pValueOneTailed") : t("pValue")}
               </span>
               <p className="font-medium">
                 {result.pValue < 0.001
@@ -116,7 +127,9 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
             </div>
             <div>
               <span className="text-gray-500">
-                {t("ci95")}
+                {result.alpha !== 0.05
+                  ? t("ciDynamic", { level: Math.round((1 - result.alpha) * 100).toString() })
+                  : t("ci95")}
               </span>
               <p className="font-medium">
                 [{result.ci95[0].toFixed(4)}, {result.ci95[1].toFixed(4)}]
@@ -211,6 +224,8 @@ function OneSampleTCalculatorInner() {
   const ts = useTranslations("oneSampleT");
   const [dataInput, setDataInput] = useState("");
   const [testValueInput, setTestValueInput] = useState("0");
+  const [alpha, setAlpha] = useState("0.05");
+  const [tail, setTail] = useState<TailType>("two");
   const [result, setResult] = useState<OneSampleTResult | null>(null);
   const [parsedData, setParsedData] = useState<number[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -252,7 +267,8 @@ function OneSampleTCalculatorInner() {
     }
 
     try {
-      const r = oneSampleTTest({ data, testValue });
+      const a = parseFloat(alpha);
+      const r = oneSampleTTest({ data, testValue, alpha: a, tail });
       setResult(r);
       setParsedData(data);
       trackCalculate("one-sample-t");
@@ -264,6 +280,8 @@ function OneSampleTCalculatorInner() {
   function handleClear() {
     setDataInput("");
     setTestValueInput("0");
+    setAlpha("0.05");
+    setTail("two");
     setResult(null);
     setError(null);
     setScenario(null);
@@ -308,6 +326,36 @@ function OneSampleTCalculatorInner() {
                 value={testValueInput}
                 onChange={(e) => setTestValueInput(e.target.value)}
               />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Advanced Options */}
+        <Card>
+          <CardContent className="grid grid-cols-2 gap-4 pt-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">{t("alphaLevel")}</label>
+              <select
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                value={alpha}
+                onChange={(e) => { setAlpha(e.target.value); setResult(null); }}
+              >
+                <option value="0.01">0.01</option>
+                <option value="0.05">0.05</option>
+                <option value="0.10">0.10</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">{t("tail")}</label>
+              <select
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                value={tail}
+                onChange={(e) => { setTail(e.target.value as TailType); setResult(null); }}
+              >
+                <option value="two">{t("twoTailed")}</option>
+                <option value="greater">{t("oneTailedGreater")}</option>
+                <option value="less">{t("oneTailedLess")}</option>
+              </select>
             </div>
           </CardContent>
         </Card>
