@@ -4,6 +4,7 @@ import { MultipleRegressionCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -48,12 +49,28 @@ export default async function MultipleRegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("multipleRegression");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "다중회귀분석이란?", answer: "다중회귀분석은 두 개 이상의 독립변수(예측변수)가 하나의 연속형 종속변수에 미치는 영향을 동시에 분석하는 통계 기법입니다. 각 예측변수의 고유한 기여도를 평가하며, 다른 변수를 통제한 상태에서 효과를 추정할 수 있습니다. StatMate의 다중회귀 계산기를 사용하면 R², 회귀계수, VIF 등을 간편하게 계산할 수 있습니다." },
+        { question: "예측변수는 몇 개까지 포함할 수 있나요?", answer: "일반적으로 표본 크기 대비 예측변수 비율(N/k)이 10 이상이어야 합니다. 예를 들어 표본이 100명이면 최대 10개의 예측변수를 포함할 수 있습니다. 과적합을 방지하려면 이론에 기반한 변수 선택이 중요합니다." },
+        { question: "다중공선성이란 무엇이고 어떻게 확인하나요?", answer: "다중공선성은 독립변수들 간에 높은 상관관계가 있을 때 발생하며, 회귀계수의 표준오차를 증가시켜 결과를 불안정하게 만듭니다. VIF(분산팽창인자)가 10 이상이면 문제가 있으므로, StatMate에서 제공하는 VIF 값을 반드시 확인하세요." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따르면 F-통계량, 자유도, p-값, R², 수정된 R², 그리고 각 예측변수의 B, β, t, p 값을 보고해야 합니다. StatMate는 APA 형식의 결과를 자동으로 생성하므로 논문 작성 시 바로 활용할 수 있습니다." },
+      ]
+    : [
+        { question: "What is multiple regression analysis?", answer: "Multiple regression analysis is a statistical technique that examines how two or more independent variables (predictors) simultaneously affect a single continuous dependent variable. It estimates each predictor's unique contribution while controlling for the others. StatMate's multiple regression calculator provides R², coefficients, VIF, and ANOVA tables instantly." },
+        { question: "How many predictors can I include?", answer: "The general rule is to maintain a sample-size-to-predictor ratio (N/k) of at least 10. For example, with 100 observations you can include up to 10 predictors. Including too many predictors relative to your sample size leads to overfitting and unreliable coefficient estimates." },
+        { question: "What is multicollinearity and how do I check it?", answer: "Multicollinearity occurs when predictor variables are highly correlated with each other, inflating standard errors and making coefficient estimates unstable. Check the Variance Inflation Factor (VIF) provided by StatMate — values above 10 indicate problematic multicollinearity that should be addressed by removing or combining correlated predictors." },
+        { question: "How do I report multiple regression results in APA format?", answer: "APA 7th edition requires reporting the F-statistic, degrees of freedom, p-value, R², adjusted R², and each predictor's B, β, t, and p values. StatMate automatically generates APA-formatted results that you can copy directly into your research paper or thesis." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

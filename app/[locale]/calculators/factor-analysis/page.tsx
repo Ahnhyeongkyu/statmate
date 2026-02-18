@@ -4,6 +4,7 @@ import { FactorAnalysisCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -50,12 +51,28 @@ export default async function FactorAnalysisPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("factorAnalysis");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "탐색적 요인분석이란?", answer: "탐색적 요인분석(EFA)은 다수의 관측 변수들 간의 상관 패턴을 분석하여 소수의 잠재 요인(factor)을 발견하는 다변량 통계 기법입니다. 설문지 개발, 구성타당도 검증, 데이터 축소에 널리 사용됩니다. StatMate에서 KMO 검정, 요인 적재량, 공통성 등을 간편하게 계산할 수 있습니다." },
+        { question: "요인 수는 어떻게 결정하나요?", answer: "주로 카이저 기준(고유값 > 1), 스크리 도표의 꺾이는 점(elbow), 그리고 병렬 분석(parallel analysis)을 함께 사용하여 결정합니다. 카이저 기준만 사용하면 요인을 과다 추출할 수 있으므로, 여러 기준을 종합적으로 판단하는 것이 권장됩니다." },
+        { question: "KMO 검정이란?", answer: "KMO(Kaiser-Meyer-Olkin) 검정은 요인분석에 대한 자료의 적합성을 평가하는 지표로, 0에서 1 사이의 값을 가집니다. .60 이상이면 수용 가능하고, .80 이상이면 우수합니다. KMO가 .50 미만이면 요인분석을 실시하기에 부적합한 자료입니다." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 추출 방법, 회전 방법, KMO 값, Bartlett 검정 결과, 추출된 요인 수, 설명된 분산 비율, 요인 적재량을 보고합니다. StatMate는 APA 형식의 요인분석 결과를 자동으로 생성하여 논문 작성 시 바로 활용할 수 있습니다." },
+      ]
+    : [
+        { question: "What is exploratory factor analysis?", answer: "Exploratory Factor Analysis (EFA) is a multivariate statistical technique that examines correlation patterns among observed variables to discover a smaller set of latent factors explaining shared variance. It is widely used for survey development, construct validation, and data reduction. StatMate provides KMO tests, factor loadings, communalities, and variance explained in one click." },
+        { question: "How do I determine the number of factors?", answer: "Use multiple criteria together: the Kaiser criterion (eigenvalues > 1), the scree plot elbow point, and parallel analysis (comparing actual eigenvalues to random data). Relying on the Kaiser criterion alone tends to over-extract factors, especially with many variables." },
+        { question: "What is the KMO test?", answer: "The Kaiser-Meyer-Olkin (KMO) test measures sampling adequacy for factor analysis, ranging from 0 to 1. Values >= .60 are acceptable and >= .80 are meritorious. A KMO below .50 indicates that the correlation patterns are inadequate for factor extraction and the analysis should not proceed." },
+        { question: "How do I report factor analysis results in APA format?", answer: "APA 7th edition requires reporting the extraction method, rotation method, KMO value, Bartlett's test result, number of factors retained, total variance explained, and factor loadings. StatMate automatically generates APA-formatted factor analysis results that you can copy directly into your research manuscript." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

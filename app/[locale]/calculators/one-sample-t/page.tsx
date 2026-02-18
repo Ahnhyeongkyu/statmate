@@ -4,6 +4,7 @@ import { OneSampleTCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function OneSampleTPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("oneSampleT");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "단일표본 t-검정이란?", answer: "단일표본 t-검정은 하나의 표본 평균이 알려진 모집단 값 또는 가설적 기준값과 통계적으로 유의미하게 다른지 검정하는 방법입니다. 예를 들어, 공장에서 생산된 제품의 무게가 목표 무게와 다른지 확인할 때 사용합니다. StatMate에서 APA 형식의 결과를 즉시 확인할 수 있습니다." },
+        { question: "단일표본 t-검정은 언제 사용하나요?", answer: "하나의 연속형 변수 집단이 있고, 그 평균을 특정 기준값과 비교하고 싶을 때 사용합니다. 품질 관리(제품 무게가 기준치와 다른지), 임상연구(치료 후 수치가 목표값에 도달했는지), 교육(학급 평균이 전국 평균과 다른지) 등에서 흔히 활용됩니다." },
+        { question: "단일표본 t-검정의 가정은?", answer: "단일표본 t-검정은 네 가지 가정이 필요합니다: (1) 연속형(구간/비율) 척도의 종속변수, (2) 관측치의 독립성, (3) 대략적인 정규분포(표본 30 이상이면 중심극한정리로 충분), (4) 심각한 이상치가 없을 것. 정규성이 의심되면 Wilcoxon 부호순위 검정을 고려하세요." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판 형식에 따라 t-통계량, 자유도, p-값, 효과크기(Cohen's d), 신뢰구간을 보고합니다. 예: '단일표본 t-검정 결과, 표본 평균(M = 81.20, SD = 8.75)은 검정값 80.00과 유의미한 차이가 없었다, t(9) = 0.43, p = .675, d = 0.14.' StatMate는 이 형식을 자동으로 생성해 줍니다." },
+      ]
+    : [
+        { question: "What is a one-sample t-test?", answer: "A one-sample t-test determines whether the mean of a single sample differs significantly from a known or hypothesized population value. For example, you can test whether a factory's product weight deviates from the target specification. StatMate provides instant APA-formatted results for one-sample t-tests with effect sizes and confidence intervals." },
+        { question: "When should I use a one-sample t-test?", answer: "Use a one-sample t-test when you have one group of continuous measurements and want to compare its mean to a specific reference value. Common applications include quality control (testing if product measurements meet standards), clinical research (checking if treatment outcomes reach target levels), and education (comparing class averages to national norms)." },
+        { question: "What are the assumptions of a one-sample t-test?", answer: "The one-sample t-test requires four assumptions: (1) a continuous dependent variable, (2) independence of observations, (3) approximate normality (with n>30, the Central Limit Theorem ensures this), and (4) no significant outliers. If normality is violated with small samples, consider the Wilcoxon signed-rank test as a non-parametric alternative." },
+        { question: "How do I report one-sample t-test results in APA format?", answer: "Report the t-statistic, degrees of freedom, p-value, Cohen's d effect size, and confidence interval following APA 7th edition guidelines. For example: 'A one-sample t-test indicated that the sample mean (M = 81.20, SD = 8.75) did not differ significantly from 80.00, t(9) = 0.43, p = .675, d = 0.14.' StatMate automatically generates this formatted output." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

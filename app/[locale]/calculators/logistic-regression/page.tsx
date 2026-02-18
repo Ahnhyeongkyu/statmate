@@ -4,6 +4,7 @@ import { LogisticRegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -47,12 +48,28 @@ export default async function LogisticRegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("logisticRegression");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "로지스틱 회귀란?", answer: "로지스틱 회귀(Logistic Regression)는 종속변수가 이분형(예: 합격/불합격, 구매/비구매)일 때 사용하는 통계 분석 방법입니다. 시그모이드 함수를 사용하여 예측 확률을 0과 1 사이로 제한하며, 각 예측변수가 결과 발생 확률에 미치는 영향을 분석합니다. StatMate에서 오즈비, 분류표 등을 자동으로 계산할 수 있습니다." },
+        { question: "선형회귀 대신 로지스틱 회귀를 언제 사용하나요?", answer: "종속변수가 연속형이면 선형회귀를, 이분형(0/1)이면 로지스틱 회귀를 사용합니다. 예를 들어 시험 점수를 예측할 때는 선형회귀, 합격 여부를 예측할 때는 로지스틱 회귀가 적합합니다. 연속형 종속변수에 로지스틱 회귀를 적용하면 잘못된 결과를 얻게 됩니다." },
+        { question: "오즈비(OR)는 어떻게 해석하나요?", answer: "오즈비(Odds Ratio)는 예측변수가 1단위 증가할 때 결과 발생 오즈의 변화 배수입니다. OR > 1이면 발생 확률 증가, OR < 1이면 감소, OR = 1이면 효과 없음을 의미합니다. 예를 들어 OR = 1.5는 예측변수가 1단위 증가하면 결과 발생 오즈가 50% 증가한다는 뜻입니다." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 전체 모형의 카이제곱 검정, Nagelkerke R², 분류 정확도, 그리고 각 예측변수의 B, Wald χ², p, OR, 95% CI를 보고합니다. StatMate는 이 모든 결과를 APA 형식으로 자동 생성하여 논문 작성을 지원합니다." },
+      ]
+    : [
+        { question: "What is logistic regression?", answer: "Logistic regression is a statistical method used when the outcome variable is binary (e.g., pass/fail, yes/no). It uses the sigmoid function to model the probability of an event occurring, constrained between 0 and 1. StatMate's logistic regression calculator provides odds ratios, classification tables, and model fit statistics automatically." },
+        { question: "When should I use logistic regression instead of linear regression?", answer: "Use linear regression when your outcome is continuous, and logistic regression when your outcome is binary (0/1). For example, predicting exam scores calls for linear regression, while predicting pass/fail status requires logistic regression. Applying linear regression to a binary outcome violates key assumptions and produces misleading results." },
+        { question: "How do I interpret odds ratios?", answer: "An odds ratio (OR) represents the multiplicative change in odds of the outcome for a one-unit increase in the predictor. OR > 1 indicates increased odds, OR < 1 indicates decreased odds, and OR = 1 means no effect. For example, OR = 1.5 means the odds increase by 50% for each one-unit increase in the predictor." },
+        { question: "How do I report logistic regression results in APA format?", answer: "APA 7th edition requires reporting the omnibus chi-square test, Nagelkerke R², classification accuracy, and each predictor's B, Wald χ², p-value, OR, and 95% CI. StatMate automatically generates all of these results in APA format, ready to copy into your research paper or dissertation." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

@@ -4,6 +4,7 @@ import { CronbachAlphaCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -45,12 +46,28 @@ export default async function CronbachAlphaPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("cronbachAlpha");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "크론바흐 알파란?", answer: "크론바흐 알파(Cronbach's alpha)는 설문지나 검사 도구의 내적 일관성 신뢰도를 측정하는 가장 널리 사용되는 통계 지표입니다. 동일한 구성개념을 측정하는 문항들이 얼마나 일관되게 응답되는지를 0에서 1 사이의 값으로 나타냅니다. StatMate에서 간편하게 계산할 수 있습니다." },
+        { question: "좋은 크론바흐 알파 값은?", answer: "일반적으로 .70 이상이면 수용 가능하고, .80 이상이면 양호, .90 이상이면 우수한 신뢰도로 해석합니다. 다만 .95를 초과하면 문항 간 중복 가능성이 있으므로 문항 간 상관행렬을 확인해야 합니다." },
+        { question: "크론바흐 알파는 언제 사용하나요?", answer: "리커트 척도와 같은 다항목 설문지의 내적 일관성을 평가할 때 사용합니다. 설문 개발, 타당도 검증, 연구 논문에서 측정도구의 신뢰도를 보고할 때 필수적입니다. 단, 모든 문항이 동일한 구성개념을 측정해야 합니다." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 척도명, 문항 수, 크론바흐 알파 값을 보고합니다. 예: '고객만족도 척도의 내적 일관성을 크론바흐 알파로 평가한 결과, 5개 문항 척도는 양호한 신뢰도를 보였다(α = .85).' StatMate가 APA 형식의 결과를 자동 생성합니다." },
+      ]
+    : [
+        { question: "What is Cronbach's alpha?", answer: "Cronbach's alpha is the most widely used statistical measure of internal consistency reliability for questionnaires and scales. It evaluates how consistently a set of items measuring the same construct relate to one another, producing a value between 0 and 1. StatMate makes it easy to calculate alpha along with item-level diagnostics." },
+        { question: "What is a good Cronbach's alpha value?", answer: "Generally, alpha >= .70 is acceptable for research, >= .80 is good, and >= .90 is excellent. However, values above .95 may indicate item redundancy rather than superior reliability. Always inspect the inter-item correlation matrix alongside the alpha value." },
+        { question: "When should I use Cronbach's alpha?", answer: "Use Cronbach's alpha when you need to assess the internal consistency of a multi-item scale, such as a Likert-type questionnaire. It is essential for scale development, construct validation, and reporting measurement reliability in research papers. All items must measure the same underlying construct." },
+        { question: "How do I report Cronbach's alpha in APA format?", answer: "APA 7th edition requires reporting the scale name, number of items, and the alpha value. For example: 'Internal consistency of the 5-item Customer Satisfaction Scale was good (α = .85).' StatMate automatically generates APA-formatted reliability results you can use directly in your manuscript." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

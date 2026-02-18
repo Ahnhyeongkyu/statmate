@@ -4,6 +4,7 @@ import { WilcoxonCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function WilcoxonPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("wilcoxon");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "Wilcoxon 부호순위 검정이란?", answer: "Wilcoxon 부호순위 검정은 두 관련 표본(대응표본 또는 반복측정)의 분포를 비교하는 비모수 통계 검정입니다. 대응표본 t-검정의 비모수 대안으로, 데이터가 정규분포를 따르지 않거나 서열 척도일 때 사용합니다. StatMate에서 W 통계량, z 점수, 효과크기를 APA 형식으로 즉시 확인할 수 있습니다." },
+        { question: "대응표본 t-검정 대신 Wilcoxon을 언제 사용하나요?", answer: "대응(짝) 데이터에서 차이값의 정규성이 의심될 때, 데이터가 서열 척도(예: 리커트 척도)일 때, 표본 크기가 작아 정규성 검증이 어려울 때, 또는 이상치에 덜 민감한 분석이 필요할 때 Wilcoxon 부호순위 검정을 사용합니다. 정규성이 확실하면 대응표본 t-검정이 약간 더 검정력이 높습니다." },
+        { question: "Wilcoxon 검정의 가정은?", answer: "Wilcoxon 부호순위 검정은 네 가지 가정이 필요합니다: (1) 대응 관측치(사전-사후 또는 짝짓기 설계), (2) 서열 이상의 측정 척도, (3) 차이값 분포의 대칭성(정규성보다 약한 가정), (4) 쌍 간의 독립성. 차이값이 심하게 비대칭이면 부호검정(sign test)을 고려하세요." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 W 통계량, z 근사값, p-값, 효과크기(순위이연상관 r), 각 조건의 중앙값을 보고합니다. 예: 'Wilcoxon 부호순위 검정 결과, 사후 점수(Mdn = 85.00)가 사전 점수(Mdn = 81.00)보다 유의미하게 높았다, W = 0.0, z = -2.80, p = .005, r = 1.00.' StatMate가 이 형식을 자동으로 생성합니다." },
+      ]
+    : [
+        { question: "What is the Wilcoxon signed-rank test?", answer: "The Wilcoxon signed-rank test is a non-parametric test that compares two related samples (paired or repeated measurements). It serves as the non-parametric alternative to the paired samples t-test, working with ranks of differences rather than raw values. StatMate calculates the W statistic, z-score, and rank-biserial effect size with instant APA-formatted results." },
+        { question: "When should I use Wilcoxon instead of paired t-test?", answer: "Use the Wilcoxon signed-rank test when your paired data violate the normality assumption, when data are measured on an ordinal scale (e.g., Likert items), when sample sizes are too small to verify normality, or when you need an analysis that is robust to outliers. If normality clearly holds, the paired t-test is slightly more powerful." },
+        { question: "What are the assumptions of the Wilcoxon test?", answer: "The Wilcoxon signed-rank test requires four assumptions: (1) paired observations from repeated measures or matched designs, (2) ordinal or continuous measurement scale, (3) approximately symmetric distribution of differences (weaker than normality), and (4) independence between pairs. If the differences are highly skewed, consider using the sign test instead." },
+        { question: "How do I report Wilcoxon results in APA format?", answer: "Report the W statistic, z-approximation, p-value, rank-biserial effect size (r), and medians for each condition following APA 7th edition. For example: 'A Wilcoxon signed-rank test indicated that post-test scores (Mdn = 85.00) were significantly higher than pre-test scores (Mdn = 81.00), W = 0.0, z = -2.80, p = .005, r = 1.00.' StatMate generates this format automatically." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

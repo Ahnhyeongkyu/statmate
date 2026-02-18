@@ -4,6 +4,7 @@ import { MannWhitneyCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function MannWhitneyPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("mannWhitney");
+  const isKo = locale === "ko";
+  const faqs: FaqItem[] = isKo
+    ? [
+        { question: "Mann-Whitney U 검정이란?", answer: "Mann-Whitney U 검정(윌콕슨 순위합 검정이라고도 함)은 두 독립 집단의 분포를 비교하는 비모수 통계 검정입니다. 정규분포를 가정하지 않으므로 서열 데이터, 왜도가 큰 분포, 소표본에서 특히 유용합니다. StatMate에서 U 통계량, z 점수, 효과크기를 APA 형식으로 즉시 확인할 수 있습니다." },
+        { question: "t-검정 대신 Mann-Whitney를 언제 사용하나요?", answer: "데이터가 정규분포를 따르지 않거나, 서열 척도(예: 리커트 척도)이거나, 표본 크기가 매우 작아 정규성을 검증하기 어렵거나, 이상치가 있어 평균이 왜곡될 수 있을 때 Mann-Whitney U 검정을 사용합니다. 독립표본 t-검정의 비모수 대안으로, 정규성 가정을 충족하지 못할 때 더 신뢰할 수 있는 결과를 제공합니다." },
+        { question: "U 통계량은 어떻게 해석하나요?", answer: "U 통계량은 두 집단 간의 쌍별 비교에서 한 집단이 다른 집단보다 높은 순위를 가진 횟수를 나타냅니다. U 값이 작을수록 두 집단의 분포가 더 많이 분리되어 있음을 의미합니다. 실질적 해석에는 순위이연상관(rank-biserial r) 효과크기를 함께 확인하는 것이 좋습니다." },
+        { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 U 통계량, z 값, p-값, 효과크기(순위이연상관 r), 각 집단의 중앙값과 표본 크기를 보고합니다. 예: 'Mann-Whitney U 검정 결과, 실험군(Mdn = 84.0, n = 8)이 대조군(Mdn = 70.0, n = 8)보다 유의미하게 높았다, U = 5.0, z = -2.84, p = .005, r = .84.' StatMate가 이 형식을 자동으로 생성합니다." },
+      ]
+    : [
+        { question: "What is the Mann-Whitney U test?", answer: "The Mann-Whitney U test (also called the Wilcoxon rank-sum test) is a non-parametric test that compares the distributions of two independent groups. It does not require normally distributed data, making it ideal for ordinal data, skewed distributions, or small samples. StatMate calculates the U statistic, z-score, and rank-biserial effect size with instant APA-formatted results." },
+        { question: "When should I use Mann-Whitney instead of t-test?", answer: "Use the Mann-Whitney U test when your data are not normally distributed, measured on an ordinal scale (e.g., Likert items), have very small sample sizes where normality cannot be verified, or contain outliers that would distort parametric results. It is the non-parametric alternative to the independent samples t-test and provides more reliable results when t-test assumptions are violated." },
+        { question: "How do I interpret the U statistic?", answer: "The U statistic represents the number of times observations in one group precede observations in the other group in a ranked ordering. A smaller U value indicates greater separation between the two groups. For practical interpretation, use the rank-biserial correlation (r) effect size, where values near 0 indicate similar distributions and values near 1 indicate strong group separation." },
+        { question: "How do I report Mann-Whitney results in APA format?", answer: "Report the U statistic, z-value, p-value, rank-biserial effect size (r), and descriptive statistics (medians and sample sizes) for each group following APA 7th edition. For example: 'A Mann-Whitney U test indicated that treatment scores (Mdn = 84.0, n = 8) were significantly higher than placebo scores (Mdn = 70.0, n = 8), U = 5.0, z = -2.84, p = .005, r = .84.' StatMate generates this format automatically." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>
