@@ -29,6 +29,7 @@ import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { GroupBoxplot } from "@/components/charts/group-boxplot";
+import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeAnova, decodeAnova, useShareUrl, useUrlParams } from "@/lib/url-params";
@@ -220,6 +221,9 @@ function ResultsDisplay({ result, groupsData }: { result: FriedmanResult; groups
         </CardContent>
       </Card>
 
+      {/* Assumption Checks */}
+      <AssumptionChecks testType="friedman" groups={groupsData.map(g => g.values)} />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="friedman"
@@ -360,7 +364,7 @@ function FriedmanCalculatorInner() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div className="space-y-6">
         <Card>
           <CardHeader>

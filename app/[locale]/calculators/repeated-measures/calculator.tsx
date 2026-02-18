@@ -343,7 +343,7 @@ function ResultsDisplay({
       </Card>
 
       {/* Assumption Checks */}
-      <AssumptionChecks testType="anova" groups={groupsData.map((g) => g.values)} />
+      <AssumptionChecks testType="repeated-measures" groups={groupsData.map((g) => g.values)} />
 
       {/* AI Interpretation */}
       <AiInterpretation
@@ -497,7 +497,7 @@ function RepeatedMeasuresCalculatorInner() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div className="space-y-6">
         <Card>
           <CardHeader>

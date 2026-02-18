@@ -5,7 +5,7 @@ export default function CalculatorLoading() {
         <div className="h-9 w-64 rounded bg-gray-200" />
         <div className="mt-2 h-5 w-96 rounded bg-gray-100" />
       </div>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="space-y-4">
           <div className="h-64 rounded-lg border bg-gray-50" />
           <div className="flex gap-3">
