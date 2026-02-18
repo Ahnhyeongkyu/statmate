@@ -754,7 +754,7 @@ function FactorAnalysisCalculatorInner() {
         </div>
       </div>
 
-      <div>
+      <div aria-live="polite">
         {result ? (
           <ResultsDisplay result={result} />
         ) : (

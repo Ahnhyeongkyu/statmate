@@ -426,7 +426,7 @@ function CorrelationCalculatorInner() {
         </div>
       </div>
 
-      <div>
+      <div aria-live="polite">
         {result ? (
           <ResultsDisplay result={result} xData={xData} yData={yData} />
         ) : (

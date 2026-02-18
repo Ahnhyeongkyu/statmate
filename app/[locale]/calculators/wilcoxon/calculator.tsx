@@ -326,7 +326,7 @@ function WilcoxonCalculatorInner() {
       </div>
 
       {/* Results Section */}
-      <div>
+      <div aria-live="polite">
         {result ? (
           <ResultsDisplay result={result} preData={parsedPre} postData={parsedPost} />
         ) : (

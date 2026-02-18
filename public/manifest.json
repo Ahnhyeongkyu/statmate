@@ -1,0 +1,16 @@
+{
+  "name": "StatMate - Free Online Statistics Calculators",
+  "short_name": "StatMate",
+  "description": "Free online statistics calculators with APA-formatted results",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

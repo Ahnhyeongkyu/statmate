@@ -335,7 +335,7 @@ function OneSampleTCalculatorInner() {
       </div>
 
       {/* Results Section */}
-      <div>
+      <div aria-live="polite">
         {result ? (
           <ResultsDisplay result={result} data={parsedData} />
         ) : (

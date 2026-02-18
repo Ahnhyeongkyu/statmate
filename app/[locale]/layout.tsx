@@ -126,6 +126,10 @@ const allCalculatorKeys = [
   { key: "oneSampleT" as const, href: "/calculators/one-sample-t" },
   { key: "mannWhitney" as const, href: "/calculators/mann-whitney" },
   { key: "wilcoxon" as const, href: "/calculators/wilcoxon" },
+  { key: "multipleRegression" as const, href: "/calculators/multiple-regression" },
+  { key: "cronbachAlpha" as const, href: "/calculators/cronbach-alpha" },
+  { key: "logisticRegression" as const, href: "/calculators/logistic-regression" },
+  { key: "factorAnalysis" as const, href: "/calculators/factor-analysis" },
 ];
 
 export default async function LocaleLayout({
@@ -147,6 +151,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#2563eb" />
         <AdSenseScript />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>

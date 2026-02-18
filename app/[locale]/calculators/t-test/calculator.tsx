@@ -455,7 +455,7 @@ function TTestCalculatorInner() {
       </div>
 
       {/* Results Section */}
-      <div>
+      <div aria-live="polite">
         {result ? (
           <ResultsDisplay result={result} group1Data={parsedG1} group2Data={parsedG2} />
         ) : (
