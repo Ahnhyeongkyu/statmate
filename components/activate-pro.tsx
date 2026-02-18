@@ -25,7 +25,27 @@ export function useIsPro(): boolean {
         setIsPro(false);
         return;
       }
-      setIsPro(data.valid === true);
+      // Show Pro UI immediately from cache (fast UX)
+      if (data.valid) setIsPro(true);
+
+      // Server-side verification (async) — revoke if invalid
+      if (data.licenseKey) {
+        fetch("/api/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ licenseKey: data.licenseKey }),
+        })
+          .then(res => res.json())
+          .then(result => {
+            if (!result.valid) {
+              localStorage.removeItem(PRO_STORAGE_KEY);
+              setIsPro(false);
+            }
+          })
+          .catch(() => {
+            // Keep cached state on network error (offline tolerance)
+          });
+      }
     } catch {
       setIsPro(false);
     }

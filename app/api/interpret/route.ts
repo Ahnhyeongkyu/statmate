@@ -1,35 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { validateLicense } from "@/lib/license";
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
-
-// Simple in-memory license cache (valid for 10 minutes)
-const licenseCache = new Map<string, { valid: boolean; expiresAt: number }>();
-const CACHE_TTL = 10 * 60 * 1000;
-
-async function validateLicense(licenseKey: string): Promise<boolean> {
-  const cached = licenseCache.get(licenseKey);
-  if (cached && Date.now() < cached.expiresAt) {
-    return cached.valid;
-  }
-
-  try {
-    const res = await fetch(
-      "https://api.lemonsqueezy.com/v1/licenses/validate",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ license_key: licenseKey }),
-      }
-    );
-    const data = await res.json();
-    const valid = res.ok && data.valid === true;
-    licenseCache.set(licenseKey, { valid, expiresAt: Date.now() + CACHE_TTL });
-    return valid;
-  } catch {
-    return false;
-  }
-}
 
 interface InterpretRequest {
   testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon";

@@ -213,6 +213,25 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
     if (!isPro) return;
     setExporting(true);
     try {
+      // Server-side license verification before export
+      let licenseKey = "";
+      try {
+        const stored = localStorage.getItem("statmate_pro");
+        if (stored) licenseKey = JSON.parse(stored).licenseKey || "";
+      } catch { /* ignore */ }
+
+      const verifyRes = await fetch("/api/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ licenseKey }),
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.valid) {
+        localStorage.removeItem("statmate_pro");
+        window.location.reload();
+        return;
+      }
+
       await onExport();
       trackWordExport(testName);
     } finally {

@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimitCheck } from "@/lib/license";
 
 const LS_API_KEY = process.env.LEMONSQUEEZY_API_KEY;
 
 export async function POST(request: NextRequest) {
+  // Rate limiting: 10 requests per minute per IP
+  const ip = request.headers.get("x-forwarded-for") || "unknown";
+  if (!rateLimitCheck(ip, 10)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
+  }
+
   if (!LS_API_KEY) {
     return NextResponse.json(
       { error: "Payment system is not configured." },
