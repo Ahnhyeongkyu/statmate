@@ -25,7 +25,7 @@ import {
   CopyToast,
   useCopyToast,
 } from "@/components/pro-feature";
-import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { GroupBoxplot } from "@/components/charts/group-boxplot";

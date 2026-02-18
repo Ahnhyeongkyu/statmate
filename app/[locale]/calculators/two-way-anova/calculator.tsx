@@ -128,7 +128,7 @@ function ResultsDisplay({
   const { show, copy } = useCopyToast();
 
   const renderEffectRow = (label: string, e: EffectResult) => (
-    <tr>
+    <tr key={label}>
       <td className="py-1.5">{label}</td>
       <td className="py-1.5 text-right">{e.ss.toFixed(2)}</td>
       <td className="py-1.5 text-right">{e.df}</td>

@@ -45,6 +45,9 @@ export function independentTTest(group1: number[], group2: number[]): TTestResul
   const s2 = sd(group2);
 
   const pooledSE = Math.sqrt(variance(group1) / n1 + variance(group2) / n2);
+  if (pooledSE === 0) {
+    throw new Error("Cannot compute t-test: both groups have zero variance");
+  }
   const t = (m1 - m2) / pooledSE;
 
   // Welch's df
@@ -93,6 +96,9 @@ export function pairedTTest(group1: number[], group2: number[]): TTestResult {
   const meanDiff = mean(diffs);
   const sdDiff = sd(diffs);
   const seDiff = sdDiff / Math.sqrt(n);
+  if (seDiff === 0) {
+    throw new Error("Cannot compute paired t-test: all differences are identical");
+  }
   const df = n - 1;
   const t = meanDiff / seDiff;
 

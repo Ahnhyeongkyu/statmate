@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { descriptiveStats, type DescriptiveResult } from "@/lib/statistics/descriptive";
@@ -20,7 +19,7 @@ import {
   CopyToast,
   useCopyToast,
 } from "@/components/pro-feature";
-import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { Histogram, Boxplot } from "@/components/descriptive-charts";
 import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";

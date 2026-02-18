@@ -23,8 +23,8 @@ for (let i = 1; i <= 1000; i++) {
 function logFactorial(n: number): number {
   if (n < 0) return 0;
   if (n <= 1000) return LOG_FACTORIALS[n];
-  // Stirling's approximation for n > 1000
-  return n * Math.log(n) - n + 0.5 * Math.log(2 * Math.PI * n);
+  // Stirling's approximation for n > 1000 (with 1/(12n) correction)
+  return n * Math.log(n) - n + 0.5 * Math.log(2 * Math.PI * n) + 1 / (12 * n);
 }
 
 /**

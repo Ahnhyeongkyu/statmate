@@ -28,7 +28,7 @@ import {
   CopyToast,
   useCopyToast,
 } from "@/components/pro-feature";
-import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { DataTextarea } from "@/components/data-textarea";
 import { GoodnessBarChart, IndependenceBarChart } from "@/components/charts/chi-square-chart";
 import { ShareButton } from "@/components/share-button";

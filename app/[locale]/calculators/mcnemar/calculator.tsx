@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -25,7 +24,7 @@ import {
   CopyToast,
   useCopyToast,
 } from "@/components/pro-feature";
-import { trackCalculate, trackLoadExample, trackCopyResult } from "@/lib/analytics";
+import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import {
