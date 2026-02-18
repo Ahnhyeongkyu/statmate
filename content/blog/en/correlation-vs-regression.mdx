@@ -1,0 +1,152 @@
+---
+title: "Correlation vs Regression — When to Use Which?"
+description: "Understand the key differences between correlation and regression analysis, when each is appropriate, and how to interpret their results correctly in your research."
+date: "2026-02-17"
+category: "Statistics Basics"
+tags: ["correlation", "regression", "Pearson r", "R-squared", "statistical analysis"]
+---
+
+## Two Tools, Different Jobs
+
+Correlation and regression are among the most widely used statistical techniques in research, and they are closely related. Both examine the relationship between two continuous variables. However, they answer fundamentally different questions, and confusing the two can lead to misinterpretation of your findings.
+
+This guide explains what each technique does, when to use one over the other, and how they connect mathematically. By the end, you will be able to confidently choose the right approach for your research question.
+
+## What Is Correlation?
+
+Correlation measures the **strength and direction** of the linear relationship between two variables. It answers the question: when one variable changes, does the other tend to change as well, and if so, how strongly?
+
+The most common measure is the **Pearson correlation coefficient (*r*)**, which ranges from -1 to +1:
+
+| Value of *r* | Interpretation |
+|---------------|----------------|
+| +1.00 | Perfect positive relationship |
+| +0.70 to +0.99 | Strong positive relationship |
+| +0.40 to +0.69 | Moderate positive relationship |
+| +0.10 to +0.39 | Weak positive relationship |
+| 0.00 | No linear relationship |
+| -0.10 to -0.39 | Weak negative relationship |
+| -0.40 to -0.69 | Moderate negative relationship |
+| -0.70 to -0.99 | Strong negative relationship |
+| -1.00 | Perfect negative relationship |
+
+### Key Characteristics of Correlation
+
+- **Symmetric:** The correlation between X and Y is the same as the correlation between Y and X. Neither variable is treated as the cause or the outcome.
+- **Unitless:** The value of *r* does not depend on the units of measurement. Whether you measure height in centimeters or inches, the correlation with weight remains the same.
+- **Limited to linear relationships:** Pearson's *r* only captures straight-line associations. Two variables can have a strong curved relationship while showing a weak Pearson correlation.
+
+### When to Use Correlation
+
+Correlation is the right choice when you want to:
+
+- Explore whether two variables are associated before building a more complex model
+- Report the strength of association without implying directionality
+- Compare the strength of relationships across different variable pairs
+- Conduct a preliminary analysis during the early stages of research
+
+**Example:** A health researcher wants to know whether hours of sleep and self-reported stress levels are related among college students. There is no assumption about which variable influences the other. Pearson correlation is appropriate here.
+
+## What Is Regression?
+
+Regression goes a step further than correlation. It models the **specific mathematical relationship** between a predictor variable (X) and an outcome variable (Y), allowing you to make predictions. Simple linear regression fits a straight line to the data and produces an equation:
+
+**Y = a + bX**
+
+Where:
+- **Y** is the predicted value of the outcome variable
+- **a** is the intercept (the value of Y when X = 0)
+- **b** is the slope (how much Y changes for each one-unit increase in X)
+- **X** is the value of the predictor variable
+
+### Key Characteristics of Regression
+
+- **Directional:** Regression explicitly designates one variable as the predictor and the other as the outcome. Regressing Y on X gives different results than regressing X on Y.
+- **Predictive:** The regression equation allows you to estimate the expected value of Y for any given value of X.
+- **Extendable:** Unlike correlation, regression naturally extends to multiple predictors. Multiple regression includes two or more predictor variables in the same model.
+
+### When to Use Regression
+
+Regression is the right choice when you want to:
+
+- Predict one variable based on another
+- Quantify how much the outcome changes per unit change in the predictor
+- Control for additional variables by including them as covariates
+- Test theoretical models about which variables influence an outcome
+
+**Example:** An educational researcher hypothesizes that study hours predict exam performance. The researcher designates study hours as the predictor and exam score as the outcome. Simple linear regression produces an equation showing, for instance, that each additional hour of studying is associated with a 3.2-point increase in exam score.
+
+## Key Differences at a Glance
+
+| Feature | Correlation | Regression |
+|---------|------------|------------|
+| Purpose | Measures strength of association | Models and predicts relationships |
+| Direction | Symmetric (no IV/DV distinction) | Asymmetric (predictor → outcome) |
+| Output | Correlation coefficient (*r*) | Equation (intercept + slope) |
+| Prediction | No | Yes |
+| Multiple predictors | Not directly | Yes (multiple regression) |
+| Units | Unitless | Slope is in original units |
+
+## The Relationship Between *r* and R-squared
+
+One of the most elegant connections in statistics is the relationship between the Pearson correlation coefficient and the coefficient of determination in simple linear regression.
+
+**R-squared = r-squared**
+
+In simple linear regression (one predictor), the R-squared value is literally the square of the Pearson correlation coefficient. If the correlation between study hours and exam scores is *r* = .60, then R-squared = .36, meaning that 36% of the variance in exam scores can be explained by study hours.
+
+This relationship only holds for simple regression with one predictor. In multiple regression with several predictors, R-squared reflects the combined explanatory power of all predictors and cannot be derived from a single correlation.
+
+### Interpreting R-Squared
+
+R-squared tells you the **proportion of variance** in the outcome variable that is accounted for by the predictor(s). Some guidelines:
+
+| R-squared | Variance Explained | General Interpretation |
+|-----------|-------------------|----------------------|
+| .01 | 1% | Very small effect |
+| .09 | 9% | Small effect |
+| .25 | 25% | Medium effect |
+| .49+ | 49%+ | Large effect |
+
+Keep in mind that what counts as a meaningful R-squared depends heavily on your field. In physics, R-squared values below .90 might be disappointing. In social science research, an R-squared of .20 can be a noteworthy finding.
+
+## Practical Research Examples
+
+### Example 1: Health Psychology
+
+A researcher studies the relationship between daily exercise minutes and sleep quality scores in 200 adults.
+
+- **Correlation approach:** Compute Pearson's *r* to determine whether exercise and sleep quality are linearly related and how strong the association is. Result: *r* = .45, indicating a moderate positive relationship.
+- **Regression approach:** Use exercise minutes to predict sleep quality scores. The regression equation reveals that each additional 10 minutes of daily exercise is associated with a 0.8-point improvement in sleep quality.
+
+Both analyses are valid, but they answer different questions. The correlation tells you the variables are associated. The regression tells you by how much sleep quality is expected to change for a given change in exercise.
+
+### Example 2: Marketing Research
+
+A company wants to understand the relationship between advertising spend and monthly sales revenue.
+
+- **Correlation** shows that the two variables are strongly positively related (*r* = .78).
+- **Regression** provides an actionable model: for every additional $1,000 in advertising, sales increase by an estimated $4,200. This prediction is directly useful for budget planning.
+
+### Example 3: Education
+
+A school district examines whether class size is related to standardized test scores across 80 schools.
+
+- **Correlation** reveals a moderate negative relationship (*r* = -.42), suggesting that larger classes tend to have lower scores.
+- **Regression** quantifies the relationship: each additional student per class is associated with a 1.5-point decrease in average test score, while controlling for school funding level in a multiple regression model.
+
+## The Causation Caveat
+
+Neither correlation nor simple regression establishes causation. A strong correlation between ice cream sales and drowning incidents does not mean ice cream causes drowning. Both are influenced by a third variable: warm weather.
+
+Similarly, a regression model predicting Y from X does not prove that X causes Y. The directionality in regression is a mathematical designation, not a causal claim. Establishing causation requires experimental design with random assignment, or at minimum, advanced techniques such as longitudinal data analysis, instrumental variables, or structural equation modeling.
+
+When writing up your results, use language that reflects association rather than causation. Write "X was associated with Y" or "X predicted Y" rather than "X caused Y" unless your study design genuinely supports a causal inference.
+
+## Running Correlation and Regression in StatMate
+
+StatMate makes it straightforward to run both analyses. For correlation, enter your two variables and StatMate computes Pearson's *r* (or Spearman's rho for non-normal data), along with a confidence interval and significance test formatted in APA style.
+
+For regression, designate your predictor and outcome variables, and StatMate produces the full regression equation, R-squared value, significance tests for the slope and intercept, and a residual analysis to help you check assumptions. All results are formatted for direct inclusion in your manuscript.
+
+Whether you are exploring an association or building a predictive model, understanding the distinction between correlation and regression ensures that you choose the right tool and interpret your results accurately.

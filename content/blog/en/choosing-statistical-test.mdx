@@ -1,0 +1,128 @@
+---
+title: "Which Statistical Test Should I Use? — A Complete Guide for Beginners"
+description: "Not sure which statistical test to use for your data? This beginner-friendly guide walks you through choosing the right test based on your data type, number of groups, and research design."
+date: "2026-02-17"
+category: "Statistics Basics"
+tags: ["statistical test", "choosing test", "t-test", "ANOVA", "chi-square", "non-parametric"]
+---
+
+## The Most Common Question in Statistics
+
+You have collected your data, organized your spreadsheet, and now you are staring at your screen wondering: which statistical test should I use? This is arguably the most frequently asked question among students taking their first research methods course, and choosing the wrong test can undermine your entire analysis.
+
+The good news is that selecting a statistical test follows a logical decision process. By answering a few straightforward questions about your data, you can narrow down your options quickly. This guide walks you through that process step by step.
+
+## Step 1: Identify Your Research Question
+
+Before thinking about tests, clarify what you are trying to learn from your data. Most research questions fall into one of these categories:
+
+- **Comparing groups:** Is there a difference between two or more groups?
+- **Examining relationships:** Is there an association between two variables?
+- **Predicting outcomes:** Can one or more variables predict another?
+
+The type of question you are asking determines the broad family of tests you need.
+
+## Step 2: Determine Your Variable Types
+
+The single most important factor in choosing a statistical test is the type of data you have. Variables generally fall into two categories:
+
+**Continuous (quantitative) variables** are measured on a numeric scale where differences between values are meaningful. Examples include height, test scores, reaction time, and income.
+
+**Categorical (qualitative) variables** place observations into distinct groups or categories. Examples include gender, treatment condition, diagnosis type, and yes/no responses.
+
+| Outcome Variable | Predictor Variable | Typical Tests |
+|------------------|--------------------|---------------|
+| Continuous | Categorical (2 groups) | t-test |
+| Continuous | Categorical (3+ groups) | ANOVA |
+| Continuous | Continuous | Correlation, Regression |
+| Categorical | Categorical | Chi-square test |
+
+## Step 3: Count Your Groups
+
+If you are comparing groups, the number of groups matters:
+
+### Two Groups
+
+When comparing exactly two groups, the **t-test** is your primary tool. But which type?
+
+- **Independent samples t-test:** The two groups consist of different participants. For example, comparing exam scores between a treatment group and a control group.
+- **Paired samples t-test:** The same participants are measured twice, or participants are matched in pairs. For example, comparing anxiety scores before and after an intervention.
+
+### Three or More Groups
+
+When comparing three or more groups, use **Analysis of Variance (ANOVA)** instead of running multiple t-tests. Running several t-tests inflates your Type I error rate, meaning you become increasingly likely to find a difference that does not really exist.
+
+- **One-way ANOVA:** One independent variable with three or more levels. For example, comparing test performance across three teaching methods.
+- **Repeated measures ANOVA:** The same participants are measured under three or more conditions.
+- **Two-way ANOVA:** Two independent variables examined simultaneously, allowing you to test for interaction effects.
+
+## Step 4: Check Whether Your Data Are Paired or Independent
+
+This distinction is critical and sometimes overlooked:
+
+**Independent samples** means the observations in one group are completely unrelated to the observations in the other group. Different people, different subjects, no natural pairing.
+
+**Paired (dependent) samples** means each observation in one group has a specific counterpart in the other group. This happens when you measure the same person twice, when siblings or matched participants are split across groups, or when you compare two measurements taken from the same subject.
+
+Using an independent test on paired data (or vice versa) will give you incorrect results. When in doubt, ask yourself: can I draw a meaningful one-to-one line connecting observations across groups? If yes, your data are paired.
+
+## Step 5: Consider Assumptions and Non-Parametric Alternatives
+
+Most of the tests discussed so far are **parametric tests**, which assume that your data meet certain conditions, particularly that the outcome variable is approximately normally distributed and that variances are roughly equal across groups.
+
+When these assumptions are violated, you have two options: use a robust version of the parametric test, or switch to a **non-parametric alternative** that makes fewer distributional assumptions.
+
+### Common Parametric Tests and Their Non-Parametric Counterparts
+
+| Parametric Test | Non-Parametric Alternative | When to Switch |
+|-----------------|---------------------------|----------------|
+| Independent samples t-test | Mann-Whitney U test | Small samples, skewed distributions, ordinal data |
+| Paired samples t-test | Wilcoxon signed-rank test | Non-normal difference scores, ordinal data |
+| One-way ANOVA | Kruskal-Wallis H test | Non-normal data, unequal variances, ordinal data |
+| Repeated measures ANOVA | Friedman test | Non-normal data across repeated conditions |
+| Pearson correlation | Spearman rank correlation | Non-linear relationships, ordinal data, outliers |
+
+A practical rule of thumb: if your sample size is at least 30 per group and your data are not severely skewed, parametric tests are generally robust enough. For smaller samples or clearly non-normal distributions, non-parametric tests are a safer choice.
+
+## A Text-Based Decision Flowchart
+
+Follow this path to identify the right test for your situation:
+
+**What is your outcome (dependent) variable?**
+
+**If categorical:**
+- Comparing observed vs expected frequencies in one variable → **Chi-square goodness of fit**
+- Examining the relationship between two categorical variables → **Chi-square test of independence**
+
+**If continuous:**
+- **Are you comparing groups or examining a relationship?**
+
+  **Comparing groups:**
+  - How many groups?
+    - **2 groups:**
+      - Independent → **Independent samples t-test** (or Mann-Whitney U)
+      - Paired → **Paired samples t-test** (or Wilcoxon signed-rank)
+    - **3+ groups:**
+      - Independent → **One-way ANOVA** (or Kruskal-Wallis)
+      - Paired → **Repeated measures ANOVA** (or Friedman)
+
+  **Examining a relationship:**
+  - Between two continuous variables → **Pearson correlation** (or Spearman)
+  - Predicting one variable from another → **Linear regression**
+  - Predicting one variable from multiple predictors → **Multiple regression**
+
+## Real-World Examples
+
+**Example 1:** A psychologist compares depression scores between patients receiving therapy and patients on a waiting list. The outcome is continuous (depression score), there are two independent groups, and the sample sizes are adequate. **Test: Independent samples t-test.**
+
+**Example 2:** A nutritionist measures blood pressure before and after a dietary change in the same 25 participants. The outcome is continuous, there are two measurements from the same people, and the sample is moderate. **Test: Paired samples t-test (or Wilcoxon if normality is questionable with n = 25).**
+
+**Example 3:** A market researcher wants to know whether product preference (Product A, B, or C) differs by age group (under 30, 30-50, over 50). Both variables are categorical. **Test: Chi-square test of independence.**
+
+**Example 4:** An educator tests whether three different tutoring methods lead to different exam scores with 15 students per group. The outcome is continuous and there are three independent groups. **Test: One-way ANOVA (or Kruskal-Wallis if assumptions are violated).**
+
+## Let StatMate Help You Decide
+
+If you are still unsure which test fits your data, StatMate includes a test selection wizard that guides you through the decision process interactively. Answer a few questions about your variables and design, and StatMate recommends the appropriate test, checks assumptions for you, and runs the analysis with APA-formatted output.
+
+Choosing the right statistical test does not have to be intimidating. Once you understand the logic behind the decision, it becomes a repeatable process that you can apply to any dataset.

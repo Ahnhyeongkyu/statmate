@@ -191,6 +191,12 @@ export default async function LocaleLayout({
                 >
                   {t("nav.wizard")}
                 </Link>
+                <Link
+                  href="/blog"
+                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                >
+                  {t("nav.blog")}
+                </Link>
               </nav>
 
               <div className="hidden items-center gap-2 md:flex">

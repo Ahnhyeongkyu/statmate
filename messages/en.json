@@ -18,7 +18,8 @@
       "cronbachAlpha": "Cronbach's Alpha",
       "logisticRegression": "Logistic Regression",
       "factorAnalysis": "Factor Analysis",
-      "wizard": "Which Test?"
+      "wizard": "Which Test?",
+      "blog": "Guides"
     },
     "pricing": "Pricing",
     "getPro": "Get Pro",
@@ -513,6 +514,11 @@
     "description": "The page you're looking for doesn't exist. Try one of our free statistics calculators instead.",
     "goHome": "Go Home",
     "tryCta": "Try T-Test Calculator"
+  },
+  "blog": {
+    "title": "Statistics Guides",
+    "description": "Practical guides on statistical analysis methods, APA reporting format, and choosing the right test.",
+    "noPosts": "No posts yet."
   },
   "error": {
     "title": "Something went wrong",

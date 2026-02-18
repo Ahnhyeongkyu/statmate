@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllSlugs } from "@/lib/blog";
 
 const BASE_URL = "https://statmate-red.vercel.app";
 
@@ -32,9 +33,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/wizard", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/pricing", changeFrequency: "monthly" as const, priority: 0.7 },
     { path: "/about", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/blog", changeFrequency: "weekly" as const, priority: 0.7 },
     { path: "/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
+
+  // Add blog post pages (use ko slugs as canonical set)
+  const blogSlugs = getAllSlugs("ko");
+  for (const slug of blogSlugs) {
+    pages.push({
+      path: `/blog/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    });
+  }
 
   const entries: MetadataRoute.Sitemap = [];
 
