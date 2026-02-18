@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { validateArray } from "./validation";
 
 export interface GroupStats {
   name: string;
@@ -49,10 +50,22 @@ export function oneWayAnova(
   groups: number[][],
   groupNames?: string[]
 ): AnovaResult {
+  if (!groups || groups.length < 2) {
+    throw new Error("Need at least 2 groups for ANOVA");
+  }
+  for (let i = 0; i < groups.length; i++) {
+    validateArray(groups[i], 2, `Group ${i + 1}`);
+  }
+
   const k = groups.length;
   const names = groupNames || groups.map((_, i) => `Group ${i + 1}`);
   const allData = groups.flat();
   const N = allData.length;
+
+  if (N <= k) {
+    throw new Error(`Need more than ${k} total observations for ${k} groups`);
+  }
+
   const grandMean = mean(allData);
 
   // Sum of squares

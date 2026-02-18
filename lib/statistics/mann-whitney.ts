@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { requireFinite } from "./validation";
 
 export interface MannWhitneyInput {
   group1: number[];
@@ -57,6 +58,8 @@ export function mannWhitneyU(input: MannWhitneyInput): MannWhitneyResult {
 
   if (n1 < 2 || n2 < 2)
     throw new Error("Each group needs at least 2 values");
+  requireFinite(group1, "Group 1");
+  requireFinite(group2, "Group 2");
 
   const combined = [
     ...group1.map((v) => ({ value: v, group: 1 })),

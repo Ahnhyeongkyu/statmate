@@ -1,5 +1,6 @@
 import jStat from "jstat";
 import { transpose, multiply, multiplyVec, invert, type Matrix } from "./matrix";
+import { requireFinite } from "./validation";
 
 export interface CoefficientInfo {
   name: string;
@@ -114,6 +115,10 @@ export function multipleRegression(
     if (xs[j].length !== n) {
       throw new Error(`Predictor ${j + 1} length (${xs[j].length}) does not match Y length (${n})`);
     }
+  }
+  requireFinite(y, "Y");
+  for (let j = 0; j < k; j++) {
+    requireFinite(xs[j], `Predictor ${j + 1}`);
   }
 
   const names = predictorNames ?? xs.map((_, i) => `X${i + 1}`);

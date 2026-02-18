@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { validateArray } from "./validation";
 
 export interface TTestInput {
   type: "independent" | "paired";
@@ -33,6 +34,9 @@ function sd(arr: number[]): number {
 }
 
 export function independentTTest(group1: number[], group2: number[]): TTestResult {
+  validateArray(group1, 2, "Group 1");
+  validateArray(group2, 2, "Group 2");
+
   const n1 = group1.length;
   const n2 = group2.length;
   const m1 = mean(group1);
@@ -78,6 +82,8 @@ export function independentTTest(group1: number[], group2: number[]): TTestResul
 }
 
 export function pairedTTest(group1: number[], group2: number[]): TTestResult {
+  validateArray(group1, 2, "Group 1");
+  validateArray(group2, 2, "Group 2");
   if (group1.length !== group2.length) {
     throw new Error("Paired t-test requires equal sample sizes");
   }

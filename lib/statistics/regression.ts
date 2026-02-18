@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { requireFinite } from "./validation";
 
 export interface RegressionInput {
   x: number[];
@@ -39,6 +40,8 @@ export function simpleLinearRegression(
     throw new Error("X and Y must have the same length");
   if (n < 3)
     throw new Error("Need at least 3 data points");
+  requireFinite(x, "X");
+  requireFinite(y, "Y");
 
   const meanX = x.reduce((a, b) => a + b, 0) / n;
   const meanY = y.reduce((a, b) => a + b, 0) / n;

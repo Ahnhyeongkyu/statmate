@@ -11,6 +11,7 @@ import {
   eigenSymmetric,
   type EigenResult,
 } from "./matrix";
+import { requireFinite } from "./validation";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -529,6 +530,11 @@ export function factorAnalysis(
     if (data[i].length !== p) {
       throw new Error(`Row ${i} has ${data[i].length} values, expected ${p}. All rows must have the same number of variables.`);
     }
+  }
+
+  // Validate all values are finite
+  for (let i = 0; i < n; i++) {
+    requireFinite(data[i], `Row ${i + 1}`);
   }
 
   const variableNames = options.variableNames ?? Array.from({ length: p }, (_, i) => `V${i + 1}`);

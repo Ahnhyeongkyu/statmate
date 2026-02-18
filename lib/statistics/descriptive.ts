@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { validateArray } from "./validation";
 
 export interface DescriptiveResult {
   n: number;
@@ -85,6 +86,8 @@ function kurtosis(arr: number[]): number {
 }
 
 export function descriptiveStats(data: number[]): DescriptiveResult {
+  validateArray(data, 1, "Data");
+
   const n = data.length;
   const m = mean(data);
   const s = sd(data);

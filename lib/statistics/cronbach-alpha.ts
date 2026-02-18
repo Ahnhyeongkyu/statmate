@@ -1,3 +1,5 @@
+import { validateMatrix } from "./validation";
+
 export interface ItemStatistics {
   name: string;
   mean: number;
@@ -72,22 +74,9 @@ function interpretAlpha(alpha: number): string {
  * @param data data[i][j]: i = participant (case), j = item
  */
 export function cronbachAlpha(data: number[][]): CronbachAlphaResult {
+  validateMatrix(data, 3, 2, "Data");
   const nCases = data.length;
   const nItems = data[0].length;
-
-  if (nItems < 2) {
-    throw new Error("At least 2 items are required for reliability analysis.");
-  }
-  if (nCases < 3) {
-    throw new Error("At least 3 cases are required for reliability analysis.");
-  }
-
-  // Validate all rows have same number of columns
-  for (let i = 0; i < nCases; i++) {
-    if (data[i].length !== nItems) {
-      throw new Error(`Row ${i + 1} has ${data[i].length} items, expected ${nItems}.`);
-    }
-  }
 
   const k = nItems;
 
@@ -112,7 +101,7 @@ export function cronbachAlpha(data: number[][]): CronbachAlphaResult {
   const sumItemVariances = itemVariances.reduce((a, b) => a + b, 0);
 
   // Cronbach's Alpha
-  const alpha = (k / (k - 1)) * (1 - sumItemVariances / totalVariance);
+  const alpha = totalVariance === 0 ? 0 : (k / (k - 1)) * (1 - sumItemVariances / totalVariance);
 
   // Item statistics: corrected item-total correlation and alpha-if-deleted
   const itemStats: ItemStatistics[] = [];

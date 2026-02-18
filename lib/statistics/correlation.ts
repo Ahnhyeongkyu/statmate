@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { validateArray } from "./validation";
 
 export interface CorrelationResult {
   type: "pearson" | "spearman";
@@ -38,6 +39,12 @@ function rank(arr: number[]): number[] {
 }
 
 export function pearsonCorrelation(x: number[], y: number[]): CorrelationResult {
+  validateArray(x, 3, "X");
+  validateArray(y, 3, "Y");
+  if (x.length !== y.length) {
+    throw new Error("X and Y arrays must have equal length");
+  }
+
   const n = x.length;
   const mx = mean(x);
   const my = mean(y);

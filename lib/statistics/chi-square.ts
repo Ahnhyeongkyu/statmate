@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { requireFinite, requireNonNegative } from "./validation";
 
 export interface ChiSquareIndependenceResult {
   type: "independence";
@@ -30,8 +31,18 @@ export interface ChiSquareGoodnessResult {
 export type ChiSquareResult = ChiSquareIndependenceResult | ChiSquareGoodnessResult;
 
 export function chiSquareIndependence(observed: number[][]): ChiSquareIndependenceResult {
+  if (!observed || observed.length < 2 || !observed[0] || observed[0].length < 2) {
+    throw new Error("Contingency table needs at least 2 rows and 2 columns");
+  }
   const rows = observed.length;
   const cols = observed[0].length;
+  for (let i = 0; i < rows; i++) {
+    if (observed[i].length !== cols) {
+      throw new Error(`Row ${i + 1} has ${observed[i].length} columns, expected ${cols}`);
+    }
+    requireFinite(observed[i], `Row ${i + 1}`);
+    requireNonNegative(observed[i], `Row ${i + 1}`);
+  }
 
   const rowTotals = observed.map((row) => row.reduce((a, b) => a + b, 0));
   const colTotals: number[] = [];
@@ -39,6 +50,9 @@ export function chiSquareIndependence(observed: number[][]): ChiSquareIndependen
     colTotals.push(observed.reduce((sum, row) => sum + row[j], 0));
   }
   const grandTotal = rowTotals.reduce((a, b) => a + b, 0);
+  if (grandTotal === 0) {
+    throw new Error("Total count cannot be zero");
+  }
 
   // Expected frequencies
   const expected: number[][] = [];
@@ -53,7 +67,9 @@ export function chiSquareIndependence(observed: number[][]): ChiSquareIndependen
   let chiSquare = 0;
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      chiSquare += (observed[i][j] - expected[i][j]) ** 2 / expected[i][j];
+      if (expected[i][j] > 0) {
+        chiSquare += (observed[i][j] - expected[i][j]) ** 2 / expected[i][j];
+      }
     }
   }
 
@@ -85,15 +101,33 @@ export function chiSquareGoodness(
   observed: number[],
   expected?: number[]
 ): ChiSquareGoodnessResult {
+  if (!observed || observed.length < 2) {
+    throw new Error("Need at least 2 categories");
+  }
+  requireFinite(observed, "Observed");
+  requireNonNegative(observed, "Observed");
+
   const total = observed.reduce((a, b) => a + b, 0);
+  if (total === 0) {
+    throw new Error("Total count cannot be zero");
+  }
   const k = observed.length;
 
   // If no expected provided, assume equal distribution
   const exp = expected || observed.map(() => total / k);
+  if (expected) {
+    requireFinite(expected, "Expected");
+    requireNonNegative(expected, "Expected");
+    if (expected.length !== k) {
+      throw new Error("Observed and expected arrays must have equal length");
+    }
+  }
 
   let chiSquare = 0;
   for (let i = 0; i < k; i++) {
-    chiSquare += (observed[i] - exp[i]) ** 2 / exp[i];
+    if (exp[i] > 0) {
+      chiSquare += (observed[i] - exp[i]) ** 2 / exp[i];
+    }
   }
 
   const df = k - 1;

@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { requireFinite } from "./validation";
 
 export interface WilcoxonInput {
   pre: number[];
@@ -36,6 +37,8 @@ export function wilcoxonSignedRank(input: WilcoxonInput): WilcoxonResult {
     throw new Error("Pre and post arrays must have equal length");
   if (pre.length < 5)
     throw new Error("Need at least 5 paired observations");
+  requireFinite(pre, "Pre");
+  requireFinite(post, "Post");
 
   const n = pre.length;
 

@@ -1,4 +1,5 @@
 import jStat from "jstat";
+import { requireFinite } from "./validation";
 
 export interface OneSampleTInput {
   data: number[];
@@ -24,6 +25,7 @@ export function oneSampleTTest(input: OneSampleTInput): OneSampleTResult {
   const { data, testValue } = input;
   const n = data.length;
   if (n < 2) throw new Error("Need at least 2 values");
+  requireFinite(data, "Data");
 
   const mean = data.reduce((a, b) => a + b, 0) / n;
   const sd = Math.sqrt(
