@@ -12,6 +12,7 @@ import { HeaderProButton } from "@/components/header-pro-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { AdSenseScript } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { ErrorBoundaryInit } from "@/components/error-boundary-init";
 import "../globals.css";
 
 const inter = Inter({
@@ -217,6 +218,7 @@ export default async function LocaleLayout({
 
           <AdSenseScript />
           <GoogleAnalytics />
+          <ErrorBoundaryInit />
           <Analytics />
           <SpeedInsights />
 
