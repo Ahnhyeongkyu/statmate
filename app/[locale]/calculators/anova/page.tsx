@@ -4,6 +4,7 @@ import { AnovaCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { FaqSchema } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function AnovaPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("anova");
+  const isKo = locale === "ko";
+  const faqs = isKo
+    ? [
+        { question: "ANOVA는 언제 사용하나요?", answer: "세 개 이상의 집단 평균을 동시에 비교할 때 사용합니다. 두 집단만 비교한다면 t-검정을 사용하세요." },
+        { question: "사후검정(Post-hoc)은 왜 필요한가요?", answer: "ANOVA는 집단 간 차이가 있는지만 알려줍니다. 어떤 집단 간에 차이가 있는지 알려면 Bonferroni, Tukey 등의 사후검정이 필요합니다." },
+        { question: "ANOVA의 가정은 무엇인가요?", answer: "정규성(각 집단의 데이터가 정규분포), 등분산성(집단 간 분산이 동일), 독립성(관측치가 서로 독립)의 세 가지 가정을 충족해야 합니다." },
+        { question: "η²(에타제곱)은 어떻게 해석하나요?", answer: "η² = 0.01은 작은 효과, 0.06은 중간 효과, 0.14 이상은 큰 효과입니다. 종속변수의 분산 중 독립변수로 설명되는 비율을 나타냅니다." },
+      ]
+    : [
+        { question: "When should I use ANOVA?", answer: "Use ANOVA when comparing means of three or more groups simultaneously. For two groups, use a t-test instead." },
+        { question: "Why do I need post-hoc tests?", answer: "ANOVA only tells you if there's a difference somewhere among the groups. Post-hoc tests like Bonferroni or Tukey identify which specific groups differ." },
+        { question: "What are the assumptions of ANOVA?", answer: "ANOVA assumes normality (data in each group is normally distributed), homogeneity of variance (equal variances across groups), and independence of observations." },
+        { question: "How do I interpret eta-squared (η²)?", answer: "η² = 0.01 is small, 0.06 is medium, and 0.14+ is large. It represents the proportion of variance in the dependent variable explained by the independent variable." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

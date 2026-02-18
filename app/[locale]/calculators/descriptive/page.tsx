@@ -4,6 +4,7 @@ import { DescriptiveCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function DescriptivePage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("descriptive");
+  const isKo = locale === "ko";
+  const faqs = isKo
+    ? [
+        { question: "기술통계란 무엇인가요?", answer: "데이터의 특성을 요약하고 설명하는 통계 방법입니다. 평균, 중앙값, 표준편차 등의 지표를 통해 데이터의 중심경향, 산포도, 분포 형태를 파악합니다." },
+        { question: "평균과 중앙값 중 무엇을 보고해야 하나요?", answer: "데이터가 정규분포에 가까우면 평균을, 극단값이나 편향된 분포가 있으면 중앙값을 사용하세요. 논문에서는 보통 둘 다 보고합니다." },
+        { question: "표준편차와 표준오차의 차이는 무엇인가요?", answer: "표준편차(SD)는 데이터의 산포도를 나타냅니다. 표준오차(SE)는 표본 평균의 정밀도를 나타내며, SE = SD / √n으로 계산됩니다. 논문에서 기술통계에는 SD를, 추론통계에는 SE를 사용합니다." },
+        { question: "왜도와 첨도는 어떻게 해석하나요?", answer: "왜도(skewness)는 분포의 비대칭성을 측정합니다. 0이면 대칭, 양수면 오른쪽 꼬리, 음수면 왼쪽 꼬리입니다. 첨도(kurtosis)는 분포의 뾰족한 정도를 측정합니다. 절대값이 2를 넘으면 정규성에 의문이 생깁니다." },
+      ]
+    : [
+        { question: "What are descriptive statistics?", answer: "Descriptive statistics summarize and describe the characteristics of a dataset. They include measures of central tendency (mean, median), variability (standard deviation, range), and distribution shape (skewness, kurtosis)." },
+        { question: "Should I report the mean or median?", answer: "Report the mean for approximately normal distributions. Use the median when data has extreme outliers or is skewed. In academic papers, both are typically reported." },
+        { question: "What's the difference between standard deviation and standard error?", answer: "Standard deviation (SD) measures data spread. Standard error (SE) measures precision of the sample mean, calculated as SE = SD / √n. Use SD for descriptive statistics and SE for inferential statistics." },
+        { question: "How do I interpret skewness and kurtosis?", answer: "Skewness measures distribution asymmetry: 0 is symmetric, positive means right-tailed, negative means left-tailed. Kurtosis measures peakedness. Absolute values above 2 suggest non-normality." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

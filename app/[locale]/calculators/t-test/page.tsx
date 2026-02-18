@@ -4,6 +4,7 @@ import { TTestCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
+import { FaqSchema } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function TTestPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("ttest");
+  const isKo = locale === "ko";
+  const faqs = isKo
+    ? [
+        { question: "t-검정은 언제 사용하나요?", answer: "두 집단의 평균을 비교할 때 사용합니다. 독립표본 t-검정은 서로 다른 두 그룹(예: 실험군 vs 대조군)을, 대응표본 t-검정은 같은 그룹의 사전-사후 점수를 비교합니다." },
+        { question: "Welch의 t-검정과 Student의 t-검정은 무엇이 다른가요?", answer: "Student의 t-검정은 두 집단의 분산이 같다고 가정하지만, Welch의 t-검정은 이 가정이 필요 없습니다. StatMate는 APA 권장에 따라 Welch의 t-검정을 기본으로 사용합니다." },
+        { question: "Cohen's d 효과크기는 어떻게 해석하나요?", answer: "Cohen's d = 0.2는 작은 효과, 0.5는 중간 효과, 0.8 이상은 큰 효과로 해석합니다. 효과크기는 p-값과 달리 차이의 실질적 크기를 알려줍니다." },
+        { question: "표본 크기가 작아도 t-검정을 사용할 수 있나요?", answer: "네, 각 집단에 최소 2개 이상의 데이터가 있으면 가능합니다. 다만 표본이 30 미만이면 정규성 가정을 확인하는 것이 좋습니다. 정규성이 위반되면 Mann-Whitney U 검정을 고려하세요." },
+      ]
+    : [
+        { question: "When should I use a t-test?", answer: "Use a t-test to compare means of two groups. An independent samples t-test compares two different groups (e.g., treatment vs control), while a paired t-test compares the same group at two time points (e.g., pre-test vs post-test)." },
+        { question: "What is the difference between Welch's and Student's t-test?", answer: "Student's t-test assumes equal variances between groups, while Welch's t-test does not. StatMate uses Welch's t-test by default, as recommended by the APA." },
+        { question: "How do I interpret Cohen's d effect size?", answer: "Cohen's d = 0.2 is a small effect, 0.5 is medium, and 0.8+ is large. Effect size tells you the practical magnitude of the difference, unlike p-values which only indicate statistical significance." },
+        { question: "Can I use a t-test with small sample sizes?", answer: "Yes, a t-test works with as few as 2 observations per group. However, with samples under 30, check the normality assumption. If normality is violated, consider the Mann-Whitney U test instead." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

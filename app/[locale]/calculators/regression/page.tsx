@@ -4,6 +4,7 @@ import { RegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -46,12 +47,28 @@ export default async function RegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("regression");
+  const isKo = locale === "ko";
+  const faqs = isKo
+    ? [
+        { question: "회귀분석은 언제 사용하나요?", answer: "한 변수(독립변수)로 다른 변수(종속변수)를 예측하거나 설명할 때 사용합니다. 예: 광고비가 매출에 미치는 영향 분석." },
+        { question: "R²(결정계수)는 어떻게 해석하나요?", answer: "R²는 독립변수가 종속변수의 변동을 설명하는 비율입니다. R² = 0.65이면 종속변수 변동의 65%를 독립변수로 설명할 수 있다는 의미입니다." },
+        { question: "회귀분석과 상관분석의 차이는 무엇인가요?", answer: "상관분석은 두 변수 간 관계의 강도만 측정합니다. 회귀분석은 예측 방정식(Y = a + bX)을 제공하여 독립변수 값으로 종속변수를 예측할 수 있습니다." },
+        { question: "잔차(residual)는 무엇인가요?", answer: "잔차는 실제 관측값과 회귀모형의 예측값 간의 차이입니다. 잔차가 정규분포를 따르고 등분산성을 보이면 회귀모형이 적절하다고 판단합니다." },
+      ]
+    : [
+        { question: "When should I use regression analysis?", answer: "Use it to predict or explain one variable (dependent) using another variable (independent). For example, analyzing how advertising spend affects sales." },
+        { question: "How do I interpret R² (coefficient of determination)?", answer: "R² represents the proportion of variance in the dependent variable explained by the independent variable. R² = 0.65 means 65% of the variation is explained by the model." },
+        { question: "What's the difference between regression and correlation?", answer: "Correlation only measures the strength of relationship between two variables. Regression provides a prediction equation (Y = a + bX) to predict the dependent variable from the independent variable." },
+        { question: "What are residuals?", answer: "Residuals are the differences between observed values and predicted values from the regression model. If residuals are normally distributed with constant variance, the model is considered adequate." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>

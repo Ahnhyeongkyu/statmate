@@ -4,6 +4,7 @@ import { CorrelationCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { FaqSchema } from "@/components/faq-schema";
 
 export async function generateMetadata({
   params,
@@ -44,12 +45,28 @@ export default async function CorrelationPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("correlation");
+  const isKo = locale === "ko";
+  const faqs = isKo
+    ? [
+        { question: "상관분석은 언제 사용하나요?", answer: "두 연속형 변수 간의 선형 관계의 강도와 방향을 측정할 때 사용합니다. 예: 공부 시간과 시험 점수의 관계." },
+        { question: "피어슨과 스피어만 상관의 차이는 무엇인가요?", answer: "피어슨 상관은 두 변수의 선형 관계를 측정하며 정규성 가정이 필요합니다. 스피어만 상관은 순위 기반으로 비선형 단조 관계도 측정할 수 있으며 정규성 가정이 불필요합니다." },
+        { question: "상관계수 r은 어떻게 해석하나요?", answer: "|r| < 0.3은 약한 상관, 0.3~0.7은 중간 상관, 0.7 이상은 강한 상관입니다. r이 양수면 양의 상관(한 변수가 증가하면 다른 변수도 증가), 음수면 음의 상관입니다." },
+        { question: "상관관계가 인과관계를 의미하나요?", answer: "아닙니다. 상관관계는 두 변수가 함께 변하는 경향을 보여줄 뿐, 한 변수가 다른 변수를 '야기'한다는 것을 증명하지 않습니다. 제3의 변수가 관여할 수 있습니다." },
+      ]
+    : [
+        { question: "When should I use correlation analysis?", answer: "Use it to measure the strength and direction of a linear relationship between two continuous variables. For example, the relationship between study hours and exam scores." },
+        { question: "What's the difference between Pearson and Spearman correlation?", answer: "Pearson measures linear relationships and assumes normality. Spearman is rank-based, can detect non-linear monotonic relationships, and doesn't require normality." },
+        { question: "How do I interpret the correlation coefficient r?", answer: "|r| < 0.3 is weak, 0.3-0.7 is moderate, and 0.7+ is strong. Positive r means both variables increase together; negative r means one increases as the other decreases." },
+        { question: "Does correlation imply causation?", answer: "No. Correlation only shows that two variables tend to change together. It does not prove that one variable causes the other. A third variable may be involved." },
+      ];
+
   return (
     <div>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FaqSchema faqs={faqs} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>
