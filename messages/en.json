@@ -535,6 +535,15 @@
     "ctaDescription": "Start your 7-day free trial. No credit card required.",
     "ctaButton": "Start Free Trial"
   },
+  "feedback": {
+    "title": "Send Feedback",
+    "bug": "Bug",
+    "feature": "Feature",
+    "other": "Other",
+    "placeholder": "Tell us what you think...",
+    "send": "Send",
+    "thanks": "Thank you for your feedback!"
+  },
   "about": {
     "metaTitle": "About",
     "metaDescription": "StatMate is a free online statistics calculator built by statisticians for researchers.",

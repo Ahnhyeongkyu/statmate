@@ -1,0 +1,151 @@
+---
+title: "How to Report Regression Results in APA Format (With Examples)"
+description: "Learn how to report simple linear regression and multiple regression results in APA 7th edition format, including R², F-statistic, unstandardized and standardized coefficients, and coefficients tables with worked examples."
+date: "2026-02-19"
+category: "APA Reporting"
+tags: ["regression", "APA format", "statistical reporting", "R-squared", "multiple regression", "standardized beta", "coefficients table"]
+---
+
+## Why Proper Regression Reporting Matters
+
+Regression analysis is one of the most versatile tools in quantitative research. Whether you are predicting exam scores from study hours or modeling the combined influence of several demographic variables on job satisfaction, regression provides the framework. Yet reporting regression results in APA format is where many researchers stumble.
+
+Unlike simpler tests such as the t-test, regression reporting involves multiple layers of information: the overall model fit, individual predictor contributions, standardized versus unstandardized coefficients, and confidence intervals. Omitting any of these elements can trigger revision requests from journal reviewers. This guide walks through the APA 7th edition reporting format for both simple linear regression and multiple regression, with concrete numerical examples you can use as templates.
+
+## Simple Linear Regression
+
+### Essential Components
+
+Every simple linear regression result reported in APA style should include:
+
+- **R-squared (*R*²)**: the proportion of variance in the outcome explained by the predictor
+- **F-statistic**: the overall model significance test, italicized as *F*
+- **Degrees of freedom**: regression df and residual df in parentheses
+- **The exact *p* value**: to three decimal places
+- **Unstandardized coefficient (*B*)**: the slope, with its standard error
+- **Standardized coefficient (*beta*)**: reported as *beta* (or *B* with a note that it is standardized)
+
+The general template for the overall model:
+
+> *R*² = .XX, *F*(df_regression, df_residual) = X.XX, *p* = .XXX
+
+### Research Scenario
+
+A researcher examines whether weekly study hours predict final exam scores among 120 university students.
+
+### Reporting the Overall Model
+
+**APA reporting example:**
+
+> A simple linear regression was conducted to examine whether weekly study hours predicted final exam scores. The results indicated that the overall model was statistically significant, *R*² = .34, *F*(1, 118) = 60.73, *p* < .001. Weekly study hours accounted for 34% of the variance in final exam scores.
+
+### Reporting the Coefficient
+
+> Weekly study hours significantly predicted final exam scores, *B* = 2.85, *SE* = 0.37, *t*(118) = 7.79, *p* < .001, 95% CI [2.12, 3.58]. For each additional hour of weekly study, final exam scores increased by an average of 2.85 points.
+
+### Breaking Down the Components
+
+| Component | Value | Explanation |
+|-----------|-------|-------------|
+| *R*² | .34 | 34% of variance explained; no leading zero |
+| *F* | 60.73 | Overall model F-statistic, two decimal places |
+| df | 1, 118 | Regression df (number of predictors) and residual df (*N* - *k* - 1) |
+| *p* | < .001 | Exact p value or < .001 for very small values |
+| *B* | 2.85 | Unstandardized slope |
+| *SE* | 0.37 | Standard error of the slope |
+| *t* | 7.79 | t-statistic for the coefficient |
+| 95% CI | [2.12, 3.58] | Confidence interval for *B* |
+
+## Multiple Regression
+
+### When You Have Multiple Predictors
+
+Multiple regression extends the simple model by including two or more predictor variables. APA reporting becomes more involved because you must present the overall model and then describe each predictor's unique contribution.
+
+### Research Scenario
+
+A researcher investigates whether study hours, class attendance rate, and prior GPA predict final exam scores among 150 students.
+
+### Reporting the Overall Model
+
+> A multiple regression analysis was conducted to examine whether study hours, class attendance rate, and prior GPA predicted final exam scores. The overall model was statistically significant, *R*² = .52, adjusted *R*² = .51, *F*(3, 146) = 52.78, *p* < .001. Together, the three predictors accounted for 52% of the variance in final exam scores.
+
+Note: in multiple regression, always report both *R*² and **adjusted *R*²**. Adjusted *R*² corrects for the number of predictors in the model and provides a more honest estimate of explained variance, especially when the number of predictors is large relative to the sample size.
+
+### Coefficients Table
+
+Present the individual predictor results in a table for clarity.
+
+| Predictor | *B* | *SE* | *beta* | *t* | *p* | 95% CI |
+|-----------|------|------|--------|------|------|---------|
+| (Intercept) | 12.45 | 5.32 | -- | 2.34 | .021 | [1.94, 22.96] |
+| Study hours | 1.92 | 0.31 | .38 | 6.19 | < .001 | [1.31, 2.53] |
+| Attendance rate | 0.28 | 0.08 | .22 | 3.50 | < .001 | [0.12, 0.44] |
+| Prior GPA | 8.74 | 1.85 | .29 | 4.72 | < .001 | [5.08, 12.40] |
+
+### Writing Up the Individual Predictors
+
+> Study hours was the strongest predictor of final exam scores, *B* = 1.92, *SE* = 0.31, *beta* = .38, *t*(146) = 6.19, *p* < .001, 95% CI [1.31, 2.53]. Prior GPA also significantly predicted exam scores, *B* = 8.74, *SE* = 1.85, *beta* = .29, *t*(146) = 4.72, *p* < .001, 95% CI [5.08, 12.40]. Class attendance rate made a smaller but statistically significant contribution, *B* = 0.28, *SE* = 0.08, *beta* = .22, *t*(146) = 3.50, *p* < .001, 95% CI [0.12, 0.44].
+
+### Understanding Standardized Betas
+
+The standardized coefficient (*beta*) allows direct comparison of predictor importance within the same model. Because *beta* values are expressed in standard deviation units rather than the original measurement units, you can compare them across predictors regardless of scale differences.
+
+In the example above, *beta* = .38 for study hours versus *beta* = .22 for attendance rate tells us that study hours has a relatively stronger unique contribution to predicting exam scores, holding the other variables constant.
+
+## Non-Significant Results
+
+Non-significant regression results follow the same format. Always report the full model statistics and individual coefficients even when they are not significant.
+
+> A simple linear regression indicated that sleep duration did not significantly predict exam scores, *R*² = .02, *F*(1, 118) = 2.41, *p* = .123. Sleep duration was not a significant predictor, *B* = 0.95, *SE* = 0.61, *t*(118) = 1.55, *p* = .123, 95% CI [-0.26, 2.16].
+
+## Common Mistakes to Avoid
+
+### Omitting Adjusted R-Squared in Multiple Regression
+
+For simple regression, *R*² alone is sufficient. For multiple regression, omitting adjusted *R*² is a common oversight. Adjusted *R*² penalizes for adding predictors that do not meaningfully improve the model, so it is essential for evaluating model fit when you have more than one predictor.
+
+### Confusing B and Beta
+
+*B* (unstandardized) and *beta* (standardized) convey different information. *B* tells you the change in the outcome for a one-unit change in the predictor in its original units. *beta* tells you the change in standard deviation units, enabling cross-predictor comparison. Always label which one you are reporting, and include both when possible.
+
+### Reporting p = .000
+
+Statistical software sometimes outputs p = .000. This does not mean the probability is exactly zero. Always report very small p values as *p* < .001.
+
+### Missing Confidence Intervals
+
+APA 7th edition strongly recommends reporting 95% confidence intervals for regression coefficients. Confidence intervals provide information about the precision of your estimates that p values alone cannot convey. Including them demonstrates rigorous reporting practice.
+
+### Forgetting to Report the Intercept
+
+While the intercept is often not the focus of interpretation, it should appear in your coefficients table. Reviewers expect a complete table that includes the intercept row.
+
+### Not Checking Assumptions
+
+Before reporting regression results, verify the key assumptions: linearity, independence of residuals, homoscedasticity (constant variance of residuals), normality of residuals, and absence of multicollinearity (for multiple regression). Mention any assumption violations and corrective steps taken in your results section.
+
+## APA Regression Reporting Checklist
+
+Before submitting your manuscript, verify that your regression results include:
+
+- The overall model *R*² (and adjusted *R*² for multiple regression)
+- The *F*-statistic with correct degrees of freedom
+- The exact *p* value for the overall model
+- A coefficients table with *B*, *SE*, *beta*, *t*, *p*, and 95% CI for each predictor
+- The intercept row in the coefficients table
+- Clear labels distinguishing unstandardized (*B*) and standardized (*beta*) coefficients
+- All statistical symbols (*R*², *F*, *B*, *beta*, *t*, *p*) in italics
+- Assumption checks mentioned in the text
+
+## Using StatMate for APA-Formatted Regression Results
+
+Formatting regression output correctly, especially for multiple regression with several predictors, is tedious and error-prone. StatMate's regression calculators handle the entire process for you.
+
+Enter your data into the simple regression or multiple regression calculator, and StatMate automatically computes *R*², adjusted *R*², the *F*-statistic, individual coefficients with standard errors, standardized betas, t-statistics, p values, and confidence intervals. The results are formatted in APA 7th edition style, ready to copy directly into your manuscript.
+
+By letting StatMate manage the calculations and formatting, you eliminate common errors like swapped coefficients, missing confidence intervals, or incorrect degrees of freedom, and free up your time for interpreting findings and strengthening your discussion.
+
+## Summary
+
+Reporting regression results in APA format requires presenting both the overall model fit and the individual predictor contributions. For simple regression, include **R-squared, the F-statistic with degrees of freedom, and the coefficient with its standard error, t-statistic, p value, and confidence interval**. For multiple regression, add **adjusted R-squared, a full coefficients table with standardized betas**, and a narrative that highlights the relative importance of each predictor. Use the templates and checklist in this guide as your reference whenever you write up regression results.

@@ -535,6 +535,15 @@
     "ctaDescription": "7일 무료 체험을 시작하세요. 신용카드가 필요 없습니다.",
     "ctaButton": "무료 체험 시작"
   },
+  "feedback": {
+    "title": "피드백 보내기",
+    "bug": "버그",
+    "feature": "기능 제안",
+    "other": "기타",
+    "placeholder": "의견을 알려주세요...",
+    "send": "보내기",
+    "thanks": "소중한 피드백 감사합니다!"
+  },
   "about": {
     "metaTitle": "소개",
     "metaDescription": "StatMate는 통계학자가 연구자를 위해 만든 무료 온라인 통계 계산기입니다.",
