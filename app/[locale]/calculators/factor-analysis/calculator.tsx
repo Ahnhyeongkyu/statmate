@@ -26,6 +26,7 @@ import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { parseMatrix } from "@/lib/utils/parse";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
+import { ScreePlot } from "@/components/charts/scree-plot";
 import {
   encodeFactorAnalysis,
   decodeFactorAnalysis,
@@ -396,6 +397,16 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
           {ts("numFactors")}: {result.nFactors}
         </Badge>
       </div>
+
+      {/* Scree Plot */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">{ts("screePlot")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ScreePlot eigenvalues={result.eigenvalues} nFactors={result.nFactors} />
+        </CardContent>
+      </Card>
 
       {/* AI Interpretation */}
       <AiInterpretation

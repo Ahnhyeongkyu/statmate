@@ -27,6 +27,7 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
+import { CoefficientChart } from "@/components/charts/coefficient-chart";
 import {
   encodeMultipleRegression,
   decodeMultipleRegression,
@@ -294,6 +295,16 @@ function ResultsDisplay({ result }: { result: MultipleRegressionResult }) {
               </tbody>
             </table>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Coefficient Chart */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">{ts("coefficientPlot")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CoefficientChart coefficients={result.coefficients} />
         </CardContent>
       </Card>
 

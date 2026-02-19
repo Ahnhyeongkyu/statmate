@@ -28,6 +28,7 @@ import { parseNumbers } from "@/lib/utils/parse";
 import { DataTextarea } from "@/components/data-textarea";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
+import { OddsRatioChart } from "@/components/charts/odds-ratio-chart";
 import {
   encodeLogisticRegression,
   decodeLogisticRegression,
@@ -310,6 +311,16 @@ function ResultsDisplay({ result }: { result: LogisticRegressionResult }) {
           {ts("iterations")}: {result.iterations}
         </span>
       </div>
+
+      {/* Odds Ratio Forest Plot */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">{ts("oddsRatioPlot")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <OddsRatioChart coefficients={result.coefficients} />
+        </CardContent>
+      </Card>
 
       {/* AI Interpretation */}
       <AiInterpretation

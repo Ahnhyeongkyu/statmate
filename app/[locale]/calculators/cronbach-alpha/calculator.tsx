@@ -27,6 +27,7 @@ import { parseMatrix } from "@/lib/utils/parse";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeCronbachAlpha, decodeCronbachAlpha, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ItemAnalysisChart } from "@/components/charts/item-analysis-chart";
 
 function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
   const t = useTranslations("calculator");
@@ -183,6 +184,16 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
               </tbody>
             </table>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Item Analysis Chart */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">{ts("itemAnalysis")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ItemAnalysisChart items={result.itemStats} alpha={result.alpha} />
         </CardContent>
       </Card>
 

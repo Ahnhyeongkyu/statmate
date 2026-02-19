@@ -27,6 +27,7 @@ import {
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
+import { McNemarChart } from "@/components/charts/mcnemar-chart";
 import {
   encodeMcNemar,
   decodeMcNemar,
@@ -220,6 +221,16 @@ function ResultsDisplay({ result }: { result: McNemarResult }) {
               </div>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Proportional Chart */}
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">{tc("chart")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <McNemarChart observed={result.observed} rowLabels={[tc("prePositive"), tc("preNegative")]} colLabels={[tc("postPositive"), tc("postNegative")]} />
         </CardContent>
       </Card>
 
