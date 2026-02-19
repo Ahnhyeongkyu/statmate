@@ -361,8 +361,8 @@ function ResultsDisplay({
           <Button
             variant="outline"
             onClick={async () => {
-              const { exportAnovaPdf } = await import("@/lib/export-pdf");
-              const blob = exportAnovaPdf(result as never, apa);
+              const { exportRepeatedMeasuresPdf } = await import("@/lib/export-pdf");
+              const blob = exportRepeatedMeasuresPdf(result, apa);
               const { downloadBlob } = await import("@/lib/export-docx");
               downloadBlob(blob, `statmate-repeated-measures-${Date.now()}.pdf`);
             }}

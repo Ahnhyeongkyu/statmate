@@ -250,31 +250,8 @@ function ResultsDisplay({ result }: { result: McNemarResult }) {
           <Button
             variant="outline"
             onClick={async () => {
-              const { exportChiSquarePdf } = await import("@/lib/export-pdf");
-              const blob = exportChiSquarePdf(
-                {
-                  type: "independence",
-                  chiSquare: result.chiSquare,
-                  df: result.df,
-                  pValue: result.pValue,
-                  cramersV: 0,
-                  observed: result.observed,
-                  expected: result.observed,
-                  rowTotals: [
-                    result.observed[0][0] + result.observed[0][1],
-                    result.observed[1][0] + result.observed[1][1],
-                  ],
-                  colTotals: [
-                    result.observed[0][0] + result.observed[1][0],
-                    result.observed[0][1] + result.observed[1][1],
-                  ],
-                  grandTotal: result.n,
-                  rows: 2,
-                  cols: 2,
-                  significant: result.significant,
-                },
-                apa
-              );
+              const { exportMcNemarPdf } = await import("@/lib/export-pdf");
+              const blob = exportMcNemarPdf(result, apa);
               const { downloadBlob } = await import("@/lib/export-docx");
               downloadBlob(blob, `statmate-mcnemar-${Date.now()}.pdf`);
             }}

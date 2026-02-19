@@ -721,3 +721,166 @@ export function exportFriedmanPdf(data: {
   addFooter(doc);
   return toBlob(doc);
 }
+
+// --- Two-Way ANOVA PDF ---
+export function exportTwoWayAnovaPdf(data: {
+  factorA: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  factorB: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  interaction: { ss: number; df: number; ms: number; f: number; p: number; etaSq: number };
+  residual: { ss: number; df: number; ms: number };
+  total: { ss: number; df: number };
+  cellStats: { factorA: string; factorB: string; n: number; mean: number; sd: number }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Two-Way (Factorial) ANOVA");
+  const fmt = (v: number) => v < 0.001 ? "< .001" : v.toFixed(3);
+
+  y = addTable(doc, y,
+    ["Source", "SS", "df", "MS", "F", "p", "\u03B7\u00B2"],
+    [
+      ["Factor A", data.factorA.ss.toFixed(2), String(data.factorA.df), data.factorA.ms.toFixed(2), data.factorA.f.toFixed(2), fmt(data.factorA.p), data.factorA.etaSq.toFixed(4)],
+      ["Factor B", data.factorB.ss.toFixed(2), String(data.factorB.df), data.factorB.ms.toFixed(2), data.factorB.f.toFixed(2), fmt(data.factorB.p), data.factorB.etaSq.toFixed(4)],
+      ["A \u00D7 B", data.interaction.ss.toFixed(2), String(data.interaction.df), data.interaction.ms.toFixed(2), data.interaction.f.toFixed(2), fmt(data.interaction.p), data.interaction.etaSq.toFixed(4)],
+      ["Residual", data.residual.ss.toFixed(2), String(data.residual.df), data.residual.ms.toFixed(2), "", "", ""],
+      ["Total", data.total.ss.toFixed(2), String(data.total.df), "", "", "", ""],
+    ]
+  );
+
+  y = addTable(doc, y,
+    ["A", "B", "N", "M", "SD"],
+    data.cellStats.map(c => [c.factorA, c.factorB, String(c.n), c.mean.toFixed(2), c.sd.toFixed(2)])
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Repeated Measures ANOVA PDF ---
+export function exportRepeatedMeasuresPdf(data: {
+  fStatistic: number; dfConditions: number; dfError: number; pValue: number;
+  partialEtaSquared: number; ssConditions: number; ssSubjects: number; ssError: number; ssTotal: number;
+  msConditions: number; msError: number;
+  sphericity: { mauchlyW: number; chiSquare: number; p: number; ggEpsilon: number; violated: boolean };
+  correctedF?: { df1: number; df2: number; p: number };
+  conditionStats: { name: string; n: number; mean: number; sd: number }[];
+  postHoc: { condition1: string; condition2: string; meanDiff: number; tValue: number; pValue: number; significant: boolean }[];
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Repeated Measures ANOVA");
+  const fmt = (v: number) => v < 0.001 ? "< .001" : v.toFixed(3);
+
+  y = addTable(doc, y,
+    ["Source", "SS", "df", "MS", "F", "p"],
+    [
+      ["Conditions", data.ssConditions.toFixed(2), String(data.dfConditions), data.msConditions.toFixed(2), data.fStatistic.toFixed(2), fmt(data.pValue)],
+      ["Subjects", data.ssSubjects.toFixed(2), "", "", "", ""],
+      ["Error", data.ssError.toFixed(2), String(data.dfError), data.msError.toFixed(2), "", ""],
+      ["Total", data.ssTotal.toFixed(2), "", "", "", ""],
+    ]
+  );
+
+  y = addSection(doc, y, "Effect Size:", `partial \u03B7\u00B2 = ${data.partialEtaSquared.toFixed(4)}`);
+
+  y = addSection(doc, y, "Sphericity (Mauchly's):",
+    `W = ${data.sphericity.mauchlyW.toFixed(4)}, \u03C7\u00B2 = ${data.sphericity.chiSquare.toFixed(2)}, ` +
+    `p = ${fmt(data.sphericity.p)}, GG \u03B5 = ${data.sphericity.ggEpsilon.toFixed(4)}` +
+    (data.sphericity.violated && data.correctedF ? ` \u2192 Corrected: F(${data.correctedF.df1.toFixed(2)}, ${data.correctedF.df2.toFixed(2)}), p = ${fmt(data.correctedF.p)}` : "")
+  );
+
+  y = addTable(doc, y,
+    ["Condition", "N", "M", "SD"],
+    data.conditionStats.map(c => [c.name, String(c.n), c.mean.toFixed(2), c.sd.toFixed(2)])
+  );
+
+  if (data.postHoc.length > 0) {
+    y = addSection(doc, y, "Post-Hoc Pairwise Comparisons (Bonferroni):", "");
+    y = addTable(doc, y,
+      ["Comparison", "Mean Diff", "t", "p", "Sig."],
+      data.postHoc.map(ph => [
+        `${ph.condition1} vs ${ph.condition2}`,
+        ph.meanDiff.toFixed(2),
+        ph.tValue.toFixed(2),
+        ph.pValue < 0.001 ? "< .001" : ph.pValue.toFixed(3),
+        ph.significant ? "*" : "ns",
+      ])
+    );
+  }
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- Fisher's Exact Test PDF ---
+export function exportFisherExactPdf(data: {
+  pValue: number; oddsRatio: number; oddsRatioCI: [number, number];
+  phi: number; relativeRisk: number; relativeRiskCI: [number, number];
+  observed: number[][]; grandTotal: number;
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "Fisher's Exact Test");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["p (exact)", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
+      ["Odds Ratio", data.oddsRatio === Infinity ? "\u221E" : data.oddsRatio.toFixed(4)],
+      ["OR 95% CI", `[${data.oddsRatioCI[0].toFixed(3)}, ${data.oddsRatioCI[1] === Infinity ? "\u221E" : data.oddsRatioCI[1].toFixed(3)}]`],
+      ["Relative Risk", data.relativeRisk === Infinity ? "\u221E" : data.relativeRisk.toFixed(4)],
+      ["RR 95% CI", `[${data.relativeRiskCI[0].toFixed(3)}, ${data.relativeRiskCI[1] === Infinity ? "\u221E" : data.relativeRiskCI[1].toFixed(3)}]`],
+      ["Phi (\u03C6)", data.phi.toFixed(4)],
+      ["N", String(data.grandTotal)],
+    ]
+  );
+
+  y = addTable(doc, y,
+    ["", "Col 1", "Col 2"],
+    [
+      ["Row 1", String(data.observed[0][0]), String(data.observed[0][1])],
+      ["Row 2", String(data.observed[1][0]), String(data.observed[1][1])],
+    ]
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}
+
+// --- McNemar Test PDF ---
+export function exportMcNemarPdf(data: {
+  chiSquare: number; df: number; pValue: number; exactP: number | null;
+  oddsRatio: number; oddsRatioCI: [number, number];
+  b: number; c: number; discordantTotal: number; proportionChanged: number;
+  observed: number[][]; n: number; useExact: boolean;
+}, apa: string): Blob {
+  const doc = new jsPDF();
+  let y = addHeader(doc, "McNemar Test");
+
+  y = addTable(doc, y,
+    ["Statistic", "Value"],
+    [
+      ["\u03C7\u00B2", data.chiSquare.toFixed(4)],
+      ["df", String(data.df)],
+      ["p (\u03C7\u00B2)", data.pValue < 0.001 ? "< .001" : data.pValue.toFixed(4)],
+      ...(data.exactP != null ? [["p (exact)", data.exactP < 0.001 ? "< .001" : data.exactP.toFixed(4)]] : []),
+      ["Odds Ratio (b/c)", data.oddsRatio === Infinity ? "\u221E" : data.oddsRatio.toFixed(4)],
+      ["OR 95% CI", `[${data.oddsRatioCI[0].toFixed(3)}, ${data.oddsRatioCI[1] === Infinity ? "\u221E" : data.oddsRatioCI[1].toFixed(3)}]`],
+      ["Discordant pairs", `b=${data.b}, c=${data.c} (total=${data.discordantTotal})`],
+      ["Proportion changed", (data.proportionChanged * 100).toFixed(1) + "%"],
+      ["N", String(data.n)],
+    ]
+  );
+
+  y = addTable(doc, y,
+    ["", "Post +", "Post \u2212"],
+    [
+      ["Pre +", String(data.observed[0][0]), String(data.observed[0][1])],
+      ["Pre \u2212", String(data.observed[1][0]), String(data.observed[1][1])],
+    ]
+  );
+
+  y = addApa(doc, y, apa);
+  addFooter(doc);
+  return toBlob(doc);
+}

@@ -259,25 +259,8 @@ function ResultsDisplay({ result }: { result: FisherExactResult }) {
           <Button
             variant="outline"
             onClick={async () => {
-              const { exportChiSquarePdf } = await import("@/lib/export-pdf");
-              const blob = exportChiSquarePdf(
-                {
-                  type: "independence",
-                  chiSquare: 0,
-                  df: 1,
-                  pValue: result.pValue,
-                  cramersV: Math.abs(result.phi),
-                  observed: result.observed,
-                  expected: result.expected,
-                  rowTotals: result.rowTotals,
-                  colTotals: result.colTotals,
-                  grandTotal: result.grandTotal,
-                  rows: 2,
-                  cols: 2,
-                  significant: result.significant,
-                },
-                apa
-              );
+              const { exportFisherExactPdf } = await import("@/lib/export-pdf");
+              const blob = exportFisherExactPdf(result, apa);
               const { downloadBlob } = await import("@/lib/export-docx");
               downloadBlob(blob, `statmate-fisher-exact-${Date.now()}.pdf`);
             }}

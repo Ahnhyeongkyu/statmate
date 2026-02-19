@@ -328,8 +328,8 @@ function ResultsDisplay({
           <Button
             variant="outline"
             onClick={async () => {
-              const { exportAnovaPdf } = await import("@/lib/export-pdf");
-              const blob = exportAnovaPdf(result as never, apa);
+              const { exportTwoWayAnovaPdf } = await import("@/lib/export-pdf");
+              const blob = exportTwoWayAnovaPdf(result, apa);
               const { downloadBlob } = await import("@/lib/export-docx");
               downloadBlob(blob, `statmate-two-way-anova-${Date.now()}.pdf`);
             }}
