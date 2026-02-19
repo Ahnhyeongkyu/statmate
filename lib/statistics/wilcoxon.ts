@@ -93,7 +93,7 @@ export function wilcoxonSignedRank(input: WilcoxonInput): WilcoxonResult {
     (nEffective * (nEffective + 1) * (2 * nEffective + 1)) / 24
   );
   const z = sigma === 0 ? 0 : (wStat - mu + 0.5) / sigma;
-  const pValue = 2 * jStat.normal.cdf(z, 0, 1);
+  const pValue = Math.min(2 * jStat.normal.cdf(z, 0, 1), 1);
 
   // Rank-biserial correlation
   const rankBiserialR = (wPlus - wMinus) / ((nEffective * (nEffective + 1)) / 2);

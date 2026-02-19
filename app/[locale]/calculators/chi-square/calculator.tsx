@@ -624,7 +624,7 @@ function ChiSquareCalculatorInner() {
                               <input
                                 type="number"
                                 min="0"
-                                className="w-16 rounded border px-2 py-1 text-center text-sm"
+                                className="w-16 min-h-[44px] rounded border px-2 py-1 text-center text-sm"
                                 value={cells[i]?.[j] || ""}
                                 onChange={(e) => handleCellChange(i, j, e.target.value)}
                                 placeholder="0"

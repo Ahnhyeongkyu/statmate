@@ -121,7 +121,7 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: MannWhitne
                           : "bg-gray-100 text-gray-800"
                   }
                 >
-                  {result.effectSizeLabel}
+                  {t(`${result.effectSizeLabel}Effect`)}
                 </Badge>
               </p>
             </div>

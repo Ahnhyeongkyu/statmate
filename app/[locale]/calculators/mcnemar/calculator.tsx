@@ -449,7 +449,7 @@ function McNemarCalculatorInner() {
                             type="number"
                             min="0"
                             step="1"
-                            className={`w-20 rounded border px-2 py-1 text-center text-sm ${
+                            className={`w-20 min-h-[44px] rounded border px-2 py-1 text-center text-sm ${
                               (i === 0 && j === 1) || (i === 1 && j === 0)
                                 ? "border-orange-300 bg-orange-50"
                                 : ""

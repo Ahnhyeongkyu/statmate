@@ -70,7 +70,7 @@ export function simpleLinearRegression(
   const ssReg = ssTot - ssRes;
 
   const rSquared = ssTot === 0 ? 0 : 1 - ssRes / ssTot;
-  const r = ssXY / Math.sqrt(ssXX * ssYY);
+  const r = Math.max(-1, Math.min(1, ssXY / Math.sqrt(ssXX * ssYY)));
   const adjustedRSquared = 1 - ((1 - rSquared) * (n - 1)) / (n - 2);
 
   const dfRegression = 1;

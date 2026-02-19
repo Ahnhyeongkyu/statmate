@@ -124,7 +124,7 @@ function ResultsDisplay({ result, groupsData }: { result: KruskalWallisResult; g
                           : "bg-gray-100 text-gray-800"
                   }
                 >
-                  {result.effectSizeLabel}
+                  {t(`${result.effectSizeLabel}Effect`)}
                 </Badge>
               </p>
             </div>

@@ -101,7 +101,7 @@ function ResultsDisplay({ result }: { result: SampleSizeResult }) {
             </div>
             <div>
               <span className="text-gray-500">{t("effectSizeLabel")}</span>
-              <p className="font-medium capitalize">{result.effectSizeLabel}</p>
+              <p className="font-medium capitalize">{t(`${result.effectSizeLabel}Effect`)}</p>
             </div>
             <div>
               <span className="text-gray-500">{ts("significanceLevel")}</span>

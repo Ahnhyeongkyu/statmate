@@ -190,8 +190,8 @@ export function twoWayAnova(
   const pAB = msWithin > 0 && dfAB > 0 ? 1 - jStat.centralF.cdf(fAB, dfAB, dfWithin) : 1;
 
   // Partial eta-squared for each effect
-  const etaSqA = ssA / (ssA + ssWithin);
-  const etaSqB = ssB / (ssB + ssWithin);
+  const etaSqA = (ssA + ssWithin) > 0 ? ssA / (ssA + ssWithin) : 0;
+  const etaSqB = (ssB + ssWithin) > 0 ? ssB / (ssB + ssWithin) : 0;
   const etaSqAB = (ssAB + ssWithin) > 0 ? ssAB / (ssAB + ssWithin) : 0;
 
   // Cell statistics

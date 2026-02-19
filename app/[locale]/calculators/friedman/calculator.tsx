@@ -128,7 +128,7 @@ function ResultsDisplay({ result, groupsData }: { result: FriedmanResult; groups
                           : "bg-gray-100 text-gray-800"
                   }
                 >
-                  {result.effectSizeLabel}
+                  {t(`${result.effectSizeLabel}Effect`)}
                 </Badge>
               </p>
             </div>

@@ -78,7 +78,7 @@ export function mannWhitneyU(input: MannWhitneyInput): MannWhitneyResult {
   const mu = (n1 * n2) / 2;
   const sigma = Math.sqrt((n1 * n2 * (n1 + n2 + 1)) / 12);
   const z = sigma === 0 ? 0 : (uMin - mu + 0.5) / sigma;
-  const pValue = 2 * jStat.normal.cdf(z, 0, 1);
+  const pValue = Math.min(2 * jStat.normal.cdf(z, 0, 1), 1);
 
   // Rank-biserial correlation as effect size
   const rankBiserialR = 1 - (2 * uMin) / (n1 * n2);

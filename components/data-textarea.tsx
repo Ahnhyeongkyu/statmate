@@ -56,21 +56,30 @@ export function DataTextarea({
   const count = value.trim() ? parseNumbers(value).length : 0;
   const fileRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
+  const [fileError, setFileError] = useState("");
 
   const handleFile = useCallback(
     async (file: File) => {
       if (!file) return;
+      setFileError("");
       const ext = file.name.toLowerCase();
-      if (!ext.endsWith(".csv") && !ext.endsWith(".txt") && !ext.endsWith(".tsv")) return;
+      if (!ext.endsWith(".csv") && !ext.endsWith(".txt") && !ext.endsWith(".tsv")) {
+        setFileError(t("csvFormatError"));
+        return;
+      }
       try {
         const text = await readFileAsText(file);
         const parsed = parseCSV(text);
-        if (parsed) onChange(parsed);
+        if (parsed) {
+          onChange(parsed);
+        } else {
+          setFileError(t("csvNoData"));
+        }
       } catch {
-        // silently ignore read errors
+        setFileError(t("csvReadError"));
       }
     },
-    [onChange]
+    [onChange, t]
   );
 
   const handleDrop = useCallback(
@@ -94,10 +103,11 @@ export function DataTextarea({
         </Label>
         <button
           type="button"
-          onClick={() => fileRef.current?.click()}
+          onClick={() => { setFileError(""); fileRef.current?.click(); }}
           className="text-xs text-blue-500 hover:text-blue-700"
+          aria-label={t("uploadCsv")}
         >
-          CSV
+          {t("uploadCsv")}
         </button>
       </div>
       <div
@@ -139,7 +149,9 @@ export function DataTextarea({
         }}
       />
       <div className="mt-1 flex items-center justify-between">
-        {count > 0 ? (
+        {fileError ? (
+          <p className="text-xs text-red-500">{fileError}</p>
+        ) : count > 0 ? (
           <p className="text-xs text-emerald-600">
             N = {count} {t("valuesDetected")}
           </p>
