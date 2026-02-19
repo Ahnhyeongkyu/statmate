@@ -224,21 +224,28 @@ export default async function Home({
               <p className="text-sm leading-relaxed text-gray-600">
                 {t("trust.validatedDescription")}
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-gray-600">
-                {[
-                  { label: locale === "ko" ? "T-검정" : "T-test", fn: "t.test()" },
-                  { label: locale === "ko" ? "분산분석" : "ANOVA", fn: "aov()", extra: locale === "ko" ? " + Bonferroni 사후검정" : " + Bonferroni post-hoc" },
-                  { label: locale === "ko" ? "카이제곱" : "Chi-square", fn: "chisq.test()" },
-                  { label: locale === "ko" ? "상관분석" : "Correlation", fn: "cor.test()" },
-                ].map((item) => (
-                  <li key={item.fn} className="flex items-start gap-2">
-                    <span className="mt-0.5 shrink-0 text-green-600">&check;</span>
-                    {item.label}: {locale === "ko" ? "R" : "Validated against R"}{" "}
-                    <code className="rounded bg-gray-100 px-1 text-xs">{item.fn}</code>
-                    {locale === "ko" ? " 검증 완료" : ""}{item.extra ?? ""}
-                  </li>
+              <div className="mt-4 space-y-4">
+                {([
+                  { cat: "parametric", items: ["a", "b", "c", "d", "e"] },
+                  { cat: "nonParametric", items: ["a", "b", "c", "d", "e", "f"] },
+                  { cat: "regression", items: ["a", "b", "c", "d"] },
+                  { cat: "other", items: ["a", "b", "c", "d", "e"] },
+                ] as const).map(({ cat, items }) => (
+                  <div key={cat}>
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-green-700">
+                      {t(`trust.validation.${cat}.title`)}
+                    </p>
+                    <ul className="space-y-1 text-sm text-gray-600">
+                      {items.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-0.5 shrink-0 text-green-600">&check;</span>
+                          <span>{t(`trust.validation.${cat}.${item}`)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             <div>
               <h3 className="mb-3 text-lg font-semibold text-gray-900">

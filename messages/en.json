@@ -177,8 +177,42 @@
     },
     "trustTitle": "Trusted Calculations",
     "trust": {
-      "validatedTitle": "Validated Against R & SPSS",
+      "validatedTitle": "All 20 Calculators Validated Against R & SPSS",
       "validatedDescription": "Every calculator in StatMate has been cross-validated against R (the gold standard for statistical computing) and SPSS. Our results match to at least 4 decimal places across all test statistics, p-values, and effect sizes.",
+      "validation": {
+        "parametric": {
+          "title": "Parametric Tests",
+          "a": "Independent & Paired T-Test → R t.test()",
+          "b": "One-Sample T-Test → R t.test(mu=...)",
+          "c": "One-Way ANOVA → R aov() + Bonferroni",
+          "d": "Two-Way ANOVA → R aov() interaction",
+          "e": "Repeated Measures ANOVA → R aov() + Error()"
+        },
+        "nonParametric": {
+          "title": "Non-Parametric Tests",
+          "a": "Mann-Whitney U → R wilcox.test()",
+          "b": "Wilcoxon Signed-Rank → R wilcox.test(paired=TRUE)",
+          "c": "Kruskal-Wallis H → R kruskal.test()",
+          "d": "Friedman Test → R friedman.test()",
+          "e": "Chi-Square → R chisq.test()",
+          "f": "Fisher's Exact → R fisher.test()"
+        },
+        "regression": {
+          "title": "Regression & Modeling",
+          "a": "Simple Regression → R lm()",
+          "b": "Multiple Regression → R lm() + VIF",
+          "c": "Logistic Regression → R glm(family=binomial)",
+          "d": "Pearson & Spearman → R cor.test()"
+        },
+        "other": {
+          "title": "Reliability & Other",
+          "a": "Cronbach's Alpha → R psych::alpha()",
+          "b": "Factor Analysis (EFA) → R factanal()",
+          "c": "McNemar Test → R mcnemar.test()",
+          "d": "Sample Size / Power → R pwr package",
+          "e": "Descriptive Statistics → R summary()"
+        }
+      },
       "privacyTitle": "Privacy by Design",
       "privacyDescription": "Your data never leaves your device. All statistical calculations run entirely in your browser using client-side JavaScript. No data is uploaded, stored, or logged on our servers.",
       "clientSide": "100% client-side computation",
@@ -601,6 +635,43 @@
         "description": "Built with Next.js, TypeScript, and jStat. Client-side computation ensures privacy and speed. Open-source statistical libraries for transparency."
       }
     },
+    "citationTitle": "How to Cite StatMate",
+    "citationDescription": "If you use StatMate in your research, please cite it using one of the following formats:",
+    "citation": {
+      "apa": {
+        "label": "APA 7th Edition",
+        "text": "StatMate. (2025). StatMate: Free online statistics calculator with APA-formatted results [Web application]. https://statmate-red.vercel.app"
+      },
+      "mla": {
+        "label": "MLA 9th Edition",
+        "text": "\"StatMate: Free Online Statistics Calculator with APA-Formatted Results.\" StatMate, 2025, statmate-red.vercel.app."
+      },
+      "chicago": {
+        "label": "Chicago 17th Edition",
+        "text": "StatMate. \"Free Online Statistics Calculator with APA-Formatted Results.\" Accessed 2025. https://statmate-red.vercel.app."
+      }
+    },
+    "methodologyTitle": "Calculation Methodology",
+    "methodologyDescription": "All 20 calculators use established statistical formulas from authoritative textbooks and are cross-validated against R and SPSS to at least 4 decimal places.",
+    "methodology": {
+      "parametric": {
+        "title": "Parametric Tests (5)",
+        "tests": "T-Test (independent, paired, one-sample), One-Way ANOVA, Two-Way ANOVA, Repeated Measures ANOVA — validated against R t.test(), aov()"
+      },
+      "nonParametric": {
+        "title": "Non-Parametric Tests (6)",
+        "tests": "Mann-Whitney U, Wilcoxon Signed-Rank, Kruskal-Wallis H, Friedman, Chi-Square, Fisher's Exact — validated against R wilcox.test(), kruskal.test(), chisq.test(), fisher.test()"
+      },
+      "regression": {
+        "title": "Regression & Correlation (4)",
+        "tests": "Simple Regression, Multiple Regression, Logistic Regression, Pearson/Spearman Correlation — validated against R lm(), glm(), cor.test()"
+      },
+      "other": {
+        "title": "Reliability & Other (5)",
+        "tests": "Cronbach's Alpha, Factor Analysis (EFA), McNemar Test, Sample Size/Power Analysis, Descriptive Statistics — validated against R psych::alpha(), factanal(), pwr package"
+      }
+    },
+    "methodologyNote": "All calculations run client-side in your browser. Source code uses jStat, simple-statistics, and custom implementations following formulas from Howell (2013), Field (2018), and Tabachnick & Fidell (2019).",
     "contactTitle": "Contact",
     "contactText": "Have feedback, found a bug, or want to request a new calculator? We'd love to hear from you.",
     "contactEmail": "Email:",

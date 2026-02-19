@@ -177,8 +177,42 @@
     },
     "trustTitle": "신뢰할 수 있는 계산",
     "trust": {
-      "validatedTitle": "R & SPSS 검증 완료",
+      "validatedTitle": "20개 전체 계산기 R & SPSS 교차 검증",
       "validatedDescription": "StatMate의 모든 계산기는 R(통계 컴퓨팅의 표준)과 SPSS와 교차 검증되었습니다. 모든 검정 통계량, p값, 효과 크기에서 소수점 4자리까지 일치합니다.",
+      "validation": {
+        "parametric": {
+          "title": "모수 검정",
+          "a": "독립/대응표본 T-검정 → R t.test()",
+          "b": "일표본 T-검정 → R t.test(mu=...)",
+          "c": "일원배치 분산분석 → R aov() + Bonferroni",
+          "d": "이원배치 분산분석 → R aov() 상호작용",
+          "e": "반복측정 분산분석 → R aov() + Error()"
+        },
+        "nonParametric": {
+          "title": "비모수 검정",
+          "a": "Mann-Whitney U → R wilcox.test()",
+          "b": "Wilcoxon 부호순위 → R wilcox.test(paired=TRUE)",
+          "c": "Kruskal-Wallis H → R kruskal.test()",
+          "d": "Friedman 검정 → R friedman.test()",
+          "e": "카이제곱 → R chisq.test()",
+          "f": "Fisher 정확 검정 → R fisher.test()"
+        },
+        "regression": {
+          "title": "회귀 & 모델링",
+          "a": "단순 회귀 → R lm()",
+          "b": "다중 회귀 → R lm() + VIF",
+          "c": "로지스틱 회귀 → R glm(family=binomial)",
+          "d": "Pearson & Spearman → R cor.test()"
+        },
+        "other": {
+          "title": "신뢰도 & 기타",
+          "a": "Cronbach's Alpha → R psych::alpha()",
+          "b": "요인분석 (EFA) → R factanal()",
+          "c": "McNemar 검정 → R mcnemar.test()",
+          "d": "표본 크기 / 검정력 → R pwr 패키지",
+          "e": "기술통계 → R summary()"
+        }
+      },
       "privacyTitle": "설계부터 보안",
       "privacyDescription": "데이터가 기기를 떠나지 않습니다. 모든 통계 계산은 클라이언트 측 JavaScript를 사용하여 브라우저에서 완전히 실행됩니다. 서버에 데이터가 업로드, 저장 또는 기록되지 않습니다.",
       "clientSide": "100% 클라이언트 측 계산",
@@ -601,6 +635,43 @@
         "description": "Next.js, TypeScript, jStat으로 구축. 클라이언트 측 연산으로 프라이버시와 속도를 보장합니다. 투명성을 위한 오픈소스 통계 라이브러리를 사용합니다."
       }
     },
+    "citationTitle": "StatMate 인용 방법",
+    "citationDescription": "연구에서 StatMate를 사용하셨다면, 다음 형식 중 하나로 인용해 주세요:",
+    "citation": {
+      "apa": {
+        "label": "APA 7판",
+        "text": "StatMate. (2025). StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기 [웹 애플리케이션]. https://statmate-red.vercel.app"
+      },
+      "mla": {
+        "label": "MLA 9판",
+        "text": "\"StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" StatMate, 2025, statmate-red.vercel.app."
+      },
+      "chicago": {
+        "label": "시카고 17판",
+        "text": "StatMate. \"APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" 2025년 접속. https://statmate-red.vercel.app."
+      }
+    },
+    "methodologyTitle": "계산 방법론",
+    "methodologyDescription": "20개 전체 계산기는 권위 있는 통계학 교과서의 확립된 공식을 사용하며, R 및 SPSS와 소수점 4자리까지 교차 검증되었습니다.",
+    "methodology": {
+      "parametric": {
+        "title": "모수 검정 (5종)",
+        "tests": "T-검정 (독립표본, 대응표본, 일표본), 일원배치 분산분석, 이원배치 분산분석, 반복측정 분산분석 — R t.test(), aov() 검증"
+      },
+      "nonParametric": {
+        "title": "비모수 검정 (6종)",
+        "tests": "Mann-Whitney U, Wilcoxon 부호순위, Kruskal-Wallis H, Friedman, 카이제곱, Fisher 정확 검정 — R wilcox.test(), kruskal.test(), chisq.test(), fisher.test() 검증"
+      },
+      "regression": {
+        "title": "회귀 & 상관 (4종)",
+        "tests": "단순 회귀, 다중 회귀, 로지스틱 회귀, Pearson/Spearman 상관 — R lm(), glm(), cor.test() 검증"
+      },
+      "other": {
+        "title": "신뢰도 & 기타 (5종)",
+        "tests": "Cronbach's Alpha, 탐색적 요인분석 (EFA), McNemar 검정, 표본 크기/검정력 분석, 기술통계 — R psych::alpha(), factanal(), pwr 패키지 검증"
+      }
+    },
+    "methodologyNote": "모든 계산은 브라우저에서 클라이언트 측으로 실행됩니다. jStat, simple-statistics 및 Howell (2013), Field (2018), Tabachnick & Fidell (2019)의 공식을 따르는 커스텀 구현을 사용합니다.",
     "contactTitle": "문의",
     "contactText": "피드백이 있거나, 버그를 발견하거나, 새로운 계산기를 요청하고 싶으신가요? 연락 주세요.",
     "contactEmail": "이메일:",

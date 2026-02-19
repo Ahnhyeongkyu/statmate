@@ -177,8 +177,42 @@
     },
     "trustTitle": "信頼できる計算",
     "trust": {
-      "validatedTitle": "R・SPSSで検証済み",
+      "validatedTitle": "全20種類の計算ツール R & SPSS相互検証済み",
       "validatedDescription": "StatMateのすべての計算ツールは、R（統計計算のゴールドスタンダード）およびSPSSと相互検証されています。すべての検定統計量、p値、効果量において、少なくとも小数点以下4桁まで一致します。",
+      "validation": {
+        "parametric": {
+          "title": "パラメトリック検定",
+          "a": "対応のある・ないt検定 → R t.test()",
+          "b": "1標本t検定 → R t.test(mu=...)",
+          "c": "一元配置分散分析 → R aov() + Bonferroni",
+          "d": "二元配置分散分析 → R aov() 交互作用",
+          "e": "反復測定分散分析 → R aov() + Error()"
+        },
+        "nonParametric": {
+          "title": "ノンパラメトリック検定",
+          "a": "マン・ホイットニーU → R wilcox.test()",
+          "b": "ウィルコクソン符号順位 → R wilcox.test(paired=TRUE)",
+          "c": "クラスカル・ウォリスH → R kruskal.test()",
+          "d": "フリードマン検定 → R friedman.test()",
+          "e": "カイ二乗 → R chisq.test()",
+          "f": "フィッシャーの正確検定 → R fisher.test()"
+        },
+        "regression": {
+          "title": "回帰 & モデリング",
+          "a": "単回帰 → R lm()",
+          "b": "重回帰 → R lm() + VIF",
+          "c": "ロジスティック回帰 → R glm(family=binomial)",
+          "d": "ピアソン & スピアマン → R cor.test()"
+        },
+        "other": {
+          "title": "信頼性 & その他",
+          "a": "クロンバックのα → R psych::alpha()",
+          "b": "因子分析 (EFA) → R factanal()",
+          "c": "マクネマー検定 → R mcnemar.test()",
+          "d": "サンプルサイズ / 検出力 → R pwrパッケージ",
+          "e": "記述統計 → R summary()"
+        }
+      },
       "privacyTitle": "プライバシー重視の設計",
       "privacyDescription": "データがデバイスから外部に送信されることはありません。すべての統計計算はクライアントサイドのJavaScriptでブラウザ内で完全に実行されます。データのアップロード、保存、ログ記録は一切行いません。",
       "clientSide": "100%クライアントサイド処理",
@@ -601,6 +635,43 @@
         "description": "Next.js、TypeScript、jStatで構築。クライアントサイド処理によりプライバシーと速度を確保。透明性のためにオープンソースの統計ライブラリを使用。"
       }
     },
+    "citationTitle": "StatMateの引用方法",
+    "citationDescription": "研究でStatMateをご使用いただいた場合は、以下のいずれかの形式で引用してください：",
+    "citation": {
+      "apa": {
+        "label": "APA第7版",
+        "text": "StatMate. (2025). StatMate: APA形式の結果を提供する無料オンライン統計計算ツール [Webアプリケーション]. https://statmate-red.vercel.app"
+      },
+      "mla": {
+        "label": "MLA第9版",
+        "text": "\"StatMate: APA形式の結果を提供する無料オンライン統計計算ツール.\" StatMate, 2025, statmate-red.vercel.app."
+      },
+      "chicago": {
+        "label": "シカゴ第17版",
+        "text": "StatMate.「APA形式の結果を提供する無料オンライン統計計算ツール」2025年アクセス. https://statmate-red.vercel.app."
+      }
+    },
+    "methodologyTitle": "計算方法論",
+    "methodologyDescription": "全20種類の計算ツールは、権威ある統計学教科書の確立された公式を使用し、RおよびSPSSと小数点以下4桁まで相互検証されています。",
+    "methodology": {
+      "parametric": {
+        "title": "パラメトリック検定（5種）",
+        "tests": "t検定（対応なし、対応あり、1標本）、一元配置分散分析、二元配置分散分析、反復測定分散分析 — R t.test()、aov()で検証"
+      },
+      "nonParametric": {
+        "title": "ノンパラメトリック検定（6種）",
+        "tests": "マン・ホイットニーU、ウィルコクソン符号順位、クラスカル・ウォリスH、フリードマン、カイ二乗、フィッシャーの正確検定 — R wilcox.test()、kruskal.test()、chisq.test()、fisher.test()で検証"
+      },
+      "regression": {
+        "title": "回帰 & 相関（4種）",
+        "tests": "単回帰、重回帰、ロジスティック回帰、ピアソン/スピアマン相関 — R lm()、glm()、cor.test()で検証"
+      },
+      "other": {
+        "title": "信頼性 & その他（5種）",
+        "tests": "クロンバックのα、探索的因子分析（EFA）、マクネマー検定、サンプルサイズ/検出力分析、記述統計 — R psych::alpha()、factanal()、pwrパッケージで検証"
+      }
+    },
+    "methodologyNote": "すべての計算はブラウザ内でクライアントサイドで実行されます。jStat、simple-statistics、およびHowell (2013)、Field (2018)、Tabachnick & Fidell (2019)の公式に基づくカスタム実装を使用しています。",
     "contactTitle": "お問い合わせ",
     "contactText": "フィードバック、バグの報告、新しい計算ツールのリクエストがありましたら、ぜひお聞かせください。",
     "contactEmail": "メール：",

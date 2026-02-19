@@ -84,6 +84,43 @@ export default async function AboutPage() {
           ))}
         </div>
 
+        {/* How to Cite */}
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("citationTitle")}
+        </h2>
+        <p>{t("citationDescription")}</p>
+        <div className="space-y-4">
+          {(["apa", "mla", "chicago"] as const).map((style) => (
+            <div key={style} className="rounded-lg border bg-gray-50 p-4">
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+                {t(`citation.${style}.label`)}
+              </h3>
+              <p className="font-mono text-sm leading-relaxed text-gray-800">
+                {t(`citation.${style}.text`)}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Methodology */}
+        <h2 className="text-xl font-semibold text-gray-900">
+          {t("methodologyTitle")}
+        </h2>
+        <p>{t("methodologyDescription")}</p>
+        <div className="space-y-3">
+          {(["parametric", "nonParametric", "regression", "other"] as const).map((cat) => (
+            <div key={cat} className="rounded-lg border bg-white p-4">
+              <h3 className="mb-1 text-sm font-semibold text-gray-900">
+                {t(`methodology.${cat}.title`)}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t(`methodology.${cat}.tests`)}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-gray-500">{t("methodologyNote")}</p>
+
         <h2 className="text-xl font-semibold text-gray-900">
           {t("contactTitle")}
         </h2>
