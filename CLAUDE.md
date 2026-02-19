@@ -1,6 +1,6 @@
 # StatMate — Project Context
 
-> Last updated: 2026-02-19 | Latest commit: `2ec1b73`
+> Last updated: 2026-02-19 | Latest commit: `df758da`
 
 ## Overview
 
@@ -190,6 +190,10 @@ npm run build  # Turbopack, generates 29 static + dynamic pages, ~10s
 ## Immediate TODO
 
 - [ ] **GSC Indexing** — Submit new/updated URLs to Google Search Console (Chrome browser automation)
+  - 새 세션에서 Chrome 확장 연결 후 진행 (이전 세션에서 MCP 연결 끊김으로 불가했음)
+  - GSC URL: https://search.google.com/search-console
+  - 제출할 URL: sitemap.xml에 있는 모든 계산기 URL (20개 x 2언어 = 40개 + 블로그 등)
+  - 방법: GSC > URL 검사 > URL 입력 > 색인 생성 요청
 - No TODO/FIXME/HACK comments in codebase.
 
 ## Recently Completed
