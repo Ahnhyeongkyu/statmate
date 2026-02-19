@@ -1,0 +1,225 @@
+---
+title: "How to Run a T-Test: Step-by-Step Guide (Independent & Paired)"
+description: "Learn how to run independent samples and paired samples t-tests step by step, from checking assumptions to interpreting results. Includes worked examples with real numbers."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["t-test", "independent t-test", "paired t-test", "hypothesis testing", "step-by-step guide"]
+---
+
+## Introduction
+
+The t-test is one of the most widely used statistical tests in research. It helps you determine whether there is a statistically significant difference between the means of two groups. Whether you are comparing test scores between two classrooms or measuring patient outcomes before and after a treatment, the t-test is often the right tool for the job.
+
+This guide walks you through the entire process of running both an independent samples t-test and a paired samples t-test. You will learn when to use each type, how to check assumptions, how to perform the calculations, and how to interpret the output. Every step includes concrete numbers so you can follow along with a real example.
+
+## When to Use a T-Test
+
+A t-test is appropriate when you want to compare the means of exactly two groups and your outcome variable is continuous (interval or ratio scale). There are two main types:
+
+- **Independent samples t-test**: Compares means from two separate, unrelated groups (e.g., treatment vs. control).
+- **Paired samples t-test**: Compares means from two related measurements on the same individuals (e.g., pre-test vs. post-test).
+
+If you have more than two groups, consider using [ANOVA](/calculators/anova) instead.
+
+## Part 1: Independent Samples T-Test
+
+### Step 1: State Your Hypotheses
+
+Before touching any data, clearly define your null and alternative hypotheses.
+
+**Example scenario:** A teacher wants to know whether a new teaching method improves math scores compared to the traditional method.
+
+- **Null hypothesis (H0):** There is no difference in mean math scores between the new method group and the traditional method group.
+- **Alternative hypothesis (H1):** There is a difference in mean math scores between the two groups.
+
+### Step 2: Collect and Organize Your Data
+
+Suppose you have test scores from two groups of students:
+
+| New Method (Group A) | Traditional Method (Group B) |
+|----------------------|------------------------------|
+| 85 | 78 |
+| 92 | 72 |
+| 88 | 80 |
+| 76 | 68 |
+| 95 | 75 |
+| 83 | 71 |
+| 90 | 77 |
+| 87 | 73 |
+| 91 | 69 |
+| 79 | 74 |
+
+### Step 3: Calculate Descriptive Statistics
+
+Compute the mean and standard deviation for each group.
+
+**Group A (New Method):**
+- Mean (*M*) = 86.6
+- Standard Deviation (*SD*) = 5.85
+- Sample size (*n*) = 10
+
+**Group B (Traditional Method):**
+- Mean (*M*) = 73.7
+- Standard Deviation (*SD*) = 3.80
+- Sample size (*n*) = 10
+
+### Step 4: Check Assumptions
+
+Before running the t-test, verify these key assumptions:
+
+1. **Independence of observations**: Each score in one group is independent of scores in the other group. This is satisfied by the study design.
+
+2. **Normality**: The data in each group should be approximately normally distributed. With small samples (n < 30), you can use the Shapiro-Wilk test. For larger samples, the Central Limit Theorem provides robustness.
+
+3. **Homogeneity of variances**: The two groups should have roughly equal variances. Use Levene's test to check this. If variances are unequal, use Welch's t-test instead of Student's t-test.
+
+### Step 5: Calculate the T Statistic
+
+The formula for the independent samples t-test (equal variances assumed) is:
+
+**t = (M1 - M2) / sqrt(Sp2 * (1/n1 + 1/n2))**
+
+Where Sp2 is the pooled variance:
+
+**Sp2 = ((n1-1)*SD12 + (n2-1)*SD22) / (n1 + n2 - 2)**
+
+Plugging in our values:
+
+- Sp2 = ((9 * 34.22) + (9 * 14.44)) / 18 = (308.0 + 130.0) / 18 = 24.33
+- t = (86.6 - 73.7) / sqrt(24.33 * (1/10 + 1/10))
+- t = 12.9 / sqrt(24.33 * 0.2)
+- t = 12.9 / sqrt(4.87)
+- t = 12.9 / 2.207
+- **t = 5.85**
+
+Degrees of freedom: df = n1 + n2 - 2 = 10 + 10 - 2 = **18**
+
+### Step 6: Determine the P Value
+
+With t = 5.85 and df = 18, the two-tailed p value is less than .001. This is well below the conventional alpha level of .05.
+
+### Step 7: Calculate Effect Size
+
+Cohen's *d* measures the practical significance of the difference:
+
+**d = (M1 - M2) / Sp = 12.9 / 4.93 = 2.62**
+
+This is a very large effect according to Cohen's benchmarks (small = 0.20, medium = 0.50, large = 0.80).
+
+### Step 8: Interpret the Results
+
+The independent samples t-test revealed a statistically significant difference in math scores between students who received the new teaching method (*M* = 86.6, *SD* = 5.85) and those who received the traditional method (*M* = 73.7, *SD* = 3.80), *t*(18) = 5.85, *p* < .001, *d* = 2.62. The new method group scored substantially higher, with a very large effect size.
+
+## Part 2: Paired Samples T-Test
+
+### Step 1: State Your Hypotheses
+
+**Example scenario:** A therapist measures anxiety levels (on a 0-100 scale) in 10 patients before and after an 8-week cognitive behavioral therapy program.
+
+- **H0:** There is no difference in mean anxiety scores before and after therapy.
+- **H1:** There is a difference in mean anxiety scores before and after therapy.
+
+### Step 2: Collect and Organize Your Data
+
+| Patient | Before Therapy | After Therapy | Difference (D) |
+|---------|---------------|--------------|-----------------|
+| 1 | 72 | 58 | 14 |
+| 2 | 65 | 55 | 10 |
+| 3 | 80 | 62 | 18 |
+| 4 | 58 | 50 | 8 |
+| 5 | 74 | 60 | 14 |
+| 6 | 69 | 63 | 6 |
+| 7 | 83 | 65 | 18 |
+| 8 | 61 | 52 | 9 |
+| 9 | 77 | 59 | 18 |
+| 10 | 70 | 61 | 9 |
+
+### Step 3: Calculate Descriptive Statistics for the Differences
+
+- Mean difference (*MD*) = 12.4
+- Standard deviation of differences (*SDD*) = 4.40
+- Sample size (*n*) = 10
+
+### Step 4: Check Assumptions
+
+1. **Paired observations**: Each participant has both a before and after measurement. This is satisfied by design.
+
+2. **Normality of differences**: The distribution of difference scores should be approximately normal. For 10 observations, a Shapiro-Wilk test or a visual inspection of the difference distribution can help verify this.
+
+### Step 5: Calculate the T Statistic
+
+The formula for the paired samples t-test is:
+
+**t = MD / (SDD / sqrt(n))**
+
+Plugging in the values:
+
+- t = 12.4 / (4.40 / sqrt(10))
+- t = 12.4 / (4.40 / 3.162)
+- t = 12.4 / 1.392
+- **t = 8.91**
+
+Degrees of freedom: df = n - 1 = 10 - 1 = **9**
+
+### Step 6: Determine the P Value
+
+With t = 8.91 and df = 9, the two-tailed p value is less than .001.
+
+### Step 7: Calculate Effect Size
+
+For paired samples, Cohen's *d* is calculated as:
+
+**d = MD / SDD = 12.4 / 4.40 = 2.82**
+
+This is a very large effect size, indicating a substantial reduction in anxiety scores.
+
+### Step 8: Interpret the Results
+
+A paired samples t-test showed that anxiety scores were significantly lower after CBT (*M* = 58.5, *SD* = 4.86) compared to before therapy (*M* = 70.9, *SD* = 7.98), *t*(9) = 8.91, *p* < .001, *d* = 2.82. The average reduction of 12.4 points represents a very large effect.
+
+## Decision Guide: Independent vs. Paired
+
+| Question | Independent | Paired |
+|----------|-------------|--------|
+| Are the groups different people? | Yes | No |
+| Does each participant appear once? | Yes | No (twice) |
+| Is there a natural pairing? | No | Yes |
+| Examples | Treatment vs. control | Pre vs. post, left vs. right hand |
+
+## Common Pitfalls to Avoid
+
+1. **Ignoring assumptions**: Running a t-test on heavily skewed data without checking normality can produce misleading results. Consider nonparametric alternatives like the Mann-Whitney U test or Wilcoxon signed-rank test if assumptions are violated.
+
+2. **Confusing independent and paired designs**: Using an independent t-test when data are paired wastes statistical power and can lead to incorrect conclusions.
+
+3. **Neglecting effect size**: A statistically significant p value does not tell you the size of the effect. Always compute and report Cohen's *d*.
+
+4. **Multiple comparisons**: Running many t-tests on the same dataset inflates the Type I error rate. If you are comparing more than two groups, use ANOVA with post-hoc corrections.
+
+5. **Small sample sizes**: With very small samples, the t-test has low statistical power. Consider whether your sample is large enough to detect a meaningful effect.
+
+## Frequently Asked Questions
+
+### What is the minimum sample size for a t-test?
+
+There is no strict minimum, but most statisticians recommend at least 10-15 observations per group for the independent t-test and at least 15-20 pairs for the paired t-test. A formal power analysis can help you determine the exact sample size needed for your specific effect size and desired power level.
+
+### Should I use a one-tailed or two-tailed test?
+
+Use a two-tailed test unless you have a strong theoretical reason to predict the direction of the effect before looking at the data. One-tailed tests are more powerful but should be pre-specified, not chosen after seeing results.
+
+### What if my data are not normally distributed?
+
+If the normality assumption is violated and your sample size is small, consider using nonparametric alternatives: the Mann-Whitney U test for independent samples or the Wilcoxon signed-rank test for paired samples. With large samples (n > 30 per group), the t-test is fairly robust to violations of normality.
+
+### What does it mean if my p value is exactly .05?
+
+Conventionally, p = .05 is considered the boundary of statistical significance. However, rather than treating .05 as a rigid cutoff, report the exact p value and focus on effect sizes and confidence intervals for a more complete picture.
+
+### Can I use a t-test with unequal group sizes?
+
+Yes. The independent samples t-test works with unequal group sizes. If variances are also unequal, Welch's t-test (which does not assume equal variances) is recommended.
+
+## Run Your T-Test with StatMate
+
+You can perform both independent and paired t-tests instantly using StatMate's [t-test calculator](/calculators/t-test). Enter your raw data or summary statistics, and StatMate will compute the t statistic, p value, effect size, confidence intervals, and assumption checks automatically. Results are displayed in APA format, ready to copy into your manuscript.

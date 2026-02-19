@@ -1,0 +1,289 @@
+---
+title: "ANOVA vs Kruskal-Wallis: When to Use Which Test"
+description: "A detailed comparison of one-way ANOVA and the Kruskal-Wallis H test for comparing three or more groups. Learn when to choose parametric vs nonparametric, with side-by-side examples and decision criteria."
+date: "2026-02-19"
+category: "Test Comparison"
+tags:
+  - ANOVA
+  - Kruskal-Wallis
+  - parametric vs nonparametric
+  - group comparison
+  - normality
+  - homogeneity of variance
+---
+
+## Introduction
+
+When you need to compare a continuous outcome across **three or more independent groups**, two tests dominate the landscape: the parametric **one-way ANOVA** and the nonparametric **Kruskal-Wallis H test**. Choosing the right one depends on your data's distribution, sample size, and measurement scale.
+
+Both tests answer the same fundamental question: Is there a statistically significant difference among the group means (ANOVA) or group rank distributions (Kruskal-Wallis)? Yet they differ in their assumptions, statistical power, and interpretation.
+
+This article provides a practical framework for deciding which test to use, walks through both analyses on the same dataset, and explains how to interpret the results. You can run either test immediately using our [One-Way ANOVA Calculator](/calculators/one-way-anova) or [Kruskal-Wallis Calculator](/calculators/kruskal-wallis).
+
+## Quick Comparison Table
+
+| Feature                     | One-Way ANOVA                     | Kruskal-Wallis H Test               |
+|----------------------------|-----------------------------------|--------------------------------------|
+| Type                       | Parametric                        | Nonparametric                        |
+| Null hypothesis            | All group means are equal         | All group rank distributions are equal|
+| Data level                 | Continuous (interval/ratio)       | At least ordinal                     |
+| Assumes normality          | Yes                               | No                                   |
+| Assumes equal variances    | Yes (homogeneity)                 | No (but similar shapes preferred)    |
+| Compares                   | Means                             | Mean ranks (median-like)             |
+| Test statistic             | F-ratio                           | H-statistic (chi-square approx.)    |
+| Power                      | Higher when assumptions met       | Lower (approx. 95% of ANOVA)        |
+| Robust to outliers         | No                                | Yes                                  |
+| Post-hoc test              | Tukey HSD, Bonferroni, Scheffe   | Dunn's test with Bonferroni          |
+| Effect size                | Eta-squared, omega-squared        | Epsilon-squared, rank-biserial r     |
+| Minimum group size         | ~15-20 per group recommended      | ~5 per group (flexible)              |
+
+## When to Use One-Way ANOVA
+
+Choose ANOVA when:
+
+1. **Normality is satisfied** within each group. Check with Shapiro-Wilk tests and Q-Q plots. ANOVA is robust to mild non-normality when group sizes are roughly equal and n > 25-30 per group.
+
+2. **Variances are approximately equal** across groups. Levene's test with a p-value above 0.05 supports this. If variances are unequal, use Welch's ANOVA instead.
+
+3. **You need maximum statistical power.** When assumptions are met, ANOVA is the most powerful test for detecting differences among means.
+
+4. **You want to interpret group means.** ANOVA directly tests whether population means differ, which is often the quantity of interest.
+
+## When to Use Kruskal-Wallis
+
+Choose Kruskal-Wallis when:
+
+1. **Normality is violated** and sample sizes are small (n < 15-20 per group). Skewed distributions, heavy tails, or ordinal data all point toward Kruskal-Wallis.
+
+2. **Outliers are present** and cannot be justified for removal. Because Kruskal-Wallis uses ranks, extreme values have limited influence.
+
+3. **Data are ordinal.** Likert-scale ratings (e.g., 1-5 satisfaction scores) are better analyzed with a rank-based test.
+
+4. **Sample sizes are very small or unequal.** Kruskal-Wallis makes fewer distributional assumptions, making it safer with small samples.
+
+## Example Dataset
+
+A researcher compares the effectiveness of three teaching methods (Lecture, Discussion, and Hands-On) on exam scores (out of 100). Each group has 10 students.
+
+| Student | Lecture | Student | Discussion | Student | Hands-On |
+|---------|---------|---------|------------|---------|----------|
+| 1       | 72      | 11      | 78         | 21      | 85       |
+| 2       | 68      | 12      | 82         | 22      | 88       |
+| 3       | 75      | 13      | 76         | 23      | 92       |
+| 4       | 70      | 14      | 80         | 24      | 86       |
+| 5       | 65      | 15      | 74         | 25      | 90       |
+| 6       | 71      | 16      | 85         | 26      | 84       |
+| 7       | 67      | 17      | 79         | 27      | 91       |
+| 8       | 73      | 18      | 77         | 28      | 87       |
+| 9       | 69      | 19      | 83         | 29      | 93       |
+| 10      | 74      | 20      | 81         | 30      | 89       |
+
+### Descriptive Statistics
+
+| Group      | n  | Mean  | Median | SD   | Min | Max |
+|-----------|-----|-------|--------|------|-----|-----|
+| Lecture    | 10 | 70.40 | 70.50  | 3.17 | 65  | 75  |
+| Discussion | 10 | 79.50 | 79.50  | 3.37 | 74  | 85  |
+| Hands-On   | 10 | 88.50 | 88.50  | 3.03 | 84  | 93  |
+
+## Step 1: Check Assumptions
+
+### Normality (Shapiro-Wilk Test)
+
+| Group      | W     | p-value |
+|-----------|-------|---------|
+| Lecture    | 0.964 | 0.831   |
+| Discussion | 0.958 | 0.762   |
+| Hands-On   | 0.971 | 0.898   |
+
+All p-values exceed 0.05. Normality is not rejected for any group.
+
+### Homogeneity of Variance (Levene's Test)
+
+| Levene's F | df1 | df2 | p-value |
+|-----------|-----|-----|---------|
+| 0.089     | 2   | 27  | 0.915   |
+
+The p-value is 0.915, indicating no significant difference in variances. Homogeneity is satisfied.
+
+**Conclusion:** Both assumptions for ANOVA are met. ANOVA is the appropriate choice for these data. However, we will run both analyses for comparison.
+
+## Running One-Way ANOVA
+
+### ANOVA Table
+
+| Source        | SS       | df | MS      | F      | p-value |
+|--------------|----------|----|---------|--------|---------|
+| Between Groups| 1636.20  | 2  | 818.10  | 80.80  | < 0.001 |
+| Within Groups | 273.30   | 27 | 10.12   |        |         |
+| Total         | 1909.50  | 29 |         |        |         |
+
+**Result:** F(2, 27) = 80.80, p < .001.
+
+### Effect Size
+
+| Measure       | Value | Interpretation |
+|--------------|-------|----------------|
+| Eta-squared   | 0.857 | Large          |
+| Omega-squared | 0.846 | Large          |
+
+The teaching method explains approximately 85% of the variance in exam scores.
+
+### Post-Hoc: Tukey's HSD
+
+| Comparison                | Mean Diff | SE   | q      | p-value | 95% CI          |
+|--------------------------|-----------|------|--------|---------|-----------------|
+| Discussion vs Lecture     | 9.10      | 1.42 | 6.40   | < 0.001 | [5.63, 12.57]   |
+| Hands-On vs Lecture       | 18.10     | 1.42 | 12.74  | < 0.001 | [14.63, 21.57]  |
+| Hands-On vs Discussion    | 9.00      | 1.42 | 6.33   | < 0.001 | [5.53, 12.47]   |
+
+All pairwise differences are significant. Hands-On scores are highest, followed by Discussion, then Lecture.
+
+## Running Kruskal-Wallis Test
+
+### Ranking Procedure
+
+The Kruskal-Wallis test replaces raw scores with ranks across all 30 observations combined.
+
+| Group      | Mean Rank | Sum of Ranks |
+|-----------|-----------|--------------|
+| Lecture    | 5.85      | 58.5         |
+| Discussion | 15.65     | 156.5        |
+| Hands-On   | 25.00     | 250.0        |
+
+### Test Results
+
+| Statistic | Value  |
+|----------|--------|
+| H        | 24.83  |
+| df       | 2      |
+| p-value  | < 0.001|
+
+**Result:** H(2) = 24.83, p < .001. There is a significant difference in exam scores across the three teaching methods.
+
+### Effect Size (Epsilon-Squared)
+
+Epsilon-squared = H / (N - 1)
+
+Epsilon-squared = 24.83 / 29 = 0.856
+
+This is consistent with the eta-squared from ANOVA, both indicating a very large effect.
+
+### Post-Hoc: Dunn's Test with Bonferroni Correction
+
+| Comparison                | Z      | p (adjusted) | Significant? |
+|--------------------------|--------|-------------|--------------|
+| Discussion vs Lecture     | -2.89  | 0.012       | Yes          |
+| Hands-On vs Lecture       | -5.65  | < 0.001     | Yes          |
+| Hands-On vs Discussion    | -2.76  | 0.017       | Yes          |
+
+The conclusions match ANOVA's post-hoc results: all three groups differ significantly from each other.
+
+## Side-by-Side Results
+
+| Aspect                  | ANOVA                        | Kruskal-Wallis              |
+|------------------------|------------------------------|------------------------------|
+| Test statistic          | F(2, 27) = 80.80            | H(2) = 24.83                |
+| p-value                | < 0.001                      | < 0.001                     |
+| Effect size             | eta-sq = 0.857               | epsilon-sq = 0.856          |
+| Post-hoc conclusion     | All pairs differ (p < .001)  | All pairs differ (p < .02)  |
+| Interpretation          | Based on means               | Based on ranks              |
+
+In this example, both tests reach the same conclusion because the assumptions for ANOVA are satisfied and the effect is very large.
+
+## When Results Diverge
+
+The two tests can give different results when:
+
+1. **Outliers are present.** ANOVA is sensitive to extreme values that inflate the mean and variance. Kruskal-Wallis, using ranks, is resistant.
+
+2. **Distributions are skewed.** With right-skewed data and small samples, ANOVA may lose power or give misleading p-values. Kruskal-Wallis remains valid.
+
+3. **Group distributions have different shapes.** Kruskal-Wallis technically tests whether the rank distributions are identical. If groups have the same median but different spreads, a significant Kruskal-Wallis may reflect shape differences rather than location differences.
+
+### Example of Divergence
+
+Consider adding an outlier to the Lecture group: change student 5's score from 65 to 25.
+
+| Test          | Without Outlier | With Outlier |
+|--------------|-----------------|--------------|
+| ANOVA p-value | < 0.001        | < 0.001      |
+| K-W p-value   | < 0.001        | < 0.001      |
+| Lecture Mean   | 70.40          | 66.40        |
+| Lecture Median | 70.50          | 70.50        |
+
+Both tests remain significant in this case due to the large effect, but the ANOVA F-statistic changes more because the mean is pulled down by the outlier. In borderline cases, an outlier could make ANOVA non-significant while Kruskal-Wallis remains significant.
+
+## Decision Flowchart
+
+Follow this sequence to choose your test:
+
+1. **Is the dependent variable at least ordinal?**
+   - No: Use a different test (e.g., chi-square for nominal data).
+   - Yes: Continue.
+
+2. **Are there three or more independent groups?**
+   - No: Use a two-sample t-test or Mann-Whitney U test.
+   - Yes: Continue.
+
+3. **Is the data continuous (interval/ratio)?**
+   - No (ordinal only): Use **Kruskal-Wallis**.
+   - Yes: Continue.
+
+4. **Is normality satisfied in each group? (Shapiro-Wilk p > 0.05 or n > 25-30)**
+   - No: Use **Kruskal-Wallis**.
+   - Yes: Continue.
+
+5. **Is homogeneity of variance satisfied? (Levene's p > 0.05)**
+   - No: Use **Welch's ANOVA** (does not assume equal variances).
+   - Yes: Use **one-way ANOVA**.
+
+## Practical Recommendations
+
+1. **Always check assumptions first.** Do not default to one test. Let the data guide your choice.
+
+2. **Report both tests if in doubt.** When assumptions are borderline, running both analyses and showing they agree strengthens your findings. If they disagree, discuss why and which is more appropriate.
+
+3. **Use Welch's ANOVA for unequal variances.** It is a better alternative than Kruskal-Wallis when normality holds but variances differ.
+
+4. **Consider the research question.** If your audience cares about means (e.g., average test scores), ANOVA directly answers their question. If they care about ordinal rankings or the data are Likert-type, Kruskal-Wallis is more natural.
+
+5. **Power matters.** ANOVA has approximately 95% of the power of a t-test in the two-group case, and Kruskal-Wallis has roughly 95% of the power of ANOVA when assumptions are met. The cost of using Kruskal-Wallis unnecessarily is small but real.
+
+## Try It Yourself
+
+Run your group comparison analysis using our online tools:
+
+- [One-Way ANOVA Calculator](/calculators/one-way-anova) for parametric analysis
+- [Kruskal-Wallis Calculator](/calculators/kruskal-wallis) for nonparametric analysis
+- [Normality Test Calculator](/calculators/normality-test) to check your assumptions first
+
+## FAQ
+
+### Can I use Kruskal-Wallis with only two groups?
+
+Technically yes, but the **Mann-Whitney U test** is the standard two-group nonparametric test. When applied to two groups, the Kruskal-Wallis test gives the same p-value as the Mann-Whitney U test. Use Mann-Whitney for clarity.
+
+### What if I have unequal group sizes?
+
+Both ANOVA and Kruskal-Wallis can handle unequal group sizes. However, ANOVA is more sensitive to violations of homogeneity of variance when group sizes are unequal. In that case, use Welch's ANOVA or Kruskal-Wallis.
+
+### Does Kruskal-Wallis compare medians or mean ranks?
+
+Strictly speaking, Kruskal-Wallis tests whether the **rank distributions** are identical across groups. It is commonly described as comparing medians, but this is only accurate when the group distributions have the same shape and spread. If shapes differ, a significant result could reflect differences in spread rather than central tendency.
+
+### What post-hoc test follows Kruskal-Wallis?
+
+**Dunn's test** is the standard post-hoc procedure for Kruskal-Wallis. Apply a correction for multiple comparisons (Bonferroni, Holm, or Benjamini-Hochberg). Some researchers use pairwise Mann-Whitney tests with a Bonferroni correction, but Dunn's test is more appropriate because it uses the same ranking as the omnibus test.
+
+### Can I use ANOVA with Likert-scale data?
+
+This is debated. Purists argue that Likert scales are ordinal and should be analyzed with nonparametric methods. Pragmatists note that ANOVA is robust when scale points are reasonably evenly spaced and sample sizes are adequate. A safe compromise: use Kruskal-Wallis for individual Likert items and ANOVA for composite scores (sums or averages of multiple items), which tend to be more continuous and normally distributed.
+
+### How do I calculate the sample size needed for each test?
+
+For ANOVA, use a power analysis specifying the expected effect size (f), alpha (typically 0.05), desired power (typically 0.80), and number of groups. For Kruskal-Wallis, divide the ANOVA sample size by the asymptotic relative efficiency (ARE), which is approximately 0.955 for normally distributed data. In practice, increase the ANOVA sample size by about 5-15% for Kruskal-Wallis.
+
+### Is there a nonparametric alternative for two-way ANOVA?
+
+There is no widely accepted nonparametric equivalent of factorial ANOVA. The **Scheirer-Ray-Hare test** extends Kruskal-Wallis to two factors, but it has limited statistical properties. For complex designs with non-normal data, consider **permutation tests** or **rank-based methods** implemented in specialized software.

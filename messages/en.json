@@ -1253,5 +1253,14 @@
     "r_fisher_exact_desc": "Exact test for 2×2 contingency tables when expected cell counts are small. Computes exact p-value, odds ratio, and confidence intervals.",
     "r_mcnemar": "McNemar Test",
     "r_mcnemar_desc": "Tests for changes in paired binary data (before/after). Uses exact binomial test for small samples and chi-square approximation for larger ones."
+  },
+  "newsletter": {
+    "title": "Stay Updated with Statistics Tips",
+    "description": "Get weekly tips on statistical analysis, APA formatting, and new calculator updates.",
+    "placeholder": "Enter your email",
+    "button": "Subscribe",
+    "success": "Thanks for subscribing! Check your inbox for confirmation.",
+    "error": "Something went wrong. Please try again.",
+    "privacy": "No spam. Unsubscribe anytime."
   }
 }

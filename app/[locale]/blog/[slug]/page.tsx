@@ -5,6 +5,7 @@ import { getPost, getAllSlugs } from "@/lib/blog";
 import { MdxContent } from "@/components/mdx-content";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft } from "lucide-react";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export async function generateStaticParams() {
   const koSlugs = getAllSlugs("ko").map((slug) => ({ locale: "ko", slug }));
@@ -84,6 +85,31 @@ export default async function BlogPostPage({
       </header>
 
       <MdxContent source={post.content} />
+
+      {/* Blog Post CTA */}
+      <div className="mt-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center text-white">
+        <h3 className="text-xl font-bold">
+          {locale === "ko"
+            ? "지금 바로 계산해 보세요"
+            : "Try It Now"}
+        </h3>
+        <p className="mt-2 text-sm text-blue-100">
+          {locale === "ko"
+            ? "StatMate의 무료 통계 계산기로 데이터를 분석하고 APA 형식 결과를 받아보세요."
+            : "Analyze your data with StatMate's free calculators and get APA-formatted results instantly."}
+        </p>
+        <Link
+          href="/calculators/t-test"
+          className="mt-4 inline-block rounded-full bg-white px-6 py-2.5 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50"
+        >
+          {locale === "ko" ? "계산기 시작하기" : "Start Calculating"}
+        </Link>
+      </div>
+
+      {/* Newsletter */}
+      <div className="mt-8">
+        <NewsletterSignup />
+      </div>
     </div>
   );
 }

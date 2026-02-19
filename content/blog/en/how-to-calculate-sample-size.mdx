@@ -1,0 +1,237 @@
+---
+title: "How to Calculate Sample Size for Your Study — A Step-by-Step Power Analysis Guide"
+description: "Learn how to determine the right sample size for your research using power analysis. This guide covers effect size, significance level, statistical power, and practical examples with StatMate's sample size calculator."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["sample size", "power analysis", "effect size", "statistical power", "research design"]
+---
+
+## Why Sample Size Matters
+
+One of the most critical decisions in research design happens before you collect a single data point: determining how many participants you need. A study that is too small risks missing real effects (a Type II error), while an unnecessarily large study wastes time, money, and participant effort.
+
+Power analysis is the statistical method that solves this problem. It calculates the minimum sample size required to detect an effect of a given magnitude with a specified level of confidence. Whether you are writing a grant proposal, planning a clinical trial, or designing a thesis experiment, getting this number right is essential.
+
+## The Four Pillars of Power Analysis
+
+Every sample size calculation depends on four interconnected values. If you know any three, you can solve for the fourth.
+
+### 1. Significance Level (Alpha)
+
+The significance level is the probability of rejecting the null hypothesis when it is actually true (Type I error). The conventional value is **0.05**, meaning you accept a 5% risk of a false positive.
+
+- Use **0.05** for most research contexts.
+- Use **0.01** when the consequences of a false positive are severe (e.g., medical interventions).
+- Use **0.10** for exploratory or pilot studies where you want to be more liberal.
+
+### 2. Statistical Power (1 - Beta)
+
+Power is the probability of correctly detecting a real effect when one exists. The conventional target is **0.80**, meaning you have an 80% chance of finding a true effect.
+
+- **0.80** is the standard recommendation for most studies.
+- **0.90** or **0.95** is preferred for confirmatory research or clinical trials.
+- Lower power means you need fewer participants but risk missing real effects.
+
+### 3. Effect Size
+
+Effect size quantifies how large the difference or relationship you expect to find actually is. This is often the hardest parameter to specify because you need to estimate it before running the study.
+
+Common effect size measures include:
+
+| Test | Effect Size Measure | Small | Medium | Large |
+|------|-------------------|-------|--------|-------|
+| t-test | Cohen's d | 0.20 | 0.50 | 0.80 |
+| ANOVA | Cohen's f | 0.10 | 0.25 | 0.40 |
+| Correlation | Pearson's r | 0.10 | 0.30 | 0.50 |
+| Chi-square | Cohen's w | 0.10 | 0.30 | 0.50 |
+
+Where do you get the expected effect size? Three common approaches:
+
+- **Previous literature:** Look at published studies on the same or similar topic.
+- **Pilot study:** Run a small preliminary study to estimate the effect.
+- **Cohen's conventions:** Use small, medium, or large benchmarks when no prior data exist. This is the least preferred option but better than guessing.
+
+### 4. Sample Size (n)
+
+This is typically what you are solving for. Given the other three parameters, the sample size calculation tells you how many participants you need per group or in total.
+
+## Step-by-Step: Calculating Sample Size with StatMate
+
+Let us walk through a concrete example using StatMate's [sample size calculator](/calculators/sample-size).
+
+### Scenario
+
+A clinical psychologist wants to test whether a new cognitive behavioral therapy (CBT) protocol reduces anxiety scores more than the standard treatment. She plans to use an independent samples t-test to compare the two groups.
+
+**Known information:**
+
+- Previous studies found a medium effect (Cohen's d = 0.50).
+- She wants a significance level of 0.05.
+- She aims for 80% power.
+- The test is two-tailed (she wants to detect differences in either direction).
+
+### Step 1: Open the Calculator
+
+Navigate to [StatMate's Sample Size Calculator](/calculators/sample-size). You will see input fields for the test type, effect size, significance level, and power.
+
+### Step 2: Select the Test Type
+
+Choose **Independent samples t-test** from the test type dropdown. Different statistical tests have different formulas for sample size calculation, so selecting the correct test is essential.
+
+### Step 3: Enter the Effect Size
+
+Enter **0.50** for Cohen's d. If you are unsure about the effect size, you can use the built-in reference table that shows small, medium, and large benchmarks for each test type.
+
+### Step 4: Set Alpha and Power
+
+- Set the significance level to **0.05**.
+- Set the statistical power to **0.80**.
+- Select **two-tailed** test.
+
+### Step 5: Read the Results
+
+StatMate calculates that you need **64 participants per group**, or **128 total participants**. The calculator also displays a power curve showing how power changes with different sample sizes.
+
+## Interpreting the Power Curve
+
+The power curve is one of the most useful outputs from a sample size analysis. It plots statistical power (y-axis) against sample size (x-axis) for your specified effect size and alpha level.
+
+Key things to notice:
+
+- **The curve rises steeply at first, then flattens.** Adding participants from 20 to 40 per group dramatically increases power, but going from 100 to 120 adds relatively little.
+- **The red horizontal line at 0.80** marks the conventional power threshold. Where this line intersects the curve gives you the minimum required sample size.
+- **Diminishing returns are real.** Going from 80% to 90% power often requires 30% more participants, and from 90% to 95% requires even more.
+
+## Practical Examples for Different Tests
+
+### Example 1: Paired Samples t-Test
+
+A researcher measures stress levels before and after a meditation program in the same group of employees.
+
+| Parameter | Value |
+|-----------|-------|
+| Test | Paired samples t-test |
+| Effect size (d) | 0.40 (small to medium) |
+| Alpha | 0.05 |
+| Power | 0.80 |
+| **Required n** | **52 participants** |
+
+Because paired designs measure each person twice, they typically require fewer participants than independent designs for the same effect size. The correlation between paired measurements reduces variability.
+
+### Example 2: One-Way ANOVA
+
+An education researcher compares test scores across four teaching methods.
+
+| Parameter | Value |
+|-----------|-------|
+| Test | One-way ANOVA |
+| Number of groups | 4 |
+| Effect size (f) | 0.25 (medium) |
+| Alpha | 0.05 |
+| Power | 0.80 |
+| **Required n per group** | **45 per group (180 total)** |
+
+With more groups, you need more participants overall, even though the per-group size may stay reasonable.
+
+### Example 3: Chi-Square Test
+
+A marketing team wants to test whether product preference differs by region (3 regions, 3 products).
+
+| Parameter | Value |
+|-----------|-------|
+| Test | Chi-square test |
+| Effect size (w) | 0.30 (medium) |
+| Degrees of freedom | 4 |
+| Alpha | 0.05 |
+| Power | 0.80 |
+| **Required total n** | **133 participants** |
+
+### Example 4: Correlation
+
+A developmental psychologist examines the relationship between screen time and reading scores in children.
+
+| Parameter | Value |
+|-----------|-------|
+| Test | Correlation |
+| Effect size (r) | 0.25 (small to medium) |
+| Alpha | 0.05 |
+| Power | 0.80 |
+| **Required n** | **125 participants** |
+
+Small correlations require surprisingly large samples to detect reliably.
+
+## Planning for Attrition
+
+Real-world studies almost always lose participants. People drop out, miss sessions, or provide unusable data. A good rule of thumb is to **inflate your calculated sample size by 10% to 20%** to account for attrition.
+
+For the CBT study above requiring 128 total participants:
+
+- With 10% attrition buffer: recruit **142 participants**.
+- With 20% attrition buffer: recruit **154 participants**.
+
+For longitudinal studies or studies with high dropout risk, inflate by 25% to 30%.
+
+## Common Mistakes to Avoid
+
+### Mistake 1: Using the Wrong Effect Size Measure
+
+Cohen's d is for t-tests, Cohen's f is for ANOVA, and Cohen's w is for chi-square. Entering a d value of 0.50 into an ANOVA calculation will produce incorrect results.
+
+### Mistake 2: Ignoring the Number of Groups
+
+For ANOVA and chi-square tests, the number of groups and the degrees of freedom directly affect the required sample size. More groups require more participants.
+
+### Mistake 3: Defaulting to Medium Effect Size Without Justification
+
+While Cohen's benchmarks are helpful starting points, reviewers and ethics committees prefer effect size estimates grounded in prior research. Always search the literature first.
+
+### Mistake 4: Forgetting to Account for Attrition
+
+Your power analysis tells you the minimum needed for the statistical test. It does not account for real-world data loss.
+
+### Mistake 5: Calculating Post-Hoc Power
+
+Computing power after the study using the observed effect size is circular and widely criticized. Power analysis is a planning tool that should be done before data collection.
+
+## What If You Have a Fixed Sample Size?
+
+Sometimes the sample size is constrained by practical limitations such as budget, available patients, or the size of an organization. In this case, you can reverse the calculation.
+
+Enter your fixed sample size into StatMate along with your alpha level and effect size, and the calculator will tell you the **achieved power**. If power is too low (below 0.80), you have several options:
+
+- Accept a larger alpha level (e.g., 0.10 for exploratory work).
+- Focus on detecting only large effects.
+- Use a more powerful study design (e.g., paired instead of independent samples).
+- Use one-tailed instead of two-tailed testing if theoretically justified.
+
+## Reporting Sample Size in Your Paper
+
+Most journals and thesis committees require a clear statement of how the sample size was determined. Here is a template following APA guidelines:
+
+> A priori power analysis was conducted using StatMate to determine the minimum sample size required. With an expected medium effect size (Cohen's d = 0.50), alpha of .05, and power of .80 for a two-tailed independent samples t-test, the analysis indicated a minimum of 64 participants per group (128 total). To account for potential attrition of approximately 15%, we recruited 148 participants.
+
+## Frequently Asked Questions
+
+### What sample size should I use for a pilot study?
+
+Pilot studies typically aim for 12 to 30 participants per group. The goal of a pilot is not to achieve statistical power but to estimate parameters (like effect size and variability) for the main study, test procedures, and identify practical issues.
+
+### Can I use an online calculator or do I need specialized software?
+
+StatMate's [sample size calculator](/calculators/sample-size) handles the most common tests (t-test, ANOVA, correlation, chi-square) with a straightforward interface. For more complex designs (multilevel models, survival analysis), you may need specialized software like G*Power or R.
+
+### What if I do not know the expected effect size at all?
+
+Start with the smallest effect size that would be practically meaningful. If a treatment only improves outcomes by a trivial amount, it may not be worth investigating even if statistically significant. Then calculate the sample size needed to detect that minimum meaningful effect.
+
+### Is 80% power always sufficient?
+
+For most research, 80% is the accepted standard. However, if your study has important practical consequences (e.g., a clinical drug trial), aim for 90% or higher. Some funding agencies and regulatory bodies require power of at least 90%.
+
+### How does a one-tailed vs. two-tailed test affect sample size?
+
+A one-tailed test requires fewer participants because all the statistical power is concentrated in one direction. However, one-tailed tests are only appropriate when you have a strong theoretical reason to predict the direction of the effect and would not care about a difference in the opposite direction.
+
+## Next Steps
+
+Ready to calculate the sample size for your study? Open the [StatMate Sample Size Calculator](/calculators/sample-size) and enter your parameters. The interactive power curve will help you visualize the trade-off between sample size and statistical power, making it easier to justify your design to supervisors, reviewers, and ethics committees.

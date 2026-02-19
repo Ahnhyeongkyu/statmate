@@ -1,0 +1,242 @@
+---
+title: "How to Run Correlation Analysis: Step-by-Step Guide (Pearson & Spearman)"
+description: "A complete step-by-step guide to performing Pearson and Spearman correlation analysis. Learn when to use each method, how to calculate and interpret correlation coefficients, and common pitfalls to avoid."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["correlation", "Pearson correlation", "Spearman correlation", "correlation coefficient", "step-by-step guide"]
+---
+
+## Introduction
+
+Correlation analysis measures the strength and direction of the relationship between two variables. It is one of the most fundamental techniques in statistics and appears in virtually every field of research, from psychology and education to economics and biology.
+
+This guide covers the two most widely used correlation methods: Pearson's product-moment correlation (for linear relationships between continuous variables) and Spearman's rank correlation (for monotonic relationships or ordinal data). You will learn how to select the right method, check assumptions, compute the correlation coefficient, and interpret your results with confidence.
+
+## When to Use Correlation Analysis
+
+Correlation analysis is appropriate when:
+
+- You want to measure the **strength and direction** of a relationship between two variables.
+- Both variables are measured on at least an **ordinal** scale (Spearman) or **interval/ratio** scale (Pearson).
+- You are interested in **association**, not prediction (for prediction, use [regression analysis](/calculators/regression)).
+
+### Pearson vs. Spearman: Which to Choose?
+
+| Feature | Pearson (*r*) | Spearman (*rs*) |
+|---------|---------------|-----------------|
+| Data type | Continuous (interval/ratio) | Ordinal or continuous |
+| Relationship type | Linear | Monotonic (linear or nonlinear) |
+| Sensitive to outliers | Yes | Less sensitive |
+| Assumptions | Normality, linearity | No normality required |
+
+**Rule of thumb:** Start with Pearson. If your data violate normality or linearity assumptions, or if you have ordinal data, switch to Spearman.
+
+## Part 1: Pearson Correlation
+
+### Step 1: State Your Hypotheses
+
+**Example scenario:** A researcher wants to know whether there is a linear relationship between hours of study per week and exam score among 12 university students.
+
+- **H0:** There is no linear relationship between study hours and exam score (rho = 0).
+- **H1:** There is a linear relationship between study hours and exam score (rho is not equal to 0).
+
+### Step 2: Collect and Organize Your Data
+
+| Student | Study Hours (X) | Exam Score (Y) |
+|---------|----------------|-----------------|
+| 1 | 4 | 58 |
+| 2 | 8 | 72 |
+| 3 | 6 | 65 |
+| 4 | 12 | 85 |
+| 5 | 2 | 50 |
+| 6 | 10 | 80 |
+| 7 | 7 | 70 |
+| 8 | 15 | 92 |
+| 9 | 5 | 62 |
+| 10 | 9 | 75 |
+| 11 | 3 | 55 |
+| 12 | 11 | 82 |
+
+### Step 3: Check Assumptions
+
+#### 1. Linearity
+
+Create a scatter plot of X vs. Y. The points should follow a roughly linear pattern. In our data, study hours and exam scores show a clear linear trend.
+
+#### 2. Normality
+
+Both variables should be approximately normally distributed. With n = 12, you can use the Shapiro-Wilk test or examine Q-Q plots. Pearson's r is reasonably robust to mild departures from normality when n > 10.
+
+#### 3. No Significant Outliers
+
+Extreme values can heavily influence Pearson's r. Examine the scatter plot for points far removed from the general pattern. No severe outliers are present in our data.
+
+#### 4. Homoscedasticity
+
+The variability in Y should be roughly constant across all values of X. This can be visually assessed from the scatter plot.
+
+### Step 4: Calculate the Pearson Correlation Coefficient
+
+The formula for Pearson's r is:
+
+**r = [N * sum(XY) - sum(X) * sum(Y)] / sqrt([N * sum(X^2) - (sum(X))^2] * [N * sum(Y^2) - (sum(Y))^2])**
+
+Calculating the required sums from our data:
+
+- N = 12
+- sum(X) = 92
+- sum(Y) = 846
+- sum(XY) = 7,071
+- sum(X^2) = 854
+- sum(Y^2) = 61,440
+
+Plugging in:
+
+- Numerator: 12 * 7,071 - 92 * 846 = 84,852 - 77,832 = 7,020
+- Denominator: sqrt[(12 * 854 - 92^2) * (12 * 61,440 - 846^2)]
+- = sqrt[(10,248 - 8,464) * (737,280 - 715,716)]
+- = sqrt[1,784 * 21,564]
+- = sqrt[38,470,176]
+- = 6,202.4
+
+**r = 7,020 / 6,202.4 = 0.987**
+
+### Step 5: Test Statistical Significance
+
+The t statistic for testing whether r differs from zero is:
+
+**t = r * sqrt(N - 2) / sqrt(1 - r^2)**
+
+- t = 0.987 * sqrt(10) / sqrt(1 - 0.974)
+- t = 0.987 * 3.162 / sqrt(0.026)
+- t = 3.121 / 0.161
+- **t = 19.38**
+
+With df = N - 2 = 10, this gives **p < .001**.
+
+### Step 6: Calculate the Coefficient of Determination
+
+**r^2 = 0.987^2 = 0.974**
+
+This means 97.4% of the variance in exam scores can be explained by the linear relationship with study hours.
+
+### Step 7: Interpret the Results
+
+There was a very strong positive correlation between study hours per week and exam score, *r*(10) = .99, *p* < .001. As study hours increased, exam scores increased proportionally. The coefficient of determination (r^2 = .97) indicates that study hours account for approximately 97% of the variability in exam scores.
+
+## Part 2: Spearman Rank Correlation
+
+### Step 1: When to Use Spearman
+
+Spearman's rank correlation is appropriate when:
+
+- Data are ordinal (ranked).
+- The relationship is monotonic but not necessarily linear.
+- The normality assumption for Pearson's r is violated.
+- You have outliers that you do not want to remove.
+
+### Step 2: Example Data
+
+**Scenario:** A manager ranks 10 employees on both leadership skill and job performance.
+
+| Employee | Leadership Rank (X) | Performance Rank (Y) |
+|----------|---------------------|----------------------|
+| A | 1 | 2 |
+| B | 2 | 1 |
+| C | 3 | 4 |
+| D | 4 | 3 |
+| E | 5 | 5 |
+| F | 6 | 8 |
+| G | 7 | 6 |
+| H | 8 | 7 |
+| I | 9 | 10 |
+| J | 10 | 9 |
+
+### Step 3: Calculate Rank Differences
+
+| Employee | Rank X | Rank Y | d = X - Y | d^2 |
+|----------|--------|--------|-----------|-----|
+| A | 1 | 2 | -1 | 1 |
+| B | 2 | 1 | 1 | 1 |
+| C | 3 | 4 | -1 | 1 |
+| D | 4 | 3 | 1 | 1 |
+| E | 5 | 5 | 0 | 0 |
+| F | 6 | 8 | -2 | 4 |
+| G | 7 | 6 | 1 | 1 |
+| H | 8 | 7 | 1 | 1 |
+| I | 9 | 10 | -1 | 1 |
+| J | 10 | 9 | 1 | 1 |
+
+**sum(d^2) = 12**
+
+### Step 4: Calculate Spearman's rs
+
+**rs = 1 - (6 * sum(d^2)) / (N * (N^2 - 1))**
+
+rs = 1 - (6 * 12) / (10 * 99) = 1 - 72 / 990 = 1 - 0.073 = **0.927**
+
+### Step 5: Test Significance
+
+For N = 10, you can use a t-test approximation:
+
+t = rs * sqrt(N - 2) / sqrt(1 - rs^2) = 0.927 * sqrt(8) / sqrt(1 - 0.859) = 0.927 * 2.828 / 0.375 = **6.99**
+
+With df = 8, **p < .001**.
+
+### Step 6: Interpret the Results
+
+There was a strong positive correlation between leadership skill ranking and job performance ranking, *rs*(8) = .93, *p* < .001. Employees ranked higher in leadership tended to be ranked higher in job performance as well.
+
+## Interpreting Correlation Strength
+
+Use these conventional benchmarks for interpreting the absolute value of the correlation coefficient:
+
+| |*r*| Range | Interpretation |
+|-------------|----------------|
+| 0.00 - 0.09 | Negligible |
+| 0.10 - 0.29 | Small (weak) |
+| 0.30 - 0.49 | Medium (moderate) |
+| 0.50 - 0.69 | Large (strong) |
+| 0.70 - 1.00 | Very large (very strong) |
+
+These are rough guidelines. The practical significance of a correlation depends on the research context.
+
+## Common Pitfalls to Avoid
+
+1. **Assuming causation**: Correlation does not imply causation. A strong correlation between X and Y does not mean X causes Y. There could be a confounding variable driving both.
+
+2. **Ignoring nonlinear relationships**: Pearson's r only captures linear relationships. A strong curvilinear relationship could produce a low r value. Always examine a scatter plot.
+
+3. **Restriction of range**: If your sample only includes a narrow range of values for one variable, the correlation will be artificially weakened. Ensure your sample covers the full range of interest.
+
+4. **Influence of outliers**: A single extreme data point can dramatically inflate or deflate Pearson's r. Use Spearman's correlation or remove the outlier if justified.
+
+5. **Confusing r and r-squared**: A correlation of r = .50 means r^2 = .25, so only 25% of the variance is shared. The correlation coefficient itself can overstate the strength of the association.
+
+6. **Multiple comparisons**: Running many correlations increases the risk of finding spurious significant results. Apply corrections (e.g., Bonferroni) when testing multiple correlations.
+
+## Frequently Asked Questions
+
+### What sample size do I need for correlation analysis?
+
+A minimum of 20-30 observations is generally recommended. For detecting a medium effect (r = .30) with 80% power at alpha = .05, you need approximately 84 participants. Use a power analysis to determine the precise sample size for your expected effect.
+
+### Can I correlate a dichotomous variable with a continuous variable?
+
+Yes. This is called a point-biserial correlation, which is mathematically equivalent to Pearson's r when one variable is dichotomous (0/1) and the other is continuous.
+
+### What if my correlation is significant but very small?
+
+A statistically significant but small correlation (e.g., r = .10 with a large sample) may not be practically meaningful. Report the correlation coefficient and let the reader judge its importance in context. Focus on the effect size (r or r^2), not just the p value.
+
+### How do I handle missing data?
+
+Common approaches include pairwise deletion (using all available data for each pair of variables) and listwise deletion (removing any case with missing values). Multiple imputation is a more sophisticated option for handling missing data.
+
+### What is the difference between correlation and regression?
+
+Correlation measures the strength and direction of the linear relationship between two variables. Regression goes further by modeling the relationship with an equation that allows you to predict one variable from the other. If X and Y are correlated, you can use regression to estimate Y given a specific value of X.
+
+## Run Your Correlation Analysis with StatMate
+
+StatMate's [correlation calculator](/calculators/correlation) computes both Pearson and Spearman correlation coefficients instantly. Enter your paired data, and StatMate produces the correlation coefficient, p value, confidence interval, coefficient of determination, and an interactive scatter plot. It also performs assumption checks and flags potential issues like outliers or nonlinearity.

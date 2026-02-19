@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -132,7 +133,7 @@ export default async function Home({
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {calculatorSlugs.map((calc) => (
             <Link key={calc.href} href={calc.href}>
-              <Card className="h-full transition-shadow hover:shadow-md">
+              <Card className="h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-lg font-semibold italic text-blue-600">
@@ -330,6 +331,11 @@ export default async function Home({
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="w-full pb-12 md:pb-16">
+        <NewsletterSignup />
       </section>
 
       {/* Bottom CTA */}

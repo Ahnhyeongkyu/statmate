@@ -1,0 +1,245 @@
+---
+title: "How to Run Exploratory Factor Analysis (EFA) — Step-by-Step Guide"
+description: "Learn how to perform Exploratory Factor Analysis from start to finish. This guide covers data suitability checks, factor extraction, rotation, and interpreting factor loadings with a practical example."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["factor analysis", "EFA", "factor loadings", "scree plot", "KMO", "Bartlett test"]
+---
+
+## What Is Exploratory Factor Analysis?
+
+Exploratory Factor Analysis (EFA) is a statistical technique used to uncover the underlying structure of a set of observed variables. When you have a large number of survey items or measurements, EFA helps you determine whether those items cluster together into a smaller number of latent factors.
+
+For example, a 20-item personality questionnaire might actually measure just five underlying traits. EFA identifies these hidden dimensions by examining the patterns of correlations among items.
+
+This guide walks you through every step of running an EFA, from checking whether your data is suitable through interpreting the final factor solution.
+
+## When Should You Use EFA?
+
+EFA is appropriate when you want to:
+
+- **Discover the structure** of a new scale or questionnaire you have developed
+- **Reduce a large number of variables** into a manageable set of factors
+- **Examine which items cluster together** without a strong prior theory about the structure
+- **Evaluate construct validity** during the early stages of instrument development
+
+EFA is exploratory by nature. If you already have a specific factor structure in mind and want to confirm it, Confirmatory Factor Analysis (CFA) is more appropriate.
+
+## Step 1: Check Your Sample Size
+
+Before running EFA, ensure your sample is large enough. Small samples produce unstable factor solutions that may not replicate.
+
+### Rules of Thumb for Sample Size
+
+| Guideline | Recommendation |
+|-----------|---------------|
+| Minimum N | At least 100 observations |
+| N-to-variables ratio | At least 5 participants per variable |
+| Preferred ratio | 10 or more participants per variable |
+| Ideal N | 300+ for stable solutions |
+
+**Example:** If your survey has 15 items, you need at minimum 75 participants (5 per item), but 150 or more is strongly recommended.
+
+## Step 2: Assess Data Suitability
+
+Not all datasets are appropriate for factor analysis. Two key tests help you determine whether your correlation matrix contains enough shared variance for factors to emerge.
+
+### Kaiser-Meyer-Olkin (KMO) Measure
+
+The KMO statistic ranges from 0 to 1 and indicates whether the partial correlations among variables are small relative to the bivariate correlations. Higher values mean the data is more suitable for factor analysis.
+
+| KMO Value | Interpretation |
+|-----------|---------------|
+| .90 and above | Marvelous |
+| .80 to .89 | Meritorious |
+| .70 to .79 | Middling |
+| .60 to .69 | Mediocre |
+| .50 to .59 | Miserable |
+| Below .50 | Unacceptable — do not run EFA |
+
+### Bartlett's Test of Sphericity
+
+Bartlett's test checks whether the correlation matrix is significantly different from an identity matrix (a matrix with all off-diagonal correlations equal to zero). A significant result (*p* < .05) indicates that the correlations are sufficiently large for factor analysis.
+
+**Both conditions should be met:** KMO above .60 and Bartlett's test significant.
+
+## Step 3: Choose the Extraction Method
+
+The extraction method determines how factors are pulled from the correlation matrix.
+
+| Method | When to Use |
+|--------|-------------|
+| **Principal Axis Factoring (PAF)** | Most common for EFA; focuses on shared variance |
+| **Maximum Likelihood (ML)** | When data is approximately normally distributed; provides fit statistics |
+| **Principal Components (PCA)** | Technically not factor analysis; extracts total variance including unique variance |
+
+For most social science research, **Principal Axis Factoring** is recommended. If your data is normally distributed and you want a chi-square goodness-of-fit test, use Maximum Likelihood.
+
+## Step 4: Determine the Number of Factors
+
+Deciding how many factors to retain is one of the most important and challenging decisions in EFA. Use multiple criteria rather than relying on a single rule.
+
+### Kaiser's Criterion (Eigenvalue > 1)
+
+Retain all factors with eigenvalues greater than 1.0. This rule is easy to apply but tends to overestimate the number of factors, especially with many variables.
+
+### Scree Plot
+
+Plot the eigenvalues in descending order and look for the point where the curve bends sharply (the "elbow"). Retain factors above the elbow. The scree plot in StatMate's [factor analysis calculator](/calculators/factor-analysis) is generated automatically.
+
+### Parallel Analysis
+
+Compare the observed eigenvalues to eigenvalues from randomly generated data of the same size. Retain factors whose observed eigenvalues exceed the random eigenvalues. This is generally considered the most accurate method.
+
+### Practical Example
+
+Suppose you have 12 survey items and the eigenvalues are:
+
+| Factor | Eigenvalue | % Variance |
+|--------|-----------|------------|
+| 1 | 4.21 | 35.1% |
+| 2 | 2.58 | 21.5% |
+| 3 | 1.34 | 11.2% |
+| 4 | 0.89 | 7.4% |
+| 5 | 0.72 | 6.0% |
+
+Kaiser's criterion suggests 3 factors (eigenvalues above 1). The scree plot shows a clear elbow after factor 3. Parallel analysis also supports 3 factors. All three methods converge, giving you confidence in a 3-factor solution.
+
+## Step 5: Choose a Rotation Method
+
+Unrotated factor solutions are often difficult to interpret because items may load on multiple factors. Rotation redistributes the variance to produce a cleaner, more interpretable structure.
+
+### Orthogonal Rotation (Varimax)
+
+Varimax rotation assumes the factors are uncorrelated. It maximizes the variance of factor loadings within each factor, pushing high loadings higher and low loadings lower. Use Varimax when you expect the underlying dimensions to be independent of each other.
+
+### Oblique Rotation (Promax or Direct Oblimin)
+
+Oblique rotation allows factors to be correlated. In psychology and social sciences, underlying constructs are rarely perfectly independent, so oblique rotation is often more realistic. If the factor correlations turn out to be low (below .32), the oblique solution will be very similar to an orthogonal solution.
+
+**Recommendation:** Start with oblique rotation (Promax). If factor correlations are all below .32, you can switch to Varimax for a simpler interpretation.
+
+## Step 6: Interpret the Factor Loadings
+
+After extraction and rotation, examine the factor loading matrix. Each loading represents the correlation between an observed variable and a latent factor.
+
+### Guidelines for Interpreting Loadings
+
+| Loading Value | Interpretation |
+|--------------|---------------|
+| .70 and above | Excellent |
+| .55 to .69 | Good |
+| .45 to .54 | Fair |
+| .32 to .44 | Poor but may be retained with justification |
+| Below .32 | Too weak — consider removing the item |
+
+### Handling Cross-Loadings
+
+An item that loads substantially on two or more factors (both loadings above .32) is called a cross-loading item. Cross-loaders are problematic because they do not clearly belong to a single factor. Options include:
+
+1. **Remove the item** and re-run the analysis
+2. **Assign it to the factor** where it has the highest loading, if the difference between loadings is at least .20
+3. **Retain it** if theoretical reasons justify its presence on multiple factors
+
+## Practical Example: Job Satisfaction Survey
+
+Suppose you administered a 12-item job satisfaction survey to 250 employees. Here is a simplified example of the rotated factor loading matrix after extracting 3 factors with Promax rotation.
+
+| Item | Factor 1: Work Content | Factor 2: Compensation | Factor 3: Relationships |
+|------|----------------------|----------------------|------------------------|
+| Q1: I find my work meaningful | **.78** | .08 | .12 |
+| Q2: My tasks are interesting | **.72** | .11 | .05 |
+| Q3: I use my skills effectively | **.68** | .15 | .09 |
+| Q4: My work is challenging | **.61** | .03 | .18 |
+| Q5: My salary is fair | .10 | **.82** | .06 |
+| Q6: Benefits are adequate | .07 | **.74** | .14 |
+| Q7: Pay reflects my effort | .14 | **.71** | .09 |
+| Q8: Promotion opportunities exist | .22 | **.55** | .18 |
+| Q9: I get along with colleagues | .11 | .08 | **.79** |
+| Q10: My supervisor is supportive | .06 | .12 | **.73** |
+| Q11: Team communication is good | .15 | .05 | **.69** |
+| Q12: I feel respected at work | .19 | .16 | **.64** |
+
+### Interpreting This Solution
+
+- **Factor 1** (items Q1-Q4) captures satisfaction with the nature of the work itself. All loadings are above .60.
+- **Factor 2** (items Q5-Q8) captures satisfaction with compensation and advancement. Loadings range from .55 to .82.
+- **Factor 3** (items Q9-Q12) captures satisfaction with interpersonal relationships. Loadings range from .64 to .79.
+- No items show problematic cross-loadings (all cross-loadings are below .32).
+- The three factors together explain 67.8% of the total variance.
+
+This is a clean solution with clearly interpretable factors.
+
+## Step 7: Evaluate the Solution
+
+After interpreting the factors, evaluate the overall quality of your solution.
+
+### Communalities
+
+Communalities indicate how much of each variable's variance is explained by the extracted factors. A communality below .40 suggests the variable does not fit well with the others and might be a candidate for removal.
+
+### Total Variance Explained
+
+In social science, a factor solution explaining 50-60% or more of the total variance is generally considered adequate.
+
+### Factor Correlations (Oblique Rotation)
+
+If you used oblique rotation, check the factor correlation matrix. Correlations above .80 suggest two factors may actually be measuring the same construct and could be combined.
+
+## Running Factor Analysis in StatMate
+
+StatMate's [factor analysis calculator](/calculators/factor-analysis) streamlines the entire EFA process:
+
+1. **Enter your data** — paste your item-level data or upload a CSV file
+2. **Check suitability** — StatMate automatically computes KMO and Bartlett's test
+3. **View the scree plot** — the interactive plot helps you identify the elbow point
+4. **Select factors and rotation** — choose the number of factors and your preferred rotation method
+5. **Examine loadings** — the factor loading matrix highlights strong loadings and flags cross-loaders
+6. **Export results** — copy APA-formatted results or download as PDF
+
+All results include the communalities table, total variance explained, and the rotated factor loading matrix formatted for direct inclusion in your manuscript.
+
+## Reporting EFA Results in APA Format
+
+When writing up your EFA results, include the following elements:
+
+1. **Sample size and data suitability:** Report N, KMO, and Bartlett's test
+2. **Extraction method and rotation:** State which methods you used and why
+3. **Number of factors:** Report the criteria used to determine factor count
+4. **Factor loadings:** Present the rotated factor loading matrix in a table
+5. **Variance explained:** Report the cumulative percentage
+6. **Factor labels:** Name each factor based on its constituent items
+
+**Example write-up:**
+
+> An exploratory factor analysis was conducted on the 12 job satisfaction items using principal axis factoring with Promax rotation. The Kaiser-Meyer-Olkin measure verified the sampling adequacy, KMO = .84, and Bartlett's test of sphericity was significant, chi-square(66) = 1,842.35, *p* < .001. Three factors with eigenvalues exceeding 1.0 were extracted, accounting for 67.8% of the total variance. The rotated factor solution revealed a clean structure with all items loading above .55 on their primary factor and no cross-loadings above .32.
+
+## Frequently Asked Questions
+
+### How many items do I need for EFA?
+
+A minimum of 3 items per expected factor is necessary, but 4-5 items per factor provides a more stable solution. With fewer than 3 items per factor, the factor may be poorly defined.
+
+### Can I use EFA with ordinal data (Likert scales)?
+
+Technically, Pearson-based EFA assumes continuous data. However, Likert scales with 5 or more points are commonly treated as approximately continuous in practice. For scales with fewer than 5 points, consider using polychoric correlations.
+
+### What if my KMO is below .60?
+
+A low KMO indicates that the pattern of correlations is too diffuse for factor analysis. Consider whether some items are poorly related to the others and remove them, then re-assess KMO. If KMO remains low, EFA may not be appropriate for your data.
+
+### Should I use PCA or EFA?
+
+PCA and EFA are often confused but serve different purposes. PCA is a data reduction technique that creates composites of all variance (shared and unique). EFA specifically models shared variance to identify latent constructs. For instrument development and theory testing, EFA is preferred.
+
+### How do I decide between orthogonal and oblique rotation?
+
+Use oblique rotation as the default. If the resulting factor correlations are all below .32, the solution is essentially the same as an orthogonal solution, so you can report the orthogonal version for simplicity. If correlations exceed .32, stick with oblique rotation because forcing orthogonality would distort the true relationships.
+
+### What should I do if an item cross-loads?
+
+First, check if the cross-loading is substantial (both loadings above .32). If the difference between the two highest loadings is .20 or more, assign the item to the higher-loading factor. If the difference is less than .20, consider removing the item and re-running the analysis.
+
+### Can I run EFA in StatMate with a small sample?
+
+StatMate will compute the results regardless of sample size, but the factor solution may be unstable with fewer than 100 observations. StatMate displays a warning when the sample size is below recommended thresholds.

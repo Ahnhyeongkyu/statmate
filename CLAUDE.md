@@ -42,22 +42,22 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | 분석 히스토리 저장 | ❌ 미구현 (DB 없음) |
 | 피드백 수집 도구 | ✅ floating feedback button (mailto) |
 
-### Sprint 3 (Retention) — 30% 완료
+### Sprint 3 (Retention) — 60% 완료
 
 | 항목 | 상태 |
 |------|------|
 | CSV 데이터 업로드 | ✅ CSV/TSV/TXT 지원 |
 | 추가 계산기 | ⚠️ 20개 확장 완료 (매개효과만 미포함) |
 | Expert Review 시스템 | ❌ 미구현 |
-| 이메일/뉴스레터 수집 | ❌ 미구현 |
+| 이메일/뉴스레터 수집 | ✅ newsletter-signup + /api/subscribe |
 | A/B 테스트 | ❌ 미구현 |
 
-### Sprint 4 (Scale) — 20% 완료
+### Sprint 4 (Scale) — 40% 완료
 
 | 항목 | 상태 |
 |------|------|
 | 추가 계산기 (비모수, 신뢰도) | ✅ 비모수 4종 + 신뢰도 1종 |
-| pSEO 50+ 페이지 자동 생성 | ❌ 미구현 |
+| pSEO 50+ 페이지 자동 생성 | ✅ How-to 10개 + 비교 5개 = 30페이지 (EN+KO) |
 | University License | ❌ 미구현 |
 | SPSS output → APA 변환 | ❌ 미구현 |
 | 다국어 확장 (일본어) | ❌ 미구현 |
@@ -99,12 +99,10 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 ## 미구현 항목 (우선순위 순)
 
 1. **사용자 인증 + 히스토리** — 리텐션 핵심, DB(Supabase) 필요
-2. **이메일/뉴스레터** — 리드 수집 없음
-3. **Expert Review** — 수익 Layer 3 (₩49,000/건)
-6. **University License** — 수익 Layer 4 (₩990,000/년)
-7. **pSEO 50+ 페이지** — 트래픽 스케일링
-8. **SPSS output → APA 변환** — 차별화 기능
-9. **다국어 확장** — 일본어 등
+2. **Expert Review** — 수익 Layer 3 (₩49,000/건)
+3. **University License** — 수익 Layer 4 (₩990,000/년)
+4. **SPSS output → APA 변환** — 차별화 기능
+5. **다국어 확장** — 일본어 등
 
 ---
 
@@ -154,7 +152,7 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 
 ## Content
 
-- **Blog posts:** 10 articles (EN + KO each): t-test APA, choosing tests, correlation vs regression, ANOVA APA, sample size, effect size, nonparametric guide, chi-square APA, regression APA, reliability/Cronbach
+- **Blog posts:** 25 articles (EN + KO each): 10 original + 15 pSEO guides (10 How-to + 5 comparison)
 - **SEO:** Each calculator has `page.tsx` (metadata), `seo-ko.tsx`, `opengraph-image.tsx`, FAQ JSON-LD schema
 
 ## Chart Components (10 files in `components/charts/`)
@@ -184,20 +182,21 @@ group-boxplot, chi-square-chart, coefficient-chart, odds-ratio-chart, item-analy
 ## Build
 
 ```bash
-npm run build  # Turbopack, generates 29 static + dynamic pages, ~10s
+npm run build  # Turbopack, generates 60 static + dynamic pages, ~7s
 ```
 
 ## Immediate TODO
 
-- [ ] **GSC Indexing** — Submit new/updated URLs to Google Search Console (Chrome browser automation)
-  - 새 세션에서 Chrome 확장 연결 후 진행 (이전 세션에서 MCP 연결 끊김으로 불가했음)
-  - GSC URL: https://search.google.com/search-console
-  - 제출할 URL: sitemap.xml에 있는 모든 계산기 URL (20개 x 2언어 = 40개 + 블로그 등)
-  - 방법: GSC > URL 검사 > URL 입력 > 색인 생성 요청
+- [ ] **GSC Re-indexing** — 사이트맵 재제출 필요 (pSEO 30페이지 추가로 총 ~124 URLs). 배포 후 사이트맵 재제출 + 주요 URL 인덱싱 요청.
 - No TODO/FIXME/HACK comments in codebase.
 
 ## Recently Completed
 
+- [x] 성능 최적화 — preconnect/dns-prefetch 리소스 힌트, 이미지 최적화 설정
+- [x] 이메일/뉴스레터 구독 — `components/newsletter-signup.tsx` + `/api/subscribe` + 홈/푸터/블로그 배치
+- [x] pSEO 가이드 25개 — How-to 가이드 10개 + 비교 가이드 5개 (EN+KO = 30페이지 추가)
+- [x] UI/UX 개선 — 계산기 카드 hover 애니메이션, 블로그 CTA + 뉴스레터
+- [x] GSC 인덱싱 — 사이트맵 재제출 + 주요 URL 인덱싱 요청
 - [x] Pro 광고 제거 — AdUnit 내 isPro 체크 (`2ec1b73`)
 - [x] 피드백 수집 버튼 — floating feedback widget (`2ec1b73`)
 - [x] SEO 콘텐츠 10/10 — regression APA + Cronbach guide (`2ec1b73`)

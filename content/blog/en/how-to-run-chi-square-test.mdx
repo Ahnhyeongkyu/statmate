@@ -1,0 +1,189 @@
+---
+title: "How to Run a Chi-Square Test of Independence: Step-by-Step Guide"
+description: "Learn how to perform a chi-square test of independence step by step. Covers setting up contingency tables, calculating expected frequencies, interpreting results, and checking assumptions."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["chi-square test", "test of independence", "contingency table", "categorical data", "step-by-step guide"]
+---
+
+## Introduction
+
+The chi-square test of independence is used to determine whether there is a statistically significant association between two categorical variables. Unlike the t-test or ANOVA, which compare means of continuous variables, the chi-square test works with count data organized in a contingency table.
+
+This test appears frequently in social science research, market research, medical studies, and quality control. If you have ever asked a question like "Is there a relationship between gender and product preference?" or "Does treatment type affect recovery status?", the chi-square test of independence is the analysis you need.
+
+This guide walks you through every step, from setting up your contingency table to interpreting the results, using a concrete worked example.
+
+## When to Use the Chi-Square Test of Independence
+
+Use this test when:
+
+- You have **two categorical variables** (nominal or ordinal).
+- You want to test whether the variables are **independent** or **associated**.
+- Your data consist of **counts (frequencies)**, not means or continuous measurements.
+- Each observation falls into exactly one cell of the contingency table.
+
+If you are comparing a categorical variable against a continuous outcome, consider a t-test or ANOVA instead.
+
+## Step 1: State Your Hypotheses
+
+**Example scenario:** A university researcher wants to know whether there is a relationship between study method (Online, Library, Study Group) and exam outcome (Pass, Fail) among 200 students.
+
+- **H0 (Null hypothesis):** Study method and exam outcome are independent. There is no association between the two variables.
+- **H1 (Alternative hypothesis):** Study method and exam outcome are not independent. There is an association between the two variables.
+
+## Step 2: Organize Data in a Contingency Table
+
+Collect the frequency counts and arrange them in a contingency table (also called a cross-tabulation):
+
+| | Pass | Fail | Row Total |
+|---|------|------|-----------|
+| **Online** | 42 | 28 | 70 |
+| **Library** | 51 | 14 | 65 |
+| **Study Group** | 48 | 17 | 65 |
+| **Column Total** | 141 | 59 | 200 |
+
+Each cell contains the count of students who fall into that combination of study method and exam outcome.
+
+## Step 3: Calculate Expected Frequencies
+
+Under the null hypothesis (independence), the expected frequency for each cell is:
+
+**Expected = (Row Total * Column Total) / Grand Total**
+
+| | Pass (Expected) | Fail (Expected) |
+|---|-----------------|-----------------|
+| **Online** | (70 * 141) / 200 = 49.35 | (70 * 59) / 200 = 20.65 |
+| **Library** | (65 * 141) / 200 = 45.83 | (65 * 59) / 200 = 19.18 |
+| **Study Group** | (65 * 141) / 200 = 45.83 | (65 * 59) / 200 = 19.18 |
+
+## Step 4: Check Assumptions
+
+Before proceeding, verify these assumptions:
+
+### 1. Independence of Observations
+
+Each student is counted only once and appears in exactly one cell. No student used multiple study methods simultaneously in this study.
+
+### 2. Expected Frequency Rule
+
+The chi-square approximation is valid when **no more than 20% of expected frequencies are below 5**, and **no expected frequency is below 1**. Looking at our expected values:
+
+- Smallest expected frequency: 19.18
+
+All expected frequencies are well above 5, so the assumption is met. If you had very small expected counts, consider using Fisher's Exact Test instead.
+
+### 3. Sample Size
+
+A general guideline is that the total sample size should be at least 5 times the number of cells. With 6 cells and N = 200, this is easily satisfied.
+
+## Step 5: Calculate the Chi-Square Statistic
+
+The chi-square statistic is computed as:
+
+**chi-square = sum of (Observed - Expected)^2 / Expected**
+
+Calculate for each cell:
+
+| Cell | Observed (O) | Expected (E) | (O - E)^2 / E |
+|------|-------------|-------------|----------------|
+| Online, Pass | 42 | 49.35 | (42 - 49.35)^2 / 49.35 = 1.095 |
+| Online, Fail | 28 | 20.65 | (28 - 20.65)^2 / 20.65 = 2.615 |
+| Library, Pass | 51 | 45.83 | (51 - 45.83)^2 / 45.83 = 0.583 |
+| Library, Fail | 14 | 19.18 | (14 - 19.18)^2 / 19.18 = 1.398 |
+| Study Group, Pass | 48 | 45.83 | (48 - 45.83)^2 / 45.83 = 0.103 |
+| Study Group, Fail | 17 | 19.18 | (17 - 19.18)^2 / 19.18 = 0.248 |
+
+**chi-square = 1.095 + 2.615 + 0.583 + 1.398 + 0.103 + 0.248 = 6.042**
+
+## Step 6: Determine Degrees of Freedom
+
+**df = (number of rows - 1) * (number of columns - 1)**
+
+df = (3 - 1) * (2 - 1) = 2 * 1 = **2**
+
+## Step 7: Find the P Value
+
+With chi-square = 6.042 and df = 2, the p value is approximately **.049**.
+
+Since p = .049 < .05, we reject the null hypothesis at the .05 significance level. There is a statistically significant association between study method and exam outcome.
+
+## Step 8: Calculate Effect Size
+
+For chi-square tests, **Cramer's V** is the standard effect size measure:
+
+**V = sqrt(chi-square / (N * min(r-1, c-1)))**
+
+V = sqrt(6.042 / (200 * 1)) = sqrt(0.0302) = **0.174**
+
+Cramer's V interpretation guidelines:
+
+| df* | Small | Medium | Large |
+|-----|-------|--------|-------|
+| 1 | 0.10 | 0.30 | 0.50 |
+| 2 | 0.07 | 0.21 | 0.35 |
+| 3 | 0.06 | 0.17 | 0.29 |
+
+*df* here refers to min(r-1, c-1). With df* = 1, our V = 0.174 indicates a small-to-medium effect.
+
+## Step 9: Examine the Pattern
+
+To understand the nature of the association, compare observed and expected values or look at column percentages:
+
+| | Pass Rate (%) |
+|---|--------------|
+| Online | 42/70 = 60.0% |
+| Library | 51/65 = 78.5% |
+| Study Group | 48/65 = 73.8% |
+
+The Library group has the highest pass rate (78.5%), followed by Study Group (73.8%) and Online (60.0%). The significant chi-square result appears to be driven primarily by the lower pass rate in the Online group.
+
+## Step 10: Report the Results
+
+A chi-square test of independence was performed to examine the association between study method and exam outcome. The analysis revealed a statistically significant association, chi-square(2, N = 200) = 6.04, *p* = .049, *V* = .17. Students who studied in the library had the highest pass rate (78.5%), compared to study groups (73.8%) and online study (60.0%).
+
+## 2x2 Tables: A Special Case
+
+For 2x2 contingency tables, the procedure is the same, but you have additional options:
+
+- **Yates' continuity correction**: A small correction that makes the chi-square test more conservative for 2x2 tables.
+- **Fisher's Exact Test**: Preferred when any expected frequency is below 5.
+- **Odds Ratio**: A useful effect size measure specific to 2x2 tables.
+
+## Common Mistakes to Avoid
+
+1. **Using percentages instead of counts**: The chi-square test requires raw frequency counts, not percentages or proportions. Convert back to counts before analysis.
+
+2. **Violating the independence assumption**: Each observation must be independent. If the same person could appear in multiple cells (e.g., repeated measures), the chi-square test is inappropriate.
+
+3. **Ignoring small expected frequencies**: When expected counts are below 5 in more than 20% of cells, the chi-square approximation becomes unreliable. Use Fisher's Exact Test in such cases.
+
+4. **Confusing statistical and practical significance**: A significant chi-square with a tiny Cramer's V may not be practically meaningful. Always report effect size.
+
+5. **Over-interpreting the direction**: The chi-square test tells you an association exists but does not indicate causation. Study method and exam outcome may both be influenced by unmeasured variables.
+
+## Frequently Asked Questions
+
+### What is the difference between chi-square goodness-of-fit and test of independence?
+
+The goodness-of-fit test compares observed frequencies of a single variable to expected frequencies (e.g., testing whether a die is fair). The test of independence examines the association between two categorical variables. This guide focuses on the test of independence.
+
+### Can I use the chi-square test with ordinal variables?
+
+Yes, but the chi-square test treats all categories as nominal and ignores the ordering. If you want to account for the ordinal nature, consider a Mantel-Haenszel test for trend or Spearman's correlation on ranked data.
+
+### What sample size do I need?
+
+A common rule of thumb is a minimum of 5 expected observations per cell. For a 3x2 table, this means you need at least 30 total observations. Larger samples provide more statistical power.
+
+### What if I have more than two variables?
+
+For three or more categorical variables, you can use log-linear analysis or run separate chi-square tests. However, running multiple tests increases the risk of Type I error, so apply a correction such as Bonferroni.
+
+### Can I use chi-square with continuous data?
+
+Not directly. You would first need to categorize the continuous variable into groups (e.g., low/medium/high). However, categorizing continuous variables loses information, so consider using correlation or regression analyses designed for continuous data.
+
+## Run Your Chi-Square Test with StatMate
+
+StatMate's [chi-square calculator](/calculators/chi-square) makes this process effortless. Enter your contingency table data, and StatMate will compute the chi-square statistic, degrees of freedom, p value, Cramer's V, expected frequencies, and standardized residuals automatically. If your table is 2x2, it also provides Yates' correction and Fisher's Exact Test results.

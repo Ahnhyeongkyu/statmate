@@ -1,0 +1,246 @@
+---
+title: "t-Test vs Mann-Whitney U Test — When to Use Which and Why It Matters"
+description: "A detailed comparison of the independent samples t-test and the Mann-Whitney U test. Learn the assumptions, strengths, limitations, and decision criteria for choosing between parametric and non-parametric group comparisons."
+date: "2026-02-19"
+category: "Test Comparison"
+tags: ["t-test", "Mann-Whitney U", "parametric vs non-parametric", "test comparison", "assumptions"]
+---
+
+## The Fundamental Question
+
+You have two independent groups and want to know if they differ. The most common options are the independent samples t-test and the Mann-Whitney U test. Choosing between them is not a matter of preference — it depends on your data characteristics, sample size, and research goals.
+
+This guide provides a systematic comparison so you can make an informed decision every time.
+
+## Quick Comparison Table
+
+| Feature | Independent t-Test | Mann-Whitney U Test |
+|---------|-------------------|-------------------|
+| What it compares | Means | Rank distributions |
+| Data type required | Continuous (interval/ratio) | Ordinal or continuous |
+| Normality assumption | Yes | No |
+| Equal variance assumption | Yes (Welch's corrects this) | Similar shape (for median comparison) |
+| Sensitivity to outliers | High | Low |
+| Statistical power | Higher (when assumptions met) | Slightly lower |
+| Sample size guidance | n >= 30 per group (robust) | Any size; best with n >= 5 |
+| Effect size | Cohen's d | Rank-biserial r |
+
+## How Each Test Works
+
+### The Independent Samples t-Test
+
+The t-test calculates the difference between two group means and divides it by the standard error of the difference. The resulting t-statistic measures how many standard errors the observed difference is from zero.
+
+**Formula (simplified):**
+
+t = (Mean1 - Mean2) / SE(difference)
+
+The test assumes that the sampling distribution of the mean difference is approximately normal. This holds when the data themselves are normal, or when sample sizes are large enough for the Central Limit Theorem to apply.
+
+Try it yourself with the [independent t-test calculator](/calculators/t-test).
+
+### The Mann-Whitney U Test
+
+The Mann-Whitney U test combines both groups, ranks all observations from lowest to highest, and then checks whether one group's ranks are systematically higher or lower than the other's.
+
+**Core logic:** If the two groups come from the same distribution, you would expect the ranks to be evenly mixed. If one group's values are consistently higher, its ranks will be disproportionately large, producing a significant U statistic.
+
+Try it yourself with the [Mann-Whitney U calculator](/calculators/mann-whitney).
+
+## Assumptions: The Decision Starts Here
+
+The most important factor in choosing between these tests is whether your data meet the assumptions of the t-test.
+
+### t-Test Assumptions
+
+1. **Independence:** Observations are independent within and between groups.
+2. **Normality:** The dependent variable is approximately normally distributed in each group.
+3. **Homogeneity of variance:** The two groups have similar variances (addressed by Welch's correction).
+4. **Interval or ratio scale:** The dependent variable is measured on a scale where differences between values are meaningful and equal.
+
+### Mann-Whitney Assumptions
+
+1. **Independence:** Same as the t-test.
+2. **Ordinal or continuous scale:** Data must be at least rankable.
+3. **Similar distribution shape:** If you want to interpret results as a comparison of medians, both groups should have similarly shaped distributions (similar skewness and spread).
+
+The Mann-Whitney has fewer and weaker assumptions, which is precisely why it exists — as a fallback when the t-test's assumptions are not met.
+
+## When to Use the t-Test
+
+Choose the t-test when all of the following are true:
+
+### Your Data Are Continuous and Measured on an Interval or Ratio Scale
+
+Test scores, reaction times, blood pressure measurements, weights, and monetary values are all appropriate for the t-test.
+
+### Normality Is Reasonably Met
+
+Check normality using:
+- **Visual inspection:** Histograms and Q-Q plots should show an approximately symmetric, bell-shaped distribution.
+- **Shapiro-Wilk test:** A non-significant result (p > 0.05) supports the normality assumption.
+
+Important nuance: The t-test is **robust to moderate normality violations** when sample sizes are at least 30 per group. With large samples, even moderately skewed data produce reliable t-test results thanks to the Central Limit Theorem.
+
+### There Are No Extreme Outliers
+
+The mean is sensitive to outliers. A single extreme value can shift the mean substantially and inflate or deflate the t-statistic. If outliers are present, consider whether they represent data errors or genuine extreme values before choosing your test.
+
+### You Want Maximum Statistical Power
+
+When assumptions are met, the t-test is more powerful than the Mann-Whitney U test, meaning it is more likely to detect a real difference. The power advantage is typically around 5% (the asymptotic relative efficiency of the Mann-Whitney compared to the t-test is approximately 0.955).
+
+## When to Use the Mann-Whitney U Test
+
+Choose the Mann-Whitney when any of the following apply:
+
+### Your Data Are Ordinal
+
+Likert scale ratings, severity rankings, or any variable where the intervals between values are not guaranteed to be equal. A satisfaction rating of 4 versus 5 may not represent the same psychological difference as 1 versus 2.
+
+### Normality Is Clearly Violated and Samples Are Small
+
+If the Shapiro-Wilk test is significant (p < 0.05) and your sample sizes are below 30, the t-test may produce unreliable results. The Mann-Whitney does not require normality.
+
+### Outliers Are Present and Cannot Be Removed
+
+Because the Mann-Whitney works with ranks, an extreme outlier has the same influence as a value that is merely the largest — both receive the highest rank. This makes the test naturally robust.
+
+### Distributions Are Heavily Skewed
+
+Income data, response time data, and many biological measurements are naturally skewed. When skewness is severe and transformations are not appropriate, the Mann-Whitney is the safer choice.
+
+## Side-by-Side Example
+
+Let us apply both tests to the same dataset and compare the outcomes.
+
+### Dataset
+
+A company tests two training methods and measures employee performance scores (0-100) after training.
+
+**Method A:** 78, 82, 85, 88, 76, 91, 84, 79, 87, 83, 80, 86
+
+**Method B:** 72, 68, 75, 80, 65, 77, 71, 74, 69, 73, 76, 70
+
+### t-Test Results
+
+| Statistic | Value |
+|-----------|-------|
+| Mean (Method A) | 83.25 |
+| Mean (Method B) | 72.50 |
+| Mean difference | 10.75 |
+| t-statistic | 5.32 |
+| df | 22 |
+| p-value | 0.000023 |
+| Cohen's d | 2.17 |
+
+### Mann-Whitney U Results
+
+| Statistic | Value |
+|-----------|-------|
+| Median (Method A) | 83.5 |
+| Median (Method B) | 72.5 |
+| U statistic | 10.0 |
+| z-score | -3.58 |
+| p-value | 0.0003 |
+| Rank-biserial r | 0.861 |
+
+### Comparing the Outcomes
+
+Both tests reach the same conclusion: Method A produces significantly higher scores. However, notice that:
+
+1. **The t-test p-value is smaller** (0.000023 vs 0.0003), reflecting its greater power with well-behaved data.
+2. **Both effect sizes indicate a large effect**, but they use different scales (d = 2.17 vs r = 0.861).
+3. **The t-test reports means** (83.25 vs 72.50) while the **Mann-Whitney reports medians** (83.5 vs 72.5).
+
+In this case, where the data are approximately normal and there are no outliers, the t-test is the better choice because it extracts more information from the data.
+
+### Now Add an Outlier
+
+Suppose Method A had one unusual score: replace 91 with 150 (perhaps a data entry error that was not caught).
+
+**Modified Method A:** 78, 82, 85, 88, 76, **150**, 84, 79, 87, 83, 80, 86
+
+| Test | p-value | Effect size |
+|------|---------|-------------|
+| t-test | 0.011 | d = 1.29 |
+| Mann-Whitney U | 0.0003 | r = 0.861 |
+
+The outlier weakened the t-test substantially (p went from 0.000023 to 0.011 and d dropped from 2.17 to 1.29) because the mean and standard deviation of Method A were both inflated. The Mann-Whitney result barely changed because ranking the outlier simply places it at the top — it still gets the highest rank whether the value is 91 or 150.
+
+## A Decision Framework
+
+Use this flowchart-style approach:
+
+**Step 1: What is your data type?**
+- Ordinal data → Use Mann-Whitney.
+- Continuous data → Go to Step 2.
+
+**Step 2: Check sample size.**
+- n >= 30 per group → The t-test is robust to non-normality. Go to Step 3.
+- n < 30 per group → Go to Step 3 (normality matters more).
+
+**Step 3: Check normality.**
+- Normal or approximately normal → Go to Step 4.
+- Clearly non-normal → Use Mann-Whitney.
+
+**Step 4: Check for outliers.**
+- No extreme outliers → Use the t-test.
+- Extreme outliers present → Use Mann-Whitney (or remove outliers with justification and use the t-test).
+
+## Power Comparison
+
+Statistical power is the probability of detecting a real effect when one exists. Under ideal conditions:
+
+- The t-test achieves the specified power (e.g., 0.80).
+- The Mann-Whitney achieves approximately 95.5% of the t-test's power (asymptotic relative efficiency = 3/pi approximately 0.955).
+
+This means that if you need 64 participants per group for the t-test at 80% power, you would need approximately 67 per group for the Mann-Whitney to achieve the same power. The difference is small and often negligible in practice.
+
+However, when data are non-normal, the Mann-Whitney can actually be **more powerful** than the t-test, sometimes substantially so. With heavy-tailed distributions or contaminated normal distributions, the Mann-Whitney may need fewer participants than the t-test to detect the same effect.
+
+## Effect Size Comparison
+
+| Measure | Test | Scale | Benchmarks |
+|---------|------|-------|------------|
+| Cohen's d | t-test | -infinity to +infinity | 0.2 small, 0.5 medium, 0.8 large |
+| Rank-biserial r | Mann-Whitney | -1 to +1 | 0.1 small, 0.3 medium, 0.5 large |
+
+Both effect sizes quantify the magnitude of the group difference, but they are not directly comparable. Cohen's d expresses the difference in standard deviation units, while the rank-biserial r expresses the probability of a randomly chosen value from one group exceeding a randomly chosen value from the other.
+
+## What Reviewers Expect
+
+In academic publishing, reviewers generally expect you to:
+
+1. **Justify your test choice** by reporting assumption checks (normality test, outlier inspection).
+2. **Report the appropriate test** for your data characteristics.
+3. **Not use both tests** and then report whichever gives the more favorable result (this is a form of p-hacking).
+4. **Pre-specify the test** in your analysis plan when possible.
+
+A common and defensible approach is: run normality checks first, then select the test based on the results. Report the assumption check results and explain your test choice.
+
+## Frequently Asked Questions
+
+### Can I run both tests and report the one with the smaller p-value?
+
+No. This is a form of p-hacking that inflates your false positive rate. Choose one test based on your data characteristics and report its results regardless of the outcome.
+
+### What if the two tests give different conclusions?
+
+This can happen with borderline data. If the t-test is significant but the Mann-Whitney is not (or vice versa), it usually indicates that the effect is near the detection threshold. Report the result from the test that is most appropriate for your data, and note the discrepancy in your discussion.
+
+### Is the t-test ever appropriate for Likert scale data?
+
+This is debated. Some researchers treat Likert data as interval and use the t-test; others insist it is ordinal and use Mann-Whitney. If you have 7-point or wider scales with data that are approximately normal, the t-test is often acceptable. For 3-point or 5-point scales, the Mann-Whitney is generally safer.
+
+### Should I transform my data instead of using Mann-Whitney?
+
+Logarithmic or square root transformations can normalize skewed data, allowing you to use the t-test. This is a valid approach, but it changes what you are comparing (e.g., geometric means instead of arithmetic means). If the transformation makes substantive sense for your field, it can be a good option.
+
+### Does the Mann-Whitney require equal sample sizes?
+
+No. The Mann-Whitney U test works with unequal group sizes. However, grossly unequal sizes (e.g., 10 vs 100) can affect the test's sensitivity. Aim for roughly balanced groups when possible.
+
+## Try Both in StatMate
+
+StatMate makes it easy to compare the two approaches on your own data. Enter your values into the [t-test calculator](/calculators/t-test) and the [Mann-Whitney U calculator](/calculators/mann-whitney) to see how the results compare. Both calculators include assumption checks, effect sizes, and APA-formatted output.

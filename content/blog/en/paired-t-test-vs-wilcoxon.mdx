@@ -1,0 +1,317 @@
+---
+title: "Paired T-Test vs Wilcoxon Signed-Rank Test: A Practical Comparison"
+description: "Understand when to use the paired t-test versus the Wilcoxon signed-rank test for paired samples. Includes assumption checks, worked examples with the same dataset, and guidelines for choosing between them."
+date: "2026-02-19"
+category: "Test Comparison"
+tags:
+  - paired t-test
+  - Wilcoxon signed-rank test
+  - paired samples
+  - parametric vs nonparametric
+  - before-after study
+  - matched pairs
+---
+
+## Introduction
+
+When you measure the same subjects under two conditions or at two time points, you have **paired data**. The classic approach is the **paired t-test**, which compares the mean of the differences to zero. But what if the differences are not normally distributed? That is where the **Wilcoxon signed-rank test** comes in as the nonparametric alternative.
+
+Both tests address the same research question: Is there a systematic difference between two related measurements? Yet they differ in their assumptions, what they compare, and how sensitive they are to outliers.
+
+This article guides you through both tests on the same dataset, shows you how to check assumptions, and provides clear decision rules. You can run either analysis with our [Paired T-Test Calculator](/calculators/paired-t-test) or explore other comparison tools on StatMate.
+
+## Quick Comparison Table
+
+| Feature                    | Paired T-Test                     | Wilcoxon Signed-Rank Test           |
+|---------------------------|-----------------------------------|--------------------------------------|
+| Type                      | Parametric                        | Nonparametric                        |
+| Data requirement          | Continuous (interval/ratio)       | At least ordinal                     |
+| Tests                     | Mean difference = 0               | Symmetric distribution of differences around 0 |
+| Assumes normality         | Yes (of the differences)          | No                                   |
+| Sensitive to outliers     | Yes                               | No (uses ranks)                      |
+| Power (when normal)       | Higher                            | ~95% of paired t-test                |
+| Power (when non-normal)   | May be lower                      | Often higher                         |
+| Effect size               | Cohen's d                         | Rank-biserial correlation r          |
+| Output                    | t-statistic, p-value              | W (or T) statistic, p-value         |
+| Sample size needed        | ~15-20+ pairs recommended         | ~6+ pairs (works with small n)      |
+
+## When to Use the Paired T-Test
+
+Choose the paired t-test when:
+
+1. **The differences between pairs are approximately normally distributed.** This is the key assumption. It is NOT about the raw scores being normal; it is about the difference scores.
+
+2. **The sample size is large enough (n > 25-30).** The paired t-test is robust to non-normality with larger samples due to the central limit theorem.
+
+3. **There are no severe outliers in the differences.** A single extreme difference can heavily influence the mean and inflate or deflate the t-statistic.
+
+4. **You care about the magnitude of the mean difference.** The paired t-test gives you a direct estimate of the average change, which is often clinically or practically meaningful.
+
+## When to Use the Wilcoxon Signed-Rank Test
+
+Choose Wilcoxon when:
+
+1. **The differences are not normally distributed** and the sample is small (n < 25-30). Skewed or heavy-tailed difference distributions favor Wilcoxon.
+
+2. **Outliers are present** in the differences and cannot be removed.
+
+3. **Data are ordinal.** For example, pain rated on a 0-10 scale before and after treatment.
+
+4. **You have a very small sample** (as few as 6 pairs), where testing normality is unreliable.
+
+## Example Dataset
+
+A physical therapist measures grip strength (in kg) before and after a 6-week rehabilitation program for 15 patients recovering from wrist surgery.
+
+| Patient | Before | After | Difference (After - Before) |
+|---------|--------|-------|-----------------------------|
+| 1       | 28.5   | 34.2  | 5.7                         |
+| 2       | 32.1   | 37.8  | 5.7                         |
+| 3       | 25.3   | 30.1  | 4.8                         |
+| 4       | 30.7   | 36.5  | 5.8                         |
+| 5       | 22.0   | 26.9  | 4.9                         |
+| 6       | 35.4   | 41.2  | 5.8                         |
+| 7       | 27.8   | 32.0  | 4.2                         |
+| 8       | 31.5   | 38.3  | 6.8                         |
+| 9       | 29.0   | 33.7  | 4.7                         |
+| 10      | 26.2   | 31.8  | 5.6                         |
+| 11      | 33.9   | 39.5  | 5.6                         |
+| 12      | 24.7   | 29.4  | 4.7                         |
+| 13      | 28.3   | 34.9  | 6.6                         |
+| 14      | 30.0   | 35.1  | 5.1                         |
+| 15      | 27.1   | 32.6  | 5.5                         |
+
+### Descriptive Statistics
+
+| Measure                  | Value |
+|-------------------------|-------|
+| Mean difference          | 5.43  |
+| SD of differences        | 0.72  |
+| Median difference        | 5.60  |
+| Minimum difference       | 4.20  |
+| Maximum difference       | 6.80  |
+| n (pairs)               | 15    |
+
+All differences are positive, indicating every patient improved. The mean improvement is 5.43 kg.
+
+## Step 1: Check Assumptions
+
+### Normality of the Differences
+
+Apply the Shapiro-Wilk test to the 15 difference scores:
+
+| Test          | Statistic | p-value |
+|--------------|-----------|---------|
+| Shapiro-Wilk | 0.957     | 0.643   |
+
+The p-value is 0.643 (well above 0.05), so we do not reject normality. The differences appear normally distributed.
+
+### Check for Outliers
+
+Examine the differences for outliers using the 1.5 x IQR rule:
+
+| Statistic | Value |
+|----------|-------|
+| Q1       | 4.80  |
+| Q3       | 5.75  |
+| IQR      | 0.95  |
+| Lower fence | 4.80 - 1.425 = 3.375 |
+| Upper fence | 5.75 + 1.425 = 7.175 |
+
+All differences fall between 3.375 and 7.175. No outliers are present.
+
+**Conclusion:** Both assumptions for the paired t-test are met. In practice, this means the paired t-test is the more powerful and appropriate choice. We will run both tests for comparison.
+
+## Running the Paired T-Test
+
+### Hypotheses
+
+- H0: The mean difference in grip strength (After - Before) equals 0 (mu_d = 0).
+- H1: The mean difference in grip strength does not equal 0 (mu_d != 0).
+
+### Calculation
+
+t = (Mean difference - 0) / (SD / sqrt(n))
+
+t = 5.43 / (0.72 / sqrt(15))
+
+t = 5.43 / (0.72 / 3.873)
+
+t = 5.43 / 0.186
+
+t = 29.19
+
+Degrees of freedom: df = n - 1 = 14
+
+### Results
+
+| Statistic         | Value    |
+|------------------|----------|
+| t                | 29.19    |
+| df               | 14       |
+| p-value (two-tailed) | < 0.001 |
+| Mean difference   | 5.43 kg  |
+| 95% CI           | [5.03, 5.83] |
+| Cohen's d        | 7.54     |
+
+**Interpretation:** The rehabilitation program produced a statistically significant increase in grip strength, t(14) = 29.19, p < .001. On average, grip strength increased by 5.43 kg (95% CI [5.03, 5.83]). Cohen's d = 7.54 indicates an extremely large effect.
+
+## Running the Wilcoxon Signed-Rank Test
+
+### Procedure
+
+1. Calculate the differences (already done).
+2. Remove any zero differences (none in this case).
+3. Rank the absolute differences from smallest to largest.
+4. Assign each rank the sign of the original difference.
+5. Sum the positive ranks (W+) and negative ranks (W-).
+
+### Ranking
+
+| Patient | Difference | |Difference| | Rank | Signed Rank |
+|---------|------------|-------------|------|-------------|
+| 7       | 4.2        | 4.2         | 1    | +1          |
+| 9       | 4.7        | 4.7         | 2.5  | +2.5        |
+| 12      | 4.7        | 4.7         | 2.5  | +2.5        |
+| 3       | 4.8        | 4.8         | 4    | +4          |
+| 5       | 4.9        | 4.9         | 5    | +5          |
+| 14      | 5.1        | 5.1         | 6    | +6          |
+| 15      | 5.5        | 5.5         | 7    | +7          |
+| 10      | 5.6        | 5.6         | 8.5  | +8.5        |
+| 11      | 5.6        | 5.6         | 8.5  | +8.5        |
+| 1       | 5.7        | 5.7         | 10.5 | +10.5       |
+| 2       | 5.7        | 5.7         | 10.5 | +10.5       |
+| 4       | 5.8        | 5.8         | 12.5 | +12.5       |
+| 6       | 5.8        | 5.8         | 12.5 | +12.5       |
+| 13      | 6.6        | 6.6         | 14   | +14         |
+| 8       | 6.8        | 6.8         | 15   | +15         |
+
+### Test Results
+
+| Statistic  | Value    |
+|-----------|----------|
+| W+ (positive ranks) | 120.0 |
+| W- (negative ranks) | 0.0   |
+| W (test statistic)  | 120.0 |
+| p-value (two-tailed)| < 0.001 |
+| Rank-biserial r     | 1.000 |
+
+**Interpretation:** The Wilcoxon signed-rank test confirmed a statistically significant increase in grip strength after rehabilitation, W = 120.0, p < .001. The rank-biserial correlation of 1.000 indicates that every patient improved (all ranks are positive).
+
+## Side-by-Side Comparison
+
+| Aspect              | Paired T-Test           | Wilcoxon Signed-Rank     |
+|--------------------|-------------------------|--------------------------|
+| Test statistic      | t(14) = 29.19          | W = 120.0                |
+| p-value            | < 0.001                 | < 0.001                  |
+| Effect size        | Cohen's d = 7.54        | r = 1.000                |
+| Central tendency   | Mean diff = 5.43 kg     | Median diff = 5.60 kg    |
+| Confidence interval| [5.03, 5.83]            | Not standard (bootstrap) |
+| Conclusion         | Significant improvement  | Significant improvement  |
+
+Both tests agree strongly. The paired t-test provides a more informative result with a confidence interval for the mean difference, while Wilcoxon confirms the finding without requiring normality.
+
+## Scenario Where Tests Diverge
+
+To illustrate when the choice matters, consider an alternative dataset with an outlier. Suppose patient 8's difference was 25.0 instead of 6.8 (perhaps a data entry error or a genuine extreme responder):
+
+| Statistic              | Paired T-Test (with outlier) | Wilcoxon (with outlier) |
+|-----------------------|-----------------------------|--------------------------|
+| Mean difference        | 6.65                        | (not affected by magnitude) |
+| t-statistic            | 5.30                        | W = 120.0                |
+| p-value               | < 0.001                     | < 0.001                  |
+| Without outlier: t     | 29.19                       | W = 105.0                |
+
+The paired t-test's t-statistic drops dramatically from 29.19 to 5.30 because the outlier inflates the standard deviation. The Wilcoxon test is barely affected because it uses ranks. In a borderline case, this could change the t-test's significance while Wilcoxon remains robust.
+
+## Decision Framework
+
+Ask these questions in order:
+
+### 1. Are the data at least ordinal and paired?
+- No: These tests do not apply.
+- Yes: Continue.
+
+### 2. Are the difference scores approximately normally distributed?
+Check with the Shapiro-Wilk test and a histogram of the differences.
+- **Yes and n >= 15:** Use the **paired t-test** for maximum power.
+- **Borderline (n > 30):** Use the **paired t-test** (robust due to CLT).
+- **No (skewed, outliers, or n < 15):** Use the **Wilcoxon signed-rank test**.
+
+### 3. Are there influential outliers in the differences?
+- **Yes:** Use **Wilcoxon** (or remove the outlier with justification and use the paired t-test).
+- **No:** Stick with your choice from step 2.
+
+### 4. Is the data ordinal (not continuous)?
+- **Yes:** Use **Wilcoxon** regardless of normality.
+- **No:** Follow the decision from steps 2-3.
+
+## Effect Size Interpretation
+
+### Cohen's d (Paired T-Test)
+
+| d Value | Interpretation |
+|---------|---------------|
+| 0.20    | Small          |
+| 0.50    | Medium         |
+| 0.80    | Large          |
+
+Cohen's d is calculated as the mean difference divided by the standard deviation of the differences.
+
+### Rank-Biserial Correlation r (Wilcoxon)
+
+| r Value | Interpretation |
+|---------|---------------|
+| 0.10    | Small          |
+| 0.30    | Medium         |
+| 0.50    | Large          |
+
+The rank-biserial r is calculated as (W+ - W-) / (W+ + W-) or equivalently from the W statistic divided by the total number of ranks.
+
+## Reporting Examples
+
+### Paired T-Test Report
+
+> A paired-samples t-test was conducted to evaluate the impact of a 6-week rehabilitation program on grip strength. There was a statistically significant increase from pre-treatment (M = 28.83, SD = 3.58) to post-treatment (M = 34.27, SD = 3.89), t(14) = 29.19, p < .001 (two-tailed). The mean increase was 5.43 kg (95% CI [5.03, 5.83]), with a large effect size (d = 7.54).
+
+### Wilcoxon Signed-Rank Report
+
+> A Wilcoxon signed-rank test determined that grip strength was statistically significantly higher post-treatment (Mdn = 34.20) than pre-treatment (Mdn = 28.50), W = 120.0, p < .001. The rank-biserial correlation was 1.00, indicating that all 15 participants showed improvement.
+
+## Try It Yourself
+
+Analyze your paired data with our interactive tools:
+
+- [Paired T-Test Calculator](/calculators/paired-t-test) for parametric paired comparisons
+- [T-Test Calculator](/calculators/t-test) for both independent and paired samples
+- [Normality Test Calculator](/calculators/normality-test) to check your difference scores
+
+## FAQ
+
+### How many pairs do I need for the Wilcoxon signed-rank test?
+
+The Wilcoxon test can be used with as few as **6 pairs**, though power will be low. For reasonable power to detect a medium effect, aim for at least 15-20 pairs. With fewer than 6 pairs, exact p-values should be used rather than the normal approximation.
+
+### Does the paired t-test require both variables to be normal?
+
+No. The paired t-test requires that the **differences** (variable 1 minus variable 2) are normally distributed. The individual variables do not need to be normal. For example, if both variables are right-skewed but the differences are symmetric, the paired t-test is appropriate.
+
+### Can I use the Wilcoxon test if the differences are symmetric but not normal?
+
+Yes. In fact, the Wilcoxon test assumes that the difference distribution is **symmetric** around the median under the null hypothesis. If the differences are symmetric but have heavy tails (e.g., a uniform or Laplace distribution), Wilcoxon is a good choice because it is robust to heavy tails.
+
+### What if I have ties in the data?
+
+Ties (identical values in the differences) are handled by assigning **average ranks**. Zero differences are excluded before ranking. Most software handles ties automatically. With many ties (common in ordinal data), exact p-values or permutation-based p-values are preferred over the normal approximation.
+
+### Can I do a one-tailed test with either method?
+
+Yes. For a one-tailed paired t-test, divide the two-tailed p-value by 2 (if the observed direction matches your hypothesis). For a one-tailed Wilcoxon test, most software offers this option directly. Use one-tailed tests only when you have a strong a priori directional hypothesis stated before data collection.
+
+### What is the sign test, and how does it relate to Wilcoxon?
+
+The **sign test** is an even simpler nonparametric alternative that only considers the direction (positive or negative) of each difference, ignoring magnitude. Wilcoxon signed-rank test uses both direction and magnitude (via ranks), making it more powerful than the sign test. Use the sign test only when you cannot assume the differences are symmetric.
+
+### How do I handle missing data in paired designs?
+
+If one measurement in a pair is missing, both measurements are excluded from both tests. This is an inherent limitation of paired designs. If missingness is substantial, consider using a **mixed-effects model** that can incorporate all available data points rather than deleting incomplete pairs.

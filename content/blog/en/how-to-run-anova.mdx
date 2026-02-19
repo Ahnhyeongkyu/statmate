@@ -1,0 +1,211 @@
+---
+title: "How to Run a One-Way ANOVA: Step-by-Step Guide (With Post-Hoc Tests)"
+description: "A complete step-by-step guide to performing one-way ANOVA, from checking assumptions to running Tukey's post-hoc test. Includes a worked example with real data."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["ANOVA", "one-way ANOVA", "post-hoc test", "Tukey HSD", "hypothesis testing", "step-by-step guide"]
+---
+
+## Introduction
+
+Analysis of Variance (ANOVA) is the go-to statistical method when you need to compare means across three or more groups. While a t-test handles two groups, ANOVA extends the comparison to any number of groups without inflating the Type I error rate that would occur if you ran multiple t-tests.
+
+This guide takes you through every step of running a one-way ANOVA: formulating hypotheses, checking assumptions, performing the analysis, interpreting the F statistic, and running post-hoc tests to identify which specific groups differ. A fully worked example with actual numbers is included so you can follow along from start to finish.
+
+## When to Use One-Way ANOVA
+
+Use a one-way ANOVA when:
+
+- You have **one independent variable** (factor) with **three or more levels** (groups).
+- Your **dependent variable is continuous** (interval or ratio scale).
+- You want to test whether the group means are all equal or at least one differs.
+
+If you have only two groups, a [t-test](/calculators/t-test) is sufficient. If you have two or more independent variables, consider a two-way ANOVA.
+
+## Step 1: State Your Hypotheses
+
+**Example scenario:** A nutritionist wants to compare the effectiveness of three diet plans (Low-Carb, Mediterranean, and Intermittent Fasting) on weight loss over 12 weeks.
+
+- **H0 (Null hypothesis):** The mean weight loss is equal across all three diet groups. (mu1 = mu2 = mu3)
+- **H1 (Alternative hypothesis):** At least one group mean differs from the others.
+
+Note that ANOVA tests whether any difference exists. It does not tell you which specific groups differ, which is why post-hoc tests are needed.
+
+## Step 2: Collect and Organize Your Data
+
+Weight loss (kg) after 12 weeks for each diet group:
+
+| Low-Carb | Mediterranean | Intermittent Fasting |
+|----------|---------------|----------------------|
+| 5.2 | 4.8 | 7.1 |
+| 6.1 | 5.5 | 6.8 |
+| 4.8 | 3.9 | 8.2 |
+| 5.9 | 4.2 | 7.5 |
+| 5.5 | 5.1 | 6.9 |
+| 6.3 | 4.6 | 7.8 |
+| 5.0 | 3.7 | 8.0 |
+| 5.7 | 5.3 | 7.3 |
+
+Each group has n = 8 participants, for a total N = 24.
+
+## Step 3: Calculate Descriptive Statistics
+
+| Group | n | Mean (*M*) | SD |
+|-------|---|------------|------|
+| Low-Carb | 8 | 5.56 | 0.53 |
+| Mediterranean | 8 | 4.64 | 0.65 |
+| Intermittent Fasting | 8 | 7.45 | 0.50 |
+
+Grand mean = (5.56 + 4.64 + 7.45) / 3 = 5.88
+
+## Step 4: Check Assumptions
+
+One-way ANOVA requires three assumptions:
+
+### 1. Independence of Observations
+
+Each participant is in only one group, and their measurements do not influence each other. This is ensured through proper study design.
+
+### 2. Normality
+
+The dependent variable should be approximately normally distributed within each group. You can check this with:
+
+- **Shapiro-Wilk test**: A non-significant result (p > .05) suggests the data are consistent with a normal distribution.
+- **Visual inspection**: Q-Q plots and histograms can reveal obvious departures from normality.
+
+ANOVA is fairly robust to mild violations of normality, especially with equal group sizes.
+
+### 3. Homogeneity of Variances
+
+The variances in each group should be approximately equal. Use **Levene's test** to check this:
+
+- If Levene's test is not significant (p > .05), the equal variance assumption is met.
+- If significant, consider using Welch's ANOVA, which does not assume equal variances.
+
+In our example, the SDs range from 0.50 to 0.65, which are reasonably similar.
+
+## Step 5: Calculate the ANOVA Table
+
+The core of ANOVA involves partitioning the total variance into between-group variance and within-group variance.
+
+### Between-Groups Sum of Squares (SSB)
+
+SSB = sum of ni * (Mi - Grand Mean)^2
+
+- Low-Carb: 8 * (5.56 - 5.88)^2 = 8 * 0.1024 = 0.819
+- Mediterranean: 8 * (4.64 - 5.88)^2 = 8 * 1.5376 = 12.301
+- Intermittent Fasting: 8 * (7.45 - 5.88)^2 = 8 * 2.4649 = 19.719
+
+**SSB = 0.819 + 12.301 + 19.719 = 32.839**
+
+### Within-Groups Sum of Squares (SSW)
+
+SSW = sum of (ni - 1) * SDi^2
+
+- Low-Carb: 7 * 0.281 = 1.967
+- Mediterranean: 7 * 0.423 = 2.958
+- Intermittent Fasting: 7 * 0.250 = 1.750
+
+**SSW = 1.967 + 2.958 + 1.750 = 6.675**
+
+### Degrees of Freedom
+
+- df_between = k - 1 = 3 - 1 = 2
+- df_within = N - k = 24 - 3 = 21
+
+### Mean Squares
+
+- MSB = SSB / df_between = 32.839 / 2 = 16.420
+- MSW = SSW / df_within = 6.675 / 21 = 0.318
+
+### F Statistic
+
+**F = MSB / MSW = 16.420 / 0.318 = 51.64**
+
+### Complete ANOVA Table
+
+| Source | SS | df | MS | F | p |
+|--------|-------|----|----|-------|-------|
+| Between Groups | 32.839 | 2 | 16.420 | 51.64 | < .001 |
+| Within Groups | 6.675 | 21 | 0.318 | | |
+| Total | 39.514 | 23 | | | |
+
+## Step 6: Determine Statistical Significance
+
+With F(2, 21) = 51.64, the p value is less than .001. Since p < .05, we reject the null hypothesis. At least one diet group differs significantly from the others in mean weight loss.
+
+## Step 7: Calculate Effect Size
+
+**Eta-squared** measures the proportion of total variance explained by the grouping variable:
+
+eta-squared = SSB / SST = 32.839 / 39.514 = **0.831**
+
+This means 83.1% of the variance in weight loss is accounted for by the diet type. This is a very large effect.
+
+**Omega-squared** provides a less biased estimate:
+
+omega-squared = (SSB - df_between * MSW) / (SST + MSW) = (32.839 - 2 * 0.318) / (39.514 + 0.318) = 32.203 / 39.832 = **0.809**
+
+## Step 8: Run Post-Hoc Tests
+
+Since the ANOVA is significant, we need post-hoc tests to determine which pairs of groups differ. Tukey's Honestly Significant Difference (HSD) test is the most common choice.
+
+### Tukey HSD Results
+
+| Comparison | Mean Difference | p (adjusted) | Significant? |
+|------------|-----------------|--------------|--------------|
+| Low-Carb vs. Mediterranean | 0.92 | .004 | Yes |
+| Low-Carb vs. Intermittent Fasting | -1.89 | < .001 | Yes |
+| Mediterranean vs. Intermittent Fasting | -2.81 | < .001 | Yes |
+
+All three pairwise comparisons are statistically significant. Intermittent Fasting produced the greatest weight loss, followed by Low-Carb, and then Mediterranean.
+
+## Step 9: Interpret and Report the Results
+
+A one-way ANOVA was conducted to compare weight loss across three diet plans. There was a statistically significant difference between groups, *F*(2, 21) = 51.64, *p* < .001, eta-squared = .83. Tukey HSD post-hoc tests revealed that the Intermittent Fasting group (*M* = 7.45, *SD* = 0.50) lost significantly more weight than both the Low-Carb group (*M* = 5.56, *SD* = 0.53, *p* < .001) and the Mediterranean group (*M* = 4.64, *SD* = 0.65, *p* < .001). The Low-Carb group also lost significantly more weight than the Mediterranean group (*p* = .004).
+
+## Alternatives When Assumptions Are Violated
+
+| Assumption Violated | Alternative Test |
+|--------------------|-----------------|
+| Normality | Kruskal-Wallis H test (nonparametric) |
+| Homogeneity of variances | Welch's ANOVA |
+| Both normality and equal variances | Kruskal-Wallis H test |
+
+## Common Mistakes to Avoid
+
+1. **Running multiple t-tests instead of ANOVA**: Comparing three groups with three separate t-tests inflates your Type I error rate from 5% to approximately 14%. ANOVA controls for this.
+
+2. **Stopping at the F test**: A significant F statistic only tells you that some difference exists. Always follow up with post-hoc tests to identify which groups differ.
+
+3. **Ignoring effect size**: A significant F test with a tiny effect size may not be practically meaningful. Always report eta-squared or omega-squared.
+
+4. **Forgetting to check assumptions**: Particularly homogeneity of variances. Unequal variances can distort your F statistic and lead to incorrect conclusions.
+
+5. **Misinterpreting non-significant results**: A non-significant ANOVA does not prove that all groups are equal. It means you do not have enough evidence to conclude they differ.
+
+## Frequently Asked Questions
+
+### Can I use ANOVA with only two groups?
+
+Technically yes, and the result will be identical to an independent samples t-test (F = t-squared). However, a t-test is simpler and more commonly used for two-group comparisons.
+
+### What if my groups have different sample sizes?
+
+One-way ANOVA works with unequal group sizes, but the test becomes more sensitive to violations of the homogeneity of variance assumption. Use Levene's test to check, and consider Welch's ANOVA if variances differ substantially.
+
+### Which post-hoc test should I use?
+
+Tukey HSD is the most popular choice when you want to compare all pairs of groups. If your group sizes are unequal, Games-Howell is preferred. If you have specific planned comparisons, use Bonferroni-corrected t-tests instead.
+
+### What is the difference between eta-squared and partial eta-squared?
+
+For one-way ANOVA, they are identical. Partial eta-squared becomes relevant in factorial designs (two-way ANOVA and beyond), where it represents the proportion of variance explained by one factor after controlling for other factors.
+
+### How do I report ANOVA results in APA format?
+
+Follow this pattern: *F*(df_between, df_within) = value, *p* = value, eta-squared = value. For example: *F*(2, 21) = 51.64, *p* < .001, eta-squared = .83.
+
+## Run Your ANOVA with StatMate
+
+StatMate's [ANOVA calculator](/calculators/anova) handles the entire workflow: enter your group data, and it automatically computes the ANOVA table, checks assumptions (normality and homogeneity of variances), calculates effect sizes, and runs Tukey HSD or Bonferroni post-hoc tests. Results are presented in APA format, ready for your manuscript.

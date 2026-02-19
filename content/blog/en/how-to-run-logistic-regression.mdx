@@ -1,0 +1,277 @@
+---
+title: "How to Run Logistic Regression: Step-by-Step Guide"
+description: "Learn how to perform binary logistic regression from checking assumptions to interpreting odds ratios. Includes worked examples with real data, model diagnostics, and practical tips for researchers."
+date: "2026-02-19"
+category: "How-to Guide"
+tags:
+  - logistic regression
+  - binary outcome
+  - odds ratio
+  - classification
+  - predictive modeling
+  - assumptions
+---
+
+## Introduction
+
+Logistic regression is one of the most widely used statistical methods for modeling binary outcomes. Whether you are predicting whether a patient develops a disease, whether a customer churns, or whether a student passes an exam, logistic regression provides a principled framework for relating predictor variables to a yes/no outcome.
+
+Unlike ordinary least squares (OLS) regression, which predicts a continuous value, logistic regression models the **log-odds** of an event occurring. The output is a probability between 0 and 1, making it ideal for classification problems. This guide walks you through every stage of a logistic regression analysis: from stating your research question, through checking assumptions, fitting the model, and interpreting the results with concrete numbers.
+
+By the end of this article you will be able to set up a logistic regression, understand each coefficient as an odds ratio, evaluate model fit, and report your findings in a publication-ready format. If you want to run logistic regression on your own data right away, try our [Logistic Regression Calculator](/calculators/logistic-regression).
+
+## When to Use Logistic Regression
+
+Logistic regression is appropriate when:
+
+- Your **dependent variable is binary** (e.g., 0/1, yes/no, pass/fail).
+- You have one or more **predictor variables** that can be continuous, categorical, or a mix of both.
+- You want to estimate the **probability** of the outcome or understand the **effect size** of each predictor.
+
+Common research scenarios include medical diagnosis (disease present vs. absent), marketing (purchase vs. no purchase), and education (graduation vs. dropout).
+
+## Key Assumptions
+
+Before fitting the model, verify the following assumptions:
+
+### 1. Binary Dependent Variable
+
+The outcome must have exactly two categories. If you have three or more unordered categories, consider multinomial logistic regression instead.
+
+### 2. Independence of Observations
+
+Each observation should be independent. Repeated measures on the same subject violate this assumption and require mixed-effects logistic regression.
+
+### 3. Linearity of the Logit
+
+Each continuous predictor should have a linear relationship with the **log-odds** of the outcome. You can check this by plotting the predictor against the empirical logits or by adding an interaction term between the predictor and its natural log.
+
+### 4. No Severe Multicollinearity
+
+Predictors should not be highly correlated with one another. Calculate the Variance Inflation Factor (VIF) for each predictor; values above 10 indicate a problem.
+
+### 5. Adequate Sample Size
+
+A common rule of thumb is at least **10 events per predictor variable** (EPV). With 5 predictors and 50 events in the smaller outcome category you are at the minimum. More conservative guidelines recommend 20 EPV.
+
+### 6. No Extreme Outliers or Influential Points
+
+Check Cook's distance and leverage values. Observations with Cook's D greater than 1 warrant investigation.
+
+## Example Dataset
+
+Suppose we want to predict whether a patient is readmitted to the hospital within 30 days (1 = readmitted, 0 = not readmitted) based on age, length of stay (LOS), and number of comorbidities.
+
+| Patient | Age | LOS (days) | Comorbidities | Readmitted |
+|---------|-----|------------|---------------|------------|
+| 1       | 72  | 5          | 3             | 1          |
+| 2       | 45  | 2          | 0             | 0          |
+| 3       | 68  | 7          | 4             | 1          |
+| 4       | 55  | 3          | 1             | 0          |
+| 5       | 80  | 9          | 5             | 1          |
+| 6       | 42  | 1          | 0             | 0          |
+| 7       | 63  | 4          | 2             | 0          |
+| 8       | 77  | 6          | 3             | 1          |
+| 9       | 50  | 2          | 1             | 0          |
+| 10      | 74  | 8          | 4             | 1          |
+| 11      | 61  | 3          | 2             | 0          |
+| 12      | 83  | 10         | 6             | 1          |
+| 13      | 47  | 2          | 0             | 0          |
+| 14      | 70  | 5          | 3             | 1          |
+| 15      | 59  | 4          | 1             | 0          |
+| 16      | 66  | 6          | 2             | 1          |
+| 17      | 78  | 7          | 4             | 1          |
+| 18      | 41  | 1          | 0             | 0          |
+| 19      | 73  | 8          | 5             | 1          |
+| 20      | 52  | 3          | 1             | 0          |
+
+In this sample of 20 patients, 10 were readmitted and 10 were not.
+
+## Step 1: Check Assumptions
+
+### Linearity of the Logit
+
+Divide the continuous predictor into quartiles and compute the proportion of events in each quartile. Plot these empirical logits against the quartile midpoints. A roughly linear pattern supports the assumption.
+
+| Age Quartile | Midpoint | Readmission Rate | Empirical Logit |
+|-------------|----------|-------------------|-----------------|
+| 41 - 50     | 45.5     | 0.00              | -3.00 (bounded) |
+| 51 - 61     | 56.0     | 0.00              | -3.00 (bounded) |
+| 62 - 73     | 67.5     | 0.60              | 0.41            |
+| 74 - 83     | 78.5     | 1.00              | 3.00 (bounded)  |
+
+The pattern is monotonically increasing, supporting linearity.
+
+### Multicollinearity
+
+| Predictor     | VIF  |
+|---------------|------|
+| Age           | 1.85 |
+| LOS           | 2.41 |
+| Comorbidities | 2.67 |
+
+All VIF values are well below 10, so multicollinearity is not a concern.
+
+## Step 2: Fit the Model
+
+The logistic regression equation is:
+
+$$
+\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 \cdot \text{Age} + \beta_2 \cdot \text{LOS} + \beta_3 \cdot \text{Comorbidities}
+$$
+
+After maximum likelihood estimation, suppose we obtain the following coefficients:
+
+| Parameter     | Coefficient (B) | Std. Error | Wald Chi-Square | p-value | Odds Ratio (e^B) | 95% CI for OR   |
+|---------------|-----------------|------------|-----------------|---------|-------------------|-----------------|
+| Intercept     | -8.524          | 3.210      | 7.05            | 0.008   | --                | --              |
+| Age           | 0.065           | 0.031      | 4.40            | 0.036   | 1.067             | 1.004 - 1.134   |
+| LOS           | 0.312           | 0.148      | 4.45            | 0.035   | 1.366             | 1.022 - 1.826   |
+| Comorbidities | 0.487           | 0.223      | 4.77            | 0.029   | 1.627             | 1.051 - 2.519   |
+
+## Step 3: Interpret the Coefficients
+
+### Odds Ratios
+
+The most intuitive way to interpret logistic regression results is through **odds ratios** (OR):
+
+- **Age (OR = 1.067):** For each one-year increase in age, the odds of 30-day readmission increase by 6.7%, holding LOS and comorbidities constant. Over a 10-year age difference, the odds increase by a factor of 1.067^10 = 1.91, nearly doubling.
+
+- **LOS (OR = 1.366):** Each additional day in the hospital increases the odds of readmission by 36.6%. A patient with a 7-day stay has 1.366^5 = 4.76 times the odds of readmission compared to a patient with a 2-day stay, all else being equal.
+
+- **Comorbidities (OR = 1.627):** Each additional comorbidity increases the odds of readmission by 62.7%. A patient with 4 comorbidities has 1.627^4 = 7.01 times the odds compared to a patient with 0 comorbidities.
+
+### Predicted Probabilities
+
+For a 75-year-old patient with a 6-day stay and 3 comorbidities:
+
+$$
+\text{logit}(p) = -8.524 + 0.065(75) + 0.312(6) + 0.487(3) = -8.524 + 4.875 + 1.872 + 1.461 = -0.316
+$$
+
+$$
+p = \frac{1}{1 + e^{0.316}} = \frac{1}{1 + 1.372} = 0.422
+$$
+
+This patient has approximately a **42.2%** predicted probability of 30-day readmission.
+
+## Step 4: Evaluate Model Fit
+
+### Overall Model Significance
+
+| Test                        | Chi-Square | df | p-value |
+|-----------------------------|------------|----|---------|
+| Omnibus / Model Chi-Square  | 22.14      | 3  | < 0.001 |
+| Hosmer-Lemeshow             | 5.32       | 8  | 0.723   |
+
+- The **Omnibus test** is significant (p < 0.001), meaning the model with predictors fits significantly better than the null (intercept-only) model.
+- The **Hosmer-Lemeshow test** is non-significant (p = 0.723), indicating good calibration (predicted probabilities align with observed rates).
+
+### Pseudo R-Squared
+
+| Measure            | Value |
+|--------------------|-------|
+| Cox & Snell R-sq   | 0.421 |
+| Nagelkerke R-sq    | 0.562 |
+| McFadden R-sq      | 0.387 |
+
+These pseudo R-squared values suggest the model explains a moderate to substantial proportion of the variation in readmission.
+
+### Classification Table
+
+Using a 0.50 probability cutoff:
+
+| Observed \ Predicted | Not Readmitted | Readmitted | % Correct |
+|---------------------|----------------|------------|-----------|
+| Not Readmitted      | 8              | 2          | 80.0%     |
+| Readmitted          | 1              | 9          | 90.0%     |
+| **Overall**         |                |            | **85.0%** |
+
+The model correctly classifies 85% of patients. Sensitivity (true positive rate) is 90% and specificity (true negative rate) is 80%.
+
+## Step 5: Check for Influential Observations
+
+Examine Cook's distance for each observation. Values exceeding 1.0 are potentially influential.
+
+| Patient | Cook's Distance | Leverage |
+|---------|-----------------|----------|
+| 7       | 0.87            | 0.35     |
+| 16      | 0.62            | 0.28     |
+| Others  | < 0.40          | < 0.25   |
+
+Patient 7 (age 63, LOS 4, 2 comorbidities, not readmitted) has the highest Cook's distance at 0.87 but remains below the threshold of 1.0. No observations need to be removed.
+
+## Step 6: Report Your Results
+
+A well-formatted report might read:
+
+> A binary logistic regression was performed to examine the effects of age, length of stay, and number of comorbidities on the likelihood of 30-day hospital readmission (N = 20). The overall model was statistically significant, chi-square(3) = 22.14, p < .001, Nagelkerke R-squared = .562. The model correctly classified 85.0% of cases. All three predictors were statistically significant: age (OR = 1.067, 95% CI [1.004, 1.134], p = .036), length of stay (OR = 1.366, 95% CI [1.022, 1.826], p = .035), and number of comorbidities (OR = 1.627, 95% CI [1.051, 2.519], p = .029). Increasing age, longer hospital stays, and more comorbidities were each associated with higher odds of readmission.
+
+## Common Pitfalls and How to Avoid Them
+
+1. **Complete or quasi-complete separation:** When a predictor perfectly predicts the outcome, maximum likelihood estimates become infinite. Solution: use Firth's penalized likelihood or exact logistic regression.
+
+2. **Ignoring the linearity-of-logit assumption:** A significant non-linear relationship can bias coefficients. Solution: test with polynomial terms or restricted cubic splines.
+
+3. **Overfitting with too many predictors:** With small samples, each additional predictor increases the risk of overfitting. Solution: follow the 10-20 EPV guideline and use information criteria (AIC, BIC) for variable selection.
+
+4. **Confusing odds ratios with relative risk:** An odds ratio of 2.0 does not mean the outcome is twice as likely. When the outcome is rare (< 10%), OR approximates RR, but for common outcomes the OR overestimates the RR.
+
+5. **Using R-squared for model evaluation:** Pseudo R-squared values in logistic regression do not have the same interpretation as in linear regression. Use the C-statistic (AUC) and calibration plots instead.
+
+## Advanced Considerations
+
+### Interaction Terms
+
+If you suspect that the effect of LOS depends on age, include an interaction term (Age x LOS). A significant interaction means the OR for LOS changes at different ages.
+
+### Model Comparison with AIC
+
+| Model                          | AIC   |
+|--------------------------------|-------|
+| Age only                       | 24.8  |
+| Age + LOS                      | 20.1  |
+| Age + LOS + Comorbidities      | 17.3  |
+| Full model + Age x LOS         | 18.9  |
+
+The model with all three main effects (AIC = 17.3) has the best fit. The interaction term does not improve the model.
+
+### ROC Curve and AUC
+
+The area under the receiver operating characteristic curve (AUC) for our model is **0.92**, indicating excellent discriminatory ability. An AUC of 0.5 represents chance, while 1.0 represents perfect discrimination.
+
+## Try It Yourself
+
+Ready to run logistic regression on your own data? Use our [Logistic Regression Calculator](/calculators/logistic-regression) to input your variables and get instant results with odds ratios, model fit statistics, and classification metrics.
+
+For related analyses, you might also explore our [Multiple Regression Calculator](/calculators/multiple-regression) for continuous outcomes or our [Chi-Square Test Calculator](/calculators/chi-square) for examining associations between categorical variables.
+
+## FAQ
+
+### What is the minimum sample size for logistic regression?
+
+A widely cited guideline is 10 events per variable (EPV). If your smaller outcome group has 50 observations and you have 5 predictors, you meet the minimum. Some methodologists recommend 20 EPV for stable estimates. With fewer events, consider reducing the number of predictors or using penalized methods like Firth logistic regression.
+
+### Can I use logistic regression with more than two outcome categories?
+
+Standard binary logistic regression requires exactly two outcome levels. For three or more unordered categories, use **multinomial logistic regression**. For ordered categories (e.g., mild/moderate/severe), use **ordinal logistic regression**.
+
+### How do I handle missing data in logistic regression?
+
+Complete-case analysis (listwise deletion) is the default in most software but can introduce bias if data are not missing completely at random (MCAR). **Multiple imputation** is generally preferred. Impute missing values, fit the model on each imputed dataset, and pool the results using Rubin's rules.
+
+### What is the difference between the Wald test and the likelihood ratio test?
+
+The **Wald test** evaluates each coefficient individually and is reported in standard output. The **likelihood ratio test** compares nested models and is generally more reliable, especially with small samples. When the two disagree, prefer the likelihood ratio test.
+
+### How do I report logistic regression results in APA format?
+
+Report the overall model chi-square test, degrees of freedom, and p-value. Include Nagelkerke (or Cox & Snell) R-squared. For each predictor, report B, SE, Wald chi-square, p-value, OR, and 95% CI for the OR. State the classification accuracy if relevant.
+
+### Can logistic regression handle continuous predictors?
+
+Yes. Continuous predictors enter the model directly. The resulting odds ratio represents the change in odds for a one-unit increase in the predictor. If a one-unit change is not meaningful (e.g., income in dollars), consider rescaling the variable (e.g., per $1,000 increase) for more interpretable ORs.
+
+### What should I do if the Hosmer-Lemeshow test is significant?
+
+A significant Hosmer-Lemeshow test (p < 0.05) suggests poor model calibration. Consider adding non-linear terms (quadratic, spline), interaction terms, or additional predictors. Also check for outliers and influential observations. Note that with very large samples, even trivial miscalibration can yield significance.

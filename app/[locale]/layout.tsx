@@ -14,6 +14,7 @@ import { AdSenseScript } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { ErrorBoundaryInit } from "@/components/error-boundary-init";
 import { FeedbackButton } from "@/components/feedback-button";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 import "../globals.css";
 
 const inter = Inter({
@@ -161,6 +162,9 @@ export default async function LocaleLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googleadservices.com" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
@@ -244,6 +248,7 @@ export default async function LocaleLayout({
                   <p className="mt-2 text-sm text-gray-500">
                     {t("brandDescription")}
                   </p>
+                  <NewsletterSignup variant="footer" />
                 </div>
 
                 <div>

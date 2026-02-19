@@ -1,0 +1,257 @@
+---
+title: "How to Run Simple Linear Regression: Step-by-Step Guide"
+description: "A complete step-by-step guide to performing simple linear regression analysis. Learn how to fit a regression line, check assumptions, interpret coefficients, and assess model fit with a worked example."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["regression", "linear regression", "simple regression", "regression analysis", "step-by-step guide"]
+---
+
+## Introduction
+
+Simple linear regression is one of the most fundamental and widely used statistical techniques. It allows you to model the relationship between two variables: a predictor (independent variable) and an outcome (dependent variable). With regression, you go beyond correlation by fitting a mathematical equation that enables prediction.
+
+Whether you are predicting sales from advertising spend, exam scores from study hours, or blood pressure from age, simple linear regression gives you a concrete model and actionable insights. This guide walks you through the entire process with a real worked example, covering everything from formulating your research question to checking assumptions and interpreting output.
+
+## When to Use Simple Linear Regression
+
+Simple linear regression is appropriate when:
+
+- You have **one continuous predictor** variable (X) and **one continuous outcome** variable (Y).
+- You expect a **linear relationship** between X and Y.
+- You want to **predict** Y values from X values or **quantify** how much Y changes per unit increase in X.
+
+If you have multiple predictors, you need multiple regression. If your outcome is categorical (e.g., pass/fail), consider logistic regression.
+
+## Step 1: Define Your Research Question
+
+**Example scenario:** A marketing manager wants to know how advertising spend (in thousands of dollars) predicts monthly revenue (in thousands of dollars) for a retail chain.
+
+- **Research question:** Does advertising spend predict monthly revenue?
+- **Predictor variable (X):** Advertising spend ($1,000s)
+- **Outcome variable (Y):** Monthly revenue ($1,000s)
+
+## Step 2: Collect and Organize Your Data
+
+Monthly data collected over 12 months:
+
+| Month | Ad Spend (X) | Revenue (Y) |
+|-------|-------------|-------------|
+| Jan | 8 | 120 |
+| Feb | 12 | 155 |
+| Mar | 10 | 142 |
+| Apr | 15 | 175 |
+| May | 6 | 105 |
+| Jun | 14 | 168 |
+| Jul | 11 | 150 |
+| Aug | 18 | 200 |
+| Sep | 9 | 132 |
+| Oct | 13 | 160 |
+| Nov | 7 | 115 |
+| Dec | 16 | 185 |
+
+## Step 3: Visualize the Data
+
+Before performing any calculations, create a scatter plot of X vs. Y. This helps you:
+
+- Verify that the relationship looks approximately linear.
+- Spot potential outliers.
+- Get an intuitive sense of the relationship's strength and direction.
+
+In our data, the scatter plot shows a clear positive linear trend: as advertising spend increases, revenue increases proportionally.
+
+## Step 4: Check Assumptions
+
+Simple linear regression relies on several assumptions. Check them before interpreting results.
+
+### 1. Linearity
+
+The relationship between X and Y should be linear. The scatter plot from Step 3 should show a roughly straight-line pattern. If the relationship is curved, a linear model is inappropriate.
+
+### 2. Independence of Residuals
+
+Each observation should be independent. In time-series data, check for autocorrelation using the Durbin-Watson test. A value near 2 indicates no autocorrelation.
+
+### 3. Homoscedasticity (Constant Variance)
+
+The spread of residuals should be roughly the same across all levels of X. Plot the residuals against the predicted values and look for a fan or funnel shape, which would indicate heteroscedasticity.
+
+### 4. Normality of Residuals
+
+The residuals (errors) should be approximately normally distributed. Check this with a Q-Q plot of residuals or a Shapiro-Wilk test.
+
+### 5. No Influential Outliers
+
+Extreme observations can distort the regression line. Check Cook's distance values; points with Cook's distance greater than 1 are often considered influential.
+
+## Step 5: Calculate the Regression Equation
+
+The simple linear regression equation is:
+
+**Y = b0 + b1 * X**
+
+Where:
+- b1 (slope) = how much Y changes for each one-unit increase in X
+- b0 (intercept) = the predicted value of Y when X = 0
+
+### Calculating the Slope (b1)
+
+**b1 = [N * sum(XY) - sum(X) * sum(Y)] / [N * sum(X^2) - (sum(X))^2]**
+
+From our data:
+- N = 12
+- sum(X) = 139
+- sum(Y) = 1,807
+- sum(XY) = 22,331
+- sum(X^2) = 1,771
+
+Plugging in:
+- Numerator: 12 * 22,331 - 139 * 1,807 = 267,972 - 251,173 = 16,799
+- Denominator: 12 * 1,771 - 139^2 = 21,252 - 19,321 = 1,931
+
+**b1 = 16,799 / 1,931 = 8.70**
+
+### Calculating the Intercept (b0)
+
+**b0 = Mean(Y) - b1 * Mean(X)**
+
+- Mean(X) = 139 / 12 = 11.58
+- Mean(Y) = 1,807 / 12 = 150.58
+
+**b0 = 150.58 - 8.70 * 11.58 = 150.58 - 100.75 = 49.83**
+
+### The Regression Equation
+
+**Revenue = 49.83 + 8.70 * Ad Spend**
+
+This means:
+- For every additional $1,000 in advertising spend, monthly revenue increases by approximately $8,700.
+- When advertising spend is zero, the predicted baseline revenue is approximately $49,830.
+
+## Step 6: Assess Model Fit
+
+### R-Squared (Coefficient of Determination)
+
+R-squared tells you the proportion of variance in Y that is explained by X.
+
+First, calculate the total sum of squares (SST), regression sum of squares (SSR), and residual sum of squares (SSE):
+
+**SST = sum(Yi - Mean(Y))^2 = 8,606.92**
+
+**SSR = b1^2 * sum(Xi - Mean(X))^2 = 8.70^2 * 160.92 = 75.69 * 160.92 = 8,398.47**
+
+**SSE = SST - SSR = 8,606.92 - 8,398.47 = 208.45**
+
+**R^2 = SSR / SST = 8,398.47 / 8,606.92 = 0.976**
+
+This means 97.6% of the variance in monthly revenue is explained by advertising spend. This is an excellent fit.
+
+### Adjusted R-Squared
+
+Adjusted R-squared penalizes for the number of predictors:
+
+**Adjusted R^2 = 1 - [(1 - R^2) * (N - 1) / (N - k - 1)]**
+
+= 1 - [(1 - 0.976) * 11 / 10] = 1 - [0.024 * 1.1] = 1 - 0.026 = **0.974**
+
+### Standard Error of the Estimate
+
+**SEE = sqrt(SSE / (N - 2)) = sqrt(208.45 / 10) = sqrt(20.85) = 4.57**
+
+On average, our predictions deviate from actual values by about $4,570.
+
+## Step 7: Test Statistical Significance
+
+### F-Test for Overall Model
+
+**F = MSR / MSE = (SSR / 1) / (SSE / (N - 2)) = 8,398.47 / 20.85 = 402.80**
+
+With df1 = 1 and df2 = 10, **p < .001**. The model is statistically significant.
+
+### T-Test for the Slope
+
+**t = b1 / SE(b1)**
+
+SE(b1) = sqrt(MSE / sum(Xi - Mean(X))^2) = sqrt(20.85 / 160.92) = sqrt(0.1296) = 0.360
+
+t = 8.70 / 0.360 = **24.17**
+
+With df = 10, **p < .001**. The slope is significantly different from zero.
+
+### 95% Confidence Interval for the Slope
+
+**b1 +/- t_critical * SE(b1) = 8.70 +/- 2.228 * 0.360 = 8.70 +/- 0.80**
+
+The 95% CI for the slope is **[7.90, 9.50]**. We are 95% confident that each additional $1,000 in ad spend is associated with a revenue increase between $7,900 and $9,500.
+
+## Step 8: Make Predictions
+
+Use the regression equation to predict revenue for a given advertising spend.
+
+**Example:** If the company plans to spend $20,000 on advertising:
+
+Revenue = 49.83 + 8.70 * 20 = 49.83 + 174.00 = **$223,830**
+
+**Caution about extrapolation:** Our data only covers advertising spends of $6,000 to $18,000. Predicting far outside this range (e.g., $50,000) may be unreliable because the linear relationship might not hold.
+
+## Step 9: Examine Residuals
+
+After fitting the model, examine the residuals to verify assumptions:
+
+| Month | Actual (Y) | Predicted | Residual |
+|-------|-----------|-----------|----------|
+| Jan | 120 | 119.43 | 0.57 |
+| Feb | 155 | 154.23 | 0.77 |
+| Mar | 142 | 136.83 | 5.17 |
+| Apr | 175 | 180.33 | -5.33 |
+| May | 105 | 102.03 | 2.97 |
+| Jun | 168 | 171.63 | -3.63 |
+| Jul | 150 | 145.53 | 4.47 |
+| Aug | 200 | 206.43 | -6.43 |
+| Sep | 132 | 128.13 | 3.87 |
+| Oct | 160 | 162.93 | -2.93 |
+| Nov | 115 | 110.73 | 4.27 |
+| Dec | 185 | 189.03 | -4.03 |
+
+The residuals are relatively small and do not show obvious patterns, supporting our model assumptions.
+
+## Step 10: Report the Results
+
+A simple linear regression was conducted to predict monthly revenue from advertising spend. A significant regression equation was found, *F*(1, 10) = 402.80, *p* < .001, with an R^2 of .976. Advertising spend significantly predicted revenue, *b* = 8.70, *t*(10) = 24.17, *p* < .001, 95% CI [7.90, 9.50]. For each additional $1,000 in advertising spend, monthly revenue increased by approximately $8,700.
+
+## Common Mistakes to Avoid
+
+1. **Confusing correlation with regression**: Correlation measures the strength of association; regression provides a predictive model. Use regression when you have a clear predictor and outcome.
+
+2. **Extrapolating beyond your data range**: The regression equation is only reliable within the range of observed X values. Predicting outside this range assumes the linear relationship continues indefinitely, which is often false.
+
+3. **Ignoring residual plots**: A good R-squared does not guarantee the model is appropriate. Non-random patterns in residual plots indicate model misspecification.
+
+4. **Assuming causation**: Regression shows association and prediction, not causation. A strong regression relationship does not mean X causes Y without a proper experimental design.
+
+5. **Overlooking influential observations**: A single extreme data point can dramatically shift the regression line. Always check Cook's distance and leverage values.
+
+## Frequently Asked Questions
+
+### What is a good R-squared value?
+
+There is no universal threshold. In controlled experiments, R-squared values above .80 are common. In social sciences, values of .30 to .50 may be considered good. The important question is whether R-squared is high enough for your specific purpose.
+
+### Can I use regression with categorical predictors?
+
+Yes, but you need to code them as dummy variables (0/1). For a categorical predictor with k categories, you create k - 1 dummy variables. This extends naturally to multiple regression.
+
+### What is the difference between R and R-squared?
+
+R (the correlation coefficient) measures the strength and direction of the linear relationship and ranges from -1 to 1. R-squared is the square of R and represents the proportion of variance explained, ranging from 0 to 1. R-squared is more interpretable for assessing model fit.
+
+### How do I handle non-linear relationships?
+
+If the scatter plot reveals a curved relationship, you can try transforming variables (e.g., log, square root), adding polynomial terms (e.g., X^2), or using nonlinear regression methods.
+
+### What if my residuals are not normally distributed?
+
+Mild non-normality has little effect on the regression coefficients but affects confidence intervals and p values. For severe non-normality, consider transforming the outcome variable, using robust regression methods, or using bootstrap confidence intervals.
+
+## Run Your Regression Analysis with StatMate
+
+StatMate's [regression calculator](/calculators/regression) performs simple linear regression with a single click. Enter your X and Y data, and StatMate computes the regression equation, R-squared, adjusted R-squared, F-test, t-test for the slope, residual analysis, and diagnostic plots. Results are formatted in APA style, ready for your research paper.

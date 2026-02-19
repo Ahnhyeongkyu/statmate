@@ -1,0 +1,274 @@
+---
+title: "How to Run Repeated Measures ANOVA: Step-by-Step Guide"
+description: "A complete walkthrough of repeated measures ANOVA, from checking sphericity to running post-hoc pairwise comparisons. Includes example data, calculations, and interpretation guidance."
+date: "2026-02-19"
+category: "How-to Guide"
+tags:
+  - repeated measures ANOVA
+  - within-subjects design
+  - sphericity
+  - Mauchly test
+  - Greenhouse-Geisser
+  - post-hoc tests
+  - longitudinal analysis
+---
+
+## Introduction
+
+Repeated measures ANOVA is a statistical technique for comparing means when the **same participants** are measured under multiple conditions or at multiple time points. It is the within-subjects counterpart of one-way ANOVA and is commonly used in clinical trials, psychology experiments, and any longitudinal study where subjects serve as their own controls.
+
+The key advantage of a repeated measures design is **increased statistical power**. Because each participant appears in every condition, individual differences are controlled for, reducing error variance. However, this design introduces a unique assumption called **sphericity** that must be tested and, if violated, corrected for.
+
+This guide covers everything from setting up your data to interpreting post-hoc comparisons. If you want to analyze your own repeated measures data, try our [Repeated Measures ANOVA Calculator](/calculators/repeated-measures-anova).
+
+## When to Use Repeated Measures ANOVA
+
+Use repeated measures ANOVA when:
+
+- You have **one within-subjects factor** with three or more levels (conditions or time points).
+- The **dependent variable is continuous** (interval or ratio scale).
+- The **same participants** are measured at each level.
+
+Common examples include:
+
+- Measuring reaction time under three different drug dosages (within-subject).
+- Testing cognitive performance at baseline, 3 months, and 6 months after an intervention.
+- Comparing pain ratings before treatment, immediately after, and at follow-up.
+
+If you have only two time points, a **paired t-test** is simpler and equivalent. If you have both within-subjects and between-subjects factors, you need a **mixed ANOVA**.
+
+## Key Assumptions
+
+### 1. Continuous Dependent Variable
+
+The outcome must be measured on a continuous scale (interval or ratio).
+
+### 2. Related Groups
+
+Observations at each level must come from the same participants or matched participants.
+
+### 3. No Significant Outliers
+
+Extreme values in any condition can distort the F-test. Check for outliers using boxplots or studentized residuals (values beyond plus or minus 3 are concerning).
+
+### 4. Approximate Normality
+
+The dependent variable should be approximately normally distributed at each level. With sample sizes above 25-30, the F-test is robust to moderate non-normality due to the central limit theorem. For smaller samples, use the Shapiro-Wilk test.
+
+### 5. Sphericity
+
+This is the critical assumption unique to repeated measures ANOVA. Sphericity requires that the **variances of the differences** between all pairs of conditions are equal. When sphericity is violated, the F-test becomes too liberal (inflated Type I error).
+
+Test sphericity with **Mauchly's test**. If it is significant (p < 0.05), sphericity is violated and you need a correction.
+
+## Example Dataset
+
+A researcher measures anxiety scores (on a 0-50 scale) in 12 participants at three time points: before therapy (T1), after 4 weeks of therapy (T2), and after 8 weeks of therapy (T3).
+
+| Participant | T1 (Baseline) | T2 (4 weeks) | T3 (8 weeks) |
+|-------------|---------------|--------------|--------------|
+| 1           | 38            | 30           | 22           |
+| 2           | 42            | 35           | 28           |
+| 3           | 35            | 28           | 20           |
+| 4           | 40            | 33           | 25           |
+| 5           | 45            | 38           | 30           |
+| 6           | 37            | 31           | 24           |
+| 7           | 33            | 27           | 21           |
+| 8           | 41            | 34           | 26           |
+| 9           | 39            | 32           | 23           |
+| 10          | 44            | 36           | 29           |
+| 11          | 36            | 29           | 19           |
+| 12          | 43            | 37           | 31           |
+
+### Descriptive Statistics
+
+| Time Point   | Mean  | SD   | n  |
+|-------------|-------|------|----|
+| T1 (Baseline)| 39.42 | 3.63 | 12 |
+| T2 (4 weeks) | 32.50 | 3.50 | 12 |
+| T3 (8 weeks) | 24.83 | 3.93 | 12 |
+
+The means show a clear downward trend: anxiety decreases from 39.42 to 32.50 to 24.83 over the course of therapy.
+
+## Step 1: Check for Outliers
+
+Create boxplots for each time point and inspect for values that fall more than 1.5 IQR beyond the quartiles. In our dataset, all values fall within expected ranges. No outliers are detected.
+
+## Step 2: Test Normality
+
+Apply the Shapiro-Wilk test at each time point:
+
+| Time Point | Shapiro-Wilk W | p-value |
+|-----------|-----------------|---------|
+| T1        | 0.953           | 0.682   |
+| T2        | 0.961           | 0.754   |
+| T3        | 0.948           | 0.618   |
+
+All p-values exceed 0.05, so we do not reject the null hypothesis of normality at any time point. The assumption is satisfied.
+
+## Step 3: Test Sphericity (Mauchly's Test)
+
+Mauchly's test evaluates whether the variances of differences between all pairs of conditions are equal.
+
+| Mauchly's W | Chi-Square | df | p-value |
+|-------------|------------|----|---------|
+| 0.814       | 2.087      | 2  | 0.352   |
+
+The p-value is 0.352, which is greater than 0.05. Sphericity is **not violated**. We can proceed with the standard (uncorrected) F-test.
+
+**What if sphericity is violated?** Use one of these corrections:
+
+| Correction          | Epsilon | When to Use                           |
+|--------------------|---------|---------------------------------------|
+| Greenhouse-Geisser | 0.871   | Epsilon < 0.75 or sample is small     |
+| Huynh-Feldt        | 0.942   | Epsilon >= 0.75                       |
+
+The epsilon value adjusts the degrees of freedom downward, making the F-test more conservative. When epsilon = 1.0, sphericity is perfectly met.
+
+## Step 4: Run the Repeated Measures ANOVA
+
+### Partitioning Variability
+
+In repeated measures ANOVA, total variability is partitioned into:
+
+- **Between-subjects (SS_subjects):** Variability due to individual differences.
+- **Within-subjects effect (SS_time):** Variability due to the experimental manipulation (time).
+- **Within-subjects error (SS_error):** Residual variability not explained by time or subjects.
+
+### Calculations
+
+Grand mean = (39.42 + 32.50 + 24.83) / 3 = 32.25
+
+**SS_time** (effect of time):
+
+SS_time = n x [(M_T1 - GM)^2 + (M_T2 - GM)^2 + (M_T3 - GM)^2]
+
+SS_time = 12 x [(39.42 - 32.25)^2 + (32.50 - 32.25)^2 + (24.83 - 32.25)^2]
+
+SS_time = 12 x [51.41 + 0.0625 + 55.04] = 12 x 106.51 = 1278.12
+
+**Degrees of freedom:**
+
+- df_time = k - 1 = 3 - 1 = 2
+- df_error = (k - 1)(n - 1) = 2 x 11 = 22
+
+After computing SS_error = 62.55 from the residuals:
+
+### ANOVA Table
+
+| Source        | SS       | df  | MS      | F       | p-value  | Partial eta-sq |
+|--------------|----------|-----|---------|---------|----------|----------------|
+| Time         | 1278.12  | 2   | 639.06  | 224.80  | < 0.001  | 0.953          |
+| Error (Time) | 62.55    | 22  | 2.843   |         |          |                |
+| Subjects     | 143.22   | 11  | 13.02   |         |          |                |
+
+**Result:** F(2, 22) = 224.80, p < .001, partial eta-squared = 0.953.
+
+The effect of time is highly significant. The partial eta-squared of 0.953 indicates that 95.3% of the within-subjects variance in anxiety scores is explained by the time factor. This is a very large effect.
+
+### Effect Size Guidelines (Partial Eta-Squared)
+
+| Effect Size | Partial eta-sq |
+|------------|----------------|
+| Small      | 0.01           |
+| Medium     | 0.06           |
+| Large      | 0.14           |
+
+Our value of 0.953 far exceeds the threshold for a large effect.
+
+## Step 5: Post-Hoc Pairwise Comparisons
+
+The significant F-test tells us that at least one pair of time points differs, but not which ones. We run pairwise comparisons with a Bonferroni correction (alpha = 0.05 / 3 = 0.0167).
+
+| Comparison    | Mean Difference | SE    | t       | df  | p (Bonferroni) | 95% CI          |
+|--------------|-----------------|-------|---------|-----|----------------|-----------------|
+| T1 vs T2     | 6.92            | 0.53  | 13.06   | 11  | < 0.001        | [5.76, 8.08]    |
+| T1 vs T3     | 14.58           | 0.72  | 20.25   | 11  | < 0.001        | [13.00, 16.17]  |
+| T2 vs T3     | 7.67            | 0.56  | 13.70   | 11  | < 0.001        | [6.44, 8.90]    |
+
+All three pairwise comparisons are significant after Bonferroni correction. Anxiety scores decreased significantly from baseline to 4 weeks, from 4 weeks to 8 weeks, and from baseline to 8 weeks.
+
+## Step 6: Report Your Results
+
+> A one-way repeated measures ANOVA was conducted to compare anxiety scores at baseline (M = 39.42, SD = 3.63), 4 weeks (M = 32.50, SD = 3.50), and 8 weeks (M = 24.83, SD = 3.93). Mauchly's test indicated that the assumption of sphericity was met, W = 0.814, p = .352. The effect of time was statistically significant, F(2, 22) = 224.80, p < .001, partial eta-squared = .953. Post-hoc pairwise comparisons with Bonferroni correction revealed significant reductions in anxiety between all time points (all p-values < .001). Anxiety decreased by 6.92 points from baseline to 4 weeks (95% CI [5.76, 8.08]) and by an additional 7.67 points from 4 weeks to 8 weeks (95% CI [6.44, 8.90]).
+
+## Handling Sphericity Violations
+
+When Mauchly's test is significant, you have several options:
+
+### Option 1: Greenhouse-Geisser Correction
+
+Multiply the degrees of freedom by epsilon. If epsilon = 0.72:
+
+- Corrected df_time = 2 x 0.72 = 1.44
+- Corrected df_error = 22 x 0.72 = 15.84
+
+Report as F(1.44, 15.84) and use the corrected p-value from your software.
+
+### Option 2: Huynh-Feldt Correction
+
+Less conservative than Greenhouse-Geisser. Use when the Greenhouse-Geisser epsilon exceeds 0.75.
+
+### Option 3: Multivariate Approach (MANOVA)
+
+Run a multivariate test (Pillai's trace, Wilks' lambda) on the difference scores. The multivariate approach does not assume sphericity but requires a larger sample size.
+
+| Approach            | When to Use                        | Pros                      | Cons                    |
+|--------------------|------------------------------------|---------------------------|-------------------------|
+| No correction      | Sphericity met (Mauchly p > .05)   | Most powerful              | Inflated error if wrong |
+| Greenhouse-Geisser | Epsilon < 0.75                     | Conservative, safe         | May be too conservative |
+| Huynh-Feldt        | Epsilon >= 0.75                    | Balanced correction        | Less well-known         |
+| MANOVA             | Severe violation, large N          | No sphericity assumption   | Needs larger N          |
+
+## Common Mistakes to Avoid
+
+1. **Forgetting to test sphericity.** Always run Mauchly's test before interpreting the F-statistic.
+
+2. **Using one-way ANOVA instead of repeated measures.** If the same subjects appear in every condition, you must use repeated measures to account for within-subject correlation.
+
+3. **Not correcting for multiple comparisons.** Without Bonferroni or similar correction, post-hoc tests inflate the family-wise error rate.
+
+4. **Ignoring missing data.** Standard repeated measures ANOVA requires complete cases. If participants have missing observations, consider mixed-effects models or imputation.
+
+5. **Interpreting a non-significant F as "no effect."** A non-significant result does not prove the null hypothesis. Consider your sample size and power.
+
+## Try It Yourself
+
+Upload your repeated measures data to our [Repeated Measures ANOVA Calculator](/calculators/repeated-measures-anova) for instant analysis with sphericity testing, effect sizes, and post-hoc comparisons.
+
+For comparing just two time points, see our [Paired T-Test Calculator](/calculators/paired-t-test). For designs with both within- and between-subjects factors, explore our [Mixed ANOVA Calculator](/calculators/mixed-anova).
+
+## FAQ
+
+### How many participants do I need for repeated measures ANOVA?
+
+A common recommendation is at least 20 participants for adequate power to detect medium effects. Conduct an a priori power analysis with your expected effect size, desired power (typically 0.80), and alpha level (0.05). Because repeated measures designs reduce error variance, they typically require fewer participants than between-subjects designs.
+
+### Can I use repeated measures ANOVA with two time points?
+
+Technically yes, but a **paired t-test** is simpler and yields identical results. Repeated measures ANOVA is designed for three or more levels. With two levels, sphericity is automatically satisfied and the F-statistic equals the t-statistic squared.
+
+### What is the difference between repeated measures ANOVA and mixed ANOVA?
+
+Repeated measures ANOVA has only within-subjects factors. **Mixed ANOVA** (also called split-plot ANOVA) has at least one within-subjects factor and at least one between-subjects factor. For example, measuring anxiety at three time points (within) across two treatment groups (between).
+
+### How do I handle dropouts or missing data?
+
+Standard repeated measures ANOVA uses listwise deletion, removing any participant with missing data at any time point. This wastes data and can introduce bias. **Linear mixed-effects models** (also called multilevel models) handle missing data more gracefully under the missing-at-random (MAR) assumption. Consider using a mixed model if you have more than 5-10% missing data.
+
+### What if my data violate normality?
+
+If the dependent variable is not normally distributed and your sample size is small, consider the **Friedman test**, which is the non-parametric alternative to repeated measures ANOVA. The Friedman test ranks the data within each participant and does not assume normality. However, it is less powerful than the parametric test.
+
+### Can I include covariates in repeated measures ANOVA?
+
+Yes. Adding a continuous covariate creates a **repeated measures ANCOVA**. The covariate must be measured at each time point if it is time-varying, or once if it is time-invariant (e.g., baseline age). Most statistical software packages support this extension.
+
+### What post-hoc tests are appropriate for repeated measures ANOVA?
+
+The most common options are:
+
+- **Bonferroni correction:** Divide alpha by the number of comparisons. Conservative but simple.
+- **Sidak correction:** Slightly less conservative than Bonferroni.
+- **Tukey's HSD:** Adapted for repeated measures, controls family-wise error.
+- **Least Significant Difference (LSD):** No correction; only appropriate if the overall F-test is significant and there are exactly three groups.

@@ -1,0 +1,309 @@
+---
+title: "Chi-Square Test vs Fisher's Exact Test — Which Should You Use?"
+description: "A comprehensive comparison of the Chi-square test of independence and Fisher's exact test. Learn when to use each test, understand expected frequency rules, and see worked examples with StatMate calculators."
+date: "2026-02-19"
+category: "Test Comparison"
+tags: ["chi-square", "Fisher's exact test", "categorical data", "contingency table", "test comparison"]
+---
+
+## Testing Associations Between Categorical Variables
+
+When both your independent and dependent variables are categorical, you need a test that examines whether the two variables are associated. The two most common options are the Chi-square test of independence and Fisher's exact test.
+
+The choice between them is not arbitrary — it depends on your sample size, expected cell frequencies, and table dimensions. This guide explains when to use each test and why the distinction matters.
+
+## Quick Comparison Table
+
+| Feature | Chi-Square Test | Fisher's Exact Test |
+|---------|----------------|-------------------|
+| Computation method | Approximation | Exact probability |
+| Sample size | Moderate to large | Any (especially small) |
+| Expected frequencies | All >= 5 (rule of thumb) | No minimum requirement |
+| Table size | Any dimension | Typically 2x2 (extensions exist) |
+| Computational cost | Low | High for large tables |
+| Accuracy with small samples | Poor | Excellent |
+| Effect size | Cramer's V | Odds ratio (2x2), Cramer's V |
+| Continuity correction | Yates' correction available | Not needed |
+
+## How the Chi-Square Test Works
+
+The Chi-square test of independence compares observed cell frequencies in a contingency table with the frequencies you would expect if the two variables were completely independent.
+
+### The Logic
+
+If two categorical variables are independent, knowing a person's value on one variable tells you nothing about their value on the other. The expected frequencies represent this "no association" scenario.
+
+### The Chi-Square Statistic
+
+For each cell in the table:
+
+Chi-square contribution = (Observed - Expected)^2 / Expected
+
+The overall chi-square statistic is the sum of these contributions across all cells. Large differences between observed and expected values produce a large chi-square, suggesting the variables are not independent.
+
+### Degrees of Freedom
+
+df = (number of rows - 1) x (number of columns - 1)
+
+For a 2x2 table, df = 1. For a 3x2 table, df = 2.
+
+Try it with the [Chi-Square calculator](/calculators/chi-square).
+
+## How Fisher's Exact Test Works
+
+Fisher's exact test computes the exact probability of obtaining the observed table (or one more extreme) under the assumption of independence. It does not use any approximation.
+
+### The Logic
+
+Given the fixed row and column totals (marginals), Fisher's test calculates the probability of every possible table arrangement and sums the probabilities of all arrangements that are as extreme as or more extreme than the observed data.
+
+### Why "Exact"?
+
+The Chi-square test uses an approximation — it assumes the test statistic follows a chi-square distribution, which is only accurate with sufficiently large samples. Fisher's test computes actual probabilities from the hypergeometric distribution, making it exact regardless of sample size.
+
+Try it with the [Fisher's Exact Test calculator](/calculators/fisher-exact).
+
+## The Expected Frequency Rule
+
+The most important decision criterion is the pattern of expected cell frequencies.
+
+### The Rule of Thumb
+
+The chi-square approximation works well when **all expected cell frequencies are 5 or greater**. When this condition is violated, the chi-square statistic does not follow the theoretical chi-square distribution, and the p-value becomes unreliable.
+
+### Calculating Expected Frequencies
+
+Expected frequency for a cell = (row total x column total) / grand total
+
+For example, in a 2x2 table with row totals of 30 and 20, column totals of 25 and 25, and a grand total of 50:
+
+Expected frequency for the top-left cell = (30 x 25) / 50 = 15
+
+### When to Switch to Fisher's
+
+- **Any expected cell frequency below 5** in a 2x2 table → Use Fisher's exact test.
+- **More than 20% of expected frequencies below 5** in a larger table → Use Fisher's exact test or merge categories to increase expected frequencies.
+- **Any expected cell frequency below 1** → The chi-square approximation is unreliable regardless of other cells.
+
+## Worked Example 1: Large Sample (Chi-Square Appropriate)
+
+### Research Scenario
+
+A health researcher surveys 200 adults about exercise frequency (regular vs. irregular) and sleep quality (good vs. poor).
+
+### Observed Data
+
+|  | Good Sleep | Poor Sleep | Row Total |
+|--|-----------|-----------|-----------|
+| Regular Exercise | 72 | 28 | 100 |
+| Irregular Exercise | 48 | 52 | 100 |
+| **Column Total** | **120** | **80** | **200** |
+
+### Expected Frequencies
+
+|  | Good Sleep | Poor Sleep |
+|--|-----------|-----------|
+| Regular Exercise | 60 | 40 |
+| Irregular Exercise | 60 | 40 |
+
+All expected frequencies are well above 5 (minimum is 40), so the chi-square test is appropriate.
+
+### Chi-Square Results
+
+| Statistic | Value |
+|-----------|-------|
+| Chi-square | 12.00 |
+| df | 1 |
+| p-value | 0.0005 |
+| Cramer's V | 0.245 |
+
+### Fisher's Exact Test Results (for comparison)
+
+| Statistic | Value |
+|-----------|-------|
+| p-value (two-tailed) | 0.0006 |
+| Odds ratio | 2.786 |
+
+Both tests indicate a significant association between exercise regularity and sleep quality. The p-values are very similar because the sample is large enough for the chi-square approximation to be accurate.
+
+## Worked Example 2: Small Sample (Fisher's Required)
+
+### Research Scenario
+
+A veterinary researcher tests whether a rare genetic mutation is associated with a specific disease in a small breed of dogs.
+
+### Observed Data
+
+|  | Disease Present | Disease Absent | Row Total |
+|--|----------------|---------------|-----------|
+| Mutation Present | 7 | 2 | 9 |
+| Mutation Absent | 3 | 8 | 11 |
+| **Column Total** | **10** | **10** | **20** |
+
+### Expected Frequencies
+
+|  | Disease Present | Disease Absent |
+|--|----------------|---------------|
+| Mutation Present | 4.5 | 4.5 |
+| Mutation Absent | 5.5 | 5.5 |
+
+Two cells have expected frequencies below 5 (4.5 each). The chi-square approximation is not reliable here.
+
+### Chi-Square Results (unreliable)
+
+| Statistic | Value |
+|-----------|-------|
+| Chi-square | 5.05 |
+| df | 1 |
+| p-value | 0.025 |
+
+### Fisher's Exact Test Results (reliable)
+
+| Statistic | Value |
+|-----------|-------|
+| p-value (two-tailed) | 0.0498 |
+| Odds ratio | 9.33 |
+
+Notice the difference: the chi-square p-value (0.025) is notably smaller than Fisher's exact p-value (0.0498). With small samples, the chi-square test tends to be anti-conservative (it rejects the null too readily), which is precisely why Fisher's exact test is preferred.
+
+## Yates' Continuity Correction
+
+For 2x2 tables, some researchers apply Yates' continuity correction to the chi-square test. This correction subtracts 0.5 from the absolute difference between observed and expected frequencies before squaring, which makes the chi-square p-value closer to Fisher's exact p-value.
+
+### Should You Use Yates' Correction?
+
+The correction is somewhat controversial:
+
+- **In favor:** It makes the chi-square result more conservative and closer to Fisher's exact result.
+- **Against:** It is often overly conservative, especially with moderate sample sizes, making the test less powerful.
+
+**Practical recommendation:** If your expected frequencies are all above 5, use the chi-square test without Yates' correction. If any expected frequency is below 5, skip the correction and go directly to Fisher's exact test.
+
+## Larger Tables (Beyond 2x2)
+
+### Chi-Square for r x c Tables
+
+The chi-square test extends naturally to tables with more than 2 rows and 2 columns. The formula is the same; only the degrees of freedom change.
+
+For example, testing whether education level (high school, bachelor's, graduate) is associated with political affiliation (Party A, Party B, Party C) produces a 3x3 table with df = 4.
+
+### Fisher's Exact for Larger Tables
+
+Fisher's exact test can be extended to r x c tables, but the computation becomes extremely intensive as table dimensions and sample size increase. Modern software (including StatMate) uses efficient algorithms to compute exact tests for moderately sized tables.
+
+For very large tables, the chi-square test is generally preferred because:
+1. The approximation is accurate with large samples.
+2. The computational cost of the exact test becomes prohibitive.
+
+## Effect Size Measures
+
+### Cramer's V (Both Tests)
+
+Cramer's V measures the strength of association in contingency tables of any dimension.
+
+| Cramer's V | Interpretation (df* = 1) | Interpretation (df* >= 2) |
+|-----------|-------------------------|--------------------------|
+| 0.10 | Small | Small |
+| 0.30 | Medium | Medium |
+| 0.50 | Large | Large |
+
+*df* here refers to the smaller of (rows - 1) and (columns - 1).
+
+### Odds Ratio (2x2 Tables Only)
+
+The odds ratio quantifies how much more likely an outcome is in one group compared to the other.
+
+- OR = 1: No association.
+- OR > 1: The outcome is more likely in the first group.
+- OR < 1: The outcome is less likely in the first group.
+
+For the veterinary example, OR = 9.33 means that dogs with the mutation have 9.33 times the odds of having the disease compared to dogs without the mutation.
+
+## APA Reporting
+
+### Chi-Square Test
+
+> A chi-square test of independence revealed a significant association between exercise regularity and sleep quality, X2(1, N = 200) = 12.00, p < .001, Cramer's V = .245.
+
+### Fisher's Exact Test
+
+> Fisher's exact test indicated a significant association between the genetic mutation and disease presence, p = .050, OR = 9.33, 95% CI [1.26, 69.15].
+
+Key differences in reporting:
+- Chi-square reports the test statistic, df, and N.
+- Fisher's exact test does not produce a test statistic, so you report only the p-value.
+- For 2x2 tables with Fisher's test, include the odds ratio and its confidence interval.
+
+## Decision Flowchart
+
+**Step 1: Are both variables categorical?**
+- No → Chi-square and Fisher's are not appropriate. Consider t-test, ANOVA, or regression.
+- Yes → Continue.
+
+**Step 2: What is the table dimension?**
+- 2x2 → Go to Step 3.
+- Larger → Go to Step 4.
+
+**Step 3 (2x2 table): Check expected frequencies.**
+- All expected frequencies >= 5 → Use Chi-square test.
+- Any expected frequency < 5 → Use Fisher's exact test.
+
+**Step 4 (Larger table): Check expected frequencies.**
+- All expected frequencies >= 5 → Use Chi-square test.
+- More than 20% below 5, or any below 1 → Use Fisher's exact test (if computationally feasible) or merge sparse categories.
+
+**Step 5: Total sample size.**
+- N < 20 → Prefer Fisher's exact test regardless of expected frequencies.
+- N >= 20 → Follow the expected frequency rules above.
+
+## Common Mistakes
+
+### Mistake 1: Using Chi-Square with Small Expected Frequencies
+
+This is the most common error. Always check expected frequencies before running the chi-square test. StatMate flags this automatically.
+
+### Mistake 2: Confusing Observed and Expected Frequencies
+
+The decision rule applies to **expected** frequencies, not observed frequencies. A cell can have an observed count of 0 and still have an adequate expected frequency.
+
+### Mistake 3: Applying Fisher's Test to Paired Data
+
+Both the chi-square and Fisher's exact tests assume independent observations. If the same participants contribute to multiple cells (e.g., before-after measurements), use the [McNemar test](/calculators/mcnemar) instead.
+
+### Mistake 4: Testing Too Many Categories
+
+Contingency tables with many sparse categories (many cells with low expected frequencies) are problematic for both tests. Consider collapsing similar categories to create a simpler table with adequate cell sizes.
+
+### Mistake 5: Ignoring Effect Size
+
+A significant p-value with a large sample may reflect a trivially small association. Always report Cramer's V or the odds ratio to communicate practical significance.
+
+## Frequently Asked Questions
+
+### Can Fisher's exact test be used even when the sample is large?
+
+Yes. Fisher's exact test is valid for any sample size. However, for large samples with adequate expected frequencies, the chi-square test gives virtually identical results and is computationally simpler.
+
+### What if I have a 2x2 table with one cell frequency of zero?
+
+Fisher's exact test handles zero cells without any problem. The chi-square test can still be computed but is unreliable. Use Fisher's exact test.
+
+### Is there an effect size for Fisher's exact test?
+
+For 2x2 tables, the odds ratio is the standard effect size. For larger tables, Cramer's V can be used regardless of which significance test was applied.
+
+### Can I use these tests for ordinal categorical variables?
+
+Both tests treat categories as nominal (unordered). If your categories have a natural order (e.g., low/medium/high), you lose information by ignoring the ordering. Consider the Cochran-Armitage trend test or ordinal logistic regression for ordinal data.
+
+### What is the minimum sample size for the chi-square test?
+
+There is no absolute minimum sample size, but the expected frequency rule provides practical guidance. For a 2x2 table, a total sample of 20 to 40 usually produces adequate expected frequencies unless the marginal distributions are very uneven.
+
+### How does sample size affect the chi-square value?
+
+The chi-square statistic is directly proportional to sample size. Doubling the sample while keeping proportions constant doubles the chi-square value. This is why large samples can produce significant results for trivially small associations — always check effect size.
+
+## Run Your Analysis in StatMate
+
+Enter your contingency table data into the [Chi-Square calculator](/calculators/chi-square) or the [Fisher's Exact Test calculator](/calculators/fisher-exact). Both tools automatically compute expected frequencies, flag assumption violations, calculate effect sizes, and generate APA-formatted output. StatMate will also suggest switching to Fisher's exact test when your chi-square expected frequencies are too low.

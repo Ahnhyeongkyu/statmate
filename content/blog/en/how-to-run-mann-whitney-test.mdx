@@ -1,0 +1,232 @@
+---
+title: "How to Run a Mann-Whitney U Test — A Complete Step-by-Step Guide"
+description: "Learn how to perform the Mann-Whitney U test, the non-parametric alternative to the independent samples t-test. This guide covers when to use it, assumptions, step-by-step calculation, and result interpretation with StatMate."
+date: "2026-02-19"
+category: "How-to Guide"
+tags: ["Mann-Whitney U", "non-parametric test", "Wilcoxon rank-sum", "independent samples", "ordinal data"]
+---
+
+## What Is the Mann-Whitney U Test?
+
+The Mann-Whitney U test (also called the Wilcoxon rank-sum test) is a non-parametric statistical test that compares two independent groups. It tests whether the distribution of values in one group tends to be higher or lower than in the other group.
+
+Think of it as the non-parametric cousin of the [independent samples t-test](/calculators/t-test). While the t-test compares means and assumes normally distributed data, the Mann-Whitney U test compares rank distributions and makes no assumptions about the shape of the data.
+
+## When Should You Use This Test?
+
+The Mann-Whitney U test is the right choice when any of the following conditions apply:
+
+### Your Data Are Ordinal
+
+Ordinal data have a meaningful order but the intervals between values are not necessarily equal. Examples include Likert scale ratings (1-5), pain severity ratings (mild, moderate, severe), or educational attainment levels.
+
+### Normality Is Violated
+
+If a Shapiro-Wilk test or visual inspection (histogram, Q-Q plot) shows that your data deviate substantially from normality and your sample size is small (below 30 per group), the Mann-Whitney U test provides more reliable results than the t-test.
+
+### Small Sample Sizes
+
+With fewer than 15 to 20 observations per group, the Central Limit Theorem cannot rescue you. Non-parametric tests do not depend on distributional assumptions, making them more trustworthy with small samples.
+
+### Outliers Are Present
+
+Extreme values heavily influence the mean and can distort t-test results. Because the Mann-Whitney U test works with ranks rather than raw values, it is resistant to outliers.
+
+## Assumptions of the Mann-Whitney U Test
+
+Despite being called "assumption-free," the Mann-Whitney U test does have requirements:
+
+1. **Independence:** Observations in the two groups must be independent of each other. No participant appears in both groups.
+2. **Ordinal or continuous data:** The dependent variable must be at least ordinal (rankable).
+3. **Similar distribution shape:** If you want to interpret the test as comparing medians, the two distributions should have similar shapes (same spread and skewness). Otherwise, the test compares the general tendency for one group to produce larger values.
+4. **Random sampling:** Observations should be randomly sampled or randomly assigned to groups.
+
+## Step-by-Step Guide Using StatMate
+
+Let us walk through a complete example using StatMate's [Mann-Whitney U calculator](/calculators/mann-whitney).
+
+### Research Scenario
+
+A researcher wants to compare customer satisfaction ratings (on a 1-10 scale) between two store locations. She suspects the data are not normally distributed because ratings tend to cluster at the high end.
+
+**Store A ratings:** 7, 8, 5, 9, 6, 8, 7, 10, 6, 8, 9, 7
+
+**Store B ratings:** 5, 6, 4, 7, 3, 6, 5, 8, 4, 5, 7, 6
+
+### Step 1: Enter Your Data
+
+Open the [Mann-Whitney U calculator](/calculators/mann-whitney). Enter the data for each group in the provided text areas, with values separated by commas or line breaks.
+
+**Group 1 (Store A):** 7, 8, 5, 9, 6, 8, 7, 10, 6, 8, 9, 7
+
+**Group 2 (Store B):** 5, 6, 4, 7, 3, 6, 5, 8, 4, 5, 7, 6
+
+### Step 2: Configure the Test
+
+- Set the significance level to **0.05**.
+- Choose a **two-tailed** test (you want to detect a difference in either direction).
+
+### Step 3: Run the Analysis
+
+Click the calculate button. StatMate will rank all values from both groups combined, compute the U statistic, and perform the significance test.
+
+### Step 4: Review the Results
+
+Here is what you should see in the output:
+
+| Statistic | Value |
+|-----------|-------|
+| n1 (Store A) | 12 |
+| n2 (Store B) | 12 |
+| U statistic | 26.0 |
+| z-score | -2.65 |
+| p-value (two-tailed) | 0.008 |
+| Rank-biserial correlation (r) | 0.639 |
+| Median (Store A) | 7.5 |
+| Median (Store B) | 5.5 |
+
+## How the Calculation Works
+
+Understanding the mechanics helps you trust and explain the results.
+
+### Ranking Process
+
+1. Combine all 24 observations into a single list.
+2. Rank them from smallest (rank 1) to largest (rank 24).
+3. When ties occur, assign the average rank to all tied values.
+
+For our example, the value 3 gets rank 1, the two values of 4 get rank 2.5 each, and so on.
+
+### Computing the U Statistic
+
+The U statistic counts how many times a value from one group precedes a value from the other group when all values are arranged in order.
+
+**U1** = (sum of ranks in Group 1) - n1(n1+1)/2
+
+**U2** = n1 * n2 - U1
+
+The reported U is the smaller of U1 and U2.
+
+### Significance Testing
+
+For sample sizes larger than about 8 per group, the U distribution approximates a normal distribution. The z-score is computed as:
+
+z = (U - n1*n2/2) / sqrt(n1*n2*(n1+n2+1)/12)
+
+This z-score is then converted to a p-value.
+
+## Interpreting the Results
+
+### The p-value
+
+With p = 0.008, which is below the conventional threshold of 0.05, we reject the null hypothesis. There is statistically significant evidence that the satisfaction ratings differ between the two stores.
+
+### Effect Size
+
+The rank-biserial correlation (r = 0.639) indicates a large effect. This value ranges from -1 to +1, and its interpretation follows these guidelines:
+
+| r Value | Interpretation |
+|---------|---------------|
+| 0.10 | Small effect |
+| 0.30 | Medium effect |
+| 0.50 | Large effect |
+
+An r of 0.639 means that if you randomly picked one customer from each store, there would be a 63.9% probability that the Store A customer gave a higher rating.
+
+### Medians
+
+Store A has a median satisfaction rating of 7.5, while Store B has a median of 5.5. This two-point difference on a 10-point scale represents a meaningful practical difference.
+
+## Reporting Results in APA Format
+
+Here is how to report the Mann-Whitney U test result following APA 7th edition guidelines:
+
+> A Mann-Whitney U test indicated that customer satisfaction ratings were significantly higher at Store A (Mdn = 7.5) than at Store B (Mdn = 5.5), U = 26.0, z = -2.65, p = .008, r = .64.
+
+Key elements to include:
+
+- Name of the test
+- Direction of the difference
+- Medians for both groups
+- U statistic
+- z-score
+- Exact p-value
+- Effect size (rank-biserial r)
+
+StatMate generates this APA-formatted text automatically, and Pro users can export it directly as a Word document.
+
+## Handling Special Situations
+
+### Tied Values
+
+When multiple observations share the same value, they receive the average of the ranks they would have occupied. For example, if three observations tie at rank positions 5, 6, and 7, each receives rank 6.
+
+StatMate automatically handles ties and applies the appropriate correction to the z-score calculation.
+
+### Very Small Samples
+
+When both groups have fewer than 8 observations, the normal approximation may not be accurate. In these cases, exact p-values based on the complete permutation distribution are preferred. StatMate computes exact p-values for small samples.
+
+### One-Tailed Tests
+
+If you have a directional hypothesis (e.g., "Store A ratings will be higher than Store B"), you can use a one-tailed test. Simply divide the two-tailed p-value by 2, or select the one-tailed option in StatMate before running the analysis.
+
+### Large Samples
+
+For large samples (above 30 per group), the Mann-Whitney U test and the independent t-test often produce similar conclusions. In these cases, the t-test is typically preferred because it has greater statistical power when data are approximately normal.
+
+## Common Mistakes
+
+### Mistake 1: Interpreting U as a Difference in Medians
+
+The Mann-Whitney U test does not directly test whether medians are equal. It tests whether one group tends to have higher ranks than the other. Medians can be different without a significant U, and the U can be significant even with identical medians if the distributions differ in spread.
+
+### Mistake 2: Using It for Paired Data
+
+The Mann-Whitney U test is for independent groups only. If you have paired data (before-after measurements, matched subjects), use the [Wilcoxon signed-rank test](/calculators/wilcoxon) instead.
+
+### Mistake 3: Ignoring Effect Size
+
+A significant p-value tells you the difference is unlikely to be due to chance, but it does not tell you how large or meaningful the difference is. Always report an effect size measure alongside the test result.
+
+### Mistake 4: Applying It to Nominal Data
+
+The Mann-Whitney U test requires data that can be meaningfully ranked. Nominal categories (like color preferences or blood types) have no natural ordering and cannot be analyzed with this test.
+
+## Mann-Whitney U vs. Other Tests
+
+| Feature | Mann-Whitney U | Independent t-test | Kruskal-Wallis |
+|---------|---------------|-------------------|----------------|
+| Groups compared | 2 | 2 | 3+ |
+| Data type | Ordinal or continuous | Continuous | Ordinal or continuous |
+| Normality required | No | Yes | No |
+| Compares | Rank distributions | Means | Rank distributions |
+| Effect size | Rank-biserial r | Cohen's d | Eta-squared (H) |
+
+If you need to compare more than two independent groups using a non-parametric approach, use the [Kruskal-Wallis H test](/calculators/kruskal-wallis) instead.
+
+## Frequently Asked Questions
+
+### Is Mann-Whitney U the same as Wilcoxon rank-sum?
+
+Yes. The Mann-Whitney U test and the Wilcoxon rank-sum test are mathematically equivalent. They use different computational formulas but produce identical p-values. Different software packages use different names, which causes confusion, but they are the same test.
+
+### Can I use the Mann-Whitney U test with more than two groups?
+
+No. The Mann-Whitney U test is strictly for two independent groups. For three or more groups, use the [Kruskal-Wallis H test](/calculators/kruskal-wallis), which is the non-parametric extension of one-way ANOVA.
+
+### What sample size do I need for the Mann-Whitney U test?
+
+There is no strict minimum, but the test works best with at least 5 observations per group. For very small samples (n less than 5 per group), the test has very low power and may not detect even large effects.
+
+### Should I report the mean or the median?
+
+With the Mann-Whitney U test, report the **median** for each group, not the mean. Because the test is based on ranks rather than raw values, the median is the more appropriate measure of central tendency.
+
+### What if my data are normally distributed — should I still use Mann-Whitney?
+
+If your data meet the assumptions of the t-test (normality, interval/ratio scale, similar variances), the t-test is generally preferred because it has slightly more statistical power. The Mann-Whitney U test sacrifices a small amount of power in exchange for robustness. See our detailed comparison in [t-test vs Mann-Whitney](/blog/t-test-vs-mann-whitney).
+
+## Next Steps
+
+Ready to analyze your data? Open the [Mann-Whitney U Calculator](/calculators/mann-whitney) in StatMate to run the test, view the rank distribution boxplot, and get APA-formatted results. If you are not sure whether to use the Mann-Whitney U or the independent t-test, read our comparison guide: [t-test vs Mann-Whitney: Which Should You Use?](/blog/t-test-vs-mann-whitney).
