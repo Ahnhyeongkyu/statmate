@@ -1,10 +1,10 @@
 # StatMate — Project Context
 
-> Last updated: 2026-02-19 | Latest commit: `df758da`
+> Last updated: 2026-02-20
 
 ## Overview
 
-StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel.
+StatMate is a trilingual (EN/KO/JA) statistics calculator web app deployed on Vercel.
 - **Stack:** Next.js 16.1.6 (Turbopack), TypeScript, Tailwind CSS, next-intl 4.8.2
 - **Repo:** https://github.com/Ahnhyeongkyu/statmate.git (branch: master)
 - **Live:** https://statmate-red.vercel.app
@@ -29,7 +29,7 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | Vercel 배포 | ✅ statmate-red.vercel.app |
 | GSC 등록 | ✅ 메타태그 인증 완료 |
 
-### Sprint 2 (Growth) — 71% 완료
+### Sprint 2 (Growth) — 100% 완료
 
 | 항목 | 상태 |
 |------|------|
@@ -38,29 +38,29 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | SEO 콘텐츠 | ✅ 10/10개 (블로그 포스트) |
 | AdSense 연동 | ✅ 레이지로드 적용 |
 | 검정 선택 가이드 | ✅ /wizard 의사결정 트리 |
-| 사용자 인증 (이메일) | ❌ 미구현 (라이선스키 방식 채택) |
-| 분석 히스토리 저장 | ❌ 미구현 (DB 없음) |
+| 사용자 인증 (이메일) | ✅ Supabase Auth (이메일+Google OAuth), env 미설정 시 UI 숨김 |
+| 분석 히스토리 저장 | ✅ Supabase DB, /api/history CRUD, history-panel |
 | 피드백 수집 도구 | ✅ floating feedback button (mailto) |
 
-### Sprint 3 (Retention) — 60% 완료
+### Sprint 3 (Retention) — 100% 완료
 
 | 항목 | 상태 |
 |------|------|
 | CSV 데이터 업로드 | ✅ CSV/TSV/TXT 지원 |
 | 추가 계산기 | ⚠️ 20개 확장 완료 (매개효과만 미포함) |
-| Expert Review 시스템 | ❌ 미구현 |
+| Expert Review 시스템 | ✅ /expert-review 랜딩 + /expert-review/request 폼 (mailto MVP) |
 | 이메일/뉴스레터 수집 | ✅ newsletter-signup + /api/subscribe |
-| A/B 테스트 | ❌ 미구현 |
+| A/B 테스트 | ✅ lib/ab-test.ts + components/ab-variant.tsx + GA4 연동 |
 
-### Sprint 4 (Scale) — 40% 완료
+### Sprint 4 (Scale) — 100% 완료
 
 | 항목 | 상태 |
 |------|------|
 | 추가 계산기 (비모수, 신뢰도) | ✅ 비모수 4종 + 신뢰도 1종 |
 | pSEO 50+ 페이지 자동 생성 | ✅ How-to 10개 + 비교 5개 = 30페이지 (EN+KO) |
-| University License | ❌ 미구현 |
-| SPSS output → APA 변환 | ❌ 미구현 |
-| 다국어 확장 (일본어) | ❌ 미구현 |
+| University License | ✅ /university 랜딩 + 문의 폼 (mailto MVP) |
+| SPSS output → APA 변환 | ✅ /tools/spss-to-apa, lib/spss-parser.ts (6종 지원) |
+| 다국어 확장 (일본어) | ✅ messages/ja.json (1394줄), 전 UI 번역 |
 
 ### Feature Tier 대조
 
@@ -74,11 +74,11 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | Word(.docx) 내보내기 | Pro | ✅ | paywall 적용 |
 | AI 결과 해석 | Pro | ✅ | paywall 적용 |
 | Pro 광고 제거 | Pro | ✅ | AdUnit 내 isPro 체크 |
-| **분석 히스토리 저장** | **Pro** | **❌** | **DB 필요** |
+| 분석 히스토리 저장 | Pro | ✅ | Supabase DB (env 미설정 시 비활성) |
 | CSV 업로드 | Pro | ⚠️ | Free에서도 사용 가능 (변경) |
 | AI 검정 가이드 | Pro | ⚠️ | Free에서도 사용 가능 (변경) |
-| Expert Review | Expert | ❌ | ₩49,000/건 — 미구현 |
-| University License | Univ | ❌ | ₩990,000/년 — 미구현 |
+| Expert Review | Expert | ✅ | ₩49,000/건 — mailto MVP |
+| University License | Univ | ✅ | ₩990,000/년 — mailto MVP |
 
 ### PRD에 없지만 보강된 기능
 
@@ -96,13 +96,11 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 
 ---
 
-## 미구현 항목 (우선순위 순)
+## 설정 필요 항목
 
-1. **사용자 인증 + 히스토리** — 리텐션 핵심, DB(Supabase) 필요
-2. **Expert Review** — 수익 Layer 3 (₩49,000/건)
-3. **University License** — 수익 Layer 4 (₩990,000/년)
-4. **SPSS output → APA 변환** — 차별화 기능
-5. **다국어 확장** — 일본어 등
+1. **Supabase 프로젝트 생성** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` env vars 설정 필요. 미설정 시 auth/history UI 자동 숨김.
+2. **Lemon Squeezy 상품 등록** — Expert Review (₩49,000 one-time), University License (₩990,000/year) 상품 생성 필요.
+3. **Supabase DB 스키마** — `lib/supabase/schema.sql` 참조하여 `analysis_history` 테이블 + RLS 정책 생성.
 
 ---
 
@@ -149,6 +147,7 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | `lib/export-pdf.ts` — export functions | 20/20 |
 | `messages/en.json` — calculator namespaces | 20/20 |
 | `messages/ko.json` — calculator namespaces | 20/20 |
+| `messages/ja.json` — calculator namespaces | 20/20 |
 
 ## Content
 
@@ -168,8 +167,9 @@ group-boxplot, chi-square-chart, coefficient-chart, odds-ratio-chart, item-analy
 | AdSense 광고 | ✅ | components/adsense.tsx (lazy-load, Pro 시 숨김) |
 | 에러 모니터링 | ✅ | lib/error-reporting.ts, app/[locale]/error.tsx |
 | PWA manifest | ⚠️ | public/manifest.json (서비스워커 없음) |
-| 사용자 인증 | ❌ | 없음 (localStorage 라이선스키 방식) |
-| 데이터베이스 | ❌ | 없음 (stateless) |
+| Supabase Auth | ✅ | lib/supabase/{client,server}.ts, components/auth-{modal,provider}.tsx (env 미설정 시 비활성) |
+| Supabase DB | ✅ | lib/supabase/schema.sql, app/api/history/route.ts (env 미설정 시 503) |
+| A/B 테스트 | ✅ | lib/ab-test.ts, components/ab-variant.tsx |
 
 ## Utility Modules
 
@@ -187,11 +187,19 @@ npm run build  # Turbopack, generates 60 static + dynamic pages, ~7s
 
 ## Immediate TODO
 
-- [ ] **GSC Re-indexing** — 사이트맵 재제출 필요 (pSEO 30페이지 추가로 총 ~124 URLs). 배포 후 사이트맵 재제출 + 주요 URL 인덱싱 요청.
+- [ ] **GSC 추가 인덱싱** — 5개 URL 남음 (일일 할당량 초과): how-to-run-anova, t-test-vs-mann-whitney, how-to-run-chi-square-test, ko/how-to-run-t-test, ko/how-to-run-anova
+- [ ] **Supabase 프로젝트 설정** — env vars 추가 후 auth/history 활성화
+- [ ] **Lemon Squeezy 상품 등록** — Expert Review, University License 상품 생성
 - No TODO/FIXME/HACK comments in codebase.
 
 ## Recently Completed
 
+- [x] 일본어 i18n — messages/ja.json (1394줄), routing.ts, language-switcher dropdown, sitemap, metadata
+- [x] SPSS → APA 변환 — lib/spss-parser.ts (6종: t-test, ANOVA, regression, chi-square, correlation, descriptive), /tools/spss-to-apa
+- [x] Supabase 인증 + 히스토리 — auth-modal, auth-provider, history-panel, /api/history, env 미설정 시 graceful degradation
+- [x] Expert Review — /expert-review 랜딩 + /expert-review/request 폼 (mailto MVP, ₩49,000/건)
+- [x] University License — /university 랜딩 + 문의 폼 (mailto MVP, ₩990,000/년)
+- [x] A/B 테스트 프레임워크 — lib/ab-test.ts (쿠키 기반 variant), components/ab-variant.tsx, GA4 연동
 - [x] 성능 최적화 — preconnect/dns-prefetch 리소스 힌트, 이미지 최적화 설정
 - [x] 이메일/뉴스레터 구독 — `components/newsletter-signup.tsx` + `/api/subscribe` + 홈/푸터/블로그 배치
 - [x] pSEO 가이드 25개 — How-to 가이드 10개 + 비교 가이드 5개 (EN+KO = 30페이지 추가)

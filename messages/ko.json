@@ -25,7 +25,8 @@
       "fisherExact": "Fisher 정확검정",
       "mcnemar": "McNemar 검정",
       "wizard": "검정 선택",
-      "blog": "가이드"
+      "blog": "가이드",
+      "tools": "SPSS → APA"
     },
     "pricing": "요금제",
     "getPro": "Pro 시작",
@@ -43,6 +44,9 @@
       "termsOfService": "이용약관",
       "contact": "문의",
       "about": "소개",
+      "spssConverter": "SPSS → APA 변환기",
+      "expertReview": "전문가 리뷰",
+      "university": "대학 라이선스",
       "copyright": "© {year} StatMate. All rights reserved."
     },
     "openMenu": "메뉴 열기",
@@ -1343,5 +1347,127 @@
     "success": "구독해 주셔서 감사합니다! 확인 메일을 확인해 주세요.",
     "error": "문제가 발생했습니다. 다시 시도해 주세요.",
     "privacy": "스팸 없음. 언제든 구독 취소 가능."
+  },
+  "spssConverter": {
+    "title": "SPSS 출력 → APA 변환기",
+    "description": "SPSS 출력을 APA 7판 형식으로 자동 변환합니다",
+    "placeholder": "SPSS 출력 텍스트를 여기에 붙여넣으세요...",
+    "convert": "APA 형식으로 변환",
+    "copyResult": "결과 복사",
+    "loadExample": "예제 불러오기",
+    "noResult": "변환할 SPSS 출력을 붙여넣으세요",
+    "supported": "지원: t검정, 분산분석, 회귀분석, 카이제곱, 상관분석, 기술통계",
+    "detected": "감지됨",
+    "apaOutput": "APA 형식 출력",
+    "parsedTables": "파싱된 테이블",
+    "error": "입력을 파싱할 수 없습니다. 형식을 확인해 주세요.",
+    "copied": "복사됨!"
+  },
+  "auth": {
+    "signIn": "로그인",
+    "signUp": "회원가입",
+    "signOut": "로그아웃",
+    "email": "이메일",
+    "password": "비밀번호",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "noAccount": "계정이 없으신가요?",
+    "hasAccount": "이미 계정이 있으신가요?",
+    "orContinueWith": "또는 다음으로 계속",
+    "error": "인증에 실패했습니다. 다시 시도해 주세요."
+  },
+  "history": {
+    "title": "분석 히스토리",
+    "empty": "저장된 분석이 없습니다",
+    "save": "분석 저장",
+    "saved": "저장됨!",
+    "delete": "삭제",
+    "load": "불러오기",
+    "exportAll": "전체 내보내기",
+    "confirmDelete": "이 분석을 삭제하시겠습니까?"
+  },
+  "expertReview": {
+    "title": "전문가 통계 리뷰",
+    "description": "통계 전문가가 분석 결과를 검토하고 APA 형식의 수정 제안을 제공합니다.",
+    "price": "₩49,000",
+    "priceNote": "건당",
+    "cta": "리뷰 요청하기",
+    "whyTitle": "왜 전문가 리뷰인가?",
+    "features": {
+      "f1": "48시간 이내 응답",
+      "f2": "통계학 박사의 상세 리뷰",
+      "f3": "APA 형식 수정 제안",
+      "f4": "후속 질문 1회 무료"
+    },
+    "howTitle": "이용 방법",
+    "steps": {
+      "s1": "분석 결과와 연구 맥락을 폼을 통해 제출하세요.",
+      "s2": "Lemon Squeezy로 결제를 완료하세요 (₩49,000/건).",
+      "s3": "48시간 이내에 이메일로 전문가 피드백을 받으세요."
+    },
+    "ctaBottom": "오늘 전문가 피드백을 받으세요",
+    "ctaBottomSub": "전문적인 통계 리뷰로 연구를 개선하세요.",
+    "form": {
+      "pageTitle": "전문가 리뷰 요청",
+      "pageDescription": "아래 정보를 입력하여 통계 리뷰를 요청하세요.",
+      "researchType": "연구 유형",
+      "selectType": "유형 선택...",
+      "types": {
+        "experimental": "실험 연구",
+        "survey": "설문 조사",
+        "observational": "관찰 연구",
+        "metaAnalysis": "메타분석",
+        "other": "기타"
+      },
+      "email": "이메일",
+      "dataDescription": "데이터 설명",
+      "dataPlaceholder": "데이터셋을 설명하세요: 표본 크기, 변수, 수집 방법...",
+      "analysisResults": "분석 결과",
+      "resultsPlaceholder": "분석 출력을 붙여넣거나 결과를 설명하세요...",
+      "submit": "리뷰 요청 제출",
+      "note": "폼 제출 후 결제 링크가 이메일로 발송됩니다.",
+      "successTitle": "요청이 제출되었습니다!",
+      "successMsg": "곧 이메일로 결제 안내를 보내드리겠습니다."
+    }
+  },
+  "university": {
+    "title": "대학 라이선스",
+    "description": "학과 전체를 위한 기관 라이선스. 모든 학생과 교수에게 Pro 기능을 제공합니다.",
+    "price": "₩990,000",
+    "priceNote": "연간",
+    "features": {
+      "f1": "Pro 무제한 이용",
+      "f2": "전 학생·교수 사용",
+      "f3": "관리자 대시보드",
+      "f4": "우선 지원",
+      "f5": "커스텀 브랜딩"
+    },
+    "benefitsTitle": "대학 라이선스의 장점",
+    "benefit1": {
+      "title": "개별 라이선스 비용 절감",
+      "desc": "연간 요금 하나로 전체 학과를 지원합니다. 인당 요금이 없습니다."
+    },
+    "benefit2": {
+      "title": "학생을 위한 APA 결과",
+      "desc": "학생들이 분석을 실행하면서 올바른 APA 형식을 배울 수 있습니다."
+    },
+    "benefit3": {
+      "title": "AI 해석 기능",
+      "desc": "모든 사용자가 학습 지원을 위한 AI 해석 기능을 사용할 수 있습니다."
+    },
+    "benefit4": {
+      "title": "간편한 통합",
+      "desc": "모든 브라우저에서 작동합니다. 소프트웨어 설치가 필요 없습니다."
+    },
+    "contactTitle": "문의하기",
+    "form": {
+      "institution": "교육기관명",
+      "department": "학과",
+      "contactName": "담당자명",
+      "email": "이메일",
+      "students": "예상 사용자 수",
+      "submit": "문의 보내기",
+      "successTitle": "문의가 전송되었습니다!",
+      "successMsg": "1-2 영업일 이내에 연락드리겠습니다."
+    }
   }
 }

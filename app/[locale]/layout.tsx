@@ -15,6 +15,7 @@ import { GoogleAnalytics } from "@/components/google-analytics";
 import { ErrorBoundaryInit } from "@/components/error-boundary-init";
 import { FeedbackButton } from "@/components/feedback-button";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { AuthProvider } from "@/components/auth-provider";
 import "../globals.css";
 
 const inter = Inter({
@@ -32,63 +33,75 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const isKo = locale === "ko";
+  const isJa = locale === "ja";
+
+  const titles: Record<string, string> = {
+    en: "StatMate - Free Online Statistics Calculators",
+    ko: "StatMate - 무료 온라인 통계 계산기",
+    ja: "StatMate - 無料オンライン統計計算ツール",
+  };
+  const descriptions: Record<string, string> = {
+    en: "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation, and more. Export results to Word in APA 7th edition format.",
+    ko: "APA 형식 결과를 제공하는 무료 온라인 통계 계산기. T-검정, 분산분석, 카이제곱, 상관분석 등. APA 7판 형식으로 Word 내보내기.",
+    ja: "APA形式の結果を提供する無料オンライン統計計算ツール。t検定、分散分析、カイ二乗検定、相関分析など。APA第7版形式でWordエクスポート。",
+  };
 
   return {
     metadataBase: new URL(BASE_URL),
     title: {
-      default: isKo
-        ? "StatMate - 무료 온라인 통계 계산기"
-        : "StatMate - Free Online Statistics Calculators",
+      default: titles[locale] ?? titles.en,
       template: "%s | StatMate",
     },
-    description: isKo
-      ? "APA 형식 결과를 제공하는 무료 온라인 통계 계산기. T-검정, 분산분석, 카이제곱, 상관분석 등. APA 7판 형식으로 Word 내보내기."
-      : "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation, and more. Export results to Word in APA 7th edition format.",
-    keywords: isKo
+    description: descriptions[locale] ?? descriptions.en,
+    keywords: isJa
       ? [
-          "통계 계산기",
-          "t-검정 계산기",
-          "분산분석 계산기",
-          "카이제곱 계산기",
-          "상관분석 계산기",
-          "기술통계",
-          "APA 형식",
-          "통계학",
-          "p값 계산기",
-          "효과 크기",
+          "統計計算ツール",
+          "t検定",
+          "分散分析",
+          "カイ二乗検定",
+          "相関分析",
+          "APA形式",
+          "統計学",
+          "p値",
+          "効果量",
         ]
-      : [
-          "statistics calculator",
-          "t-test calculator",
-          "anova calculator",
-          "chi-square calculator",
-          "correlation calculator",
-          "descriptive statistics",
-          "APA format",
-          "statistics",
-          "p-value calculator",
-          "effect size",
-          "APA 7th edition",
-        ],
+      : isKo
+        ? [
+            "통계 계산기",
+            "t-검정 계산기",
+            "분산분석 계산기",
+            "카이제곱 계산기",
+            "상관분석 계산기",
+            "기술통계",
+            "APA 형식",
+            "통계학",
+            "p값 계산기",
+            "효과 크기",
+          ]
+        : [
+            "statistics calculator",
+            "t-test calculator",
+            "anova calculator",
+            "chi-square calculator",
+            "correlation calculator",
+            "descriptive statistics",
+            "APA format",
+            "statistics",
+            "p-value calculator",
+            "effect size",
+            "APA 7th edition",
+          ],
     openGraph: {
-      title: isKo
-        ? "StatMate - 무료 온라인 통계 계산기"
-        : "StatMate - Free Online Statistics Calculators",
-      description: isKo
-        ? "APA 형식 결과를 제공하는 무료 온라인 통계 계산기. T-검정, 분산분석, 카이제곱, 상관분석 등."
-        : "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation & more.",
+      title: titles[locale] ?? titles.en,
+      description: descriptions[locale] ?? descriptions.en,
       type: "website",
-      locale: isKo ? "ko_KR" : "en_US",
+      locale: isJa ? "ja_JP" : isKo ? "ko_KR" : "en_US",
       siteName: "StatMate",
     },
     twitter: {
       card: "summary_large_image",
-      title: isKo
-        ? "StatMate - 무료 온라인 통계 계산기"
-        : "StatMate - Free Online Statistics Calculators",
-      description: isKo
-        ? "APA 형식 결과를 제공하는 무료 통계 계산기. 한 번의 클릭으로 Word 내보내기."
-        : "Free statistics calculators with APA-formatted results. Export to Word in one click.",
+      title: titles[locale] ?? titles.en,
+      description: descriptions[locale] ?? descriptions.en,
     },
     robots: {
       index: true,
@@ -106,6 +119,7 @@ export async function generateMetadata({
       languages: {
         en: "/",
         ko: "/ko",
+        ja: "/ja",
       },
     },
     verification: {
@@ -168,6 +182,7 @@ export default async function LocaleLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages}>
+          <AuthProvider>
           {/* Skip to content */}
           <a
             href="#main-content"
@@ -207,6 +222,12 @@ export default async function LocaleLayout({
                   className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
                 >
                   {t("nav.blog")}
+                </Link>
+                <Link
+                  href="/tools/spss-to-apa"
+                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                >
+                  {t("nav.tools")}
                 </Link>
               </nav>
 
@@ -290,6 +311,30 @@ export default async function LocaleLayout({
                         {t("footer.about")}
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        href="/tools/spss-to-apa"
+                        className="text-sm text-gray-500 hover:text-gray-900"
+                      >
+                        {t("footer.spssConverter")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/expert-review"
+                        className="text-sm text-gray-500 hover:text-gray-900"
+                      >
+                        {t("footer.expertReview")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/university"
+                        className="text-sm text-gray-500 hover:text-gray-900"
+                      >
+                        {t("footer.university")}
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
@@ -331,6 +376,7 @@ export default async function LocaleLayout({
               </div>
             </div>
           </footer>
+        </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

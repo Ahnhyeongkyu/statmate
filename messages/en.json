@@ -25,7 +25,8 @@
       "fisherExact": "Fisher's Exact",
       "mcnemar": "McNemar Test",
       "wizard": "Which Test?",
-      "blog": "Guides"
+      "blog": "Guides",
+      "tools": "SPSS → APA"
     },
     "pricing": "Pricing",
     "getPro": "Get Pro",
@@ -43,6 +44,9 @@
       "termsOfService": "Terms of Service",
       "contact": "Contact",
       "about": "About",
+      "spssConverter": "SPSS → APA Converter",
+      "expertReview": "Expert Review",
+      "university": "University License",
       "copyright": "© {year} StatMate. All rights reserved."
     },
     "openMenu": "Open menu",
@@ -1262,5 +1266,127 @@
     "success": "Thanks for subscribing! Check your inbox for confirmation.",
     "error": "Something went wrong. Please try again.",
     "privacy": "No spam. Unsubscribe anytime."
+  },
+  "spssConverter": {
+    "title": "SPSS Output → APA Converter",
+    "description": "Automatically convert SPSS output to APA 7th edition format",
+    "placeholder": "Paste your SPSS output text here...",
+    "convert": "Convert to APA",
+    "copyResult": "Copy Result",
+    "loadExample": "Load Example",
+    "noResult": "Paste SPSS output to convert",
+    "supported": "Supported: t-test, ANOVA, regression, chi-square, correlation, descriptive",
+    "detected": "Detected",
+    "apaOutput": "APA Format Output",
+    "parsedTables": "Parsed Tables",
+    "error": "Could not parse the input. Please check the format.",
+    "copied": "Copied!"
+  },
+  "expertReview": {
+    "title": "Expert Statistical Review",
+    "description": "Get your analysis reviewed by a statistics expert with detailed feedback and APA-formatted suggestions.",
+    "price": "₩49,000",
+    "priceNote": "per review",
+    "cta": "Request a Review",
+    "whyTitle": "Why Expert Review?",
+    "features": {
+      "f1": "Response within 48 hours",
+      "f2": "Detailed review by a PhD statistician",
+      "f3": "APA-formatted correction suggestions",
+      "f4": "One free follow-up question"
+    },
+    "howTitle": "How It Works",
+    "steps": {
+      "s1": "Submit your analysis results and research context through the form.",
+      "s2": "Complete payment via Lemon Squeezy (₩49,000 per review).",
+      "s3": "Receive detailed expert feedback via email within 48 hours."
+    },
+    "ctaBottom": "Get Expert Feedback Today",
+    "ctaBottomSub": "Improve your research with professional statistical review.",
+    "form": {
+      "pageTitle": "Request Expert Review",
+      "pageDescription": "Fill in the details below to request a statistical review.",
+      "researchType": "Research Type",
+      "selectType": "Select a type...",
+      "types": {
+        "experimental": "Experimental",
+        "survey": "Survey",
+        "observational": "Observational",
+        "metaAnalysis": "Meta-analysis",
+        "other": "Other"
+      },
+      "email": "Your Email",
+      "dataDescription": "Data Description",
+      "dataPlaceholder": "Describe your dataset: sample size, variables, collection method...",
+      "analysisResults": "Analysis Results",
+      "resultsPlaceholder": "Paste your analysis output or describe your findings...",
+      "submit": "Submit Review Request",
+      "note": "Payment link will be sent after form submission.",
+      "successTitle": "Request Submitted!",
+      "successMsg": "We'll send payment details to your email shortly."
+    }
+  },
+  "university": {
+    "title": "University License",
+    "description": "Institutional access for your entire department. All Pro features for every student and faculty member.",
+    "price": "₩990,000",
+    "priceNote": "per year",
+    "features": {
+      "f1": "Unlimited Pro access",
+      "f2": "All students & faculty",
+      "f3": "Admin dashboard",
+      "f4": "Priority support",
+      "f5": "Custom branding"
+    },
+    "benefitsTitle": "Why Choose University License?",
+    "benefit1": {
+      "title": "Save on Individual Licenses",
+      "desc": "One annual fee covers your entire department. No per-seat pricing."
+    },
+    "benefit2": {
+      "title": "APA-Ready Results for Students",
+      "desc": "Students learn proper APA formatting while running analyses."
+    },
+    "benefit3": {
+      "title": "AI-Powered Interpretation",
+      "desc": "Every user gets access to AI interpretation for learning support."
+    },
+    "benefit4": {
+      "title": "Seamless Integration",
+      "desc": "Works in any browser. No software installation required."
+    },
+    "contactTitle": "Contact Us",
+    "form": {
+      "institution": "Institution Name",
+      "department": "Department",
+      "contactName": "Contact Name",
+      "email": "Email",
+      "students": "Estimated Users",
+      "submit": "Send Inquiry",
+      "successTitle": "Inquiry Sent!",
+      "successMsg": "We'll contact you within 1-2 business days."
+    }
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "orContinueWith": "Or continue with",
+    "error": "Authentication failed. Please try again."
+  },
+  "history": {
+    "title": "Analysis History",
+    "empty": "No saved analyses yet",
+    "save": "Save Analysis",
+    "saved": "Saved!",
+    "delete": "Delete",
+    "load": "Load",
+    "exportAll": "Export All",
+    "confirmDelete": "Delete this analysis?"
   }
 }

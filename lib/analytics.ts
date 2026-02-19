@@ -59,3 +59,12 @@ export function trackPdfExport(testType: string) {
 export function trackPageView(path: string) {
   gtag({ action: "page_view", category: "navigation", label: path });
 }
+
+// A/B test events
+export function trackABTestView(testId: string, variant: string) {
+  gtag({ action: "ab_view", category: "ab_test", label: `${testId}_${variant}` });
+}
+
+export function trackABTestConversion(testId: string, variant: string, action: string) {
+  gtag({ action: "ab_conversion", category: "ab_test", label: `${testId}_${variant}_${action}` });
+}

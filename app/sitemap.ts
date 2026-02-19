@@ -3,7 +3,7 @@ import { getAllSlugs } from "@/lib/blog";
 
 const BASE_URL = "https://statmate-red.vercel.app";
 
-const locales = ["en", "ko"] as const;
+const locales = ["en", "ko", "ja"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = [
@@ -42,6 +42,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/blog", changeFrequency: "weekly" as const, priority: 0.7 },
     { path: "/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly" as const, priority: 0.3 },
+    {
+      path: "/tools/spss-to-apa",
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      path: "/expert-review",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      path: "/university",
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
   ];
 
   // Add blog post pages (use ko slugs as canonical set)
@@ -68,6 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             en: `${BASE_URL}${page.path}`,
             ko: `${BASE_URL}/ko${page.path}`,
+            ja: `${BASE_URL}/ja${page.path}`,
           },
         },
       });
