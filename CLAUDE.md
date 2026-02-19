@@ -1,6 +1,6 @@
 # StatMate — Project Context
 
-> Last updated: 2026-02-19 | Latest commit: `9afcc2b`
+> Last updated: 2026-02-19 | Latest commit: `2ec1b73`
 
 ## Overview
 
@@ -35,12 +35,12 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 |------|------|
 | sitemap.xml + robots.txt | ✅ |
 | JSON-LD structured data | ✅ FAQ 스키마 |
-| SEO 콘텐츠 | ⚠️ 8/10개 (블로그 포스트) |
+| SEO 콘텐츠 | ✅ 10/10개 (블로그 포스트) |
 | AdSense 연동 | ✅ 레이지로드 적용 |
 | 검정 선택 가이드 | ✅ /wizard 의사결정 트리 |
 | 사용자 인증 (이메일) | ❌ 미구현 (라이선스키 방식 채택) |
 | 분석 히스토리 저장 | ❌ 미구현 (DB 없음) |
-| 피드백 수집 도구 | ❌ 미구현 |
+| 피드백 수집 도구 | ✅ floating feedback button (mailto) |
 
 ### Sprint 3 (Retention) — 30% 완료
 
@@ -73,7 +73,7 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 | 영어+한국어 | Free | ✅ | |
 | Word(.docx) 내보내기 | Pro | ✅ | paywall 적용 |
 | AI 결과 해석 | Pro | ✅ | paywall 적용 |
-| **Pro 광고 제거** | **Pro** | **❌** | **PRD 약속이지만 미구현** |
+| Pro 광고 제거 | Pro | ✅ | AdUnit 내 isPro 체크 |
 | **분석 히스토리 저장** | **Pro** | **❌** | **DB 필요** |
 | CSV 업로드 | Pro | ⚠️ | Free에서도 사용 가능 (변경) |
 | AI 검정 가이드 | Pro | ⚠️ | Free에서도 사용 가능 (변경) |
@@ -98,11 +98,9 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 
 ## 미구현 항목 (우선순위 순)
 
-1. **Pro 광고 제거** — PRD 약속, 구현 간단
-2. **사용자 인증 + 히스토리** — 리텐션 핵심, DB(Supabase) 필요
-3. **피드백 수집** — 사용자 목소리 수집 채널 없음
-4. **이메일/뉴스레터** — 리드 수집 없음
-5. **Expert Review** — 수익 Layer 3 (₩49,000/건)
+1. **사용자 인증 + 히스토리** — 리텐션 핵심, DB(Supabase) 필요
+2. **이메일/뉴스레터** — 리드 수집 없음
+3. **Expert Review** — 수익 Layer 3 (₩49,000/건)
 6. **University License** — 수익 Layer 4 (₩990,000/년)
 7. **pSEO 50+ 페이지** — 트래픽 스케일링
 8. **SPSS output → APA 변환** — 차별화 기능
@@ -156,7 +154,7 @@ StatMate is a bilingual (EN/KO) statistics calculator web app deployed on Vercel
 
 ## Content
 
-- **Blog posts:** 8 articles (EN + KO each): t-test APA, choosing tests, correlation vs regression, ANOVA APA, sample size, effect size, nonparametric guide, chi-square APA
+- **Blog posts:** 10 articles (EN + KO each): t-test APA, choosing tests, correlation vs regression, ANOVA APA, sample size, effect size, nonparametric guide, chi-square APA, regression APA, reliability/Cronbach
 - **SEO:** Each calculator has `page.tsx` (metadata), `seo-ko.tsx`, `opengraph-image.tsx`, FAQ JSON-LD schema
 
 ## Chart Components (10 files in `components/charts/`)
@@ -169,7 +167,7 @@ group-boxplot, chi-square-chart, coefficient-chart, odds-ratio-chart, item-analy
 |------|------|------|
 | Lemon Squeezy 결제 | ✅ | lib/license.ts, app/api/activate, app/api/verify |
 | GA4 + Vercel Analytics | ✅ | components/google-analytics.tsx, lib/analytics.ts |
-| AdSense 광고 | ✅ | components/adsense.tsx (lazy-load) |
+| AdSense 광고 | ✅ | components/adsense.tsx (lazy-load, Pro 시 숨김) |
 | 에러 모니터링 | ✅ | lib/error-reporting.ts, app/[locale]/error.tsx |
 | PWA manifest | ⚠️ | public/manifest.json (서비스워커 없음) |
 | 사용자 인증 | ❌ | 없음 (localStorage 라이선스키 방식) |
@@ -186,12 +184,18 @@ group-boxplot, chi-square-chart, coefficient-chart, odds-ratio-chart, item-analy
 ## Build
 
 ```bash
-npm run build  # Turbopack, generates 25 static + dynamic pages, ~10s
+npm run build  # Turbopack, generates 29 static + dynamic pages, ~10s
 ```
 
 ## Immediate TODO
 
 - [ ] **GSC Indexing** — Submit new/updated URLs to Google Search Console (Chrome browser automation)
-- [ ] **Pro 광고 제거** — isPro 체크 시 AdUnit 숨기기 (구현 간단)
-- [ ] **SEO 콘텐츠 2개 추가** — 8/10 → 10/10 달성
 - No TODO/FIXME/HACK comments in codebase.
+
+## Recently Completed
+
+- [x] Pro 광고 제거 — AdUnit 내 isPro 체크 (`2ec1b73`)
+- [x] 피드백 수집 버튼 — floating feedback widget (`2ec1b73`)
+- [x] SEO 콘텐츠 10/10 — regression APA + Cronbach guide (`2ec1b73`)
+- [x] 데이터 시각화 차트 20/20 (`744d829`)
+- [x] PDF 내보내기 20/20 (`36c40bb`)
