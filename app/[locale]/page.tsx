@@ -59,6 +59,24 @@ export default async function Home({
   const { locale } = await params;
   const t = await getTranslations("home");
 
+  const faqItems = Array.from({ length: 6 }, (_, i) => ({
+    q: t(`faqs.${i}.q`),
+    a: t(`faqs.${i}.a`),
+  }));
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="flex flex-col items-center">
       <script
@@ -68,6 +86,10 @@ export default async function Home({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero Section */}
@@ -334,6 +356,23 @@ export default async function Home({
               </p>
               <p className="mt-3 text-xs font-medium text-gray-400">
                 &mdash; {t(`socialProof.${key}Author`)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="w-full pb-12 md:pb-16">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+          {t("faqTitle")}
+        </h2>
+        <div className="mx-auto max-w-2xl space-y-6">
+          {faqItems.map((faq, i) => (
+            <div key={i}>
+              <h3 className="font-semibold text-gray-900">{faq.q}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                {faq.a}
               </p>
             </div>
           ))}

@@ -57,6 +57,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      path: "/compare",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
   ];
 
   // Add blog post pages (use ko slugs as canonical set)

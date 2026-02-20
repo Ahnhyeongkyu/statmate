@@ -95,6 +95,19 @@ export default async function PricingPage() {
     a: t(`faqs.${i}.a`),
   }));
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   const comparisonFeatures: [string, boolean, boolean][] = [
     [t("comparison.0.feature"), true, true],
     [t("comparison.1.feature"), true, true],
@@ -109,6 +122,10 @@ export default async function PricingPage() {
 
   return (
     <div className="flex flex-col items-center py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Badge variant="secondary" className="mb-4 text-sm">
         {t("badge")}
       </Badge>

@@ -313,6 +313,14 @@ export default async function LocaleLayout({
                     </li>
                     <li>
                       <Link
+                        href="/compare"
+                        className="text-sm text-gray-500 hover:text-gray-900"
+                      >
+                        {t("footer.compare")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         href="/tools/spss-to-apa"
                         className="text-sm text-gray-500 hover:text-gray-900"
                       >

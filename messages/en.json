@@ -47,6 +47,7 @@
       "spssConverter": "SPSS → APA Converter",
       "expertReview": "Expert Review",
       "university": "University License",
+      "compare": "vs SPSS / R / Excel",
       "copyright": "© {year} StatMate. All rights reserved."
     },
     "openMenu": "Open menu",
@@ -243,6 +244,33 @@
       "t2Author": "Assistant Professor, Education",
       "t3": "I recommend StatMate to all my students. It's fast, accurate, and teaches proper reporting.",
       "t3Author": "Statistics Instructor"
+    },
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": {
+      "0": {
+        "q": "Is StatMate really free?",
+        "a": "Yes! All 20 statistical calculators are completely free with no sign-up required. Pro features like AI interpretation and Word export are available for $9.99/month."
+      },
+      "1": {
+        "q": "Is my data safe?",
+        "a": "Absolutely. All calculations run entirely in your browser. Your data never leaves your device — we don't upload, store, or log any of your research data."
+      },
+      "2": {
+        "q": "How accurate are the results?",
+        "a": "Every calculator is cross-validated against R and SPSS to at least 4 decimal places. We use established formulas from authoritative statistics textbooks."
+      },
+      "3": {
+        "q": "What is APA format?",
+        "a": "APA (American Psychological Association) format is the standard reporting style used in psychology, education, and social sciences. StatMate automatically formats your results following APA 7th edition guidelines."
+      },
+      "4": {
+        "q": "Can I use StatMate for my thesis or dissertation?",
+        "a": "Yes! StatMate provides publication-ready APA formatted results that you can directly copy into your thesis, dissertation, or research paper. You can also cite StatMate using the formats on our About page."
+      },
+      "5": {
+        "q": "Which statistical tests are available?",
+        "a": "StatMate offers 20 tests: T-tests (independent, paired, one-sample), ANOVA (one-way, two-way, repeated measures), non-parametric tests (Mann-Whitney, Wilcoxon, Kruskal-Wallis, Friedman, Fisher's exact), regression (simple, multiple, logistic), chi-square, correlation, factor analysis, Cronbach's alpha, McNemar test, and more."
+      }
     },
     "bottomCta": {
       "title": "Used by researchers worldwide",
@@ -532,15 +560,33 @@
     "freeLabel": "Free",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "All 20 statistical calculators" },
-      { "feature": "APA-formatted results display" },
-      { "feature": "Copy results to clipboard" },
-      { "feature": "Significance & effect size badges" },
-      { "feature": "Export APA tables to Word (.docx)" },
-      { "feature": "AI-powered interpretation" },
-      { "feature": "Publication-ready sentences" },
-      { "feature": "Ad-free experience" },
-      { "feature": "Priority email support" }
+      {
+        "feature": "All 20 statistical calculators"
+      },
+      {
+        "feature": "APA-formatted results display"
+      },
+      {
+        "feature": "Copy results to clipboard"
+      },
+      {
+        "feature": "Significance & effect size badges"
+      },
+      {
+        "feature": "Export APA tables to Word (.docx)"
+      },
+      {
+        "feature": "AI-powered interpretation"
+      },
+      {
+        "feature": "Publication-ready sentences"
+      },
+      {
+        "feature": "Ad-free experience"
+      },
+      {
+        "feature": "Priority email support"
+      }
     ],
     "faqTitle": "Frequently Asked Questions",
     "faqs": [
@@ -1212,26 +1258,86 @@
   },
   "relatedCalculators": {
     "title": "Try Other Calculators",
-    "ttest": { "name": "T-Test", "description": "Compare means between two groups" },
-    "anova": { "name": "ANOVA", "description": "Compare means across 3+ groups" },
-    "chiSquare": { "name": "Chi-Square", "description": "Test categorical associations" },
-    "correlation": { "name": "Correlation", "description": "Measure relationship strength" },
-    "descriptive": { "name": "Descriptive", "description": "Summarize your data" },
-    "sampleSize": { "name": "Sample Size", "description": "Power analysis & sample planning" },
-    "oneSampleT": { "name": "One-Sample T", "description": "Test against a known value" },
-    "mannWhitney": { "name": "Mann-Whitney U", "description": "Non-parametric group comparison" },
-    "wilcoxon": { "name": "Wilcoxon", "description": "Non-parametric paired test" },
-    "regression": { "name": "Regression", "description": "Model X-Y relationships" },
-    "multipleRegression": { "name": "Multiple Regression", "description": "Multiple predictors" },
-    "cronbachAlpha": { "name": "Cronbach's Alpha", "description": "Scale reliability" },
-    "logisticRegression": { "name": "Logistic Regression", "description": "Binary outcome prediction" },
-    "factorAnalysis": { "name": "Factor Analysis", "description": "Explore latent factor structure" },
-    "kruskalWallis": { "name": "Kruskal-Wallis", "description": "Non-parametric 3+ group comparison" },
-    "repeatedMeasures": { "name": "Repeated Measures", "description": "Within-subjects ANOVA" },
-    "twoWayAnova": { "name": "Two-Way ANOVA", "description": "Factorial design analysis" },
-    "friedman": { "name": "Friedman Test", "description": "Non-parametric repeated measures" },
-    "fisherExact": { "name": "Fisher's Exact", "description": "Exact test for 2×2 tables" },
-    "mcnemar": { "name": "McNemar Test", "description": "Paired nominal data test" }
+    "ttest": {
+      "name": "T-Test",
+      "description": "Compare means between two groups"
+    },
+    "anova": {
+      "name": "ANOVA",
+      "description": "Compare means across 3+ groups"
+    },
+    "chiSquare": {
+      "name": "Chi-Square",
+      "description": "Test categorical associations"
+    },
+    "correlation": {
+      "name": "Correlation",
+      "description": "Measure relationship strength"
+    },
+    "descriptive": {
+      "name": "Descriptive",
+      "description": "Summarize your data"
+    },
+    "sampleSize": {
+      "name": "Sample Size",
+      "description": "Power analysis & sample planning"
+    },
+    "oneSampleT": {
+      "name": "One-Sample T",
+      "description": "Test against a known value"
+    },
+    "mannWhitney": {
+      "name": "Mann-Whitney U",
+      "description": "Non-parametric group comparison"
+    },
+    "wilcoxon": {
+      "name": "Wilcoxon",
+      "description": "Non-parametric paired test"
+    },
+    "regression": {
+      "name": "Regression",
+      "description": "Model X-Y relationships"
+    },
+    "multipleRegression": {
+      "name": "Multiple Regression",
+      "description": "Multiple predictors"
+    },
+    "cronbachAlpha": {
+      "name": "Cronbach's Alpha",
+      "description": "Scale reliability"
+    },
+    "logisticRegression": {
+      "name": "Logistic Regression",
+      "description": "Binary outcome prediction"
+    },
+    "factorAnalysis": {
+      "name": "Factor Analysis",
+      "description": "Explore latent factor structure"
+    },
+    "kruskalWallis": {
+      "name": "Kruskal-Wallis",
+      "description": "Non-parametric 3+ group comparison"
+    },
+    "repeatedMeasures": {
+      "name": "Repeated Measures",
+      "description": "Within-subjects ANOVA"
+    },
+    "twoWayAnova": {
+      "name": "Two-Way ANOVA",
+      "description": "Factorial design analysis"
+    },
+    "friedman": {
+      "name": "Friedman Test",
+      "description": "Non-parametric repeated measures"
+    },
+    "fisherExact": {
+      "name": "Fisher's Exact",
+      "description": "Exact test for 2×2 tables"
+    },
+    "mcnemar": {
+      "name": "McNemar Test",
+      "description": "Paired nominal data test"
+    }
   },
   "assumptions": {
     "title": "Assumption Checks",
@@ -1254,35 +1360,28 @@
     "startOver": "Start Over",
     "back": "Back",
     "yourPath": "Your answers:",
-
     "q_goal": "What is your research goal?",
     "o_compare": "Compare groups (differences)",
     "o_relationship": "Examine a relationship between variables",
     "o_describe": "Describe / summarize data",
     "o_plan_study": "Plan a study (determine sample size)",
-
     "q_how_many_groups": "How many groups are you comparing?",
     "o_one_group": "One group (vs. a known value)",
     "o_two_groups": "Two groups",
     "o_three_plus": "Three or more groups",
-
     "q_paired_or_independent": "Are the two groups independent or paired?",
     "o_independent": "Independent (different participants)",
     "o_paired": "Paired / repeated measures (same participants)",
-
     "q_data_normal": "Is your data approximately normally distributed?",
     "o_yes": "Yes (or large sample, N > 30)",
     "o_no": "No (skewed, ordinal, or small sample)",
     "o_not_sure": "Not sure (use parametric as default)",
-
     "q_dv_continuous_or_categorical": "Is your dependent variable continuous or categorical?",
     "o_continuous": "Continuous (interval/ratio scale)",
     "o_categorical": "Categorical (counts/frequencies)",
-
     "q_predict_or_associate": "Do you want to predict or just measure association?",
     "o_associate": "Measure association (correlation)",
     "o_predict": "Predict one variable from another (regression)",
-
     "r_independent_t": "Independent-Samples T-Test",
     "r_independent_t_desc": "Compares the means of two independent groups. Uses Welch's correction for unequal variances.",
     "r_paired_t": "Paired-Samples T-Test",
@@ -1307,15 +1406,11 @@
     "r_descriptive_desc": "Summarizes your data with mean, median, standard deviation, and distribution charts.",
     "r_sample_size": "Sample Size Calculator",
     "r_sample_size_desc": "Determine the required sample size for your study using power analysis. Supports t-tests, ANOVA, correlation, and more.",
-
     "q_how_many_factors": "How many factors (independent variables) are in your design?",
     "o_one_factor": "One factor",
     "o_two_factors": "Two factors (factorial design)",
-
     "q_expected_count_sufficient": "Are all expected cell counts at least 5?",
-
     "q_paired_binary": "Is your data paired binary (before/after)?",
-
     "r_kruskal_wallis": "Kruskal-Wallis H Test",
     "r_kruskal_wallis_desc": "Non-parametric comparison of three or more independent groups. Alternative to one-way ANOVA when normality is violated.",
     "r_repeated_measures": "Repeated Measures ANOVA",
@@ -1459,5 +1554,139 @@
     "load": "Load",
     "exportAll": "Export All",
     "confirmDelete": "Delete this analysis?"
+  },
+  "compare": {
+    "metaTitle": "StatMate vs SPSS vs R vs Excel — Statistics Tool Comparison",
+    "metaDescription": "Compare StatMate with SPSS, R, and Excel for statistical analysis. See which tool is best for APA formatting, privacy, and ease of use.",
+    "title": "StatMate vs SPSS vs R vs Excel",
+    "description": "An honest comparison of popular statistics tools. Find the right one for your research needs.",
+    "feature": "Feature",
+    "tools": {
+      "statmate": "StatMate",
+      "spss": "IBM SPSS",
+      "r": "R / RStudio",
+      "excel": "Excel"
+    },
+    "features": {
+      "price": {
+        "label": "Price",
+        "statmate": "Free (Pro $9.99/mo)",
+        "spss": "$99/mo (academic)",
+        "r": "Free (open source)",
+        "excel": "$6.99/mo (Microsoft 365)"
+      },
+      "apaFormat": {
+        "label": "APA 7th Formatted Output",
+        "statmate": "Automatic",
+        "spss": "Manual formatting",
+        "r": "With packages (papaja)",
+        "excel": "Manual formatting"
+      },
+      "browserBased": {
+        "label": "Browser-Based (No Install)",
+        "statmate": "Yes",
+        "spss": "No (desktop app)",
+        "r": "No (requires install)",
+        "excel": "Partial (web version)"
+      },
+      "privacy": {
+        "label": "Data Privacy",
+        "statmate": "100% client-side",
+        "spss": "Local processing",
+        "r": "Local processing",
+        "excel": "Cloud sync possible"
+      },
+      "aiInterpretation": {
+        "label": "AI Result Interpretation",
+        "statmate": "Yes (Pro)",
+        "spss": "No",
+        "r": "No",
+        "excel": "No"
+      },
+      "pdfExport": {
+        "label": "PDF Export",
+        "statmate": "Yes (free)",
+        "spss": "Yes",
+        "r": "With packages",
+        "excel": "Yes"
+      },
+      "wordExport": {
+        "label": "APA Word Export",
+        "statmate": "Yes (Pro)",
+        "spss": "Manual",
+        "r": "With packages",
+        "excel": "Manual"
+      },
+      "csvUpload": {
+        "label": "CSV Data Upload",
+        "statmate": "Yes",
+        "spss": "Yes",
+        "r": "Yes",
+        "excel": "Yes"
+      },
+      "advancedTests": {
+        "label": "Advanced Tests (20+)",
+        "statmate": "20 tests",
+        "spss": "100+ tests",
+        "r": "Unlimited (packages)",
+        "excel": "Limited (add-ins)"
+      },
+      "programmability": {
+        "label": "Scripting / Programming",
+        "statmate": "No (GUI only)",
+        "spss": "Syntax + GUI",
+        "r": "Full programming",
+        "excel": "VBA macros"
+      },
+      "learningCurve": {
+        "label": "Learning Curve",
+        "statmate": "Very easy",
+        "spss": "Moderate",
+        "r": "Steep",
+        "excel": "Easy (limited stats)"
+      },
+      "effectSize": {
+        "label": "Effect Size Calculation",
+        "statmate": "Automatic",
+        "spss": "Some tests",
+        "r": "With packages",
+        "excel": "Manual"
+      },
+      "postHoc": {
+        "label": "Post-Hoc Tests",
+        "statmate": "Automatic",
+        "spss": "Yes",
+        "r": "With packages",
+        "excel": "No"
+      },
+      "assumptions": {
+        "label": "Assumption Checks",
+        "statmate": "Automatic",
+        "spss": "Manual selection",
+        "r": "With packages",
+        "excel": "No"
+      }
+    },
+    "summary": {
+      "whenStatmate": {
+        "title": "Choose StatMate when...",
+        "text": "You need quick, accurate results with automatic APA formatting. Ideal for students, thesis writers, and researchers who want publication-ready output without learning complex software."
+      },
+      "whenSpss": {
+        "title": "Choose SPSS when...",
+        "text": "You need advanced procedures (SEM, HLM, survival analysis) or your institution provides a license. Best for researchers with complex data analysis needs."
+      },
+      "whenR": {
+        "title": "Choose R when...",
+        "text": "You need maximum flexibility, custom analyses, or reproducible research pipelines. Best for data scientists and statisticians comfortable with programming."
+      },
+      "whenExcel": {
+        "title": "Choose Excel when...",
+        "text": "You only need basic descriptive statistics or simple charts. Not recommended for inferential statistics or academic research."
+      }
+    },
+    "ctaTitle": "Try StatMate Free",
+    "ctaDescription": "No installation, no sign-up. Get APA-formatted results in seconds.",
+    "ctaButton": "Start Calculating"
   }
 }

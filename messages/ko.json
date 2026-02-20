@@ -47,6 +47,7 @@
       "spssConverter": "SPSS → APA 변환기",
       "expertReview": "전문가 리뷰",
       "university": "대학 라이선스",
+      "compare": "vs SPSS / R / Excel",
       "copyright": "© {year} StatMate. All rights reserved."
     },
     "openMenu": "메뉴 열기",
@@ -243,6 +244,33 @@
       "t2Author": "조교수, 교육학",
       "t3": "모든 학생에게 StatMate를 추천합니다. 빠르고 정확하며, 올바른 보고 방법을 가르쳐줍니다.",
       "t3Author": "통계학 강사"
+    },
+    "faqTitle": "자주 묻는 질문",
+    "faqs": {
+      "0": {
+        "q": "StatMate는 정말 무료인가요?",
+        "a": "네! 20개 통계 계산기 모두 회원가입 없이 완전 무료입니다. AI 해석, Word 내보내기 같은 Pro 기능은 월 $9.99로 이용 가능합니다."
+      },
+      "1": {
+        "q": "데이터는 안전한가요?",
+        "a": "물론입니다. 모든 계산이 브라우저에서 실행됩니다. 데이터는 기기를 떠나지 않으며, 업로드, 저장, 로깅하지 않습니다."
+      },
+      "2": {
+        "q": "결과는 얼마나 정확한가요?",
+        "a": "모든 계산기는 R 및 SPSS와 소수점 4자리까지 교차 검증되었습니다. 권위 있는 통계학 교과서의 확립된 공식을 사용합니다."
+      },
+      "3": {
+        "q": "APA 형식이란 무엇인가요?",
+        "a": "APA(미국심리학회) 형식은 심리학, 교육학, 사회과학에서 사용되는 표준 보고 양식입니다. StatMate는 APA 7판 가이드라인에 따라 결과를 자동 포맷합니다."
+      },
+      "4": {
+        "q": "학위 논문에 사용할 수 있나요?",
+        "a": "네! StatMate는 석사/박사 논문이나 연구 논문에 바로 복사할 수 있는 APA 형식 결과를 제공합니다. 소개 페이지의 인용 형식을 사용해 StatMate를 인용할 수도 있습니다."
+      },
+      "5": {
+        "q": "어떤 통계 검정을 제공하나요?",
+        "a": "StatMate는 20개 검정을 제공합니다: T-검정(독립표본, 대응표본, 일표본), 분산분석(일원, 이원, 반복측정), 비모수 검정(Mann-Whitney, Wilcoxon, Kruskal-Wallis, Friedman, Fisher 정확 검정), 회귀분석(단순, 다중, 로지스틱), 카이제곱, 상관분석, 요인분석, Cronbach's Alpha, McNemar 검정 등."
+      }
     },
     "bottomCta": {
       "title": "전 세계 연구자가 사용합니다",
@@ -532,15 +560,33 @@
     "freeLabel": "무료",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "20가지 통계 계산기 전체" },
-      { "feature": "APA 형식 결과 표시" },
-      { "feature": "결과 클립보드 복사" },
-      { "feature": "유의성 & 효과 크기 배지" },
-      { "feature": "APA 표 Word 내보내기 (.docx)" },
-      { "feature": "AI 기반 해석" },
-      { "feature": "출판 준비된 문장" },
-      { "feature": "광고 없는 환경" },
-      { "feature": "우선 이메일 지원" }
+      {
+        "feature": "20가지 통계 계산기 전체"
+      },
+      {
+        "feature": "APA 형식 결과 표시"
+      },
+      {
+        "feature": "결과 클립보드 복사"
+      },
+      {
+        "feature": "유의성 & 효과 크기 배지"
+      },
+      {
+        "feature": "APA 표 Word 내보내기 (.docx)"
+      },
+      {
+        "feature": "AI 기반 해석"
+      },
+      {
+        "feature": "출판 준비된 문장"
+      },
+      {
+        "feature": "광고 없는 환경"
+      },
+      {
+        "feature": "우선 이메일 지원"
+      }
     ],
     "faqTitle": "자주 묻는 질문",
     "faqs": [
@@ -1293,26 +1339,86 @@
   },
   "relatedCalculators": {
     "title": "다른 계산기 사용하기",
-    "ttest": { "name": "T-검정", "description": "두 집단의 평균 비교" },
-    "anova": { "name": "분산분석", "description": "3개 이상 집단의 평균 비교" },
-    "chiSquare": { "name": "카이제곱", "description": "범주형 변수의 연관성 검정" },
-    "correlation": { "name": "상관분석", "description": "관계의 강도 측정" },
-    "descriptive": { "name": "기술통계", "description": "데이터 요약" },
-    "sampleSize": { "name": "표본 크기", "description": "검정력 분석 및 표본 계획" },
-    "oneSampleT": { "name": "일표본 T", "description": "알려진 값과 비교" },
-    "mannWhitney": { "name": "Mann-Whitney U", "description": "비모수 집단 비교" },
-    "wilcoxon": { "name": "Wilcoxon", "description": "비모수 대응표본 검정" },
-    "regression": { "name": "회귀분석", "description": "X-Y 관계 모델링" },
-    "multipleRegression": { "name": "다중회귀", "description": "다중 예측변수 분석" },
-    "cronbachAlpha": { "name": "Cronbach's Alpha", "description": "척도 신뢰도 분석" },
-    "logisticRegression": { "name": "로지스틱 회귀", "description": "이항 결과 예측" },
-    "factorAnalysis": { "name": "요인분석", "description": "잠재 요인 구조 탐색" },
-    "kruskalWallis": { "name": "Kruskal-Wallis", "description": "비모수 3개 이상 집단 비교" },
-    "repeatedMeasures": { "name": "반복측정", "description": "피험자 내 분산분석" },
-    "twoWayAnova": { "name": "이원배치 분산분석", "description": "요인설계 분석" },
-    "friedman": { "name": "Friedman 검정", "description": "비모수 반복측정" },
-    "fisherExact": { "name": "Fisher 정확검정", "description": "2×2 분할표 정확 검정" },
-    "mcnemar": { "name": "McNemar 검정", "description": "대응 명목 데이터 검정" }
+    "ttest": {
+      "name": "T-검정",
+      "description": "두 집단의 평균 비교"
+    },
+    "anova": {
+      "name": "분산분석",
+      "description": "3개 이상 집단의 평균 비교"
+    },
+    "chiSquare": {
+      "name": "카이제곱",
+      "description": "범주형 변수의 연관성 검정"
+    },
+    "correlation": {
+      "name": "상관분석",
+      "description": "관계의 강도 측정"
+    },
+    "descriptive": {
+      "name": "기술통계",
+      "description": "데이터 요약"
+    },
+    "sampleSize": {
+      "name": "표본 크기",
+      "description": "검정력 분석 및 표본 계획"
+    },
+    "oneSampleT": {
+      "name": "일표본 T",
+      "description": "알려진 값과 비교"
+    },
+    "mannWhitney": {
+      "name": "Mann-Whitney U",
+      "description": "비모수 집단 비교"
+    },
+    "wilcoxon": {
+      "name": "Wilcoxon",
+      "description": "비모수 대응표본 검정"
+    },
+    "regression": {
+      "name": "회귀분석",
+      "description": "X-Y 관계 모델링"
+    },
+    "multipleRegression": {
+      "name": "다중회귀",
+      "description": "다중 예측변수 분석"
+    },
+    "cronbachAlpha": {
+      "name": "Cronbach's Alpha",
+      "description": "척도 신뢰도 분석"
+    },
+    "logisticRegression": {
+      "name": "로지스틱 회귀",
+      "description": "이항 결과 예측"
+    },
+    "factorAnalysis": {
+      "name": "요인분석",
+      "description": "잠재 요인 구조 탐색"
+    },
+    "kruskalWallis": {
+      "name": "Kruskal-Wallis",
+      "description": "비모수 3개 이상 집단 비교"
+    },
+    "repeatedMeasures": {
+      "name": "반복측정",
+      "description": "피험자 내 분산분석"
+    },
+    "twoWayAnova": {
+      "name": "이원배치 분산분석",
+      "description": "요인설계 분석"
+    },
+    "friedman": {
+      "name": "Friedman 검정",
+      "description": "비모수 반복측정"
+    },
+    "fisherExact": {
+      "name": "Fisher 정확검정",
+      "description": "2×2 분할표 정확 검정"
+    },
+    "mcnemar": {
+      "name": "McNemar 검정",
+      "description": "대응 명목 데이터 검정"
+    }
   },
   "assumptions": {
     "title": "가정 검증",
@@ -1335,35 +1441,28 @@
     "startOver": "처음부터",
     "back": "뒤로",
     "yourPath": "선택 경로:",
-
     "q_goal": "연구 목적이 무엇인가요?",
     "o_compare": "집단 간 차이 비교",
     "o_relationship": "변수 간 관계 분석",
     "o_describe": "데이터 요약/기술",
     "o_plan_study": "연구 설계 (표본 크기 결정)",
-
     "q_how_many_groups": "비교할 집단이 몇 개인가요?",
     "o_one_group": "1개 집단 (기준값과 비교)",
     "o_two_groups": "2개 집단",
     "o_three_plus": "3개 이상",
-
     "q_paired_or_independent": "두 집단은 독립인가요, 대응인가요?",
     "o_independent": "독립 (서로 다른 참가자)",
     "o_paired": "대응 / 반복측정 (같은 참가자)",
-
     "q_data_normal": "데이터가 정규분포를 따르나요?",
     "o_yes": "예 (또는 표본 크기가 30 이상)",
     "o_no": "아니오 (비대칭, 서열, 소표본)",
     "o_not_sure": "잘 모르겠음 (모수 검정 기본 적용)",
-
     "q_dv_continuous_or_categorical": "종속변수가 연속형인가요, 범주형인가요?",
     "o_continuous": "연속형 (등간/비율 척도)",
     "o_categorical": "범주형 (빈도/개수)",
-
     "q_predict_or_associate": "예측이 목적인가요, 관련성 파악이 목적인가요?",
     "o_associate": "관련성 측정 (상관분석)",
     "o_predict": "한 변수로 다른 변수 예측 (회귀분석)",
-
     "r_independent_t": "독립표본 T-검정",
     "r_independent_t_desc": "두 독립 집단의 평균을 비교합니다. 등분산이 아닐 경우 Welch 보정이 적용됩니다.",
     "r_paired_t": "대응표본 T-검정",
@@ -1388,15 +1487,11 @@
     "r_descriptive_desc": "평균, 중앙값, 표준편차, 분포 차트 등으로 데이터를 요약합니다.",
     "r_sample_size": "표본 크기 계산기",
     "r_sample_size_desc": "검정력 분석으로 연구에 필요한 표본 크기를 결정합니다. t-검정, 분산분석, 상관분석 등을 지원합니다.",
-
     "q_how_many_factors": "설계에 포함된 요인(독립변수)은 몇 개인가요?",
     "o_one_factor": "한 개 요인",
     "o_two_factors": "두 개 요인 (요인설계)",
-
     "q_expected_count_sufficient": "모든 기대 빈도가 5 이상인가요?",
-
     "q_paired_binary": "대응 이진 데이터(전후 비교)인가요?",
-
     "r_kruskal_wallis": "Kruskal-Wallis H 검정",
     "r_kruskal_wallis_desc": "세 개 이상 독립 집단의 비모수적 비교. 정규성이 위반될 때 일원배치 분산분석의 대안입니다.",
     "r_repeated_measures": "반복측정 분산분석",
@@ -1540,5 +1635,139 @@
       "successTitle": "문의가 전송되었습니다!",
       "successMsg": "1-2 영업일 이내에 연락드리겠습니다."
     }
+  },
+  "compare": {
+    "metaTitle": "StatMate vs SPSS vs R vs Excel — 통계 도구 비교",
+    "metaDescription": "StatMate와 SPSS, R, Excel을 통계 분석 관점에서 비교합니다. APA 포맷, 프라이버시, 사용 편의성 기준으로 최적의 도구를 찾아보세요.",
+    "title": "StatMate vs SPSS vs R vs Excel",
+    "description": "인기 통계 도구들의 솔직한 비교. 연구 목적에 맞는 도구를 찾아보세요.",
+    "feature": "기능",
+    "tools": {
+      "statmate": "StatMate",
+      "spss": "IBM SPSS",
+      "r": "R / RStudio",
+      "excel": "Excel"
+    },
+    "features": {
+      "price": {
+        "label": "가격",
+        "statmate": "무료 (Pro $9.99/월)",
+        "spss": "$99/월 (학생용)",
+        "r": "무료 (오픈소스)",
+        "excel": "$6.99/월 (Microsoft 365)"
+      },
+      "apaFormat": {
+        "label": "APA 7판 자동 포맷",
+        "statmate": "자동",
+        "spss": "수동 포맷",
+        "r": "패키지 필요 (papaja)",
+        "excel": "수동 포맷"
+      },
+      "browserBased": {
+        "label": "브라우저 기반 (설치 불필요)",
+        "statmate": "예",
+        "spss": "아니오 (데스크톱)",
+        "r": "아니오 (설치 필요)",
+        "excel": "부분 (웹 버전)"
+      },
+      "privacy": {
+        "label": "데이터 프라이버시",
+        "statmate": "100% 클라이언트 측",
+        "spss": "로컬 처리",
+        "r": "로컬 처리",
+        "excel": "클라우드 동기화 가능"
+      },
+      "aiInterpretation": {
+        "label": "AI 결과 해석",
+        "statmate": "지원 (Pro)",
+        "spss": "미지원",
+        "r": "미지원",
+        "excel": "미지원"
+      },
+      "pdfExport": {
+        "label": "PDF 내보내기",
+        "statmate": "지원 (무료)",
+        "spss": "지원",
+        "r": "패키지 필요",
+        "excel": "지원"
+      },
+      "wordExport": {
+        "label": "APA Word 내보내기",
+        "statmate": "지원 (Pro)",
+        "spss": "수동",
+        "r": "패키지 필요",
+        "excel": "수동"
+      },
+      "csvUpload": {
+        "label": "CSV 데이터 업로드",
+        "statmate": "지원",
+        "spss": "지원",
+        "r": "지원",
+        "excel": "지원"
+      },
+      "advancedTests": {
+        "label": "고급 검정 (20+)",
+        "statmate": "20개 검정",
+        "spss": "100개 이상",
+        "r": "무제한 (패키지)",
+        "excel": "제한적 (추가기능)"
+      },
+      "programmability": {
+        "label": "스크립팅 / 프로그래밍",
+        "statmate": "불필요 (GUI 전용)",
+        "spss": "Syntax + GUI",
+        "r": "완전한 프로그래밍",
+        "excel": "VBA 매크로"
+      },
+      "learningCurve": {
+        "label": "학습 난이도",
+        "statmate": "매우 쉬움",
+        "spss": "보통",
+        "r": "어려움",
+        "excel": "쉬움 (통계 제한적)"
+      },
+      "effectSize": {
+        "label": "효과 크기 계산",
+        "statmate": "자동",
+        "spss": "일부 검정",
+        "r": "패키지 필요",
+        "excel": "수동"
+      },
+      "postHoc": {
+        "label": "사후검정",
+        "statmate": "자동",
+        "spss": "지원",
+        "r": "패키지 필요",
+        "excel": "미지원"
+      },
+      "assumptions": {
+        "label": "가정 검증",
+        "statmate": "자동",
+        "spss": "수동 선택",
+        "r": "패키지 필요",
+        "excel": "미지원"
+      }
+    },
+    "summary": {
+      "whenStatmate": {
+        "title": "StatMate를 선택하세요",
+        "text": "빠르고 정확한 결과와 자동 APA 포맷이 필요할 때. 학생, 논문 작성자, 복잡한 소프트웨어 학습 없이 출판 가능한 결과를 원하는 연구자에게 이상적입니다."
+      },
+      "whenSpss": {
+        "title": "SPSS를 선택하세요",
+        "text": "고급 분석(SEM, HLM, 생존분석)이 필요하거나 기관에서 라이선스를 제공할 때. 복잡한 데이터 분석이 필요한 연구자에게 적합합니다."
+      },
+      "whenR": {
+        "title": "R을 선택하세요",
+        "text": "최대한의 유연성, 커스텀 분석, 또는 재현 가능한 연구 파이프라인이 필요할 때. 프로그래밍에 익숙한 데이터 사이언티스트와 통계학자에게 적합합니다."
+      },
+      "whenExcel": {
+        "title": "Excel을 선택하세요",
+        "text": "기본 기술통계나 간단한 차트만 필요할 때. 추론 통계나 학술 연구에는 권장하지 않습니다."
+      }
+    },
+    "ctaTitle": "StatMate 무료로 시작하기",
+    "ctaDescription": "설치 불필요, 회원가입 불필요. 몇 초 만에 APA 형식 결과를 받으세요.",
+    "ctaButton": "계산 시작하기"
   }
 }

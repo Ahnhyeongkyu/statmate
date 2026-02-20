@@ -47,6 +47,7 @@
       "spssConverter": "SPSS → APA変換ツール",
       "expertReview": "専門家レビュー",
       "university": "大学ライセンス",
+      "compare": "vs SPSS / R / Excel",
       "copyright": "© {year} StatMate. All rights reserved."
     },
     "openMenu": "メニューを開く",
@@ -243,6 +244,33 @@
       "t2Author": "教育学助教",
       "t3": "学生全員にStatMateを勧めています。高速で正確、そして適切な報告方法を学べます。",
       "t3Author": "統計学講師"
+    },
+    "faqTitle": "よくある質問",
+    "faqs": {
+      "0": {
+        "q": "StatMateは本当に無料ですか？",
+        "a": "はい！20種類の統計計算ツールすべてが登録不要で完全無料です。AI解釈やWordエクスポートなどのPro機能は月額$9.99でご利用いただけます。"
+      },
+      "1": {
+        "q": "データは安全ですか？",
+        "a": "もちろんです。すべての計算はブラウザ内で実行されます。データがデバイスから外部に送信されることはなく、アップロード、保存、ログの記録は一切行いません。"
+      },
+      "2": {
+        "q": "結果はどの程度正確ですか？",
+        "a": "すべての計算ツールはRおよびSPSSと小数点以下4桁まで相互検証されています。権威ある統計学教科書の確立された公式を使用しています。"
+      },
+      "3": {
+        "q": "APA形式とは何ですか？",
+        "a": "APA（米国心理学会）形式は、心理学、教育学、社会科学で使用される標準的な報告様式です。StatMateはAPA第7版ガイドラインに従って結果を自動フォーマットします。"
+      },
+      "4": {
+        "q": "学位論文に使用できますか？",
+        "a": "はい！StatMateは修士・博士論文や研究論文に直接コピーできるAPA形式の結果を提供します。Aboutページの引用形式を使用してStatMateを引用することもできます。"
+      },
+      "5": {
+        "q": "どの統計検定が利用できますか？",
+        "a": "StatMateは20種類の検定を提供します：t検定（対応なし、対応あり、1標本）、分散分析（一元、二元、反復測定）、ノンパラメトリック検定（マン・ホイットニー、ウィルコクソン、クラスカル・ウォリス、フリードマン、フィッシャー正確検定）、回帰分析（単回帰、重回帰、ロジスティック）、カイ二乗、相関分析、因子分析、クロンバックのα、マクネマー検定など。"
+      }
     },
     "bottomCta": {
       "title": "世界中の研究者に利用されています",
@@ -532,15 +560,33 @@
     "freeLabel": "無料",
     "proLabel": "Pro",
     "comparison": [
-      { "feature": "20種類すべての統計計算ツール" },
-      { "feature": "APA形式の結果表示" },
-      { "feature": "結果をクリップボードにコピー" },
-      { "feature": "有意性・効果量バッジ" },
-      { "feature": "APA形式の表をWord (.docx) にエクスポート" },
-      { "feature": "AI搭載の結果解釈" },
-      { "feature": "出版対応の結果文" },
-      { "feature": "広告なし" },
-      { "feature": "優先メールサポート" }
+      {
+        "feature": "20種類すべての統計計算ツール"
+      },
+      {
+        "feature": "APA形式の結果表示"
+      },
+      {
+        "feature": "結果をクリップボードにコピー"
+      },
+      {
+        "feature": "有意性・効果量バッジ"
+      },
+      {
+        "feature": "APA形式の表をWord (.docx) にエクスポート"
+      },
+      {
+        "feature": "AI搭載の結果解釈"
+      },
+      {
+        "feature": "出版対応の結果文"
+      },
+      {
+        "feature": "広告なし"
+      },
+      {
+        "feature": "優先メールサポート"
+      }
     ],
     "faqTitle": "よくある質問",
     "faqs": [
@@ -1212,26 +1258,86 @@
   },
   "relatedCalculators": {
     "title": "他の計算ツールを試す",
-    "ttest": { "name": "t検定", "description": "2群の平均値を比較" },
-    "anova": { "name": "分散分析", "description": "3群以上の平均値を比較" },
-    "chiSquare": { "name": "カイ二乗検定", "description": "カテゴリ変数の関連を検定" },
-    "correlation": { "name": "相関分析", "description": "関係の強さを測定" },
-    "descriptive": { "name": "記述統計", "description": "データを要約" },
-    "sampleSize": { "name": "サンプルサイズ", "description": "検出力分析・標本計画" },
-    "oneSampleT": { "name": "1標本t検定", "description": "既知の値との比較" },
-    "mannWhitney": { "name": "マン・ホイットニーU", "description": "ノンパラメトリック群間比較" },
-    "wilcoxon": { "name": "ウィルコクソン検定", "description": "ノンパラメトリック対応検定" },
-    "regression": { "name": "回帰分析", "description": "X-Yの関係をモデル化" },
-    "multipleRegression": { "name": "重回帰分析", "description": "複数の予測変数" },
-    "cronbachAlpha": { "name": "クロンバックのα", "description": "尺度の信頼性" },
-    "logisticRegression": { "name": "ロジスティック回帰", "description": "二値アウトカムの予測" },
-    "factorAnalysis": { "name": "因子分析", "description": "潜在因子構造の探索" },
-    "kruskalWallis": { "name": "クラスカル・ウォリス", "description": "ノンパラメトリック3群以上比較" },
-    "repeatedMeasures": { "name": "反復測定", "description": "被験者内分散分析" },
-    "twoWayAnova": { "name": "二元配置分散分析", "description": "要因計画の分析" },
-    "friedman": { "name": "フリードマン検定", "description": "ノンパラメトリック反復測定" },
-    "fisherExact": { "name": "フィッシャーの正確検定", "description": "2×2表の正確検定" },
-    "mcnemar": { "name": "マクネマー検定", "description": "対応のある名義データの検定" }
+    "ttest": {
+      "name": "t検定",
+      "description": "2群の平均値を比較"
+    },
+    "anova": {
+      "name": "分散分析",
+      "description": "3群以上の平均値を比較"
+    },
+    "chiSquare": {
+      "name": "カイ二乗検定",
+      "description": "カテゴリ変数の関連を検定"
+    },
+    "correlation": {
+      "name": "相関分析",
+      "description": "関係の強さを測定"
+    },
+    "descriptive": {
+      "name": "記述統計",
+      "description": "データを要約"
+    },
+    "sampleSize": {
+      "name": "サンプルサイズ",
+      "description": "検出力分析・標本計画"
+    },
+    "oneSampleT": {
+      "name": "1標本t検定",
+      "description": "既知の値との比較"
+    },
+    "mannWhitney": {
+      "name": "マン・ホイットニーU",
+      "description": "ノンパラメトリック群間比較"
+    },
+    "wilcoxon": {
+      "name": "ウィルコクソン検定",
+      "description": "ノンパラメトリック対応検定"
+    },
+    "regression": {
+      "name": "回帰分析",
+      "description": "X-Yの関係をモデル化"
+    },
+    "multipleRegression": {
+      "name": "重回帰分析",
+      "description": "複数の予測変数"
+    },
+    "cronbachAlpha": {
+      "name": "クロンバックのα",
+      "description": "尺度の信頼性"
+    },
+    "logisticRegression": {
+      "name": "ロジスティック回帰",
+      "description": "二値アウトカムの予測"
+    },
+    "factorAnalysis": {
+      "name": "因子分析",
+      "description": "潜在因子構造の探索"
+    },
+    "kruskalWallis": {
+      "name": "クラスカル・ウォリス",
+      "description": "ノンパラメトリック3群以上比較"
+    },
+    "repeatedMeasures": {
+      "name": "反復測定",
+      "description": "被験者内分散分析"
+    },
+    "twoWayAnova": {
+      "name": "二元配置分散分析",
+      "description": "要因計画の分析"
+    },
+    "friedman": {
+      "name": "フリードマン検定",
+      "description": "ノンパラメトリック反復測定"
+    },
+    "fisherExact": {
+      "name": "フィッシャーの正確検定",
+      "description": "2×2表の正確検定"
+    },
+    "mcnemar": {
+      "name": "マクネマー検定",
+      "description": "対応のある名義データの検定"
+    }
   },
   "assumptions": {
     "title": "仮定の検証",
@@ -1254,35 +1360,28 @@
     "startOver": "最初からやり直す",
     "back": "戻る",
     "yourPath": "あなたの回答:",
-
     "q_goal": "研究の目的は何ですか？",
     "o_compare": "群を比較する（差の検定）",
     "o_relationship": "変数間の関係を調べる",
     "o_describe": "データの記述・要約",
     "o_plan_study": "研究の計画（サンプルサイズの決定）",
-
     "q_how_many_groups": "比較する群の数はいくつですか？",
     "o_one_group": "1群（既知の値との比較）",
     "o_two_groups": "2群",
     "o_three_plus": "3群以上",
-
     "q_paired_or_independent": "2群は独立ですか、対応がありますか？",
     "o_independent": "独立（異なる参加者）",
     "o_paired": "対応あり / 反復測定（同じ参加者）",
-
     "q_data_normal": "データはほぼ正規分布に従っていますか？",
     "o_yes": "はい（または大標本、N > 30）",
     "o_no": "いいえ（歪みがある、順序尺度、または小標本）",
     "o_not_sure": "わからない（デフォルトとしてパラメトリックを使用）",
-
     "q_dv_continuous_or_categorical": "従属変数は連続変数ですか、カテゴリ変数ですか？",
     "o_continuous": "連続変数（間隔尺度/比率尺度）",
     "o_categorical": "カテゴリ変数（度数/頻度）",
-
     "q_predict_or_associate": "予測したいですか、それとも関連を測定したいですか？",
     "o_associate": "関連の測定（相関分析）",
     "o_predict": "一方の変数から他方を予測（回帰分析）",
-
     "r_independent_t": "対応のないt検定",
     "r_independent_t_desc": "2つの独立群の平均値を比較します。不等分散にはWelchの補正を使用します。",
     "r_paired_t": "対応のあるt検定",
@@ -1307,15 +1406,11 @@
     "r_descriptive_desc": "平均、中央値、標準偏差、分布のグラフでデータを要約します。",
     "r_sample_size": "サンプルサイズ計算ツール",
     "r_sample_size_desc": "検出力分析を使用して研究に必要なサンプルサイズを決定します。t検定、分散分析、相関分析などに対応しています。",
-
     "q_how_many_factors": "デザインに含まれる要因（独立変数）の数はいくつですか？",
     "o_one_factor": "1要因",
     "o_two_factors": "2要因（要因計画）",
-
     "q_expected_count_sufficient": "すべての期待度数が5以上ですか？",
-
     "q_paired_binary": "対応のある二値データ（前後比較）ですか？",
-
     "r_kruskal_wallis": "クラスカル・ウォリスH検定",
     "r_kruskal_wallis_desc": "3群以上の独立群のノンパラメトリック比較。正規性が満たされない場合の一元配置分散分析の代替法。",
     "r_repeated_measures": "反復測定分散分析",
@@ -1460,5 +1555,139 @@
     "load": "読み込む",
     "exportAll": "すべてエクスポート",
     "confirmDelete": "この分析を削除しますか？"
+  },
+  "compare": {
+    "metaTitle": "StatMate vs SPSS vs R vs Excel — 統計ツール比較",
+    "metaDescription": "StatMateとSPSS、R、Excelを統計分析の観点から比較します。APA形式、プライバシー、使いやすさの基準で最適なツールを見つけましょう。",
+    "title": "StatMate vs SPSS vs R vs Excel",
+    "description": "人気の統計ツールを正直に比較。研究ニーズに合ったツールを見つけましょう。",
+    "feature": "機能",
+    "tools": {
+      "statmate": "StatMate",
+      "spss": "IBM SPSS",
+      "r": "R / RStudio",
+      "excel": "Excel"
+    },
+    "features": {
+      "price": {
+        "label": "価格",
+        "statmate": "無料（Pro $9.99/月）",
+        "spss": "$99/月（学生向け）",
+        "r": "無料（オープンソース）",
+        "excel": "$6.99/月（Microsoft 365）"
+      },
+      "apaFormat": {
+        "label": "APA第7版自動フォーマット",
+        "statmate": "自動",
+        "spss": "手動フォーマット",
+        "r": "パッケージ必要（papaja）",
+        "excel": "手動フォーマット"
+      },
+      "browserBased": {
+        "label": "ブラウザベース（インストール不要）",
+        "statmate": "はい",
+        "spss": "いいえ（デスクトップ）",
+        "r": "いいえ（インストール必要）",
+        "excel": "一部（Web版）"
+      },
+      "privacy": {
+        "label": "データプライバシー",
+        "statmate": "100%クライアントサイド",
+        "spss": "ローカル処理",
+        "r": "ローカル処理",
+        "excel": "クラウド同期の可能性あり"
+      },
+      "aiInterpretation": {
+        "label": "AI結果解釈",
+        "statmate": "対応（Pro）",
+        "spss": "非対応",
+        "r": "非対応",
+        "excel": "非対応"
+      },
+      "pdfExport": {
+        "label": "PDFエクスポート",
+        "statmate": "対応（無料）",
+        "spss": "対応",
+        "r": "パッケージ必要",
+        "excel": "対応"
+      },
+      "wordExport": {
+        "label": "APA Wordエクスポート",
+        "statmate": "対応（Pro）",
+        "spss": "手動",
+        "r": "パッケージ必要",
+        "excel": "手動"
+      },
+      "csvUpload": {
+        "label": "CSVデータアップロード",
+        "statmate": "対応",
+        "spss": "対応",
+        "r": "対応",
+        "excel": "対応"
+      },
+      "advancedTests": {
+        "label": "高度な検定（20+）",
+        "statmate": "20種類",
+        "spss": "100種類以上",
+        "r": "無制限（パッケージ）",
+        "excel": "限定的（アドイン）"
+      },
+      "programmability": {
+        "label": "スクリプティング/プログラミング",
+        "statmate": "不要（GUIのみ）",
+        "spss": "Syntax + GUI",
+        "r": "完全なプログラミング",
+        "excel": "VBAマクロ"
+      },
+      "learningCurve": {
+        "label": "学習難易度",
+        "statmate": "非常に簡単",
+        "spss": "普通",
+        "r": "難しい",
+        "excel": "簡単（統計は限定的）"
+      },
+      "effectSize": {
+        "label": "効果量計算",
+        "statmate": "自動",
+        "spss": "一部の検定",
+        "r": "パッケージ必要",
+        "excel": "手動"
+      },
+      "postHoc": {
+        "label": "事後検定",
+        "statmate": "自動",
+        "spss": "対応",
+        "r": "パッケージ必要",
+        "excel": "非対応"
+      },
+      "assumptions": {
+        "label": "仮定の検証",
+        "statmate": "自動",
+        "spss": "手動選択",
+        "r": "パッケージ必要",
+        "excel": "非対応"
+      }
+    },
+    "summary": {
+      "whenStatmate": {
+        "title": "StatMateを選ぶとき",
+        "text": "迅速で正確な結果と自動APA形式が必要なとき。学生、論文執筆者、複雑なソフトウェアの習得なしに出版対応の結果を求める研究者に最適です。"
+      },
+      "whenSpss": {
+        "title": "SPSSを選ぶとき",
+        "text": "高度な分析（SEM、HLM、生存分析）が必要、または機関がライセンスを提供している場合。複雑なデータ分析ニーズを持つ研究者に適しています。"
+      },
+      "whenR": {
+        "title": "Rを選ぶとき",
+        "text": "最大限の柔軟性、カスタム分析、または再現可能な研究パイプラインが必要なとき。プログラミングに慣れたデータサイエンティストや統計学者に適しています。"
+      },
+      "whenExcel": {
+        "title": "Excelを選ぶとき",
+        "text": "基本的な記述統計や簡単なグラフのみが必要なとき。推測統計や学術研究には推奨しません。"
+      }
+    },
+    "ctaTitle": "StatMateを無料で試す",
+    "ctaDescription": "インストール不要、登録不要。数秒でAPA形式の結果を取得できます。",
+    "ctaButton": "計算を始める"
   }
 }
