@@ -563,18 +563,18 @@
       "proAnnual": {
         "name": "Pro Annual",
         "period": "/month",
-        "description": "Best value — save 20%",
-        "subtext": "Billed $95.88/year",
+        "description": "Best value — save 30%",
+        "subtext": "Billed $49.99/year",
         "cta": "Start 7-Day Free Trial",
         "features": [
           "Everything in Pro Monthly",
           "Early access to new features",
-          "Save 20% vs monthly"
+          "Save 30% vs monthly"
         ]
       }
     },
     "mostPopular": "Most Popular",
-    "payPerUse": "Don't need a subscription? Pay $2.99 per export — no commitment required.",
+    "payPerUse": "Need just a few exports? Get 5 exports for $4.99, 15 for $9.99, or 50 for $24.99.",
     "comparisonTitle": "Feature Comparison",
     "featureLabel": "Feature",
     "freeLabel": "Free",
@@ -637,7 +637,8 @@
     ],
     "ctaTitle": "Ready to save hours on formatting?",
     "ctaDescription": "Start your 7-day free trial. No credit card required.",
-    "ctaButton": "Start Free Trial"
+    "ctaButton": "Start Free Trial",
+    "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
   },
   "feedback": {
     "title": "Send Feedback",

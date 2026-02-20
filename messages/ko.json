@@ -563,18 +563,18 @@
       "proAnnual": {
         "name": "Pro 연간",
         "period": "/월",
-        "description": "최고 가치 — 20% 절약",
-        "subtext": "연 $95.88 청구",
+        "description": "최고 가성비 — 30% 할인",
+        "subtext": "연간 $49.99 일시 결제",
         "cta": "7일 무료 체험",
         "features": [
           "Pro 월간의 모든 기능",
           "신기능 조기 액세스",
-          "월간 대비 20% 절약"
+          "월간 대비 30% 절약"
         ]
       }
     },
     "mostPopular": "인기",
-    "payPerUse": "구독이 필요 없으신가요? 건당 $2.99 — 약정 없음.",
+    "payPerUse": "몇 번만 필요하세요? 5회 $4.99, 15회 $9.99, 50회 $24.99로 이용하세요.",
     "comparisonTitle": "기능 비교",
     "featureLabel": "기능",
     "freeLabel": "무료",
@@ -637,7 +637,8 @@
     ],
     "ctaTitle": "포맷팅에 드는 시간을 절약하세요",
     "ctaDescription": "7일 무료 체험을 시작하세요. 신용카드가 필요 없습니다.",
-    "ctaButton": "무료 체험 시작"
+    "ctaButton": "무료 체험 시작",
+    "studentDiscount": "🎓 학생 할인: .edu 또는 .ac.kr 이메일로 50% 할인 — 월 $2.99 또는 연 $29.99"
   },
   "feedback": {
     "title": "피드백 보내기",

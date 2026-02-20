@@ -99,16 +99,19 @@ StatMate is a trilingual (EN/KO/JA) statistics calculator web app deployed on Ve
 | 비교 페이지 (/compare) | PRD에 없음. StatMate vs SPSS vs R vs Excel (14개 기능) |
 | 홈페이지 FAQ + JSON-LD | PRD에 없음. 6개 FAQ + FAQPage structured data |
 | About 인용 형식 | PRD에 없음. APA/MLA/Chicago 인용 + 방법론 섹션 |
+| Validation 증거 (/validation) | PRD에 없음. R 4.3 vs StatMate 20개 교차검증 증거 페이지 |
+| 가격 최적화 | PRD에 없음. 경쟁사 리서치 기반 가격 인하 + 학생 할인 + 크레딧 팩 |
+| SETUP-GUIDE.md | PRD에 없음. 외부 서비스 설정 종합 가이드 |
 
 ---
 
-## 설정 필요 항목 (코드 완료, 외부 설정만 남음)
+## 설정 필요 항목 (코드 완료, 외부 설정만 남음) — SETUP-GUIDE.md 참조
 
-1. **Supabase 프로젝트 생성** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` env vars 설정 필요. 미설정 시 auth/history UI 자동 숨김.
-2. **Lemon Squeezy 상품 등록** — Expert Review (₩49,000 one-time), University License (₩990,000/year) 상품 생성 필요.
-3. **Supabase DB 스키마** — `lib/supabase/schema.sql` 참조하여 `analysis_history` 테이블 + RLS 정책 생성.
-4. **커스텀 도메인** — statmate.app 등 도메인 구매 + Vercel DNS 설정.
-5. **GSC 신규 페이지 인덱싱** — /compare, /expert-review, /university, /ja 등 신규 URL 제출.
+1. **커스텀 도메인** — statmate.app 등 도메인 구매 + Vercel DNS 설정.
+2. **Supabase 프로젝트 생성** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` env vars 설정 필요. 미설정 시 auth/history UI 자동 숨김.
+3. **Lemon Squeezy 상품 등록** — Pro ($5.99/mo, $49.99/yr), Student ($2.99/mo, $29.99/yr), Credit Packs (5/15/50), Expert Review 3-tier, University 3-tier.
+4. **Supabase DB 스키마** — `lib/supabase/schema.sql` 참조하여 `analysis_history` 테이블 + RLS 정책 생성.
+5. **GSC 신규 페이지 인덱싱** — /validation, /compare, /expert-review, /university, /ja 등 신규 URL 제출.
 
 ---
 
@@ -199,25 +202,45 @@ group-boxplot, chi-square-chart, coefficient-chart, odds-ratio-chart, item-analy
 npm run build  # Turbopack, generates 60+ static + dynamic pages
 ```
 
+## Pricing Strategy (리서치 기반 최적화 완료)
+
+| Tier | Price | Notes |
+|------|-------|-------|
+| Free | $0 | 20개 계산기, APA 결과, PDF, 클립보드 |
+| Pro Monthly | $5.99/mo | AI 해석, Word 내보내기, 광고 제거 |
+| Pro Annual | $4.99/mo ($49.99/yr) | 월간 대비 30% 할인 |
+| Student Pro | $2.99/mo ($29.99/yr) | .edu/.ac.kr 인증 50% 할인 |
+| Credit Pack | $4.99/5회, $9.99/15회, $24.99/50회 | 단건 사용자용 |
+| Expert Review | ₩49,000~199,000 | Basic/Standard/Premium 3-tier |
+| University | ₩990,000~2,990,000/yr | 기관 규모별 3-tier |
+
 ## Immediate TODO (외부 설정만 남음)
 
-- [ ] **커스텀 도메인** — statmate.app 등 구매 + Vercel DNS 설정
+- [ ] **커스텀 도메인** — statmate.app 등 구매 + Vercel DNS 설정 (SETUP-GUIDE.md 참고)
 - [ ] **Supabase 프로젝트 설정** — env vars 추가 후 auth/history 활성화
-- [ ] **Lemon Squeezy 상품 등록** — Expert Review, University License 상품 생성
-- [ ] **GSC 신규 페이지 인덱싱** — /compare, /expert-review, /university, /ja 등
+- [ ] **Lemon Squeezy 상품 등록** — Pro ($5.99/mo, $49.99/yr), Student ($2.99/mo, $29.99/yr), Credit Packs, Expert Review 3-tier, University 3-tier
+- [ ] **GSC 신규 페이지 인덱싱** — /validation, /compare, /expert-review, /university, /ja 등
 - No TODO/FIXME/HACK comments in codebase.
 
 ## Recently Completed
 
+- [x] Validation 증거 페이지 — /validation, R vs StatMate 20개 교차검증 결과 (`e28a10f`)
+- [x] Expert Review 강화 — 리뷰어 자격, 샘플 리뷰, 만족 보증, FAQ (`e28a10f`)
+- [x] University 강화 — SPSS 비용 비교, 활용 사례, 조달 FAQ (`e28a10f`)
+- [x] About 강화 — 팀 오리진 스토리, 다크 모드 (`e28a10f`)
+- [x] Homepage 개선 — 인터랙티브 데모, 연구자 사용 사례 (기존 가짜 추천사 대체) (`e28a10f`)
+- [x] Blog JA 지원 — 블로그 상세 페이지 일본어 로케일 추가 (`e28a10f`)
+- [x] 가격 리서치 + 최적화 — 경쟁사 분석 기반 가격 인하 ($9.99→$5.99), 학생 할인 도입
+- [x] SETUP-GUIDE.md — 외부 서비스 설정 종합 가이드 (도메인, Supabase, Lemon Squeezy, GA, AdSense)
 - [x] Breadcrumb 네비게이션 — 20개 계산기 + BreadcrumbList JSON-LD (`90af086`)
-- [x] 다크 모드 — CSS 변수 + ThemeToggle + 레이아웃 dark 클래스 (`90af086`)
+- [x] 다크 모드 — CSS 변수 + ThemeToggle + 전체 페이지 dark 클래스 (`90af086`)
 - [x] PWA 서비스 워커 — public/sw.js + manifest 개선 + ServiceWorkerRegister (`90af086`)
 - [x] 홈페이지 FAQ + JSON-LD — 6개 FAQ + FAQPage structured data (`2e2e27c`)
 - [x] Pricing FAQ JSON-LD — 기존 FAQ에 structured data 추가 (`2e2e27c`)
 - [x] 비교 페이지 /compare — StatMate vs SPSS vs R vs Excel, 14개 기능 (`2e2e27c`)
 - [x] About 인용 형식 — APA/MLA/Chicago + Methodology 섹션 (`1c665fd`)
 - [x] R 검증 확대 — 홈페이지 4개→20개 전체, 4카테고리 (`1c665fd`)
-- [x] 일본어 i18n — messages/ja.json (1394줄), routing.ts, language-switcher, sitemap (`ac2c72c`)
+- [x] 일본어 i18n — messages/ja.json, routing.ts, language-switcher, sitemap (`ac2c72c`)
 - [x] SPSS → APA 변환 — lib/spss-parser.ts (6종), /tools/spss-to-apa (`ac2c72c`)
 - [x] Supabase 인증 + 히스토리 — auth-modal, auth-provider, history-panel (`ac2c72c`)
 - [x] Expert Review — /expert-review 랜딩 + /expert-review/request 폼 (`ac2c72c`)

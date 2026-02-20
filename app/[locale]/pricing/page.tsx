@@ -53,7 +53,7 @@ export default async function PricingPage() {
     },
     {
       name: t("plans.proMonthly.name"),
-      price: "$9.99",
+      price: "$5.99",
       period: t("plans.proMonthly.period"),
       description: t("plans.proMonthly.description"),
       cta: t("plans.proMonthly.cta"),
@@ -72,7 +72,7 @@ export default async function PricingPage() {
     },
     {
       name: t("plans.proAnnual.name"),
-      price: "$7.99",
+      price: "$4.99",
       period: t("plans.proAnnual.period"),
       description: t("plans.proAnnual.description"),
       subtext: t("plans.proAnnual.subtext"),
@@ -129,11 +129,11 @@ export default async function PricingPage() {
       <Badge variant="secondary" className="mb-4 text-sm">
         {t("badge")}
       </Badge>
-      <h1 className="max-w-2xl text-center text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
+      <h1 className="max-w-2xl text-center text-3xl font-bold leading-tight text-gray-900 dark:text-white md:text-4xl">
         {t("headline")}{" "}
         <span className="text-blue-600">{t("headlineHighlight")}</span>
       </h1>
-      <p className="mt-4 max-w-xl text-center text-gray-500">
+      <p className="mt-4 max-w-xl text-center text-gray-500 dark:text-gray-400">
         {t("subheadline")}
       </p>
 
@@ -214,13 +214,18 @@ export default async function PricingPage() {
       </div>
 
       {/* Pay-per-use */}
-      <div className="mt-8 rounded-lg border bg-gray-50 px-6 py-4 text-center">
-        <p className="text-sm text-gray-600">{t("payPerUse")}</p>
+      <div className="mt-8 rounded-lg border bg-gray-50 px-6 py-4 text-center dark:border-gray-700 dark:bg-gray-800">
+        <p className="text-sm text-gray-600 dark:text-gray-400">{t("payPerUse")}</p>
+      </div>
+
+      {/* Student Discount */}
+      <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center dark:border-blue-800 dark:bg-blue-950/30">
+        <p className="text-sm font-medium text-blue-700 dark:text-blue-300">{t("studentDiscount")}</p>
       </div>
 
       {/* Feature Comparison */}
       <section className="mt-20 w-full max-w-4xl">
-        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">
           {t("comparisonTitle")}
         </h2>
         <div className="overflow-x-auto">
@@ -265,14 +270,14 @@ export default async function PricingPage() {
 
       {/* FAQ */}
       <section className="mt-20 w-full max-w-2xl">
-        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">
           {t("faqTitle")}
         </h2>
         <div className="space-y-6">
           {faqs.map((faq, i) => (
             <div key={i}>
-              <h3 className="font-semibold text-gray-900">{faq.q}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-gray-600">
+              <h3 className="font-semibold text-gray-900 dark:text-white">{faq.q}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                 {faq.a}
               </p>
             </div>
