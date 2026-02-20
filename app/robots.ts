@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://statmate-red.vercel.app";
+const BASE_URL = "https://statmate.org";
 
 export default function robots(): MetadataRoute.Robots {
   return {

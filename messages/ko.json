@@ -707,15 +707,15 @@
     "citation": {
       "apa": {
         "label": "APA 7판",
-        "text": "StatMate. (2025). StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기 [웹 애플리케이션]. https://statmate-red.vercel.app"
+        "text": "StatMate. (2025). StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기 [웹 애플리케이션]. https://statmate.org"
       },
       "mla": {
         "label": "MLA 9판",
-        "text": "\"StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" StatMate, 2025, statmate-red.vercel.app."
+        "text": "\"StatMate: APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" StatMate, 2025, statmate.org."
       },
       "chicago": {
         "label": "시카고 17판",
-        "text": "StatMate. \"APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" 2025년 접속. https://statmate-red.vercel.app."
+        "text": "StatMate. \"APA 형식 결과를 제공하는 무료 온라인 통계 계산기.\" 2025년 접속. https://statmate.org."
       }
     },
     "methodologyTitle": "계산 방법론",
@@ -1930,7 +1930,7 @@
     "citationTitle": "학술 연구에서 StatMate 인용하기",
     "citationText": "학위논문이나 학술 출판물에서 StatMate를 사용하시는 경우, 다음과 같이 검증 방법론을 참고하여 인용하실 수 있습니다:",
     "citationValidation": "검증 설명문 (연구방법 섹션용)",
-    "citationValidationExample": "통계 분석은 R 4.3.x와 교차 검증된 웹 기반 계산기인 StatMate(https://statmate-red.vercel.app)를 사용하여 수행되었다. 모든 검정통계량과 p-값은 20개 통계 검정에 걸쳐 R 출력과 소수점 4자리까지 일치함이 확인되었다.",
+    "citationValidationExample": "통계 분석은 R 4.3.x와 교차 검증된 웹 기반 계산기인 StatMate(https://statmate.org)를 사용하여 수행되었다. 모든 검정통계량과 p-값은 20개 통계 검정에 걸쳐 R 출력과 소수점 4자리까지 일치함이 확인되었다.",
     "ctaTitle": "분석을 시작할 준비가 되셨나요?",
     "ctaDesc": "20개 모든 계산기가 무료이며, 회원가입 없이 APA 7판 형식의 결과를 제공합니다.",
     "ctaButton": "계산기 사용해 보기"

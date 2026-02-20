@@ -14,7 +14,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "StatMate",
-  url: "https://statmate-red.vercel.app",
+  url: "https://statmate.org",
   description:
     "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, Correlation, and Descriptive Statistics.",
 };

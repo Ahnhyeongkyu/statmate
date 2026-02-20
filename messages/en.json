@@ -707,15 +707,15 @@
     "citation": {
       "apa": {
         "label": "APA 7th Edition",
-        "text": "StatMate. (2025). StatMate: Free online statistics calculator with APA-formatted results [Web application]. https://statmate-red.vercel.app"
+        "text": "StatMate. (2025). StatMate: Free online statistics calculator with APA-formatted results [Web application]. https://statmate.org"
       },
       "mla": {
         "label": "MLA 9th Edition",
-        "text": "\"StatMate: Free Online Statistics Calculator with APA-Formatted Results.\" StatMate, 2025, statmate-red.vercel.app."
+        "text": "\"StatMate: Free Online Statistics Calculator with APA-Formatted Results.\" StatMate, 2025, statmate.org."
       },
       "chicago": {
         "label": "Chicago 17th Edition",
-        "text": "StatMate. \"Free Online Statistics Calculator with APA-Formatted Results.\" Accessed 2025. https://statmate-red.vercel.app."
+        "text": "StatMate. \"Free Online Statistics Calculator with APA-Formatted Results.\" Accessed 2025. https://statmate.org."
       }
     },
     "methodologyTitle": "Calculation Methodology",
@@ -1849,7 +1849,7 @@
     "citationTitle": "Citing StatMate in Academic Work",
     "citationText": "If you use StatMate for your thesis, dissertation, or publication, you can reference its validation methodology as follows:",
     "citationValidation": "Validation Statement (for Methods section)",
-    "citationValidationExample": "Statistical analyses were performed using StatMate (https://statmate-red.vercel.app), a web-based calculator validated against R 4.3.x. All test statistics and p-values were verified to match R output to four decimal places across 20 statistical tests.",
+    "citationValidationExample": "Statistical analyses were performed using StatMate (https://statmate.org), a web-based calculator validated against R 4.3.x. All test statistics and p-values were verified to match R output to four decimal places across 20 statistical tests.",
     "ctaTitle": "Ready to Run Your Analysis?",
     "ctaDesc": "All 20 calculators are free, require no sign-up, and produce APA 7th edition formatted results.",
     "ctaButton": "Try a Calculator Now"

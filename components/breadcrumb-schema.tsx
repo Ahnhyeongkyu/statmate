@@ -1,4 +1,4 @@
-const BASE_URL = "https://statmate-red.vercel.app";
+const BASE_URL = "https://statmate.org";
 
 interface BreadcrumbSchemaProps {
   locale: string;

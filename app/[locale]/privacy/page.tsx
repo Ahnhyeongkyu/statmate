@@ -32,7 +32,7 @@ export default async function PrivacyPage() {
             StatMate (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) is
             committed to protecting your privacy. This policy explains how we
             collect, use, and safeguard your information when you use our website
-            at statmate-red.vercel.app.
+            at statmate.org.
           </p>
         </section>
 

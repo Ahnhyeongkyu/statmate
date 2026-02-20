@@ -26,7 +26,7 @@ const inter = Inter({
   display: "optional",
 });
 
-const BASE_URL = "https://statmate-red.vercel.app";
+const BASE_URL = "https://statmate.org";
 
 export async function generateMetadata({
   params,

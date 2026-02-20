@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://statmate-red.vercel.app/sitemap.xml
+Sitemap: https://statmate.org/sitemap.xml

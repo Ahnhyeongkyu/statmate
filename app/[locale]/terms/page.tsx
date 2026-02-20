@@ -29,7 +29,7 @@ export default async function TermsPage() {
             1. Acceptance of Terms
           </h2>
           <p>
-            By accessing and using StatMate (statmate-red.vercel.app), you agree
+            By accessing and using StatMate (statmate.org), you agree
             to these Terms of Service. If you do not agree, please do not use
             our service.
           </p>

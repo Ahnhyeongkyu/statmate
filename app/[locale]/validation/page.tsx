@@ -348,7 +348,7 @@ export default async function ValidationPage() {
               APA 7th Edition
             </h3>
             <p className="font-mono text-sm leading-relaxed text-gray-800 dark:text-gray-200">
-              StatMate. (2025). <em>StatMate: Free online statistics calculators</em> (Version 1.0) [Web application]. https://statmate-red.vercel.app
+              StatMate. (2025). <em>StatMate: Free online statistics calculators</em> (Version 1.0) [Web application]. https://statmate.org
             </p>
           </div>
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-700 dark:bg-gray-800">

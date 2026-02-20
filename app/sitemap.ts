@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs } from "@/lib/blog";
 
-const BASE_URL = "https://statmate-red.vercel.app";
+const BASE_URL = "https://statmate.org";
 
 const locales = ["en", "ko", "ja"] as const;
 

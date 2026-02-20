@@ -707,15 +707,15 @@
     "citation": {
       "apa": {
         "label": "APA第7版",
-        "text": "StatMate. (2025). StatMate: APA形式の結果を提供する無料オンライン統計計算ツール [Webアプリケーション]. https://statmate-red.vercel.app"
+        "text": "StatMate. (2025). StatMate: APA形式の結果を提供する無料オンライン統計計算ツール [Webアプリケーション]. https://statmate.org"
       },
       "mla": {
         "label": "MLA第9版",
-        "text": "\"StatMate: APA形式の結果を提供する無料オンライン統計計算ツール.\" StatMate, 2025, statmate-red.vercel.app."
+        "text": "\"StatMate: APA形式の結果を提供する無料オンライン統計計算ツール.\" StatMate, 2025, statmate.org."
       },
       "chicago": {
         "label": "シカゴ第17版",
-        "text": "StatMate.「APA形式の結果を提供する無料オンライン統計計算ツール」2025年アクセス. https://statmate-red.vercel.app."
+        "text": "StatMate.「APA形式の結果を提供する無料オンライン統計計算ツール」2025年アクセス. https://statmate.org."
       }
     },
     "methodologyTitle": "計算方法論",
@@ -1850,7 +1850,7 @@
     "citationTitle": "学術研究でのStatMate引用方法",
     "citationText": "学位論文や学術出版物でStatMateを使用される場合、以下のように検証方法論を参照して引用できます：",
     "citationValidation": "検証説明文（研究方法セクション用）",
-    "citationValidationExample": "統計分析はR 4.3.xと交差検証されたWebベースの計算ツールであるStatMate（https://statmate-red.vercel.app）を使用して実施した。すべての検定統計量とp値は20の統計検定にわたり、R出力と小数点4桁まで一致することが確認された。",
+    "citationValidationExample": "統計分析はR 4.3.xと交差検証されたWebベースの計算ツールであるStatMate（https://statmate.org）を使用して実施した。すべての検定統計量とp値は20の統計検定にわたり、R出力と小数点4桁まで一致することが確認された。",
     "ctaTitle": "分析を始める準備はできましたか？",
     "ctaDesc": "全20計算ツールが無料で、登録不要、APA第7版形式の結果を提供します。",
     "ctaButton": "計算ツールを試す"

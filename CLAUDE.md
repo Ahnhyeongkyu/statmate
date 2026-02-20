@@ -7,7 +7,7 @@
 StatMate is a trilingual (EN/KO/JA) statistics calculator web app deployed on Vercel.
 - **Stack:** Next.js 16.1.6 (Turbopack), TypeScript, Tailwind CSS v4, next-intl 4.8.2
 - **Repo:** https://github.com/Ahnhyeongkyu/statmate.git (branch: master)
-- **Live:** https://statmate-red.vercel.app
+- **Live:** https://statmate.org
 - **PRD:** `PRD.md` (2026-02-16)
 - **Monetization:** Lemon Squeezy Pro license (AI interpretation, DOCX export)
 
@@ -26,7 +26,7 @@ StatMate is a trilingual (EN/KO/JA) statistics calculator web app deployed on Ve
 | Lemon Squeezy 결제 | ✅ 체크아웃 + 라이선스 검증 + /api/activate |
 | 가격 페이지 | ✅ /pricing, FAQ, 기능 비교표 |
 | Google Analytics | ✅ GA4 + Vercel Analytics + 이벤트 추적 |
-| Vercel 배포 | ✅ statmate-red.vercel.app |
+| Vercel 배포 | ✅ statmate.org |
 | GSC 등록 | ✅ 메타태그 인증 완료 |
 
 ### Sprint 2 (Growth) — 100% 완료
