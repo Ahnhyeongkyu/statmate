@@ -53,15 +53,15 @@ export default async function ComparePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(comparisonJsonLd) }}
       />
 
-      <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
-      <p className="mt-2 text-gray-500">{t("description")}</p>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t("title")}</h1>
+      <p className="mt-2 text-gray-500 dark:text-gray-400">{t("description")}</p>
 
       {/* Comparison Table */}
       <div className="mt-8 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b-2 border-t-2 border-gray-900">
-              <th className="py-3 text-left font-semibold">{t("feature")}</th>
+            <tr className="border-b-2 border-t-2 border-gray-900 dark:border-gray-400">
+              <th className="py-3 text-left font-semibold dark:text-white">{t("feature")}</th>
               {tools.map((tool) => (
                 <th
                   key={tool}
@@ -75,11 +75,11 @@ export default async function ComparePage() {
           <tbody className="divide-y">
             {featureKeys.map((key) => (
               <tr key={key}>
-                <td className="py-2.5 font-medium text-gray-700">
+                <td className="py-2.5 font-medium text-gray-700 dark:text-gray-300">
                   {t(`features.${key}.label`)}
                 </td>
                 {tools.map((tool) => (
-                  <td key={tool} className="py-2.5 text-center text-gray-600">
+                  <td key={tool} className="py-2.5 text-center text-gray-600 dark:text-gray-400">
                     {t(`features.${key}.${tool}`)}
                   </td>
                 ))}
@@ -93,11 +93,11 @@ export default async function ComparePage() {
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         {(["whenStatmate", "whenSpss", "whenR", "whenExcel"] as const).map(
           (key) => (
-            <div key={key} className="rounded-lg border bg-white p-6">
-              <h2 className="mb-2 text-lg font-semibold text-gray-900">
+            <div key={key} className="rounded-lg border bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 {t(`summary.${key}.title`)}
               </h2>
-              <p className="text-sm leading-relaxed text-gray-600">
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                 {t(`summary.${key}.text`)}
               </p>
             </div>
