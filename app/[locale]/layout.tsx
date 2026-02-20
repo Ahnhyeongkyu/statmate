@@ -10,12 +10,14 @@ import { routing, type Locale } from "@/i18n/routing";
 import { MobileMenu } from "@/components/mobile-menu";
 import { HeaderProButton } from "@/components/header-pro-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { AdSenseScript } from "@/components/adsense";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { ErrorBoundaryInit } from "@/components/error-boundary-init";
 import { FeedbackButton } from "@/components/feedback-button";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { AuthProvider } from "@/components/auth-provider";
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
 import "../globals.css";
 
 const inter = Inter({
@@ -192,13 +194,13 @@ export default async function LocaleLayout({
           </a>
 
           {/* Header */}
-          <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm">
+          <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900/80">
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
               <Link href="/" className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
                   S
                 </div>
-                <span className="text-xl font-bold">StatMate</span>
+                <span className="text-xl font-bold dark:text-white">StatMate</span>
               </Link>
 
               <nav className="hidden items-center gap-1 md:flex">
@@ -206,7 +208,7 @@ export default async function LocaleLayout({
                   <Link
                     key={calc.href}
                     href={calc.href}
-                    className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                    className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                   >
                     {t(`nav.${calc.key}`)}
                   </Link>
@@ -219,19 +221,20 @@ export default async function LocaleLayout({
                 </Link>
                 <Link
                   href="/blog"
-                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                 >
                   {t("nav.blog")}
                 </Link>
                 <Link
                   href="/tools/spss-to-apa"
-                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                  className="rounded-md px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
                 >
                   {t("nav.tools")}
                 </Link>
               </nav>
 
               <div className="hidden items-center gap-2 md:flex">
+                <ThemeToggle />
                 <LanguageSwitcher />
                 <HeaderProButton />
               </div>
@@ -254,9 +257,10 @@ export default async function LocaleLayout({
           <FeedbackButton />
           <Analytics />
           <SpeedInsights />
+          <ServiceWorkerRegister />
 
           {/* Footer */}
-          <footer className="border-t bg-gray-50">
+          <footer className="border-t bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
             <div className="mx-auto max-w-6xl px-4 py-12">
               <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                 <div>
@@ -264,16 +268,16 @@ export default async function LocaleLayout({
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
                       S
                     </div>
-                    <span className="text-lg font-bold">StatMate</span>
+                    <span className="text-lg font-bold dark:text-white">StatMate</span>
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                     {t("brandDescription")}
                   </p>
                   <NewsletterSignup variant="footer" />
                 </div>
 
                 <div>
-                  <h3 className="mb-3 text-sm font-semibold text-gray-900">
+                  <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
                     {t("footer.calculators")}
                   </h3>
                   <ul className="space-y-2">
@@ -281,7 +285,7 @@ export default async function LocaleLayout({
                       <li key={calc.href}>
                         <Link
                           href={calc.href}
-                          className="text-sm text-gray-500 hover:text-gray-900"
+                          className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                         >
                           {t(`nav.${calc.key}`)} {t("footer.calculatorSuffix")}
                         </Link>
@@ -291,14 +295,14 @@ export default async function LocaleLayout({
                 </div>
 
                 <div>
-                  <h3 className="mb-3 text-sm font-semibold text-gray-900">
+                  <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
                     {t("footer.product")}
                   </h3>
                   <ul className="space-y-2">
                     <li>
                       <Link
                         href="/pricing"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("pricing")}
                       </Link>
@@ -306,7 +310,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/about"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.about")}
                       </Link>
@@ -314,7 +318,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/compare"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.compare")}
                       </Link>
@@ -322,7 +326,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/tools/spss-to-apa"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.spssConverter")}
                       </Link>
@@ -330,7 +334,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/expert-review"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.expertReview")}
                       </Link>
@@ -338,7 +342,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/university"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.university")}
                       </Link>
@@ -347,14 +351,14 @@ export default async function LocaleLayout({
                 </div>
 
                 <div>
-                  <h3 className="mb-3 text-sm font-semibold text-gray-900">
+                  <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
                     {t("footer.legal")}
                   </h3>
                   <ul className="space-y-2">
                     <li>
                       <Link
                         href="/privacy"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.privacyPolicy")}
                       </Link>
@@ -362,7 +366,7 @@ export default async function LocaleLayout({
                     <li>
                       <Link
                         href="/terms"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.termsOfService")}
                       </Link>
@@ -370,7 +374,7 @@ export default async function LocaleLayout({
                     <li>
                       <a
                         href="mailto:contact.statmate@gmail.com"
-                        className="text-sm text-gray-500 hover:text-gray-900"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >
                         {t("footer.contact")}
                       </a>
@@ -379,7 +383,7 @@ export default async function LocaleLayout({
                 </div>
               </div>
 
-              <div className="mt-8 border-t pt-8 text-center text-sm text-gray-500">
+              <div className="mt-8 border-t pt-8 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
               </div>
             </div>

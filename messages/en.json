@@ -26,7 +26,9 @@
       "mcnemar": "McNemar Test",
       "wizard": "Which Test?",
       "blog": "Guides",
-      "tools": "SPSS → APA"
+      "tools": "SPSS → APA",
+      "home": "Home",
+      "calculatorsLabel": "Calculators"
     },
     "pricing": "Pricing",
     "getPro": "Get Pro",

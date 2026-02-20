@@ -26,7 +26,9 @@
       "mcnemar": "McNemar 검정",
       "wizard": "검정 선택",
       "blog": "가이드",
-      "tools": "SPSS → APA"
+      "tools": "SPSS → APA",
+      "home": "홈",
+      "calculatorsLabel": "계산기"
     },
     "pricing": "요금제",
     "getPro": "Pro 시작",

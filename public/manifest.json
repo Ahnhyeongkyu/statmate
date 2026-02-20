@@ -1,16 +1,23 @@
 {
   "name": "StatMate - Free Online Statistics Calculators",
   "short_name": "StatMate",
-  "description": "Free online statistics calculators with APA-formatted results",
+  "description": "Free online statistics calculators with APA-formatted results. T-test, ANOVA, Chi-square, and 17 more tests.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
+  "orientation": "any",
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }

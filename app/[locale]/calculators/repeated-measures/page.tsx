@@ -5,6 +5,8 @@ import { SeoContentKo } from "./seo-ko";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
 
 export async function generateMetadata({
   params,
@@ -63,11 +65,13 @@ export default async function RepeatedMeasuresPage({
 
   return (
     <div>
+      <BreadcrumbSchema locale={locale} calculatorSlug="repeated-measures" calculatorName="Repeated Measures ANOVA" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <FaqSchema faqs={faqs} />
+      <Breadcrumb />
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
         <p className="mt-2 text-gray-500">{t("description")}</p>
