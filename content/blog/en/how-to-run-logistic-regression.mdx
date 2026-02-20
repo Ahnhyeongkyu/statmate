@@ -116,9 +116,7 @@ All VIF values are well below 10, so multicollinearity is not a concern.
 
 The logistic regression equation is:
 
-$$
-\ln\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 \cdot \text{Age} + \beta_2 \cdot \text{LOS} + \beta_3 \cdot \text{Comorbidities}
-$$
+`ln(p / (1-p)) = β₀ + β₁ · Age + β₂ · LOS + β₃ · Comorbidities`
 
 After maximum likelihood estimation, suppose we obtain the following coefficients:
 
@@ -145,13 +143,9 @@ The most intuitive way to interpret logistic regression results is through **odd
 
 For a 75-year-old patient with a 6-day stay and 3 comorbidities:
 
-$$
-\text{logit}(p) = -8.524 + 0.065(75) + 0.312(6) + 0.487(3) = -8.524 + 4.875 + 1.872 + 1.461 = -0.316
-$$
+`logit(p) = -8.524 + 0.065(75) + 0.312(6) + 0.487(3) = -8.524 + 4.875 + 1.872 + 1.461 = -0.316`
 
-$$
-p = \frac{1}{1 + e^{0.316}} = \frac{1}{1 + 1.372} = 0.422
-$$
+`p = 1 / (1 + e⁰·³¹⁶) = 1 / (1 + 1.372) = 0.422`
 
 This patient has approximately a **42.2%** predicted probability of 30-day readmission.
 
