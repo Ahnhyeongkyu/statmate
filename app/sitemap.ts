@@ -62,6 +62,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
+    {
+      path: "/validation",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
   ];
 
   // Add blog post pages (use ko slugs as canonical set)

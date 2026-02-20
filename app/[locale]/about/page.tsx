@@ -22,20 +22,20 @@ export default async function AboutPage() {
 
   return (
     <div className="mx-auto max-w-2xl py-8">
-      <h1 className="text-3xl font-bold text-gray-900">{t("title")}</h1>
+      <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t("title")}</h1>
 
-      <div className="mt-8 space-y-6 text-gray-600 leading-relaxed">
+      <div className="mt-8 space-y-6 leading-relaxed text-gray-600 dark:text-gray-300">
         <p>
-          <strong className="text-gray-900">StatMate</strong>{" "}
+          <strong className="text-gray-900 dark:text-white">StatMate</strong>{" "}
           {t("mission")}
         </p>
 
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("missionTitle")}
         </h2>
         <p>{t("mission")}</p>
 
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("differenceTitle")}
         </h2>
         <ul className="list-disc space-y-2 pl-6">
@@ -45,7 +45,7 @@ export default async function AboutPage() {
           <li>{t("differences.free")}</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("calculatorsTitle")}
         </h2>
         <ul className="list-disc space-y-1 pl-6">
@@ -71,31 +71,38 @@ export default async function AboutPage() {
           <li>{t("calculatorsList.mcnemar")}</li>
         </ul>
 
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("teamTitle")}
         </h2>
         <p>{t("teamDescription")}</p>
+
+        {/* Origin Story */}
+        <div className="rounded-xl border bg-blue-50 p-6 dark:border-gray-700 dark:bg-blue-950/30">
+          <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">{t("teamOrigin.title")}</h3>
+          <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">{t("teamOrigin.desc")}</p>
+        </div>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {(["stat", "apa", "tech"] as const).map((key) => (
-            <div key={key} className="rounded-lg border bg-gray-50 p-4">
-              <h3 className="mb-2 font-semibold text-gray-900">{t(`team.${key}.title`)}</h3>
-              <p className="text-sm text-gray-600">{t(`team.${key}.description`)}</p>
+            <div key={key} className="rounded-lg border bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
+              <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">{t(`team.${key}.title`)}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t(`team.${key}.description`)}</p>
             </div>
           ))}
         </div>
 
         {/* How to Cite */}
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("citationTitle")}
         </h2>
         <p>{t("citationDescription")}</p>
         <div className="space-y-4">
           {(["apa", "mla", "chicago"] as const).map((style) => (
-            <div key={style} className="rounded-lg border bg-gray-50 p-4">
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
+            <div key={style} className="rounded-lg border bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 {t(`citation.${style}.label`)}
               </h3>
-              <p className="font-mono text-sm leading-relaxed text-gray-800">
+              <p className="font-mono text-sm leading-relaxed text-gray-800 dark:text-gray-200">
                 {t(`citation.${style}.text`)}
               </p>
             </div>
@@ -103,25 +110,25 @@ export default async function AboutPage() {
         </div>
 
         {/* Methodology */}
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("methodologyTitle")}
         </h2>
         <p>{t("methodologyDescription")}</p>
         <div className="space-y-3">
           {(["parametric", "nonParametric", "regression", "other"] as const).map((cat) => (
-            <div key={cat} className="rounded-lg border bg-white p-4">
-              <h3 className="mb-1 text-sm font-semibold text-gray-900">
+            <div key={cat} className="rounded-lg border bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+              <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                 {t(`methodology.${cat}.title`)}
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 {t(`methodology.${cat}.tests`)}
               </p>
             </div>
           ))}
         </div>
-        <p className="text-sm text-gray-500">{t("methodologyNote")}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{t("methodologyNote")}</p>
 
-        <h2 className="text-xl font-semibold text-gray-900">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           {t("contactTitle")}
         </h2>
         <p>{t("contactText")}</p>
@@ -129,7 +136,7 @@ export default async function AboutPage() {
           {t("contactEmail")}{" "}
           <a
             href="mailto:contact.statmate@gmail.com"
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline dark:text-blue-400"
           >
             contact.statmate@gmail.com
           </a>

@@ -67,7 +67,7 @@ export default async function BlogPostPage({
         className="mb-6 inline-flex items-center text-sm text-gray-500 hover:text-gray-900"
       >
         <ChevronLeft className="mr-1 h-4 w-4" />
-        {locale === "ko" ? "블로그 목록" : "Back to Blog"}
+        {locale === "ko" ? "블로그 목록" : locale === "ja" ? "ブログ一覧" : "Back to Blog"}
       </Link>
 
       <header className="mb-8">
@@ -91,18 +91,18 @@ export default async function BlogPostPage({
         <h3 className="text-xl font-bold">
           {locale === "ko"
             ? "지금 바로 계산해 보세요"
-            : "Try It Now"}
+            : locale === "ja" ? "今すぐ計算してみましょう" : "Try It Now"}
         </h3>
         <p className="mt-2 text-sm text-blue-100">
           {locale === "ko"
             ? "StatMate의 무료 통계 계산기로 데이터를 분석하고 APA 형식 결과를 받아보세요."
-            : "Analyze your data with StatMate's free calculators and get APA-formatted results instantly."}
+            : locale === "ja" ? "StatMateの無料統計計算ツールでデータを分析し、APA形式の結果を取得しましょう。" : "Analyze your data with StatMate's free calculators and get APA-formatted results instantly."}
         </p>
         <Link
           href="/calculators/t-test"
           className="mt-4 inline-block rounded-full bg-white px-6 py-2.5 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50"
         >
-          {locale === "ko" ? "계산기 시작하기" : "Start Calculating"}
+          {locale === "ko" ? "계산기 시작하기" : locale === "ja" ? "計算を始める" : "Start Calculating"}
         </Link>
       </div>
 

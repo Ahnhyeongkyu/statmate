@@ -347,6 +347,14 @@ export default async function LocaleLayout({
                         {t("footer.university")}
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        href="/validation"
+                        className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                      >
+                        {t("footer.validation")}
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
