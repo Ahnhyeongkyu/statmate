@@ -10,7 +10,8 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 export async function generateStaticParams() {
   const koSlugs = getAllSlugs("ko").map((slug) => ({ locale: "ko", slug }));
   const enSlugs = getAllSlugs("en").map((slug) => ({ locale: "en", slug }));
-  return [...koSlugs, ...enSlugs];
+  const jaSlugs = getAllSlugs("ja").map((slug) => ({ locale: "ja", slug }));
+  return [...koSlugs, ...enSlugs, ...jaSlugs];
 }
 
 export async function generateMetadata({
