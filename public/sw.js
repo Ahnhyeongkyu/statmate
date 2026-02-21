@@ -1,6 +1,5 @@
-const CACHE_NAME = "statmate-v1";
+const CACHE_NAME = "statmate-v2";
 const STATIC_ASSETS = [
-  "/",
   "/manifest.json",
 ];
 
@@ -31,10 +30,18 @@ self.addEventListener("fetch", (event) => {
   // Skip API routes and external requests
   if (request.url.includes("/api/") || !request.url.startsWith(self.location.origin)) return;
 
+  // Navigation requests (HTML pages): network-first
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request).catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Static assets: stale-while-revalidate
   event.respondWith(
     caches.match(request).then((cached) => {
       const fetched = fetch(request).then((response) => {
-        // Only cache successful responses
         if (response.ok) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
