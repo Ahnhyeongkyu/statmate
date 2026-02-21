@@ -24,8 +24,14 @@ export async function generateMetadata({
   };
 }
 
-const CHECKOUT_URL =
-  "https://statmate.lemonsqueezy.com/checkout/buy/27f3051f-83fd-4dbc-858d-f813a7f15cb1";
+const CHECKOUT_URLS = {
+  proMonthly:
+    "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb",
+  proAnnual:
+    "https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339",
+  studentPro:
+    "https://statmate.lemonsqueezy.com/checkout/buy/1dfd20c1-4f9a-4b53-81e4-e30702998539",
+};
 
 export default async function PricingPage() {
   const t = await getTranslations("pricing");
@@ -57,7 +63,7 @@ export default async function PricingPage() {
       period: t("plans.proMonthly.period"),
       description: t("plans.proMonthly.description"),
       cta: t("plans.proMonthly.cta"),
-      ctaHref: CHECKOUT_URL,
+      ctaHref: CHECKOUT_URLS.proMonthly,
       ctaVariant: "default" as const,
       highlight: true,
       external: true,
@@ -77,7 +83,7 @@ export default async function PricingPage() {
       description: t("plans.proAnnual.description"),
       subtext: t("plans.proAnnual.subtext"),
       cta: t("plans.proAnnual.cta"),
-      ctaHref: CHECKOUT_URL,
+      ctaHref: CHECKOUT_URLS.proAnnual,
       ctaVariant: "outline" as const,
       highlight: false,
       external: true,
@@ -219,9 +225,9 @@ export default async function PricingPage() {
       </div>
 
       {/* Student Discount */}
-      <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center dark:border-blue-800 dark:bg-blue-950/30">
+      <a href={CHECKOUT_URLS.studentPro} target="_blank" rel="noopener noreferrer" className="mt-4 block rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/30 dark:hover:bg-blue-950/50">
         <p className="text-sm font-medium text-blue-700 dark:text-blue-300">{t("studentDiscount")}</p>
-      </div>
+      </a>
 
       {/* Feature Comparison */}
       <section className="mt-20 w-full max-w-4xl">
@@ -289,7 +295,7 @@ export default async function PricingPage() {
       <section className="mt-20 w-full max-w-xl rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
         <h2 className="text-2xl font-bold">{t("ctaTitle")}</h2>
         <p className="mt-2 text-blue-100">{t("ctaDescription")}</p>
-        <a href={CHECKOUT_URL} target="_blank" rel="noopener noreferrer">
+        <a href={CHECKOUT_URLS.proMonthly} target="_blank" rel="noopener noreferrer">
           <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
             {t("ctaButton")}
           </Button>
