@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/factor-analysis" },
+    alternates: {
+      canonical: "/calculators/factor-analysis",
+      languages: {
+        en: "/calculators/factor-analysis",
+        ko: "/ko/calculators/factor-analysis",
+        ja: "/ja/calculators/factor-analysis",
+        "x-default": "/calculators/factor-analysis",
+      },
+    },
   };
 }
 

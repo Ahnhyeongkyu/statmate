@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/button";
 import { UniversityContactForm } from "@/components/university-pricing";
 
 export async function generateMetadata({
@@ -13,7 +12,15 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: { canonical: "/university" },
+    alternates: {
+      canonical: "/university",
+      languages: {
+        en: "/university",
+        ko: "/ko/university",
+        ja: "/ja/university",
+        "x-default": "/university",
+      },
+    },
   };
 }
 

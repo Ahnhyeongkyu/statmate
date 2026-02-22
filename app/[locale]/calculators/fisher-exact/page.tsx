@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/fisher-exact" },
+    alternates: {
+      canonical: "/calculators/fisher-exact",
+      languages: {
+        en: "/calculators/fisher-exact",
+        ko: "/ko/calculators/fisher-exact",
+        ja: "/ja/calculators/fisher-exact",
+        "x-default": "/calculators/fisher-exact",
+      },
+    },
   };
 }
 

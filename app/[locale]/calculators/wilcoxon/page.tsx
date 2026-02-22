@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/wilcoxon" },
+    alternates: {
+      canonical: "/calculators/wilcoxon",
+      languages: {
+        en: "/calculators/wilcoxon",
+        ko: "/ko/calculators/wilcoxon",
+        ja: "/ja/calculators/wilcoxon",
+        "x-default": "/calculators/wilcoxon",
+      },
+    },
   };
 }
 

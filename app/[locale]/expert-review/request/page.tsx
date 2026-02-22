@@ -12,6 +12,15 @@ export async function generateMetadata({
   return {
     title: t("form.pageTitle"),
     description: t("description"),
+    alternates: {
+      canonical: "/expert-review/request",
+      languages: {
+        en: "/expert-review/request",
+        ko: "/ko/expert-review/request",
+        ja: "/ja/expert-review/request",
+        "x-default": "/expert-review/request",
+      },
+    },
   };
 }
 

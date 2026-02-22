@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/logistic-regression" },
+    alternates: {
+      canonical: "/calculators/logistic-regression",
+      languages: {
+        en: "/calculators/logistic-regression",
+        ko: "/ko/calculators/logistic-regression",
+        ja: "/ja/calculators/logistic-regression",
+        "x-default": "/calculators/logistic-regression",
+      },
+    },
   };
 }
 

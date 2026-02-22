@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/two-way-anova" },
+    alternates: {
+      canonical: "/calculators/two-way-anova",
+      languages: {
+        en: "/calculators/two-way-anova",
+        ko: "/ko/calculators/two-way-anova",
+        ja: "/ja/calculators/two-way-anova",
+        "x-default": "/calculators/two-way-anova",
+      },
+    },
   };
 }
 

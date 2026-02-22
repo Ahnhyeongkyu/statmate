@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/chi-square" },
+    alternates: {
+      canonical: "/calculators/chi-square",
+      languages: {
+        en: "/calculators/chi-square",
+        ko: "/ko/calculators/chi-square",
+        ja: "/ja/calculators/chi-square",
+        "x-default": "/calculators/chi-square",
+      },
+    },
   };
 }
 

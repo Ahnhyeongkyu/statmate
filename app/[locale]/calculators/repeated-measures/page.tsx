@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/repeated-measures" },
+    alternates: {
+      canonical: "/calculators/repeated-measures",
+      languages: {
+        en: "/calculators/repeated-measures",
+        ko: "/ko/calculators/repeated-measures",
+        ja: "/ja/calculators/repeated-measures",
+        "x-default": "/calculators/repeated-measures",
+      },
+    },
   };
 }
 

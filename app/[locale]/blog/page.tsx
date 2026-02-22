@@ -17,7 +17,15 @@ export async function generateMetadata({
     description: isKo
       ? "통계 분석 방법, APA 보고 형식, 검정 선택 가이드 등 실용적인 통계 가이드를 제공합니다."
       : "Practical statistics guides covering analysis methods, APA reporting format, and test selection.",
-    alternates: { canonical: "/blog" },
+    alternates: {
+      canonical: "/blog",
+      languages: {
+        en: "/blog",
+        ko: "/ko/blog",
+        ja: "/ja/blog",
+        "x-default": "/blog",
+      },
+    },
   };
 }
 

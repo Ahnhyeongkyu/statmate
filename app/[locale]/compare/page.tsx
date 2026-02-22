@@ -13,7 +13,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/compare" },
+    alternates: {
+      canonical: "/compare",
+      languages: {
+        en: "/compare",
+        ko: "/ko/compare",
+        ja: "/ja/compare",
+        "x-default": "/compare",
+      },
+    },
   };
 }
 

@@ -11,7 +11,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/terms" },
+    alternates: {
+      canonical: "/terms",
+      languages: {
+        en: "/terms",
+        ko: "/ko/terms",
+        ja: "/ja/terms",
+        "x-default": "/terms",
+      },
+    },
   };
 }
 

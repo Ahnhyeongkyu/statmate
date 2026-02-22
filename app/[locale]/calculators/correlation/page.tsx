@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/correlation" },
+    alternates: {
+      canonical: "/calculators/correlation",
+      languages: {
+        en: "/calculators/correlation",
+        ko: "/ko/calculators/correlation",
+        ja: "/ja/calculators/correlation",
+        "x-default": "/calculators/correlation",
+      },
+    },
   };
 }
 

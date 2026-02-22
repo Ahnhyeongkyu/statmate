@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/cronbach-alpha" },
+    alternates: {
+      canonical: "/calculators/cronbach-alpha",
+      languages: {
+        en: "/calculators/cronbach-alpha",
+        ko: "/ko/calculators/cronbach-alpha",
+        ja: "/ja/calculators/cronbach-alpha",
+        "x-default": "/calculators/cronbach-alpha",
+      },
+    },
   };
 }
 

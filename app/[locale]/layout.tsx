@@ -94,16 +94,12 @@ export async function generateMetadata({
             "APA 7th edition",
           ],
     openGraph: {
-      title: titles[locale] ?? titles.en,
-      description: descriptions[locale] ?? descriptions.en,
       type: "website",
       locale: isJa ? "ja_JP" : isKo ? "ko_KR" : "en_US",
       siteName: "StatMate",
     },
     twitter: {
       card: "summary_large_image",
-      title: titles[locale] ?? titles.en,
-      description: descriptions[locale] ?? descriptions.en,
     },
     robots: {
       index: true,
@@ -122,6 +118,7 @@ export async function generateMetadata({
         en: "/",
         ko: "/ko",
         ja: "/ja",
+        "x-default": "/",
       },
     },
     verification: {

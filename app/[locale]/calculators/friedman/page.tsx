@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/friedman" },
+    alternates: {
+      canonical: "/calculators/friedman",
+      languages: {
+        en: "/calculators/friedman",
+        ko: "/ko/calculators/friedman",
+        ja: "/ja/calculators/friedman",
+        "x-default": "/calculators/friedman",
+      },
+    },
   };
 }
 

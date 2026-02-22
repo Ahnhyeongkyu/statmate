@@ -12,7 +12,15 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: { canonical: "/tools/spss-to-apa" },
+    alternates: {
+      canonical: "/tools/spss-to-apa",
+      languages: {
+        en: "/tools/spss-to-apa",
+        ko: "/ko/tools/spss-to-apa",
+        ja: "/ja/tools/spss-to-apa",
+        "x-default": "/tools/spss-to-apa",
+      },
+    },
   };
 }
 

@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/mann-whitney" },
+    alternates: {
+      canonical: "/calculators/mann-whitney",
+      languages: {
+        en: "/calculators/mann-whitney",
+        ko: "/ko/calculators/mann-whitney",
+        ja: "/ja/calculators/mann-whitney",
+        "x-default": "/calculators/mann-whitney",
+      },
+    },
   };
 }
 

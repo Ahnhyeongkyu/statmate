@@ -13,7 +13,15 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    alternates: { canonical: "/expert-review" },
+    alternates: {
+      canonical: "/expert-review",
+      languages: {
+        en: "/expert-review",
+        ko: "/ko/expert-review",
+        ja: "/ja/expert-review",
+        "x-default": "/expert-review",
+      },
+    },
   };
 }
 

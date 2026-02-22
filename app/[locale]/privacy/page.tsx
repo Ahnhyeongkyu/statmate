@@ -11,7 +11,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/privacy" },
+    alternates: {
+      canonical: "/privacy",
+      languages: {
+        en: "/privacy",
+        ko: "/ko/privacy",
+        ja: "/ja/privacy",
+        "x-default": "/privacy",
+      },
+    },
   };
 }
 

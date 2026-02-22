@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/multiple-regression" },
+    alternates: {
+      canonical: "/calculators/multiple-regression",
+      languages: {
+        en: "/calculators/multiple-regression",
+        ko: "/ko/calculators/multiple-regression",
+        ja: "/ja/calculators/multiple-regression",
+        "x-default": "/calculators/multiple-regression",
+      },
+    },
   };
 }
 

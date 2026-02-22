@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/mcnemar" },
+    alternates: {
+      canonical: "/calculators/mcnemar",
+      languages: {
+        en: "/calculators/mcnemar",
+        ko: "/ko/calculators/mcnemar",
+        ja: "/ja/calculators/mcnemar",
+        "x-default": "/calculators/mcnemar",
+      },
+    },
   };
 }
 

@@ -94,6 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             en: `${BASE_URL}${page.path}`,
             ko: `${BASE_URL}/ko${page.path}`,
             ja: `${BASE_URL}/ja${page.path}`,
+            "x-default": `${BASE_URL}${page.path}`,
           },
         },
       });

@@ -18,7 +18,15 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: "/calculators/kruskal-wallis" },
+    alternates: {
+      canonical: "/calculators/kruskal-wallis",
+      languages: {
+        en: "/calculators/kruskal-wallis",
+        ko: "/ko/calculators/kruskal-wallis",
+        ja: "/ja/calculators/kruskal-wallis",
+        "x-default": "/calculators/kruskal-wallis",
+      },
+    },
   };
 }
 
