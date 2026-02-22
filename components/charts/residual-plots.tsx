@@ -132,8 +132,8 @@ export function QQPlot({
   const scaleY = (v: number) => PAD.top + plotH - ((v - yMin) / yRange) * plotH;
 
   // Reference line (diagonal)
-  const lineXMin = Math.max(xMin, yMin);
-  const lineXMax = Math.min(xMax, yMax);
+  const _lineXMin = Math.max(xMin, yMin);
+  const _lineXMax = Math.min(xMax, yMax);
 
   return (
     <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full max-w-sm">

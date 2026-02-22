@@ -134,7 +134,7 @@ export function exportTTestPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -165,7 +165,7 @@ export function exportAnovaPdf(data: {
     data.groupStats.map(g => [g.name, String(g.n), g.mean.toFixed(2), g.sd.toFixed(2)])
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -190,7 +190,7 @@ export function exportChiSquarePdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -216,7 +216,7 @@ export function exportCorrelationPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -229,9 +229,9 @@ export function exportDescriptivePdf(data: {
   skewness: number; kurtosis: number; ci95: [number, number];
 }): Blob {
   const doc = new jsPDF();
-  let y = addHeader(doc, "Descriptive Statistics");
+  const y = addHeader(doc, "Descriptive Statistics");
 
-  y = addTable(doc, y,
+  addTable(doc, y,
     ["Statistic", "Value"],
     [
       ["N", String(data.n)],
@@ -279,7 +279,7 @@ export function exportOneSampleTPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -308,7 +308,7 @@ export function exportMannWhitneyPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -333,7 +333,7 @@ export function exportWilcoxonPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -363,7 +363,7 @@ export function exportRegressionPdf(data: {
 
   y = addSection(doc, y, "Equation:", `Y = ${data.intercept.toFixed(4)} + ${data.slope.toFixed(4)} * X`);
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -407,7 +407,7 @@ export function exportCronbachAlphaPdf(data: {
     ])
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -463,7 +463,7 @@ export function exportMultipleRegressionPdf(data: {
     ])
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -520,7 +520,7 @@ export function exportLogisticRegressionPdf(data: {
     `p = ${data.hosmerLemeshowP < 0.001 ? "< .001" : data.hosmerLemeshowP.toFixed(4)}`
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -596,7 +596,7 @@ export function exportFactorAnalysisPdf(data: {
     );
   }
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -624,7 +624,7 @@ export function exportSampleSizePdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -670,7 +670,7 @@ export function exportKruskalWallisPdf(data: {
     );
   }
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -717,7 +717,7 @@ export function exportFriedmanPdf(data: {
     );
   }
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -751,7 +751,7 @@ export function exportTwoWayAnovaPdf(data: {
     data.cellStats.map(c => [c.factorA, c.factorB, String(c.n), c.mean.toFixed(2), c.sd.toFixed(2)])
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -807,7 +807,7 @@ export function exportRepeatedMeasuresPdf(data: {
     );
   }
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -842,7 +842,7 @@ export function exportFisherExactPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }
@@ -880,7 +880,7 @@ export function exportMcNemarPdf(data: {
     ]
   );
 
-  y = addApa(doc, y, apa);
+  addApa(doc, y, apa);
   addFooter(doc);
   return toBlob(doc);
 }

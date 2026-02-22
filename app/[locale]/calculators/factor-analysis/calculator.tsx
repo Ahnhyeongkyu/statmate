@@ -482,26 +482,6 @@ function FactorAnalysisCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && matrixInput) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, matrixInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl(
-    "factor-analysis",
-    result
-      ? encodeFactorAnalysis({
-          matrixInput,
-          extraction,
-          rotation,
-          nFactors: nFactorsMode === "manual" ? nFactorsInput : "",
-        })
-      : {}
-  );
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -540,6 +520,26 @@ function FactorAnalysisCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && matrixInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, matrixInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl(
+    "factor-analysis",
+    result
+      ? encodeFactorAnalysis({
+          matrixInput,
+          extraction,
+          rotation,
+          nFactors: nFactorsMode === "manual" ? nFactorsInput : "",
+        })
+      : {}
+  );
 
   function handleClear() {
     setMatrixInput("");

@@ -381,43 +381,6 @@ function LogisticRegressionCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && yInput && xInputs.some((x) => x)) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, yInput, xInputs]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl(
-    "logistic-regression",
-    result ? encodeLogisticRegression({ yInput, xInputs, predictorNames }) : {}
-  );
-
-  function addPredictor() {
-    if (xInputs.length >= 10) return;
-    setXInputs([...xInputs, ""]);
-    setPredictorNames([...predictorNames, `X${xInputs.length + 1}`]);
-  }
-
-  function removePredictor(index: number) {
-    if (xInputs.length <= 1) return;
-    setXInputs(xInputs.filter((_, i) => i !== index));
-    setPredictorNames(predictorNames.filter((_, i) => i !== index));
-  }
-
-  function updateXInput(index: number, value: string) {
-    const newInputs = [...xInputs];
-    newInputs[index] = value;
-    setXInputs(newInputs);
-  }
-
-  function updatePredictorName(index: number, value: string) {
-    const newNames = [...predictorNames];
-    newNames[index] = value;
-    setPredictorNames(newNames);
-  }
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -453,6 +416,43 @@ function LogisticRegressionCalculatorInner() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
+  }
+
+  useEffect(() => {
+    if (autoCalc && yInput && xInputs.some((x) => x)) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, yInput, xInputs]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl(
+    "logistic-regression",
+    result ? encodeLogisticRegression({ yInput, xInputs, predictorNames }) : {}
+  );
+
+  function addPredictor() {
+    if (xInputs.length >= 10) return;
+    setXInputs([...xInputs, ""]);
+    setPredictorNames([...predictorNames, `X${xInputs.length + 1}`]);
+  }
+
+  function removePredictor(index: number) {
+    if (xInputs.length <= 1) return;
+    setXInputs(xInputs.filter((_, i) => i !== index));
+    setPredictorNames(predictorNames.filter((_, i) => i !== index));
+  }
+
+  function updateXInput(index: number, value: string) {
+    const newInputs = [...xInputs];
+    newInputs[index] = value;
+    setXInputs(newInputs);
+  }
+
+  function updatePredictorName(index: number, value: string) {
+    const newNames = [...predictorNames];
+    newNames[index] = value;
+    setPredictorNames(newNames);
   }
 
   function handleClear() {

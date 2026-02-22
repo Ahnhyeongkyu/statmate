@@ -2,11 +2,9 @@ import jStat from "jstat";
 import {
   type Matrix,
   zeros,
-  identity,
   transpose,
   multiply,
   invert,
-  diag,
   copyMatrix,
   eigenSymmetric,
   type EigenResult,
@@ -76,7 +74,7 @@ function mean(arr: number[]): number {
   return s / arr.length;
 }
 
-function variance(arr: number[], m: number): number {
+function _variance(arr: number[], m: number): number {
   let s = 0;
   for (let i = 0; i < arr.length; i++) {
     const d = arr[i] - m;
@@ -86,7 +84,7 @@ function variance(arr: number[], m: number): number {
 }
 
 /** Pearson correlation between two arrays of equal length. */
-function pearsonR(x: number[], y: number[]): number {
+function _pearsonR(x: number[], y: number[]): number {
   const n = x.length;
   const mx = mean(x);
   const my = mean(y);

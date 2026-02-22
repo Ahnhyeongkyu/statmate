@@ -309,16 +309,6 @@ function TTestCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && group1Input && group2Input) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("t-test", result ? encodeTTest({ testType, group1Input, group2Input }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -353,6 +343,16 @@ function TTestCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && group1Input && group2Input) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("t-test", result ? encodeTTest({ testType, group1Input, group2Input }) : {});
 
   function handleClear() {
     setGroup1Input("");

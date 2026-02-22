@@ -149,7 +149,7 @@ function mauchlySphericityTest(
   // Greenhouse-Geisser epsilon
   let traceS = 0;
   let traceSS = 0;
-  let sumAll = 0;
+  let _sumAll = 0;
 
   // Build covariance matrix of original conditions (not differences) for GG epsilon
   const condMeans = conditions.map((c) => mean(c));
@@ -183,12 +183,12 @@ function mauchlySphericityTest(
 
   traceS = 0;
   traceSS = 0;
-  sumAll = 0;
+  _sumAll = 0;
   for (let i = 0; i < k; i++) {
     traceS += Sc[i][i];
     for (let j = 0; j < k; j++) {
       traceSS += Sc[i][j] * Sc[i][j];
-      sumAll += Sc[i][j];
+      _sumAll += Sc[i][j];
     }
   }
 
@@ -279,7 +279,7 @@ export function repeatedMeasuresAnova(
 
   // Degrees of freedom
   const dfConditions = k - 1;
-  const dfSubjects = n - 1;
+  const _dfSubjects = n - 1;
   const dfError = (k - 1) * (n - 1);
 
   // Mean squares

@@ -243,12 +243,6 @@ function OneSampleTCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && dataInput) { handleCalculate(); setAutoCalc(false); }
-  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const shareUrl = useShareUrl("one-sample-t", result ? encodeOneSampleT({ dataInput, testValueInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -276,6 +270,12 @@ function OneSampleTCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && dataInput) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("one-sample-t", result ? encodeOneSampleT({ dataInput, testValueInput }) : {});
 
   function handleClear() {
     setDataInput("");

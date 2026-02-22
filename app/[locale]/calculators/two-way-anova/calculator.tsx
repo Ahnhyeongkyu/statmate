@@ -388,6 +388,39 @@ function TwoWayAnovaCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function handleCalculate() {
+    setError(null);
+    setResult(null);
+
+    try {
+      const data: number[][][] = [];
+      const groups: { label: string; values: number[] }[] = [];
+
+      for (let i = 0; i < levelsA; i++) {
+        data[i] = [];
+        for (let j = 0; j < levelsB; j++) {
+          const values = parseNumbers(cellInputs[i]?.[j] || "");
+          if (values.length < 2) {
+            setError(tw("cellMinValues", { a: levelANames[i], b: levelBNames[j] }));
+            return;
+          }
+          data[i][j] = values;
+          groups.push({
+            label: `${levelANames[i]}-${levelBNames[j]}`,
+            values,
+          });
+        }
+      }
+
+      const r = twoWayAnova(data, levelANames.slice(0, levelsA), levelBNames.slice(0, levelsB));
+      setResult(r);
+      setGroupsData(groups);
+      trackCalculate("two-way-anova");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Calculation error");
+    }
+  }
+
   useEffect(() => {
     if (autoCalc) {
       handleCalculate();
@@ -427,39 +460,6 @@ function TwoWayAnovaCalculatorInner() {
       return next.slice(0, newB);
     });
     setResult(null);
-  }
-
-  function handleCalculate() {
-    setError(null);
-    setResult(null);
-
-    try {
-      const data: number[][][] = [];
-      const groups: { label: string; values: number[] }[] = [];
-
-      for (let i = 0; i < levelsA; i++) {
-        data[i] = [];
-        for (let j = 0; j < levelsB; j++) {
-          const values = parseNumbers(cellInputs[i]?.[j] || "");
-          if (values.length < 2) {
-            setError(tw("cellMinValues", { a: levelANames[i], b: levelBNames[j] }));
-            return;
-          }
-          data[i][j] = values;
-          groups.push({
-            label: `${levelANames[i]}-${levelBNames[j]}`,
-            values,
-          });
-        }
-      }
-
-      const r = twoWayAnova(data, levelANames.slice(0, levelsA), levelBNames.slice(0, levelsB));
-      setResult(r);
-      setGroupsData(groups);
-      trackCalculate("two-way-anova");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Calculation error");
-    }
   }
 
   function handleClear() {

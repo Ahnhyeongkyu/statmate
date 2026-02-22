@@ -143,8 +143,8 @@ export function Boxplot({
   // Outlier bounds (1.5 * IQR)
   const lowerFence = q1 - 1.5 * iqr;
   const upperFence = q3 + 1.5 * iqr;
-  const whiskerLow = Math.max(min, lowerFence);
-  const whiskerHigh = Math.min(max, upperFence);
+  const _whiskerLow = Math.max(min, lowerFence);
+  const _whiskerHigh = Math.min(max, upperFence);
   const outliers = data.filter((v) => v < lowerFence || v > upperFence);
 
   // Actual whisker endpoints (closest data point within fences)

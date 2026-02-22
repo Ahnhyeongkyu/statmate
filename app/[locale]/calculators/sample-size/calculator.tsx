@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import {
   calculateSampleSize,
   formatSampleSizeAPA,
@@ -197,16 +196,6 @@ function SampleSizeCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, testType, effectSize, alpha, power]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("sample-size", result ? encodeSampleSize({ testType, effectSize, alpha, power, numGroups }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -244,6 +233,16 @@ function SampleSizeCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, testType, effectSize, alpha, power]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("sample-size", result ? encodeSampleSize({ testType, effectSize, alpha, power, numGroups }) : {});
 
   function handleClear() {
     setEffectSize("0.5");

@@ -244,14 +244,14 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
 }
 
 function ResultsDisplay({ result }: { result: ChiSquareResult }) {
-  if (result.type === "independence") {
-    return <IndependenceResultsDisplay result={result} />;
-  }
-
   const t = useTranslations("calculator");
   const tc = useTranslations("chiSquare");
   const apa = formatChiSquareAPA(result);
   const { show: showToast, copy } = useCopyToast();
+
+  if (result.type === "independence") {
+    return <IndependenceResultsDisplay result={result} />;
+  }
 
   return (
     <div className="space-y-6">
@@ -410,7 +410,6 @@ function ChiSquareCalculatorInner() {
   const t = useTranslations("calculator");
   const tc = useTranslations("chiSquare");
   const [testType, setTestType] = useState<"independence" | "goodness">("independence");
-  const [tableInput, setTableInput] = useState("");
   const [rows, setRows] = useState(2);
   const [cols, setCols] = useState(2);
   const [cells, setCells] = useState<string[][]>(
@@ -425,53 +424,6 @@ function ChiSquareCalculatorInner() {
 
   // URL param loading
   const searchParams = useUrlParams();
-  useEffect(() => {
-    if (!searchParams) return;
-    const state = decodeChiSquare(searchParams);
-    if (state) {
-      setTestType(state.testType);
-      if (state.testType === "goodness") {
-        setGoodnessInput(state.goodnessInput);
-        if (state.expectedInput) setExpectedInput(state.expectedInput);
-      } else {
-        setRows(state.rows);
-        setCols(state.cols);
-        setCells(state.cells);
-      }
-      setAutoCalc(true);
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (autoCalc) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, cells, goodnessInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("chi-square", result ? encodeChiSquare(
-    testType === "goodness"
-      ? { testType, goodnessInput, expectedInput }
-      : { testType, rows, cols, cells }
-  ) : {});
-
-  function updateTableSize(newRows: number, newCols: number) {
-    const newCells = Array.from({ length: newRows }, (_, i) =>
-      Array.from({ length: newCols }, (_, j) =>
-        cells[i]?.[j] || ""
-      )
-    );
-    setRows(newRows);
-    setCols(newCols);
-    setCells(newCells);
-  }
-
-  function handleCellChange(i: number, j: number, value: string) {
-    const newCells = cells.map((row) => [...row]);
-    newCells[i][j] = value;
-    setCells(newCells);
-  }
 
   function handleCalculate() {
     setError(null);
@@ -521,6 +473,54 @@ function ChiSquareCalculatorInner() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
+  }
+
+  useEffect(() => {
+    if (!searchParams) return;
+    const state = decodeChiSquare(searchParams);
+    if (state) {
+      setTestType(state.testType);
+      if (state.testType === "goodness") {
+        setGoodnessInput(state.goodnessInput);
+        if (state.expectedInput) setExpectedInput(state.expectedInput);
+      } else {
+        setRows(state.rows);
+        setCols(state.cols);
+        setCells(state.cells);
+      }
+      setAutoCalc(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, cells, goodnessInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("chi-square", result ? encodeChiSquare(
+    testType === "goodness"
+      ? { testType, goodnessInput, expectedInput }
+      : { testType, rows, cols, cells }
+  ) : {});
+
+  function updateTableSize(newRows: number, newCols: number) {
+    const newCells = Array.from({ length: newRows }, (_, i) =>
+      Array.from({ length: newCols }, (_, j) =>
+        cells[i]?.[j] || ""
+      )
+    );
+    setRows(newRows);
+    setCols(newCols);
+    setCells(newCells);
+  }
+
+  function handleCellChange(i: number, j: number, value: string) {
+    const newCells = cells.map((row) => [...row]);
+    newCells[i][j] = value;
+    setCells(newCells);
   }
 
   function handleClear() {

@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
   pearsonCorrelation,
   spearmanCorrelation,
@@ -284,16 +283,6 @@ function CorrelationCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && xInput && yInput) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("correlation", result ? encodeCorrelation({ corrType, xInput, yInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -326,6 +315,16 @@ function CorrelationCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && xInput && yInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("correlation", result ? encodeCorrelation({ corrType, xInput, yInput }) : {});
 
   function handleClear() {
     setXInput("");

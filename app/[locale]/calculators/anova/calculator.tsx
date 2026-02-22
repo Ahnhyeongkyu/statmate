@@ -280,6 +280,25 @@ function AnovaCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function handleCalculate() {
+    setError(null);
+    setResult(null);
+    const groups = groupInputs.map((input) => parseNumbers(input));
+    for (let i = 0; i < groups.length; i++) {
+      if (groups[i].length < 2) {
+        setError(ta("groupMinValues", { name: groupNames[i] }));
+        return;
+      }
+    }
+    try {
+      setResult(oneWayAnova(groups, groupNames));
+      setParsedGroups(groups.map((g, i) => ({ label: groupNames[i], values: g })));
+      trackCalculate("anova");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Calculation error");
+    }
+  }
+
   useEffect(() => {
     if (autoCalc) {
       handleCalculate();
@@ -303,25 +322,6 @@ function AnovaCalculatorInner() {
       return next.slice(0, n);
     });
     setResult(null);
-  }
-
-  function handleCalculate() {
-    setError(null);
-    setResult(null);
-    const groups = groupInputs.map((input) => parseNumbers(input));
-    for (let i = 0; i < groups.length; i++) {
-      if (groups[i].length < 2) {
-        setError(ta("groupMinValues", { name: groupNames[i] }));
-        return;
-      }
-    }
-    try {
-      setResult(oneWayAnova(groups, groupNames));
-      setParsedGroups(groups.map((g, i) => ({ label: groupNames[i], values: g })));
-      trackCalculate("anova");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Calculation error");
-    }
   }
 
   function handleClear() {

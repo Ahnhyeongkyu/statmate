@@ -250,16 +250,6 @@ function CronbachAlphaCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && matrixInput) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, matrixInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("cronbach-alpha", result ? encodeCronbachAlpha({ matrixInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -288,6 +278,16 @@ function CronbachAlphaCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && matrixInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, matrixInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("cronbach-alpha", result ? encodeCronbachAlpha({ matrixInput }) : {});
 
   function handleClear() {
     setMatrixInput("");

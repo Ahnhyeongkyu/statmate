@@ -428,16 +428,6 @@ function RegressionCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && xInput && yInput) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("regression", result ? encodeRegression({ xInput, yInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -468,6 +458,16 @@ function RegressionCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && xInput && yInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, xInput, yInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("regression", result ? encodeRegression({ xInput, yInput }) : {});
 
   function handleClear() {
     setXInput("");

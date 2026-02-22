@@ -219,12 +219,6 @@ function WilcoxonCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && preInput && postInput) { handleCalculate(); setAutoCalc(false); }
-  }, [autoCalc, preInput, postInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const shareUrl = useShareUrl("wilcoxon", result ? encodeWilcoxon({ preInput, postInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -255,6 +249,12 @@ function WilcoxonCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && preInput && postInput) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, preInput, postInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("wilcoxon", result ? encodeWilcoxon({ preInput, postInput }) : {});
 
   function handleClear() {
     setPreInput("");

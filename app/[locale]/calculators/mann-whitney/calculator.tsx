@@ -232,12 +232,6 @@ function MannWhitneyCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && group1Input && group2Input) { handleCalculate(); setAutoCalc(false); }
-  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const shareUrl = useShareUrl("mann-whitney", result ? encodeMannWhitney({ group1Input, group2Input }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -264,6 +258,12 @@ function MannWhitneyCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && group1Input && group2Input) { handleCalculate(); setAutoCalc(false); }
+  }, [autoCalc, group1Input, group2Input]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const shareUrl = useShareUrl("mann-whitney", result ? encodeMannWhitney({ group1Input, group2Input }) : {});
 
   function handleClear() {
     setGroup1Input("");

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -36,7 +37,7 @@ export default function CalculatorError({
               {t("tryAgain")}
             </Button>
             <Button variant="outline" asChild>
-              <a href="/">{t("goHome")}</a>
+              <Link href="/">{t("goHome")}</Link>
             </Button>
           </div>
         </CardContent>

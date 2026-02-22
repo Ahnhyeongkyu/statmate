@@ -23,7 +23,7 @@ export interface SPSSParseResult {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function num(v: string | undefined): number {
+function _num(v: string | undefined): number {
   if (!v) return NaN;
   return parseFloat(v.replace(/,/g, "").trim());
 }
@@ -194,13 +194,13 @@ function parseTTest(input: string): SPSSParseResult | null {
   let t_val = NaN,
     df_val = NaN,
     p_val = NaN,
-    meanDiff = NaN,
+    _meanDiff = NaN,
     lowerCI = NaN,
     upperCI = NaN;
 
   // Strategy: look for rows with "Equal variances not assumed" (Welch) first, else "Equal variances assumed"
   if (istBlock) {
-    const joinedBlock = istBlock.join("\n");
+    const _joinedBlock = istBlock.join("\n");
     // Try Welch row first
     const welchLine =
       istBlock.find((l) => /equal variances not assumed/i.test(l)) ||
@@ -213,7 +213,7 @@ function parseTTest(input: string): SPSSParseResult | null {
         t_val = parseFloat(nums[0]);
         df_val = parseFloat(nums[1]);
         p_val = parseFloat(nums[2]);
-        if (nums.length >= 4) meanDiff = parseFloat(nums[3]);
+        if (nums.length >= 4) _meanDiff = parseFloat(nums[3]);
         if (nums.length >= 6) {
           lowerCI = parseFloat(nums[nums.length - 2]);
           upperCI = parseFloat(nums[nums.length - 1]);
@@ -237,7 +237,7 @@ function parseTTest(input: string): SPSSParseResult | null {
         t_val = allNums[0];
         df_val = allNums[1];
         p_val = allNums[2];
-        meanDiff = allNums[3];
+        _meanDiff = allNums[3];
         lowerCI = allNums[allNums.length - 2];
         upperCI = allNums[allNums.length - 1];
       }
@@ -414,7 +414,7 @@ function parseRegression(input: string): SPSSParseResult | null {
     tables.push(parseSimpleTable(coeffBlock, "Coefficients"));
   }
 
-  let R = NaN,
+  let _R = NaN,
     R2 = NaN,
     adjR2 = NaN,
     F_val = NaN,
@@ -433,7 +433,7 @@ function parseRegression(input: string): SPSSParseResult | null {
       if (nums.length >= 4) {
         // If first number is 1 (model number), skip it
         const offset = nums[0] === 1 ? 1 : 0;
-        R = nums[offset];
+        _R = nums[offset];
         R2 = nums[offset + 1];
         adjR2 = nums[offset + 2];
       }

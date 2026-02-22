@@ -324,25 +324,6 @@ function FisherExactCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, cells]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl(
-    "fisher-exact",
-    result ? encodeFisherExact({ cells, rowLabels, colLabels }) : {}
-  );
-
-  function handleCellChange(i: number, j: number, value: string) {
-    const newCells = cells.map((row) => [...row]);
-    newCells[i][j] = value;
-    setCells(newCells);
-  }
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -361,6 +342,25 @@ function FisherExactCalculatorInner() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
+  }
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, cells]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl(
+    "fisher-exact",
+    result ? encodeFisherExact({ cells, rowLabels, colLabels }) : {}
+  );
+
+  function handleCellChange(i: number, j: number, value: string) {
+    const newCells = cells.map((row) => [...row]);
+    newCells[i][j] = value;
+    setCells(newCells);
   }
 
   function handleClear() {

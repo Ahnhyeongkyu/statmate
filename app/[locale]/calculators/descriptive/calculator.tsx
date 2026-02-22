@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { descriptiveStats, type DescriptiveResult } from "@/lib/statistics/descriptive";
 import {
@@ -255,16 +254,6 @@ function DescriptiveCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc && dataInput) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("descriptive", result ? encodeDescriptive({ dataInput }) : {});
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -284,6 +273,16 @@ function DescriptiveCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc && dataInput) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, dataInput]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("descriptive", result ? encodeDescriptive({ dataInput }) : {});
 
   function handleClear() {
     setDataInput("");

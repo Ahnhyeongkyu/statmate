@@ -10,7 +10,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import {
   checkAssumptions,
-  type AssumptionCheckResult,
 } from "@/lib/statistics/assumptions";
 
 interface AssumptionChecksProps {

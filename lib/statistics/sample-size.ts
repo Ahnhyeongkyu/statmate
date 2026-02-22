@@ -136,7 +136,7 @@ function achievedPower(
   n: number,
   effectSize: number,
   alpha: number,
-  numGroups?: number
+  _numGroups?: number
 ): number {
   const zAlpha = jStat.normal.inv(1 - alpha / 2, 0, 1);
   let lambda: number;

@@ -369,6 +369,43 @@ function MultipleRegressionCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function handleCalculate() {
+    setError(null);
+    setResult(null);
+
+    const y = parseNumbers(yInput);
+    if (y.length < 4) {
+      setError(ts("errorMinObservations"));
+      return;
+    }
+
+    const xs: number[][] = [];
+    for (let i = 0; i < numPredictors; i++) {
+      const xi = parseNumbers(xInputs[i]);
+      if (xi.length < 3) {
+        setError(ts("errorPredictorMin", { name: xNames[i] }));
+        return;
+      }
+      if (xi.length !== y.length) {
+        setError(ts("errorEqualLength", { name: xNames[i] }));
+        return;
+      }
+      xs.push(xi);
+    }
+
+    try {
+      const r = multipleRegression({
+        y,
+        xs,
+        predictorNames: xNames.slice(0, numPredictors),
+      });
+      setResult(r);
+      trackCalculate("multiple-regression");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Calculation error");
+    }
+  }
+
   useEffect(() => {
     if (autoCalc && yInput) {
       handleCalculate();
@@ -405,43 +442,6 @@ function MultipleRegressionCalculatorInner() {
     setXInputs((prev) => prev.slice(0, n));
     setXNames((prev) => prev.slice(0, n));
     setResult(null);
-  }
-
-  function handleCalculate() {
-    setError(null);
-    setResult(null);
-
-    const y = parseNumbers(yInput);
-    if (y.length < 4) {
-      setError(ts("errorMinObservations"));
-      return;
-    }
-
-    const xs: number[][] = [];
-    for (let i = 0; i < numPredictors; i++) {
-      const xi = parseNumbers(xInputs[i]);
-      if (xi.length < 3) {
-        setError(ts("errorPredictorMin", { name: xNames[i] }));
-        return;
-      }
-      if (xi.length !== y.length) {
-        setError(ts("errorEqualLength", { name: xNames[i] }));
-        return;
-      }
-      xs.push(xi);
-    }
-
-    try {
-      const r = multipleRegression({
-        y,
-        xs,
-        predictorNames: xNames.slice(0, numPredictors),
-      });
-      setResult(r);
-      trackCalculate("multiple-regression");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Calculation error");
-    }
   }
 
   function handleClear() {

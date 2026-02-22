@@ -87,7 +87,7 @@ export function fisherExactTest(table: number[][]): FisherExactResult {
   ];
 
   // Probability of observed table
-  const pObserved = Math.exp(tableLogProb(a, b, c, d));
+  const _pObserved = Math.exp(tableLogProb(a, b, c, d));
 
   // Two-tailed p-value: sum probabilities of all tables with P <= P_observed
   // Fix marginals, vary a from 0 to min(a+b, a+c)

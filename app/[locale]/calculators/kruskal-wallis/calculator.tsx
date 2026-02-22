@@ -285,6 +285,25 @@ function KruskalWallisCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function handleCalculate() {
+    setError(null);
+    setResult(null);
+    const groups = groupInputs.map((input) => parseNumbers(input));
+    for (let i = 0; i < groups.length; i++) {
+      if (groups[i].length < 2) {
+        setError(tk("groupMinValues", { name: groupNames[i] }));
+        return;
+      }
+    }
+    try {
+      setResult(kruskalWallis(groups, groupNames));
+      setParsedGroups(groups.map((g, i) => ({ label: groupNames[i], values: g })));
+      trackCalculate("kruskal-wallis");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Calculation error");
+    }
+  }
+
   useEffect(() => {
     if (autoCalc) {
       handleCalculate();
@@ -308,25 +327,6 @@ function KruskalWallisCalculatorInner() {
       return next.slice(0, n);
     });
     setResult(null);
-  }
-
-  function handleCalculate() {
-    setError(null);
-    setResult(null);
-    const groups = groupInputs.map((input) => parseNumbers(input));
-    for (let i = 0; i < groups.length; i++) {
-      if (groups[i].length < 2) {
-        setError(tk("groupMinValues", { name: groupNames[i] }));
-        return;
-      }
-    }
-    try {
-      setResult(kruskalWallis(groups, groupNames));
-      setParsedGroups(groups.map((g, i) => ({ label: groupNames[i], values: g })));
-      trackCalculate("kruskal-wallis");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Calculation error");
-    }
   }
 
   function handleClear() {

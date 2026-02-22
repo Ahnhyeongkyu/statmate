@@ -289,31 +289,6 @@ function FriedmanCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, conditionInputs]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl("friedman", result ? encodeAnova({ numGroups: numConditions, groupInputs: conditionInputs, groupNames: conditionNames }) : {});
-
-  function handleConditionCountChange(n: number) {
-    setNumConditions(n);
-    setConditionInputs((prev) => {
-      const next = [...prev];
-      while (next.length < n) next.push("");
-      return next.slice(0, n);
-    });
-    setConditionNames((prev) => {
-      const next = [...prev];
-      while (next.length < n) next.push(tf("conditionLabel", { n: next.length + 1 }));
-      return next.slice(0, n);
-    });
-    setResult(null);
-  }
-
   function handleCalculate() {
     setError(null);
     setResult(null);
@@ -342,6 +317,31 @@ function FriedmanCalculatorInner() {
     } catch (e) {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
+  }
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, conditionInputs]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl("friedman", result ? encodeAnova({ numGroups: numConditions, groupInputs: conditionInputs, groupNames: conditionNames }) : {});
+
+  function handleConditionCountChange(n: number) {
+    setNumConditions(n);
+    setConditionInputs((prev) => {
+      const next = [...prev];
+      while (next.length < n) next.push("");
+      return next.slice(0, n);
+    });
+    setConditionNames((prev) => {
+      const next = [...prev];
+      while (next.length < n) next.push(tf("conditionLabel", { n: next.length + 1 }));
+      return next.slice(0, n);
+    });
+    setResult(null);
   }
 
   function handleClear() {

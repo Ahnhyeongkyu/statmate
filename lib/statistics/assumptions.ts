@@ -27,7 +27,7 @@ export interface AssumptionCheckResult {
  * Uses D'Agostino-Pearson omnibus test for n > 5000,
  * and a simplified Shapiro-Wilk approximation for smaller samples.
  */
-export function testNormality(data: number[], label: string = "Data"): NormalityResult {
+export function testNormality(data: number[], _label: string = "Data"): NormalityResult {
   const n = data.length;
   if (n < 3) {
     return { testName: "Shapiro-Wilk", statistic: 1, pValue: 1, isNormal: true, n };

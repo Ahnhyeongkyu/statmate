@@ -21,7 +21,6 @@ import {
 } from "@/lib/statistics/repeated-measures";
 import {
   AiInterpretation,
-  ExportButton,
   CopyToast,
   useCopyToast,
 } from "@/components/pro-feature";
@@ -404,21 +403,6 @@ function RepeatedMeasuresCalculatorInner() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    if (autoCalc) {
-      handleCalculate();
-      setAutoCalc(false);
-    }
-  }, [autoCalc, conditionInputs]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Share URL
-  const shareUrl = useShareUrl(
-    "repeated-measures",
-    result
-      ? encodeRepeatedMeasures({ numConditions, conditionInputs, conditionNames })
-      : {}
-  );
-
   function handleConditionCountChange(n: number) {
     setNumConditions(n);
     setConditionInputs((prev) => {
@@ -472,6 +456,21 @@ function RepeatedMeasuresCalculatorInner() {
       setError(e instanceof Error ? e.message : "Calculation error");
     }
   }
+
+  useEffect(() => {
+    if (autoCalc) {
+      handleCalculate();
+      setAutoCalc(false);
+    }
+  }, [autoCalc, conditionInputs]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Share URL
+  const shareUrl = useShareUrl(
+    "repeated-measures",
+    result
+      ? encodeRepeatedMeasures({ numConditions, conditionInputs, conditionNames })
+      : {}
+  );
 
   function handleClear() {
     setConditionInputs(Array(numConditions).fill(""));
