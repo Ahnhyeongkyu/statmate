@@ -1,0 +1,35 @@
+==========================================
+Reddit r/GradSchool
+==========================================
+접속: https://www.reddit.com/r/GradSchool/submit
+방법: Create Post → Title 붙여넣기 → Body 붙여넣기 → Post
+
+==========================================
+[TITLE] 아래 한 줄 복사:
+==========================================
+I made a free statistics calculator that auto-formats results in APA 7th edition -- hoping it helps other grad students
+
+==========================================
+[BODY] 아래 전체 복사:
+==========================================
+Hey everyone,
+
+Like many of you, I spent way too much time during my thesis manually formatting statistical results into APA tables. Every single time I ran a t-test or ANOVA, I'd spend another hour or two making sure the table looked right, checking italics, decimal places, and all the little details reviewers love to nitpick.
+
+So I built StatMate -- a free, web-based statistics calculator that does 20 common analyses (t-test, ANOVA, chi-square, correlation, regression, and more) and **automatically generates properly formatted APA 7th edition results tables**.
+
+Here's what it does:
+
+- Runs your analysis and gives you an APA-formatted table you can copy or export to Word/PDF
+- Includes effect sizes, confidence intervals, and assumption checks
+- Works entirely in your browser -- your data never leaves your computer, nothing is uploaded to any server
+- No account needed, no installation, completely free
+- Available in English, Korean, and Japanese
+
+The APA auto-formatting is the part I'm most proud of. I couldn't find any existing tool that did this well, and it was always the most tedious part of writing my results section.
+
+You can try it here: https://statmate.org
+
+I'd genuinely appreciate any feedback. I built this to solve my own problem and I'm hoping it's useful for others in the same boat. If there's an analysis you wish it had, let me know.
+
+Good luck to everyone in thesis season!

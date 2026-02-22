@@ -1,0 +1,67 @@
+==========================================
+Indie Hackers
+==========================================
+접속: https://www.indiehackers.com/new-post
+방법: Title 입력 → Body 붙여넣기 → Post
+
+==========================================
+[TITLE] 아래 한 줄 복사:
+==========================================
+I built a free statistics calculator that auto-formats APA tables -- launching today
+
+==========================================
+[BODY] 아래 전체 복사:
+==========================================
+Hey IH! 👋
+
+I'm launching StatMate today -- a free, web-based statistics calculator with 20 tests and automatic APA 7th edition table formatting. Here's the story.
+
+## The Problem
+
+I was a grad student writing my thesis and spending an absurd amount of time on one thing: formatting statistical results into APA tables. Every t-test, every ANOVA -- run the analysis, then spend another hour or two making the table look right. I looked for a tool that would just give me a properly formatted table and couldn't find one that wasn't either $500+ (SPSS) or required coding knowledge (R).
+
+## The Solution
+
+I built StatMate (https://statmate.org) -- paste your data, pick a test, get a publication-ready APA 7th table with effect sizes, confidence intervals, and assumption checks. Export to Word or PDF. Done.
+
+## What I Built
+
+- **20 statistical calculators** (t-tests, ANOVA, chi-square, regression, nonparametric tests, factor analysis, etc.)
+- **APA 7th auto-formatting** -- this is the core feature and what makes it different
+- **Privacy-first** -- all computations run client-side in JavaScript, no data uploaded
+- **3 languages** -- English, Korean, Japanese
+- **Cross-validated against R** for accuracy
+
+## Tech Stack
+
+- Next.js + TypeScript + Tailwind CSS
+- Deployed on Vercel (free tier works fine for now)
+- Statistical computations are pure client-side JS
+- No database needed for the core product (Supabase for optional auth/history)
+
+## Monetization
+
+Using **Lemon Squeezy** for payments. Setup was surprisingly smooth -- took about a day to integrate checkout, license validation, and activation.
+
+- **Free tier**: All 20 calculators, APA tables, PDF export, clipboard copy
+- **Pro** ($5.99/mo or $49.99/yr): AI-powered result interpretation (Claude API), Word export, ad-free, analysis history
+- **Student discount**: 50% off with .edu/.ac.kr email
+- **Credit packs**: For one-time users who don't want a subscription
+
+I also have two B2B offerings in early stages:
+- Expert Review service (human statistician reviews your analysis)
+- University License (institutional access)
+
+## Current Status
+
+Launched today. No revenue yet (obviously), but the product is feature-complete with all 4 sprints done. Now it's all about distribution.
+
+## What I'd Love Feedback On
+
+1. Pricing -- is $5.99/mo reasonable for the Pro features?
+2. Landing page conversion -- does statmate.org communicate the value clearly?
+3. Distribution channels -- what worked for you when launching dev/research tools?
+
+Thanks for reading. Happy to answer any questions about the build, stack, or monetization approach.
+
+🔗 https://statmate.org

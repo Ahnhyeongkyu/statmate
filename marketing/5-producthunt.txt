@@ -1,0 +1,37 @@
+==========================================
+Product Hunt
+==========================================
+접속: https://www.producthunt.com/posts/new
+방법: 아래 내용을 각 필드에 붙여넣기
+
+==========================================
+[Product Name]:
+==========================================
+StatMate
+
+==========================================
+[Tagline] (60자 이내):
+==========================================
+Free statistics calculator with APA 7th auto-formatting
+
+==========================================
+[Website URL]:
+==========================================
+https://statmate.org
+
+==========================================
+[Description]:
+==========================================
+StatMate is a free web-based statistics toolkit that runs 20 common analyses and automatically generates APA 7th edition formatted results tables. Your data never leaves your browser -- all calculations happen client-side.
+
+Key Features:
+- 20 statistical calculators: t-test, ANOVA, chi-square, correlation, regression, and more
+- Automatic APA 7th edition results tables -- copy or export to Word/PDF in one click
+- AI-powered interpretation of your results (Pro)
+- Privacy-first: all computations run in your browser, no data uploaded
+- Multilingual UI: English, Korean, and Japanese
+
+==========================================
+[Topics/Tags]:
+==========================================
+Statistics, Research Tools, Productivity, Education, Data Analysis

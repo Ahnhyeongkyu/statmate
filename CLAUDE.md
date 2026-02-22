@@ -1,6 +1,6 @@
 # StatMate — Project Context
 
-> Last updated: 2026-02-20
+> Last updated: 2026-02-22
 
 ## Overview
 
@@ -222,8 +222,63 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 - [ ] **GSC 신규 페이지 인덱싱** — /validation, /compare, /expert-review, /university, /ja 등
 - No TODO/FIXME/HACK comments in codebase.
 
+---
+
+## Marketing Progress (2026-02-22 기준)
+
+마케팅 파일: `marketing/` 디렉토리 (14개 파일), 런치 가이드: `marketing/14-launch-guide.txt`
+
+### 완료된 항목
+
+| 채널 | 파일 | 상태 | 비고 |
+|------|------|------|------|
+| Hacker News (Show HN) | 9-hackernews.txt | ✅ 완료 | 이전 세션에서 게시 |
+| AlternativeTo | 12-directories.txt §1 | ✅ 완료 | SPSS/GraphPad/JASP 대안으로 등록 |
+| SaaSHub | 12-directories.txt §2 | ✅ 완료 | |
+| SideProjectors | 12-directories.txt §7 | ✅ 완료 | 리뷰 대기 중 (2-3 영업일) |
+| 김박사넷 | 4-kimbaksanet.txt | ✅ 완료 | phdkim.net/board/free/77519 |
+
+### 유료/접근불가로 스킵
+
+| 채널 | 파일 | 상태 | 비고 |
+|------|------|------|------|
+| BetaList | 12-directories.txt §5 | ❌ 스킵 | $39~$999 유료만 가능 |
+| Toolify.ai | 12-directories.txt §3 | ❌ 스킵 | $99 유료만 가능 |
+| There's An AI For That | 12-directories.txt §4 | ❌ 스킵 | $49~$347 유료만 가능 |
+| StartupBase | 12-directories.txt §6 | ❌ 스킵 | 가입 중단 상태 (리노베이션) |
+| MicroLaunch | 12-directories.txt §8 | ❌ 스킵 | 대기열 마감 |
+| Indie Hackers | 10-indiehackers.txt | ❌ 스킵 | 신규 계정 포스팅 권한 없음 (커뮤니티 참여 또는 Plus 구독 필요) |
+
+### 남은 항목 (직접 진행 필요)
+
+| 우선순위 | 채널 | 파일 | 비고 |
+|---------|------|------|------|
+| **높음** | Reddit r/GradSchool | 1-reddit-gradschool.txt | Title+Body 복붙. 브라우저 자동화 제한으로 직접 필요 |
+| **높음** | Reddit r/statistics | 2-reddit-statistics.txt | Title+Body 복붙. 기술적 질문 대응 준비 |
+| **높음** | Reddit r/AcademicPsychology | 1번 변형 사용 | APA 테이블 자동 생성 강조 |
+| **높음** | Reddit r/academia | 1번 변형 사용 | |
+| **높음** | 에브리타임 | 3-everytime.txt | 모바일 앱에서 자유게시판 글쓰기 |
+| **높음** | Twitter/X Thread 1 (런치) | 11-twitter-threads.txt | 5트윗 스레드 |
+| **높음** | Twitter/X Thread 2 (문제/해결) | 11-twitter-threads.txt | 4트윗 스레드, Thread 1 다음 날 |
+| **높음** | Twitter/X Thread 3 (기술) | 11-twitter-threads.txt | 4트윗 스레드, Thread 2 다음 날 |
+| **중간** | Product Hunt | 5-producthunt.txt | 화~목 런치 권장. 로고/스크린샷/Maker 코멘트 준비 필요 |
+| **중간** | ResearchGate | 13-academic-outreach.txt §1 | Statistics, APA Style 토픽 Discussion |
+| **중간** | Academia.edu | 13-academic-outreach.txt §2 | 프로필 About + 포스트 |
+| **중간** | 네이버 블로그 1 | 6-naver-blog-1.txt | 1주 간격 게시, 키워드: "통계 계산기" |
+| **중간** | 네이버 블로그 2 | 7-naver-blog-2.txt | 키워드: "APA 표 만들기" |
+| **중간** | 네이버 블로그 3 | 8-naver-blog-3.txt | 키워드: "무료 통계 프로그램" |
+| **중간** | LinkedIn 포스트 | 직접 작성 | "I built..." 스토리, 첫 댓글에 링크 |
+| **장기** | Reddit 카르마 빌딩 | — | 매일 15-20분 답변 활동 (2주간) |
+| **장기** | 뉴스레터 피칭 | — | Console.dev, TLDR, Ben's Bites, The Neuron, Hacker Newsletter |
+| **장기** | 대학 도서관 이메일 | 13-academic-outreach.txt §3 | 영어 템플릿, 목표 20개 대학 |
+| **장기** | 교수님 이메일 | 13-academic-outreach.txt §4 | 한국어 템플릿, 목표 30명 (교육학/심리학/사회학/간호학/경영학) |
+| **장기** | Facebook 그룹 | — | Statistics Help, PhD Students 등 |
+| **장기** | 블로그 SEO 추가 | — | 추가 키워드 타겟 포스트 |
+
 ## Recently Completed
 
+- [x] 마케팅 디렉토리 등록 — AlternativeTo, SaaSHub, SideProjectors 완료 (2026-02-22)
+- [x] 김박사넷 게시 — 자유게시판 정보공유 글 (phdkim.net/board/free/77519) (2026-02-22)
 - [x] Validation 증거 페이지 — /validation, R vs StatMate 20개 교차검증 결과 (`e28a10f`)
 - [x] Expert Review 강화 — 리뷰어 자격, 샘플 리뷰, 만족 보증, FAQ (`e28a10f`)
 - [x] University 강화 — SPSS 비용 비교, 활용 사례, 조달 FAQ (`e28a10f`)

@@ -1,0 +1,39 @@
+==========================================
+Hacker News (Show HN)
+==========================================
+접속: https://news.ycombinator.com/submit
+방법: Title 붙여넣기 → URL 입력 → Text 붙여넣기 → Submit
+
+==========================================
+[TITLE] 아래 한 줄 복사:
+==========================================
+Show HN: StatMate – Free statistics calculator with APA 7th auto-formatting
+
+==========================================
+[URL] 아래 한 줄 복사:
+==========================================
+https://statmate.org
+
+==========================================
+[TEXT] 아래 전체 복사:
+==========================================
+I built a free, browser-based statistics calculator that runs 20 common tests and auto-generates APA 7th edition formatted results tables.
+
+The problem: as a grad student, I spent hours manually formatting statistical results into APA tables after every analysis. Existing tools either cost hundreds of dollars (SPSS) or require you to format output yourself (R, Python).
+
+What StatMate does:
+
+- 20 calculators: t-tests, ANOVA (one-way, two-way, repeated measures), chi-square, correlation, regression (simple, multiple, logistic), factor analysis, nonparametric tests (Mann-Whitney, Wilcoxon, Kruskal-Wallis, Friedman), Cronbach's alpha, and more
+- Outputs APA 7th edition tables with effect sizes, CIs, and assumption checks built in
+- Export to Word (.docx) or PDF in one click
+- All computation happens client-side in JavaScript -- no data leaves the browser, nothing is uploaded
+- Cross-validated against R 4.3 for numerical accuracy (validation page: https://statmate.org/validation)
+- Trilingual UI (English, Korean, Japanese)
+
+Stack: Next.js, TypeScript, Tailwind CSS, deployed on Vercel. Statistical computations are pure JS with no server dependency.
+
+Pro tier ($5.99/mo) adds AI-powered result interpretation via Claude and Word export. All 20 calculators and PDF export are free.
+
+https://statmate.org
+
+Would appreciate feedback, especially on numerical edge cases or missing tests.

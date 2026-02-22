@@ -1,0 +1,209 @@
+==========================================
+디렉토리 서비스 등록
+==========================================
+접속: 각 섹션의 URL 참조
+방법: 각 디렉토리 사이트에 접속 → 제품 등록 → 아래 내용 붙여넣기
+
+==========================================
+1. AlternativeTo
+==========================================
+접속: https://alternativeto.net/suggest/
+방법: "Suggest Software" → 각 필드에 아래 내용 붙여넣기
+
+[Product Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Category]
+Science & Education > Statistics
+
+[Alternative To]
+SPSS, GraphPad Prism, JASP
+
+[Short Description]
+Free web-based statistics calculator with 20 tests and automatic APA 7th edition table formatting. Runs entirely in your browser -- no data uploaded, no installation needed. Includes t-tests, ANOVA, chi-square, regression, nonparametric tests, factor analysis, and more. Exports to Word and PDF with one click. Cross-validated against R for accuracy.
+
+[Tags]
+Statistics, APA, Research, Calculator, Data Analysis, Free, Web-Based, Privacy
+
+[License]
+Freemium
+
+[Platforms]
+Web
+
+==========================================
+2. SaaSHub
+==========================================
+접속: https://www.saashub.com/submit
+방법: "Submit a Product" → 각 필드에 아래 내용 붙여넣기
+
+[Product Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Free statistics calculator with APA 7th auto-formatting
+
+[Description]
+StatMate is a free, browser-based statistics toolkit offering 20 common analyses with automatic APA 7th edition results table generation. All calculations run client-side in JavaScript, ensuring your research data never leaves your computer. Supports t-tests, ANOVA, chi-square, correlation, regression, nonparametric tests, factor analysis, and reliability analysis. Export publication-ready tables to Word or PDF. Available in English, Korean, and Japanese.
+
+[Category]
+Analytics, Education, Research Tools
+
+[Pricing]
+Freemium (Free: all calculators + PDF export | Pro: $5.99/mo)
+
+==========================================
+3. Toolify.ai
+==========================================
+접속: https://www.toolify.ai/submit
+방법: "Submit Your AI Tool" → 각 필드에 아래 내용 붙여넣기
+
+[Product Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Statistics calculator with AI-powered result interpretation and APA 7th formatting
+
+[Description]
+StatMate combines 20 statistical calculators with AI-powered result interpretation. Run your analysis, get an APA 7th formatted table, and receive a plain-language AI explanation of what your results mean. The AI interpretation feature uses Claude to generate context-aware explanations of statistical significance, effect sizes, and practical implications. All base calculations run client-side for privacy. Pro users get AI interpretations, Word export, and ad-free experience.
+
+[Category]
+AI Tools, Data Analysis, Research, Education
+
+[Tags]
+Statistics, AI Interpretation, APA, Research, Data Analysis
+
+==========================================
+4. There's An AI For That
+==========================================
+접속: https://theresanaiforthat.com/submit/
+방법: "Submit an AI" → 각 필드에 아래 내용 붙여넣기
+
+[Product Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[One-liner]
+AI-powered statistics calculator that interprets your results and auto-formats APA 7th tables
+
+[Description]
+StatMate provides 20 statistical calculators with AI-powered interpretation. After running any analysis, the AI feature explains your results in plain language -- what's significant, what the effect sizes mean, and how to report them. All statistical computations run in your browser for privacy. The AI interpretation generates context-aware explanations of significance tests, effect sizes, and practical implications. Outputs APA 7th edition formatted tables exportable to Word and PDF.
+
+[Category]
+Research, Data Analysis, Education
+
+[Task]
+Statistical Analysis, Result Interpretation, APA Formatting
+
+==========================================
+5. BetaList
+==========================================
+접속: https://betalist.com/submit
+방법: "Submit Startup" → 각 필드에 아래 내용 붙여넣기
+
+[Startup Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Free statistics calculator with APA 7th auto-formatting
+
+[Description]
+StatMate is a free web-based statistics toolkit for researchers and students. It runs 20 common statistical analyses and automatically generates APA 7th edition formatted results tables. All calculations happen in your browser -- your data never leaves your computer. Export to Word or PDF. Pro tier adds AI-powered result interpretation. Available in 3 languages.
+
+[Category]
+Education, Productivity, SaaS
+
+[Stage]
+Live
+
+[Pricing]
+Freemium
+
+==========================================
+6. StartupBase
+==========================================
+접속: https://startupbase.io/submit
+방법: "Submit Startup" → 각 필드에 아래 내용 붙여넣기
+
+[Startup Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Free statistics calculator with APA 7th auto-formatting
+
+[Short Description]
+Web-based statistics calculator offering 20 tests with automatic APA 7th edition table formatting. Privacy-first design runs all computations client-side. Features include effect sizes, confidence intervals, assumption checks, and one-click Word/PDF export. Pro tier includes AI result interpretation. Free for all core features.
+
+[Category]
+Education, Analytics, Research
+
+[Tags]
+Statistics, APA, Calculator, Research Tools, SaaS
+
+==========================================
+7. SideProjectors
+==========================================
+접속: https://www.sideprojectors.com/project/new
+방법: "List a Project" → 각 필드에 아래 내용 붙여넣기
+
+[Project Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Free statistics calculator with APA 7th auto-formatting
+
+[Description]
+StatMate is a free web-based statistics calculator that runs 20 common analyses and auto-generates APA 7th formatted results tables. Built with Next.js and TypeScript, all computations run client-side for privacy. Features include t-tests, ANOVA, chi-square, regression, nonparametric tests, factor analysis, and Cronbach's alpha. Monetized via Lemon Squeezy with a Pro tier ($5.99/mo) for AI interpretation and Word export.
+
+[Tech Stack]
+Next.js, TypeScript, Tailwind CSS, Vercel, Lemon Squeezy
+
+[Category]
+SaaS, Education
+
+[Status]
+Active/Live
+
+==========================================
+8. MicroLaunch
+==========================================
+접속: https://microlaunch.net/submit
+방법: "Submit" → 각 필드에 아래 내용 붙여넣기
+
+[Product Name]
+StatMate
+
+[Website URL]
+https://statmate.org
+
+[Tagline]
+Free statistics calculator with APA 7th auto-formatting
+
+[Description]
+StatMate solves the most tedious part of academic writing: formatting statistical results into APA tables. It provides 20 statistical calculators that auto-generate APA 7th edition tables with effect sizes, confidence intervals, and assumption checks. All computation is client-side -- no data uploaded. Export to Word or PDF. Pro tier ($5.99/mo) adds AI-powered result interpretation. Built as a solo project with Next.js, deployed on Vercel, payments via Lemon Squeezy.
+
+[Category]
+Productivity, Education, SaaS
+
+[Maker Story]
+Built to solve my own problem as a grad student tired of manually formatting APA tables.

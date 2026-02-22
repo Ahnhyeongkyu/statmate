@@ -1,0 +1,177 @@
+==========================================
+Twitter/X Threads
+==========================================
+접속: https://twitter.com/compose/tweet
+방법: 각 Thread 별로 첫 트윗 작성 → 🧵 아이콘으로 이어서 작성. Thread 1, 2, 3을 각각 다른 시간대에 게시.
+추천 시간: Thread 1 (오전 9시 EST), Thread 2 (오후 2시 EST), Thread 3 (다음 날 오전 11시 EST)
+
+==========================================
+Thread 1: Launch Announcement
+==========================================
+
+[Tweet 1/5]
+I just launched StatMate -- a free statistics calculator that auto-formats your results into APA 7th edition tables.
+
+20 tests. One click. Publication-ready output.
+
+https://statmate.org
+
+🧵 Here's what it does:
+
+#statistics #APA #research #buildinpublic
+
+---
+
+[Tweet 2/5]
+What's included:
+
+• t-tests (independent, paired, one-sample)
+• ANOVA (one-way, two-way, repeated measures)
+• Chi-square & Fisher's exact
+• Correlation & regression (simple, multiple, logistic)
+• Nonparametric tests (Mann-Whitney, Wilcoxon, Kruskal-Wallis, Friedman)
+• Factor analysis & Cronbach's alpha
+
+---
+
+[Tweet 3/5]
+The APA 7th auto-formatting is the key feature:
+
+• Properly formatted results tables with italics, decimal places, and APA structure
+• Effect sizes (Cohen's d, eta-squared, Cramer's V, etc.)
+• Confidence intervals
+• Assumption checks (normality, homogeneity)
+
+Export to Word or PDF in one click.
+
+---
+
+[Tweet 4/5]
+Privacy matters:
+
+• All computation happens in your browser
+• Your data never leaves your computer
+• No account required for free features
+• No data uploaded to any server
+
+Cross-validated against R 4.3 for accuracy.
+
+Available in English, Korean, and Japanese.
+
+---
+
+[Tweet 5/5]
+Free tier: All 20 calculators, APA tables, PDF export
+
+Pro ($5.99/mo): AI interpretation, Word export, ad-free
+
+Built for grad students, researchers, and anyone tired of formatting tables by hand.
+
+Try it: https://statmate.org
+
+I'd love your feedback 🙏
+
+#gradschool #statistics #opensource #APA
+
+==========================================
+Thread 2: Problem/Solution Angle
+==========================================
+
+[Tweet 1/4]
+I was tired of manually formatting APA tables.
+
+Every time I ran a t-test or ANOVA, I'd spend another hour making sure the table had the right italics, decimal places, and structure.
+
+So I built a tool that does it automatically.
+
+🧵
+
+#gradschool #statistics #APA
+
+---
+
+[Tweet 2/4]
+The workflow used to be:
+
+1. Run analysis in SPSS/R
+2. Copy numbers into Word
+3. Manually format the APA table
+4. Triple-check every decimal, every italic, every symbol
+5. Reviewer finds a mistake anyway
+
+Time spent on formatting: 2-3 hours per table.
+
+---
+
+[Tweet 3/4]
+The workflow with StatMate:
+
+1. Paste your data
+2. Click "Calculate"
+3. Get an APA 7th formatted table with effect sizes, CIs, and assumption checks
+4. Export to Word or PDF
+
+Time spent: about 30 seconds.
+
+https://statmate.org
+
+---
+
+[Tweet 4/4]
+It's free for all 20 calculators including PDF export.
+
+If you're a grad student writing your thesis right now -- this exists for you.
+
+No account needed. No data uploaded. Works in your browser.
+
+https://statmate.org
+
+#research #statistics #gradschool #buildinpublic
+
+==========================================
+Thread 3: Technical Angle
+==========================================
+
+[Tweet 1/4]
+Built a stats calculator that runs entirely in your browser -- no server, no data upload, no backend computation.
+
+Here's the technical breakdown:
+
+🧵
+
+#buildinpublic #statistics #webdev
+
+---
+
+[Tweet 2/4]
+Stack:
+
+• Next.js + TypeScript + Tailwind CSS
+• All 20 statistical tests implemented in pure client-side JavaScript
+• No Python/R backend -- computations happen in the browser
+• Deployed on Vercel
+
+Why client-side? Privacy. Research data should never touch someone else's server.
+
+---
+
+[Tweet 3/4]
+Accuracy matters when you're doing statistics in JS:
+
+• Cross-validated every calculator against R 4.3 output
+• Welch's t-test by default (not Student's)
+• Shapiro-Wilk for normality, Levene's for homogeneity
+• Post-hoc tests: Bonferroni, Dunn's, Nemenyi
+
+Validation results: https://statmate.org/validation
+
+---
+
+[Tweet 4/4]
+The hardest part wasn't the statistics. It was generating pixel-perfect APA 7th tables that researchers would actually trust.
+
+Effect sizes, confidence intervals, assumption flags -- all formatted to spec.
+
+Try it free: https://statmate.org
+
+#statistics #APA #research #opensource

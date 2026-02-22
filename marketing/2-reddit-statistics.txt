@@ -1,0 +1,39 @@
+==========================================
+Reddit r/statistics
+==========================================
+접속: https://www.reddit.com/r/statistics/submit
+방법: Create Post → Title 붙여넣기 → Body 붙여넣기 → Post
+
+==========================================
+[TITLE] 아래 한 줄 복사:
+==========================================
+Free web-based statistics calculator with 20 tests, APA 7th auto-formatting, and effect sizes -- cross-validated against R
+
+==========================================
+[BODY] 아래 전체 복사:
+==========================================
+Hi r/statistics,
+
+I've been working on a free, open web tool called StatMate that provides 20 commonly used statistical calculators with a focus on correctness and usable output.
+
+**What's included:**
+
+- Independent & paired samples t-tests (Welch's t-test by default, with option for Student's)
+- One-way & two-way ANOVA (with post-hoc tests)
+- Chi-square test of independence and goodness of fit
+- Pearson, Spearman, and Kendall correlations
+- Simple and multiple linear regression
+- Mann-Whitney U, Wilcoxon signed-rank, Kruskal-Wallis
+- Descriptive statistics and normality tests
+
+**What makes it different from other online calculators:**
+
+1. **Assumption checks are built in** -- normality (Shapiro-Wilk), homogeneity of variance (Levene's), and the tool flags violations with recommendations
+2. **Effect sizes reported by default** -- Cohen's d, eta-squared, partial eta-squared, Cramer's V, etc., depending on the test
+3. **APA 7th edition formatted output** -- generates publication-ready results tables that you can export to Word or PDF
+4. **All computations run client-side** in JavaScript -- your data never touches a server. The underlying calculations have been cross-validated against R output to ensure accuracy
+5. **Confidence intervals** included where applicable
+
+It's aimed at researchers and grad students who need quick, reliable analyses with properly formatted output. It's not meant to replace R or Python for complex analyses, but for standard tests it should save a lot of time, especially on the reporting side.
+
+Try it at https://statmate.org -- Would welcome feedback from this community, particularly on edge cases or numerical accuracy.
