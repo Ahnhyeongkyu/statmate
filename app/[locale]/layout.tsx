@@ -388,7 +388,21 @@ export default async function LocaleLayout({
                 </div>
               </div>
 
-              <div className="mt-8 border-t pt-8 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
+              <div className="mt-8 flex items-center justify-center gap-4 border-t pt-8">
+                <a
+                  href="https://fazier.com/launches/statmate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="https://fazier.com/api/v1/public/badges/launch_badges.svg?badge_type=launched&theme=neutral"
+                    alt="Launched on Fazier"
+                    width="150"
+                    height="40"
+                  />
+                </a>
+              </div>
+              <div className="mt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
               </div>
             </div>
