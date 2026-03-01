@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/multiple-regression",
+      canonical: locale === "en" ? "/calculators/multiple-regression" : `/${locale}/calculators/multiple-regression`,
       languages: {
         en: "/calculators/multiple-regression",
         ko: "/ko/calculators/multiple-regression",

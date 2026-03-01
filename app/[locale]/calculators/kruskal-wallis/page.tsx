@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/kruskal-wallis",
+      canonical: locale === "en" ? "/calculators/kruskal-wallis" : `/${locale}/calculators/kruskal-wallis`,
       languages: {
         en: "/calculators/kruskal-wallis",
         ko: "/ko/calculators/kruskal-wallis",

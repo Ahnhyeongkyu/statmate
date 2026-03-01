@@ -18,7 +18,7 @@ export async function generateMetadata({
       ? "몇 가지 질문에 답하면 적합한 통계 검정을 추천해드립니다."
       : "Answer a few questions and we'll recommend the right statistical test for your data.",
     alternates: {
-      canonical: "/wizard",
+      canonical: locale === "en" ? "/wizard" : `/${locale}/wizard`,
       languages: {
         en: "/wizard",
         ko: "/ko/wizard",

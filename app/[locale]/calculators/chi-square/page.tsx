@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/chi-square",
+      canonical: locale === "en" ? "/calculators/chi-square" : `/${locale}/calculators/chi-square`,
       languages: {
         en: "/calculators/chi-square",
         ko: "/ko/calculators/chi-square",

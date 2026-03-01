@@ -15,7 +15,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/validation",
+      canonical: locale === "en" ? "/validation" : `/${locale}/validation`,
       languages: {
         en: "/validation",
         ko: "/ko/validation",

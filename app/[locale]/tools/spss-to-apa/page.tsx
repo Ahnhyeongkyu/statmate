@@ -13,7 +13,7 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: "/tools/spss-to-apa",
+      canonical: locale === "en" ? "/tools/spss-to-apa" : `/${locale}/tools/spss-to-apa`,
       languages: {
         en: "/tools/spss-to-apa",
         ko: "/ko/tools/spss-to-apa",

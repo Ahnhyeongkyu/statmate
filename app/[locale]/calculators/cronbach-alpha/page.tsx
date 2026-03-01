@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/cronbach-alpha",
+      canonical: locale === "en" ? "/calculators/cronbach-alpha" : `/${locale}/calculators/cronbach-alpha`,
       languages: {
         en: "/calculators/cronbach-alpha",
         ko: "/ko/calculators/cronbach-alpha",

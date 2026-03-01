@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/fisher-exact",
+      canonical: locale === "en" ? "/calculators/fisher-exact" : `/${locale}/calculators/fisher-exact`,
       languages: {
         en: "/calculators/fisher-exact",
         ko: "/ko/calculators/fisher-exact",

@@ -13,7 +13,7 @@ export async function generateMetadata({
     title: t("form.pageTitle"),
     description: t("description"),
     alternates: {
-      canonical: "/expert-review/request",
+      canonical: locale === "en" ? "/expert-review/request" : `/${locale}/expert-review/request`,
       languages: {
         en: "/expert-review/request",
         ko: "/ko/expert-review/request",

@@ -407,7 +407,7 @@
   },
   "chiSquare": {
     "metaTitle": "Free Chi-Square Calculator Online",
-    "metaDescription": "Free online chi-square calculator. Test of independence and goodness-of-fit with APA-formatted results. Chi-square statistic, p-value, Cramer's V.",
+    "metaDescription": "Free chi-square calculator with instant APA-formatted results. Independence and goodness-of-fit tests — chi-square statistic, p-value, Cramer's V. No signup, runs in your browser.",
     "title": "Chi-Square Calculator",
     "description": "Test of independence for contingency tables and goodness-of-fit. Results are formatted in APA 7th edition style.",
     "independence": "Test of Independence",
@@ -452,7 +452,7 @@
   },
   "correlation": {
     "metaTitle": "Free Correlation Calculator Online - Pearson & Spearman",
-    "metaDescription": "Free online correlation calculator. Pearson r and Spearman rho with APA-formatted results. Scatter plot visualization with regression line.",
+    "metaDescription": "Free Pearson and Spearman correlation calculator with scatter plot. Instant r-value, p-value, and confidence interval in APA format. No signup, no installation.",
     "title": "Correlation Calculator",
     "description": "Calculate Pearson r or Spearman rho between two variables. Results include scatter plot, p-value, and APA-formatted output.",
     "pearson": "Pearson r",
@@ -801,7 +801,7 @@
   },
   "sampleSize": {
     "metaTitle": "Free Sample Size Calculator Online - Power Analysis",
-    "metaDescription": "Free online sample size calculator. Power analysis for t-tests, ANOVA, correlation, chi-square, and proportions. Get required N with APA-formatted results.",
+    "metaDescription": "Free sample size calculator for researchers. Power analysis for t-test, ANOVA, chi-square, correlation. Get the required N for your IRB proposal with instant APA results.",
     "title": "Sample Size Calculator",
     "description": "Calculate the required sample size for your study using power analysis. Supports t-tests, ANOVA, correlation, chi-square, and proportion tests.",
     "inputDescription": "Select your test type, effect size, significance level, and desired power.",

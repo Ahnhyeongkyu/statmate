@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: {
-      canonical: "/calculators/logistic-regression",
+      canonical: locale === "en" ? "/calculators/logistic-regression" : `/${locale}/calculators/logistic-regression`,
       languages: {
         en: "/calculators/logistic-regression",
         ko: "/ko/calculators/logistic-regression",
