@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { RepeatedMeasuresCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -56,13 +57,19 @@ export default async function RepeatedMeasuresPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("repeatedMeasures");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "반복측정 분산분석은 언제 사용하나요?", answer: "동일한 피험자가 3개 이상의 조건 또는 시점에서 측정되었을 때 사용합니다. 예: 약물 투여 전, 1주 후, 4주 후의 혈압을 비교하거나, 동일한 학생이 세 가지 학습 방법을 모두 경험한 후 성적을 비교할 때 적합합니다." },
         { question: "구형성(Sphericity)이란 무엇인가요?", answer: "구형성은 조건 간 차이 점수의 분산이 모두 동일해야 한다는 가정입니다. Mauchly 검정으로 확인하며, 위반 시(p < .05) Greenhouse-Geisser 또는 Huynh-Feldt 보정을 적용하여 자유도를 조정합니다." },
         { question: "Greenhouse-Geisser 보정이란?", answer: "구형성 가정이 위반되었을 때 자유도를 엡실론(epsilon)으로 곱하여 보수적으로 조정하는 방법입니다. 엡실론이 1에 가까울수록 구형성이 충족되며, 1/(k-1)에 가까울수록 심각하게 위반된 것입니다. 보정된 자유도로 새로운 p-값을 계산합니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 F-통계량, 자유도(구형성 위반 시 보정된 값), p-값, 부분 에타제곱을 보고합니다. 구형성이 위반된 경우 Greenhouse-Geisser 보정을 사용했음을 명시합니다. 예: 'F(1.42, 9.94) = 35.12, p < .001, eta-squared-p = .83 (Greenhouse-Geisser corrected).'" },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "反復測定分散分析はいつ使用しますか？", answer: "同一の被験者が3つ以上の条件または時点で測定された場合に使用します。例：薬物投与前、1週間後、4週間後の血圧を比較する場合や、同一の学生が3つの学習方法すべてを経験した後の成績を比較する場合に適しています。" },
+        { question: "球面性（Sphericity）とは？", answer: "球面性は、すべての条件ペア間の差の分散が等しいという仮定です。Mauchlyの検定で確認し、違反した場合（p < .05）はGreenhouse-GeisserまたはHuynh-Feldt補正を適用して自由度を調整します。" },
+        { question: "Greenhouse-Geisser補正とは？", answer: "球面性の仮定が違反された場合に、自由度にイプシロン（epsilon）を乗じて保守的に調整する方法です。イプシロンが1に近いほど球面性が充足され、1/(k-1)に近いほど深刻に違反されています。補正された自由度で新しいp値を計算します。" },
+        { question: "APA形式での報告方法は？", answer: "APA第7版に従い、F統計量、自由度（球面性違反時は補正値）、p値、偏イータ二乗を報告します。球面性が違反された場合はGreenhouse-Geisser補正を使用したことを明記します。例：「F(1.42, 9.94) = 35.12, p < .001, partial eta-squared = .83（Greenhouse-Geisser補正適用）」" },
       ]
     : [
         { question: "When should I use repeated measures ANOVA?", answer: "Use repeated measures ANOVA when the same subjects are measured under three or more conditions or time points. Examples: comparing blood pressure before treatment, 1 week after, and 4 weeks after; or comparing scores when the same students experience all three teaching methods." },
@@ -90,7 +97,7 @@ export default async function RepeatedMeasuresPage({
       <AdUnit slot="repeated-measures-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Repeated Measures ANOVA?

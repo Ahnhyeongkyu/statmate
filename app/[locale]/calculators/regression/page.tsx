@@ -4,6 +4,7 @@ import { RegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -57,13 +58,19 @@ export default async function RegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("regression");
-  const isKo = locale === "ko";
-  const faqs = isKo
+  const faqs = locale === "ko"
     ? [
         { question: "회귀분석은 언제 사용하나요?", answer: "한 변수(독립변수)로 다른 변수(종속변수)를 예측하거나 설명할 때 사용합니다. 예: 광고비가 매출에 미치는 영향 분석." },
         { question: "R²(결정계수)는 어떻게 해석하나요?", answer: "R²는 독립변수가 종속변수의 변동을 설명하는 비율입니다. R² = 0.65이면 종속변수 변동의 65%를 독립변수로 설명할 수 있다는 의미입니다." },
         { question: "회귀분석과 상관분석의 차이는 무엇인가요?", answer: "상관분석은 두 변수 간 관계의 강도만 측정합니다. 회귀분석은 예측 방정식(Y = a + bX)을 제공하여 독립변수 값으로 종속변수를 예측할 수 있습니다." },
         { question: "잔차(residual)는 무엇인가요?", answer: "잔차는 실제 관측값과 회귀모형의 예측값 간의 차이입니다. 잔차가 정규분포를 따르고 등분산성을 보이면 회귀모형이 적절하다고 판단합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "回帰分析はいつ使用しますか？", answer: "1つの変数（独立変数）で別の変数（従属変数）を予測または説明する場合に使用します。例：広告費が売上に与える影響の分析。" },
+        { question: "R²（決定係数）はどう解釈しますか？", answer: "R²は独立変数が従属変数の変動を説明する割合です。R² = 0.65であれば、従属変数の変動の65%を独立変数で説明できることを意味します。" },
+        { question: "回帰分析と相関分析の違いは何ですか？", answer: "相関分析は2つの変数間の関係の強さのみを測定します。回帰分析は予測方程式（Y = a + bX）を提供し、独立変数の値から従属変数を予測できます。" },
+        { question: "残差（residual）とは何ですか？", answer: "残差は実際の観測値と回帰モデルの予測値との差です。残差が正規分布に従い等分散性を示せば、回帰モデルが適切であると判断します。" },
       ]
     : [
         { question: "When should I use regression analysis?", answer: "Use it to predict or explain one variable (dependent) using another variable (independent). For example, analyzing how advertising spend affects sales." },
@@ -91,7 +98,7 @@ export default async function RegressionPage({
       <AdUnit slot="regression-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Simple Linear Regression?

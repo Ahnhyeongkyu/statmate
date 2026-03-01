@@ -4,6 +4,7 @@ import { FisherExactCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function FisherExactPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("fisherExact");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "Fisher 정확 검정은 언제 사용하나요?", answer: "2x2 분할표에서 기대 빈도가 5 미만인 셀이 있거나 전체 표본 크기가 작을 때(일반적으로 N < 20-30) Fisher 정확 검정을 사용합니다. 카이제곱 검정의 근사가 신뢰할 수 없는 경우에 정확한 p-값을 제공합니다." },
         { question: "Fisher 정확 검정과 카이제곱 검정의 차이는?", answer: "카이제곱 검정은 근사적 방법으로 대표본에 적합하고, Fisher 정확 검정은 초기하 분포를 이용한 정확한 방법입니다. 소표본이나 희소한 셀이 있을 때는 Fisher 검정이 더 정확합니다. 대표본에서는 두 검정의 결과가 거의 같습니다." },
         { question: "오즈비(OR)는 어떻게 해석하나요?", answer: "오즈비 = 1이면 연관이 없고, > 1이면 양의 연관(첫 번째 행에서 첫 번째 열의 비율이 더 높음), < 1이면 음의 연관을 나타냅니다. 95% 신뢰구간이 1을 포함하면 통계적으로 유의하지 않습니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "Fisher 정확 검정 결과를 보고할 때는 p-값, 오즈비, 95% 신뢰구간을 포함합니다. 예: 'Fisher의 정확 검정 결과, 치료군과 대조군 간에 유의한 차이가 있었다, p = .003, OR = 36.00, 95% CI [3.26, 397.53].' StatMate가 이 형식을 자동으로 생성합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "Fisherの正確検定はいつ使用しますか？", answer: "2x2分割表で期待度数が5未満のセルがある場合や、全体の標本サイズが小さい場合（一般的にN < 20-30）にFisherの正確検定を使用します。カイ二乗検定の近似が信頼できない場合に正確なp値を提供します。" },
+        { question: "Fisherの正確検定とカイ二乗検定の違いは？", answer: "カイ二乗検定は大標本に適した近似的方法で、Fisherの正確検定は超幾何分布を用いた正確な方法です。小標本や希少なセルがある場合はFisher検定がより正確です。大標本では両検定の結果はほぼ同じになります。" },
+        { question: "オッズ比（OR）はどのように解釈しますか？", answer: "オッズ比 = 1は関連なし、> 1は正の関連（第1行で第1列の割合が高い）、< 1は負の関連を示します。95%信頼区間が1を含む場合、統計的に有意ではありません。" },
+        { question: "APA形式でどのように報告しますか？", answer: "Fisherの正確検定の結果を報告する際は、p値、オッズ比、95%信頼区間を含めます。例：「Fisherの正確検定の結果、治療群と対照群の間に有意な差が認められた，p = .003, OR = 36.00, 95% CI [3.26, 397.53]。」StatMateがこの形式を自動生成します。" },
       ]
     : [
         { question: "When should I use Fisher's exact test?", answer: "Use Fisher's exact test when you have a 2x2 contingency table with any expected frequency below 5 or a small total sample size (typically N < 20-30). It provides an exact p-value when the chi-square approximation is unreliable." },
@@ -89,7 +96,7 @@ export default async function FisherExactPage({
       <AdUnit slot="fisher-exact-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Fisher&apos;s Exact Test?

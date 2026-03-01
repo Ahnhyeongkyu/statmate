@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { AnovaCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema } from "@/components/faq-schema";
@@ -55,13 +56,19 @@ export default async function AnovaPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("anova");
-  const isKo = locale === "ko";
-  const faqs = isKo
+  const faqs = locale === "ko"
     ? [
         { question: "ANOVA는 언제 사용하나요?", answer: "세 개 이상의 집단 평균을 동시에 비교할 때 사용합니다. 두 집단만 비교한다면 t-검정을 사용하세요." },
         { question: "사후검정(Post-hoc)은 왜 필요한가요?", answer: "ANOVA는 집단 간 차이가 있는지만 알려줍니다. 어떤 집단 간에 차이가 있는지 알려면 Bonferroni, Tukey 등의 사후검정이 필요합니다." },
         { question: "ANOVA의 가정은 무엇인가요?", answer: "정규성(각 집단의 데이터가 정규분포), 등분산성(집단 간 분산이 동일), 독립성(관측치가 서로 독립)의 세 가지 가정을 충족해야 합니다." },
         { question: "η²(에타제곱)은 어떻게 해석하나요?", answer: "η² = 0.01은 작은 효과, 0.06은 중간 효과, 0.14 이상은 큰 효과입니다. 종속변수의 분산 중 독립변수로 설명되는 비율을 나타냅니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "ANOVAはいつ使用しますか？", answer: "3つ以上の群の平均を同時に比較する場合に使用します。2群のみの比較であればt検定を使用してください。" },
+        { question: "事後検定はなぜ必要ですか？", answer: "ANOVAは群間に差があるかどうかのみを示します。どの群の間に差があるかを知るには、BonferroniやTukeyなどの事後検定が必要です。" },
+        { question: "ANOVAの前提条件は何ですか？", answer: "正規性（各群のデータが正規分布に従うこと）、等分散性（群間の分散が等しいこと）、独立性（観測値が互いに独立していること）の3つの前提条件を満たす必要があります。" },
+        { question: "η²（イータ二乗）はどのように解釈しますか？", answer: "η² = 0.01は小さい効果、0.06は中程度の効果、0.14以上は大きい効果です。従属変数の分散のうち独立変数によって説明される割合を表します。" },
       ]
     : [
         { question: "When should I use ANOVA?", answer: "Use ANOVA when comparing means of three or more groups simultaneously. For two groups, use a t-test instead." },
@@ -89,7 +96,7 @@ export default async function AnovaPage({
       <AdUnit slot="anova-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is ANOVA (Analysis of Variance)?

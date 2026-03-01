@@ -1,6 +1,6 @@
 # StatMate — Project Context
 
-> Last updated: 2026-02-22
+> Last updated: 2026-02-24
 
 ## Overview
 
@@ -10,6 +10,22 @@ StatMate is a trilingual (EN/KO/JA) statistics calculator web app deployed on Ve
 - **Live:** https://statmate.org
 - **PRD:** `PRD.md` (2026-02-16)
 - **Monetization:** Lemon Squeezy Pro license (AI interpretation, DOCX export)
+
+---
+
+## Design Palette (StatMate 전용)
+
+디자인 보편 규칙은 글로벌 Skill `design-guideline` 참조. 아래는 StatMate 전용 색상값.
+
+```
+Primary:   #2563EB (Blue-600)  → oklch(0.546 0.245 262.881)
+Secondary: #E0F2FE (Sky-100)   → oklch(0.951 0.026 236.824)
+Accent:    #F59E0B (Amber-500) → oklch(0.769 0.188 70.08) — Pro 배지, 경고에만 극소량 사용
+나머지:    흰색(#FFFFFF), 검정(#09090B), slate 계열
+
+Chart: #2563EB, #10B981, #F59E0B, #8B5CF6, #EC4899
+Layout: max-w-4xl mx-auto (계산기 페이지)
+```
 
 ---
 
@@ -224,7 +240,7 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 
 ---
 
-## Marketing Progress (2026-02-22 기준)
+## Marketing Progress (2026-02-24 기준)
 
 마케팅 파일: `marketing/` 디렉토리 (14개 파일), 런치 가이드: `marketing/14-launch-guide.txt`
 
@@ -237,6 +253,25 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 | SaaSHub | 12-directories.txt §2 | ✅ 완료 | |
 | SideProjectors | 12-directories.txt §7 | ✅ 완료 | 리뷰 대기 중 (2-3 영업일) |
 | 김박사넷 | 4-kimbaksanet.txt | ✅ 완료 | phdkim.net/board/free/77519 |
+| Twitter/X Thread 1 (런치) | 11-twitter-threads.txt | ✅ 완료 | 5트윗 스레드 게시 완료 |
+| Twitter/X Thread 2 (문제/해결) | 11-twitter-threads.txt | ✅ 완료 | 4트윗 스레드 게시 완료 |
+| LinkedIn 포스트 | 직접 작성 | ✅ 완료 | "I built..." 스토리 + 첫 댓글에 링크 |
+| Threads | 직접 작성 | ✅ 완료 | @houng8087, OG 카드 포함 |
+| 네이버 블로그 1 | 6-naver-blog-1.txt | ✅ 완료 | blog.naver.com/houng8087/224192215089, t-test APA 보고법 |
+| 네이버 블로그 2 | 7-naver-blog-2.txt | ✅ 완료 | blog.naver.com/houng8087/224192240263, 무료 통계 프로그램 추천 |
+| 네이버 블로그 3 | 8-naver-blog-3.txt | ✅ 완료 | blog.naver.com/houng8087/224192243754, ANOVA APA 가이드 |
+| Launching Next | — | ✅ 완료 | ID: 126506, 무료 리뷰 대기 (최대 4개월) |
+| Uneed | — | ✅ 완료 | uneed.best/tool/statmate, 로고만 추가 필요 |
+| OpenAlternative | — | ✅ 완료 | SPSS/GraphPad/JASP 대안으로 제출, GitHub 연결 |
+| DevHunt | — | ⚠️ 부분 | 프로필+기본정보 입력 완료, 스크린샷 3장+런치 주 선택 필요 |
+| Fazier | — | ⚠️ 보류 | 댓글 3개+링크 입력 완료, 배지 임베드 필요 (fazier.com/launch) |
+| Quora 답변 18개 | — | ✅ 완료 | SPSS 대안 3건 + 통계 주제별 15건 답변 (chi-square/sample-size/correlation/ANOVA APA/Cronbach's alpha/logistic regression/EFA vs CFA/t-test vs Mann-Whitney/multiple regression/repeated measures ANOVA/two-way ANOVA/Kruskal-Wallis/power analysis/one-sample vs independent vs paired t-test) |
+| Twitter/X Thread 3 (기술) | 11-twitter-threads.txt | ✅ 완료 | 4트윗 기술 스레드 게시 완료 |
+| Facebook 그룹 5곳 | — | ✅ 완료 | Statistics Expert(10.1만), Statistics Help(1.4만), Statistics help class(7.4천), Statistics and Probability(4.2만), Statistics and Econometrics Experts(2.3만) |
+| Dev.to 기술 블로그 | — | ✅ 완료 | dev.to/ahnhyeongkyu/...-4ic6, #nextjs #javascript #webdev #opensource |
+| Medium 블로그 | — | ✅ 완료 | medium.com/p/e104c6cc5564, "5 Free SPSS Alternatives..." #Statistics #DataScience #Research |
+| Hashnode 블로그 | — | ✅ 완료 | statmate.hashnode.dev/free-apa-statistics-calculator-nextjs, "How I Built..." #NextJs #JavaScript #WebDev #OpenSource |
+| HackerNoon 블로그 | — | ✅ 완료 | "Why I Built a Free Statistics Calculator That Formats Results in APA Style" 에디터 리뷰 제출 완료 |
 
 ### 유료/접근불가로 스킵
 
@@ -248,61 +283,98 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 | StartupBase | 12-directories.txt §6 | ❌ 스킵 | 가입 중단 상태 (리노베이션) |
 | MicroLaunch | 12-directories.txt §8 | ❌ 스킵 | 대기열 마감 |
 | Indie Hackers | 10-indiehackers.txt | ❌ 스킵 | 신규 계정 포스팅 권한 없음 (커뮤니티 참여 또는 Plus 구독 필요) |
+| ResearchGate | 13-academic-outreach.txt §1 | ❌ 스킵 | 기관 이메일(.edu/.ac.kr) 필요, Gmail 불가 |
+| Academia.edu | 13-academic-outreach.txt §2 | ❌ 스킵 | 기관 이메일 필요 (ResearchGate와 동일) |
+| SaasHunt | — | ❌ 스킵 | 서버 다운 (522 Connection Timed Out) |
+| Tiny Startups | — | ⚠️ 보류 | 폼 작성 완료, 로고+스크린샷 업로드 필요 (tally.so/r/npZLWP) |
+| ToolPilot.ai | — | ❌ 스킵 | /submit 페이지 404 Not Found |
+| 1000.tools | — | ❌ 스킵 | /submit 페이지 404 Not Found |
+| Peerlist | — | ❌ 스킵 | 계정 생성 필요 (peerlist.io/launchpad) |
 
-### 남은 항목 (직접 진행 필요)
+### 🔴 다음 세션 시작점 (2026-02-24 기준)
 
-| 우선순위 | 채널 | 파일 | 비고 |
-|---------|------|------|------|
-| **높음** | Reddit r/GradSchool | 1-reddit-gradschool.txt | Title+Body 복붙. 브라우저 자동화 제한으로 직접 필요 |
-| **높음** | Reddit r/statistics | 2-reddit-statistics.txt | Title+Body 복붙. 기술적 질문 대응 준비 |
-| **높음** | Reddit r/AcademicPsychology | 1번 변형 사용 | APA 테이블 자동 생성 강조 |
-| **높음** | Reddit r/academia | 1번 변형 사용 | |
-| **높음** | 에브리타임 | 3-everytime.txt | 모바일 앱에서 자유게시판 글쓰기 |
-| **높음** | Twitter/X Thread 1 (런치) | 11-twitter-threads.txt | 5트윗 스레드 |
-| **높음** | Twitter/X Thread 2 (문제/해결) | 11-twitter-threads.txt | 4트윗 스레드, Thread 1 다음 날 |
-| **높음** | Twitter/X Thread 3 (기술) | 11-twitter-threads.txt | 4트윗 스레드, Thread 2 다음 날 |
-| **중간** | Product Hunt | 5-producthunt.txt | 화~목 런치 권장. 로고/스크린샷/Maker 코멘트 준비 필요 |
-| **중간** | ResearchGate | 13-academic-outreach.txt §1 | Statistics, APA Style 토픽 Discussion |
-| **중간** | Academia.edu | 13-academic-outreach.txt §2 | 프로필 About + 포스트 |
-| **중간** | 네이버 블로그 1 | 6-naver-blog-1.txt | 1주 간격 게시, 키워드: "통계 계산기" |
-| **중간** | 네이버 블로그 2 | 7-naver-blog-2.txt | 키워드: "APA 표 만들기" |
-| **중간** | 네이버 블로그 3 | 8-naver-blog-3.txt | 키워드: "무료 통계 프로그램" |
-| **중간** | LinkedIn 포스트 | 직접 작성 | "I built..." 스토리, 첫 댓글에 링크 |
-| **장기** | Reddit 카르마 빌딩 | — | 매일 15-20분 답변 활동 (2주간) |
-| **장기** | 뉴스레터 피칭 | — | Console.dev, TLDR, Ben's Bites, The Neuron, Hacker Newsletter |
-| **장기** | 대학 도서관 이메일 | 13-academic-outreach.txt §3 | 영어 템플릿, 목표 20개 대학 |
-| **장기** | 교수님 이메일 | 13-academic-outreach.txt §4 | 한국어 템플릿, 목표 30명 (교육학/심리학/사회학/간호학/경영학) |
-| **장기** | Facebook 그룹 | — | Statistics Help, PhD Students 등 |
-| **장기** | 블로그 SEO 추가 | — | 추가 키워드 타겟 포스트 |
+핵심 지시: "계속진행하자. 유입이 최대한 되어야돼. 빨리 돈을 벌어야돼"
+
+**바로 이어서 할 작업 (Claude가 브라우저로 직접 가능):**
+
+1. **Quora 추가 답변** — 18개 완료. 아직 안 다룬 계산기: descriptive stats, simple regression, McNemar, Friedman, Wilcoxon (Quora에 관련 질문 적음 — 다른 키워드로 재검색 필요)
+2. **Hashnode 마크다운 수정** — statmate.hashnode.dev 글 렌더링 이슈 있음. 탭 열려있음: tabId 1002629404 (hashnode.com/edit/...)
+3. **Facebook 추가 그룹** — 통계/연구방법론 관련 그룹 더 찾아서 가입+게시
+4. **Fazier 배지 임베드** — footer에 Fazier 배지 코드 추가 → git commit → Vercel 배포 → fazier.com에서 제출 완료
+
+**사용자가 직접 해야 할 작업:**
+
+5. **에브리타임** — 모바일 앱에서 자유게시판 글쓰기 (marketing/3-everytime.txt 참조)
+6. **DevHunt 완료** — 스크린샷 3장 업로드 + 런치 주 선택 필요
+7. **Tiny Startups 완료** — 로고+스크린샷 업로드 필요 (tally.so/r/npZLWP)
+8. **Product Hunt** — 화~목 런치 권장. 로고/스크린샷/Maker 코멘트 준비 필요
+
+**장기 작업:**
+
+9. **뉴스레터 피칭** — Console.dev, TLDR, Ben's Bites, The Neuron, Hacker Newsletter
+10. **대학 도서관 이메일** — 영어 템플릿, 목표 20개 대학 (13-academic-outreach.txt §3)
+11. **교수님 이메일** — 한국어 템플릿, 목표 30명 (13-academic-outreach.txt §4)
+12. **블로그 SEO 추가** — 추가 키워드 타겟 포스트
+
+**❌ 절대 금지:** Reddit 전체 — 계정 BANNED
+
+### Quora 답변 상세 (18개, 커버된 계산기)
+
+| # | 질문 키워드 | 타겟 계산기 URL |
+|---|-----------|---------------|
+| 1-3 | SPSS alternatives (3건) | 일반 statmate.org |
+| 4 | two-sample t-test | /calculators/t-test |
+| 5 | chi-square independence | /calculators/chi-square |
+| 6 | sample size determination | /calculators/sample-size |
+| 7 | Pearson correlation | /calculators/correlation |
+| 8 | ANOVA APA reporting | /calculators/anova |
+| 9 | Cronbach's alpha | /calculators/cronbach-alpha |
+| 10 | logistic regression odds ratio | /calculators/logistic-regression |
+| 11 | EFA vs CFA | /calculators/factor-analysis |
+| 12 | t-test vs Mann-Whitney | /calculators/t-test + /calculators/mann-whitney |
+| 13 | multiple regression dummy vars | /calculators/multiple-regression |
+| 14 | repeated measures ANOVA interpret | /calculators/repeated-measures |
+| 15 | two-way ANOVA no interaction | /calculators/two-way-anova |
+| 16 | Kruskal-Wallis interpret | /calculators/kruskal-wallis |
+| 17 | power analysis sample size | /calculators/sample-size |
+| 18 | one-sample vs independent vs paired t-test | /calculators/one-sample-t + /calculators/t-test |
+
+**아직 미커버 계산기:** descriptive, regression (simple), wilcoxon, friedman, fisher-exact, mcnemar
+
+### 계정 정보
+
+| 플랫폼 | 계정 |
+|--------|------|
+| Google | houng8087@gmail.com (안형규) |
+| Quora | 몽골 안 (credential: knows Korean) |
+| HackerNoon | Google 로그인 |
+| Medium | Houng |
+| Hashnode | Ahnhyeongkyu (statmate.hashnode.dev) |
+| GitHub | Ahnhyeongkyu |
+| Dev.to | ahnhyeongkyu |
+| Twitter/X | @an_hyoung |
+| Facebook | 안형규 |
+| LinkedIn | 안형규 |
+| Threads | @houng8087 |
+| Reddit | ❌ BANNED — 절대 사용 금지 |
 
 ## Recently Completed
 
+- [x] Quora 답변 #14~#18 — repeated measures ANOVA, two-way ANOVA interaction, Kruskal-Wallis interpretation, power analysis/sample size, one-sample vs independent vs paired t-test (2026-02-24)
+- [x] HackerNoon 블로그 제출 — "Why I Built a Free Statistics Calculator That Formats Results in APA Style" 에디터 리뷰 제출 (2026-02-24)
+- [x] Quora 답변 #5~#13 — chi-square, sample size, correlation, ANOVA APA, Cronbach's alpha, logistic regression OR, EFA vs CFA, t-test vs Mann-Whitney, multiple regression dummy vars (2026-02-24)
+- [x] Hashnode 블로그 게시 — "How I Built a Free APA Statistics Calculator With Next.js and Zero Dependencies" (statmate.hashnode.dev) (2026-02-24)
+- [x] Medium 블로그 게시 — "5 Free SPSS Alternatives That Actually Work for Academic Research" (medium.com/p/e104c6cc5564) (2026-02-23)
+- [x] Dev.to 기술 블로그 게시 — "I Built a Free Statistics Calculator with Next.js" (dev.to/ahnhyeongkyu) (2026-02-23)
+- [x] Facebook 그룹 5곳 게시 — Statistics Expert(10.1만), Statistics Help(1.4만), Statistics help class(7.4천) (2026-02-23) + Statistics and Probability(4.2만), Statistics and Econometrics Experts(2.3만) (2026-02-24)
+- [x] Quora 답변 3개 게시 — SPSS 대안 질문 3건 답변, statmate.org 백링크 (2026-02-23)
+- [x] Fazier 댓글+링크 완료 — 3개 댓글+프로덕트 링크 입력, 배지 임베드 후 제출 가능 (2026-02-23)
+- [x] Twitter/X Thread 1 게시 — 5트윗 런치 스레드 @an_hyoung (2026-02-22)
+- [x] Twitter/X Thread 2 게시 — 4트윗 문제/해결 스레드 @an_hyoung (2026-02-22)
+- [x] Twitter/X Thread 3 게시 — 4트윗 기술 스레드 @an_hyoung 게시 완료 (2026-02-23)
+- [x] 네이버 블로그 3개 게시 — t-test APA, 무료 통계 프로그램, ANOVA APA 가이드 (2026-02-23)
+- [x] LinkedIn 포스트 + 첫 댓글 — "I built..." 스토리, 댓글에 statmate.org 링크 (2026-02-22)
+- [x] Threads 게시 — @houng8087, OG 카드 포함 (2026-02-23)
 - [x] 마케팅 디렉토리 등록 — AlternativeTo, SaaSHub, SideProjectors 완료 (2026-02-22)
 - [x] 김박사넷 게시 — 자유게시판 정보공유 글 (phdkim.net/board/free/77519) (2026-02-22)
-- [x] Validation 증거 페이지 — /validation, R vs StatMate 20개 교차검증 결과 (`e28a10f`)
-- [x] Expert Review 강화 — 리뷰어 자격, 샘플 리뷰, 만족 보증, FAQ (`e28a10f`)
-- [x] University 강화 — SPSS 비용 비교, 활용 사례, 조달 FAQ (`e28a10f`)
-- [x] About 강화 — 팀 오리진 스토리, 다크 모드 (`e28a10f`)
-- [x] Homepage 개선 — 인터랙티브 데모, 연구자 사용 사례 (기존 가짜 추천사 대체) (`e28a10f`)
-- [x] Blog JA 지원 — 블로그 상세 페이지 일본어 로케일 추가 (`e28a10f`)
-- [x] 가격 리서치 + 최적화 — 경쟁사 분석 기반 가격 인하 ($9.99→$5.99), 학생 할인 도입
-- [x] SETUP-GUIDE.md — 외부 서비스 설정 종합 가이드 (도메인, Supabase, Lemon Squeezy, GA, AdSense)
-- [x] Breadcrumb 네비게이션 — 20개 계산기 + BreadcrumbList JSON-LD (`90af086`)
-- [x] 다크 모드 — CSS 변수 + ThemeToggle + 전체 페이지 dark 클래스 (`90af086`)
-- [x] PWA 서비스 워커 — public/sw.js + manifest 개선 + ServiceWorkerRegister (`90af086`)
-- [x] 홈페이지 FAQ + JSON-LD — 6개 FAQ + FAQPage structured data (`2e2e27c`)
-- [x] Pricing FAQ JSON-LD — 기존 FAQ에 structured data 추가 (`2e2e27c`)
-- [x] 비교 페이지 /compare — StatMate vs SPSS vs R vs Excel, 14개 기능 (`2e2e27c`)
-- [x] About 인용 형식 — APA/MLA/Chicago + Methodology 섹션 (`1c665fd`)
-- [x] R 검증 확대 — 홈페이지 4개→20개 전체, 4카테고리 (`1c665fd`)
-- [x] 일본어 i18n — messages/ja.json, routing.ts, language-switcher, sitemap (`ac2c72c`)
-- [x] SPSS → APA 변환 — lib/spss-parser.ts (6종), /tools/spss-to-apa (`ac2c72c`)
-- [x] Supabase 인증 + 히스토리 — auth-modal, auth-provider, history-panel (`ac2c72c`)
-- [x] Expert Review — /expert-review 랜딩 + /expert-review/request 폼 (`ac2c72c`)
-- [x] University License — /university 랜딩 + 문의 폼 (`ac2c72c`)
-- [x] A/B 테스트 프레임워크 — lib/ab-test.ts, components/ab-variant.tsx (`ac2c72c`)
-- [x] 성능 최적화 — preconnect/dns-prefetch, 이미지 최적화
-- [x] 이메일/뉴스레터 구독 — newsletter-signup + /api/subscribe
-- [x] pSEO 가이드 25개 — How-to 10개 + 비교 5개 (EN+KO = 30페이지)
-- [x] GSC 인덱싱 — 사이트맵 재제출 + 주요 URL 인덱싱 요청
-- [x] PDF 내보내기 20/20, 차트 20/20, Pro 광고 제거, 피드백 버튼, SEO 콘텐츠 10/10
+- [x] (이전 세션) 개발 완료 — Sprint 1~4 전체, 20개 계산기, i18n 3개국어, SEO, pSEO, 다크모드, PWA, Supabase, 가격최적화 등 (상세: 위 Sprint 섹션 참조)

@@ -4,6 +4,7 @@ import { KruskalWallisCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function KruskalWallisPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("kruskalWallis");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "Kruskal-Wallis H 검정이란?", answer: "Kruskal-Wallis H 검정은 세 개 이상의 독립 집단의 분포를 비교하는 비모수적 통계 검정입니다. 일원분산분석(One-Way ANOVA)의 비모수적 대안으로, 데이터가 정규분포를 따르지 않거나 서열 척도일 때 사용합니다. StatMate에서 H 통계량, p-값, 효과크기를 APA 형식으로 즉시 확인할 수 있습니다." },
         { question: "ANOVA 대신 Kruskal-Wallis를 언제 사용하나요?", answer: "데이터가 정규분포를 따르지 않거나, 서열 척도(예: 리커트 척도)이거나, 표본 크기가 매우 작아 정규성을 검증하기 어렵거나, 이상치가 있어 평균이 왜곡될 수 있을 때 Kruskal-Wallis 검정을 사용합니다. 세 개 이상의 독립 집단을 비교할 때 ANOVA의 비모수적 대안입니다." },
         { question: "사후 검정(Dunn 검정)은 어떻게 해석하나요?", answer: "Kruskal-Wallis 검정이 유의하면 어떤 집단 간에 차이가 있는지 알기 위해 Dunn 사후 검정을 실시합니다. Bonferroni 보정을 적용하여 다중비교의 제1종 오류를 통제합니다. 각 쌍별 비교의 p-값이 0.05 미만이면 해당 두 집단 간에 유의한 차이가 있는 것입니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 H 통계량, 자유도, p-값, 효과크기(eta-squared H)를 보고합니다. 예: 'Kruskal-Wallis H 검정 결과, 집단 간 유의한 차이가 있었다, H(2) = 15.32, p < .001, eta-squared H = .45.' 유의한 경우 Dunn 사후 검정 결과도 함께 보고합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "Kruskal-Wallis H検定とは？", answer: "Kruskal-Wallis H検定は、3つ以上の独立群の分布を比較するノンパラメトリック統計検定です。一元配置分散分析（One-Way ANOVA）のノンパラメトリックな代替手法であり、データが正規分布に従わない場合や順序尺度の場合に使用します。StatMateではH統計量、p値、効果量をAPA形式で即座に確認できます。" },
+        { question: "ANOVAの代わりにKruskal-Wallisを使うべき場面は？", answer: "データが正規分布に従わない場合、順序尺度（例：リッカート尺度）の場合、標本サイズが非常に小さく正規性を検証しにくい場合、または外れ値により平均が歪む可能性がある場合にKruskal-Wallis検定を使用します。3つ以上の独立群を比較する際のANOVAのノンパラメトリックな代替です。" },
+        { question: "Dunn事後検定はどう解釈しますか？", answer: "Kruskal-Wallis検定が有意な場合、どの群間に差があるかを特定するためにDunn事後検定を実施します。Bonferroni補正を適用して多重比較の第一種の過誤を統制します。各ペアワイズ比較のp値が0.05未満であれば、その2群間に有意な差があることを示します。" },
+        { question: "APA形式での報告方法は？", answer: "APA第7版に従い、H統計量、自由度、p値、効果量（eta-squared H）を報告します。例：「Kruskal-Wallis H検定の結果、群間に有意な差が認められた、H(2) = 15.32, p < .001, eta-squared H = .45。」有意な場合はDunn事後検定の結果も併せて報告します。" },
       ]
     : [
         { question: "What is the Kruskal-Wallis H test?", answer: "The Kruskal-Wallis H test is a non-parametric statistical test used to compare the distributions of three or more independent groups. It is the non-parametric alternative to one-way ANOVA and does not require normally distributed data, making it ideal for ordinal data, skewed distributions, or small samples. StatMate calculates the H statistic, p-value, and effect size with instant APA-formatted results." },
@@ -89,7 +96,7 @@ export default async function KruskalWallisPage({
       <AdUnit slot="kruskal-wallis-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is the Kruskal-Wallis H Test?

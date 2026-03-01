@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { TwoWayAnovaCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -55,13 +56,19 @@ export default async function TwoWayAnovaPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("twoWayAnova");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "이원분산분석(Two-Way ANOVA)은 언제 사용하나요?", answer: "두 개의 독립 요인이 종속변수에 미치는 영향을 동시에 검정하고, 두 요인 간의 상호작용 효과도 확인하고 싶을 때 사용합니다. 예: 교수법(강의/토론)과 성별(남/여)이 시험 성적에 미치는 영향." },
         { question: "상호작용 효과란 무엇인가요?", answer: "상호작용 효과는 한 요인의 효과가 다른 요인의 수준에 따라 달라지는 것을 의미합니다. 예를 들어, 약물 효과가 성별에 따라 다르게 나타나는 경우 약물과 성별 간 상호작용이 있다고 합니다." },
         { question: "주효과와 상호작용 효과 중 어떤 것을 먼저 해석하나요?", answer: "상호작용 효과를 먼저 확인합니다. 상호작용이 유의하면 주효과의 해석이 달라질 수 있으므로, 단순 주효과(simple main effects)를 분석해야 합니다. 상호작용이 유의하지 않으면 주효과를 독립적으로 해석할 수 있습니다." },
         { question: "부분 에타제곱(partial eta-squared)이란?", answer: "부분 에타제곱(η²p)은 해당 효과와 오차 분산만을 기준으로 한 효과크기입니다. η²p = SS_effect / (SS_effect + SS_error)로 계산되며, 다요인 설계에서 각 효과의 상대적 크기를 비교하는 데 적합합니다. 0.01은 작은 효과, 0.06은 중간, 0.14 이상은 큰 효과입니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "二元配置分散分析（Two-Way ANOVA）はいつ使用しますか？", answer: "2つの独立要因が従属変数に与える影響を同時に検定し、かつ両要因間の交互作用効果も確認したい場合に使用します。例：教授法（講義/討論）と性別（男性/女性）が試験成績に与える影響。" },
+        { question: "交互作用効果とは何ですか？", answer: "交互作用効果とは、一方の要因の効果がもう一方の要因の水準によって異なることを意味します。例えば、薬物の効果が性別によって異なる場合、薬物と性別の間に交互作用があるといいます。" },
+        { question: "主効果と交互作用、どちらを先に解釈しますか？", answer: "交互作用効果を先に確認します。交互作用が有意であれば、主効果の解釈が変わる可能性があるため、単純主効果（simple main effects）を分析する必要があります。交互作用が有意でなければ、主効果を独立に解釈できます。" },
+        { question: "偏イータ二乗（partial eta-squared）とは？", answer: "偏イータ二乗（η²p）は、当該効果と誤差分散のみを基準とした効果量です。η²p = SS_effect / (SS_effect + SS_error)で計算され、多要因計画で各効果の相対的な大きさを比較するのに適しています。0.01は小さい効果、0.06は中程度、0.14以上は大きい効果です。" },
       ]
     : [
         { question: "When should I use a Two-Way ANOVA?", answer: "Use a two-way ANOVA when you have two independent categorical factors and one continuous dependent variable. It tests main effects of each factor and their interaction. Example: testing how teaching method (lecture vs discussion) and gender (male vs female) affect exam scores." },
@@ -89,7 +96,7 @@ export default async function TwoWayAnovaPage({
       <AdUnit slot="two-way-anova-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Two-Way ANOVA (Factorial ANOVA)?

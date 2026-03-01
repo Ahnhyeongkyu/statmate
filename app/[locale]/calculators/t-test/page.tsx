@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { TTestCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema } from "@/components/faq-schema";
@@ -55,13 +56,19 @@ export default async function TTestPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("ttest");
-  const isKo = locale === "ko";
-  const faqs = isKo
+  const faqs = locale === "ko"
     ? [
         { question: "t-검정은 언제 사용하나요?", answer: "두 집단의 평균을 비교할 때 사용합니다. 독립표본 t-검정은 서로 다른 두 그룹(예: 실험군 vs 대조군)을, 대응표본 t-검정은 같은 그룹의 사전-사후 점수를 비교합니다." },
         { question: "Welch의 t-검정과 Student의 t-검정은 무엇이 다른가요?", answer: "Student의 t-검정은 두 집단의 분산이 같다고 가정하지만, Welch의 t-검정은 이 가정이 필요 없습니다. StatMate는 APA 권장에 따라 Welch의 t-검정을 기본으로 사용합니다." },
         { question: "Cohen's d 효과크기는 어떻게 해석하나요?", answer: "Cohen's d = 0.2는 작은 효과, 0.5는 중간 효과, 0.8 이상은 큰 효과로 해석합니다. 효과크기는 p-값과 달리 차이의 실질적 크기를 알려줍니다." },
         { question: "표본 크기가 작아도 t-검정을 사용할 수 있나요?", answer: "네, 각 집단에 최소 2개 이상의 데이터가 있으면 가능합니다. 다만 표본이 30 미만이면 정규성 가정을 확인하는 것이 좋습니다. 정규성이 위반되면 Mann-Whitney U 검정을 고려하세요." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "t検定はいつ使用しますか？", answer: "2つの群の平均を比較する場合に使用します。独立標本t検定は異なる2つのグループ（例：実験群 vs 対照群）を、対応のあるt検定は同一グループの事前・事後のスコアを比較します。" },
+        { question: "Welchのt検定とStudentのt検定の違いは何ですか？", answer: "Studentのt検定は2群の分散が等しいと仮定しますが、Welchのt検定はこの仮定が不要です。StatMateはAPAの推奨に従い、Welchのt検定をデフォルトで使用しています。" },
+        { question: "Cohen's d効果量はどのように解釈しますか？", answer: "Cohen's d = 0.2は小さい効果、0.5は中程度の効果、0.8以上は大きい効果と解釈します。効果量はp値とは異なり、差の実質的な大きさを示します。" },
+        { question: "標本サイズが小さくてもt検定を使用できますか？", answer: "はい、各群に最低2つ以上のデータがあれば使用可能です。ただし、標本が30未満の場合は正規性の仮定を確認することが推奨されます。正規性に違反する場合はMann-Whitney U検定を検討してください。" },
       ]
     : [
         { question: "When should I use a t-test?", answer: "Use a t-test to compare means of two groups. An independent samples t-test compares two different groups (e.g., treatment vs control), while a paired t-test compares the same group at two time points (e.g., pre-test vs post-test)." },
@@ -89,7 +96,7 @@ export default async function TTestPage({
       <AdUnit slot="t-test-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is a T-Test?

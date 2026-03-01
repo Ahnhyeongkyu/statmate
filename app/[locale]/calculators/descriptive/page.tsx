@@ -4,6 +4,7 @@ import { DescriptiveCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -56,12 +57,20 @@ export default async function DescriptivePage({
   const { locale } = await params;
   const t = await getTranslations("descriptive");
   const isKo = locale === "ko";
+  const isJa = locale === "ja";
   const faqs = isKo
     ? [
         { question: "기술통계란 무엇인가요?", answer: "데이터의 특성을 요약하고 설명하는 통계 방법입니다. 평균, 중앙값, 표준편차 등의 지표를 통해 데이터의 중심경향, 산포도, 분포 형태를 파악합니다." },
         { question: "평균과 중앙값 중 무엇을 보고해야 하나요?", answer: "데이터가 정규분포에 가까우면 평균을, 극단값이나 편향된 분포가 있으면 중앙값을 사용하세요. 논문에서는 보통 둘 다 보고합니다." },
         { question: "표준편차와 표준오차의 차이는 무엇인가요?", answer: "표준편차(SD)는 데이터의 산포도를 나타냅니다. 표준오차(SE)는 표본 평균의 정밀도를 나타내며, SE = SD / √n으로 계산됩니다. 논문에서 기술통계에는 SD를, 추론통계에는 SE를 사용합니다." },
         { question: "왜도와 첨도는 어떻게 해석하나요?", answer: "왜도(skewness)는 분포의 비대칭성을 측정합니다. 0이면 대칭, 양수면 오른쪽 꼬리, 음수면 왼쪽 꼬리입니다. 첨도(kurtosis)는 분포의 뾰족한 정도를 측정합니다. 절대값이 2를 넘으면 정규성에 의문이 생깁니다." },
+      ]
+    : isJa
+    ? [
+        { question: "記述統計とは何ですか？", answer: "データの特性を要約し説明する統計手法です。平均、中央値、標準偏差などの指標を通じて、データの中心傾向、散布度、分布形状を把握します。" },
+        { question: "平均と中央値のどちらを報告すべきですか？", answer: "データが正規分布に近い場合は平均を、外れ値や偏った分布がある場合は中央値を使用してください。論文では通常、両方を報告します。" },
+        { question: "標準偏差と標準誤差の違いは何ですか？", answer: "標準偏差（SD）はデータの散布度を示します。標準誤差（SE）は標本平均の精度を示し、SE = SD / √nで計算されます。論文では記述統計にはSDを、推測統計にはSEを使用します。" },
+        { question: "歪度と尖度はどう解釈しますか？", answer: "歪度（skewness）は分布の非対称性を測定します。0なら対称、正なら右裾、負なら左裾です。尖度（kurtosis）は分布の尖り具合を測定します。絶対値が2を超えると正規性に疑問が生じます。" },
       ]
     : [
         { question: "What are descriptive statistics?", answer: "Descriptive statistics summarize and describe the characteristics of a dataset. They include measures of central tendency (mean, median), variability (standard deviation, range), and distribution shape (skewness, kurtosis)." },
@@ -89,7 +98,7 @@ export default async function DescriptivePage({
       <AdUnit slot="descriptive-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What are Descriptive Statistics?

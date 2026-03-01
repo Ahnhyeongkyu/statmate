@@ -4,6 +4,7 @@ import { WilcoxonCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function WilcoxonPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("wilcoxon");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "Wilcoxon 부호순위 검정이란?", answer: "Wilcoxon 부호순위 검정은 두 관련 표본(대응표본 또는 반복측정)의 분포를 비교하는 비모수 통계 검정입니다. 대응표본 t-검정의 비모수 대안으로, 데이터가 정규분포를 따르지 않거나 서열 척도일 때 사용합니다. StatMate에서 W 통계량, z 점수, 효과크기를 APA 형식으로 즉시 확인할 수 있습니다." },
         { question: "대응표본 t-검정 대신 Wilcoxon을 언제 사용하나요?", answer: "대응(짝) 데이터에서 차이값의 정규성이 의심될 때, 데이터가 서열 척도(예: 리커트 척도)일 때, 표본 크기가 작아 정규성 검증이 어려울 때, 또는 이상치에 덜 민감한 분석이 필요할 때 Wilcoxon 부호순위 검정을 사용합니다. 정규성이 확실하면 대응표본 t-검정이 약간 더 검정력이 높습니다." },
         { question: "Wilcoxon 검정의 가정은?", answer: "Wilcoxon 부호순위 검정은 네 가지 가정이 필요합니다: (1) 대응 관측치(사전-사후 또는 짝짓기 설계), (2) 서열 이상의 측정 척도, (3) 차이값 분포의 대칭성(정규성보다 약한 가정), (4) 쌍 간의 독립성. 차이값이 심하게 비대칭이면 부호검정(sign test)을 고려하세요." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 W 통계량, z 근사값, p-값, 효과크기(순위이연상관 r), 각 조건의 중앙값을 보고합니다. 예: 'Wilcoxon 부호순위 검정 결과, 사후 점수(Mdn = 85.00)가 사전 점수(Mdn = 81.00)보다 유의미하게 높았다, W = 0.0, z = -2.80, p = .005, r = 1.00.' StatMate가 이 형식을 자동으로 생성합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "Wilcoxon符号順位検定とは何ですか？", answer: "Wilcoxon符号順位検定は、2つの関連標本（対応標本または反復測定）の分布を比較するノンパラメトリック統計検定です。対応標本t検定のノンパラメトリックな代替手法であり、データが正規分布に従わない場合や順序尺度の場合に使用します。" },
+        { question: "対応標本t検定の代わりにWilcoxonをいつ使いますか？", answer: "対応データで差の正規性が疑わしい場合、データが順序尺度（例：リッカート尺度）の場合、標本サイズが小さく正規性の検証が困難な場合、または外れ値に頑健な分析が必要な場合にWilcoxon符号順位検定を使用します。" },
+        { question: "Wilcoxon検定の仮定は何ですか？", answer: "Wilcoxon符号順位検定には4つの仮定が必要です：(1)対応観測（事前事後または対比設計）、(2)順序尺度以上の測定水準、(3)差の分布の対称性（正規性より弱い仮定）、(4)対間の独立性。差が著しく非対称であれば符号検定を検討してください。" },
+        { question: "APA形式でどう報告しますか？", answer: "APA第7版に従い、W統計量、z近似値、p値、効果量（順位二系列相関r）、各条件の中央値を報告します。例：Wilcoxon符号順位検定の結果、事後得点（Mdn = 85.00）は事前得点（Mdn = 81.00）より有意に高かった，W = 0.0, z = -2.80, p = .005, r = 1.00。" },
       ]
     : [
         { question: "What is the Wilcoxon signed-rank test?", answer: "The Wilcoxon signed-rank test is a non-parametric test that compares two related samples (paired or repeated measurements). It serves as the non-parametric alternative to the paired samples t-test, working with ranks of differences rather than raw values. StatMate calculates the W statistic, z-score, and rank-biserial effect size with instant APA-formatted results." },
@@ -89,7 +96,7 @@ export default async function WilcoxonPage({
       <AdUnit slot="wilcoxon-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is the Wilcoxon Signed-Rank Test?

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { MultipleRegressionCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -59,13 +60,19 @@ export default async function MultipleRegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("multipleRegression");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "다중회귀분석이란?", answer: "다중회귀분석은 두 개 이상의 독립변수(예측변수)가 하나의 연속형 종속변수에 미치는 영향을 동시에 분석하는 통계 기법입니다. 각 예측변수의 고유한 기여도를 평가하며, 다른 변수를 통제한 상태에서 효과를 추정할 수 있습니다. StatMate의 다중회귀 계산기를 사용하면 R², 회귀계수, VIF 등을 간편하게 계산할 수 있습니다." },
         { question: "예측변수는 몇 개까지 포함할 수 있나요?", answer: "일반적으로 표본 크기 대비 예측변수 비율(N/k)이 10 이상이어야 합니다. 예를 들어 표본이 100명이면 최대 10개의 예측변수를 포함할 수 있습니다. 과적합을 방지하려면 이론에 기반한 변수 선택이 중요합니다." },
         { question: "다중공선성이란 무엇이고 어떻게 확인하나요?", answer: "다중공선성은 독립변수들 간에 높은 상관관계가 있을 때 발생하며, 회귀계수의 표준오차를 증가시켜 결과를 불안정하게 만듭니다. VIF(분산팽창인자)가 10 이상이면 문제가 있으므로, StatMate에서 제공하는 VIF 값을 반드시 확인하세요." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따르면 F-통계량, 자유도, p-값, R², 수정된 R², 그리고 각 예측변수의 B, β, t, p 값을 보고해야 합니다. StatMate는 APA 형식의 결과를 자동으로 생성하므로 논문 작성 시 바로 활용할 수 있습니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "重回帰分析とは何ですか？", answer: "重回帰分析は、2つ以上の独立変数（予測変数）が1つの連続型従属変数に与える影響を同時に分析する統計手法です。各予測変数の固有の寄与度を評価し、他の変数を統制した状態で効果を推定できます。" },
+        { question: "予測変数はいくつまで含められますか？", answer: "一般的に標本サイズ対予測変数比（N/k）が10以上であることが必要です。例えば標本が100名であれば最大10個の予測変数を含められます。過適合を防ぐには理論に基づく変数選択が重要です。" },
+        { question: "多重共線性とは何ですか？どう確認しますか？", answer: "多重共線性は独立変数間に高い相関がある場合に発生し、回帰係数の標準誤差を増大させて結果を不安定にします。VIF（分散膨張因子）が10以上であれば問題があるため、StatMateで提供されるVIF値を必ず確認してください。" },
+        { question: "APA形式でどう報告しますか？", answer: "APA第7版ではF統計量、自由度、p値、R²、調整済みR²、各予測変数のB、beta、t、p値を報告する必要があります。StatMateはAPA形式の結果を自動生成するため、論文作成時にそのまま活用できます。" },
       ]
     : [
         { question: "What is multiple regression analysis?", answer: "Multiple regression analysis is a statistical technique that examines how two or more independent variables (predictors) simultaneously affect a single continuous dependent variable. It estimates each predictor's unique contribution while controlling for the others. StatMate's multiple regression calculator provides R², coefficients, VIF, and ANOVA tables instantly." },
@@ -93,7 +100,7 @@ export default async function MultipleRegressionPage({
       <AdUnit slot="multiple-regression-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Multiple Regression Analysis?

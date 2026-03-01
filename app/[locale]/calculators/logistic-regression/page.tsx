@@ -4,6 +4,7 @@ import { LogisticRegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -58,13 +59,19 @@ export default async function LogisticRegressionPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("logisticRegression");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "로지스틱 회귀란?", answer: "로지스틱 회귀(Logistic Regression)는 종속변수가 이분형(예: 합격/불합격, 구매/비구매)일 때 사용하는 통계 분석 방법입니다. 시그모이드 함수를 사용하여 예측 확률을 0과 1 사이로 제한하며, 각 예측변수가 결과 발생 확률에 미치는 영향을 분석합니다. StatMate에서 오즈비, 분류표 등을 자동으로 계산할 수 있습니다." },
         { question: "선형회귀 대신 로지스틱 회귀를 언제 사용하나요?", answer: "종속변수가 연속형이면 선형회귀를, 이분형(0/1)이면 로지스틱 회귀를 사용합니다. 예를 들어 시험 점수를 예측할 때는 선형회귀, 합격 여부를 예측할 때는 로지스틱 회귀가 적합합니다. 연속형 종속변수에 로지스틱 회귀를 적용하면 잘못된 결과를 얻게 됩니다." },
         { question: "오즈비(OR)는 어떻게 해석하나요?", answer: "오즈비(Odds Ratio)는 예측변수가 1단위 증가할 때 결과 발생 오즈의 변화 배수입니다. OR > 1이면 발생 확률 증가, OR < 1이면 감소, OR = 1이면 효과 없음을 의미합니다. 예를 들어 OR = 1.5는 예측변수가 1단위 증가하면 결과 발생 오즈가 50% 증가한다는 뜻입니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 전체 모형의 카이제곱 검정, Nagelkerke R², 분류 정확도, 그리고 각 예측변수의 B, Wald χ², p, OR, 95% CI를 보고합니다. StatMate는 이 모든 결과를 APA 형식으로 자동 생성하여 논문 작성을 지원합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "ロジスティック回帰とは？", answer: "ロジスティック回帰（Logistic Regression）は、従属変数が二値（例：合格/不合格、購入/非購入）の場合に使用する統計分析手法です。シグモイド関数を用いて予測確率を0と1の間に制約し、各予測変数が結果の発生確率に与える影響を分析します。StatMateではオッズ比、分類表などを自動で計算できます。" },
+        { question: "線形回帰の代わりにロジスティック回帰を使うべき場面は？", answer: "従属変数が連続型なら線形回帰を、二値（0/1）ならロジスティック回帰を使用します。例えば、試験の点数を予測する場合は線形回帰、合否を予測する場合はロジスティック回帰が適切です。連続型の従属変数にロジスティック回帰を適用すると誤った結果が得られます。" },
+        { question: "オッズ比（OR）はどう解釈しますか？", answer: "オッズ比（Odds Ratio）は、予測変数が1単位増加した際の結果発生オッズの変化倍率です。OR > 1なら発生確率の増加、OR < 1なら減少、OR = 1なら効果なしを意味します。例えばOR = 1.5は、予測変数が1単位増加するとオッズが50%増加することを示します。" },
+        { question: "APA形式での報告方法は？", answer: "APA第7版では、全体モデルのカイ二乗検定、Nagelkerke R²、分類精度、および各予測変数のB、Wald χ²、p値、OR、95% CIを報告します。StatMateはこれらすべての結果をAPA形式で自動生成し、論文作成をサポートします。" },
       ]
     : [
         { question: "What is logistic regression?", answer: "Logistic regression is a statistical method used when the outcome variable is binary (e.g., pass/fail, yes/no). It uses the sigmoid function to model the probability of an event occurring, constrained between 0 and 1. StatMate's logistic regression calculator provides odds ratios, classification tables, and model fit statistics automatically." },
@@ -93,6 +100,8 @@ export default async function LogisticRegressionPage({
 
       {locale === "ko" ? (
         <SeoContentKo />
+      ) : locale === "ja" ? (
+        <SeoContentJa />
       ) : (
         <section className="mt-16 space-y-8">
           <h2 className="text-2xl font-bold text-gray-900">

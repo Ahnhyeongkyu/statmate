@@ -4,6 +4,7 @@ import { CorrelationCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function CorrelationPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("correlation");
-  const isKo = locale === "ko";
-  const faqs = isKo
+  const faqs = locale === "ko"
     ? [
         { question: "상관분석은 언제 사용하나요?", answer: "두 연속형 변수 간의 선형 관계의 강도와 방향을 측정할 때 사용합니다. 예: 공부 시간과 시험 점수의 관계." },
         { question: "피어슨과 스피어만 상관의 차이는 무엇인가요?", answer: "피어슨 상관은 두 변수의 선형 관계를 측정하며 정규성 가정이 필요합니다. 스피어만 상관은 순위 기반으로 비선형 단조 관계도 측정할 수 있으며 정규성 가정이 불필요합니다." },
         { question: "상관계수 r은 어떻게 해석하나요?", answer: "|r| < 0.3은 약한 상관, 0.3~0.7은 중간 상관, 0.7 이상은 강한 상관입니다. r이 양수면 양의 상관(한 변수가 증가하면 다른 변수도 증가), 음수면 음의 상관입니다." },
         { question: "상관관계가 인과관계를 의미하나요?", answer: "아닙니다. 상관관계는 두 변수가 함께 변하는 경향을 보여줄 뿐, 한 변수가 다른 변수를 '야기'한다는 것을 증명하지 않습니다. 제3의 변수가 관여할 수 있습니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "相関分析はいつ使用しますか？", answer: "2つの連続型変数間の線形関係の強さと方向を測定する場合に使用します。例：学習時間と試験スコアの関係。" },
+        { question: "PearsonとSpearman相関の違いは何ですか？", answer: "Pearson相関は2つの変数の線形関係を測定し、正規性の仮定が必要です。Spearman相関は順位に基づいており、非線形の単調関係も検出でき、正規性の仮定は不要です。" },
+        { question: "相関係数rはどのように解釈しますか？", answer: "|r| < 0.3は弱い相関、0.3〜0.7は中程度の相関、0.7以上は強い相関です。rが正なら正の相関（一方が増加するともう一方も増加）、負なら負の相関です。" },
+        { question: "相関関係は因果関係を意味しますか？", answer: "いいえ。相関関係は2つの変数が共に変化する傾向を示すだけであり、一方の変数がもう一方を「引き起こす」ことを証明するものではありません。第3の変数が関与している可能性があります。" },
       ]
     : [
         { question: "When should I use correlation analysis?", answer: "Use it to measure the strength and direction of a linear relationship between two continuous variables. For example, the relationship between study hours and exam scores." },
@@ -89,7 +96,7 @@ export default async function CorrelationPage({
       <AdUnit slot="correlation-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         {/* 1. What is Correlation - Expanded with History */}
         <h2 className="text-2xl font-bold text-gray-900">

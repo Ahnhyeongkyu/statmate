@@ -4,6 +4,7 @@ import { FactorAnalysisCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -61,13 +62,19 @@ export default async function FactorAnalysisPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("factorAnalysis");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "탐색적 요인분석이란?", answer: "탐색적 요인분석(EFA)은 다수의 관측 변수들 간의 상관 패턴을 분석하여 소수의 잠재 요인(factor)을 발견하는 다변량 통계 기법입니다. 설문지 개발, 구성타당도 검증, 데이터 축소에 널리 사용됩니다. StatMate에서 KMO 검정, 요인 적재량, 공통성 등을 간편하게 계산할 수 있습니다." },
         { question: "요인 수는 어떻게 결정하나요?", answer: "주로 카이저 기준(고유값 > 1), 스크리 도표의 꺾이는 점(elbow), 그리고 병렬 분석(parallel analysis)을 함께 사용하여 결정합니다. 카이저 기준만 사용하면 요인을 과다 추출할 수 있으므로, 여러 기준을 종합적으로 판단하는 것이 권장됩니다." },
         { question: "KMO 검정이란?", answer: "KMO(Kaiser-Meyer-Olkin) 검정은 요인분석에 대한 자료의 적합성을 평가하는 지표로, 0에서 1 사이의 값을 가집니다. .60 이상이면 수용 가능하고, .80 이상이면 우수합니다. KMO가 .50 미만이면 요인분석을 실시하기에 부적합한 자료입니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 추출 방법, 회전 방법, KMO 값, Bartlett 검정 결과, 추출된 요인 수, 설명된 분산 비율, 요인 적재량을 보고합니다. StatMate는 APA 형식의 요인분석 결과를 자동으로 생성하여 논문 작성 시 바로 활용할 수 있습니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "探索的因子分析とは？", answer: "探索的因子分析（EFA）は、複数の観測変数間の相関パターンを分析し、共有分散を説明する少数の潜在因子を発見する多変量統計手法です。質問紙開発、構成概念妥当性の検証、データ縮約に広く使用されています。StatMateではKMO検定、因子負荷量、共通性などを簡単に計算できます。" },
+        { question: "因子数はどのように決定しますか？", answer: "主にカイザー基準（固有値 > 1）、スクリープロットの屈曲点（エルボー）、および平行分析（並列分析）を併用して決定します。カイザー基準のみに依存すると因子を過剰抽出する傾向があるため、複数の基準を総合的に判断することが推奨されます。" },
+        { question: "KMO検定とは？", answer: "KMO（Kaiser-Meyer-Olkin）検定は因子分析に対するデータの適合性を評価する指標で、0から1の値を取ります。.60以上で許容可能、.80以上で優秀とされます。KMOが.50未満の場合、因子分析を実施するには不適切なデータです。" },
+        { question: "APA形式での報告方法は？", answer: "APA第7版では、抽出方法、回転方法、KMO値、Bartlettの検定結果、抽出された因子数、説明された分散の割合、因子負荷量を報告します。StatMateはAPA形式の因子分析結果を自動生成し、論文作成に直接活用できます。" },
       ]
     : [
         { question: "What is exploratory factor analysis?", answer: "Exploratory Factor Analysis (EFA) is a multivariate statistical technique that examines correlation patterns among observed variables to discover a smaller set of latent factors explaining shared variance. It is widely used for survey development, construct validation, and data reduction. StatMate provides KMO tests, factor loadings, communalities, and variance explained in one click." },
@@ -95,7 +102,7 @@ export default async function FactorAnalysisPage({
       <AdUnit slot="factor-analysis-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Factor Analysis?

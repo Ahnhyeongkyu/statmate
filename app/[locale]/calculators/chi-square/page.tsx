@@ -4,6 +4,7 @@ import { ChiSquareCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function ChiSquarePage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("chiSquare");
-  const isKo = locale === "ko";
-  const faqs = isKo
+  const faqs = locale === "ko"
     ? [
         { question: "카이제곱 검정은 언제 사용하나요?", answer: "범주형 변수 간의 관계를 분석할 때 사용합니다. 독립성 검정은 두 범주형 변수의 연관성을, 적합도 검정은 관측 빈도가 기대 빈도와 일치하는지를 검정합니다." },
         { question: "기대빈도가 5 미만이면 어떻게 하나요?", answer: "기대빈도가 5 미만인 셀이 20% 이상이면 카이제곱 검정의 신뢰도가 떨어집니다. 범주를 합치거나 Fisher의 정확검정을 고려하세요." },
         { question: "Cramér's V는 어떻게 해석하나요?", answer: "Cramér's V = 0.1은 약한 연관, 0.3은 중간, 0.5 이상은 강한 연관을 나타냅니다. 카이제곱 검정의 효과크기 지표입니다." },
         { question: "카이제곱 검정과 t-검정은 무엇이 다른가요?", answer: "t-검정은 연속형 변수의 평균을 비교하고, 카이제곱 검정은 범주형 변수의 빈도를 분석합니다. 데이터 유형에 따라 적절한 검정을 선택하세요." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "カイ二乗検定はいつ使用しますか？", answer: "カテゴリ変数間の関係を分析する場合に使用します。独立性検定は2つのカテゴリ変数の関連性を、適合度検定は観測度数が期待度数と一致するかを検定します。" },
+        { question: "期待度数が5未満の場合はどうすればよいですか？", answer: "期待度数が5未満のセルが20%以上の場合、カイ二乗検定の信頼性が低下します。カテゴリを統合するか、Fisherの正確検定を検討してください。" },
+        { question: "Cramerの Vはどのように解釈しますか？", answer: "Cramerの V = 0.1は弱い関連、0.3は中程度、0.5以上は強い関連を示します。カイ二乗検定の効果量指標です。" },
+        { question: "カイ二乗検定とt検定の違いは何ですか？", answer: "t検定は連続型変数の平均を比較し、カイ二乗検定はカテゴリ変数の度数を分析します。データの種類に応じて適切な検定を選択してください。" },
       ]
     : [
         { question: "When should I use a chi-square test?", answer: "Use it to analyze relationships between categorical variables. The test of independence checks if two categorical variables are associated, while the goodness-of-fit test checks if observed frequencies match expected frequencies." },
@@ -89,7 +96,7 @@ export default async function ChiSquarePage({
       <AdUnit slot="chi-square-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is a Chi-Square Test?

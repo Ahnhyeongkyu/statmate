@@ -4,6 +4,7 @@ import { FriedmanCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function FriedmanPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("friedman");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "Friedman 검정이란?", answer: "Friedman 검정은 세 개 이상의 관련 집단(반복 측정)의 분포를 비교하는 비모수적 통계 검정입니다. 반복측정 분산분석(Repeated Measures ANOVA)의 비모수적 대안으로, 데이터가 정규분포를 따르지 않거나 서열 척도일 때 사용합니다. StatMate에서 카이제곱 통계량, p-값, Kendall W 효과크기를 APA 형식으로 즉시 확인할 수 있습니다." },
         { question: "반복측정 ANOVA 대신 Friedman 검정을 언제 사용하나요?", answer: "데이터가 정규분포를 따르지 않거나, 서열 척도(예: 리커트 척도)이거나, 표본 크기가 매우 작아 정규성을 검증하기 어렵거나, 이상치가 있어 평균이 왜곡될 수 있을 때 Friedman 검정을 사용합니다. 동일한 피험자가 세 개 이상의 조건에서 측정되었을 때(반복 측정 설계) 사용합니다." },
         { question: "Kendall의 W는 어떻게 해석하나요?", answer: "Kendall의 W(일치계수)는 Friedman 검정의 효과크기 지표로, 0에서 1 사이의 값을 가집니다. W = 0은 조건 간 완전한 불일치(차이 없음)를, W = 1은 완전한 일치(최대 차이)를 의미합니다. 일반적으로 0.1 미만은 무시할 수준, 0.1-0.3은 작은 효과, 0.3-0.5는 중간 효과, 0.5 이상은 큰 효과로 해석합니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에 따라 카이제곱 통계량, 자유도, p-값, Kendall W를 보고합니다. 예: 'Friedman 검정 결과, 조건 간 유의한 차이가 있었다, chi-square(2) = 12.40, p = .002, W = .62.' 유의한 경우 사후 쌍별 비교 결과도 함께 보고합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "Friedman検定とは何ですか？", answer: "Friedman検定は、3つ以上の関連群（反復測定）の分布を比較するノンパラメトリック統計検定です。反復測定分散分析（Repeated Measures ANOVA）のノンパラメトリックな代替手法で、データが正規分布に従わない場合や順序尺度の場合に使用します。StatMateでカイ二乗統計量、p値、Kendall W効果量をAPA形式で即座に確認できます。" },
+        { question: "反復測定NOVAの代わりにFriedman検定をいつ使用しますか？", answer: "データが正規分布に従わない場合、順序尺度（例：リッカート尺度）の場合、標本サイズが非常に小さく正規性を検証できない場合、または外れ値があり平均が歪む可能性がある場合にFriedman検定を使用します。同一の被験者が3つ以上の条件で測定された場合（反復測定設計）に使用します。" },
+        { question: "KendallのWはどのように解釈しますか？", answer: "KendallのW（一致係数）はFriedman検定の効果量指標で、0から1の値を取ります。W = 0は条件間の完全な不一致（差異なし）を、W = 1は完全な一致（最大の差異）を意味します。一般的に0.1未満は無視できる水準、0.1-0.3は小さい効果、0.3-0.5は中程度の効果、0.5以上は大きい効果と解釈します。" },
+        { question: "APA形式でどのように報告しますか？", answer: "APA第7版に従い、カイ二乗統計量、自由度、p値、Kendall Wを報告します。例：「Friedman検定の結果、条件間に有意な差が認められた，chi-square(2) = 12.40, p = .002, W = .62。」有意な場合は事後対比較結果も併せて報告します。" },
       ]
     : [
         { question: "What is the Friedman test?", answer: "The Friedman test is a non-parametric statistical test used to compare the distributions of three or more related groups (repeated measures). It is the non-parametric alternative to repeated measures ANOVA and does not require normally distributed data, making it ideal for ordinal data, skewed distributions, or small samples. StatMate calculates the chi-square statistic, p-value, and Kendall's W effect size with instant APA-formatted results." },
@@ -89,7 +96,7 @@ export default async function FriedmanPage({
       <AdUnit slot="friedman-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is the Friedman Test?

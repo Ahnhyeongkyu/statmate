@@ -4,6 +4,7 @@ import { McNemarCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -55,13 +56,19 @@ export default async function McNemarPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("mcnemar");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "McNemar 검정은 언제 사용하나요?", answer: "동일한 대상에서 사전-사후(Before-After) 이진 결과를 비교할 때 사용합니다. 예를 들어, 교육 프로그램 전후로 시험 합격률을 비교하거나, 치료 전후로 증상 유무를 비교할 때 적합합니다. 핵심은 데이터가 대응(paired)되어야 하고 결과가 이진(binary)이어야 합니다." },
         { question: "McNemar 검정과 카이제곱 검정의 차이는?", answer: "카이제곱 검정은 독립 표본의 범주형 데이터를 비교하지만, McNemar 검정은 대응 표본(같은 대상의 전후 비교)을 위한 검정입니다. McNemar 검정은 불일치 쌍(discordant pairs)인 b와 c만을 분석합니다." },
         { question: "연속성 보정이란 무엇인가요?", answer: "McNemar 검정의 카이제곱 통계량에 적용되는 보정으로, 이산형 이항분포를 연속형 카이제곱 분포로 근사할 때 발생하는 오차를 줄여줍니다. 공식은 chi-sq = (|b-c| - 1)^2 / (b+c)입니다. 불일치 쌍이 25 미만일 때는 정확 이항 검정이 더 적절합니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "근사 검정: 'McNemar 검정 결과, chi-sq(1) = X.XX, p = .XXX로 나타났다.' 정확 검정(소표본): 'McNemar 정확 검정 결과, p = .XXX로 나타났다.' 오즈비와 신뢰구간도 함께 보고하면 좋습니다. StatMate가 이 형식을 자동으로 생성합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "McNemar検定はいつ使用しますか？", answer: "同一の対象で事前・事後（Before-After）の二値結果を比較する場合に使用します。例えば、研修プログラム前後で試験合格率を比較したり、治療前後で症状の有無を比較する場合に適しています。データが対応（paired）であり、結果が二値（binary）であることが必要です。" },
+        { question: "McNemar検定とカイ二乗検定の違いは？", answer: "カイ二乗検定は独立標本のカテゴリカルデータを比較しますが、McNemar検定は対応標本（同一対象の前後比較）のための検定です。McNemar検定は不一致対（discordant pairs）であるbとcのみを分析します。" },
+        { question: "連続性補正とは何ですか？", answer: "McNemar検定のカイ二乗統計量に適用される補正で、離散型二項分布を連続型カイ二乗分布で近似する際の誤差を減らします。公式はchi-sq = (|b-c| - 1)^2 / (b+c)です。不一致対が25未満の場合は正確二項検定がより適切です。" },
+        { question: "APA形式でどのように報告しますか？", answer: "漸近検定：「McNemar検定の結果，chi-sq(1) = X.XX, p = .XXX。」正確検定（小標本）：「McNemar正確検定の結果，p = .XXX。」オッズ比と信頼区間も併せて報告すると良いでしょう。StatMateがこの形式を自動生成します。" },
       ]
     : [
         { question: "When should I use the McNemar test?", answer: "Use the McNemar test when comparing binary outcomes from the same subjects before and after an intervention. For example, comparing pass/fail rates before and after a training program, or symptom presence before and after treatment. The key requirements are paired (matched) data and binary outcomes." },
@@ -89,7 +96,7 @@ export default async function McNemarPage({
       <AdUnit slot="mcnemar-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is the McNemar Test?

@@ -4,6 +4,7 @@ import { CronbachAlphaCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -56,13 +57,19 @@ export default async function CronbachAlphaPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("cronbachAlpha");
-  const isKo = locale === "ko";
-  const faqs: FaqItem[] = isKo
+  const faqs: FaqItem[] = locale === "ko"
     ? [
         { question: "크론바흐 알파란?", answer: "크론바흐 알파(Cronbach's alpha)는 설문지나 검사 도구의 내적 일관성 신뢰도를 측정하는 가장 널리 사용되는 통계 지표입니다. 동일한 구성개념을 측정하는 문항들이 얼마나 일관되게 응답되는지를 0에서 1 사이의 값으로 나타냅니다. StatMate에서 간편하게 계산할 수 있습니다." },
         { question: "좋은 크론바흐 알파 값은?", answer: "일반적으로 .70 이상이면 수용 가능하고, .80 이상이면 양호, .90 이상이면 우수한 신뢰도로 해석합니다. 다만 .95를 초과하면 문항 간 중복 가능성이 있으므로 문항 간 상관행렬을 확인해야 합니다." },
         { question: "크론바흐 알파는 언제 사용하나요?", answer: "리커트 척도와 같은 다항목 설문지의 내적 일관성을 평가할 때 사용합니다. 설문 개발, 타당도 검증, 연구 논문에서 측정도구의 신뢰도를 보고할 때 필수적입니다. 단, 모든 문항이 동일한 구성개념을 측정해야 합니다." },
         { question: "APA 형식으로 어떻게 보고하나요?", answer: "APA 7판에서는 척도명, 문항 수, 크론바흐 알파 값을 보고합니다. 예: '고객만족도 척도의 내적 일관성을 크론바흐 알파로 평가한 결과, 5개 문항 척도는 양호한 신뢰도를 보였다(α = .85).' StatMate가 APA 형식의 결과를 자동 생성합니다." },
+      ]
+    : locale === "ja"
+    ? [
+        { question: "クロンバッハのアルファとは？", answer: "クロンバッハのアルファ（Cronbach\u2019s alpha）は、質問紙や検査ツールの内的整合性信頼性を測定する最も広く使用されている統計指標です。0から1の範囲で、同じ構成概念を測定する項目がどの程度一貫しているかを評価します。" },
+        { question: "良いクロンバッハのアルファ値は？", answer: "一般的に.70以上で許容範囲、.80以上で良好、.90以上で優秀な信頼性と解釈します。ただし.95を超えると項目間の重複の可能性があるため、項目間相関行列を確認する必要があります。" },
+        { question: "クロンバッハのアルファはいつ使用しますか？", answer: "リッカート尺度のような多項目質問紙の内的一貫性を評価する際に使用します。尺度開発、妥当性検証、研究論文での測定ツールの信頼性報告に必須です。ただし、すべての項目が同じ構成概念を測定している必要があります。" },
+        { question: "APA形式でどう報告しますか？", answer: "APA第7版では尺度名、項目数、クロンバッハのアルファ値を報告します。例：「顧客満足度尺度の内的一貫性をクロンバッハのアルファで評価した結果、5項目尺度は良好な信頼性を示した（α = .85）。」StatMateがAPA形式の結果を自動生成します。" },
       ]
     : [
         { question: "What is Cronbach's alpha?", answer: "Cronbach's alpha is the most widely used statistical measure of internal consistency reliability for questionnaires and scales. It evaluates how consistently a set of items measuring the same construct relate to one another, producing a value between 0 and 1. StatMate makes it easy to calculate alpha along with item-level diagnostics." },
@@ -90,7 +97,7 @@ export default async function CronbachAlphaPage({
       <AdUnit slot="cronbach-alpha-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         {/* 1. What is Cronbach's Alpha */}
         <h2 className="text-2xl font-bold text-gray-900">

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { SampleSizeCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
+import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -56,12 +57,20 @@ export default async function SampleSizePage({
   const { locale } = await params;
   const t = await getTranslations("sampleSize");
   const isKo = locale === "ko";
+  const isJa = locale === "ja";
   const faqs: FaqItem[] = isKo
     ? [
         { question: "표본크기 계산이란?", answer: "표본크기 계산(검정력 분석)은 연구에서 통계적으로 유의미한 효과를 탐지하기 위해 필요한 최소 참가자 수를 결정하는 과정입니다. 적절한 표본크기는 연구의 신뢰성을 높이고 자원 낭비를 방지합니다. StatMate는 t-검정, ANOVA, 상관분석 등 7가지 검정에 대한 표본크기를 무료로 계산해 줍니다." },
         { question: "t-검정 표본크기는 어떻게 결정하나요?", answer: "t-검정의 표본크기는 효과크기(Cohen's d), 유의수준(α), 검정력(1-β)의 세 가지 요소로 결정됩니다. 예를 들어 중간 효과크기(d=0.5), α=.05, 검정력=.80일 때 독립표본 t-검정에는 총 128명(그룹당 64명)이 필요합니다. StatMate의 표본크기 계산기에서 바로 확인할 수 있습니다." },
         { question: "통계적 검정력이란?", answer: "통계적 검정력(power)은 실제로 존재하는 효과를 올바르게 탐지할 확률입니다. 일반적으로 .80(80%) 이상이 권장되며, 이는 실제 효과가 있을 때 이를 발견할 확률이 80%임을 의미합니다. 검정력이 낮으면 제2종 오류(실제 효과를 놓치는 오류) 위험이 커집니다." },
         { question: "효과크기는 어떤 값을 사용해야 하나요?", answer: "효과크기는 선행연구나 파일럿 데이터에서 추정하는 것이 가장 좋습니다. 참고할 자료가 없다면 Cohen의 관례를 사용하세요: t-검정은 d=0.2(작음), 0.5(중간), 0.8(큼)입니다. StatMate에서는 효과크기 프리셋을 제공하여 쉽게 선택할 수 있습니다." },
+      ]
+    : isJa
+    ? [
+        { question: "標本サイズ計算とは？", answer: "標本サイズ計算（検定力分析）は、研究で統計的に有意な効果を検出するために必要な最小参加者数を決定するプロセスです。適切な標本サイズは研究の信頼性を高め、資源の浪費を防ぎます。StatMateはt検定、ANOVA、相関分析など7種類の検定の標本サイズを無料で計算できます。" },
+        { question: "t検定の標本サイズはどう決めますか？", answer: "t検定の標本サイズは効果量（Cohen's d）、有意水準（α）、検定力（1-β）の3要素で決まります。例えば中程度の効果量（d=0.5）、α=.05、検定力=.80の場合、独立標本t検定には合計128名（グループあたり64名）が必要です。StatMateの標本サイズ計算機で即座に確認できます。" },
+        { question: "統計的検定力とは？", answer: "統計的検定力（power）は実際に存在する効果を正しく検出する確率です。一般的に.80（80%）以上が推奨され、実際の効果がある場合にそれを発見する確率が80%であることを意味します。検定力が低いと第2種の誤り（実際の効果を見逃す誤り）のリスクが高まります。" },
+        { question: "効果量にはどの値を使うべきですか？", answer: "効果量は先行研究やパイロットデータから推定するのが最善です。参考資料がない場合はCohenの慣例を使用してください：t検定はd=0.2（小）、0.5（中）、0.8（大）です。StatMateでは効果量プリセットを提供し、簡単に選択できます。" },
       ]
     : [
         { question: "What is sample size calculation?", answer: "Sample size calculation (power analysis) determines the minimum number of participants needed in a study to detect a statistically significant effect. Proper sample sizing ensures reliable results while avoiding wasted resources. StatMate provides free sample size calculations for 7 statistical tests including t-tests, ANOVA, and correlation." },
@@ -89,7 +98,7 @@ export default async function SampleSizePage({
       <AdUnit slot="sample-size-mid" format="horizontal" />
 
       {/* SEO Content */}
-      {locale === "ko" ? <SeoContentKo /> : (
+      {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
       <section className="mt-16 space-y-8">
         <h2 className="text-2xl font-bold text-gray-900">
           What is Sample Size Calculation?
