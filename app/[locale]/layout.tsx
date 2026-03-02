@@ -401,6 +401,7 @@ export default async function LocaleLayout({
                     height="40"
                   />
                 </a>
+                <a href="https://www.aitoolzdir.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">AI Toolz Dir</a>
               </div>
               <div className="mt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
