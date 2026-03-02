@@ -402,7 +402,9 @@ export default async function LocaleLayout({
                   />
                 </a>
                 <a href="https://www.aitoolzdir.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">AI Toolz Dir</a>
-                <a href="https://turbo0.com/item/statmate-statistics-calculator" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Turbo0</a>
+                <a href="https://turbo0.com/item/statmate-statistics-calculator" target="_blank" rel="noopener noreferrer">
+                  <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style={{ height: '40px', width: 'auto' }} />
+                </a>
                 <a href="https://z-image.net/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Z-Image</a>
                 <a href="https://aitooltrek.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">AI Tool Trek</a>
                 <a href="https://twelve.tools" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Twelve Tools</a>
