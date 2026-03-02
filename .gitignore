@@ -45,3 +45,5 @@ next-env.d.ts
 
 # subscriber data
 /data/
+
+.vercel
