@@ -787,7 +787,95 @@
     "cancel": "Cancel",
     "activatedSuccess": "Pro activated successfully!",
     "reloading": "Reloading...",
-    "networkError": "Network error. Please try again."
+    "networkError": "Network error. Please try again.",
+    "ctaTitle": "Get your results interpreted by AI",
+    "ctaSubtitle": "7-day free trial · $5.99/mo · Cancel anytime",
+    "ctaButton": "Try Pro Free for 7 Days",
+    "exportCtaTitle": "Export as APA Word Table",
+    "exportCtaSubtitle": "Perfectly formatted .docx — ready for your paper",
+    "exportCtaButton": "Try Pro Free for 7 Days",
+    "preview": {
+      "t-test": {
+        "paperReady": "An independent samples t-test revealed a statistically significant difference between the experimental group (M = 4.52, SD = 1.23) and the control group (M = 3.81, SD = 1.45), t(58) = 2.45, p = .018, d = 0.63.",
+        "plainLanguage": "The experimental group scored meaningfully higher than the control group, with a medium-sized effect. This difference is unlikely to be due to chance alone."
+      },
+      "anova": {
+        "paperReady": "A one-way ANOVA revealed a statistically significant difference among the three treatment groups, F(2, 87) = 5.34, p = .007, \u03b7\u00b2 = .11.",
+        "plainLanguage": "There was a meaningful difference between the groups. Post-hoc tests can reveal which specific groups differ from each other."
+      },
+      "chi-square": {
+        "paperReady": "A chi-square test of independence indicated a significant association between gender and preference, \u03c7\u00b2(2, N = 150) = 8.92, p = .012, Cram\u00e9r\u2019s V = .24.",
+        "plainLanguage": "Gender and preference are related. The pattern of preferences differs between men and women more than we would expect by chance."
+      },
+      "correlation": {
+        "paperReady": "A Pearson correlation revealed a significant positive relationship between study hours and exam score, r(48) = .62, p < .001.",
+        "plainLanguage": "Students who studied more hours tended to score higher on the exam. This is a moderately strong positive relationship."
+      },
+      "descriptive": {
+        "paperReady": "The sample (N = 120) had a mean score of 72.45 (SD = 14.32), with scores ranging from 38 to 98. The distribution was approximately normal (skewness = -0.23, kurtosis = -0.41).",
+        "plainLanguage": "The average score was about 72 out of 100. Most scores fell between 58 and 87, with a fairly symmetric spread."
+      },
+      "sample-size": {
+        "paperReady": "A priori power analysis indicated that a minimum sample of N = 128 (64 per group) is required to detect a medium effect (d = 0.50) with 80% power at \u03b1 = .05 for an independent samples t-test.",
+        "plainLanguage": "You need at least 64 participants in each group (128 total) to have a good chance of detecting a meaningful difference if one exists."
+      },
+      "one-sample-t": {
+        "paperReady": "A one-sample t-test indicated that the mean satisfaction score (M = 3.75, SD = 0.89) was significantly higher than the neutral midpoint of 3.0, t(79) = 7.53, p < .001, d = 0.84.",
+        "plainLanguage": "Participants rated their satisfaction significantly above the neutral point, suggesting overall positive sentiment with a large effect."
+      },
+      "mann-whitney": {
+        "paperReady": "A Mann-Whitney U test indicated that scores were significantly higher in the treatment group (Mdn = 45) than in the control group (Mdn = 38), U = 892, p = .003, r = .31.",
+        "plainLanguage": "The treatment group had meaningfully higher scores than the control group, even when accounting for the non-normal distribution of the data."
+      },
+      "wilcoxon": {
+        "paperReady": "A Wilcoxon signed-rank test indicated that post-intervention scores (Mdn = 82) were significantly higher than pre-intervention scores (Mdn = 71), T = 156, p = .002, r = .42.",
+        "plainLanguage": "Scores improved significantly after the intervention. The change was meaningful and unlikely to be due to chance."
+      },
+      "regression": {
+        "paperReady": "Simple linear regression revealed that study hours significantly predicted exam scores, F(1, 48) = 27.34, p < .001, R\u00b2 = .36, with each additional hour associated with a 3.45-point increase (\u03b2 = .60).",
+        "plainLanguage": "Study hours explain about 36% of the variation in exam scores. Each extra hour of studying is linked to roughly 3.5 more points."
+      },
+      "multiple-regression": {
+        "paperReady": "A multiple regression model with study hours, attendance, and prior GPA significantly predicted final exam scores, F(3, 96) = 18.42, p < .001, R\u00b2 = .37. Study hours (\u03b2 = .35, p < .001) and prior GPA (\u03b2 = .29, p = .004) were significant predictors.",
+        "plainLanguage": "Together, study hours, attendance, and GPA explain about 37% of exam score differences. Study hours and prior GPA are the strongest predictors."
+      },
+      "cronbach-alpha": {
+        "paperReady": "The 10-item scale demonstrated good internal consistency, Cronbach\u2019s \u03b1 = .85, 95% CI [.81, .89]. Item-total correlations ranged from .42 to .71.",
+        "plainLanguage": "The scale items measure the same underlying concept consistently. Reliability is good, meaning you can trust the total score."
+      },
+      "logistic-regression": {
+        "paperReady": "Logistic regression indicated that study hours significantly predicted pass/fail status, B = 0.82, SE = 0.24, Wald \u03c7\u00b2(1) = 11.67, p < .001, OR = 2.27, 95% CI [1.42, 3.63].",
+        "plainLanguage": "Each additional hour of studying more than doubles the odds of passing. Study time is a strong predictor of whether students pass or fail."
+      },
+      "factor-analysis": {
+        "paperReady": "Exploratory factor analysis with varimax rotation yielded a 3-factor solution explaining 62.4% of the total variance. KMO = .84, Bartlett\u2019s test \u03c7\u00b2(45) = 312.7, p < .001.",
+        "plainLanguage": "The items group into three clear factors that together explain most of the variation in responses. The data is well-suited for factor analysis."
+      },
+      "kruskal-wallis": {
+        "paperReady": "A Kruskal-Wallis H test showed a statistically significant difference in satisfaction scores across four departments, H(3) = 12.46, p = .006, \u03b5\u00b2 = .11.",
+        "plainLanguage": "Satisfaction levels differed significantly between departments. Follow-up pairwise comparisons can identify which departments differ."
+      },
+      "repeated-measures": {
+        "paperReady": "A repeated measures ANOVA revealed a significant effect of time on anxiety scores, F(2, 58) = 14.23, p < .001, \u03b7\u00b2p = .33. Mauchly\u2019s test indicated sphericity was met, \u03c7\u00b2(2) = 3.12, p = .21.",
+        "plainLanguage": "Anxiety levels changed significantly over the three time points. The effect was large, explaining about 33% of the within-subject variation."
+      },
+      "two-way-anova": {
+        "paperReady": "A 2 \u00d7 3 factorial ANOVA revealed a significant main effect of treatment, F(1, 114) = 8.92, p = .003, \u03b7\u00b2p = .07, and a significant interaction, F(2, 114) = 4.15, p = .018, \u03b7\u00b2p = .07.",
+        "plainLanguage": "Both the treatment type and its interaction with the other factor influenced the results. The effect of treatment depended on the level of the second factor."
+      },
+      "friedman": {
+        "paperReady": "A Friedman test indicated a significant difference in preference rankings across the four products, \u03c7\u00b2(3) = 18.45, p < .001, W = .31.",
+        "plainLanguage": "People consistently ranked the products differently, suggesting genuine differences in preference rather than random variation."
+      },
+      "fisher-exact": {
+        "paperReady": "Fisher\u2019s exact test indicated a significant association between treatment group and outcome, p = .023, OR = 3.12, 95% CI [1.15, 8.47].",
+        "plainLanguage": "There is a significant relationship between treatment and outcome. Those in the treatment group were about 3 times more likely to have a positive outcome."
+      },
+      "mcnemar": {
+        "paperReady": "McNemar\u2019s test indicated a significant change in response proportions from pre-test to post-test, \u03c7\u00b2(1) = 9.80, p = .002, OR = 3.50.",
+        "plainLanguage": "Significantly more participants changed from negative to positive responses than the reverse after the intervention."
+      }
+    }
   },
   "privacy": {
     "metaTitle": "Privacy Policy",

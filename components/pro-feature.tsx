@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { trackAiInterpret, trackWordExport, trackProCtaClick } from "@/lib/analytics";
+import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
@@ -65,62 +65,64 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
     }
   }
 
-  // Free user: show blurred preview
+  // Track preview impression for free users
+  useEffect(() => {
+    if (!isPro) {
+      trackProPreviewImpression(testType);
+    }
+  }, [isPro, testType]);
+
+  // Free user: show readable preview with CTA below
   if (!isPro) {
     return (
-      <Card className="relative overflow-hidden border-purple-200">
+      <Card className="overflow-hidden border-purple-200">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base text-purple-900">
             <span className="flex h-5 w-5 items-center justify-center rounded bg-purple-600 text-[10px] font-bold text-white">
               AI
             </span>
             {t("aiTitle")}
+            <span className="rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-semibold text-purple-700">
+              PRO
+            </span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          {/* Blurred preview */}
-          <div className="select-none space-y-3" aria-hidden="true">
-            <div>
-              <p className="text-xs font-semibold text-gray-500">
-                {t("paperReady")}
-              </p>
-              <p className="mt-1 text-sm text-gray-700 blur-[6px]">
-                An independent samples t-test revealed a statistically
-                significant difference between the experimental group (M = 4.52,
-                SD = 1.23) and the control group (M = 3.81, SD = 1.45),
-                t(58) = 2.45, p = .018, d = 0.63.
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray-500">
-                {t("plainLanguage")}
-              </p>
-              <p className="mt-1 text-sm text-gray-700 blur-[6px]">
-                The experimental group scored meaningfully higher than the
-                control group, with a medium-sized effect. This difference is
-                unlikely to be due to chance alone.
-              </p>
-            </div>
+        <CardContent className="space-y-3">
+          {/* Paper Ready — fully readable to show value */}
+          <div>
+            <p className="text-xs font-semibold text-gray-500">
+              {t("paperReady")}
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-gray-700">
+              {t(`preview.${testType}.paperReady`)}
+            </p>
           </div>
-
-          {/* Overlay CTA */}
-          <div className="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-[2px]">
-            <div className="text-center">
-              <p className="mb-2 text-sm font-semibold text-purple-900">
-                {t("unlockTitle")}
-              </p>
-              <p className="mb-3 text-xs text-gray-500">
-                {t("unlockDescription")}
-              </p>
-              <Link href="/pricing" onClick={() => trackProCtaClick("ai_interpret")}>
-                <Button
-                  size="sm"
-                  className="bg-purple-600 hover:bg-purple-700"
-                >
-                  {t("unlockTitle")}
-                </Button>
-              </Link>
-            </div>
+          {/* Plain Language — blurred with gradient fade */}
+          <div className="relative">
+            <p className="text-xs font-semibold text-gray-500">
+              {t("plainLanguage")}
+            </p>
+            <p className="mt-1 select-none text-sm leading-relaxed text-gray-700 blur-[4px]" aria-hidden="true">
+              {t(`preview.${testType}.plainLanguage`)}
+            </p>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent dark:from-gray-950" />
+          </div>
+          {/* CTA card below content */}
+          <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+            <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
+              {t("ctaTitle")}
+            </p>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              {t("ctaSubtitle")}
+            </p>
+            <Link href="/pricing" onClick={() => trackProCtaClick("ai_interpret")}>
+              <Button
+                size="sm"
+                className="mt-3 bg-purple-600 hover:bg-purple-700"
+              >
+                {t("ctaButton")}
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </Card>
@@ -245,15 +247,15 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
         <CardContent className="flex items-center justify-between py-4">
           <div>
             <p className="font-semibold text-purple-900">
-              {t("exportTitle")}
+              {t("exportCtaTitle")}
             </p>
             <p className="text-sm text-purple-700">
-              {t("exportDescFree")}
+              {t("exportCtaSubtitle")}
             </p>
           </div>
           <Link href="/pricing" onClick={() => trackProCtaClick("word_export")}>
             <Button className="bg-purple-600 hover:bg-purple-700">
-              {t("unlockTitle")}
+              {t("exportCtaButton")}
             </Button>
           </Link>
         </CardContent>

@@ -60,6 +60,15 @@ export function trackPageView(path: string) {
   gtag({ action: "page_view", category: "navigation", label: path });
 }
 
+// Conversion funnel events
+export function trackPricingPageView(source?: string) {
+  gtag({ action: "pricing_page_view", category: "conversion", label: source || "direct" });
+}
+
+export function trackProPreviewImpression(testType: string) {
+  gtag({ action: "pro_preview_impression", category: "conversion", label: testType });
+}
+
 // A/B test events
 export function trackABTestView(testId: string, variant: string) {
   gtag({ action: "ab_view", category: "ab_test", label: `${testId}_${variant}` });

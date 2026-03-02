@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PricingTracker } from "@/components/pricing-tracker";
 
 export async function generateMetadata({
   params,
@@ -136,6 +137,7 @@ export default async function PricingPage() {
 
   return (
     <div className="flex flex-col items-center py-8">
+      <PricingTracker />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

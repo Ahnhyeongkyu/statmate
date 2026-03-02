@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useIsPro, ActivateProModal, deactivatePro } from "@/components/activate-pro";
+import { trackProCtaClick } from "@/lib/analytics";
 
 export function HeaderProButton() {
   const isPro = useIsPro();
@@ -34,12 +35,14 @@ export function HeaderProButton() {
       <div className="flex items-center gap-3">
         <Link
           href="/pricing"
+          onClick={() => trackProCtaClick("header_pricing")}
           className="rounded-md px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
         >
           {t("pricing")}
         </Link>
         <Link
           href="/pricing"
+          onClick={() => trackProCtaClick("header_get_pro")}
           className="rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
         >
           {t("getPro")}
