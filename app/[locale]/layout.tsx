@@ -401,18 +401,6 @@ export default async function LocaleLayout({
                     height="40"
                   />
                 </a>
-                <a
-                  href="https://dofollow.tools"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="https://dofollow.tools/badge/badge_dark.svg"
-                    alt="Featured on Dofollow.Tools"
-                    width="150"
-                    height="40"
-                  />
-                </a>
                 <a href="https://www.aitoolzdir.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">AI Toolz Dir</a>
                 <a href="https://turbo0.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Turbo0</a>
                 <a href="https://z-image.net/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Z-Image</a>
