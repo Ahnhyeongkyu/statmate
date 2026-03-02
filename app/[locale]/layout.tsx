@@ -407,6 +407,7 @@ export default async function LocaleLayout({
                 <a href="https://aitooltrek.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">AI Tool Trek</a>
                 <a href="https://twelve.tools" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Twelve Tools</a>
                 <a href="https://submitaitools.org" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">SubmitAITools</a>
+                <a href="https://dang.ai" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Dang.ai</a>
               </div>
               <div className="mt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
