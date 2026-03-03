@@ -1,0 +1,128 @@
+---
+title: "How to Report Mann-Whitney U Test Results in APA Format (With Examples)"
+description: "Complete guide to reporting Mann-Whitney U test results in APA 7th edition format. Includes U statistic, z-score, exact p-value, effect size r, and copy-paste templates."
+date: "2026-03-02"
+category: "APA Reporting"
+tags: ["Mann-Whitney U", "APA format", "nonparametric test", "effect size", "statistical reporting", "Wilcoxon rank-sum"]
+---
+
+## When You Need the Mann-Whitney U Test
+
+The Mann-Whitney U test (also called the Wilcoxon rank-sum test) is the nonparametric alternative to the independent samples t-test. You use it when comparing two independent groups on an ordinal or continuous variable and at least one of these conditions holds:
+
+- The dependent variable is not normally distributed in one or both groups
+- The sample size is small (typically *n* < 30 per group)
+- The data contain significant outliers
+- The variable is measured on an ordinal scale
+
+Despite being one of the most commonly used nonparametric tests, many researchers struggle with reporting Mann-Whitney U results correctly in APA format. This guide provides clear templates and real examples.
+
+## Essential Components for APA Reporting
+
+Every Mann-Whitney U result in APA 7th edition format should include:
+
+- **U statistic**: the Mann-Whitney *U* value
+- **Sample sizes**: *n* for each group
+- **z-score**: the standardized test statistic (for large samples)
+- **Exact p value**: to three decimal places
+- **Effect size**: rank-biserial correlation (*r*) or *r* = *z* / &radic;*N*
+- **Medians and interquartile ranges**: for each group
+
+## Step 1: Report Descriptive Statistics
+
+For nonparametric tests, report **medians** (*Mdn*) and interquartile ranges (IQR) rather than means and standard deviations.
+
+**Example scenario:** Comparing pain ratings (0-10 scale) between a treatment group (*n* = 25) and a control group (*n* = 25).
+
+| Group | *n* | *Mdn* | IQR |
+|-------|-----|-------|-----|
+| Treatment | 25 | 3.00 | 2.00-5.00 |
+| Control | 25 | 6.00 | 4.00-7.50 |
+
+In APA format:
+
+> The treatment group reported lower pain ratings (*Mdn* = 3.00, IQR = 2.00-5.00) compared to the control group (*Mdn* = 6.00, IQR = 4.00-7.50).
+
+## Step 2: Report the Mann-Whitney U Result
+
+### Basic Format
+
+> A Mann-Whitney U test indicated that pain ratings were significantly lower in the treatment group (*Mdn* = 3.00) than in the control group (*Mdn* = 6.00), *U* = 156.50, *z* = -3.24, *p* = .001, *r* = .46.
+
+### Breaking Down Each Component
+
+**U statistic**: The raw test statistic. Some software reports the smaller of the two possible U values; others report the larger. Check your software documentation and be consistent.
+
+**z-score**: The standardized value of U, used for significance testing with larger samples. Include the sign (positive or negative) as it indicates the direction of the difference.
+
+**p value**: Report the exact *p* value to three decimal places. Use *p* < .001 when the value is below .001. For small samples, report the exact *p* from the permutation distribution rather than the asymptotic approximation.
+
+**Effect size *r***: Calculated as *r* = *z* / &radic;*N*, where *N* is the total sample size. This is the most common effect size for Mann-Whitney U.
+
+## Understanding Effect Size *r*
+
+The effect size *r* for Mann-Whitney U follows the same interpretation as a correlation coefficient:
+
+| *r* | Interpretation |
+|-----|---------------|
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+
+In our example, *r* = .46 indicates a medium-to-large effect, suggesting a substantial difference in pain ratings between the two groups.
+
+### Alternative: Rank-Biserial Correlation
+
+Some journals prefer the rank-biserial correlation (*r*<sub>rb</sub>), which ranges from -1 to +1 and has a clearer interpretation: the probability that a randomly chosen observation from one group exceeds a randomly chosen observation from the other group, transformed to a correlation scale.
+
+> *r*<sub>rb</sub> = 1 - (2*U*) / (*n*<sub>1</sub> &times; *n*<sub>2</sub>)
+
+## Step 3: Report Direction and Practical Significance
+
+Always clarify the direction of the effect:
+
+> Pain ratings were significantly lower in the treatment group (*Mdn* = 3.00) than in the control group (*Mdn* = 6.00), indicating that the treatment was effective in reducing patient-reported pain.
+
+## Complete Example Write-Up
+
+> **Results**
+>
+> Pain ratings were compared between the treatment group (*n* = 25) and control group (*n* = 25) using a Mann-Whitney U test. The treatment group reported significantly lower pain ratings (*Mdn* = 3.00, IQR = 2.00-5.00) than the control group (*Mdn* = 6.00, IQR = 4.00-7.50), *U* = 156.50, *z* = -3.24, *p* = .001, *r* = .46. The effect size indicated a medium-to-large difference between groups.
+
+## Common Mistakes to Avoid
+
+### 1. Reporting Means Instead of Medians
+
+The Mann-Whitney U test is based on ranks, not means. Always report medians and IQRs as your descriptive statistics.
+
+### 2. Omitting the Effect Size
+
+Many researchers report only U and *p*, but APA 7th edition requires an effect size measure. Always include *r* or rank-biserial correlation.
+
+### 3. Not Specifying Exact vs. Asymptotic p
+
+For small samples (*n* < 20 per group), the exact *p* value is more accurate than the asymptotic approximation. Note which you are reporting.
+
+### 4. Forgetting the z-Score
+
+The *U* statistic alone is hard to interpret without the *z*-score. Always include both.
+
+### 5. Confusing U Values
+
+Some software reports the *U* for each group (U<sub>1</sub> and U<sub>2</sub>). Convention is to report the smaller value, but be explicit about which group it refers to.
+
+## When to Use Mann-Whitney U vs. Independent Samples t-Test
+
+| Criterion | t-test | Mann-Whitney U |
+|-----------|--------|----------------|
+| Distribution | Normal | Any distribution |
+| Scale | Interval/ratio | Ordinal or above |
+| Outliers | Sensitive | Robust |
+| Sample size | Any (with normality) | Any |
+| Power | Higher (if assumptions met) | Slightly lower |
+
+If your data meet normality assumptions, the t-test has more statistical power. When assumptions are violated, the Mann-Whitney U is the appropriate choice.
+
+## Try It With Your Own Data
+
+Calculate Mann-Whitney U test results with automatic APA formatting using our free [Mann-Whitney U Calculator](/calculators/mann-whitney). It provides the U statistic, z-score, exact p-value, effect size, and a ready-to-copy APA results sentence.

@@ -1,0 +1,161 @@
+---
+title: "How to Report Repeated Measures ANOVA in APA 7th Edition (With Partial Eta Squared)"
+description: "Step-by-step guide to reporting repeated measures ANOVA results in APA 7th edition format, including partial eta squared effect size, Mauchly's sphericity test, and Greenhouse-Geisser correction."
+date: "2026-03-02"
+category: "APA Reporting"
+tags: ["repeated measures ANOVA", "APA 7th edition", "partial eta squared", "effect size", "sphericity", "Greenhouse-Geisser", "Mauchly test"]
+---
+
+## Why Reporting Repeated Measures ANOVA Correctly Matters
+
+Repeated measures ANOVA is the go-to method when comparing means across three or more conditions measured on the same participants. Whether you are tracking patient recovery across time points, comparing task performance under different experimental conditions, or measuring student learning at multiple intervals, this design appears in nearly every field of social and behavioral science.
+
+Yet reporting repeated measures ANOVA in APA format requires several elements that differ from a standard one-way ANOVA. You must address sphericity, potentially apply corrections like Greenhouse-Geisser, and report within-subjects effect sizes. Getting these details right is essential for manuscript acceptance.
+
+## Essential Components of APA Repeated Measures ANOVA Reporting
+
+Every repeated measures ANOVA report in APA 7th edition should include:
+
+- **F statistic** (italicized as *F*)
+- **Degrees of freedom**: both numerator (effect) and denominator (error), in parentheses
+- **Exact p value** to three decimal places
+- **Effect size**: partial eta squared (*&eta;*<sup>2</sup><sub>p</sub>)
+- **Sphericity test result** (Mauchly's *W*)
+- **Correction applied** if sphericity is violated (Greenhouse-Geisser or Huynh-Feldt)
+
+The general template:
+
+> *F*(df_effect, df_error) = X.XX, *p* = .XXX, *&eta;*<sup>2</sup><sub>p</sub> = .XX
+
+## Step 1: Report Descriptive Statistics
+
+Begin with a table or in-text summary of means and standard deviations for each condition or time point.
+
+**Example scenario:** You measured anxiety scores (0-100) in 40 participants at three time points: baseline, post-treatment, and 3-month follow-up.
+
+| Time Point | *n* | *M* | *SD* |
+|-----------|-----|------|------|
+| Baseline | 40 | 62.50 | 12.30 |
+| Post-treatment | 40 | 48.75 | 11.85 |
+| 3-month follow-up | 40 | 45.20 | 13.10 |
+
+In APA format, you can write:
+
+> Mean anxiety scores decreased from baseline (*M* = 62.50, *SD* = 12.30) to post-treatment (*M* = 48.75, *SD* = 11.85) and remained lower at 3-month follow-up (*M* = 45.20, *SD* = 13.10).
+
+## Step 2: Report Mauchly's Test of Sphericity
+
+Sphericity is the assumption that the variances of the differences between all pairs of conditions are equal. Repeated measures ANOVA requires this assumption. Always report Mauchly's test.
+
+**When sphericity is met:**
+
+> Mauchly's test indicated that the assumption of sphericity was met, *W* = 0.94, *p* = .312.
+
+**When sphericity is violated:**
+
+> Mauchly's test indicated that the assumption of sphericity was violated, *W* = 0.72, *p* = .008. Therefore, degrees of freedom were corrected using Greenhouse-Geisser estimates of sphericity (*&epsilon;* = 0.78).
+
+### Which Correction to Use?
+
+- **Greenhouse-Geisser**: Use when *&epsilon;* < 0.75 (more conservative, recommended as default)
+- **Huynh-Feldt**: Use when *&epsilon;* &ge; 0.75 (less conservative)
+
+Most journals and APA guidelines recommend Greenhouse-Geisser as the default correction. Report the epsilon value to show the degree of violation.
+
+## Step 3: Report the Main ANOVA Result With Effect Size
+
+### When Sphericity Is Met (Uncorrected)
+
+> A repeated measures ANOVA revealed a statistically significant effect of time on anxiety scores, *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32.
+
+### When Sphericity Is Violated (Greenhouse-Geisser Corrected)
+
+> A repeated measures ANOVA with a Greenhouse-Geisser correction revealed a statistically significant effect of time on anxiety scores, *F*(1.56, 60.84) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32.
+
+Note that the corrected degrees of freedom are not whole numbers. This is expected and should be reported to two decimal places.
+
+## Understanding Partial Eta Squared
+
+Partial eta squared (*&eta;*<sup>2</sup><sub>p</sub>) is the standard effect size for repeated measures ANOVA. It represents the proportion of variance in the dependent variable explained by the independent variable, after accounting for variance explained by other variables in the model.
+
+**Interpretation guidelines (Cohen, 1988):**
+
+| *&eta;*<sup>2</sup><sub>p</sub> | Interpretation |
+|---|---|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+In our example, *&eta;*<sup>2</sup><sub>p</sub> = .32 indicates a large effect, meaning time accounted for approximately 32% of the variance in anxiety scores after controlling for individual differences.
+
+### Partial Eta Squared vs. Eta Squared
+
+For repeated measures designs, always report **partial** eta squared, not eta squared. In within-subjects designs, eta squared can underestimate the effect because it includes subject variability in the denominator. Partial eta squared removes subject variability, providing a more accurate estimate of the effect.
+
+## Step 4: Report Post-Hoc Pairwise Comparisons
+
+When the overall ANOVA is significant, follow up with pairwise comparisons to identify which specific conditions differ.
+
+> Post-hoc pairwise comparisons with Bonferroni correction revealed that anxiety scores significantly decreased from baseline to post-treatment (*M*<sub>diff</sub> = 13.75, *SE* = 2.41, *p* < .001, *d* = 1.14) and from baseline to 3-month follow-up (*M*<sub>diff</sub> = 17.30, *SE* = 2.68, *p* < .001, *d* = 1.36). The difference between post-treatment and 3-month follow-up was not statistically significant (*M*<sub>diff</sub> = 3.55, *SE* = 2.15, *p* = .312, *d* = 0.28).
+
+Note the inclusion of:
+- Mean difference (*M*<sub>diff</sub>)
+- Standard error (*SE*)
+- Adjusted *p* value (Bonferroni-corrected)
+- Cohen's *d* for each pairwise comparison
+
+## Complete Example Write-Up
+
+Here is a full results section combining all elements:
+
+> **Results**
+>
+> Mean anxiety scores decreased from baseline (*M* = 62.50, *SD* = 12.30) to post-treatment (*M* = 48.75, *SD* = 11.85) and remained lower at 3-month follow-up (*M* = 45.20, *SD* = 13.10). Mauchly's test indicated that the assumption of sphericity was met, *W* = 0.94, *p* = .312.
+>
+> A repeated measures ANOVA revealed a statistically significant effect of time on anxiety scores, *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32. Post-hoc pairwise comparisons with Bonferroni correction showed that anxiety scores significantly decreased from baseline to post-treatment (*M*<sub>diff</sub> = 13.75, *p* < .001, *d* = 1.14) and from baseline to follow-up (*M*<sub>diff</sub> = 17.30, *p* < .001, *d* = 1.36). The difference between post-treatment and follow-up was not significant (*p* = .312).
+
+## Common Mistakes to Avoid
+
+### 1. Forgetting to Report Sphericity
+
+Reviewers will always check for sphericity reporting. Even when the assumption is met, state this explicitly.
+
+### 2. Reporting Eta Squared Instead of Partial Eta Squared
+
+In repeated measures designs, always use *&eta;*<sup>2</sup><sub>p</sub> (partial), not *&eta;*<sup>2</sup>. SPSS labels this as "Partial Eta Squared" in its output tables.
+
+### 3. Not Correcting Degrees of Freedom
+
+When sphericity is violated, you must use corrected (non-integer) degrees of freedom. Reporting uncorrected integer df when *&epsilon;* is low will inflate your Type I error rate.
+
+### 4. Omitting Post-Hoc Effect Sizes
+
+Report Cohen's *d* or other appropriate effect sizes for each pairwise comparison, not just the overall *&eta;*<sup>2</sup><sub>p</sub>.
+
+### 5. Using Wrong p Value Format
+
+APA 7th edition requires exact *p* values (e.g., *p* = .013), not inequality statements like *p* < .05. The exception is when *p* < .001, which can be stated as such rather than giving the exact value.
+
+## Reporting in a Table
+
+For manuscripts with multiple dependent variables or complex designs, consider an ANOVA summary table:
+
+| Source | *df* | *F* | *p* | *&eta;*<sup>2</sup><sub>p</sub> |
+|--------|------|------|------|---|
+| Time | 2 | 18.45 | < .001 | .32 |
+| Error | 78 | | | |
+
+If using Greenhouse-Geisser correction, include corrected df:
+
+| Source | *df* | *F* | *p* | *&eta;*<sup>2</sup><sub>p</sub> | *&epsilon;* |
+|--------|------|------|------|---|---|
+| Time | 1.56 | 18.45 | < .001 | .32 | 0.78 |
+| Error | 60.84 | | | | |
+
+## Try It With Your Own Data
+
+You can calculate repeated measures ANOVA and get APA-formatted results automatically using our free [Repeated Measures ANOVA Calculator](/calculators/repeated-measures). It handles sphericity testing, Greenhouse-Geisser correction, partial eta squared, and post-hoc comparisons with Bonferroni adjustment.
+
+## Summary
+
+Reporting repeated measures ANOVA in APA 7th edition format requires attention to several details beyond a standard ANOVA: test sphericity with Mauchly's test, apply corrections when needed, report corrected degrees of freedom, use partial eta squared for effect size, and include pairwise comparisons with effect sizes. Following the templates and examples in this guide ensures your results section meets journal standards on the first submission.
