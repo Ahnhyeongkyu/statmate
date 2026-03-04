@@ -11,12 +11,19 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isKo = locale === "ko";
+  const titles: Record<string, string> = {
+    en: "APA Statistics Guides & How-To Articles | StatMate Blog",
+    ko: "APA 통계 가이드 & 분석 방법 블로그 | StatMate",
+    ja: "APA統計ガイド & 分析方法ブログ | StatMate",
+  };
+  const descriptions: Record<string, string> = {
+    en: "Free statistics guides: APA reporting, t-test, ANOVA, chi-square, regression, and more. Step-by-step tutorials with examples for researchers and students.",
+    ko: "무료 통계 가이드: APA 보고법, t-test, ANOVA, 카이제곱, 회귀분석 등. 연구자와 학생을 위한 단계별 튜토리얼.",
+    ja: "無料統計ガイド：APA報告法、t検定、ANOVA、カイ二乗、回帰分析など。研究者と学生のためのステップバイステップチュートリアル。",
+  };
   return {
-    title: isKo ? "통계 가이드 블로그" : "Statistics Guide Blog",
-    description: isKo
-      ? "통계 분석 방법, APA 보고 형식, 검정 선택 가이드 등 실용적인 통계 가이드를 제공합니다."
-      : "Practical statistics guides covering analysis methods, APA reporting format, and test selection.",
+    title: titles[locale] || titles.en,
+    description: descriptions[locale] || descriptions.en,
     alternates: {
       canonical: locale === "en" ? "/blog" : `/${locale}/blog`,
       languages: {
