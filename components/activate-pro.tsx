@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { trackProActivation } from "@/lib/analytics";
 import {
   Card,
   CardContent,
@@ -113,6 +114,7 @@ export function ActivateProModal({
       }
 
       activatePro({ ...data, licenseKey: key.trim() });
+      trackProActivation(data.customerName || "unknown");
       setSuccess(true);
       setTimeout(() => {
         onClose();

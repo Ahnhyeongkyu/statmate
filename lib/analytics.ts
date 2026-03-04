@@ -69,6 +69,11 @@ export function trackProPreviewImpression(testType: string) {
   gtag({ action: "pro_preview_impression", category: "conversion", label: testType });
 }
 
+// Purchase / activation events
+export function trackProActivation(customerName: string) {
+  gtag({ action: "pro_activation", category: "conversion", label: customerName });
+}
+
 // A/B test events
 export function trackABTestView(testId: string, variant: string) {
   gtag({ action: "ab_view", category: "ab_test", label: `${testId}_${variant}` });
