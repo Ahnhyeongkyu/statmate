@@ -1,0 +1,128 @@
+---
+title: "How to Report Cohen's d in APA Format (With Examples and Benchmarks)"
+description: "Complete guide to reporting Cohen's d effect size in APA 7th edition format. Includes interpretation benchmarks, formulas, copy-paste templates for t-tests and ANOVA post-hoc comparisons."
+date: "2026-03-04"
+category: "APA Reporting"
+tags: ["Cohen's d", "effect size", "APA format", "t-test", "statistical reporting", "practical significance"]
+---
+
+## Why Report Cohen's d?
+
+Statistical significance (*p* values) tells you whether an effect exists, but not how large it is. Cohen's *d* fills this gap by quantifying the magnitude of the difference between two groups in standardized units.
+
+APA 7th edition explicitly requires effect sizes alongside significance tests. Cohen's *d* is the most widely reported effect size for comparing two means, making it essential for t-tests, ANOVA post-hoc comparisons, and meta-analyses.
+
+## Essential Components for APA Reporting
+
+When reporting Cohen's *d* in APA 7th edition format, include:
+
+- **Effect size value**: Cohen's *d* to two decimal places
+- **Direction**: which group scored higher
+- **95% confidence interval**: [lower, upper] when available
+- **Interpretation**: small, medium, or large per Cohen's benchmarks
+- **Context**: alongside the corresponding *t* or *F* statistic
+
+## Cohen's d Benchmarks
+
+Cohen (1988) proposed these widely used interpretation guidelines:
+
+| *d* | Interpretation | Meaning |
+|-----|---------------|---------|
+| 0.20 | Small effect | Difference is real but difficult to see with the naked eye |
+| 0.50 | Medium effect | Difference noticeable to a careful observer |
+| 0.80 | Large effect | Difference obvious and substantial |
+
+Additional reference points used in recent literature:
+
+| *d* | Interpretation |
+|-----|---------------|
+| < 0.20 | Negligible |
+| 0.20-0.49 | Small |
+| 0.50-0.79 | Medium |
+| 0.80-1.19 | Large |
+| &ge; 1.20 | Very large |
+
+**Important**: These are general guidelines, not rigid cutoffs. A *d* of 0.30 in clinical research may be practically significant if the outcome is life-threatening. Always interpret effect sizes in the context of your field.
+
+## How Cohen's d Is Calculated
+
+### For Independent Samples t-Test
+
+> *d* = (*M*<sub>1</sub> - *M*<sub>2</sub>) / *SD*<sub>pooled</sub>
+
+Where *SD*<sub>pooled</sub> = &radic;[(*SD*<sub>1</sub><sup>2</sup> + *SD*<sub>2</sub><sup>2</sup>) / 2]
+
+### For Paired Samples t-Test
+
+> *d* = *M*<sub>diff</sub> / *SD*<sub>diff</sub>
+
+Some researchers use the pre-test *SD* or the average of both *SD*s as the standardizer. Specify which formula you used.
+
+### Converting From t
+
+> *d* = 2*t* / &radic;*df* (for equal group sizes)
+
+> *d* = *t* &radic;(1/*n*<sub>1</sub> + 1/*n*<sub>2</sub>) (for unequal group sizes)
+
+## Reporting Cohen's d With Independent Samples t-Test
+
+### Basic Template
+
+> The treatment group (*M* = X.XX, *SD* = X.XX) scored significantly higher than the control group (*M* = X.XX, *SD* = X.XX), *t*(df) = X.XX, *p* = .XXX, *d* = X.XX.
+
+### Complete Example
+
+**Scenario:** Comparing exam scores between a tutored group (*n* = 30) and a non-tutored group (*n* = 30).
+
+> Students who received tutoring (*M* = 82.40, *SD* = 8.50) scored significantly higher on the final exam than students who did not receive tutoring (*M* = 74.60, *SD* = 9.20), *t*(58) = 3.43, *p* = .001, *d* = 0.88, 95% CI [0.34, 1.41]. The effect size indicated a large difference between groups.
+
+## Reporting Cohen's d With Paired Samples t-Test
+
+### Complete Example
+
+**Scenario:** Pre-post anxiety scores for 25 participants.
+
+> Anxiety scores decreased significantly from pre-test (*M* = 45.80, *SD* = 10.20) to post-test (*M* = 38.50, *SD* = 9.80), *t*(24) = 4.12, *p* < .001, *d* = 0.82, 95% CI [0.38, 1.26]. This represents a large effect.
+
+## Reporting Cohen's d in ANOVA Post-Hoc Comparisons
+
+When conducting pairwise comparisons after a significant ANOVA, report *d* for each pair:
+
+> Bonferroni-corrected post-hoc comparisons revealed that Group A (*M* = 78.30) scored significantly higher than Group C (*M* = 65.10), *p* < .001, *d* = 1.12. The difference between Group A and Group B (*M* = 73.50) was not significant, *p* = .089, *d* = 0.41. Group B scored significantly higher than Group C, *p* = .003, *d* = 0.72.
+
+## Cohen's d vs. Other Effect Sizes
+
+| Effect Size | Used With | Range | When to Use |
+|------------|-----------|-------|-------------|
+| Cohen's *d* | Two-group comparisons | 0 to &infin; | t-tests, pairwise comparisons |
+| *&eta;*<sup>2</sup><sub>p</sub> | ANOVA (3+ groups) | 0 to 1 | Overall F-test effect |
+| *r* | Correlations, Mann-Whitney U | -1 to 1 | Nonparametric tests |
+| Odds ratio | Logistic regression | 0 to &infin; | Binary outcomes |
+
+Use Cohen's *d* for pairwise comparisons and *&eta;*<sup>2</sup><sub>p</sub> for the overall ANOVA effect.
+
+## Common Mistakes to Avoid
+
+### 1. Omitting the Effect Size Entirely
+
+APA 7th edition requires effect sizes. Never report only *t* and *p* values without *d*.
+
+### 2. Using Wrong Benchmarks
+
+Cohen's benchmarks (.20, .50, .80) apply to *d*, not to *r* or *&eta;*<sup>2</sup>. Each effect size has its own benchmarks.
+
+### 3. Not Specifying the Formula
+
+For paired designs, different formulas yield different *d* values. State which standardizer you used (pooled *SD*, pre-test *SD*, or *SD* of differences).
+
+### 4. Ignoring Confidence Intervals
+
+A point estimate of *d* = 0.50 is less informative than *d* = 0.50, 95% CI [0.05, 0.95]. Include CIs when your software provides them.
+
+### 5. Over-Interpreting Small Samples
+
+Effect sizes from small samples have wide confidence intervals. A *d* of 1.20 from *n* = 10 per group is much less reliable than *d* = 0.50 from *n* = 200 per group.
+
+## Try It With Your Own Data
+
+Calculate Cohen's *d* automatically with our free [t-test calculator](/calculators/t-test), which provides the effect size, 95% confidence interval, and a ready-to-copy APA results sentence. For ANOVA post-hoc comparisons, use our [one-way ANOVA calculator](/calculators/anova).

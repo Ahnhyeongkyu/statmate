@@ -1,0 +1,127 @@
+---
+title: "How to Report Exploratory Factor Analysis (EFA) Results in APA Format"
+description: "Complete guide to reporting exploratory factor analysis results in APA 7th edition format. Includes KMO, Bartlett's test, factor loadings, variance explained, and copy-paste templates."
+date: "2026-03-04"
+category: "APA Reporting"
+tags: ["factor analysis", "EFA", "APA format", "KMO", "Bartlett's test", "factor loadings", "statistical reporting"]
+---
+
+## When You Need Exploratory Factor Analysis
+
+Exploratory factor analysis (EFA) identifies the underlying latent constructs that explain correlations among observed variables. Researchers commonly use EFA when developing or validating questionnaires, reducing a large number of items to a smaller set of meaningful factors, or exploring the dimensionality of a new measurement instrument.
+
+Despite being one of the most commonly used multivariate techniques in psychology and education, many researchers struggle with reporting EFA results correctly in APA format.
+
+## Essential Components for APA Reporting
+
+Every EFA result in APA 7th edition format should include:
+
+- **Sampling adequacy**: Kaiser-Meyer-Olkin (KMO) measure
+- **Factorability**: Bartlett's test of sphericity
+- **Extraction method**: principal axis factoring, maximum likelihood, etc.
+- **Rotation method**: varimax, promax, oblimin, etc.
+- **Number of factors retained**: and the criterion used (eigenvalue > 1, scree plot, parallel analysis)
+- **Total variance explained**: by the retained factors
+- **Factor loadings table**: with loadings, communalities, and cross-loadings
+- **Reliability**: Cronbach's alpha for each factor
+
+## Step 1: Report Sampling Adequacy
+
+Before presenting the factor solution, demonstrate that your data is suitable for factor analysis.
+
+**Example:**
+
+> The Kaiser-Meyer-Olkin measure verified the sampling adequacy for the analysis, KMO = .87, which is above the recommended threshold of .60. Bartlett's test of sphericity, *&chi;*<sup>2</sup>(190) = 2145.30, *p* < .001, indicated that correlations between items were sufficiently large for factor analysis.
+
+### KMO Interpretation Guidelines
+
+| KMO | Interpretation |
+|-----|---------------|
+| &ge; .90 | Marvelous |
+| .80-.89 | Meritorious |
+| .70-.79 | Middling |
+| .60-.69 | Mediocre |
+| .50-.59 | Miserable |
+| < .50 | Unacceptable |
+
+## Step 2: Report Extraction and Rotation
+
+Specify the method used and justify the rotation choice.
+
+> Principal axis factoring was used for extraction because the primary goal was to identify latent constructs rather than to reduce data. Promax rotation (oblique) was employed because the factors were expected to be correlated.
+
+### When to Use Which Rotation
+
+- **Orthogonal (varimax)**: when factors are assumed to be uncorrelated
+- **Oblique (promax, oblimin)**: when factors are expected to be correlated (more common in social sciences)
+
+## Step 3: Report Factor Retention
+
+Explain how you determined the number of factors.
+
+> Three factors with eigenvalues greater than 1.0 were extracted, which was consistent with the scree plot and parallel analysis results. Together, the three factors explained 62.4% of the total variance.
+
+Report each factor's contribution:
+
+> Factor 1 explained 28.3% of the variance, Factor 2 explained 19.7%, and Factor 3 explained 14.4%.
+
+## Step 4: Report the Factor Loading Table
+
+Present a clean factor loading table showing only significant loadings (typically > .30 or > .40).
+
+**Example table format:**
+
+| Item | Factor 1 | Factor 2 | Factor 3 | Communality |
+|------|----------|----------|----------|-------------|
+| Item 1 | **.78** | | | .65 |
+| Item 5 | **.74** | | | .58 |
+| Item 3 | **.71** | | | .54 |
+| Item 8 | **.65** | | | .49 |
+| Item 2 | | **.82** | | .70 |
+| Item 6 | | **.76** | | .62 |
+| Item 9 | | **.69** | | .51 |
+| Item 4 | | | **.81** | .68 |
+| Item 7 | | | **.73** | .57 |
+| Item 10 | | | **.67** | .48 |
+
+**In text:**
+
+> Factor loadings after rotation are presented in Table 1. Items that loaded on Factor 1 related to cognitive engagement (4 items, loadings .65-.78). Factor 2 items reflected emotional engagement (3 items, loadings .69-.82). Factor 3 items captured behavioral engagement (3 items, loadings .67-.81). All items had primary loadings above .40 with no cross-loadings above .30.
+
+## Step 5: Report Reliability
+
+> Internal consistency for each factor was assessed using Cronbach's alpha. Factor 1 (Cognitive Engagement) demonstrated good reliability (*&alpha;* = .84), Factor 2 (Emotional Engagement) showed good reliability (*&alpha;* = .81), and Factor 3 (Behavioral Engagement) showed acceptable reliability (*&alpha;* = .76).
+
+## Complete Example Write-Up
+
+> **Results**
+>
+> An exploratory factor analysis was conducted on the 10-item Student Engagement Scale using principal axis factoring with promax rotation. The Kaiser-Meyer-Olkin measure verified the sampling adequacy for the analysis, KMO = .87. Bartlett's test of sphericity, *&chi;*<sup>2</sup>(190) = 2145.30, *p* < .001, indicated that correlations between items were sufficiently large for EFA.
+>
+> Three factors with eigenvalues exceeding 1.0 were retained, explaining 62.4% of the total variance. Factor 1 (Cognitive Engagement, 4 items) explained 28.3% of the variance, Factor 2 (Emotional Engagement, 3 items) explained 19.7%, and Factor 3 (Behavioral Engagement, 3 items) explained 14.4%. All items loaded above .40 on their primary factor with no cross-loadings exceeding .30 (see Table 1). Internal consistency was good for all factors (*&alpha;* = .76-.84).
+
+## Common Mistakes to Avoid
+
+### 1. Omitting KMO and Bartlett's Test
+
+Reviewers expect evidence that your data is suitable for factor analysis. Always report both.
+
+### 2. Not Justifying Rotation Choice
+
+Explain why you chose orthogonal vs. oblique rotation. Do not default to varimax without justification.
+
+### 3. Reporting All Loadings
+
+Suppress loadings below .30 or .40 to improve table readability. State your suppression threshold.
+
+### 4. Ignoring Cross-Loadings
+
+Items that load substantially (> .30) on multiple factors may be problematic. Address these in your results.
+
+### 5. Confusing EFA With CFA
+
+EFA is exploratory and data-driven. Confirmatory factor analysis (CFA) tests a pre-specified model. Do not use EFA language when conducting CFA, and vice versa.
+
+## Try It With Your Own Data
+
+Run exploratory factor analysis with automatic APA formatting using our free [Factor Analysis Calculator](/calculators/factor-analysis). It provides KMO, Bartlett's test, eigenvalues, scree plot, factor loadings, and variance explained.
