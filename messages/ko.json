@@ -406,8 +406,8 @@
     "exampleScenario": "교육 연구자가 3가지 교수법(전통 강의, 플립드 러닝, 프로젝트 기반 학습)에 따른 시험 점수 차이를 비교했습니다. 각 그룹에 10명의 학생이 배정되었습니다."
   },
   "chiSquare": {
-    "metaTitle": "무료 카이제곱 검정 계산기",
-    "metaDescription": "무료 온라인 카이제곱 계산기. 독립성 검정과 적합도 검정으로 APA 형식 결과를 받으세요. 카이제곱 통계량, p값, Cramer's V를 제공합니다.",
+    "metaTitle": "무료 카이제곱 검정 계산기 — 독립성 검정 & 적합도 검정",
+    "metaDescription": "무료 카이제곱 계산기. 독립성 검정과 적합도 검정을 지원하며 χ² 통계량, p값, Cramer's V를 APA 형식으로 즉시 제공합니다.",
     "title": "카이제곱 검정 계산기",
     "description": "분할표의 독립성 검정과 적합도 검정. 결과는 APA 7판 형식으로 제공됩니다.",
     "independence": "독립성 검정",
@@ -1063,8 +1063,8 @@
     "coefficientPlot": "표준화 회귀계수"
   },
   "cronbachAlpha": {
-    "metaTitle": "무료 Cronbach's Alpha 계산기",
-    "metaDescription": "무료 온라인 Cronbach's Alpha 계산기. 문항 통계, 반분 신뢰도, Spearman-Brown 보정이 포함된 신뢰도 분석을 APA 형식으로 제공합니다.",
+    "metaTitle": "무료 Cronbach's Alpha 계산기 — 문항-총점 상관 & 문항 제거 시 알파",
+    "metaDescription": "무료 Cronbach's Alpha 계산기. 문항-총점 상관(item-total correlation), 문항 제거 시 알파(if-item-deleted), 반분 신뢰도를 APA 형식으로 제공합니다.",
     "title": "Cronbach's Alpha 계산기",
     "description": "척도나 설문지의 내적 일관성을 평가합니다. 데이터 행렬을 붙여넣으세요 (행 = 참가자, 열 = 문항).",
     "reliability": "신뢰도",

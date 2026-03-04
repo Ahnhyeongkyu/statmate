@@ -406,8 +406,8 @@
     "exampleScenario": "An education researcher compared exam scores across 3 teaching methods: traditional lecture, flipped classroom, and project-based learning. Each group had 10 students."
   },
   "chiSquare": {
-    "metaTitle": "Free Chi-Square Calculator Online",
-    "metaDescription": "Free chi-square calculator with instant APA-formatted results. Independence and goodness-of-fit tests — chi-square statistic, p-value, Cramer's V. No signup, runs in your browser.",
+    "metaTitle": "Free Chi-Square Test Calculator — Independence & Goodness of Fit",
+    "metaDescription": "Free chi-square calculator for independence and goodness-of-fit tests. Get χ² statistic, p-value, Cramer's V, and APA-formatted results instantly. No signup.",
     "title": "Chi-Square Calculator",
     "description": "Test of independence for contingency tables and goodness-of-fit. Results are formatted in APA 7th edition style.",
     "independence": "Test of Independence",
@@ -1063,8 +1063,8 @@
     "coefficientPlot": "Standardized Coefficients"
   },
   "cronbachAlpha": {
-    "metaTitle": "Free Cronbach's Alpha Calculator Online",
-    "metaDescription": "Free online Cronbach's alpha calculator. Reliability analysis with item statistics, split-half reliability, Spearman-Brown correction, and APA-formatted results.",
+    "metaTitle": "Free Cronbach's Alpha Calculator — Item-Total & If-Item-Deleted",
+    "metaDescription": "Free Cronbach's alpha calculator with item-total correlation, alpha if-item-deleted, split-half reliability, and APA-formatted results. No signup required.",
     "title": "Cronbach's Alpha Calculator",
     "description": "Assess the internal consistency of a scale or questionnaire. Paste your data matrix (rows = participants, columns = items).",
     "reliability": "Reliability",
