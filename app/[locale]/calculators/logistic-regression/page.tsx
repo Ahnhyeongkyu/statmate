@@ -96,7 +96,7 @@ export default async function LogisticRegressionPage({
 
       <LogisticRegressionCalculator />
 
-      <AdUnit slot="logistic-regression-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {locale === "ko" ? (
         <SeoContentKo />

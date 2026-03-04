@@ -95,7 +95,7 @@ export default async function OneSampleTPage({
 
       <OneSampleTCalculator />
 
-      <AdUnit slot="one-sample-t-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

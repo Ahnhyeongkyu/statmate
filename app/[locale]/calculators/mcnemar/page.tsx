@@ -93,7 +93,7 @@ export default async function McNemarPage({
 
       <McNemarCalculator />
 
-      <AdUnit slot="mcnemar-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

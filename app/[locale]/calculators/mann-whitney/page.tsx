@@ -95,7 +95,7 @@ export default async function MannWhitneyPage({
 
       <MannWhitneyCalculator />
 
-      <AdUnit slot="mann-whitney-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

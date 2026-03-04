@@ -94,7 +94,7 @@ export default async function RepeatedMeasuresPage({
 
       <RepeatedMeasuresCalculator />
 
-      <AdUnit slot="repeated-measures-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

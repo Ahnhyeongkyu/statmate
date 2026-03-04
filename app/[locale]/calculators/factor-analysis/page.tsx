@@ -99,7 +99,7 @@ export default async function FactorAnalysisPage({
 
       <FactorAnalysisCalculator />
 
-      <AdUnit slot="factor-analysis-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

@@ -97,7 +97,7 @@ export default async function MultipleRegressionPage({
 
       <MultipleRegressionCalculator />
 
-      <AdUnit slot="multiple-regression-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

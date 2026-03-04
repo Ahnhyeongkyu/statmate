@@ -6,6 +6,7 @@ import { MdxContent } from "@/components/mdx-content";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft } from "lucide-react";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { AdUnit, AD_SLOTS } from "@/components/adsense";
 
 export async function generateStaticParams() {
   const koSlugs = getAllSlugs("ko").map((slug) => ({ locale: "ko", slug }));
@@ -94,6 +95,8 @@ export default async function BlogPostPage({
       </header>
 
       <MdxContent source={post.content} />
+
+      <AdUnit slot={AD_SLOTS.blog} format="fluid" layout="in-article" />
 
       {/* Blog Post CTA */}
       <div className="mt-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 p-8 text-center text-white">

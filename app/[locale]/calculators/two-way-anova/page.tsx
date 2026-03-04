@@ -93,7 +93,7 @@ export default async function TwoWayAnovaPage({
 
       <TwoWayAnovaCalculator />
 
-      <AdUnit slot="two-way-anova-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

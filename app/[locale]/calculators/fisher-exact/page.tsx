@@ -93,7 +93,7 @@ export default async function FisherExactPage({
 
       <FisherExactCalculator />
 
-      <AdUnit slot="fisher-exact-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (

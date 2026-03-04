@@ -94,7 +94,7 @@ export default async function CronbachAlphaPage({
 
       <CronbachAlphaCalculator />
 
-      <AdUnit slot="cronbach-alpha-mid" format="horizontal" />
+      <AdUnit slot="4914141943" format="auto" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
