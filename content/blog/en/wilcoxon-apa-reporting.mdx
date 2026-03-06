@@ -1,0 +1,248 @@
+---
+title: "How to Report Wilcoxon Signed-Rank Test in APA Format: Z, W, Effect Size & Examples"
+description: "Step-by-step guide to reporting Wilcoxon signed-rank test results in APA 7th edition. Includes T/W/Z statistics, rank-biserial correlation effect size, and copy-ready examples."
+date: "2026-03-07"
+category: "APA Reporting"
+tags: ["Wilcoxon signed-rank APA", "Wilcoxon test reporting", "nonparametric paired test APA", "rank-biserial correlation", "Wilcoxon effect size", "paired samples nonparametric"]
+---
+
+## When to Use the Wilcoxon Signed-Rank Test
+
+The Wilcoxon signed-rank test is the nonparametric alternative to the paired samples t-test. It compares two related measurements from the same participants without assuming that the differences between pairs are normally distributed.
+
+You should use the Wilcoxon signed-rank test when any of the following apply:
+
+- **Ordinal data.** Your dependent variable is measured on an ordinal scale (e.g., Likert-type ratings, pain severity rankings).
+- **Non-normal differences.** The Shapiro-Wilk test or visual inspection reveals that the distribution of paired differences is significantly skewed or contains outliers.
+- **Small sample sizes.** With fewer than 20-25 pairs, the Central Limit Theorem may not sufficiently normalize the sampling distribution for a paired t-test.
+- **Ranked or bounded data.** Scores have natural floor or ceiling effects that distort the distribution.
+
+The test works by ranking the absolute differences between paired observations, applying the signs of the original differences, and then summing the signed ranks. If one condition consistently produces higher values, the positive and negative rank sums will be unequal.
+
+Try it yourself with the [Wilcoxon signed-rank calculator](/calculators/wilcoxon).
+
+## Understanding the Test Statistics: T, W, and Z
+
+One of the most confusing aspects of reporting the Wilcoxon signed-rank test is the inconsistent notation across textbooks and software. Three different symbols appear regularly, and understanding what each represents is essential for accurate APA reporting.
+
+### T (or W): The Sum of Signed Ranks
+
+The core statistic of the Wilcoxon test is the sum of ranks for either the positive or negative differences. Different sources label this differently:
+
+| Symbol | Convention | Used By |
+|--------|-----------|---------|
+| *T* | Sum of positive (or smaller) ranks | Many statistics textbooks |
+| *W* | Sum of signed ranks | R (`wilcox.test`), some textbooks |
+| *T+* | Sum of positive ranks specifically | Siegel & Castellan notation |
+
+For small samples (typically *n* < 20), the exact test statistic *T* (or *W*) is reported directly because exact p-values can be computed from the Wilcoxon distribution.
+
+### Z: The Standardized Approximation
+
+For larger samples, most software converts the rank sum into a *Z*-statistic using a normal approximation:
+
+*Z* = (*T* - Expected Value) / Standard Error
+
+This standardized value follows an approximately normal distribution and is the statistic most commonly reported in published research. SPSS, for example, always outputs a *Z*-value regardless of sample size.
+
+### Which Symbol Does Your Software Use?
+
+| Software | Default Output | Symbol |
+|----------|---------------|--------|
+| SPSS | Standardized test statistic | *Z* |
+| R (`wilcox.test`) | Sum of ranks | *V* (confusingly) |
+| Stata | Sum of ranks + Z approximation | *z* |
+| jamovi | Test statistic + Z | *W* and *Z* |
+| StatMate | Both rank sum and Z | *W* and *Z* |
+
+Always check your software documentation to confirm what the reported value represents before writing your results section.
+
+## The APA Reporting Template
+
+APA 7th edition does not prescribe a single rigid format for the Wilcoxon test, but the following templates reflect current best practice in major journals.
+
+### For Small Samples (Exact Test)
+
+When reporting the exact Wilcoxon statistic with a small sample:
+
+> A Wilcoxon signed-rank test indicated that post-intervention scores (*Mdn* = 4.50) were significantly higher than pre-intervention scores (*Mdn* = 3.00), *T* = 45, *p* = .012, *r* = .48.
+
+### For Larger Samples (Z Approximation)
+
+When the software provides a standardized *Z*-value:
+
+> A Wilcoxon signed-rank test showed a statistically significant change in pain ratings from baseline (*Mdn* = 7.00, IQR = 5.00-8.00) to follow-up (*Mdn* = 4.00, IQR = 3.00-6.00), *Z* = -3.41, *p* < .001, *r* = .54.
+
+### Essential Components
+
+Every Wilcoxon APA report must include:
+
+1. **Name of the test** in full on first mention.
+2. **Descriptive statistics:** Medians (and ideally interquartile ranges) for each condition, not means.
+3. **Test statistic:** *T*, *W*, or *Z* depending on sample size and software.
+4. **Exact p-value** (or *p* < .001 for very small values).
+5. **Effect size:** Rank-biserial correlation (*r*).
+6. **Direction of difference:** State which condition was higher.
+
+## Effect Size: Rank-Biserial Correlation
+
+Reporting a p-value alone tells you whether the difference is statistically significant but not whether it is practically meaningful. The standard effect size for the Wilcoxon signed-rank test is the rank-biserial correlation, symbolized as *r*.
+
+### How to Calculate It
+
+The simplest formula uses the *Z*-statistic:
+
+*r* = *Z* / sqrt(*N*)
+
+where *N* is the total number of paired observations (not the number of non-zero differences in some formulations, though practices vary -- check your source).
+
+**Example:** With *Z* = -3.41 and *N* = 40 pairs:
+
+*r* = -3.41 / sqrt(40) = -3.41 / 6.32 = -0.54
+
+The sign indicates the direction of the effect. Report the absolute value when describing magnitude.
+
+### Interpreting Effect Size
+
+Cohen's conventional benchmarks for *r* apply:
+
+| *r* Value | Interpretation |
+|-----------|---------------|
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+
+An *r* of .54 in the example above represents a large effect, indicating a substantial shift in scores from pre- to post-intervention.
+
+### Alternative Effect Size Measures
+
+Some researchers report the matched-pairs rank-biserial correlation computed directly from the positive and negative rank sums:
+
+*r* = (*R+* - *R-*) / (*R+* + *R-*)
+
+This produces equivalent interpretations and can be used when *Z* is not available.
+
+## Step-by-Step Reporting Example
+
+### Scenario
+
+A clinical psychologist measures anxiety levels (1-10 ordinal scale) in 32 patients before and after an 8-week mindfulness intervention.
+
+### Step 1: Report Descriptive Statistics
+
+Present medians and interquartile ranges for both conditions:
+
+> Pre-intervention anxiety scores had a median of 7.00 (IQR = 6.00-8.00), while post-intervention scores had a median of 5.00 (IQR = 3.25-6.00).
+
+### Step 2: Justify the Nonparametric Choice
+
+> Because anxiety was measured on an ordinal scale and the Shapiro-Wilk test indicated that the distribution of paired differences deviated significantly from normality (*W* = 0.91, *p* = .014), the Wilcoxon signed-rank test was used instead of a paired samples t-test.
+
+### Step 3: Report the Test Results
+
+> A Wilcoxon signed-rank test indicated that anxiety scores were significantly lower after the mindfulness intervention (*Mdn* = 5.00, IQR = 3.25-6.00) compared to baseline (*Mdn* = 7.00, IQR = 6.00-8.00), *Z* = -4.12, *p* < .001, *r* = .73. This represents a large effect.
+
+### Step 4: Add Context
+
+> Of the 32 participants, 27 showed a decrease in anxiety scores, 3 showed an increase, and 2 showed no change. The large effect size (*r* = .73) suggests that the mindfulness intervention produced a substantial reduction in self-reported anxiety.
+
+### Complete APA Paragraph
+
+Combining all elements into a single results paragraph:
+
+> The Wilcoxon signed-rank test was used to evaluate the effect of an 8-week mindfulness intervention on self-reported anxiety (*N* = 32). The nonparametric test was selected because anxiety was measured on an ordinal scale and paired differences were not normally distributed (Shapiro-Wilk *W* = 0.91, *p* = .014). Pre-intervention anxiety had a median of 7.00 (IQR = 6.00-8.00) and post-intervention anxiety had a median of 5.00 (IQR = 3.25-6.00). The Wilcoxon signed-rank test indicated a statistically significant reduction in anxiety, *Z* = -4.12, *p* < .001, *r* = .73. Of the 32 participants, 27 showed decreased scores, 3 showed increased scores, and 2 showed no change. The effect size indicates a large practical effect of the intervention.
+
+## Reporting Non-Significant Results
+
+Non-significant results should be reported with the same level of detail. Do not hide them or provide less information.
+
+> A Wilcoxon signed-rank test was conducted to compare self-efficacy ratings before (*Mdn* = 5.00, IQR = 4.00-6.00) and after (*Mdn* = 5.00, IQR = 4.00-7.00) the training workshop. The test did not reveal a statistically significant change in self-efficacy, *Z* = -1.34, *p* = .180, *r* = .21. The effect size was small, suggesting that the workshop had minimal impact on participants' self-efficacy beliefs.
+
+Key principles for non-significant results:
+
+- Report the exact p-value (do not write "p = n.s." or "p > .05").
+- Still include the effect size and interpret it.
+- Describe the direction of any observed trend if relevant.
+- Avoid language implying the intervention "had no effect." Instead, state that the test did not detect a significant effect.
+
+## Wilcoxon vs Paired t-Test: Decision Guide
+
+Choosing between the Wilcoxon signed-rank test and the paired samples t-test depends on your data characteristics, not personal preference.
+
+| Criterion | Paired t-Test | Wilcoxon Signed-Rank |
+|-----------|--------------|---------------------|
+| Data scale | Interval or ratio | Ordinal or continuous |
+| Distribution of differences | Approximately normal | Any distribution |
+| Outlier sensitivity | High | Low (uses ranks) |
+| What it compares | Means | Median / rank distribution |
+| Effect size | Cohen's *d* | Rank-biserial *r* |
+| Statistical power | Higher (assumptions met) | ~95% of paired t-test |
+| Small samples (n < 20) | Unreliable unless very normal | Appropriate |
+| Descriptive statistics | Mean and SD | Median and IQR |
+
+### When to Choose the Paired t-Test
+
+- Differences between pairs are approximately normally distributed.
+- The measurement scale is continuous with meaningful intervals.
+- You want maximum statistical power and your assumptions hold.
+
+### When to Choose the Wilcoxon Test
+
+- Data are ordinal (e.g., Likert scales, rankings).
+- Differences are clearly non-normal, skewed, or contain outliers.
+- Sample size is small and you cannot verify normality.
+- You want a robust test that does not depend on distributional assumptions.
+
+If both tests are plausible, running both and comparing results is a reasonable sensitivity analysis. If they agree, report the parametric test for its greater familiarity. If they disagree, report the Wilcoxon and explain why.
+
+## Common Mistakes
+
+### 1. Confusing T, W, and Z Notation
+
+Different software packages and textbooks use *T*, *W*, *V*, and *Z* to mean different things. Always verify what your software is outputting and label it correctly in your report. If in doubt, report the *Z*-value with the rank sum in a note.
+
+### 2. Reporting Means Instead of Medians
+
+The Wilcoxon test analyzes ranks, not raw values. Reporting means and standard deviations is misleading because the test does not evaluate whether means differ. Report medians and interquartile ranges as your descriptive statistics.
+
+### 3. Omitting Effect Size
+
+A statistically significant p-value says nothing about practical importance. Always compute and report the rank-biserial correlation. Many journals now require effect sizes for all statistical tests, and reviewers will flag their absence.
+
+### 4. Not Justifying the Nonparametric Choice
+
+Reviewers will ask why you did not use the more powerful paired t-test. Always provide a brief justification -- typically that the data are ordinal, that the Shapiro-Wilk test was significant, or that visual inspection revealed non-normality.
+
+### 5. Ignoring Tied Ranks
+
+When multiple pairs have identical differences, tied ranks occur. Most software handles ties with a correction factor, but you should be aware that heavy ties can affect the test's precision. Mention ties if they are numerous.
+
+## Wilcoxon APA Checklist
+
+Before submitting your manuscript, verify that your Wilcoxon results section includes every item on this checklist:
+
+- Full test name on first mention (Wilcoxon signed-rank test)
+- Sample size (*N* or number of pairs)
+- Medians for each condition (not means)
+- Interquartile ranges (IQR) for each condition
+- Test statistic (*T*, *W*, or *Z*) clearly labeled
+- Exact p-value (or *p* < .001)
+- Effect size: rank-biserial correlation (*r*)
+- Effect size interpretation (small, medium, or large)
+- Direction of the difference stated explicitly
+- Justification for choosing the nonparametric test
+- Ties addressed if numerous
+
+## Try StatMate's Free Wilcoxon Calculator
+
+Formatting Wilcoxon results manually is tedious and error-prone. [StatMate's Wilcoxon signed-rank calculator](/calculators/wilcoxon) automates the entire process:
+
+- **Instant APA output.** Enter your paired data and get a publication-ready results paragraph with *Z*, *p*, and *r* values formatted to APA 7th edition standards.
+- **Automatic effect size.** The rank-biserial correlation is computed and interpreted for you.
+- **Assumption checks.** Shapiro-Wilk normality test on the paired differences with clear pass/fail indicators.
+- **Visual output.** Paired difference charts show the direction and magnitude of changes across participants.
+- **One-click export.** Copy the formatted results to your clipboard, export to PDF, or generate an APA-formatted Word document (Pro).
+
+No formulas to look up, no notation to decode, no formatting to second-guess. Enter your data and get the results paragraph your methods section needs.
+
+[Open the Wilcoxon Calculator](/calculators/wilcoxon)

@@ -1,0 +1,210 @@
+---
+title: "Normality Test Guide: Shapiro-Wilk vs Kolmogorov-Smirnov — When & How to Check"
+description: "Learn when and how to test for normality using Shapiro-Wilk, Kolmogorov-Smirnov, and Q-Q plots. Includes APA reporting examples, interpretation guidelines, and what to do when data is not normal."
+date: "2026-03-07"
+category: "Statistics Guide"
+tags: ["normality test", "Shapiro-Wilk test", "Kolmogorov-Smirnov test", "normal distribution check", "Q-Q plot interpretation", "assumption testing statistics"]
+---
+
+## Why Normality Matters in Statistics
+
+Many of the most commonly used statistical tests are **parametric tests** -- they assume that the data follow a normal distribution. If this assumption is seriously violated, the results may be unreliable: inflated Type I error rates, reduced statistical power, or misleading confidence intervals.
+
+The following tests all assume normality in some form:
+
+- **Independent and paired t-tests** assume the dependent variable (or difference scores) is normally distributed within each group.
+- **One-way and repeated measures ANOVA** assume normality of residuals within each group or condition.
+- **Pearson correlation** assumes bivariate normality for significance testing.
+- **Linear regression** assumes that residuals are normally distributed.
+
+Violating the normality assumption does not automatically invalidate your analysis. With large samples, the Central Limit Theorem provides protection. However, with small samples (n less than 30), non-normality can meaningfully distort your results. That is why checking normality before running parametric tests is considered best practice in quantitative research.
+
+## Methods to Assess Normality
+
+There is no single perfect method for assessing normality. Best practice is to combine visual inspection with statistical tests and descriptive indicators. Each approach has strengths and limitations.
+
+### Visual Methods
+
+**Histograms** provide a quick look at the shape of your distribution. A roughly bell-shaped, symmetric histogram suggests normality. However, histograms are sensitive to bin width and can be misleading with small samples.
+
+**Q-Q plots** (quantile-quantile plots) are more informative. They plot your observed data quantiles against the quantiles expected under a normal distribution. If your data are normal, the points will fall approximately along a straight diagonal line. Systematic deviations from the line reveal specific types of non-normality.
+
+### Statistical Tests
+
+**Shapiro-Wilk test** is the most widely recommended normality test for samples up to about 2,000 observations. It offers strong statistical power across a range of distribution types.
+
+**Kolmogorov-Smirnov test** (with Lilliefors correction) is an alternative often used for larger samples. It is less powerful than Shapiro-Wilk for detecting departures from normality in small to moderate samples.
+
+### Descriptive Indicators
+
+**Skewness** measures the asymmetry of the distribution. A value of 0 indicates perfect symmetry. Positive skewness means a longer right tail; negative skewness means a longer left tail.
+
+**Kurtosis** measures the heaviness of the tails relative to a normal distribution. A normal distribution has a kurtosis of 3 (or excess kurtosis of 0). Higher values indicate heavier tails and more outlier-prone data.
+
+## Shapiro-Wilk Test
+
+The **Shapiro-Wilk test** is the most recommended normality test in the statistical literature. It is available in every major statistics package and is the default normality test in many software programs.
+
+### When to Use It
+
+Use the Shapiro-Wilk test when your sample size is between 3 and approximately 2,000. For most research scenarios -- thesis work, journal articles, class assignments -- this is the test you should use. It is more powerful than the Kolmogorov-Smirnov test for detecting non-normality, especially with small samples.
+
+### How to Interpret
+
+The test produces a *W* statistic that ranges from 0 to 1. A *W* value close to 1 indicates that the data closely follow a normal distribution. Lower values suggest greater departure from normality.
+
+The decision rule is straightforward:
+
+- If *p* > .05, you do **not** reject the null hypothesis of normality. The data are consistent with a normal distribution.
+- If *p* less than or equal to .05, you reject normality. The data significantly deviate from a normal distribution.
+
+### Worked Example
+
+Suppose you collected exam scores from 25 students: the Shapiro-Wilk test yields *W* = .964 with *p* = .498. Because *p* = .498 is greater than .05, you do not reject the null hypothesis. The data do not significantly deviate from normality, and you may proceed with parametric tests such as a t-test or ANOVA.
+
+In contrast, if the test yielded *W* = .871 with *p* = .005, the significant result (*p* less than .05) would indicate that the data depart meaningfully from a normal distribution.
+
+## Kolmogorov-Smirnov Test
+
+The **Kolmogorov-Smirnov (K-S) test** compares your sample distribution to a theoretical normal distribution by measuring the maximum absolute difference between the two cumulative distribution functions.
+
+### When to Use It
+
+The K-S test is sometimes preferred for larger samples (n > 2,000) where the Shapiro-Wilk test may not be available. Some software packages default to the K-S test, particularly SPSS, which reports it alongside the Shapiro-Wilk test in its Explore procedure.
+
+### Limitations
+
+The K-S test has notably **less statistical power** than the Shapiro-Wilk test for small and moderate samples. This means it is more likely to miss genuine departures from normality. If both tests are available, the Shapiro-Wilk test is almost always the better choice.
+
+### Lilliefors Correction
+
+The standard K-S test requires the mean and standard deviation to be specified in advance. When these parameters are estimated from the data (as is nearly always the case in practice), the **Lilliefors correction** must be applied. Without this correction, the test is overly conservative and will fail to detect non-normality. Most modern software applies the Lilliefors correction automatically.
+
+## Interpreting Q-Q Plots
+
+A **Q-Q plot** (quantile-quantile plot) is one of the most useful visual tools for assessing normality. Learning to read Q-Q plots will sharpen your ability to diagnose distributional problems that statistical tests alone may not characterize well.
+
+### What a Normal Q-Q Plot Looks Like
+
+When data are normally distributed, the points on a Q-Q plot fall closely along the diagonal reference line. Minor random scatter around the line is expected and does not indicate non-normality. The key is to look for systematic patterns of deviation.
+
+### Common Patterns
+
+| Q-Q Plot Pattern | Interpretation |
+|---|---|
+| Points follow the line closely | Data are approximately normal |
+| Both ends curve away from line (S-shape) | Heavy tails (leptokurtic) or light tails (platykurtic) |
+| Points curve above line on right end | Right (positive) skewness |
+| Points curve below line on left end | Left (negative) skewness |
+| One or two points far from the line | Potential outliers |
+| Staircase or step pattern | Data may be discrete or rounded |
+
+A Q-Q plot provides diagnostic information that a *p*-value alone cannot. For example, it can reveal whether non-normality is caused by skewness, heavy tails, outliers, or a mixture of distributions. This information is valuable for deciding how to address the problem.
+
+## Skewness and Kurtosis Guidelines
+
+**Skewness** and **kurtosis** values provide numerical summaries of distributional shape. They are quick to compute and can supplement visual and formal tests.
+
+### Common Rules of Thumb
+
+Several guidelines exist in the literature. The most commonly cited thresholds are:
+
+| Indicator | Acceptable Range | Source |
+|---|---|---|
+| Skewness | Absolute value less than 2 | West, Finch, & Curran (1995) |
+| Kurtosis (excess) | Absolute value less than 7 | West, Finch, & Curran (1995) |
+| Skewness (stricter) | Absolute value less than 1 | Commonly used in practice |
+| Kurtosis (stricter) | Absolute value less than 3 | Commonly used in practice |
+
+Some researchers also compute z-scores for skewness and kurtosis by dividing each by its standard error. A z-score exceeding 1.96 in absolute value (at the .05 level) suggests significant non-normality. However, this approach becomes overly sensitive with large samples.
+
+### Practical Advice
+
+Use skewness and kurtosis as a complement to, not a replacement for, formal normality tests and visual inspection. Moderate violations (skewness around 1, kurtosis around 3) are often tolerable with sample sizes above 30, thanks to the Central Limit Theorem.
+
+## How to Report Normality Tests in APA Format
+
+Reporting the normality assessment in your results section adds transparency and demonstrates methodological rigor. Here is how to format the two main normality tests in APA style.
+
+### Shapiro-Wilk Reporting
+
+> The Shapiro-Wilk test indicated that exam scores were normally distributed, *W*(25) = .964, *p* = .498.
+
+> A Shapiro-Wilk test revealed a significant departure from normality for reaction times, *W*(42) = .871, *p* = .005.
+
+### Kolmogorov-Smirnov Reporting
+
+> The Kolmogorov-Smirnov test with Lilliefors correction indicated that the distribution of anxiety scores did not significantly differ from normal, *D*(150) = .054, *p* = .200.
+
+> A Kolmogorov-Smirnov test showed significant non-normality in the income data, *D*(500) = .112, *p* less than .001.
+
+### Full Reporting Example
+
+In a methods or results section, you might write:
+
+> Prior to the main analysis, normality of the dependent variable was assessed using the Shapiro-Wilk test and visual inspection of Q-Q plots. Exam scores in both the control group, *W*(28) = .957, *p* = .302, and the experimental group, *W*(30) = .971, *p* = .563, were normally distributed. Skewness values were within acceptable limits (control: -0.34; experimental: 0.21). An independent-samples t-test was therefore conducted.
+
+Always specify which normality test you used, the sample size, and the test result. Reviewers expect this level of detail.
+
+## What to Do When Data Is Not Normal
+
+Detecting non-normality is only the first step. You need a strategy for dealing with it. There are three main approaches.
+
+### Option 1: Transform the Data
+
+**Data transformations** can sometimes normalize a skewed distribution. Common transformations include:
+
+- **Log transformation** -- effective for right-skewed data (e.g., reaction times, income).
+- **Square root transformation** -- useful for moderately right-skewed count data.
+- **Box-Cox transformation** -- a family of power transformations that finds the optimal normalizing transformation.
+
+After transforming, re-run the normality test on the transformed variable. If the transformation succeeds, you can analyze the transformed data with parametric tests. However, interpretation becomes less intuitive because results are on the transformed scale.
+
+### Option 2: Use Nonparametric Alternatives
+
+When transformation does not help or is not appropriate, switch to a **nonparametric test** that does not assume normality:
+
+| Parametric Test | Nonparametric Alternative |
+|---|---|
+| Independent t-test | Mann-Whitney U test |
+| Paired t-test | Wilcoxon signed-rank test |
+| One-way ANOVA | Kruskal-Wallis H test |
+| Repeated measures ANOVA | Friedman test |
+
+Nonparametric tests rank the data rather than using raw values, making them robust to distributional violations. The tradeoff is slightly reduced statistical power when the normality assumption actually holds.
+
+### Option 3: Proceed with Parametric Tests (Large Samples)
+
+The **Central Limit Theorem** states that with sufficiently large samples, the sampling distribution of the mean approaches normality regardless of the population distribution. As a general guideline:
+
+- With n > 30 per group, moderate non-normality is usually tolerable.
+- With n > 50 per group, parametric tests are robust to most departures from normality.
+- With very large samples (n > 100), normality tests often reject due to trivial deviations that have no practical impact on results.
+
+If you proceed despite non-normality, acknowledge this in your paper and consider reporting both parametric and nonparametric results as a sensitivity check.
+
+## Common Mistakes
+
+### Relying Only on the Significance Test
+
+A Shapiro-Wilk *p*-value tells you whether the deviation from normality is statistically significant, but it does not tell you how severe the deviation is. With large samples, even tiny, inconsequential deviations produce significant results. Always combine formal tests with visual inspection of histograms and Q-Q plots.
+
+### Using K-S When Shapiro-Wilk Is More Appropriate
+
+The Kolmogorov-Smirnov test is less powerful than the Shapiro-Wilk test for small and moderate samples. If your sample size is under 2,000 and both tests are available, choose Shapiro-Wilk. Reporting K-S for a sample of 30 when Shapiro-Wilk is available may raise reviewer concerns about test selection.
+
+### Confusing "Not Rejecting Normality" with "Data Is Normal"
+
+A non-significant Shapiro-Wilk result (*p* > .05) means you failed to find evidence against normality. It does not prove the data are normally distributed. This distinction matters, especially with small samples where the test has limited power to detect departures from normality.
+
+### Not Reporting Which Test Was Used
+
+Simply writing "data were normally distributed" without specifying the test, sample size, and result is insufficient. Reviewers and readers need to evaluate the evidence for themselves. Always report the test name, test statistic, sample size, and *p*-value.
+
+## Check Normality with StatMate
+
+StatMate includes built-in **Shapiro-Wilk normality checks** in its t-test, ANOVA, and other parametric calculators. When you enter your data, StatMate automatically runs the normality assumption check and displays the *W* statistic and *p*-value for each group.
+
+If the normality assumption is violated, StatMate recommends the appropriate nonparametric alternative and provides a direct link to the corresponding calculator. For example, if you run an independent t-test and the Shapiro-Wilk test is significant, StatMate will suggest switching to the Mann-Whitney U test.
+
+All normality test results are included in the APA-formatted output, the PDF export, and the Word export -- so you can paste them directly into your paper. Try the free t-test calculator or ANOVA calculator at statmate.org to see assumption checking in action.

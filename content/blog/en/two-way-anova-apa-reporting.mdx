@@ -1,0 +1,202 @@
+---
+title: "How to Report Two-Way ANOVA Results in APA Format: Main Effects, Interaction & Post-Hoc"
+description: "Step-by-step guide to reporting two-way (factorial) ANOVA in APA 7th edition. Covers main effects, interaction effects, partial eta-squared, simple effects analysis, and copy-ready examples."
+date: "2026-03-07"
+category: "APA Reporting"
+tags: ["two-way ANOVA APA", "factorial ANOVA reporting", "interaction effect APA", "main effect reporting", "partial eta squared", "two-way ANOVA example"]
+---
+
+## When to Use a Two-Way ANOVA
+
+A two-way ANOVA (also called a factorial ANOVA) tests the effects of two independent variables on a single continuous dependent variable. It answers three questions simultaneously:
+
+1. Does Factor A have an effect on the outcome? (Main effect of A)
+2. Does Factor B have an effect on the outcome? (Main effect of B)
+3. Does the effect of Factor A depend on the level of Factor B? (Interaction effect A x B)
+
+This design is common in experimental research. For example, you might examine whether **teaching method** (lecture vs. active learning) and **class size** (small, medium, large) jointly influence exam scores. A two-way ANOVA lets you test all three questions in a single analysis rather than running separate tests.
+
+Before reporting results, confirm that your data meet the standard assumptions: the dependent variable is continuous, observations are independent, residuals are approximately normally distributed within each cell, and variances are roughly equal across groups (Levene's test).
+
+## What to Report: The Three F-Tests
+
+Every two-way ANOVA produces three *F*-tests. You must report all three, even when some are not significant:
+
+| Source | What It Tests |
+|--------|--------------|
+| Main Effect of A | Overall effect of Factor A, averaging across levels of Factor B |
+| Main Effect of B | Overall effect of Factor B, averaging across levels of Factor A |
+| Interaction A x B | Whether the effect of one factor changes depending on the level of the other |
+
+For each *F*-test, report the following in APA 7th edition format:
+
+- *F* statistic with degrees of freedom (between-groups *df* and error *df*)
+- Exact *p*-value (or *p* < .001 if very small)
+- Effect size: partial eta-squared
+
+**APA template:**
+
+> *F*(df_between, df_error) = X.XX, *p* = .XXX, partial eta-squared = .XX
+
+## Step 1: Report Descriptive Statistics
+
+Start with a table of cell means, standard deviations, and sample sizes for every combination of your two factors. This is not optional; readers need these values to interpret main effects and interactions.
+
+**Example table for a 2 x 3 design:**
+
+| Teaching Method | Small Class (*n* = 20) | Medium Class (*n* = 20) | Large Class (*n* = 20) |
+|----------------|----------------------|------------------------|----------------------|
+| Lecture | *M* = 72.50, *SD* = 8.30 | *M* = 70.10, *SD* = 9.20 | *M* = 65.40, *SD* = 10.10 |
+| Active Learning | *M* = 84.20, *SD* = 7.60 | *M* = 82.80, *SD* = 8.10 | *M* = 71.30, *SD* = 9.50 |
+
+Also report marginal means (the row and column averages) either in the table or in the text. These are the means that main effects refer to.
+
+In APA format, present this as a formal table with a numbered title (e.g., Table 1) and a note explaining abbreviations. In the text, refer to the table rather than listing every mean.
+
+## Step 2: Report Main Effects
+
+Each main effect tells you whether a factor has an overall influence on the dependent variable, collapsing across the other factor. Report the *F* statistic, degrees of freedom, *p*-value, and partial eta-squared.
+
+**Main effect of teaching method (Factor A):**
+
+> There was a significant main effect of teaching method, *F*(1, 114) = 28.45, *p* < .001, partial eta-squared = .20, indicating that active learning (*M* = 79.43, *SD* = 9.73) produced higher exam scores than lecture (*M* = 69.33, *SD* = 9.53) overall.
+
+**Main effect of class size (Factor B):**
+
+> There was a significant main effect of class size, *F*(2, 114) = 12.67, *p* < .001, partial eta-squared = .18. Post-hoc pairwise comparisons with Bonferroni correction revealed that small classes (*M* = 78.35) scored significantly higher than large classes (*M* = 68.35, *p* < .001), but did not differ significantly from medium classes (*M* = 76.45, *p* = .412).
+
+### Interpreting Partial Eta-Squared
+
+Use the following benchmarks (Cohen, 1988) to describe the magnitude of each effect:
+
+| Partial eta-squared | Interpretation |
+|---------------------|----------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+Note that partial eta-squared values do not have a leading zero because they range from 0 to 1 and cannot exceed 1 (e.g., write ".20" not "0.20").
+
+## Step 3: Report the Interaction Effect
+
+The interaction is the most important result in a two-way ANOVA. It tests whether the effect of one factor depends on the level of the other factor. This is what distinguishes a two-way ANOVA from two separate one-way ANOVAs.
+
+### What an Interaction Means
+
+An interaction means the pattern of differences is not uniform. For example, active learning might boost scores substantially in small and medium classes but show little advantage in large classes. The lines on an interaction plot would not be parallel.
+
+### Significant Interaction Example
+
+> There was a significant interaction between teaching method and class size, *F*(2, 114) = 4.83, *p* = .010, partial eta-squared = .08. While active learning produced higher scores than lecture across all class sizes, the advantage was considerably larger in small classes (mean difference = 11.70) than in large classes (mean difference = 5.90). This indicates that the benefit of active learning diminishes as class size increases.
+
+When reporting a significant interaction, always describe the pattern. State which specific cells drive the interaction and provide the relevant means. A bare statistical statement without interpretation is insufficient.
+
+### Non-Significant Interaction Example
+
+> The interaction between teaching method and class size was not significant, *F*(2, 114) = 1.12, *p* = .330, partial eta-squared = .02, indicating that the effect of teaching method on exam scores did not depend on class size.
+
+When the interaction is not significant, keep the interpretation brief. The main effects can be interpreted at face value.
+
+## Step 4: Follow-Up Tests (Simple Effects and Post-Hoc)
+
+The presence or absence of a significant interaction determines your next step.
+
+### When the Interaction Is Significant
+
+A significant interaction means the main effects are qualified, so you should not interpret them in isolation. Instead, conduct **simple effects analyses**: test the effect of one factor at each level of the other factor separately.
+
+> Simple effects analysis revealed that teaching method had a significant effect on exam scores in small classes, *F*(1, 38) = 22.14, *p* < .001, partial eta-squared = .37, and in medium classes, *F*(1, 38) = 19.87, *p* < .001, partial eta-squared = .34, but the effect was smaller in large classes, *F*(1, 38) = 4.02, *p* = .052, partial eta-squared = .10.
+
+If a factor has more than two levels, you may also need post-hoc pairwise comparisons (e.g., Bonferroni, Tukey HSD) within each simple effect.
+
+### When the Interaction Is Not Significant
+
+If the interaction is not significant, interpret the main effects directly. For any main effect with more than two levels, follow up with pairwise comparisons:
+
+> Because the interaction was not significant, the main effects were interpreted independently. Bonferroni-corrected pairwise comparisons for class size indicated that small classes scored significantly higher than large classes (*p* < .001, *d* = 1.07), but small and medium classes did not differ significantly (*p* = .412).
+
+## Complete APA Example
+
+Below is a full results paragraph for a 2 (teaching method: lecture vs. active learning) x 3 (class size: small vs. medium vs. large) between-subjects ANOVA on exam scores. This format is ready for use in a manuscript.
+
+> A 2 x 3 between-subjects ANOVA was conducted to examine the effects of teaching method (lecture, active learning) and class size (small, medium, large) on exam scores. Descriptive statistics are presented in Table 1.
+>
+> There was a significant main effect of teaching method, *F*(1, 114) = 28.45, *p* < .001, partial eta-squared = .20, with active learning (*M* = 79.43, *SD* = 9.73) yielding higher scores than lecture (*M* = 69.33, *SD* = 9.53). There was also a significant main effect of class size, *F*(2, 114) = 12.67, *p* < .001, partial eta-squared = .18.
+>
+> The interaction between teaching method and class size was significant, *F*(2, 114) = 4.83, *p* = .010, partial eta-squared = .08. Simple effects analysis showed that active learning produced significantly higher scores than lecture in small classes (*p* < .001, *d* = 1.47) and medium classes (*p* < .001, *d* = 1.47), but the difference was not significant in large classes (*p* = .052, *d* = 0.60). This suggests that the benefit of active learning is attenuated in larger classroom settings.
+
+Notice that the paragraph follows a consistent order: (1) state the analysis and design, (2) report main effects, (3) report the interaction, and (4) follow up with simple effects. This structure keeps the results section organized and easy to follow.
+
+## Reporting in Tables vs. Text
+
+For designs with many cells (e.g., 3 x 4), putting all means and *F*-tests in the running text becomes unwieldy. APA recommends using two tables:
+
+**Table 1: Descriptive statistics.** Show cell means, standard deviations, and sample sizes for every combination of factors, plus marginal means.
+
+**Table 2: ANOVA summary table.** Include columns for Source, *SS*, *df*, *MS*, *F*, *p*, and partial eta-squared.
+
+| Source | *SS* | *df* | *MS* | *F* | *p* | Partial eta-squared |
+|--------|------|------|------|-----|-----|---------------------|
+| Teaching Method (A) | 3048.07 | 1 | 3048.07 | 28.45 | < .001 | .20 |
+| Class Size (B) | 2715.60 | 2 | 1357.80 | 12.67 | < .001 | .18 |
+| A x B | 1035.47 | 2 | 517.73 | 4.83 | .010 | .08 |
+| Error | 12213.60 | 114 | 107.14 | | | |
+
+In the text, summarize the key findings and direct the reader to the tables for full details. This approach prevents your results section from becoming a wall of numbers.
+
+## Common Mistakes
+
+### 1. Interpreting Main Effects When the Interaction Is Significant
+
+This is the most frequent error in two-way ANOVA reporting. When a significant interaction is present, the main effects are misleading because they average across a pattern that is not uniform. Always prioritize the interaction and use simple effects to understand the data.
+
+### 2. Not Reporting Partial Eta-Squared for All Effects
+
+APA 7th edition requires an effect size for every test. Report partial eta-squared for both main effects and the interaction, even when an effect is not significant. A non-significant result with partial eta-squared = .12 tells a different story than one with partial eta-squared = .002.
+
+### 3. Confusing Eta-Squared With Partial Eta-Squared
+
+Eta-squared divides the effect sum of squares by the total sum of squares. Partial eta-squared divides by the effect sum of squares plus the error sum of squares. In factorial designs, partial eta-squared is the standard measure because it isolates each effect from the others. Most software (SPSS, R, JASP) reports partial eta-squared by default. Make sure you label it correctly; they are not interchangeable.
+
+### 4. Not Reporting Cell Means
+
+Reporting only marginal means obscures the interaction pattern. Always provide means for every cell combination, either in a table or in the text. Readers cannot evaluate your interaction interpretation without seeing the individual cell values.
+
+### 5. Omitting Degrees of Freedom or Sample Size
+
+Always include both degrees of freedom in the *F*-ratio (between-groups and error). Also report cell sizes, especially if the design is unbalanced. Unequal sample sizes affect the choice of sum-of-squares type (Type I, II, or III) and must be acknowledged.
+
+## Two-Way ANOVA APA Checklist
+
+Use this checklist before submitting your manuscript:
+
+- [ ] State the type of analysis (two-way ANOVA) and the design (e.g., 2 x 3 between-subjects)
+- [ ] Name both independent variables and their levels
+- [ ] Name the dependent variable
+- [ ] Report cell means, standard deviations, and sample sizes (table preferred)
+- [ ] Report marginal means for each factor
+- [ ] Report the main effect of Factor A: *F*(df1, df2), *p*, partial eta-squared
+- [ ] Report the main effect of Factor B: *F*(df1, df2), *p*, partial eta-squared
+- [ ] Report the interaction effect: *F*(df1, df2), *p*, partial eta-squared
+- [ ] If interaction is significant: report simple effects analysis
+- [ ] If main effect has 3+ levels: report post-hoc pairwise comparisons with correction
+- [ ] Interpret the direction and meaning of significant effects
+- [ ] Use partial eta-squared (not eta-squared) as the effect size measure
+- [ ] Include an ANOVA summary table for complex designs
+- [ ] Check that *p*-values have no leading zero (.010, not 0.010)
+- [ ] Check that partial eta-squared has no leading zero (.08, not 0.08)
+
+## Try StatMate's Free Two-Way ANOVA Calculator
+
+Formatting two-way ANOVA results by hand is tedious and error-prone, especially when you need to compute partial eta-squared and organize simple effects. StatMate's Two-Way ANOVA Calculator handles the entire process automatically.
+
+Enter your data, and StatMate returns:
+
+- All three *F*-tests with exact *p*-values and partial eta-squared
+- Cell means, marginal means, and standard deviations
+- Post-hoc pairwise comparisons with Bonferroni correction
+- An interaction plot to visualize the pattern
+- APA-formatted results ready to copy into your manuscript
+- One-click Word (.docx) and PDF export
+
+No manual formatting, no formula errors. Try it free at [statmate.org/calculators/two-way-anova](https://statmate.org/calculators/two-way-anova).
