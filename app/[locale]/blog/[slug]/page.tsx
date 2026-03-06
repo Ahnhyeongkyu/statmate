@@ -8,6 +8,52 @@ import { ChevronLeft } from "lucide-react";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { AdUnit, AD_SLOTS } from "@/components/adsense";
 
+const BLOG_CALCULATOR_MAP: Record<string, string> = {
+  "t-test-apa-reporting": "t-test",
+  "how-to-run-t-test": "t-test",
+  "t-test-vs-mann-whitney": "t-test",
+  "one-sample-t-test-apa-reporting": "one-sample-t",
+  "anova-apa-reporting": "anova",
+  "how-to-run-anova": "anova",
+  "anova-vs-kruskal-wallis": "anova",
+  "two-way-anova-apa-reporting": "two-way-anova",
+  "repeated-measures-anova-apa-reporting": "repeated-measures",
+  "how-to-run-repeated-measures-anova": "repeated-measures",
+  "chi-square-apa-reporting": "chi-square",
+  "how-to-run-chi-square-test": "chi-square",
+  "chi-square-vs-fisher-exact": "chi-square",
+  "correlation-apa-reporting": "correlation",
+  "how-to-run-correlation-analysis": "correlation",
+  "correlation-vs-regression": "correlation",
+  "regression-apa-reporting": "regression",
+  "how-to-run-regression-analysis": "regression",
+  "simple-vs-multiple-regression": "multiple-regression",
+  "logistic-regression-apa-reporting": "logistic-regression",
+  "how-to-run-logistic-regression": "logistic-regression",
+  "factor-analysis-apa-reporting": "factor-analysis",
+  "how-to-run-factor-analysis": "factor-analysis",
+  "mann-whitney-apa-reporting": "mann-whitney",
+  "how-to-run-mann-whitney-test": "mann-whitney",
+  "wilcoxon-apa-reporting": "wilcoxon",
+  "paired-t-test-vs-wilcoxon": "wilcoxon",
+  "kruskal-wallis-apa-reporting": "kruskal-wallis",
+  "fisher-exact-test-apa-reporting": "fisher-exact",
+  "reliability-cronbach-alpha": "cronbach-alpha",
+  "how-to-calculate-sample-size": "sample-size",
+  "sample-size-determination": "sample-size",
+  "descriptive-statistics-apa-reporting": "descriptive",
+  "cohen-d-apa-reporting": "t-test",
+  "understanding-effect-size": "anova",
+  "understanding-p-value": "t-test",
+  "normality-test-guide": "t-test",
+  "nonparametric-tests-guide": "mann-whitney",
+  "choosing-statistical-test": "t-test",
+};
+
+function getRelatedCalculator(slug: string): string {
+  return BLOG_CALCULATOR_MAP[slug] || "t-test";
+}
+
 export async function generateStaticParams() {
   const koSlugs = getAllSlugs("ko").map((slug) => ({ locale: "ko", slug }));
   const enSlugs = getAllSlugs("en").map((slug) => ({ locale: "en", slug }));
@@ -54,6 +100,8 @@ export default async function BlogPostPage({
   const post = getPost(locale, slug);
 
   if (!post) notFound();
+
+  const relatedCalc = getRelatedCalculator(slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -111,7 +159,7 @@ export default async function BlogPostPage({
             : locale === "ja" ? "StatMateの無料統計計算ツールでデータを分析し、APA形式の結果を取得しましょう。" : "Analyze your data with StatMate's free calculators and get APA-formatted results instantly."}
         </p>
         <Link
-          href="/calculators/t-test"
+          href={`/calculators/${relatedCalc}`}
           className="mt-4 inline-block rounded-full bg-white px-6 py-2.5 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50"
         >
           {locale === "ko" ? "계산기 시작하기" : locale === "ja" ? "計算を始める" : "Start Calculating"}
