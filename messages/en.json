@@ -1369,6 +1369,153 @@
     "postPositive": "Post +",
     "postNegative": "Post −"
   },
+  "relatedBlogs": {
+    "title": "Learn More — Related Guides",
+    "tTestApa": {
+      "title": "How to Report t-Test Results in APA Format",
+      "description": "Step-by-step APA reporting guide with examples"
+    },
+    "howToRunTTest": {
+      "title": "How to Run an Independent Samples t-Test",
+      "description": "Complete tutorial from data entry to interpretation"
+    },
+    "understandingPValue": {
+      "title": "Understanding p-Values: A Practical Guide",
+      "description": "What p-values mean and common misinterpretations"
+    },
+    "anovaApa": {
+      "title": "How to Report ANOVA Results in APA Format",
+      "description": "F-statistics, effect sizes, and post-hoc reporting"
+    },
+    "howToRunAnova": {
+      "title": "How to Run a One-Way ANOVA",
+      "description": "Step-by-step ANOVA tutorial with examples"
+    },
+    "understandingEffectSize": {
+      "title": "Understanding Effect Size in Statistics",
+      "description": "Cohen's d, eta-squared, and practical significance"
+    },
+    "chiSquareApa": {
+      "title": "How to Report Chi-Square Results in APA Format",
+      "description": "Independence tests, Cramér's V, and APA tables"
+    },
+    "howToRunChiSquare": {
+      "title": "How to Run a Chi-Square Test",
+      "description": "Expected frequencies, assumptions, and interpretation"
+    },
+    "chiSquareVsFisher": {
+      "title": "Chi-Square vs Fisher's Exact Test",
+      "description": "When to use each test and key differences"
+    },
+    "correlationApa": {
+      "title": "How to Report Correlation Results in APA Format",
+      "description": "Pearson r, Spearman rho, and correlation matrices"
+    },
+    "howToRunCorrelation": {
+      "title": "How to Run a Correlation Analysis",
+      "description": "Assumptions, scatterplots, and interpretation"
+    },
+    "correlationVsRegression": {
+      "title": "Correlation vs Regression: When to Use Which",
+      "description": "Key differences and choosing the right analysis"
+    },
+    "descriptiveApa": {
+      "title": "How to Report Descriptive Statistics in APA Format",
+      "description": "Means, SDs, tables, and APA formatting rules"
+    },
+    "normalityTestGuide": {
+      "title": "Normality Tests: Shapiro-Wilk vs Kolmogorov-Smirnov",
+      "description": "How to check normality and what to do if violated"
+    },
+    "howToCalculateSampleSize": {
+      "title": "How to Calculate Sample Size",
+      "description": "Power analysis fundamentals and practical examples"
+    },
+    "sampleSizeDetermination": {
+      "title": "Sample Size Determination for Research",
+      "description": "Formulas, effect sizes, and planning your study"
+    },
+    "oneSampleTApa": {
+      "title": "How to Report One-Sample t-Test in APA Format",
+      "description": "Testing against a known population value"
+    },
+    "mannWhitneyApa": {
+      "title": "How to Report Mann-Whitney U Results in APA Format",
+      "description": "Non-parametric alternative to independent t-test"
+    },
+    "howToRunMannWhitney": {
+      "title": "How to Run a Mann-Whitney U Test",
+      "description": "Assumptions, ranking, and step-by-step guide"
+    },
+    "nonparametricGuide": {
+      "title": "Guide to Non-Parametric Tests",
+      "description": "When and how to use distribution-free methods"
+    },
+    "wilcoxonApa": {
+      "title": "How to Report Wilcoxon Signed-Rank Results in APA",
+      "description": "Paired non-parametric test reporting guide"
+    },
+    "pairedTTestVsWilcoxon": {
+      "title": "Paired t-Test vs Wilcoxon Signed-Rank",
+      "description": "Choosing between parametric and non-parametric"
+    },
+    "regressionApa": {
+      "title": "How to Report Regression Results in APA Format",
+      "description": "R-squared, coefficients, and model fit reporting"
+    },
+    "howToRunRegression": {
+      "title": "How to Run a Regression Analysis",
+      "description": "From scatterplot to prediction equation"
+    },
+    "simpleVsMultipleRegression": {
+      "title": "Simple vs Multiple Regression",
+      "description": "When to add predictors and multicollinearity checks"
+    },
+    "reliabilityCronbach": {
+      "title": "Cronbach's Alpha: A Complete Reliability Guide",
+      "description": "Item analysis, acceptable values, and reporting"
+    },
+    "factorAnalysisApa": {
+      "title": "How to Report Factor Analysis in APA Format",
+      "description": "Eigenvalues, factor loadings, and rotation"
+    },
+    "howToRunFactorAnalysis": {
+      "title": "How to Run an Exploratory Factor Analysis",
+      "description": "KMO, Bartlett's test, and extraction methods"
+    },
+    "logisticRegressionApa": {
+      "title": "How to Report Logistic Regression in APA Format",
+      "description": "Odds ratios, model fit, and classification tables"
+    },
+    "howToRunLogisticRegression": {
+      "title": "How to Run a Logistic Regression",
+      "description": "Binary outcomes, predictors, and interpretation"
+    },
+    "kruskalWallisApa": {
+      "title": "How to Report Kruskal-Wallis Results in APA Format",
+      "description": "H statistic, Dunn's post-hoc, and effect size"
+    },
+    "anovaVsKruskalWallis": {
+      "title": "ANOVA vs Kruskal-Wallis: When to Use Which",
+      "description": "Parametric vs non-parametric group comparisons"
+    },
+    "repeatedMeasuresApa": {
+      "title": "How to Report Repeated Measures ANOVA in APA",
+      "description": "Sphericity, Greenhouse-Geisser, and pairwise tests"
+    },
+    "howToRunRepeatedMeasures": {
+      "title": "How to Run a Repeated Measures ANOVA",
+      "description": "Within-subjects design and assumption checks"
+    },
+    "twoWayAnovaApa": {
+      "title": "How to Report Two-Way ANOVA in APA Format",
+      "description": "Main effects, interaction, and simple effects"
+    },
+    "fisherExactApa": {
+      "title": "How to Report Fisher's Exact Test in APA Format",
+      "description": "Small sample categorical data analysis"
+    }
+  },
   "relatedCalculators": {
     "title": "Try Other Calculators",
     "ttest": {

@@ -4,6 +4,7 @@ import { OneSampleTCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
@@ -432,6 +433,7 @@ export default async function OneSampleTPage({
       )}
 
       <RelatedCalculators current="/calculators/one-sample-t" />
+      <RelatedBlogs current="one-sample-t" />
     </div>
   );
 }

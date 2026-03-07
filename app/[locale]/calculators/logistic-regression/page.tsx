@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { LogisticRegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
@@ -221,6 +222,7 @@ export default async function LogisticRegressionPage({
       )}
 
       <RelatedCalculators current="/calculators/logistic-regression" />
+      <RelatedBlogs current="logistic-regression" />
     </div>
   );
 }

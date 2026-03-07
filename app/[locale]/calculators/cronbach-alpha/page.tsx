@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { CronbachAlphaCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
@@ -334,6 +335,7 @@ export default async function CronbachAlphaPage({
       )}
 
       <RelatedCalculators current="/calculators/cronbach-alpha" />
+      <RelatedBlogs current="cronbach-alpha" />
     </div>
   );
 }

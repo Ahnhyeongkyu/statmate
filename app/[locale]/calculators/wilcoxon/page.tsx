@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { WilcoxonCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
@@ -409,6 +410,7 @@ export default async function WilcoxonPage({
       )}
 
       <RelatedCalculators current="/calculators/wilcoxon" />
+      <RelatedBlogs current="wilcoxon" />
     </div>
   );
 }

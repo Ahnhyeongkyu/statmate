@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { DescriptiveCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
@@ -578,6 +579,7 @@ export default async function DescriptivePage({
       )}
 
       <RelatedCalculators current="/calculators/descriptive" />
+      <RelatedBlogs current="descriptive" />
     </div>
   );
 }

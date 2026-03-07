@@ -97,15 +97,12 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
               {t(`preview.${testType}.paperReady`)}
             </p>
           </div>
-          {/* Plain Language — blurred with gradient fade */}
+          {/* Plain Language — first sentence visible, rest blurred */}
           <div className="relative">
             <p className="text-xs font-semibold text-gray-500">
               {t("plainLanguage")}
             </p>
-            <p className="mt-1 select-none text-sm leading-relaxed text-gray-700 blur-[4px]" aria-hidden="true">
-              {t(`preview.${testType}.plainLanguage`)}
-            </p>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent dark:from-gray-950" />
+            <PlainLanguagePreview text={t(`preview.${testType}.plainLanguage`)} />
           </div>
           {/* CTA card below content */}
           <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
@@ -196,6 +193,32 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+// --- Plain Language Preview (first sentence visible, rest blurred) ---
+
+function PlainLanguagePreview({ text }: { text: string }) {
+  const firstDot = text.indexOf(". ");
+  if (firstDot === -1) {
+    // Single sentence — show with gradient fade
+    return (
+      <div className="relative">
+        <p className="mt-1 text-sm leading-relaxed text-gray-700">{text}</p>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
+      </div>
+    );
+  }
+  const visible = text.slice(0, firstDot + 1);
+  const blurred = text.slice(firstDot + 2);
+  return (
+    <div className="relative">
+      <p className="mt-1 text-sm leading-relaxed text-gray-700">
+        {visible}{" "}
+        <span className="select-none blur-[4px]">{blurred}</span>
+      </p>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
+    </div>
   );
 }
 

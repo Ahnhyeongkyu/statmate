@@ -1369,6 +1369,153 @@
     "postPositive": "事後 +",
     "postNegative": "事後 −"
   },
+  "relatedBlogs": {
+    "title": "関連ガイドをもっと見る",
+    "tTestApa": {
+      "title": "t検定の結果をAPA形式で報告する方法",
+      "description": "例付きのステップバイステップAPA報告ガイド"
+    },
+    "howToRunTTest": {
+      "title": "独立標本t検定の実行方法",
+      "description": "データ入力から解釈までの完全チュートリアル"
+    },
+    "understandingPValue": {
+      "title": "p値を理解する：実践ガイド",
+      "description": "p値の意味とよくある誤解"
+    },
+    "anovaApa": {
+      "title": "ANOVAの結果をAPA形式で報告する方法",
+      "description": "F統計量、効果量、事後検定の報告"
+    },
+    "howToRunAnova": {
+      "title": "一元配置分散分析（ANOVA）の実行方法",
+      "description": "例付きのステップバイステップANOVAチュートリアル"
+    },
+    "understandingEffectSize": {
+      "title": "効果量を理解する",
+      "description": "Cohen's d、イータ二乗、実質的有意性"
+    },
+    "chiSquareApa": {
+      "title": "カイ二乗検定の結果をAPA形式で報告する方法",
+      "description": "独立性検定、Cramér's V、APA表"
+    },
+    "howToRunChiSquare": {
+      "title": "カイ二乗検定の実行方法",
+      "description": "期待度数、仮定、解釈"
+    },
+    "chiSquareVsFisher": {
+      "title": "カイ二乗 vs Fisher正確検定",
+      "description": "各検定の使用時期と主な違い"
+    },
+    "correlationApa": {
+      "title": "相関分析の結果をAPA形式で報告する方法",
+      "description": "Pearson r、Spearman rho、相関行列"
+    },
+    "howToRunCorrelation": {
+      "title": "相関分析の実行方法",
+      "description": "仮定、散布図、解釈"
+    },
+    "correlationVsRegression": {
+      "title": "相関 vs 回帰：どちらを使うべきか",
+      "description": "主な違いと正しい分析の選択"
+    },
+    "descriptiveApa": {
+      "title": "記述統計をAPA形式で報告する方法",
+      "description": "平均、標準偏差、表、APA書式ルール"
+    },
+    "normalityTestGuide": {
+      "title": "正規性検定：Shapiro-Wilk vs Kolmogorov-Smirnov",
+      "description": "正規性の確認方法と違反時の対処法"
+    },
+    "howToCalculateSampleSize": {
+      "title": "サンプルサイズの計算方法",
+      "description": "検出力分析の基礎と実践例"
+    },
+    "sampleSizeDetermination": {
+      "title": "研究のためのサンプルサイズ決定",
+      "description": "公式、効果量、研究計画"
+    },
+    "oneSampleTApa": {
+      "title": "一標本t検定をAPA形式で報告する方法",
+      "description": "既知の母集団値との比較検定"
+    },
+    "mannWhitneyApa": {
+      "title": "Mann-Whitney U検定の結果をAPA形式で報告する方法",
+      "description": "独立標本t検定のノンパラメトリック代替"
+    },
+    "howToRunMannWhitney": {
+      "title": "Mann-Whitney U検定の実行方法",
+      "description": "仮定、順位付け、ステップバイステップガイド"
+    },
+    "nonparametricGuide": {
+      "title": "ノンパラメトリック検定ガイド",
+      "description": "分布によらない方法の使用時期と方法"
+    },
+    "wilcoxonApa": {
+      "title": "Wilcoxon符号順位検定の結果をAPA形式で報告する",
+      "description": "対応標本ノンパラメトリック検定の報告ガイド"
+    },
+    "pairedTTestVsWilcoxon": {
+      "title": "対応t検定 vs Wilcoxon符号順位検定",
+      "description": "パラメトリックとノンパラメトリックの選択"
+    },
+    "regressionApa": {
+      "title": "回帰分析の結果をAPA形式で報告する方法",
+      "description": "R²、回帰係数、モデル適合度の報告"
+    },
+    "howToRunRegression": {
+      "title": "回帰分析の実行方法",
+      "description": "散布図から予測方程式まで"
+    },
+    "simpleVsMultipleRegression": {
+      "title": "単回帰 vs 重回帰",
+      "description": "予測変数の追加時期と多重共線性の確認"
+    },
+    "reliabilityCronbach": {
+      "title": "Cronbach's Alpha：完全な信頼性ガイド",
+      "description": "項目分析、許容値、報告方法"
+    },
+    "factorAnalysisApa": {
+      "title": "因子分析の結果をAPA形式で報告する方法",
+      "description": "固有値、因子負荷量、回転"
+    },
+    "howToRunFactorAnalysis": {
+      "title": "探索的因子分析（EFA）の実行方法",
+      "description": "KMO、Bartlett検定、抽出方法"
+    },
+    "logisticRegressionApa": {
+      "title": "ロジスティック回帰の結果をAPA形式で報告する方法",
+      "description": "オッズ比、モデル適合度、分類表"
+    },
+    "howToRunLogisticRegression": {
+      "title": "ロジスティック回帰分析の実行方法",
+      "description": "二値結果、予測変数、解釈"
+    },
+    "kruskalWallisApa": {
+      "title": "Kruskal-Wallis検定の結果をAPA形式で報告する方法",
+      "description": "H統計量、Dunn事後検定、効果量"
+    },
+    "anovaVsKruskalWallis": {
+      "title": "ANOVA vs Kruskal-Wallis：どちらを使うべきか",
+      "description": "パラメトリック vs ノンパラメトリックの群間比較"
+    },
+    "repeatedMeasuresApa": {
+      "title": "反復測定ANOVAをAPA形式で報告する方法",
+      "description": "球面性、Greenhouse-Geisser、対比較"
+    },
+    "howToRunRepeatedMeasures": {
+      "title": "反復測定ANOVAの実行方法",
+      "description": "被験者内デザインと仮定の確認"
+    },
+    "twoWayAnovaApa": {
+      "title": "二元配置分散分析をAPA形式で報告する方法",
+      "description": "主効果、交互作用、単純効果"
+    },
+    "fisherExactApa": {
+      "title": "Fisher正確検定の結果をAPA形式で報告する方法",
+      "description": "小標本カテゴリカルデータ分析"
+    }
+  },
   "relatedCalculators": {
     "title": "他の計算ツールを試す",
     "ttest": {

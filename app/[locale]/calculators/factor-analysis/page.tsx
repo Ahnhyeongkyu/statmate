@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { FactorAnalysisCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
@@ -279,6 +280,7 @@ export default async function FactorAnalysisPage({
       )}
 
       <RelatedCalculators current="/calculators/factor-analysis" />
+      <RelatedBlogs current="factor-analysis" />
     </div>
   );
 }

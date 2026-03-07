@@ -4,6 +4,7 @@ import { RepeatedMeasuresCalculator } from "./calculator";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
+import { RelatedBlogs } from "@/components/related-blogs";
 import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
@@ -384,6 +385,7 @@ export default async function RepeatedMeasuresPage({
       )}
 
       <RelatedCalculators current="/calculators/repeated-measures" />
+      <RelatedBlogs current="repeated-measures" />
     </div>
   );
 }
