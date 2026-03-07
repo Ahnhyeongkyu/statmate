@@ -219,7 +219,139 @@ In academic publishing, reviewers generally expect you to:
 
 A common and defensible approach is: run normality checks first, then select the test based on the results. Report the assumption check results and explain your test choice.
 
+## Step-by-Step Decision Flowchart: T-Test or Mann-Whitney?
+
+Choosing between the t-test and Mann-Whitney U test does not have to be complicated. Work through the following five questions in order, and your answer will become clear.
+
+### Question 1: Are your groups independent?
+
+Before anything else, confirm that your two groups consist of different participants with no pairing or matching. If the same individuals are measured twice (pre-test and post-test, for example), you need a paired t-test or the Wilcoxon signed-rank test, not an independent-samples comparison. Repeated measures on the same subjects violate the independence assumption that both the t-test and Mann-Whitney require.
+
+### Question 2: Is your dependent variable continuous?
+
+The t-test requires data measured on an interval or ratio scale where numerical differences are meaningful. If your outcome is categorical (yes/no, pass/fail), consider a chi-square test or Fisher's exact test instead. If the variable is ordinal (rankings, Likert-scale items), skip ahead to the Mann-Whitney — it handles ordinal data natively because it operates on ranks rather than raw values.
+
+### Question 3: Is the sample size greater than 30 per group?
+
+Sample size matters because of the Central Limit Theorem. With 30 or more observations per group, the sampling distribution of the mean approaches normality regardless of the underlying data distribution. This means the t-test becomes robust to moderate non-normality at larger sample sizes. If your groups are smaller than 30, proceed to Question 4 and pay close attention to the distributional shape.
+
+### Question 4: Does the data pass normality tests?
+
+Apply the Shapiro-Wilk test to each group separately. If both groups yield p > 0.05, the normality assumption is reasonably supported — use the t-test. If either group shows significant departure from normality (p < 0.05), combine this information with a visual inspection of Q-Q plots and histograms. For small samples with clear non-normality, the Mann-Whitney is the safer choice. For large samples (n > 30) with mild to moderate non-normality, the t-test remains acceptable.
+
+### Question 5: Are variances equal?
+
+Run Levene's test for equality of variances. If variances are approximately equal (Levene's p > 0.05), Student's t-test is appropriate. If variances differ significantly (Levene's p < 0.05), use Welch's t-test, which does not assume equal variances. Note that unequal variances alone do not push you toward the Mann-Whitney — Welch's correction handles this effectively within the parametric framework.
+
+**Summary path:**
+- Ordinal data → Mann-Whitney
+- Continuous, large sample, approximately normal → t-test (Student's or Welch's)
+- Continuous, small sample, non-normal → Mann-Whitney
+- Continuous, large sample, severely non-normal with extreme outliers → Mann-Whitney
+
+## Comparing APA Output: Side-by-Side Examples
+
+When you report results, the format differs depending on which test you chose. Here is the same study reported both ways so you can see exactly how the APA output changes.
+
+**Study context:** A researcher compares test anxiety scores between students who received mindfulness training (n = 30) and a control group (n = 30).
+
+### T-Test APA Report
+
+> An independent samples t-test revealed that students in the mindfulness group (*M* = 42.3, *SD* = 8.7) reported significantly lower test anxiety than the control group (*M* = 48.9, *SD* = 9.2), *t*(58) = 2.89, *p* = .005, *d* = 0.75.
+
+Key elements: means, standard deviations, t-statistic with degrees of freedom, p-value, and Cohen's d.
+
+### Mann-Whitney U APA Report
+
+> A Mann-Whitney U test indicated that test anxiety scores were significantly lower for the mindfulness group (*Mdn* = 41.5) than for the control group (*Mdn* = 49.0), *U* = 287, *z* = -2.67, *p* = .008, *r* = .35.
+
+Key elements: medians, U-statistic, z-score, p-value, and rank-biserial correlation r.
+
+### What Changes Between the Two Reports
+
+| Element | T-Test | Mann-Whitney |
+|---------|--------|-------------|
+| Central tendency | Mean (*M*) and SD | Median (*Mdn*) |
+| Test statistic | *t*(df) | *U* and *z* |
+| Effect size | Cohen's *d* | Rank-biserial *r* |
+| Effect size scale | 0.2 / 0.5 / 0.8 | 0.1 / 0.3 / 0.5 |
+| Confidence interval | For mean difference | For median difference (optional) |
+
+Notice that the p-values differ slightly (0.005 vs 0.008) even with the same data. The t-test extracts more information from normally distributed data, yielding a smaller p-value. The effect sizes also use different scales: d = 0.75 is a medium-to-large effect in Cohen's framework, while r = 0.35 is a medium effect in the rank-biserial framework. Both indicate a meaningful group difference, but direct numerical comparison between d and r is not valid.
+
+## Common Misconceptions About Non-Parametric Tests
+
+Several widely held beliefs about non-parametric tests are either wrong or misleading. Understanding these misconceptions helps you make better methodological choices.
+
+### Myth 1: Non-parametric tests are always less powerful
+
+**Reality:** Under ideal conditions (normal data, no outliers), the t-test has approximately 5% more power than the Mann-Whitney. But when data are non-normal — heavy-tailed, skewed, or contaminated with outliers — the Mann-Whitney can be substantially more powerful. With contaminated normal distributions (where even 5-10% of observations come from a different distribution), the Mann-Whitney frequently outperforms the t-test. The blanket statement that non-parametric tests sacrifice power is only true when parametric assumptions hold perfectly.
+
+### Myth 2: The Mann-Whitney U test compares medians
+
+**Reality:** The Mann-Whitney tests whether one group's values tend to be larger than the other group's values. Technically, it assesses stochastic dominance — the probability that a randomly selected observation from one group exceeds a randomly selected observation from the other. It only simplifies to a median comparison when both groups have the same distributional shape (same skewness, same spread). If the distributions differ in shape, you can have equal medians with a significant Mann-Whitney result, or different medians with a non-significant result. Report it as a test of rank distributions, not a test of medians.
+
+### Myth 3: You must always test normality before choosing a test
+
+**Reality:** Routine normality testing before every analysis is not always necessary or even desirable. With large samples (n > 30 per group), normality tests like Shapiro-Wilk are overpowered — they reject normality for trivial deviations that have no practical impact on t-test validity. In some fields, the choice of test is dictated by the research design or measurement scale, not by post-hoc normality testing. For example, if your dependent variable is a 5-point Likert scale, the Mann-Whitney is appropriate regardless of what a normality test says. Consider the design context, examine plots visually, and do not let a single normality test p-value drive your entire analytic strategy.
+
+### Myth 4: Large samples always justify the t-test
+
+**Reality:** While large samples make the t-test robust to moderate non-normality, they do not eliminate all problems. Severe outliers can still distort the mean and inflate the standard deviation, even with n = 200 or more. If 5% of your data consists of extreme values (perhaps from measurement errors or a distinct subpopulation), the t-test's mean-based comparison may be misleading regardless of sample size. Large samples also do not fix fundamental measurement issues — if your variable is truly ordinal, using a t-test with 1000 observations does not make it more appropriate than using the Mann-Whitney.
+
+## When Both Tests Give Different Results
+
+One of the most unsettling experiences in data analysis is running both tests on the same data and getting contradictory conclusions — one significant, one not. This happens more often than textbooks suggest, and understanding why it occurs will help you handle it properly.
+
+### Why Discrepancies Happen
+
+The most common cause is that the effect is near the detection threshold for at least one test. The t-test and Mann-Whitney evaluate different aspects of the data (means vs rank distributions), and borderline effects may cross the significance threshold for one but not the other. Other causes include:
+
+- **Outliers inflating or deflating the t-test.** A few extreme values can push the t-test toward or away from significance while leaving the Mann-Whitney largely unaffected.
+- **Distributional differences between groups.** If one group is skewed and the other is symmetric, the tests are effectively asking different questions, and different answers are not surprising.
+- **Tied values reducing Mann-Whitney power.** Many identical values in the data reduce the variability of ranks, which can make the Mann-Whitney less sensitive.
+
+### What to Do
+
+1. **Report both results transparently.** If you ran both tests, report both outcomes. Selectively reporting only the significant one is a form of p-hacking.
+2. **Discuss the discrepancy.** Explain why the tests might disagree based on your data characteristics (outliers, skewness, ties).
+3. **Prioritize the test that matches your data.** If normality is violated, the Mann-Whitney result is more trustworthy. If assumptions are met, the t-test result carries more weight.
+4. **Focus on effect sizes.** When p-values give conflicting messages, effect sizes often tell a clearer story. A small to medium effect size with borderline significance simply means your study was not powered enough to definitively detect the effect.
+5. **Consider a sensitivity analysis.** Run the analysis with and without outliers, or with a different transformation, to see how robust the conclusion is.
+
 ## Frequently Asked Questions
+
+### Can I use a t-test if my data is slightly non-normal?
+
+Yes. The t-test is robust to moderate normality violations, especially with sample sizes above 30 per group. The Central Limit Theorem ensures that the sampling distribution of the mean approaches normality even when the underlying data do not. However, for severe skewness, heavy tails, or small samples (n < 15), the Mann-Whitney U test is more appropriate because its validity does not depend on distributional shape.
+
+### What effect size should I report for Mann-Whitney U?
+
+Report the rank-biserial correlation *r*, calculated as *r* = *Z* / sqrt(*N*), where *Z* is the standardized test statistic and *N* is the total sample size. Interpretation benchmarks follow the same guidelines as Pearson's *r*: .10 is a small effect, .30 is a medium effect, and .50 is a large effect. Some researchers also report the common language effect size (CLES), which expresses the probability that a randomly selected observation from one group exceeds a randomly selected observation from the other.
+
+### Is Mann-Whitney the same as the Wilcoxon rank-sum test?
+
+Yes. The Mann-Whitney U test and the Wilcoxon rank-sum test are mathematically equivalent tests for comparing two independent groups. They produce the same p-value and lead to the same conclusion — they simply use different test statistics (U vs W) that can be converted to one another. Do not confuse either of these with the Wilcoxon signed-rank test, which is a different test designed for paired samples.
+
+### Should I always run a normality test before choosing?
+
+Not necessarily. With large samples (n > 30 per group), formal normality tests like Shapiro-Wilk often reject normality for trivial deviations that have no practical impact on the t-test. Consider the research context and measurement scale first. Examine Q-Q plots and histograms visually to assess whether the distribution is reasonably symmetric. Base your decision on the overall shape of the data, the presence or absence of outliers, and the measurement level, rather than relying solely on a normality test p-value.
+
+### Can Mann-Whitney handle tied values?
+
+Yes, but many ties reduce the test's power. The standard Mann-Whitney formula includes a tie correction factor that adjusts the variance of the U statistic. If more than 15-20% of all values across both groups are tied (common with discrete data or coarse measurement scales), the test loses sensitivity. In such cases, report the tie-corrected z-statistic and consider whether the measurement could be refined to reduce ties.
+
+### What sample size is needed for a Mann-Whitney test?
+
+A minimum of 5 observations per group is needed for the test to produce a meaningful result. For the normal approximation (z-test) to be accurate, at least 8-10 per group is recommended. For adequate statistical power to detect medium effects (r = .30), aim for at least 20-30 per group. Use a formal power analysis calculator to determine the exact sample size needed for your expected effect size and desired power level.
+
+### Is Welch's t-test a good compromise between t-test and Mann-Whitney?
+
+Welch's t-test addresses one specific assumption violation — unequal variances — but it still assumes that the data are approximately normally distributed. It is an excellent default over Student's t-test because it performs equally well when variances are equal and better when they are not. However, it does not solve non-normality problems. If your concern is about the shape of the distribution rather than unequal spreads, the Mann-Whitney remains the appropriate choice.
+
+### Can I use Mann-Whitney with ordinal data?
+
+Yes. The Mann-Whitney U test is specifically designed to work with ordinal data because it operates on ranks rather than raw values. It does not assume equal intervals between data points, making it suitable for Likert-scale items, severity ratings, satisfaction rankings, and other ordered categorical variables. In fact, ordinal data is one of the strongest justifications for choosing the Mann-Whitney over the t-test.
 
 ### Can I run both tests and report the one with the smaller p-value?
 

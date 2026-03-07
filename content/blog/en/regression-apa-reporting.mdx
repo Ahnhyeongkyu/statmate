@@ -138,6 +138,200 @@ Before submitting your manuscript, verify that your regression results include:
 - All statistical symbols (*R*², *F*, *B*, *beta*, *t*, *p*) in italics
 - Assumption checks mentioned in the text
 
+## Reporting Multiple Regression in APA Format
+
+### How Multiple Regression Differs from Simple Regression
+
+Simple regression uses a single predictor, so the overall model test and the coefficient test are redundant: they test the same thing. In multiple regression you have two distinct layers of reporting. First, the overall model *F* test tells the reader whether the set of predictors as a whole explains a significant portion of variance. Second, each predictor receives its own *t* test, standard error, and confidence interval, revealing its unique contribution after controlling for the other predictors.
+
+Because predictors share variance, the sum of individual *R*² values will typically exceed the model *R*². This is why multiple regression reports adjusted *R*² and why interpreting individual predictors requires careful language about unique versus shared contributions.
+
+### APA Example with Two Predictors
+
+Suppose a researcher examines whether weekly exercise hours and sleep quality predict stress levels among 100 employees.
+
+> A multiple regression analysis was conducted to examine whether weekly exercise hours and sleep quality predicted perceived stress levels. The overall model was statistically significant, *R*² = .28, adjusted *R*² = .27, *F*(2, 97) = 18.45, *p* < .001. Together, the two predictors accounted for 28% of the variance in perceived stress.
+
+### Reporting Individual Predictors
+
+For each predictor, report the unstandardized coefficient *B*, its standard error, the standardized coefficient *beta*, the *t* statistic with residual degrees of freedom, the *p* value, and the 95% confidence interval.
+
+> Weekly exercise hours significantly predicted stress levels, *B* = -1.47, *SE* = 0.38, *beta* = -.34, *t*(97) = -3.87, *p* < .001, 95% CI [-2.22, -0.72]. For each additional hour of weekly exercise, perceived stress decreased by 1.47 points, holding sleep quality constant.
+
+> Sleep quality also significantly predicted stress levels, *B* = -2.83, *SE* = 0.71, *beta* = -.35, *t*(97) = -3.99, *p* < .001, 95% CI [-4.24, -1.42]. For each one-unit increase in sleep quality, perceived stress decreased by 2.83 points, holding exercise hours constant.
+
+### Interpreting R-Squared Change
+
+When building models hierarchically (entering predictors in blocks), report the *R*² change (*Delta R*²) to show how much additional variance each block explains.
+
+> In the first step, weekly exercise hours was entered and explained 15% of the variance in stress, *R*² = .15, *F*(1, 98) = 17.29, *p* < .001. In the second step, sleep quality was added, and the model explained an additional 13% of the variance, *Delta R*² = .13, *F*-change(1, 97) = 19.12, *p* < .001.
+
+This approach is useful when you have a theoretical reason for entering predictors in a specific order, such as adding control variables before the primary predictor.
+
+## Reporting Regression Assumptions in APA
+
+### The Five Key Assumptions
+
+Before presenting regression results, you should verify and briefly mention the following assumptions in your results section.
+
+**1. Linearity.** The relationship between each predictor and the outcome should be linear. Inspect scatter plots of each predictor against the outcome and partial regression plots. If non-linearity is apparent, consider transforming variables or using polynomial terms.
+
+**2. Independence of Residuals.** Residuals should not be correlated with one another. This assumption is particularly relevant in longitudinal or clustered data. Report the Durbin-Watson statistic:
+
+> The Durbin-Watson statistic was 1.92, indicating no substantial autocorrelation among residuals (values close to 2.0 suggest independent errors).
+
+**3. Homoscedasticity.** The variance of residuals should be constant across all predicted values. Examine the residuals-versus-predicted-values plot. If a funnel pattern is visible, heteroscedasticity is likely present.
+
+> A plot of standardized residuals against standardized predicted values showed a random scatter pattern, suggesting that the homoscedasticity assumption was met.
+
+**4. Normality of Residuals.** Residuals should be approximately normally distributed. Inspect a histogram or Q-Q plot of residuals and conduct a Shapiro-Wilk test if needed.
+
+> A histogram and Q-Q plot of the standardized residuals indicated an approximately normal distribution.
+
+**5. Multicollinearity (Multiple Regression Only).** Predictors should not be too highly correlated with each other. Report the Variance Inflation Factor (VIF) for each predictor:
+
+> VIF values for all predictors ranged from 1.12 to 2.34, well below the commonly used threshold of 10, indicating no multicollinearity concerns.
+
+### What to Report When Assumptions Are Violated
+
+When an assumption is violated, describe the violation and any corrective steps. Common strategies include:
+
+- **Non-linearity**: Apply a log or square root transformation, or add polynomial terms
+- **Autocorrelation** (Durbin-Watson far from 2.0): Use generalized least squares or add lagged variables
+- **Heteroscedasticity**: Use robust standard errors (e.g., HC3) or weighted least squares
+- **Non-normal residuals**: Apply transformations or use bootstrapped confidence intervals
+- **Multicollinearity** (VIF above 10): Remove or combine correlated predictors, or use ridge regression
+
+Example reporting when an assumption is violated:
+
+> Visual inspection of the residual plot indicated potential heteroscedasticity. To address this concern, heteroscedasticity-consistent standard errors (HC3) were used for all coefficient tests. The pattern of significant predictors remained unchanged with the robust standard errors.
+
+## Confidence Intervals for Regression Coefficients
+
+### Why APA 7th Edition Recommends CIs
+
+APA 7th edition emphasizes confidence intervals because they convey two pieces of information simultaneously: the point estimate and the precision of that estimate. A narrow CI suggests a precise estimate, while a wide CI signals uncertainty. Additionally, the CI directly shows whether the coefficient is statistically different from zero: if the 95% CI does not contain zero, the predictor is significant at the .05 level.
+
+### Example with Confidence Intervals
+
+> Weekly study hours significantly predicted final exam scores, *B* = 2.34, 95% CI [0.89, 3.79], *t*(118) = 3.21, *p* = .002. The confidence interval indicates that the true population slope is estimated to lie between 0.89 and 3.79 points per additional study hour.
+
+### Interpreting Confidence Intervals
+
+- **CI does not contain zero**: The coefficient is statistically significant at the corresponding alpha level
+- **CI contains zero**: The coefficient is not statistically significant
+- **Narrow CI**: The estimate is precise, often due to a large sample or low variability
+- **Wide CI**: The estimate is imprecise, suggesting the need for a larger sample or better measurement
+
+### Full APA Example with CIs for Multiple Predictors
+
+> Study hours significantly predicted exam scores, *B* = 1.92, 95% CI [1.31, 2.53], *beta* = .38, *t*(146) = 6.19, *p* < .001. Prior GPA was also a significant predictor, *B* = 8.74, 95% CI [5.08, 12.40], *beta* = .29, *t*(146) = 4.72, *p* < .001. Attendance rate made a smaller but significant contribution, *B* = 0.28, 95% CI [0.12, 0.44], *beta* = .22, *t*(146) = 3.50, *p* < .001.
+
+Notice that none of the confidence intervals contain zero, consistent with all three predictors reaching statistical significance.
+
+## Standardized vs. Unstandardized Coefficients
+
+### When to Report B vs. Beta
+
+Both unstandardized (*B*) and standardized (*beta*) coefficients serve distinct purposes, and APA recommends reporting both whenever possible.
+
+### Unstandardized Coefficients (B)
+
+*B* tells you the predicted change in the outcome for a one-unit change in the predictor, measured in the original units of both variables. This makes *B* ideal for practical interpretation.
+
+> For every additional hour of weekly study, final exam scores increased by 2.85 points (*B* = 2.85).
+
+The reader immediately understands the magnitude in meaningful units (hours and exam points). This is especially valuable when the measurement units are intuitive, such as years, dollars, or kilograms.
+
+### Standardized Coefficients (Beta)
+
+*Beta* tells you the predicted change in the outcome (in standard deviation units) for a one-standard-deviation change in the predictor. This removes the original scale and allows direct comparison of predictor importance within the model.
+
+> Study hours had a stronger relative contribution (*beta* = .38) than attendance rate (*beta* = .22) in predicting exam scores.
+
+Use *beta* when comparing the relative strength of predictors measured on different scales. For instance, comparing hours (0 to 40) with attendance rate (0 to 100%) is only meaningful through standardized coefficients.
+
+### Reporting Both in APA Format
+
+> Study hours significantly predicted exam scores, *B* = 1.92, *SE* = 0.31, *beta* = .38, *t*(146) = 6.19, *p* < .001, 95% CI [1.31, 2.53].
+
+This single sentence provides both *B* for practical interpretation and *beta* for relative comparison, along with standard error, test statistic, significance, and confidence interval.
+
+## Regression Results in APA Table Format
+
+### When to Use a Table vs. Inline Text
+
+Use inline text when you have a simple regression with one predictor. Use a table when you have two or more predictors. Tables become essential with three or more predictors because inline reporting becomes difficult to follow.
+
+### Complete APA Regression Coefficient Table
+
+A well-formatted APA regression table includes the following columns:
+
+| Variable | *B* | *SE* | *beta* | *t* | *p* | 95% CI |
+|----------|------|------|--------|------|------|---------|
+| (Intercept) | 12.45 | 5.32 | -- | 2.34 | .021 | [1.94, 22.96] |
+| Study hours | 1.92 | 0.31 | .38 | 6.19 | < .001 | [1.31, 2.53] |
+| Attendance rate | 0.28 | 0.08 | .22 | 3.50 | < .001 | [0.12, 0.44] |
+| Prior GPA | 8.74 | 1.85 | .29 | 4.72 | < .001 | [5.08, 12.40] |
+
+Below the table, include a model summary note:
+
+> *Note.* *R*² = .52, adjusted *R*² = .51, *F*(3, 146) = 52.78, *p* < .001.
+
+### Table Formatting Guidelines
+
+- Use the APA table format with horizontal rules above and below the header row and at the bottom of the table
+- Do not use vertical lines in APA tables
+- Italicize all statistical symbols in column headers: *B*, *SE*, *beta*, *t*, *p*
+- Place the intercept in the first row, followed by predictors in order of theoretical importance or entry order
+- Report *B* and *SE* to two decimal places; *beta* to two decimal places without a leading zero
+- Include a table number and title (e.g., "Table 1. Multiple Regression Results Predicting Final Exam Scores")
+
+### Model Summary Row
+
+Some journals prefer a separate model summary section above or below the coefficients table. Include:
+
+- *R*² and adjusted *R*²
+- The overall *F* statistic with degrees of freedom
+- The model *p* value
+- The standard error of the estimate (optional but informative)
+
+## Frequently Asked Questions
+
+### What is the difference between R-squared and adjusted R-squared?
+
+*R*² shows the proportion of variance explained by all predictors combined. Adjusted *R*² corrects for the number of predictors, penalizing models with unnecessary variables. Use adjusted *R*² when comparing models with different numbers of predictors. In simple regression with one predictor, the two values are nearly identical. In multiple regression, adjusted *R*² will always be equal to or less than *R*², and the gap widens when predictors do not meaningfully contribute to the model.
+
+### How do I interpret a negative regression coefficient?
+
+A negative coefficient means that as the predictor increases by one unit, the outcome decreases by the coefficient's value, holding other predictors constant. The sign indicates the direction of the relationship, not its strength. For example, *B* = -1.47 for exercise hours predicting stress means that each additional hour of exercise is associated with a 1.47-point decrease in stress scores.
+
+### Should I report standardized or unstandardized coefficients?
+
+APA recommends reporting both. Unstandardized coefficients (*B*) preserve the original measurement units for practical interpretation: a reader can understand that one additional study hour predicts 2.85 more exam points. Standardized coefficients (*beta*) allow comparison of relative predictor importance within the model, which is essential when predictors are measured on different scales.
+
+### What does a VIF greater than 10 mean?
+
+A Variance Inflation Factor above 10 indicates severe multicollinearity, meaning two or more predictors are highly correlated. This inflates standard errors and makes individual coefficient tests unreliable, potentially flipping the sign of coefficients or masking significant effects. Consider removing one of the correlated predictors, combining them into a composite variable, or using ridge regression.
+
+### Can I use regression with categorical predictors?
+
+Yes, by converting categorical variables into dummy variables (0/1 coding). A variable with *k* categories requires *k* - 1 dummy variables. The reference category is represented when all dummy variables equal zero. For example, a three-level education variable (high school, bachelor's, graduate) requires two dummy variables, with one level serving as the reference group.
+
+### How do I report regression results when the model is not significant?
+
+Report the same statistics as for a significant model: *F* statistic, degrees of freedom, *p* value, and *R*². Always report the full model and individual coefficients even when results are not significant.
+
+> The regression model was not statistically significant, *F*(2, 97) = 1.45, *p* = .240, *R*² = .03. Neither weekly exercise hours (*B* = -0.52, *p* = .187) nor sleep quality (*B* = -0.84, *p* = .291) significantly predicted stress levels.
+
+### What is the difference between simple and multiple regression?
+
+Simple regression uses one predictor variable to explain the outcome, while multiple regression uses two or more predictors simultaneously. Multiple regression accounts for the shared and unique variance explained by each predictor, which is why individual coefficients in a multiple regression model may differ from those obtained in separate simple regressions. Multiple regression also provides adjusted *R*², which is unnecessary in simple regression.
+
+### Should I report confidence intervals for regression coefficients?
+
+Yes. APA 7th edition recommends reporting 95% confidence intervals for regression coefficients. CIs provide information about the precision of the estimate and whether the coefficient is significantly different from zero. A coefficient whose 95% CI does not include zero is statistically significant at the .05 level. CIs also help readers assess practical significance by seeing the range of plausible values for the effect.
+
 ## Using StatMate for APA-Formatted Regression Results
 
 Formatting regression output correctly, especially for multiple regression with several predictors, is tedious and error-prone. StatMate's regression calculators handle the entire process for you.

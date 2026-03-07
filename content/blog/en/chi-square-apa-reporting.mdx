@@ -52,6 +52,224 @@ Always include a contingency table showing observed (and optionally expected) fr
 3. **Omitting effect size.** Many journals now require Cramer's V or phi alongside chi-square results.
 4. **Reporting only significance.** Describe the pattern of results, not just whether the test was significant.
 
+## Chi-Square Goodness-of-Fit Test: APA Reporting
+
+While the test of independence examines whether two categorical variables are related, the goodness-of-fit test serves a different purpose: it examines whether the observed distribution of a single categorical variable matches a theoretically expected distribution.
+
+### When to Use the Goodness-of-Fit Test
+
+Use the goodness-of-fit test when you want to determine whether observed frequencies differ from expected frequencies for one variable. Common scenarios include:
+
+- Testing whether responses are equally distributed across categories
+- Comparing observed proportions to population norms or theoretical values
+- Evaluating whether a die, coin, or random process produces uniform results
+- Checking whether demographic proportions in a sample match known population distributions
+
+### Degrees of Freedom
+
+For the goodness-of-fit test, the degrees of freedom are calculated differently than the test of independence:
+
+**Goodness-of-fit:** df = number of categories - 1
+
+**Test of independence:** df = (rows - 1) x (columns - 1)
+
+For example, if you are testing whether preferences are equally distributed across 4 options, df = 4 - 1 = 3.
+
+### APA Reporting Example
+
+**Equal expected frequencies:**
+
+A chi-square goodness-of-fit test was conducted to determine whether students showed a preference among four elective courses. The results indicated a significant departure from equal distribution, chi-square(3, N = 200) = 8.92, p = .030. Students preferred Psychology (n = 68, 34.0%) over the other three courses, which each attracted approximately 22% of enrollments.
+
+**Unequal expected frequencies:**
+
+A chi-square goodness-of-fit test was conducted to determine whether the ethnic composition of the sample matched the university population. The expected proportions were based on institutional enrollment data (45% White, 25% Hispanic, 18% Black, 12% Asian). The observed distribution did not differ significantly from expected proportions, chi-square(3, N = 350) = 4.21, p = .240.
+
+### Reporting the Expected Distribution
+
+Always state the expected distribution in your write-up so readers understand the null hypothesis. If you are testing equal proportions, state this explicitly. If using population norms or prior research, cite the source of the expected values.
+
+---
+
+## Reporting Chi-Square Results in APA Tables
+
+When your contingency table is larger than 2x2, presenting the results in a well-formatted table is essential for clarity and interpretability.
+
+### When to Use Tables
+
+Include a cross-tabulation table when:
+
+- The contingency table has 3 or more rows or columns
+- You need to show the pattern of results across multiple categories
+- Observed and expected frequencies differ substantially across cells
+- Row or column percentages are important for interpretation
+
+### APA Cross-Tabulation Table Format
+
+APA tables should include observed counts, expected counts (in brackets or parentheses), and row or column percentages. Here is a model layout:
+
+**Table 1**
+
+*Cross-Tabulation of Teaching Method and Student Performance Level*
+
+| | Below Average | Average | Above Average | Total |
+|---|---|---|---|---|
+| Traditional | 25 [18.3] (41.7%) | 20 [22.0] (33.3%) | 15 [19.7] (25.0%) | 60 |
+| Active Learning | 12 [15.9] (20.3%) | 20 [19.1] (33.9%) | 27 [17.1] (45.8%) | 59 |
+| Online | 8 [10.8] (20.0%) | 15 [13.0] (37.5%) | 17 [11.2] (42.5%) | 40 |
+| Total | 45 | 55 | 59 | 159 |
+
+*Note.* Expected frequencies are shown in brackets. Row percentages are shown in parentheses.
+
+### Table Formatting Guidelines
+
+1. **Number the table** sequentially (Table 1, Table 2, etc.)
+2. **Italicize** the table title
+3. **Include a note** explaining brackets, parentheses, or abbreviations
+4. **Show totals** for both rows and columns
+5. **Use row percentages** when comparing groups on the dependent variable, or **column percentages** when the dependent variable is in the rows
+6. **Bold or highlight** cells with the largest residuals to draw attention to the most important deviations
+
+### Which Percentages to Report
+
+The choice of row versus column percentages depends on your research question:
+
+- **Row percentages:** Show how each group is distributed across outcome categories. Use when the row variable is the independent variable.
+- **Column percentages:** Show the composition of each outcome category. Use when the column variable is the independent variable.
+
+Always report the type of percentage used in the table note or in your text description.
+
+---
+
+## Assumptions and When Chi-Square Fails
+
+The chi-square test relies on several assumptions. Violating these assumptions can produce misleading results.
+
+### Expected Frequency Requirement
+
+The most critical assumption is that expected cell frequencies must be sufficiently large for the chi-square approximation to be valid. The standard rule is:
+
+- **No more than 20% of cells** should have expected frequencies below 5
+- **No cell** should have an expected frequency below 1
+
+If these conditions are not met, the chi-square statistic may not follow the chi-square distribution, leading to inaccurate p-values.
+
+### What to Do When the Assumption Is Violated
+
+When expected frequencies are too small, you have several options:
+
+1. **Fisher's exact test** (for 2x2 tables): Calculates exact probabilities without relying on the chi-square approximation. This is the preferred alternative for small samples.
+
+2. **Combine categories:** Merge adjacent or theoretically similar categories to increase expected frequencies. For example, combine "strongly agree" and "agree" into a single category. However, only combine categories that make theoretical sense.
+
+3. **Collect more data:** If feasible, increasing the sample size will increase expected frequencies proportionally.
+
+4. **Exact tests for larger tables:** Some software packages (including R and SAS) can compute exact tests for tables larger than 2x2, though these can be computationally intensive.
+
+### Independence of Observations
+
+Each observation must contribute to only one cell in the contingency table. This means:
+
+- **No repeated measures:** Each participant should appear only once. If you have paired or matched data, use McNemar's test (for 2x2) or Cochran's Q test.
+- **No nested data:** If participants are clustered (e.g., students within classrooms), standard chi-square does not account for the clustering. Use multi-level log-linear models or adjust for the design effect.
+
+### Sample Size Considerations
+
+While chi-square has no strict minimum sample size requirement, practical guidelines include:
+
+- For a **2x2 table**, at least 20-30 total observations are typically needed
+- For **larger tables**, the total N should be at least 5 times the number of cells (e.g., at least 45 for a 3x3 table)
+- Very large samples can make trivially small associations statistically significant, so always report effect sizes alongside p-values
+
+### Random Sampling
+
+The chi-square test assumes data were obtained through random sampling or random assignment. When this assumption is violated (e.g., convenience samples), interpret results with caution and note this limitation.
+
+---
+
+## Odds Ratios and Relative Risk: Beyond Cramer's V
+
+For 2x2 contingency tables, Cramer's V (which equals the phi coefficient) is not the only way to quantify the strength of association. Odds ratios and relative risk provide more interpretable effect sizes, especially in clinical and epidemiological research.
+
+### Odds Ratio (OR)
+
+The odds ratio compares the odds of an outcome in one group to the odds of the same outcome in another group.
+
+**Interpretation guidelines:**
+- OR = 1: No association between the variables
+- OR > 1: The outcome is more likely in the first group
+- OR < 1: The outcome is less likely in the first group
+
+**APA reporting example:**
+
+A chi-square test of independence revealed a significant association between smoking status and lung disease, chi-square(1, N = 500) = 18.74, p < .001, phi = .19. Smokers had significantly higher odds of lung disease compared to non-smokers, OR = 2.45, 95% CI [1.23, 4.87].
+
+### When to Use OR vs. Cramer's V
+
+| Measure | Best For | Range | APA Requirement |
+|---|---|---|---|
+| Phi (phi) | 2x2 tables, general association | 0 to 1 | Standard effect size |
+| Cramer's V | Tables larger than 2x2 | 0 to 1 | Standard effect size |
+| Odds ratio | 2x2 tables, clinical/epidemiological | 0 to infinity | Report with 95% CI |
+| Relative risk | 2x2 tables, cohort/experimental | 0 to infinity | Report with 95% CI |
+
+### Relative Risk (RR)
+
+Relative risk (also called risk ratio) compares the probability of an outcome occurring in one group versus another. Unlike odds ratios, relative risk is directly interpretable as a ratio of probabilities.
+
+**APA reporting example:**
+
+Participants in the intervention group had a significantly lower risk of relapse compared to the control group, RR = 0.55, 95% CI [0.38, 0.79], p = .001. This indicates a 45% reduction in the probability of relapse.
+
+### Important Distinction
+
+- **Odds ratios** can be calculated from any study design (cross-sectional, case-control, cohort)
+- **Relative risk** should only be calculated from cohort studies or randomized controlled trials, not from case-control designs
+
+When the outcome is rare (less than 10% prevalence), the odds ratio approximates the relative risk. When the outcome is common, odds ratios tend to exaggerate the effect compared to relative risk.
+
+### Reporting Multiple Effect Size Measures
+
+In some analyses, reporting both a chi-square-based effect size (phi or Cramer's V) and an odds ratio is appropriate. The chi-square effect size summarizes the overall strength of association, while the odds ratio provides a more clinically interpretable measure of effect.
+
+---
+
+## Frequently Asked Questions
+
+### What is the difference between chi-square test of independence and goodness-of-fit?
+
+The test of independence examines whether two categorical variables are related using a contingency table with rows and columns representing different variables. The goodness-of-fit test examines whether a single variable's observed distribution matches a theoretically expected distribution. Both use the chi-square statistic, but they serve different purposes: independence tests analyze relationships between variables, while goodness-of-fit tests compare observed data to expected patterns.
+
+### What should I do if expected frequencies are below 5?
+
+If more than 20% of cells have expected frequencies below 5, the chi-square approximation becomes unreliable. For 2x2 tables, use Fisher's exact test, which calculates exact probabilities. For larger tables, consider combining theoretically similar categories to increase cell frequencies, or use exact tests available in software like R or SAS. Never simply ignore this assumption.
+
+### Can I use chi-square with ordinal variables?
+
+Yes, but the standard chi-square test treats all categories as nominal and ignores any natural ordering. This means it may miss a trend or linear pattern in the data. For ordinal data, consider the Cochran-Armitage trend test (for a 2xk table with ordered columns) or Spearman's rank correlation, which can detect monotonic relationships between ordered categories.
+
+### How do I interpret Cramer's V?
+
+Cramer's V ranges from 0 (no association) to 1 (perfect association). The interpretation benchmarks depend on the smaller dimension of the table (df*). For 2x2 tables (df* = 1): .10 is small, .30 is medium, .50 is large. For 3x3 or larger tables, the benchmarks decrease. For example, with df* = 2: .07 is small, .21 is medium, .35 is large. Always consider the table dimensions when evaluating Cramer's V.
+
+### What is the minimum sample size for a chi-square test?
+
+There is no absolute minimum sample size, but the expected frequency rule provides practical guidance: all expected cell frequencies should be at least 1, and no more than 20% should be below 5. For a 2x2 table, this typically requires at least 20-30 total observations. For larger tables, aim for a total sample size of at least 5 times the number of cells (e.g., 45 for a 3x3 table).
+
+### Can chi-square test more than two variables at once?
+
+The standard chi-square test examines the association between exactly two categorical variables. For three or more variables, you need different approaches: log-linear analysis models the relationships among multiple categorical variables simultaneously, while the Cochran-Mantel-Haenszel (CMH) test examines the association between two variables while controlling for a third stratifying variable.
+
+### Should I report observed and expected frequencies?
+
+Reporting observed frequencies is essential for any chi-square analysis. Expected frequencies help readers evaluate which cells deviate most from what would be expected under the null hypothesis. For 2x2 tables, you can include expected values in the text. For larger contingency tables (3x3 or bigger), present them in a formatted table with observed counts, expected counts in brackets, and percentages.
+
+### What is the difference between chi-square and Fisher's exact test?
+
+The chi-square test uses a large-sample approximation to calculate the p-value, while Fisher's exact test calculates the exact probability of observing the data (or more extreme data) under the null hypothesis. Fisher's exact test is preferred when expected cell frequencies are below 5 or when the total sample size is small. For larger tables with adequate sample sizes and expected frequencies, the chi-square test is standard and computationally simpler.
+
+---
+
 ## Try It Yourself
 
 Use StatMate's free Chi-Square Calculator or Fisher's Exact Test Calculator to get publication-ready APA results instantly. Both include effect sizes, expected frequencies, and one-click export to Word.
