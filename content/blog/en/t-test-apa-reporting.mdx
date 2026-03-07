@@ -101,6 +101,204 @@ Avoid writing statements like "the result was almost significant (*p* = .06)." I
 
 Your reader needs to know the direction and magnitude of the difference. Always report the means and standard deviations for each group or condition so that the t-test result can be properly interpreted.
 
+## Reporting a Paired Samples T-Test in APA Format: Extended Example
+
+While the basic paired samples t-test example above covers the essentials, many researchers work with more complex pre-post designs that require additional detail. Here is a more thorough example.
+
+**Research scenario:** A researcher evaluates a 12-week cognitive behavioral therapy (CBT) program for depression. Thirty-five participants complete the Beck Depression Inventory (BDI-II) before and after the intervention. Pre-intervention scores were M = 28.4 (SD = 7.2) and post-intervention scores were M = 19.6 (SD = 8.1).
+
+**How to write it:**
+
+> A paired samples t-test was conducted to compare BDI-II depression scores before and after the 12-week CBT program. Results indicated a statistically significant decrease in depression scores from pre-intervention (*M* = 28.4, *SD* = 7.2) to post-intervention (*M* = 19.6, *SD* = 8.1), *t*(34) = 4.52, *p* < .001, *d* = 0.76.
+
+### Key Points for Paired Samples Reporting
+
+There are several details to keep in mind when reporting paired samples t-tests:
+
+- **Report both time points.** Always include the means and standard deviations for both the pre and post conditions so the reader can see the direction and magnitude of change.
+- **Degrees of freedom are n - 1.** With 35 participants, df = 34. This is different from independent samples t-tests where df = n1 + n2 - 2.
+- **Effect size interpretation.** A Cohen's *d* of 0.76 falls between medium (0.50) and large (0.80), indicating a substantial clinical improvement.
+- **Consider reporting the mean difference.** You may also report the mean difference and its standard deviation: "The mean decrease in BDI-II scores was 8.80 points (*SD* = 11.52)."
+
+## Reporting a One-Sample T-Test in APA Format
+
+A one-sample t-test compares the mean of a single sample to a known or hypothesized population value. This test is less commonly discussed but appears frequently in educational and quality assurance research.
+
+### When to Use a One-Sample T-Test
+
+Use a one-sample t-test when you want to determine whether your sample mean differs significantly from a specific reference value. Common applications include:
+
+- Comparing a class average to a national or standardized benchmark
+- Testing whether a manufacturing process produces items at the target specification
+- Evaluating whether satisfaction ratings differ from a neutral midpoint
+
+### APA Reporting Example
+
+**Research scenario:** A professor wants to determine whether the average exam score of 30 students in an advanced statistics course differs from the national average of 75 points. The class mean is M = 79.8 (SD = 9.7).
+
+**How to write it:**
+
+> A one-sample t-test was conducted to determine whether exam scores in the advanced statistics course differed from the national average of 75. Results indicated that the class mean (*M* = 79.8, *SD* = 9.7) was significantly higher than the national average, *t*(29) = 2.71, *p* = .011, *d* = 0.49.
+
+### Important Details
+
+- **Always state the test value.** The reader needs to know what population value the sample is being compared to. In this case, the test value is 75.
+- **Degrees of freedom.** For a one-sample t-test, df = n - 1. With 30 students, df = 29.
+- **Effect size calculation.** Cohen's *d* for a one-sample t-test is calculated as (*M* - μ) / *SD*, where μ is the test value.
+- **Direction matters.** Clearly state whether the sample mean was higher or lower than the reference value.
+
+## T-Test Results in APA Table Format
+
+When your paper includes multiple t-test comparisons, presenting results in a table is more efficient and easier to read than reporting each test inline.
+
+### When to Use a Table
+
+Use a table format when you have three or more t-test comparisons to report. APA tables are especially useful in studies that compare groups across multiple dependent variables.
+
+### APA Table Example
+
+**Table 1**
+
+*Comparison of Test Scores Between Study App Users and Non-Users*
+
+| Variable | App Users *M* (*SD*) | Non-Users *M* (*SD*) | *t* | df | *p* | *d* |
+|----------|----------------------|----------------------|------|-----|------|------|
+| Midterm | 76.4 (11.2) | 72.1 (12.8) | 1.68 | 85 | .097 | 0.36 |
+| Final Exam | 78.3 (12.1) | 71.6 (13.8) | 2.41 | 85 | .018 | 0.52 |
+| Lab Report | 82.7 (9.4) | 79.3 (10.1) | 1.64 | 85 | .104 | 0.35 |
+| Quiz Average | 85.1 (7.8) | 80.2 (8.9) | 2.78 | 85 | .007 | 0.59 |
+
+### Table Formatting Guidelines
+
+- **Title.** Use an italicized descriptive title that identifies the groups and variables.
+- **Column headers.** Include *M* (*SD*) for each group, *t*, df, *p*, and the effect size measure.
+- **Alignment.** Align numerical columns on the decimal point. Text columns are left-aligned.
+- **Notes.** Add a note below the table if you used Welch's correction, one-tailed tests, or Bonferroni adjustment.
+- **Significance markers.** APA 7th edition discourages asterisk-based significance markers (such as * for p < .05). Instead, report exact p values in the table.
+
+## Confidence Intervals in T-Test Reporting
+
+APA 7th edition recommends reporting confidence intervals alongside point estimates. Including confidence intervals provides information about the precision of your estimate that p values alone cannot convey.
+
+### Why Report Confidence Intervals
+
+A 95% confidence interval for the mean difference tells the reader the range within which the true population difference is likely to fall. This is more informative than a binary significant or not significant decision because it shows both the direction and precision of the effect.
+
+### APA Reporting Example with Confidence Intervals
+
+**Research scenario:** A researcher compares reaction times between an experimental group (n = 30) and a control group (n = 30). The mean difference is 7.80 ms.
+
+**How to write it:**
+
+> An independent samples t-test revealed that participants in the experimental condition (*M* = 342.5, *SD* = 28.7) had significantly faster reaction times than those in the control condition (*M* = 350.3, *SD* = 31.2), *t*(58) = 2.89, *p* = .005, *d* = 0.75, 95% CI [0.22, 1.27].
+
+You can also report the confidence interval for the mean difference:
+
+> The mean difference in reaction time was 7.80 ms, 95% CI [2.14, 13.46].
+
+### What Confidence Intervals Tell You That P Values Do Not
+
+- **Precision of the estimate.** A narrow CI indicates a precise estimate, while a wide CI suggests more uncertainty, even if the result is statistically significant.
+- **Practical significance.** If the CI includes values that are too small to be practically meaningful, the result may be statistically significant but not practically important.
+- **Direction of the effect.** A CI that does not include zero indicates a statistically significant difference (at the corresponding alpha level).
+- **Planning future studies.** CI width helps researchers determine whether a larger sample is needed for more precise estimation.
+
+## Choosing Between Independent and Paired T-Tests
+
+Selecting the correct type of t-test is a critical step that affects the validity of your results. Using the wrong test can inflate your Type I error rate (false positives) or reduce your statistical power (increasing false negatives).
+
+### Decision Criteria
+
+The fundamental question is whether the two sets of scores come from the same participants or different participants.
+
+**Use an independent samples t-test when:**
+
+- Two different groups of participants are compared (e.g., treatment vs. control)
+- Participants are randomly assigned to one of two conditions
+- There is no logical pairing between observations in the two groups
+
+**Use a paired samples t-test when:**
+
+- The same participants are measured twice (e.g., pre-test and post-test)
+- Participants are matched on key variables (e.g., matched pairs design)
+- Each observation in one group has a specific corresponding observation in the other group
+
+### Common Confusion: Matched Samples vs. Paired Samples
+
+A matched-pairs design, where participants are paired based on similar characteristics such as age, gender, or baseline scores, uses the paired samples t-test even though different individuals are involved. The key factor is that there is a one-to-one correspondence between observations in the two groups.
+
+### What Happens If You Use the Wrong Test
+
+- **Using an independent test when data are paired:** You lose statistical power because the test ignores the correlation between paired observations. The standard error is larger than it should be, making it harder to detect a real difference.
+- **Using a paired test when data are independent:** The test assumes a correlation between groups that does not exist, potentially producing misleading results and invalid p values.
+
+### Quick Decision Flowchart
+
+1. Are the same participants measured in both conditions? → **Paired samples t-test**
+2. Are participants matched one-to-one between groups? → **Paired samples t-test**
+3. Are the two groups completely separate? → **Independent samples t-test**
+
+## When to Use Welch's T-Test Instead of Student's T-Test
+
+Student's t-test (the classic independent samples t-test) assumes that both groups have equal population variances. When this assumption is violated, Welch's t-test provides a more accurate result.
+
+### Why Welch's T-Test Matters
+
+Many statisticians, including Delacre et al. (2017), now recommend using Welch's t-test as the default for independent samples comparisons. The reasons include:
+
+- Welch's test does not assume equal variances, making it more robust
+- When variances are actually equal, Welch's test performs nearly identically to Student's test
+- When variances are unequal, Student's test can produce inflated Type I error rates, while Welch's test maintains the correct rate
+
+### How to Report Welch's T-Test in APA Format
+
+The key difference in reporting is that Welch's t-test produces non-integer degrees of freedom because the df are adjusted based on sample sizes and variances.
+
+**Example:**
+
+> A Welch's independent samples t-test indicated that participants in the high-anxiety group (*M* = 45.2, *SD* = 14.3) scored significantly higher on the stress inventory than participants in the low-anxiety group (*M* = 36.8, *SD* = 8.7), *t*(52.34) = 2.67, *p* = .010, *d* = 0.72.
+
+### Key Reporting Details
+
+- **Non-integer degrees of freedom.** Report the adjusted df to two decimal places, such as *t*(52.34). This signals to the reader that Welch's correction was applied.
+- **State the test variant.** Explicitly write "Welch's t-test" or "Welch's independent samples t-test" so the reader knows which test was used.
+- **Levene's test.** You may report Levene's test for equality of variances to justify using Welch's test: "Levene's test indicated unequal variances (*F* = 5.42, *p* = .023), so Welch's t-test was used."
+- **Software defaults.** Note that many software packages (including R and SPSS versions 28 and later) use Welch's t-test as the default.
+
+## Frequently Asked Questions
+
+### What is the difference between a one-tailed and two-tailed t-test?
+
+A two-tailed test checks for any difference between groups in either direction, while a one-tailed test checks for a difference in a specific direction (e.g., Group A is greater than Group B). Two-tailed tests are standard in most research because they are more conservative and do not assume the direction of the effect beforehand. If you use a one-tailed test, you must justify this choice based on theory or prior evidence.
+
+### Should I always report Cohen's d with a t-test?
+
+Yes. APA 7th edition requires an effect size measure for all inferential tests. Cohen's *d* is the standard effect size for t-tests, quantifying the difference between groups in standard deviation units. Alternatives include Hedges' *g* (which corrects for small sample bias) and Glass's delta (which uses only the control group's standard deviation).
+
+### What does a negative t-value mean?
+
+A negative t-value simply means the first group's mean is lower than the second group's mean. The sign depends on which group is subtracted from which and does not affect the statistical significance of the test. The absolute value of *t* is what matters for determining significance.
+
+### How do I report t-test results when p < .001?
+
+Report as *p* < .001 rather than the exact value. Never write *p* = .000, as probability is never exactly zero. For example: *t*(58) = 4.23, *p* < .001, *d* = 1.11. Some journals may ask for exact p values even when very small, in which case you could write *p* = .00003, but *p* < .001 is the most common convention.
+
+### Can I use a t-test with more than two groups?
+
+No. T-tests are designed for comparing exactly two groups or conditions. For three or more groups, use one-way ANOVA to control the family-wise error rate. Running multiple t-tests between pairs of groups inflates the Type I error rate. For example, with four groups you would need six pairwise t-tests, giving a family-wise error rate of approximately 26% instead of 5%.
+
+### What if my data is not normally distributed?
+
+For moderate departures from normality with sample sizes greater than 30, the t-test is generally robust due to the Central Limit Theorem. For severe non-normality or small samples (n < 15), consider using non-parametric alternatives: the Mann-Whitney U test for independent samples or the Wilcoxon signed-rank test for paired samples.
+
+### What is the minimum sample size for a t-test?
+
+There is no strict statistical minimum, but most methodological guidelines suggest at least 15 to 20 participants per group for adequate power to detect medium effects (d = 0.50) at alpha = .05. A formal power analysis is strongly recommended. For example, detecting a medium effect with 80% power requires approximately 64 participants per group for an independent samples t-test.
+
+### Should I report Levene's test before an independent samples t-test?
+
+Yes, it is good practice. Levene's test evaluates whether the two groups have equal variances. If Levene's test is significant (*p* < .05), the equal variances assumption is violated, and you should report Welch's t-test instead of Student's t-test. Report it as: "Levene's test indicated unequal variances (*F* = 5.42, *p* = .023), so degrees of freedom were adjusted using Welch's correction."
+
 ## Using StatMate to Generate APA-Formatted Results
 
 Formatting t-test results correctly can be tedious, especially when you are juggling multiple analyses across a paper. StatMate's t-test calculator automatically generates results in APA 7th edition format, including the t statistic, degrees of freedom, exact p value, and Cohen's *d* with confidence intervals.
