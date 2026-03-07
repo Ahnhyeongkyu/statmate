@@ -640,6 +640,19 @@
     "ctaButton": "무료 체험 시작",
     "studentDiscount": "🎓 학생 할인: .edu 또는 .ac.kr 이메일로 50% 할인 — 월 $2.99 또는 연 $29.99"
   },
+  "feedbackPrompt": {
+    "question": "이 계산기가 도움이 되셨나요?",
+    "helpful": "네",
+    "notHelpful": "아니요",
+    "positiveMessage": "도움이 되셨다니 기쁩니다! 리뷰를 남겨주시겠어요?",
+    "leaveReview": "리뷰 남기기",
+    "maybeLater": "나중에 할게요",
+    "negativeMessage": "아쉬운 점이 있으셨군요. 어떤 점을 개선하면 좋을까요?",
+    "negativePlaceholder": "불편했던 점이나 기대했던 기능을 알려주세요...",
+    "send": "보내기",
+    "cancel": "취소",
+    "thanks": "소중한 피드백 감사합니다!"
+  },
   "feedback": {
     "title": "피드백 보내기",
     "bug": "버그",

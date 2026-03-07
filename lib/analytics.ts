@@ -82,3 +82,7 @@ export function trackABTestView(testId: string, variant: string) {
 export function trackABTestConversion(testId: string, variant: string, action: string) {
   gtag({ action: "ab_conversion", category: "ab_test", label: `${testId}_${variant}_${action}` });
 }
+
+export function trackFeedbackVote(calculatorId: string, vote: "up" | "down") {
+  gtag({ action: "feedback_vote", category: "engagement", label: `${calculatorId}_${vote}` });
+}

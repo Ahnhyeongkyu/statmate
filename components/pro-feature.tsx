@@ -7,6 +7,7 @@ import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImp
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
+import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- AI Interpretation Component ---
 
@@ -75,6 +76,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   // Free user: show readable preview with CTA below
   if (!isPro) {
     return (
+    <>
       <Card className="overflow-hidden border-purple-200">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base text-purple-900">
@@ -123,12 +125,15 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           </div>
         </CardContent>
       </Card>
+      <FeedbackPrompt calculatorId={testType} />
+    </>
     );
   }
 
   // Pro user: functional AI interpretation
   if (!data) {
     return (
+    <>
       <Card className="border-purple-200">
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base text-purple-900">
@@ -151,10 +156,13 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           </Button>
         </CardContent>
       </Card>
+      <FeedbackPrompt calculatorId={testType} />
+    </>
     );
   }
 
   return (
+  <>
     <Card className="border-purple-200 bg-purple-50">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base text-purple-900">
@@ -193,6 +201,8 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
         </div>
       </CardContent>
     </Card>
+    <FeedbackPrompt calculatorId={testType} />
+  </>
   );
 }
 

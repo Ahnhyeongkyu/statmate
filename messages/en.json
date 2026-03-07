@@ -640,6 +640,19 @@
     "ctaButton": "Start Free Trial",
     "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
   },
+  "feedbackPrompt": {
+    "question": "Was this calculator helpful?",
+    "helpful": "Yes",
+    "notHelpful": "No",
+    "positiveMessage": "Glad it helped! Would you mind leaving a review?",
+    "leaveReview": "Leave a Review",
+    "maybeLater": "Maybe later",
+    "negativeMessage": "Sorry to hear that. What could we improve?",
+    "negativePlaceholder": "Tell us what went wrong or what you expected...",
+    "send": "Send",
+    "cancel": "Cancel",
+    "thanks": "Thank you for your feedback!"
+  },
   "feedback": {
     "title": "Send Feedback",
     "bug": "Bug",

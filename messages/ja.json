@@ -640,6 +640,19 @@
     "ctaButton": "無料トライアルを始める",
     "studentDiscount": "🎓 学生割引: .edu/.ac.jpメールで50%オフ — 月額$2.99または年額$29.99"
   },
+  "feedbackPrompt": {
+    "question": "この計算ツールは役に立ちましたか？",
+    "helpful": "はい",
+    "notHelpful": "いいえ",
+    "positiveMessage": "お役に立てて嬉しいです！レビューを残していただけますか？",
+    "leaveReview": "レビューを書く",
+    "maybeLater": "また今度",
+    "negativeMessage": "残念です。どの点を改善すればよいでしょうか？",
+    "negativePlaceholder": "不便だった点や期待していた機能をお聞かせください...",
+    "send": "送信",
+    "cancel": "キャンセル",
+    "thanks": "貴重なフィードバックをありがとうございます！"
+  },
   "feedback": {
     "title": "フィードバックを送信",
     "bug": "バグ",
