@@ -76,6 +76,36 @@ Partial eta squared (*η*²p) is the most commonly reported effect size for ANOV
 
 In the example above, *η*²p = .09 falls in the medium range. APA 7th edition requires that effect sizes accompany all inferential tests, so never report an *F* statistic without an effect size measure.
 
+## Omega Squared: A Less Biased Alternative to Eta Squared
+
+While partial eta squared is the most commonly reported effect size for ANOVA, it has a known limitation: it tends to **overestimate the population effect size**, particularly in studies with small sample sizes. This is because eta squared is calculated from sample data and does not adjust for the degrees of freedom used by the model.
+
+**Omega squared (*ω*²)** addresses this bias by incorporating a correction that accounts for the number of groups and the total sample size. The result is a more conservative and generally more accurate estimate of how much variance the independent variable explains in the population, rather than just in the sample.
+
+The interpretation benchmarks for omega squared are the same as those for eta squared:
+
+| *ω*² | Interpretation |
+|------|----------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+### When to Use Omega Squared vs Partial Eta Squared
+
+In practice, partial eta squared remains the more widely reported measure, largely because SPSS and other software output it by default. However, omega squared is preferred in the following situations:
+
+- **Small sample sizes** (N < 50), where the upward bias of eta squared is most pronounced
+- **When you want a more conservative, generalizable estimate** of effect size
+- **When reviewers or journals specifically request it**, which is becoming more common in methodologically rigorous outlets
+
+If your study has a large sample size (N > 200), the difference between *η*²p and *ω*² will be minimal. For smaller studies, reporting both measures or choosing omega squared is the safer approach.
+
+### APA Reporting Example with Omega Squared
+
+> A one-way ANOVA revealed a statistically significant effect of teaching method on test scores, *F*(2, 87) = 4.52, *p* = .013, *ω*² = .07.
+
+Note that omega squared values are typically slightly smaller than the corresponding partial eta squared values for the same data, which reflects its corrective function.
+
 ## Reporting Tukey HSD Post-Hoc Tests
 
 A significant ANOVA result tells you that at least one group mean differs from the others, but it does not tell you which specific groups differ. To answer that question, you need a **post-hoc test**. Tukey's Honestly Significant Difference (HSD) is the most commonly used method.
@@ -109,6 +139,98 @@ Standard one-way ANOVA assumes that the variances across groups are equal (homog
 > Because the homogeneity of variances assumption was not met, a Welch's F test was conducted. Results indicated a statistically significant effect of teaching method on test scores, Welch's *F*(2, 56.34) = 4.87, *p* = .011, *η*²p = .10.
 
 Notice that the denominator degrees of freedom in Welch's F are typically non-integer. Report them to two decimal places. When using Welch's F, the appropriate post-hoc test is **Games-Howell** rather than Tukey HSD, as it does not assume equal variances.
+
+## Reporting Two-Way ANOVA Results in APA Format
+
+A **two-way ANOVA** (also called factorial ANOVA) extends the one-way design by examining the effects of two independent variables simultaneously. It tests three things: the **main effect of Factor A**, the **main effect of Factor B**, and the **interaction effect** between the two factors.
+
+### Research Scenario
+
+Consider a 2 x 3 factorial design examining the effects of gender (male, female) and teaching method (lecture, discussion, project-based) on test scores. With 15 participants per cell, the total sample is 90 students (2 x 3 x 15).
+
+### Reporting Main Effects and Interaction
+
+When reporting a two-way ANOVA, present each effect separately in a logical order: main effects first, then the interaction.
+
+> A 2 (gender) x 3 (teaching method) between-subjects ANOVA was conducted on test scores. There was a significant main effect of gender, *F*(1, 84) = 6.78, *p* = .011, *η*²p = .07, indicating that female students (*M* = 79.82, *SD* = 10.14) scored higher than male students (*M* = 74.55, *SD* = 11.03). The main effect of teaching method was also significant, *F*(2, 84) = 4.52, *p* = .014, *η*²p = .10. The interaction between gender and teaching method was significant, *F*(2, 84) = 3.92, *p* = .024, *η*²p = .09, suggesting that the effect of teaching method on test scores differed depending on gender.
+
+### Reporting Simple Effects When Interaction Is Significant
+
+When the interaction is significant, the main effects should be interpreted with caution because the effect of one factor depends on the level of the other factor. In this case, you should follow up with **simple effects analyses** to examine the effect of one factor at each level of the other.
+
+> Simple effects analysis revealed that teaching method had a significant effect on test scores for female students, *F*(2, 84) = 7.31, *p* = .001, *η*²p = .15, but not for male students, *F*(2, 84) = 0.89, *p* = .415, *η*²p = .02. Among female students, Tukey HSD post-hoc comparisons indicated that the project-based group (*M* = 85.40) scored significantly higher than the lecture group (*M* = 74.20), *p* < .001, *d* = 1.05.
+
+### Key Points for Two-Way ANOVA Reporting
+
+- Always specify the factorial design in your description (e.g., "2 x 3 between-subjects ANOVA")
+- Report all three effects (main effect A, main effect B, interaction) even if some are not significant
+- When the interaction is significant, follow up with simple effects rather than interpreting main effects in isolation
+- The degrees of freedom for each effect differ: Factor A uses df = levels of A - 1, Factor B uses df = levels of B - 1, and the interaction uses df = (levels of A - 1)(levels of B - 1)
+
+## Reporting Repeated Measures ANOVA in APA Format
+
+**Repeated measures ANOVA** is used when the same participants are measured at multiple time points or under multiple conditions. This design introduces a unique assumption called **sphericity** that must be assessed and reported.
+
+### Mauchly's Test of Sphericity
+
+Sphericity requires that the variances of the differences between all pairs of within-subject conditions are equal. Mauchly's test evaluates whether this assumption is met. If Mauchly's test is significant (*p* < .05), sphericity is violated and a correction must be applied to the degrees of freedom.
+
+### Research Scenario
+
+A researcher measures anxiety scores for 40 participants at three time points: pre-intervention, mid-intervention, and post-intervention.
+
+### Reporting When Sphericity Is Violated
+
+> A repeated measures ANOVA was conducted to examine changes in anxiety scores across three time points (pre, mid, post). Mauchly's test indicated that the assumption of sphericity was violated, *χ*²(2) = 8.45, *p* = .015. Therefore, the Greenhouse-Geisser corrected degrees of freedom were used. Results showed a significant effect of time on anxiety scores, *F*(1.68, 65.52) = 12.34, *p* < .001, *η*²p = .24, indicating a large effect.
+
+Notice how the Greenhouse-Geisser correction changes the degrees of freedom from the expected integers (2, 78) to non-integer values (1.68, 65.52). Always report the corrected values when sphericity is violated, along with the epsilon value if required by your target journal.
+
+### Reporting When Sphericity Is Met
+
+> Mauchly's test indicated that the assumption of sphericity was met, *χ*²(2) = 3.12, *p* = .210. The repeated measures ANOVA revealed a significant effect of time on anxiety scores, *F*(2, 78) = 8.56, *p* < .001, *η*²p = .18.
+
+### Post-Hoc Pairwise Comparisons for Repeated Measures
+
+When the omnibus repeated measures ANOVA is significant, follow up with **Bonferroni-corrected pairwise comparisons** to identify which time points differ.
+
+> Bonferroni-corrected pairwise comparisons revealed that anxiety scores decreased significantly from pre-intervention (*M* = 42.15, *SD* = 8.73) to post-intervention (*M* = 33.80, *SD* = 7.92), *p* < .001, *d* = 0.99. The decrease from pre-intervention to mid-intervention (*M* = 38.45, *SD* = 8.20) was also significant, *p* = .012, *d* = 0.44. The difference between mid-intervention and post-intervention was not significant, *p* = .087, *d* = 0.58.
+
+### Key Points for Repeated Measures Reporting
+
+- Always report Mauchly's test result, even when sphericity is met
+- When sphericity is violated, use Greenhouse-Geisser (more conservative) or Huynh-Feldt (less conservative) correction
+- Report the corrected degrees of freedom, not the uncorrected values
+- Use Bonferroni correction for pairwise comparisons to control for multiple testing
+
+## Presenting ANOVA Results in APA Tables
+
+When your analysis involves multiple effects, such as in two-way ANOVA or repeated measures designs, presenting results in a formal **ANOVA summary table** is often clearer than reporting everything inline.
+
+### When to Use a Table vs Inline Text
+
+As a general rule, if your ANOVA has **three or more effects** to report (e.g., two main effects and an interaction in a two-way ANOVA), a table is preferred. For a simple one-way ANOVA with a single *F* test, inline text is sufficient.
+
+### APA ANOVA Summary Table Format
+
+An APA-style ANOVA summary table includes the following columns:
+
+| Source | *SS* | *df* | *MS* | *F* | *p* | *η*²p |
+|--------|------|------|------|-----|------|-------|
+| Gender | 408.53 | 1 | 408.53 | 6.78 | .011 | .07 |
+| Teaching Method | 544.80 | 2 | 272.40 | 4.52 | .014 | .10 |
+| Gender x Teaching Method | 472.56 | 2 | 236.28 | 3.92 | .024 | .09 |
+| Error | 5063.28 | 84 | 60.28 | | | |
+| Total | 6489.17 | 89 | | | | |
+
+### Table Formatting Guidelines
+
+- **Table title**: Use APA format (e.g., "Table 1. ANOVA Summary Table for Test Scores by Gender and Teaching Method")
+- **Source column**: List all effects (main effects, interactions) and error
+- **Statistical values**: Follow the same rounding rules as inline text (*F* to 2 decimals, *p* to 3 decimals)
+- **Significance markers**: Some journals allow asterisks (* *p* < .05, ** *p* < .01, *** *p* < .001) in addition to exact *p* values
+- **Notes**: Include a table note explaining any abbreviations or symbols used
+
+A well-formatted table saves space and allows readers to quickly compare effect sizes across multiple factors, which is why APA recommends tables for complex ANOVA designs.
 
 ## Common Mistakes to Avoid
 
@@ -148,6 +270,40 @@ Before submitting your manuscript, verify that your ANOVA results include all of
 - Post-hoc test results when the omnibus *F* is significant
 - Welch's F and Games-Howell if equal variances are violated
 - All statistical symbols (*F*, *p*, *η*²p, *M*, *SD*) in italics
+
+## Frequently Asked Questions
+
+### What is the difference between eta squared and partial eta squared?
+
+Eta squared (*η*²) represents the proportion of **total** variance explained by the independent variable, while partial eta squared (*η*²p) represents the proportion of variance explained **after removing the variance accounted for by other variables** in the model. In a one-way ANOVA, both values are identical. In factorial designs (two-way ANOVA, ANCOVA), partial eta squared is preferred because it isolates each factor's contribution without being deflated by other effects in the model.
+
+### Should I report post-hoc tests if ANOVA is not significant?
+
+No. Post-hoc tests are only appropriate when the omnibus *F* test is significant. If the overall ANOVA is non-significant, it means there is insufficient evidence that any group means differ. Conducting post-hoc comparisons after a non-significant ANOVA inflates the Type I error rate and is methodologically inappropriate.
+
+### What does F(2, 87) mean — what are the two numbers?
+
+The two numbers inside the parentheses are the **degrees of freedom**. The first number (2) is the between-groups (numerator) degrees of freedom, calculated as the number of groups minus one (k - 1). The second number (87) is the within-groups (denominator) degrees of freedom, calculated as the total sample size minus the number of groups (N - k). Together, these values define the shape of the F distribution used to determine statistical significance.
+
+### Can I use Cohen's d as the effect size for ANOVA?
+
+Cohen's *d* is not appropriate as the **overall** effect size for an ANOVA because it is designed for two-group comparisons only. For the omnibus ANOVA test, use partial eta squared (*η*²p) or omega squared (*ω*²). However, you can and should report Cohen's *d* for **individual pairwise comparisons** in your post-hoc analyses, as each comparison involves exactly two groups.
+
+### What if my data violates the normality assumption?
+
+ANOVA is reasonably robust to violations of normality, especially with larger sample sizes (n > 30 per group) due to the central limit theorem. If your sample is small and the data are clearly non-normal, consider using the **Kruskal-Wallis H test**, which is the non-parametric alternative to the one-way ANOVA. If you proceed with ANOVA despite mild non-normality, mention this decision and your justification in the results section.
+
+### How do I choose between Tukey HSD and Bonferroni?
+
+**Tukey HSD** is designed specifically for all possible pairwise comparisons and is the most common choice when you want to compare every group to every other group. **Bonferroni correction** is more flexible and can be used for any set of comparisons, including a subset of planned comparisons. When comparing all pairs, Tukey HSD is slightly more powerful (less conservative) than Bonferroni. When testing only a few specific comparisons, Bonferroni is preferred.
+
+### Should I report effect size even when results are not significant?
+
+Yes. APA 7th edition explicitly requires that effect sizes be reported for all inferential tests, regardless of whether the result is statistically significant. A non-significant result with a medium effect size (*η*²p = .06) tells a different story than one with a negligible effect (*η*²p = .001). Effect sizes help readers assess practical significance and are essential for future meta-analyses.
+
+### What is the difference between one-way, two-way, and repeated measures ANOVA?
+
+**One-way ANOVA** compares means across groups defined by a single independent variable (e.g., three teaching methods). **Two-way ANOVA** examines the effects of two independent variables and their interaction simultaneously (e.g., teaching method and gender). **Repeated measures ANOVA** is used when the same participants are measured multiple times (e.g., pre-test, mid-test, post-test). Each design has its own reporting requirements: two-way ANOVA requires reporting main effects and interaction, while repeated measures ANOVA requires reporting Mauchly's sphericity test.
 
 ## Using StatMate for APA-Formatted ANOVA Results
 

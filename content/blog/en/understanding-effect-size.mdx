@@ -46,6 +46,32 @@ A *d* of 0.50 means the two group distributions overlap by about 67%. A *d* of 0
 
 Note that Cohen's *d* can exceed 1.0, so you include a leading zero (e.g., *d* = 0.75, not *d* = .75).
 
+## Hedges' g — Correcting Cohen's d for Small Samples
+
+### The Small-Sample Bias Problem
+
+Cohen's *d* is the most widely reported effect size for group comparisons, but it has a known limitation: it systematically overestimates the true population effect size when sample sizes are small (roughly *n* < 20 per group). This bias occurs because the sample standard deviation in small studies tends to underestimate the population standard deviation, inflating the resulting *d* value.
+
+### How Hedges' g Corrects This
+
+Hedges' *g* applies a correction factor to Cohen's *d* that adjusts for this small-sample bias. The correction shrinks the effect size estimate slightly, producing a less biased estimate of the population effect size. The smaller the sample, the larger the correction. As sample sizes increase, the correction becomes negligible.
+
+### When to Use Hedges' g
+
+- **Any study with small group sizes** (fewer than 20 participants per group)
+- **Meta-analyses**, where combining effect sizes from studies of varying sample sizes requires unbiased estimates
+- **Pilot studies**, where sample sizes are inherently small
+
+### Rule of Thumb
+
+For samples of *n* > 30 per group, Cohen's *d* and Hedges' *g* are nearly identical (typically differing by less than 1%). In these cases, reporting either is acceptable. For samples of *n* < 20, Hedges' *g* is the more appropriate choice.
+
+### APA Reporting Example
+
+> An independent samples t-test showed that participants in the mindfulness group (*M* = 4.20, *SD* = 1.15) reported significantly lower stress than the control group (*M* = 5.10, *SD* = 1.30), *t*(18) = 2.45, *p* = .025, *g* = 0.72.
+
+Notice that the format is identical to Cohen's *d* — simply replace *d* with *g*. Many journals accept either measure, but if your study has fewer than 20 participants per group, using Hedges' *g* demonstrates methodological rigor.
+
 ## Eta Squared and Partial Eta Squared — Effect Size for ANOVA
 
 ### When to Use Them
@@ -82,6 +108,34 @@ A partial η² of .10 means the independent variable accounts for 10% of the var
 > The interaction between teaching method and gender was statistically significant, *F*(2, 84) = 3.92, *p* = .024, partial η² = .09.
 
 Because η² and partial η² are proportions bounded between 0 and 1, the leading zero is omitted in APA format (e.g., .11 rather than 0.11).
+
+## Omega Squared — A Less Biased Alternative to Eta Squared
+
+### Why Eta Squared Overestimates
+
+Eta squared (η²) is a descriptive statistic that describes your sample data, but it systematically overestimates the effect size in the population. This overestimation is particularly pronounced with small sample sizes or when there are many groups. The reason is that η² includes both systematic variance (the true effect) and some error variance in its numerator, inflating the estimate.
+
+### How Omega Squared Corrects This
+
+Omega squared (ω²) provides a less biased estimate of the proportion of variance explained in the population. It applies a correction that accounts for the number of groups and sample size, resulting in a more conservative and accurate estimate. In practice, ω² values are always smaller than the corresponding η² values from the same data.
+
+### Interpretation Benchmarks
+
+Omega squared uses the same general benchmarks as eta squared:
+
+| ω² | Interpretation |
+|----|----------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+### APA Reporting Example
+
+> A one-way ANOVA revealed a statistically significant effect of treatment condition on anxiety scores, *F*(3, 76) = 4.82, *p* = .004, ω² = .12.
+
+### When to Use Omega Squared
+
+Many methodologists and an increasing number of journals now recommend ω² over η², particularly for studies with smaller sample sizes. If your field or target journal does not specify a preference, reporting partial η² remains acceptable since it is still the most commonly used ANOVA effect size. However, reporting ω² alongside partial η² demonstrates awareness of the bias issue and strengthens your methods section.
 
 ## r and R² — Effect Size for Correlation and Regression
 
@@ -139,6 +193,106 @@ Here df* is the smaller of (rows - 1) and (columns - 1). As df* increases, the b
 
 > A chi-square test of independence indicated a significant association between gender and major choice, χ²(2, *N* = 200) = 12.56, *p* = .002, *V* = .25.
 
+## Understanding Effect Size Through Real Research Examples
+
+Abstract benchmarks become far more meaningful when grounded in actual research scenarios. The following examples illustrate how the same effect size metric can carry different practical implications depending on the context.
+
+### Example 1: Educational Intervention
+
+A school district implements a peer tutoring program and measures its impact on standardized math scores. The result: *d* = 0.40. What does this mean in practice? A student performing at the 50th percentile without tutoring would be expected to perform at approximately the 66th percentile with tutoring. In a class of 30 students, this translates to roughly 5 additional students scoring above the class median. For an educational intervention that costs relatively little to implement, this is a meaningful improvement.
+
+### Example 2: Clinical Psychology
+
+A randomized controlled trial examines cognitive behavioral therapy (CBT) for generalized anxiety disorder. The result: *d* = 0.75. This means the average patient who received CBT improved more than approximately 77% of patients in the waitlist control group. In clinical terms, this often represents the difference between meeting and not meeting diagnostic criteria for anxiety — a genuinely life-changing outcome for patients.
+
+### Example 3: Public Health
+
+A large-scale vaccination study reports an odds ratio of 0.30 for infection risk. This means vaccinated individuals had 70% lower odds of infection compared to unvaccinated individuals. Even though this translates to a relatively modest effect size in standardized terms, when applied to millions of people, it can prevent hundreds of thousands of infections.
+
+### The Key Lesson
+
+The same *d* value can carry vastly different practical significance depending on the domain, the cost of the intervention, the severity of the outcome, and the population size affected. A *d* of 0.20 in education may matter less than a *d* of 0.20 in life-saving medical treatment. Always interpret effect sizes within the specific context of your research question.
+
+## Confidence Intervals for Effect Sizes
+
+### Why Point Estimates Are Not Enough
+
+APA 7th edition explicitly recommends reporting confidence intervals (CIs) for effect sizes, not just the point estimate. A point estimate like *d* = 0.75 tells you the best single guess for the population effect size, but it says nothing about the precision of that estimate.
+
+### What a Confidence Interval for d Means
+
+A 95% CI for Cohen's *d* provides a range of plausible values for the true population effect size. For example, *d* = 0.75, 95% CI [0.32, 1.18] means you can be reasonably confident that the true effect size falls somewhere between 0.32 (a small-to-medium effect) and 1.18 (a large effect).
+
+### Interpreting the Width
+
+- **Wide CI** (e.g., [0.10, 1.40]): Low precision. The true effect could be trivially small or very large. This typically occurs with small sample sizes.
+- **Narrow CI** (e.g., [0.60, 0.90]): High precision. You have a good estimate of the true effect size. This typically occurs with large sample sizes.
+- **CI crossing zero** (e.g., [-0.15, 0.85]): The true effect might be zero or even in the opposite direction. This is consistent with a non-significant result.
+
+### APA Reporting Example
+
+> The experimental group scored significantly higher than the control group, *t*(58) = 2.89, *p* = .005, *d* = 0.75, 95% CI [0.22, 1.27].
+
+The confidence interval provides critical context that the point estimate alone cannot. In this case, while *d* = 0.75 suggests a medium-to-large effect, the CI indicates the true effect could be as small as 0.22 (small) or as large as 1.27 (very large). This level of transparency helps readers assess the robustness of your findings.
+
+## Visualizing Effect Sizes: Distribution Overlap
+
+### Making Abstract Numbers Intuitive
+
+One of the most effective ways to understand what an effect size means is to visualize how much two group distributions overlap. When two groups have identical means (*d* = 0.0), their distributions overlap completely. As *d* increases, the distributions pull apart.
+
+### Overlap at Different Effect Sizes
+
+| Cohen's *d* | Distribution Overlap | Practical Meaning |
+|-------------|---------------------|-------------------|
+| 0.0 | 100% | Identical distributions |
+| 0.2 | ~85% | Almost indistinguishable; differences visible only in aggregate |
+| 0.5 | ~67% | Noticeable difference; most individuals still overlap |
+| 0.8 | ~53% | Obvious difference; about half the distributions still overlap |
+| 1.0 | ~45% | Very clear difference; less than half overlap |
+| 1.5 | ~30% | Dramatic difference; minimal overlap |
+| 2.0 | ~19% | Extreme difference; distributions barely overlap |
+
+### Cohen's U3 Statistic
+
+Another way to interpret effect sizes is through Cohen's U3, which indicates what percentage of the lower-scoring group the average person in the higher-scoring group exceeds.
+
+| Cohen's *d* | U3 (percentile of higher group) |
+|-------------|--------------------------------|
+| 0.2 | 58% |
+| 0.5 | 69% |
+| 0.8 | 79% |
+| 1.0 | 84% |
+| 1.5 | 93% |
+
+At *d* = 0.8, the average person in the higher-scoring group performs better than 79% of people in the lower-scoring group. This translation from standard deviation units to percentiles makes effect sizes immediately understandable to non-statistical audiences, such as clinicians, educators, and policymakers.
+
+## Effect Size Benchmarks Vary by Field
+
+### Cohen's Benchmarks Are Defaults, Not Universal Rules
+
+Cohen (1988) himself described his small/medium/large conventions as guidelines for when researchers have no better frame of reference. They were never intended to be applied mechanically across all disciplines. In practice, what counts as a meaningful effect size varies dramatically across fields.
+
+### Education
+
+Hattie (2009), in his synthesis of over 800 meta-analyses of educational interventions, identified *d* = 0.40 as the "hinge point." Effects above this threshold represent interventions that produce meaningful improvements beyond what students would gain through normal development. By this standard, many interventions considered to have "small" effects by Cohen's criteria are actually producing educationally significant results.
+
+### Clinical Psychology
+
+In clinical psychology, even *d* = 0.20 can be clinically meaningful when the condition is severe. A small reduction in symptoms of psychosis, suicidality, or chronic pain can substantially improve quality of life. The clinical significance of an effect depends on the severity of the disorder and the availability of alternative treatments.
+
+### Social Psychology
+
+Meta-analyses in social psychology show that the typical effect size is between *d* = 0.20 and *d* = 0.40. What would be considered "small" by Cohen's standards is actually quite typical in this field. Expecting large effects from subtle social manipulations is unrealistic, and researchers in this area should calibrate their expectations accordingly.
+
+### Medical Research and Public Health
+
+In medical research, even tiny effects measured by odds ratios close to 1.0 (e.g., OR = 0.95) can save thousands of lives when applied at population scale. A medication that reduces heart attack risk by 5% may seem trivial in terms of effect size, but across millions of patients it prevents tens of thousands of heart attacks.
+
+### Recommendation
+
+Rather than relying solely on Cohen's conventions, compare your effect sizes to the distribution of effects reported in prior studies within your specific research area. Many fields now publish meta-analytic benchmarks that provide discipline-specific reference points. This approach yields more meaningful interpretation than applying one-size-fits-all labels.
+
 ## Effect Size Summary Table
 
 The following table provides a quick reference for all major effect size measures and their interpretation benchmarks.
@@ -174,6 +328,40 @@ Values that cannot exceed 1 (*p*, *r*, η², *R²*, *V*) omit the leading zero (
 ### Omitting Effect Size from Chi-Square Results
 
 Many researchers report χ² and *p* without Cramér's *V*. Effect sizes should accompany all statistical tests, including those with categorical data.
+
+## Frequently Asked Questions
+
+### Can Cohen's d be greater than 1?
+
+Yes. Cohen's *d* is unbounded and can take any positive value. A *d* of 1.0 means the two group means differ by exactly one standard deviation. A *d* of 1.5 means they differ by one and a half standard deviations. Values above 1.0 are uncommon but occur regularly in research with strong manipulations or highly distinct populations (for example, comparing expert musicians with non-musicians on auditory tasks).
+
+### What does a negative effect size mean?
+
+A negative effect size reflects the direction of the difference, not its magnitude. It simply means the group you designated as "Group 1" scored lower than "Group 2." If you reverse the group labels, the sign flips. When interpreting magnitude, use the absolute value. For example, *d* = -0.60 and *d* = 0.60 represent the same size of effect in opposite directions.
+
+### Which effect size should I report for my analysis?
+
+The appropriate effect size depends on the statistical test you are using. For t-tests, report Cohen's *d* (or Hedges' *g* for small samples). For ANOVA, report partial η² (or ω²). For correlations, *r* itself is the effect size. For regression, report *R²*. For chi-square tests, report Cramér's *V*. Refer to the summary table above for a quick reference.
+
+### Does a large effect size prove causation?
+
+No. Effect size quantifies the magnitude of a relationship or difference, but it does not establish causation. A large *d* in an observational study may reflect confounding variables rather than a causal mechanism. Causal claims require appropriate research designs (such as randomized controlled trials), not simply large effect sizes.
+
+### What is the effect size for non-parametric tests?
+
+For the Mann-Whitney U test, the rank-biserial correlation (*r*) is the standard effect size. For the Wilcoxon signed-rank test, *r* = *Z* / sqrt(*N*) is commonly used. For the Kruskal-Wallis test, epsilon squared (ε²) or eta squared based on ranks can be reported. For the Friedman test, Kendall's *W* serves as the effect size. These measures use the same small/medium/large interpretation framework as their parametric counterparts.
+
+### How does SPSS output effect sizes?
+
+SPSS reports partial η² by default for ANOVA procedures (found in the "Tests of Between-Subjects Effects" table when you check "Estimates of effect size"). However, SPSS does not automatically calculate Cohen's *d* for t-tests — you must compute it manually or use a dedicated tool. For regression, SPSS provides *R²* in the Model Summary table. For chi-square, you need to request Cramér's *V* through the Crosstabs procedure (under Statistics > Phi and Cramér's V).
+
+### What is the relationship between sample size and effect size?
+
+Effect size and sample size are theoretically independent. A large sample does not produce a larger effect size, and a small sample does not produce a smaller one. However, small samples produce less precise estimates of effect size (wider confidence intervals), which means the observed *d* in a small study may differ substantially from the true population *d*. This is one reason why Hedges' *g* correction is recommended for small samples.
+
+### Should I report effect size for non-significant results?
+
+Yes. APA 7th edition requires effect size reporting for all inferential tests, regardless of whether the result is statistically significant. Non-significant results with effect size estimates are valuable for several reasons: they inform power analyses for future studies, they contribute to meta-analyses, and they prevent publication bias by providing a complete picture of the evidence. A non-significant result with *d* = 0.45 tells a very different story than one with *d* = 0.02.
 
 ## Using StatMate to Calculate Effect Sizes Automatically
 

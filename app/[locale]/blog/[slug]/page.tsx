@@ -150,6 +150,30 @@ const HOW_TO_STEPS: Record<string, { name: string; text: string }[]> = {
   ],
 };
 
+// FAQ data for blog posts (used for FAQPage JSON-LD schema)
+const FAQ_DATA: Record<string, { question: string; answer: string }[]> = {
+  "anova-apa-reporting": [
+    { question: "What is the difference between eta squared and partial eta squared?", answer: "Eta squared shows the proportion of total variance explained by a factor, while partial eta squared shows the proportion after removing other factors' effects. They are identical in one-way ANOVA but differ in factorial designs. Most software, including SPSS, reports partial eta squared by default." },
+    { question: "Should I report post-hoc tests if ANOVA is not significant?", answer: "No. Post-hoc tests are only appropriate when the omnibus F test is significant. A non-significant ANOVA means there is insufficient evidence of group differences, so pairwise comparisons are not warranted." },
+    { question: "What does F(2, 87) mean?", answer: "The first number (2) is the between-groups degrees of freedom, calculated as the number of groups minus 1. The second number (87) is the within-groups degrees of freedom, calculated as the total sample size minus the number of groups." },
+    { question: "Can I use Cohen's d as the effect size for ANOVA?", answer: "No. Cohen's d is designed for two-group comparisons. For the omnibus ANOVA test, use partial eta squared or omega squared. You may report Cohen's d for individual pairwise comparisons in post-hoc analyses." },
+    { question: "What if my data violates the normality assumption?", answer: "ANOVA is robust to moderate violations of normality, especially with equal group sizes and n > 30 per group. For severe violations, consider the Kruskal-Wallis H test as a non-parametric alternative." },
+    { question: "How do I choose between Tukey HSD and Bonferroni?", answer: "Tukey HSD is designed specifically for all pairwise comparisons and is more powerful when comparing every group pair. Bonferroni is more flexible and can be used for planned comparisons or a subset of pairwise comparisons." },
+    { question: "Should I report effect size even when results are not significant?", answer: "Yes. APA 7th edition requires effect sizes for all inferential tests, regardless of significance. Non-significant effect sizes are valuable for meta-analyses and future power analyses." },
+    { question: "What is the difference between one-way, two-way, and repeated measures ANOVA?", answer: "One-way ANOVA compares means across groups of one independent variable. Two-way ANOVA tests two independent variables and their interaction simultaneously. Repeated measures ANOVA compares means when the same participants are measured multiple times." },
+  ],
+  "understanding-effect-size": [
+    { question: "Can Cohen's d be greater than 1?", answer: "Yes. A d value greater than 1 means the two group means differ by more than one standard deviation. While uncommon, very large effects in some domains can produce d values of 2.0 or higher." },
+    { question: "What does a negative effect size mean?", answer: "A negative effect size indicates the direction of the difference, not a smaller effect. For example, a negative d means the second group scored higher than the first. The sign depends on which group is subtracted from which." },
+    { question: "Which effect size should I report for my analysis?", answer: "Use Cohen's d for t-tests, partial eta squared for ANOVA, r or R-squared for correlation and regression, and Cramér's V for chi-square tests. Always match the effect size measure to the statistical test." },
+    { question: "Does a large effect size prove causation?", answer: "No. Effect size quantifies the magnitude of a relationship or difference but says nothing about causation. Causal claims require experimental designs with proper controls, not just large effect sizes." },
+    { question: "What is the effect size for non-parametric tests?", answer: "For the Mann-Whitney U test, report rank-biserial correlation r. For the Wilcoxon signed-rank test, report r = Z / sqrt(N). For the Kruskal-Wallis test, report epsilon squared. For Friedman's test, report Kendall's W." },
+    { question: "How does SPSS calculate effect sizes?", answer: "SPSS reports partial eta squared by default for ANOVA. For t-tests, Cohen's d must be calculated manually or using a calculator. SPSS does not automatically output Cohen's d or omega squared." },
+    { question: "What is the relationship between sample size and effect size?", answer: "Effect size and sample size are independent — a larger sample does not create a larger effect. However, small samples produce less precise effect size estimates with wider confidence intervals." },
+    { question: "Should I report effect size for non-significant results?", answer: "Yes. APA 7th edition requires effect sizes for all inferential tests. Non-significant results with effect sizes provide valuable information for meta-analyses and statistical power planning." },
+  ],
+};
+
 export async function generateStaticParams() {
   const koSlugs = getAllSlugs("ko").map((slug) => ({ locale: "ko", slug }));
   const enSlugs = getAllSlugs("en").map((slug) => ({ locale: "en", slug }));
@@ -225,6 +249,22 @@ export default async function BlogPostPage({
       }
     : null;
 
+  const faqItems = FAQ_DATA[slug];
+  const faqJsonLd = faqItems
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <div className="mx-auto max-w-3xl">
       <script
@@ -235,6 +275,12 @@ export default async function BlogPostPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        />
+      )}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
 
