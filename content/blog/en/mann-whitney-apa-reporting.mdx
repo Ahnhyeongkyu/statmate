@@ -1,9 +1,9 @@
 ---
 title: "How to Report Mann-Whitney U Test Results in APA Format (With Examples)"
-description: "Complete guide to reporting Mann-Whitney U test results in APA 7th edition format. Includes U statistic, z-score, exact p-value, effect size r, and copy-paste templates."
+description: "Complete guide to reporting Mann-Whitney U test results in APA 7th edition format. Includes U statistic, z-score, exact p-value, effect size r, rank-biserial correlation, confidence intervals, and copy-paste templates."
 date: "2026-03-02"
 category: "APA Reporting"
-tags: ["Mann-Whitney U", "APA format", "nonparametric test", "effect size", "statistical reporting", "Wilcoxon rank-sum"]
+tags: ["Mann-Whitney U", "APA format", "nonparametric test", "effect size", "statistical reporting", "Wilcoxon rank-sum", "rank-biserial correlation", "confidence interval", "Hodges-Lehmann estimator", "Bonferroni correction", "Kruskal-Wallis", "common language effect size"]
 ---
 
 ## When You Need the Mann-Whitney U Test
@@ -89,29 +89,280 @@ Always clarify the direction of the effect:
 >
 > Pain ratings were compared between the treatment group (*n* = 25) and control group (*n* = 25) using a Mann-Whitney U test. The treatment group reported significantly lower pain ratings (*Mdn* = 3.00, IQR = 2.00-5.00) than the control group (*Mdn* = 6.00, IQR = 4.00-7.50), *U* = 156.50, *z* = -3.24, *p* = .001, *r* = .46. The effect size indicated a medium-to-large difference between groups.
 
-## Common Mistakes to Avoid
+## Mann-Whitney U vs. Independent Samples t-Test: When to Choose
 
-### 1. Reporting Means Instead of Medians
+Selecting between the Mann-Whitney U test and the independent samples t-test is one of the most common decisions in two-group comparisons. Making the wrong choice can reduce statistical power or produce misleading results.
 
-The Mann-Whitney U test is based on ranks, not means. Always report medians and IQRs as your descriptive statistics.
+### Decision Criteria
 
-### 2. Omitting the Effect Size
+The primary consideration is whether your data satisfy the assumptions required by the t-test. The independent samples t-test assumes that the dependent variable is approximately normally distributed within each group and that both groups share similar variance (homogeneity of variance). When these assumptions hold, the t-test is the preferred choice because it has greater statistical power to detect true differences.
 
-Many researchers report only U and *p*, but APA 7th edition requires an effect size measure. Always include *r* or rank-biserial correlation.
+Use the Mann-Whitney U test when any of the following conditions are present:
 
-### 3. Not Specifying Exact vs. Asymptotic p
+1. **Non-normal distribution**: A Shapiro-Wilk test yields *p* < .05, or Q-Q plots reveal substantial departures from normality.
+2. **Ordinal data**: The outcome is measured on an ordinal scale (e.g., Likert items, ranking data).
+3. **Severe outliers**: Extreme values distort group means but have minimal impact on medians and ranks.
+4. **Small samples with unknown distributions**: When *n* < 15-20 per group and normality cannot be verified.
 
-For small samples (*n* < 20 per group), the exact *p* value is more accurate than the asymptotic approximation. Note which you are reporting.
+### Power Comparison
 
-### 4. Forgetting the z-Score
+When all assumptions are met, the t-test is more powerful. The asymptotic relative efficiency (ARE) of the Mann-Whitney U test compared to the t-test is approximately 0.955 for normally distributed data. This means the Mann-Whitney test requires about 5% more observations to achieve the same power. However, when distributions are skewed, heavy-tailed, or contaminated with outliers, the Mann-Whitney U test can be substantially more powerful than the t-test.
 
-The *U* statistic alone is hard to interpret without the *z*-score. Always include both.
+### APA Reporting for Test Justification
 
-### 5. Confusing U Values
+Always justify your test choice in the results section:
 
-Some software reports the *U* for each group (U<sub>1</sub> and U<sub>2</sub>). Convention is to report the smaller value, but be explicit about which group it refers to.
+> Shapiro-Wilk tests indicated significant departures from normality in both the treatment group, *W* = 0.85, *p* = .002, and the control group, *W* = 0.89, *p* = .012. Consequently, a Mann-Whitney U test was used instead of an independent samples t-test.
 
-## When to Use Mann-Whitney U vs. Independent Samples t-Test
+## Reporting Mann-Whitney U with Confidence Intervals
+
+APA 7th edition strongly recommends reporting confidence intervals alongside point estimates. For the Mann-Whitney U test, confidence intervals can be computed for the Hodges-Lehmann estimator and for the effect size.
+
+### The Hodges-Lehmann Estimator
+
+The Hodges-Lehmann estimator provides a robust estimate of the location shift between two groups. It is calculated as the median of all pairwise differences between observations in the two groups. Unlike the difference in medians, the Hodges-Lehmann estimator is directly related to the Mann-Whitney U statistic and provides a meaningful point estimate of the treatment effect.
+
+For example, if the Hodges-Lehmann estimate is -3.00, this indicates that the treatment group's values are approximately 3 units lower than the control group's values.
+
+### Confidence Interval for the Location Shift
+
+The 95% confidence interval for the Hodges-Lehmann estimator is based on the ordered set of pairwise differences. Software packages such as R (using `wilcox.test` with `conf.int = TRUE`) and SPSS can compute this interval directly.
+
+**APA reporting example with Hodges-Lehmann CI:**
+
+> A Mann-Whitney U test revealed that pain ratings were significantly lower in the treatment group (*Mdn* = 3.00) than in the control group (*Mdn* = 6.00), *U* = 156.50, *z* = -3.24, *p* = .001. The Hodges-Lehmann estimate of the location shift was -3.00, 95% CI [-4.50, -1.50], *r* = .46.
+
+### Confidence Interval for Effect Size
+
+You can also report a confidence interval for the rank-biserial correlation. This requires bootstrapping or using specialized formulas for the variance of *r*<sub>rb</sub>. When available, include it in your report:
+
+> *U* = 156.50, *z* = -3.24, *p* = .001, *r*<sub>rb</sub> = .50, 95% CI [.22, .71].
+
+Including confidence intervals strengthens your report by conveying the precision of your estimates and allowing readers to evaluate the range of plausible effects.
+
+## Effect Size for Mann-Whitney U: A Complete Guide
+
+Effect size is a critical component of APA reporting. For the Mann-Whitney U test, two effect size measures are commonly used: the rank-biserial correlation and the *r* statistic derived from the *z*-score.
+
+### Rank-Biserial Correlation (*r*<sub>rb</sub>)
+
+The rank-biserial correlation is the preferred effect size for Mann-Whitney U because it has a direct probabilistic interpretation. It is calculated as:
+
+> *r*<sub>rb</sub> = 1 - (2*U*) / (*n*<sub>1</sub> &times; *n*<sub>2</sub>)
+
+This value ranges from -1 to +1. A positive *r*<sub>rb</sub> indicates that observations in Group 1 tend to be larger than those in Group 2, and vice versa. The absolute value can be interpreted as the probability that a randomly selected observation from one group exceeds one from the other, rescaled to a correlation metric.
+
+**APA reporting example with rank-biserial correlation:**
+
+> A Mann-Whitney U test revealed that customer satisfaction scores were significantly higher in the redesigned interface group (*Mdn* = 8.00) than in the original interface group (*Mdn* = 5.50), *U* = 89.00, *z* = -3.51, *p* < .001, *r*<sub>rb</sub> = .62.
+
+### The *r* = *z* / &radic;*N* Method
+
+An alternative and widely used method calculates *r* from the *z*-score:
+
+> *r* = *z* / &radic;*N*
+
+where *N* is the total sample size across both groups. This metric follows Cohen's (1988) benchmarks:
+
+| *r* value | Interpretation | Equivalent Cohen's *d* |
+|-----------|---------------|----------------------|
+| .10 | Small effect | 0.20 |
+| .30 | Medium effect | 0.50 |
+| .50 | Large effect | 0.80 |
+
+### Common Language Effect Size (CLES)
+
+The common language effect size (also known as the probability of superiority) provides the most intuitive interpretation. It represents the probability that a randomly selected observation from one group will be greater than a randomly selected observation from the other group.
+
+> CLES = *U* / (*n*<sub>1</sub> &times; *n*<sub>2</sub>)
+
+For example, a CLES of .75 means that in 75% of all possible pairs, an observation from Group 1 exceeds an observation from Group 2. The relationship between CLES and the rank-biserial correlation is: *r*<sub>rb</sub> = 1 - 2 &times; CLES (when U is defined as the number of times Group 2 exceeds Group 1).
+
+**APA reporting example with CLES:**
+
+> The common language effect size indicated that there was a 75% probability that a randomly selected patient from the treatment group would report lower pain than a randomly selected patient from the control group (CLES = .75).
+
+### When to Use Which Effect Size
+
+- Use **rank-biserial correlation** (*r*<sub>rb</sub>) when your software provides it or when you want the most interpretable effect size specific to the Mann-Whitney test.
+- Use ***r* = *z* / &radic;*N*** when you only have the *z*-score and total sample size. This method is simpler but may slightly differ from the rank-biserial correlation in the presence of ties.
+- Use **CLES** when communicating results to a non-technical audience or when the probabilistic interpretation is most relevant to your research question.
+
+### Reporting Effect Size with Confidence Intervals
+
+APA 7th edition recommends reporting confidence intervals for effect sizes when available:
+
+> The treatment group showed significantly higher scores (*Mdn* = 7.00) than the control group (*Mdn* = 4.00), *U* = 112.00, *z* = -2.89, *p* = .004, *r*<sub>rb</sub> = .54, 95% CI [.21, .76].
+
+## Reporting Mann-Whitney U with Tied Ranks
+
+Tied ranks occur when two or more observations have the same value. This is common with ordinal data such as Likert scales and rating scales. Ties affect the calculation of both the *U* statistic and its significance.
+
+### How Ties Affect the U Statistic
+
+When ties are present, all tied values receive the average of the ranks they would have occupied. For example, if two values tied at ranks 3 and 4, both receive a rank of 3.5. This midrank assignment preserves the total sum of ranks but changes the distribution of the test statistic.
+
+The standard *z*-score formula for Mann-Whitney U is:
+
+> *z* = (*U* - *n*<sub>1</sub>*n*<sub>2</sub>/2) / &radic;(*n*<sub>1</sub> &times; *n*<sub>2</sub> &times; (*n*<sub>1</sub> + *n*<sub>2</sub> + 1) / 12)
+
+When ties are present, a correction factor is applied to the denominator:
+
+> *z*<sub>corrected</sub> = (*U* - *n*<sub>1</sub>*n*<sub>2</sub>/2) / &radic;((*n*<sub>1</sub> &times; *n*<sub>2</sub>) / (*N*(*N* - 1))) &times; ((*N*<sup>3</sup> - *N*) / 12 - &Sigma;(*t*<sub>i</sub><sup>3</sup> - *t*<sub>i</sub>) / 12)
+
+where *t*<sub>i</sub> is the number of observations in the *i*th group of ties.
+
+### Exact vs. Asymptotic *p*-Values
+
+Software typically provides two types of *p*-values:
+
+| Method | When to use | Advantages |
+|--------|-------------|-----------|
+| **Exact *p*** | Small samples (*n* < 20 per group) | Accurate for small samples; no distributional assumptions |
+| **Asymptotic *p*** | Large samples (*n* &ge; 20 per group) | Computationally efficient; accurate for large samples |
+
+**Important guidelines:**
+- For samples with fewer than 20 observations per group, always report the exact *p*-value.
+- For larger samples, the asymptotic *p* is acceptable and will closely approximate the exact value.
+- When ties are extensive (more than 15-20% of values), note this in your report and prefer the tie-corrected *z*-statistic.
+
+**APA reporting example with tie correction:**
+
+> Due to the ordinal nature of the Likert-scale data, a Mann-Whitney U test with tie correction was used. Job satisfaction scores were significantly higher in the hybrid work group (*Mdn* = 4.00, IQR = 3.00-5.00) than in the on-site group (*Mdn* = 3.00, IQR = 2.00-4.00), *U* = 245.00, *z* = -2.67 (corrected for ties), *p* = .008, *r* = .38.
+
+## Mann-Whitney U for Multiple Groups: Pairwise Comparisons
+
+While the Mann-Whitney U test is designed for comparing exactly two independent groups, researchers often need to compare multiple groups using nonparametric methods. Understanding when and how to apply Mann-Whitney U in this context is essential.
+
+### When You Have More Than Two Groups
+
+If your research design involves three or more independent groups, do **not** run multiple Mann-Whitney U tests directly. This approach inflates the Type I error rate. For example, with four groups, you would need six pairwise comparisons, and the family-wise error rate would rise from .05 to approximately .26.
+
+Instead, first run a **Kruskal-Wallis H test** as an omnibus test. Only if the Kruskal-Wallis test is significant should you proceed with post-hoc pairwise comparisons.
+
+### Pairwise Mann-Whitney U with Bonferroni Correction
+
+After a significant Kruskal-Wallis result, you may use Mann-Whitney U tests for pairwise comparisons with Bonferroni correction. Divide the alpha level by the number of comparisons:
+
+> Adjusted &alpha; = .05 / *k*, where *k* = number of pairwise comparisons
+
+For three groups (A, B, C), there are three pairwise comparisons (A-B, A-C, B-C), so the adjusted alpha is .05 / 3 = .017.
+
+**APA reporting example:**
+
+> A Kruskal-Wallis H test showed a significant effect of teaching method on exam scores, *H*(2) = 14.32, *p* < .001, &epsilon;<sup>2</sup> = .16. Post-hoc pairwise Mann-Whitney U tests with Bonferroni correction (&alpha; = .017) revealed that Method A (*Mdn* = 82.00) produced significantly higher scores than Method C (*Mdn* = 68.00), *U* = 45.00, *z* = -3.21, *p* = .001, *r* = .52. No significant differences were found between Methods A and B (*p* = .089) or Methods B and C (*p* = .034).
+
+### Alternative: Dunn's Test
+
+An alternative to pairwise Mann-Whitney U tests is Dunn's test, which is specifically designed as a post-hoc procedure for the Kruskal-Wallis test. Dunn's test uses the rank sums from the original omnibus ranking (rather than re-ranking for each pair), which maintains consistency with the Kruskal-Wallis test.
+
+## Common Mistakes in Mann-Whitney U Reporting
+
+Beyond the basic reporting errors, researchers frequently make the following mistakes that weaken their statistical reporting.
+
+### Mistake 1: Comparing Means Instead of Ranks
+
+The Mann-Whitney U test compares rank distributions, not means. Reporting group means instead of medians misrepresents what the test actually evaluates.
+
+**Incorrect:**
+> The treatment group had a lower mean pain score (*M* = 3.42, *SD* = 1.86) than the control group (*M* = 5.94, *SD* = 2.13), *U* = 156.50, *p* = .001.
+
+**Correct:**
+> The treatment group reported lower pain ratings (*Mdn* = 3.00, IQR = 2.00-5.00) than the control group (*Mdn* = 6.00, IQR = 4.00-7.50), *U* = 156.50, *z* = -3.24, *p* = .001, *r* = .46.
+
+### Mistake 2: Ignoring Distribution Shape Assumptions
+
+While the Mann-Whitney U test does not assume normality, it does assume:
+
+- **Independence** of observations between groups
+- **Similar distribution shapes** for both groups (if you want to interpret results as a difference in medians)
+- **At least ordinal** measurement level
+
+If distribution shapes differ substantially (e.g., one group is skewed right and the other is skewed left), the Mann-Whitney U test is comparing *stochastic dominance*, not medians. In this case, report rank sums or mean ranks rather than medians.
+
+### Mistake 3: Missing Effect Size
+
+Reporting only *U* and *p* without an effect size is incomplete under APA 7th edition guidelines. Every inferential test requires an accompanying effect size measure.
+
+**Incomplete:** *U* = 156.50, *p* = .001
+
+**Complete:** *U* = 156.50, *z* = -3.24, *p* = .001, *r* = .46
+
+### Mistake 4: Not Reporting the z-Score
+
+The *U* statistic alone lacks context for interpretation because its value depends on sample sizes. The *z*-score standardizes *U* and is essential for computing the effect size *r*.
+
+### Mistake 5: Using Mann-Whitney U When a t-Test Is Appropriate
+
+Some researchers default to nonparametric tests unnecessarily. If your data are continuous, approximately normally distributed, and have equal variances, the independent samples t-test has greater statistical power. Use Mann-Whitney U only when parametric assumptions are violated.
+
+### Mistake 6: Failing to Justify the Test Choice
+
+Always explain why you chose the Mann-Whitney U test over the t-test. Mention the specific assumption violation (e.g., non-normality, ordinal data, outliers) that led to your choice.
+
+**Example justification:**
+> A Shapiro-Wilk test indicated that pain ratings were significantly non-normal in the treatment group, *W* = 0.87, *p* = .005. Therefore, a Mann-Whitney U test was used instead of an independent samples t-test.
+
+### Mistake 7: Confusing Exact and Asymptotic p-Values
+
+Researchers sometimes report asymptotic *p*-values for small samples where the normal approximation is inaccurate. With small samples (*n* < 20 per group), the exact *p*-value is more reliable. Always specify which type of *p*-value you are reporting:
+
+**Correct for small samples:**
+> An exact Mann-Whitney U test indicated that scores differed significantly between groups, *U* = 12.00, exact *p* = .023, *r*<sub>rb</sub> = .52.
+
+### Mistake 8: Incorrect Effect Size Calculation
+
+Using the wrong formula or misinterpreting the sign of the rank-biserial correlation is a common error. Remember that the sign of *r*<sub>rb</sub> depends on how *U* is defined and which group is treated as Group 1. Always verify the direction by comparing with group medians.
+
+## APA Table Format for Mann-Whitney U Results
+
+When reporting multiple group comparisons or presenting detailed results, an APA-formatted table is more efficient than inline text. Below is a complete table example.
+
+### Table Format for Two-Group Comparison
+
+**Table 1**
+
+*Mann-Whitney U Test Results for Pain Ratings by Treatment Condition*
+
+| Variable | Group | *n* | *Mdn* | IQR | *U* | *z* | *p* | *r* |
+|----------|-------|-----|-------|-----|-----|-----|-----|-----|
+| Pain rating | Treatment | 25 | 3.00 | 2.00-5.00 | 156.50 | -3.24 | .001 | .46 |
+| | Control | 25 | 6.00 | 4.00-7.50 | | | | |
+
+### Table Format for Multiple Outcome Variables
+
+When you have tested several dependent variables between the same two groups, present them in a single table:
+
+**Table 2**
+
+*Mann-Whitney U Test Results for Patient-Reported Outcomes by Treatment Group*
+
+| Outcome | Treatment *Mdn* (IQR) | Control *Mdn* (IQR) | *U* | *z* | *p* | *r* |
+|---------|----------------------|---------------------|-----|-----|-----|-----|
+| Pain (0-10) | 3.00 (2.00-5.00) | 6.00 (4.00-7.50) | 156.50 | -3.24 | .001 | .46 |
+| Anxiety (0-10) | 4.00 (2.50-5.50) | 5.00 (3.50-7.00) | 218.00 | -1.94 | .052 | .27 |
+| Mobility (1-5) | 4.00 (3.00-5.00) | 3.00 (2.00-4.00) | 187.50 | -2.56 | .010 | .36 |
+| Sleep quality (1-5) | 3.00 (2.00-4.00) | 3.00 (2.00-4.00) | 295.50 | -0.47 | .638 | .07 |
+
+### Table Notes
+
+Always include a table note specifying the test details:
+
+> *Note.* *N* = 50 (25 per group). Effect size *r* = *z* / &radic;*N*. Significance is two-tailed.
+
+### Guidelines for APA Tables
+
+- **Italicize** all statistical symbols (*U*, *z*, *p*, *r*, *Mdn*, *n*).
+- Use **horizontal lines** only at the top, below the header row, and at the bottom of the table.
+- Do not use vertical lines.
+- Report *p* values to three decimal places. Use *p* < .001 for very small values.
+- Bold significant *p* values if desired for visual emphasis, but this is optional.
+
+## When to Use Mann-Whitney U vs. Other Nonparametric Tests
+
+Choosing the correct nonparametric test depends on your research design. Here is a decision guide.
+
+### Mann-Whitney U vs. Independent Samples t-Test
 
 | Criterion | t-test | Mann-Whitney U |
 |-----------|--------|----------------|
@@ -120,8 +371,99 @@ Some software reports the *U* for each group (U<sub>1</sub> and U<sub>2</sub>). 
 | Outliers | Sensitive | Robust |
 | Sample size | Any (with normality) | Any |
 | Power | Higher (if assumptions met) | Slightly lower |
+| Effect size | Cohen's *d* | *r* or *r*<sub>rb</sub> |
 
 If your data meet normality assumptions, the t-test has more statistical power. When assumptions are violated, the Mann-Whitney U is the appropriate choice.
+
+### Mann-Whitney U vs. Wilcoxon Signed-Rank Test
+
+| Feature | Mann-Whitney U | Wilcoxon Signed-Rank |
+|---------|---------------|---------------------|
+| Design | Independent groups | Paired/repeated measures |
+| Comparison | Two separate groups | Same subjects measured twice |
+| Example | Treatment vs. control | Pre-test vs. post-test |
+| Parametric equivalent | Independent *t*-test | Paired *t*-test |
+
+**Key distinction:** Use Mann-Whitney U for *between-subjects* designs and Wilcoxon signed-rank for *within-subjects* designs.
+
+### Mann-Whitney U vs. Kruskal-Wallis H Test
+
+| Feature | Mann-Whitney U | Kruskal-Wallis H |
+|---------|---------------|-----------------|
+| Number of groups | Exactly 2 | 3 or more |
+| Post-hoc | Not needed | Dunn's test with Bonferroni correction |
+| Parametric equivalent | Independent *t*-test | One-way ANOVA |
+| Effect size | *r* | Epsilon squared (*&epsilon;*<sup>2</sup>) |
+
+**Key distinction:** Mann-Whitney U is limited to two-group comparisons. For three or more independent groups, use the Kruskal-Wallis H test. If the Kruskal-Wallis test is significant, follow up with pairwise Mann-Whitney U tests (with Bonferroni correction) or Dunn's test.
+
+### Decision Guide: Choosing the Right Nonparametric Test
+
+1. **How many groups are you comparing?**
+   - Two groups &rarr; Go to step 2
+   - Three or more groups &rarr; Kruskal-Wallis H test (independent) or Friedman test (repeated measures)
+
+2. **Are the groups independent or related?**
+   - Independent (different participants) &rarr; **Mann-Whitney U test**
+   - Related (same participants, pre/post) &rarr; **Wilcoxon signed-rank test**
+
+3. **Before choosing nonparametric, check:**
+   - Is normality violated? (Shapiro-Wilk *p* < .05)
+   - Are there severe outliers?
+   - Is the data ordinal?
+   - Is *n* < 30 per group with non-normal distribution?
+
+If none of these apply, consider the parametric alternative for greater statistical power.
+
+## Frequently Asked Questions
+
+### How do I calculate the Mann-Whitney U statistic by hand?
+
+Rank all observations from both groups together from smallest to largest. Sum the ranks for each group separately (*R*<sub>1</sub> and *R*<sub>2</sub>). Then calculate *U*<sub>1</sub> = *n*<sub>1</sub>*n*<sub>2</sub> + *n*<sub>1</sub>(*n*<sub>1</sub> + 1)/2 - *R*<sub>1</sub> and *U*<sub>2</sub> = *n*<sub>1</sub>*n*<sub>2</sub> + *n*<sub>2</sub>(*n*<sub>2</sub> + 1)/2 - *R*<sub>2</sub>. Report the smaller *U* value (or as specified by your software).
+
+### Can I use Mann-Whitney U with ordinal Likert-scale data?
+
+Yes. Mann-Whitney U is ideal for Likert-scale data because it operates on ranks rather than raw values. However, be aware that tied ranks are common with Likert scales, so use the tie-corrected *z*-statistic and report whether you used exact or asymptotic *p*-values.
+
+### What is the minimum sample size for a Mann-Whitney U test?
+
+The test can technically be performed with as few as 4 observations per group, but statistical power is very low. For adequate power to detect a medium effect (*r* = .30) with 80% power, aim for at least 20-30 observations per group.
+
+### Should I report one-tailed or two-tailed p-values?
+
+Use two-tailed *p*-values unless you had a strong directional hypothesis specified before data collection. APA guidelines recommend two-tailed tests as the default. If you use a one-tailed test, explicitly state this and justify the directional hypothesis.
+
+### Is Mann-Whitney U the same as the Wilcoxon rank-sum test?
+
+Yes, they are mathematically equivalent tests for comparing two independent groups. The Mann-Whitney U test and Wilcoxon rank-sum test produce the same *p*-value. Do not confuse the Wilcoxon rank-sum test with the Wilcoxon signed-rank test, which is for paired samples.
+
+### How do I interpret a non-significant Mann-Whitney U result?
+
+A non-significant result means there is insufficient evidence to conclude that the two groups differ. Report the full results including effect size: "The difference between groups was not statistically significant, *U* = 298.00, *z* = -0.42, *p* = .674, *r* = .06." The small effect size supports the interpretation that no meaningful difference exists.
+
+### Can I use Mann-Whitney U for more than two groups?
+
+No. Mann-Whitney U is designed for exactly two independent groups. For three or more groups, use the Kruskal-Wallis H test. If the Kruskal-Wallis test is significant, perform post-hoc pairwise Mann-Whitney U tests with Bonferroni correction.
+
+### What should I do if the two groups have very different sample sizes?
+
+Mann-Whitney U can handle unequal group sizes, but extreme imbalance (e.g., 10 vs. 100) reduces power and may affect the accuracy of asymptotic *p*-values. For very unequal sizes, use the exact *p*-value and consider whether the rank-biserial correlation is a more stable effect size measure than *r* = *z* / &radic;*N*.
+
+### What is the Hodges-Lehmann estimator and when should I report it?
+
+The Hodges-Lehmann estimator is the median of all pairwise differences between the two groups. It provides a robust measure of the location shift that is directly connected to the Mann-Whitney U test. Report it when you want to quantify the magnitude of the group difference in the original measurement units, especially when APA 7th edition encourages confidence intervals for effects.
+
+### How does Mann-Whitney U handle ties in the data?
+
+When multiple observations share the same value, they receive the average of the ranks they would have occupied (midranks). A tie correction factor is then applied to the variance of the U statistic when computing the z-score. Most statistical software applies this correction automatically. If ties are extensive (more than 15-20% of observations), mention the tie correction in your report.
+
+### Can I report both means and medians with a Mann-Whitney U test?
+
+You may report means alongside medians for descriptive completeness, but the primary descriptive statistic for a Mann-Whitney U test should always be the median with IQR. If you report means, clarify that the Mann-Whitney U test does not test mean differences and that the means are provided for additional context only.
+
+### What is the difference between one-sided and two-sided Mann-Whitney U tests?
+
+A two-sided test evaluates whether the distributions of the two groups differ in either direction, while a one-sided test evaluates whether one specific group tends to produce larger values. Most research uses two-sided tests by default. Use a one-sided test only if you have a strong a priori directional hypothesis, and report this choice explicitly in your methods section.
 
 ## Try It With Your Own Data
 

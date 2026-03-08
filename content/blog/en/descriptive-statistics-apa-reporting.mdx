@@ -169,6 +169,208 @@ Or in a table, add columns for skewness and kurtosis:
 
 When skewness or kurtosis exceeds acceptable ranges, note the transformation applied or explain why you chose a non-parametric alternative.
 
+## Reporting Skewness and Kurtosis in APA: A Deeper Look
+
+### When You Must Report Skewness and Kurtosis
+
+Although skewness and kurtosis are not required in every manuscript, there are specific situations where omitting them weakens your paper:
+
+1. **Justifying parametric tests.** If a reviewer questions why you used a t-test or ANOVA instead of a non-parametric alternative, skewness and kurtosis values provide quantitative evidence of approximate normality.
+2. **Small samples (n < 30).** With small samples, the Central Limit Theorem offers less protection. Reporting distributional shape statistics reassures readers that parametric assumptions are reasonable.
+3. **Screening for data quality.** Extreme skewness or kurtosis can indicate data entry errors, ceiling or floor effects, or the presence of distinct subpopulations.
+4. **Pre-registration compliance.** If your pre-registered analysis plan includes assumption checks, you must report the results of those checks, including skewness and kurtosis.
+
+### APA Reporting Format for Skewness and Kurtosis
+
+When reported in running text, use the full word rather than an abbreviation:
+
+> All variables demonstrated acceptable distributional properties (skewness range = -0.82 to 0.45; kurtosis range = -0.67 to 1.12).
+
+For individual variables:
+
+> Anxiety scores were approximately normally distributed (skewness = -0.34, SE = 0.22; kurtosis = 0.18, SE = 0.43).
+
+Including the standard error of skewness and kurtosis allows readers to compute z-scores for more formal normality assessment.
+
+### Interpretation Thresholds
+
+Researchers use three common thresholds, depending on the field and the strictness required:
+
+| Criterion | Skewness | Kurtosis | Source |
+|-----------|----------|----------|--------|
+| Liberal | -2.0 to +2.0 | -2.0 to +2.0 | George & Mallery (2019) |
+| Moderate | -1.0 to +1.0 | -1.0 to +1.0 | Hair et al. (2019) |
+| Conservative | -0.5 to +0.5 | -0.5 to +0.5 | Bulmer (1979) |
+
+Most social science research uses the liberal or moderate criterion. If your values fall outside the chosen threshold, you have three options:
+
+1. **Apply a transformation** (log, square root, or inverse) and report both the original and transformed distributions.
+2. **Switch to a non-parametric test** and explain why.
+3. **Justify proceeding with the parametric test** by citing the robustness of your chosen method to distributional violations, especially with large samples.
+
+### Excess Kurtosis vs. Kurtosis
+
+Be aware that some software packages report **excess kurtosis** (kurtosis minus 3), where a normal distribution has a value of 0. Others report **regular kurtosis**, where a normal distribution has a value of 3. SPSS and R report excess kurtosis by default. Always specify which version you are reporting and what your software outputs.
+
+## APA Table Format for Comprehensive Descriptive Statistics
+
+When your study involves multiple variables that require a complete distributional summary, a comprehensive descriptive statistics table consolidates all information in one place. This is especially useful in psychometric studies, scale development research, and any study where assumption checking is important.
+
+### Complete Table Template
+
+**Table 3**
+
+*Descriptive Statistics for Study Variables (N = 245)*
+
+| Variable | *M* | *SD* | Min | Max | Skewness | Kurtosis |
+|----------|------|------|-----|-----|----------|----------|
+| Anxiety (GAD-7) | 8.42 | 5.18 | 0 | 21 | 0.65 | -0.38 |
+| Depression (PHQ-9) | 7.35 | 5.92 | 0 | 27 | 1.12 | 0.84 |
+| Sleep quality (PSQI) | 6.80 | 3.45 | 0 | 18 | 0.48 | -0.22 |
+| Life satisfaction (SWLS) | 22.60 | 6.74 | 5 | 35 | -0.34 | -0.51 |
+| Self-efficacy (GSE) | 30.15 | 4.88 | 10 | 40 | -0.12 | 0.18 |
+
+*Note.* GAD-7 = Generalized Anxiety Disorder 7-item scale (range: 0–21); PHQ-9 = Patient Health Questionnaire 9-item scale (range: 0–27); PSQI = Pittsburgh Sleep Quality Index (range: 0–21); SWLS = Satisfaction with Life Scale (range: 5–35); GSE = General Self-Efficacy Scale (range: 10–40). Higher scores indicate greater levels of the construct measured.
+
+### Table Design Principles
+
+1. **Include scale names and abbreviations.** Place the full scale name (or a recognizable abbreviation) in the Variable column so readers can identify each measure without cross-referencing.
+2. **Add Min and Max columns.** Reporting the observed minimum and maximum shows the actual range of your data. This helps readers spot potential floor or ceiling effects.
+3. **Use the Note for scale information.** Define all abbreviations, state the possible range of each scale, and indicate what higher scores mean.
+4. **Align decimal points.** Every value in a numeric column should have the same number of decimal places.
+5. **Order variables logically.** Group related variables together (e.g., all mental health scales, then all demographic variables) rather than listing alphabetically.
+
+### When to Add Confidence Intervals
+
+Some journals and advisors require 95% confidence intervals for means. Add a CI column when:
+
+- Your study is primarily descriptive (no inferential tests follow).
+- You are reporting population estimates from a survey.
+- Your field emphasizes estimation over significance testing.
+
+The format is: 95% CI [lower, upper]. For example: *M* = 25.40, 95% CI [24.12, 26.68].
+
+## Descriptive Statistics for Categorical Variables: A Detailed Guide
+
+### What Categorical Descriptive Statistics Include
+
+For categorical (nominal or ordinal) variables, the relevant descriptive statistics are:
+
+- **Frequency (*n*):** The count of observations in each category.
+- **Percentage (%):** The proportion of the total sample in each category.
+- **Mode:** The most frequently occurring category.
+- **Cumulative percentage:** The running total of percentages across ordered categories (ordinal data only).
+
+### Reporting the Mode in APA
+
+The mode is rarely reported in isolation. It appears most often when describing the typical response on a Likert-type item or identifying the most common category in a distribution:
+
+> The modal response to the item "I feel confident about my statistical skills" was "Agree" (selected by 38.2% of participants).
+
+### Complete Categorical Table
+
+**Table 4**
+
+*Frequency Distribution of Employment Status (N = 350)*
+
+| Employment Status | *n* | % | Cumulative % |
+|-------------------|-----|------|--------------|
+| Full-time | 168 | 48.0 | 48.0 |
+| Part-time | 87 | 24.9 | 72.9 |
+| Self-employed | 42 | 12.0 | 84.9 |
+| Unemployed | 31 | 8.9 | 93.7 |
+| Retired | 22 | 6.3 | 100.0 |
+
+*Note.* Percentages may not sum to exactly 100% due to rounding.
+
+### Handling Missing Data in Categorical Reports
+
+When participants skip a question or when data are missing, you have two standard approaches:
+
+1. **Report valid percentages.** Calculate percentages based on the number of participants who actually responded. State the number of missing cases:
+
+> Of the 350 participants, 12 did not report their employment status. Among those who responded (*n* = 338), 168 (49.7%) were employed full-time.
+
+2. **Include a "Missing" category.** Add a row for missing data so the reader sees the total sample:
+
+| Category | *n* | % |
+|----------|-----|------|
+| Full-time | 168 | 48.0 |
+| Missing | 12 | 3.4 |
+| **Total** | **350** | **100.0** |
+
+### Multiple-Response Variables
+
+When participants can select more than one category (e.g., "Select all that apply"), percentages will exceed 100%. In this case, state explicitly:
+
+> Participants could select multiple barriers to seeking treatment. The most frequently endorsed barriers were cost (*n* = 142, 40.6%), stigma (*n* = 118, 33.7%), and lack of time (*n* = 95, 27.1%). Percentages exceed 100% because participants could endorse multiple options.
+
+## Visualizations to Accompany Descriptive Statistics
+
+### Why Visualizations Matter
+
+Descriptive statistics tables present precise numerical summaries, but they cannot reveal distributional shape, outliers, or subtle patterns as effectively as graphs. APA 7th edition encourages the use of figures when they add information that tables alone cannot convey.
+
+### Histograms
+
+**When to use:** To display the distribution of a single continuous variable.
+
+A histogram divides the data range into bins and shows the frequency of observations in each bin. It reveals whether the distribution is symmetric, skewed, bimodal, or contains gaps.
+
+**APA formatting for histograms:**
+- Label the x-axis with the variable name and units.
+- Label the y-axis as "Frequency" or "Count."
+- Include a figure number and italicized title below the figure (APA 7th edition places titles above figures).
+- Use a sans-serif font, consistent with APA figure guidelines.
+
+**When to choose a histogram over a table:** When your primary goal is to assess normality, identify outliers, or communicate the shape of the distribution to readers.
+
+### Box Plots
+
+**When to use:** To compare distributions across groups or to highlight medians, quartiles, and outliers.
+
+A box plot displays the median (center line), the interquartile range (box), the range (whiskers), and any outliers (individual points). It is more compact than a histogram and excels at comparing multiple groups side by side.
+
+**APA formatting for box plots:**
+- Label the x-axis with group names.
+- Label the y-axis with the variable name and units.
+- Identify outliers with individual points.
+- Use a figure note to explain the meaning of box components if your audience may be unfamiliar.
+
+**When to choose a box plot over a histogram:** When comparing distributions across two or more groups, when space is limited, or when you want to emphasize medians and outliers.
+
+### Bar Charts for Categorical Variables
+
+**When to use:** To display frequencies or percentages of categorical variables.
+
+Bar charts are the standard visualization for categorical data. Each bar represents a category, and its height corresponds to the frequency or percentage.
+
+**Key rules:**
+- Bars should not touch (unlike histograms, where bars are adjacent).
+- Order bars meaningfully: by frequency (highest to lowest), by natural order (e.g., education levels), or alphabetically if no natural order exists.
+- Include error bars (95% CIs or standard errors) when displaying means per category.
+
+### Scatter Plots
+
+**When to use:** To display the relationship between two continuous variables.
+
+Scatter plots are essential when reporting correlations. They help readers judge the strength and direction of the relationship and spot nonlinearity or outliers.
+
+**APA formatting:**
+- Place the predictor on the x-axis and the outcome on the y-axis.
+- Add a trend line if reporting regression results.
+- Report the correlation coefficient in the figure title or note.
+
+### Choosing the Right Visualization
+
+| Data Type | Recommended Figure | Purpose |
+|-----------|--------------------|---------|
+| One continuous variable | Histogram | Distribution shape |
+| One continuous variable, multiple groups | Box plot | Group comparison |
+| One categorical variable | Bar chart | Frequency display |
+| Two continuous variables | Scatter plot | Relationship display |
+| One continuous + one categorical | Grouped box plot or bar chart with error bars | Group differences |
+
 ## Common Mistakes in Reporting Descriptive Statistics
 
 ### Not Reporting SD Alongside M
@@ -195,9 +397,67 @@ Reserve tables for more complex data.
 
 Raw numbers need interpretation. After presenting *M* = 25.40, *SD* = 5.32, briefly explain what the scale measures and what the values mean. For example, note the possible range of the scale and what higher scores indicate.
 
+### Reporting Median with Standard Deviation
+
+The median (*Mdn*) and the standard deviation (*SD*) come from different statistical frameworks. The median is a measure of central tendency for skewed or ordinal data, while *SD* is based on deviations from the mean. Pairing *Mdn* with *SD* is conceptually inconsistent. Instead, pair the median with the interquartile range (IQR) or the full range:
+
+> Correct: *Mdn* = 45.00, IQR = 32.00–61.00
+
+> Incorrect: *Mdn* = 45.00, *SD* = 12.30
+
+If you report both central tendency measures, pair each with its appropriate spread measure: *M* with *SD*, and *Mdn* with IQR.
+
+### Ignoring Outliers
+
+Outliers can dramatically affect means, standard deviations, and all subsequent analyses. Failing to screen for and report outliers is a common oversight. APA does not mandate a specific outlier detection method, but common approaches include:
+
+- Values beyond 3 standard deviations from the mean.
+- Values beyond 1.5 times the interquartile range from Q1 or Q3.
+- Examination of box plots for individual points beyond the whiskers.
+
+When outliers are present, report results both with and without them if their removal changes the conclusions. Explain your decision to retain or remove them with a clear rationale.
+
+### Too Many or Too Few Decimal Places
+
+APA recommends two decimal places for most descriptive statistics. Reporting four or five decimal places (*M* = 25.4023) implies false precision and clutters tables. Conversely, reporting zero decimal places (*M* = 25) loses meaningful information. Follow the two-decimal-place convention consistently throughout your paper.
+
 ### Omitting Descriptive Statistics Entirely
 
 Some researchers skip descriptive statistics and go straight to inferential tests. APA 7th edition is explicit that sufficient statistics should be presented to allow the reader to fully understand the analyses. This always includes at minimum *M*, *SD*, and *N* (or *n*) for each group.
+
+## Frequently Asked Questions
+
+### How many decimal places should I use for means and standard deviations?
+
+Report means (*M*) and standard deviations (*SD*) to two decimal places with trailing zeros. Write *M* = 25.40, not *M* = 25.4. This applies to all continuous descriptive statistics in your manuscript. The exception is when the original measurement has no decimal places (e.g., age in whole years), though even then, two decimal places are standard practice in APA.
+
+### Should I report descriptive statistics in a table or in the text?
+
+Use text when you have one or two groups with a single dependent variable. Use a table when you have three or more groups, multiple dependent variables, or both. Tables with fewer than two rows and two columns of data are generally unnecessary. The key principle is efficiency: present numbers in whichever format lets readers absorb them most quickly without redundancy.
+
+### When should I report the median instead of the mean?
+
+Report the median (*Mdn*) instead of or alongside the mean when your data are substantially skewed, contain extreme outliers, or are measured on an ordinal scale. Common examples include income data, response time data, and individual Likert-scale items. If you report the median, pair it with the interquartile range (IQR) rather than the standard deviation.
+
+### Do I need to report skewness and kurtosis in every paper?
+
+No. Skewness and kurtosis are required only when you need to justify your choice of parametric versus non-parametric tests or when your analysis plan includes explicit assumption checking. However, many reviewers in psychology and education expect these values, especially for small samples where the Central Limit Theorem provides less protection.
+
+### What is the difference between *n* and *N* in APA format?
+
+*N* (uppercase, italicized) refers to the total number of participants in the entire sample. *n* (lowercase, italicized) refers to the number of participants in a specific subgroup or condition. Always report *N* for the total sample and *n* for subgroups so readers can evaluate group sizes and statistical power.
+
+### How do I report percentages in APA format?
+
+Report frequencies and percentages together: "45 (37.5%)." Use one decimal place for percentages unless they are whole numbers. Do not begin a sentence with a numeral; instead restructure: "Thirty-seven percent of participants..." In tables, present the percentage symbol (%) in the column header, not in each cell.
+
+### Should I report both M and SD for every variable?
+
+Yes. A mean without a standard deviation is incomplete because it provides no information about variability. Readers need the *SD* to evaluate whether the mean is representative of the data, to assess group overlap, and to interpret effect sizes. APA 7th edition requires both for all continuous variables.
+
+### How do I report descriptive statistics for Likert-scale data?
+
+This depends on whether you treat Likert items individually or as a composite scale. For individual items (ordinal data), report the median and frequency distribution. For composite scales computed by summing or averaging multiple items (treated as continuous), report the mean and standard deviation. Always state the possible range of the scale and what higher scores indicate.
 
 ## Descriptive Statistics Checklist
 

@@ -1,9 +1,9 @@
 ---
 title: "How to Report Wilcoxon Signed-Rank Test in APA Format: Z, W, Effect Size & Examples"
-description: "Step-by-step guide to reporting Wilcoxon signed-rank test results in APA 7th edition. Includes T/W/Z statistics, rank-biserial correlation effect size, and copy-ready examples."
+description: "Step-by-step guide to reporting Wilcoxon signed-rank test results in APA 7th edition. Includes T/W/Z statistics, rank-biserial correlation effect size, Hodges-Lehmann estimator, pre-post designs, confidence intervals, and copy-ready examples."
 date: "2026-03-07"
 category: "APA Reporting"
-tags: ["Wilcoxon signed-rank APA", "Wilcoxon test reporting", "nonparametric paired test APA", "rank-biserial correlation", "Wilcoxon effect size", "paired samples nonparametric"]
+tags: ["Wilcoxon signed-rank APA", "Wilcoxon test reporting", "nonparametric paired test APA", "rank-biserial correlation", "Wilcoxon effect size", "paired samples nonparametric", "Hodges-Lehmann estimator", "Wilcoxon confidence interval", "pre-post design Wilcoxon", "Wilcoxon vs paired t-test", "exact vs asymptotic Wilcoxon", "Wilcoxon tied ranks"]
 ---
 
 ## When to Use the Wilcoxon Signed-Rank Test
@@ -165,57 +165,217 @@ Key principles for non-significant results:
 - Describe the direction of any observed trend if relevant.
 - Avoid language implying the intervention "had no effect." Instead, state that the test did not detect a significant effect.
 
-## Wilcoxon vs Paired t-Test: Decision Guide
+## Wilcoxon Signed-Rank vs. Paired t-Test: Decision Criteria
 
-Choosing between the Wilcoxon signed-rank test and the paired samples t-test depends on your data characteristics, not personal preference.
+Choosing between the Wilcoxon signed-rank test and the paired samples t-test is one of the most common methodological decisions in repeated-measures research. The choice should be guided by data characteristics, study design, and the specific research question -- not personal preference or convenience.
 
-| Criterion | Paired t-Test | Wilcoxon Signed-Rank |
-|-----------|--------------|---------------------|
-| Data scale | Interval or ratio | Ordinal or continuous |
-| Distribution of differences | Approximately normal | Any distribution |
-| Outlier sensitivity | High | Low (uses ranks) |
-| What it compares | Means | Median / rank distribution |
-| Effect size | Cohen's *d* | Rank-biserial *r* |
-| Statistical power | Higher (assumptions met) | ~95% of paired t-test |
-| Small samples (n < 20) | Unreliable unless very normal | Appropriate |
-| Descriptive statistics | Mean and SD | Median and IQR |
+### Assumption Violations That Favor Wilcoxon
 
-### When to Choose the Paired t-Test
+The paired t-test assumes that the differences between paired observations are normally distributed. When this assumption is violated, the Wilcoxon signed-rank test becomes the appropriate alternative. Key indicators include:
 
-- Differences between pairs are approximately normally distributed.
-- The measurement scale is continuous with meaningful intervals.
-- You want maximum statistical power and your assumptions hold.
+- **Shapiro-Wilk test on differences is significant (*p* < .05).** This provides formal evidence of non-normality, though the test is overly sensitive in large samples.
+- **Skewness exceeds acceptable bounds.** If the skewness of the difference scores exceeds approximately 1.0 in absolute value, the t-test becomes unreliable, particularly with small samples.
+- **Heavy-tailed distributions.** Kurtosis values substantially above 3.0 indicate heavy tails that inflate Type I error rates for the t-test.
+- **Visible outliers in the differences.** Even a single extreme difference score can distort the mean and inflate the standard error, making the t-test misleading.
 
-### When to Choose the Wilcoxon Test
+### Statistical Power Comparison
 
-- Data are ordinal (e.g., Likert scales, rankings).
-- Differences are clearly non-normal, skewed, or contain outliers.
-- Sample size is small and you cannot verify normality.
-- You want a robust test that does not depend on distributional assumptions.
+A common concern is that choosing Wilcoxon sacrifices statistical power. Under perfect normality, the Wilcoxon test achieves approximately 95.5% of the power of the paired t-test -- a minimal loss. However, when the normality assumption is violated, the Wilcoxon test can actually be *more* powerful than the t-test because it is not distorted by outliers or skewed distributions.
 
-If both tests are plausible, running both and comparing results is a reasonable sensitivity analysis. If they agree, report the parametric test for its greater familiarity. If they disagree, report the Wilcoxon and explain why.
+For heavily skewed data, the power advantage of Wilcoxon over the t-test can be substantial. Simulation studies have shown that the Wilcoxon test maintains nominal Type I error rates under non-normality, while the paired t-test may become either too liberal or too conservative depending on the nature and degree of the violation.
 
-## Common Mistakes
+### APA Justification Template
 
-### 1. Confusing T, W, and Z Notation
+When reporting your choice, include a brief justification. Here is a template you can adapt:
 
-Different software packages and textbooks use *T*, *W*, *V*, and *Z* to mean different things. Always verify what your software is outputting and label it correctly in your report. If in doubt, report the *Z*-value with the rank sum in a note.
+> The Wilcoxon signed-rank test was used because the Shapiro-Wilk test indicated significant non-normality in the distribution of paired differences (*W* = 0.89, *p* = .003), and visual inspection of the histogram revealed a positively skewed distribution with two extreme outliers.
 
-### 2. Reporting Means Instead of Medians
+If you chose the paired t-test instead:
 
-The Wilcoxon test analyzes ranks, not raw values. Reporting means and standard deviations is misleading because the test does not evaluate whether means differ. Report medians and interquartile ranges as your descriptive statistics.
+> Because the Shapiro-Wilk test was not significant (*W* = 0.97, *p* = .42) and visual inspection confirmed approximate normality of the paired differences, a paired samples t-test was used to maximize statistical power.
 
-### 3. Omitting Effect Size
+| Decision Factor | Choose Paired t-Test | Choose Wilcoxon |
+|----------------|---------------------|----------------|
+| Differences normally distributed | Yes | -- |
+| Differences skewed or heavy-tailed | -- | Yes |
+| Ordinal measurement scale | -- | Yes |
+| Continuous interval/ratio scale | Yes | -- |
+| Outliers present in differences | -- | Yes |
+| Sample size > 30 pairs, mild non-normality | Yes (robust) | Either |
+| Sample size < 20 pairs, normality uncertain | -- | Yes |
 
-A statistically significant p-value says nothing about practical importance. Always compute and report the rank-biserial correlation. Many journals now require effect sizes for all statistical tests, and reviewers will flag their absence.
+## Effect Size for Wilcoxon Signed-Rank Test
 
-### 4. Not Justifying the Nonparametric Choice
+Beyond simply calculating the rank-biserial correlation from Z, there are important nuances in effect size reporting for the Wilcoxon signed-rank test that researchers should understand.
 
-Reviewers will ask why you did not use the more powerful paired t-test. Always provide a brief justification -- typically that the data are ordinal, that the Shapiro-Wilk test was significant, or that visual inspection revealed non-normality.
+### Matched-Pairs Rank-Biserial Correlation (r) in Detail
 
-### 5. Ignoring Tied Ranks
+The matched-pairs rank-biserial correlation is the preferred effect size because it directly reflects the proportion of favorable versus unfavorable pair differences. It can be calculated two ways:
 
-When multiple pairs have identical differences, tied ranks occur. Most software handles ties with a correction factor, but you should be aware that heavy ties can affect the test's precision. Mention ties if they are numerous.
+**Method 1: From the Z-statistic**
+
+*r* = *Z* / sqrt(*N*)
+
+This is the most commonly used formula. Here, *N* can refer to either the total number of pairs or the number of non-tied pairs, depending on the source. Be explicit about which definition you used.
+
+**Method 2: From the rank sums**
+
+*r* = (*R+* - *R-*) / (*R+* + *R-*)
+
+Where *R+* is the sum of ranks for positive differences and *R-* is the sum of ranks for negative differences. This method does not require Z and gives an intuitive interpretation: *r* = 1.0 means all differences favored one direction, while *r* = 0 means positive and negative ranks balanced perfectly.
+
+### Cohen's Benchmarks Applied to Wilcoxon
+
+Cohen's conventional benchmarks for *r* apply to the Wilcoxon effect size:
+
+| *r* | Label | Interpretation |
+|-----|-------|---------------|
+| .10 | Small | Detectable but trivial in most contexts |
+| .30 | Medium | Noticeable and potentially meaningful |
+| .50 | Large | Substantial and practically important |
+
+However, always interpret effect size in the context of your field. In clinical research, *r* = .20 may represent a clinically meaningful change in symptom severity. In educational research, *r* = .40 might be considered a strong intervention effect. Do not rely on arbitrary benchmarks without domain-specific reasoning.
+
+### APA Format for Effect Size
+
+Report the effect size immediately after the p-value, using the lowercase italic *r*:
+
+> *Z* = -3.41, *p* < .001, *r* = .54
+
+If you want to be explicit about the type of *r*:
+
+> *Z* = -3.41, *p* < .001, rank-biserial *r* = .54
+
+Some journals also accept the common language effect size (CLES), which expresses the probability that a randomly selected pair shows improvement:
+
+> The common language effect size indicated that 78% of participants showed improvement after the intervention.
+
+## Reporting Wilcoxon with Confidence Intervals
+
+Confidence intervals add precision to your effect estimates and are increasingly required by journals that follow APA 7th edition recommendations. For the Wilcoxon signed-rank test, the relevant confidence interval is constructed around the Hodges-Lehmann estimator.
+
+### The Hodges-Lehmann Estimator for Paired Data
+
+The Hodges-Lehmann estimator is the nonparametric analogue of the mean difference. For paired data, it is calculated as the median of all pairwise averages of the differences:
+
+1. Compute the difference score for each pair (*d_i* = post - pre).
+2. For each pair of difference scores (*d_i*, *d_j*), compute (*d_i* + *d_j*) / 2 (these are called Walsh averages).
+3. The Hodges-Lehmann estimator is the median of all Walsh averages.
+
+This estimator is robust to outliers and provides a meaningful point estimate of the typical shift between conditions, even when the distribution is skewed.
+
+### Confidence Interval for the Pseudo-Median Difference
+
+The 95% confidence interval for the Hodges-Lehmann estimator is derived from the Wilcoxon distribution. In R, you can obtain it by specifying `conf.int = TRUE` in the `wilcox.test()` function:
+
+```
+wilcox.test(post, pre, paired = TRUE, conf.int = TRUE)
+```
+
+The output provides the pseudo-median (Hodges-Lehmann estimate) and its confidence interval.
+
+### APA Reporting with Confidence Intervals
+
+Include the Hodges-Lehmann estimate and its confidence interval in your results:
+
+> A Wilcoxon signed-rank test indicated a statistically significant reduction in pain scores from baseline (*Mdn* = 7.00) to post-treatment (*Mdn* = 4.00), *Z* = -3.41, *p* < .001, *r* = .54. The Hodges-Lehmann estimate of the median difference was -2.50, 95% CI [-3.50, -1.75], indicating a clinically meaningful reduction in pain.
+
+This format is particularly valuable because:
+
+- The Hodges-Lehmann estimate gives a robust point estimate of the shift.
+- The confidence interval conveys the precision of the estimate.
+- Together with the median difference and effect size, readers can assess both statistical and practical significance.
+
+### When Confidence Intervals Are Especially Important
+
+Always include confidence intervals when your research involves clinical or applied outcomes where the magnitude of the difference matters. For example, a statistically significant reduction in pain ratings is only useful if the reduction is large enough to be clinically meaningful. The confidence interval helps determine whether the observed shift falls within a range of practical importance.
+
+## Wilcoxon for Pre-Post Designs
+
+Pre-post designs (also called before-after or repeated-measures designs) are among the most common applications of the Wilcoxon signed-rank test. Clinical trials, educational interventions, and therapy outcome studies frequently use this design, and the Wilcoxon test is appropriate whenever the paired differences are not normally distributed.
+
+### Reporting Baseline vs. Post-Treatment
+
+When reporting pre-post results, clearly describe the time points and what they represent. Include sample size, medians at each time point, and the direction of change:
+
+> Participants completed the Beck Depression Inventory-II (BDI-II) at baseline and after 12 weeks of cognitive behavioral therapy (*N* = 45). A Wilcoxon signed-rank test was used because BDI-II difference scores were significantly non-normal (Shapiro-Wilk *W* = 0.88, *p* < .001). BDI-II scores decreased significantly from baseline (*Mdn* = 28.00, IQR = 22.00-34.00) to post-treatment (*Mdn* = 16.00, IQR = 11.00-22.00), *Z* = -5.23, *p* < .001, *r* = .78. The Hodges-Lehmann estimate of the median reduction was 11.50 points, 95% CI [9.00, 14.00].
+
+### Handling Multiple Time Points
+
+Many longitudinal studies include more than two time points (e.g., baseline, mid-treatment, post-treatment, follow-up). The Wilcoxon signed-rank test compares only two related measurements at a time. For multiple time points, you have several options:
+
+**Option 1: Pairwise Wilcoxon tests with Bonferroni correction.** Test each pair of time points separately and adjust alpha for the number of comparisons. With three time points, you have three pairwise comparisons, so the adjusted alpha would be .05 / 3 = .017.
+
+> Pairwise Wilcoxon signed-rank tests with Bonferroni-corrected alpha (adjusted *p* = .017) revealed significant improvements from baseline to mid-treatment (*Z* = -3.12, *p* = .002, *r* = .46), from baseline to post-treatment (*Z* = -4.87, *p* < .001, *r* = .73), but not from mid-treatment to post-treatment (*Z* = -1.89, *p* = .059, *r* = .28).
+
+**Option 2: Friedman test as omnibus, followed by Wilcoxon post-hoc.** Use the Friedman test to determine whether any differences exist across time points, then conduct Wilcoxon signed-rank tests as post-hoc comparisons if the Friedman test is significant.
+
+> A Friedman test indicated a significant effect of time on depression scores, *chi-sq*(2) = 34.56, *p* < .001, *W* = .38. Post-hoc Wilcoxon signed-rank tests with Bonferroni correction were conducted to identify which time points differed.
+
+### Reporting Clinical Significance Alongside Statistical Significance
+
+In clinical and health research, statistical significance alone is insufficient. Reviewers and clinicians want to know whether the observed change is clinically meaningful. Report the proportion of participants who achieved clinically significant change:
+
+> Of the 45 participants, 33 (73.3%) demonstrated reliable clinical improvement (defined as a BDI-II decrease of 8 or more points), 9 (20.0%) showed no reliable change, and 3 (6.7%) showed reliable deterioration. The median change score was 11.50 points (IQR = 7.00-16.00).
+
+### Handling Dropouts and Missing Data
+
+Pre-post designs frequently involve participant attrition. Report the number of participants who completed both time points and consider the impact of missing data:
+
+> Of the 52 participants enrolled, 45 completed both baseline and post-treatment assessments (86.5% retention rate). Participants who dropped out did not differ significantly from completers on baseline BDI-II scores (Mann-Whitney *U* = 134, *p* = .312).
+
+## Common Mistakes in Wilcoxon Reporting
+
+### 1. Reporting Means Instead of Medians
+
+This is the most frequent error in Wilcoxon reporting. Because the test operates on ranks rather than raw values, the appropriate descriptive statistics are medians and interquartile ranges, not means and standard deviations. Reporting means is misleading because the test does not evaluate whether means differ.
+
+**Incorrect:** "Scores increased significantly from pre-test (*M* = 3.42, *SD* = 1.21) to post-test (*M* = 4.87, *SD* = 1.35)."
+
+**Correct:** "Scores increased significantly from pre-test (*Mdn* = 3.50, IQR = 2.75-4.25) to post-test (*Mdn* = 5.00, IQR = 4.00-5.50)."
+
+You may report both means and medians if your field expects it, but the medians must be included.
+
+### 2. Confusing Wilcoxon Signed-Rank with Wilcoxon Rank-Sum
+
+These are two different tests. The Wilcoxon signed-rank test compares two *related* (paired) samples, while the Wilcoxon rank-sum test (equivalent to the Mann-Whitney U test) compares two *independent* groups. This confusion is compounded by the fact that both carry the Wilcoxon name.
+
+- **Wilcoxon signed-rank test:** Paired samples (pre-post, matched pairs). Uses the *T* or *W* statistic based on signed ranks of differences.
+- **Wilcoxon rank-sum test / Mann-Whitney U:** Independent samples. Uses the *U* statistic based on combined rankings across both groups.
+
+Always specify the full name -- "Wilcoxon signed-rank test" -- on first mention to avoid ambiguity.
+
+### 3. Incorrect Effect Size Calculations
+
+Common errors in effect size calculation include:
+
+- Using the total sample size (*N* = total individuals) instead of the number of pairs when computing *r* = Z / sqrt(N). For a paired design with 30 participants, *N* = 30, not 60.
+- Forgetting to use the absolute value of Z when interpreting the magnitude. The sign indicates direction, not size.
+- Reporting Cohen's *d* instead of rank-biserial *r*. Cohen's *d* is appropriate for the paired t-test, not the Wilcoxon test.
+
+### 4. Ignoring Ties and Zero Differences
+
+When paired differences equal zero (ties with the zero point), these observations are typically excluded from the analysis, reducing the effective sample size. Many software packages do this automatically, but you should report the number of ties:
+
+> Of the 40 pairs, 3 had zero differences and were excluded, leaving 37 pairs for analysis.
+
+Additionally, when multiple pairs have the same non-zero absolute difference, tied ranks are assigned average rank values. Heavy ties reduce the test's discriminating ability. If ties are extensive (more than 15-20% of observations), mention this in your report.
+
+### 5. Missing Exact vs. Asymptotic Distinction
+
+For small samples (typically *n* < 20-25), the exact p-value from the Wilcoxon distribution should be used, not the large-sample Z approximation. Many software packages compute the exact test by default for small samples but switch to the Z approximation for larger samples.
+
+**For small samples:** Report the exact test statistic and exact p-value.
+
+> *T* = 12, *p*_exact = .023
+
+**For larger samples:** Report the Z approximation.
+
+> *Z* = -2.87, *p* = .004
+
+If your software provides both, report the exact p-value for small samples and note which method was used:
+
+> A Wilcoxon signed-rank test with exact significance was used due to the small sample size (*N* = 15).
 
 ## Wilcoxon APA Checklist
 
@@ -232,6 +392,42 @@ Before submitting your manuscript, verify that your Wilcoxon results section inc
 - Direction of the difference stated explicitly
 - Justification for choosing the nonparametric test
 - Ties addressed if numerous
+- Confidence interval for the Hodges-Lehmann estimate (if applicable)
+- Number of participants showing improvement, decline, and no change
+
+## Frequently Asked Questions
+
+### What is the difference between the Wilcoxon signed-rank test and the Wilcoxon rank-sum test?
+
+The Wilcoxon signed-rank test is for paired (related) samples, such as pre-test and post-test measurements from the same participants. The Wilcoxon rank-sum test (also called the Mann-Whitney U test) is for two independent groups. Despite sharing the Wilcoxon name, they test different hypotheses: the signed-rank test evaluates whether the median of paired differences is zero, while the rank-sum test evaluates whether one group tends to have larger values than the other.
+
+### Can I use the Wilcoxon signed-rank test with Likert scale data?
+
+Yes. The Wilcoxon signed-rank test is appropriate for ordinal data, including individual Likert-type items. Because it operates on ranks rather than raw values, it does not require the equal-interval assumption that the paired t-test needs. However, if you have a composite scale computed from multiple Likert items (which approximates a continuous distribution), a paired t-test may be acceptable if differences are approximately normal.
+
+### What sample size do I need for the Wilcoxon signed-rank test?
+
+There is no strict minimum, but at least 5-6 pairs are needed for the exact test to produce a significant result at alpha = .05. For adequate power to detect a medium effect (r = .30), aim for at least 25-30 pairs. The Z approximation becomes reliable with approximately 20 or more pairs. Always conduct a power analysis for your specific effect size and desired power level.
+
+### Should I report the exact or asymptotic p-value?
+
+For small samples (fewer than approximately 20-25 pairs), report the exact p-value because the normal approximation may not be accurate. For larger samples, the asymptotic (Z-based) p-value is acceptable and is what most software outputs by default. If your software provides both, report the exact value for small samples and note which method was used.
+
+### How do I handle zero differences (ties with zero)?
+
+Pairs with zero differences contribute no information about the direction of change and are excluded from the analysis by most software. Report the number of excluded pairs: "Of the 30 pairs, 4 had zero differences and were excluded, leaving 26 pairs for analysis." The effective sample size for computing the effect size should reflect the number of non-zero pairs, though practices vary across sources.
+
+### Can I use the Wilcoxon test for more than two time points?
+
+Not directly. The Wilcoxon signed-rank test compares exactly two related conditions. For three or more time points, use the Friedman test as the omnibus test, followed by pairwise Wilcoxon signed-rank tests with Bonferroni correction as post-hoc comparisons. Alternatively, conduct pairwise comparisons directly with an adjusted significance level.
+
+### What is the Hodges-Lehmann estimator and should I report it?
+
+The Hodges-Lehmann estimator is the nonparametric equivalent of the mean difference. For paired data, it equals the median of all Walsh averages of the difference scores. Reporting it with a confidence interval is recommended because it provides a robust point estimate of the typical shift between conditions, supplementing the median difference and effect size with a measure of precision.
+
+### Is the Wilcoxon test assumption-free?
+
+No. While the Wilcoxon signed-rank test does not assume normality of differences, it does assume that: (1) the paired differences are independent of each other, (2) the differences are measured on at least an ordinal scale, and (3) the distribution of differences is symmetric around the median (though this assumption is debated and the test is fairly robust to mild asymmetry). Violations of independence are more problematic than violations of symmetry.
 
 ## Try StatMate's Free Wilcoxon Calculator
 

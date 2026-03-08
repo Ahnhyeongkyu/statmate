@@ -1,9 +1,9 @@
 ---
 title: "How to Report Kruskal-Wallis Test in APA Format: H Statistic, Post-Hoc & Effect Size"
-description: "Complete guide to reporting Kruskal-Wallis H test results in APA 7th edition format. Includes Dunn's post-hoc test, epsilon-squared effect size, and copy-ready reporting examples."
+description: "Complete guide to reporting Kruskal-Wallis H test results in APA 7th edition format. Includes Dunn's post-hoc test, epsilon-squared effect size, pairwise Mann-Whitney U, multiple dependent variables, and copy-ready reporting examples."
 date: "2026-03-07"
 category: "APA Reporting"
-tags: ["Kruskal-Wallis APA", "Kruskal-Wallis test reporting", "nonparametric ANOVA APA", "Dunn post-hoc test", "epsilon squared effect size", "H test APA format"]
+tags: ["Kruskal-Wallis APA", "Kruskal-Wallis test reporting", "nonparametric ANOVA APA", "Dunn post-hoc test", "epsilon squared effect size", "H test APA format", "Kruskal-Wallis vs ANOVA", "pairwise Mann-Whitney", "eta squared Kruskal-Wallis", "multiple dependent variables nonparametric", "Bonferroni correction post-hoc", "nonparametric multiple comparisons"]
 ---
 
 ## When to Use the Kruskal-Wallis Test
@@ -72,77 +72,11 @@ Key formatting rules:
 
 Including the effect size transforms your analysis from a simple "significant or not" binary into a meaningful statement about practical importance.
 
-## Effect Size for Kruskal-Wallis
+## Kruskal-Wallis vs. One-Way ANOVA: When to Choose
 
-### Epsilon-Squared (*e*^2^)
+The decision between a Kruskal-Wallis test and a one-way ANOVA depends on your data characteristics and the assumptions each test requires. Understanding these trade-offs helps you defend your analytic choice to reviewers.
 
-Epsilon-squared is the most commonly reported effect size for the Kruskal-Wallis test. The formula is:
-
-> *e*^2^ = *H* / ((*N*^2^ - 1) / (*N* + 1))
-
-where *N* is the total sample size and *H* is the test statistic.
-
-| *e*^2^ | Interpretation |
-|--------|---------------|
-| .01 | Small effect |
-| .06 | Medium effect |
-| .14 | Large effect |
-
-### Eta-Squared Based on H (*n*^2^~H~)
-
-An alternative is the H-based eta-squared:
-
-> *n*^2^~H~ = (*H* - *k* + 1) / (*N* - *k*)
-
-where *k* is the number of groups and *N* is the total sample size.
-
-| *n*^2^~H~ | Interpretation |
-|-----------|---------------|
-| .01 | Small effect |
-| .06 | Medium effect |
-| .14 | Large effect |
-
-Both measures share the same benchmarks. Epsilon-squared is more widely used in the social sciences, while eta-squared appears more often in health sciences literature. Choose one and be consistent throughout your paper.
-
-## Post-Hoc Tests: Dunn's Test with Bonferroni Correction
-
-### When to Run Post-Hoc Comparisons
-
-A significant Kruskal-Wallis result tells you that at least one group differs from at least one other group, but it does not tell you *which* groups differ. When the omnibus test is significant, you must conduct pairwise post-hoc comparisons.
-
-Dunn's test is the standard post-hoc procedure for the Kruskal-Wallis test. It compares all possible pairs of groups using rank sums and adjusts for multiple comparisons.
-
-### Choosing a Correction Method
-
-The Bonferroni correction is the most conservative and widely accepted adjustment. For three groups, you have three pairwise comparisons, so the adjusted significance threshold becomes .05 / 3 = .017.
-
-| Correction | Formula | Conservativeness |
-|-----------|---------|-----------------|
-| Bonferroni | *a* / *m* | Most conservative |
-| Holm | Step-down Bonferroni | Slightly less conservative |
-| Benjamini-Hochberg | FDR-based | Least conservative |
-
-### How to Report Dunn's Test Results
-
-Report each pairwise comparison with the test statistic (*z*), adjusted *p* value, and the correction method used.
-
-> Post-hoc pairwise comparisons using Dunn's test with Bonferroni correction revealed that Drug B produced significantly lower pain ratings than the placebo group (*z* = -4.82, *p* < .001) and Drug A (*z* = -2.67, *p* = .023). The difference between Drug A and the placebo group was also significant (*z* = -2.15, *p* = .047).
-
-If some comparisons are significant and others are not, report both:
-
-> Dunn's post-hoc test with Bonferroni correction indicated that Drug B differed significantly from the placebo group (*z* = -4.82, *p* < .001) but not from Drug A (*z* = -1.94, *p* = .157).
-
-## Complete APA Example
-
-Here is a full results paragraph combining all components for the pain ratings scenario described above.
-
-> A Kruskal-Wallis H test was conducted to examine differences in pain ratings (0-10 scale) across three treatment conditions: placebo (*n* = 30), Drug A (*n* = 30), and Drug B (*n* = 30). The nonparametric test was selected because pain ratings violated the assumption of normality in the placebo and Drug B groups (Shapiro-Wilk *p* = .012 and *p* = .003, respectively). Median pain ratings were 7.00 (IQR = 5.00-8.00) for the placebo group, 5.00 (IQR = 3.00-6.50) for Drug A, and 3.00 (IQR = 2.00-5.00) for Drug B. The Kruskal-Wallis test indicated a statistically significant difference in pain ratings across groups, *H*(2) = 24.37, *p* < .001, *e*^2^ = .27. Post-hoc pairwise comparisons using Dunn's test with Bonferroni correction revealed significant differences between Drug B and placebo (*z* = -4.82, *p* < .001), Drug B and Drug A (*z* = -2.67, *p* = .023), and Drug A and placebo (*z* = -2.15, *p* = .047).
-
-This paragraph contains every required element: test justification, descriptive statistics with medians and IQRs, the omnibus *H* statistic with degrees of freedom and *p* value, effect size, and post-hoc pairwise comparisons.
-
-## Kruskal-Wallis vs One-Way ANOVA: When to Choose Which
-
-The decision between a Kruskal-Wallis test and a one-way ANOVA depends on your data characteristics and assumptions.
+### Assumptions Comparison
 
 | Criterion | One-Way ANOVA | Kruskal-Wallis |
 |-----------|--------------|----------------|
@@ -156,9 +90,152 @@ The decision between a Kruskal-Wallis test and a one-way ANOVA depends on your d
 | Post-hoc | Tukey HSD, Bonferroni | Dunn's test |
 | Effect size | Eta-squared (*n*^2^) | Epsilon-squared (*e*^2^) |
 
-**General guideline:** Use ANOVA when assumptions are met because it has greater statistical power. Switch to Kruskal-Wallis when normality or homogeneity of variances is violated, especially with small samples where violations have the greatest impact.
+### Power Trade-Offs
 
-## Common Mistakes in Kruskal-Wallis APA Reporting
+When all ANOVA assumptions are satisfied, the Kruskal-Wallis test has approximately 95% of the power of the parametric ANOVA. This means that for a given sample size, the Kruskal-Wallis test is slightly less likely to detect a real difference. However, when assumptions are violated — particularly with skewed distributions or outliers — the Kruskal-Wallis test can actually be *more* powerful than the ANOVA because the parametric test's power degrades under assumption violations.
+
+The practical implication: do not automatically choose the Kruskal-Wallis test as a "safe" option. If your data genuinely meet ANOVA assumptions, you sacrifice statistical power unnecessarily by switching to the nonparametric alternative. Run the assumption checks first, and switch only when violations are detected.
+
+### APA Justification Template
+
+When justifying your choice in the methods section, use one of these templates:
+
+> **When choosing Kruskal-Wallis:** A Kruskal-Wallis H test was used because the dependent variable was not normally distributed in two of the three groups (Shapiro-Wilk *p* = .012 and *p* = .003, respectively).
+
+> **When choosing ANOVA:** A one-way ANOVA was conducted because the assumptions of normality (Shapiro-Wilk *p* > .05 in all groups) and homogeneity of variances (Levene's *p* = .318) were satisfied.
+
+## Post-Hoc Tests After Kruskal-Wallis
+
+A significant Kruskal-Wallis result tells you that at least one group differs from at least one other group, but it does not tell you *which* groups differ. When the omnibus test is significant, you must conduct pairwise post-hoc comparisons.
+
+### Dunn's Test with Bonferroni Correction
+
+Dunn's test is the standard post-hoc procedure for the Kruskal-Wallis test. It compares all possible pairs of groups using rank sums and adjusts for multiple comparisons. Dunn's test is specifically designed to follow the Kruskal-Wallis test because it uses the same ranking framework, making it more appropriate than running separate Mann-Whitney U tests.
+
+The test statistic for each pairwise comparison is a *z* value, which is computed from the difference in mean ranks divided by the standard error of that difference. The Bonferroni correction divides the significance level (alpha) by the number of comparisons to control the familywise Type I error rate.
+
+**APA reporting format for Dunn's test:**
+
+> Post-hoc pairwise comparisons using Dunn's test with Bonferroni correction revealed that Drug B produced significantly lower pain ratings than the placebo group (*z* = -4.82, *p* < .001) and Drug A (*z* = -2.67, *p* = .023). The difference between Drug A and the placebo group was also significant (*z* = -2.15, *p* = .047).
+
+### Pairwise Mann-Whitney U Tests
+
+An alternative post-hoc approach is to conduct separate Mann-Whitney U tests for each pair of groups. This approach is less statistically efficient than Dunn's test because it re-ranks the data for each comparison rather than using the overall ranking. However, some reviewers prefer it because it provides the familiar *U* statistic along with rank-biserial correlation effect sizes for each pair.
+
+When using pairwise Mann-Whitney U tests, you **must** apply a multiple comparison correction. Without correction, the familywise error rate inflates rapidly. For three groups, three comparisons yield a familywise alpha of approximately .14 instead of .05.
+
+**APA reporting format for pairwise Mann-Whitney U:**
+
+> Pairwise Mann-Whitney U tests with Bonferroni correction were conducted as post-hoc comparisons. Drug B had significantly lower pain ratings than the placebo group (*U* = 142.00, *z* = -4.78, *p* < .001, *r* = -.62) and Drug A (*U* = 274.50, *z* = -2.71, *p* = .020, *r* = -.35). The difference between Drug A and the placebo group was also significant (*U* = 305.00, *z* = -2.19, *p* = .043, *r* = -.28).
+
+### Choosing a Correction Method
+
+| Correction | Formula | Conservativeness | Best Use Case |
+|-----------|---------|-----------------|---------------|
+| Bonferroni | *a* / *m* | Most conservative | Few comparisons, high-stakes research |
+| Holm | Step-down Bonferroni | Slightly less conservative | Default recommendation for most research |
+| Benjamini-Hochberg | FDR-based | Least conservative | Exploratory analyses, many comparisons |
+
+When reporting post-hoc comparisons with some significant and others not, always report both:
+
+> Dunn's post-hoc test with Bonferroni correction indicated that Drug B differed significantly from the placebo group (*z* = -4.82, *p* < .001) but not from Drug A (*z* = -1.94, *p* = .157).
+
+## Effect Size for Kruskal-Wallis: Epsilon-Squared and Eta-Squared
+
+Effect sizes are essential for interpreting the practical significance of your Kruskal-Wallis results. APA 7th edition explicitly recommends reporting effect sizes for all statistical tests, and the Kruskal-Wallis test is no exception.
+
+### Epsilon-Squared (*e*^2^)
+
+Epsilon-squared is the most commonly reported effect size for the Kruskal-Wallis test. It estimates the proportion of variance in ranks explained by the grouping variable. The formula is:
+
+> *e*^2^ = *H* / ((*N*^2^ - 1) / (*N* + 1))
+
+where *N* is the total sample size and *H* is the test statistic. This simplifies to:
+
+> *e*^2^ = *H* / (*N* - 1)
+
+| *e*^2^ | Interpretation |
+|--------|---------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+**Worked example:** With *H* = 24.37 and *N* = 90:
+
+> *e*^2^ = 24.37 / (90 - 1) = 24.37 / 89 = .27
+
+This is a large effect, indicating that 27% of the variance in ranks is explained by group membership.
+
+**APA format:**
+
+> The effect was large, *e*^2^ = .27, indicating that approximately 27% of the variability in pain rating ranks was accounted for by treatment group.
+
+### Eta-Squared Based on H (*n*^2^~H~)
+
+An alternative is the H-based eta-squared, which adjusts for the number of groups:
+
+> *n*^2^~H~ = (*H* - *k* + 1) / (*N* - *k*)
+
+where *k* is the number of groups and *N* is the total sample size.
+
+| *n*^2^~H~ | Interpretation |
+|-----------|---------------|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+**Worked example:** With *H* = 24.37, *k* = 3, *N* = 90:
+
+> *n*^2^~H~ = (24.37 - 3 + 1) / (90 - 3) = 22.37 / 87 = .26
+
+Both measures share the same benchmarks. Epsilon-squared is more widely used in the social sciences, while eta-squared appears more often in health sciences literature. Choose one and be consistent throughout your paper.
+
+### Pairwise Effect Sizes
+
+For post-hoc comparisons, report the rank-biserial correlation (*r*) for each pair. This provides a standardized measure of how much two specific groups differ:
+
+> *r* = *Z* / sqrt(*N*~pair~)
+
+where *Z* is the standardized test statistic from the pairwise comparison and *N*~pair~ is the combined sample size of the two groups being compared. Benchmarks follow Cohen's conventions: .10 small, .30 medium, .50 large.
+
+## Reporting Kruskal-Wallis with Multiple Dependent Variables
+
+When your study involves comparing the same groups on multiple outcome measures, organizing the results clearly becomes critical. Reporting each Kruskal-Wallis test separately in running text creates dense, hard-to-read paragraphs. Instead, use a structured APA table.
+
+### APA Table Format for Multiple Outcomes
+
+**Table 1**
+
+*Kruskal-Wallis H Test Results Across Treatment Groups*
+
+| Dependent Variable | *H*(2) | *p* | *e*^2^ | Significant Pairs |
+|-------------------|--------|-----|--------|-------------------|
+| Pain rating | 24.37 | < .001 | .27 | B < A < P |
+| Anxiety score | 18.92 | < .001 | .21 | B < P; A = P |
+| Sleep quality | 8.45 | .015 | .10 | B > P |
+| Fatigue level | 3.12 | .210 | .04 | — |
+
+*Note.* N = 90 (30 per group). P = placebo, A = Drug A, B = Drug B. Significant pairs determined by Dunn's test with Bonferroni correction (*p* < .05). Dashes indicate no significant pairwise differences.
+
+### Writing the Results Paragraph
+
+When presenting multiple Kruskal-Wallis tests, provide a brief narrative summary that references the table and highlights the key patterns:
+
+> Kruskal-Wallis H tests were conducted to compare the three treatment groups on four outcome measures (see Table 1). Significant group differences were found for pain ratings, *H*(2) = 24.37, *p* < .001, *e*^2^ = .27, anxiety scores, *H*(2) = 18.92, *p* < .001, *e*^2^ = .21, and sleep quality, *H*(2) = 8.45, *p* = .015, *e*^2^ = .10. No significant difference was found for fatigue level, *H*(2) = 3.12, *p* = .210, *e*^2^ = .04. Post-hoc pairwise comparisons using Dunn's test with Bonferroni correction are detailed in Table 1.
+
+### Handling Multiple Testing
+
+When conducting multiple Kruskal-Wallis tests on different dependent variables from the same sample, you should consider whether a correction for multiple testing is necessary. If the dependent variables are conceptually related and you are testing a family of hypotheses, apply a Bonferroni or Holm correction to the omnibus *p* values. If the dependent variables represent conceptually distinct outcomes, many statisticians argue that correction is unnecessary. State your rationale either way.
+
+## Complete APA Example
+
+Here is a full results paragraph combining all components for the pain ratings scenario described above.
+
+> A Kruskal-Wallis H test was conducted to examine differences in pain ratings (0-10 scale) across three treatment conditions: placebo (*n* = 30), Drug A (*n* = 30), and Drug B (*n* = 30). The nonparametric test was selected because pain ratings violated the assumption of normality in the placebo and Drug B groups (Shapiro-Wilk *p* = .012 and *p* = .003, respectively). Median pain ratings were 7.00 (IQR = 5.00-8.00) for the placebo group, 5.00 (IQR = 3.00-6.50) for Drug A, and 3.00 (IQR = 2.00-5.00) for Drug B. The Kruskal-Wallis test indicated a statistically significant difference in pain ratings across groups, *H*(2) = 24.37, *p* < .001, *e*^2^ = .27. Post-hoc pairwise comparisons using Dunn's test with Bonferroni correction revealed significant differences between Drug B and placebo (*z* = -4.82, *p* < .001), Drug B and Drug A (*z* = -2.67, *p* = .023), and Drug A and placebo (*z* = -2.15, *p* = .047).
+
+This paragraph contains every required element: test justification, descriptive statistics with medians and IQRs, the omnibus *H* statistic with degrees of freedom and *p* value, effect size, and post-hoc pairwise comparisons.
+
+## Common Mistakes in Kruskal-Wallis Reporting
 
 ### 1. Reporting Means Instead of Medians
 
@@ -170,15 +247,41 @@ This is the most frequent error. If you chose a nonparametric test because the d
 **Correct:**
 > Group A (*Mdn* = 5.00, IQR = 3.50-7.00), Group B (*Mdn* = 4.00, IQR = 2.00-5.50)
 
+Some researchers report both means and medians to provide a complete picture, which is acceptable as long as the medians are the primary descriptive statistics discussed in the text.
+
 ### 2. Omitting Effect Size
 
-A *p* value alone is incomplete. APA 7th edition explicitly recommends reporting effect sizes for all statistical tests. For Kruskal-Wallis, include epsilon-squared or eta-squared.
+A *p* value alone is incomplete. APA 7th edition explicitly recommends reporting effect sizes for all statistical tests. For Kruskal-Wallis, include epsilon-squared or eta-squared. Without an effect size, the reader cannot judge whether the observed difference is trivially small or practically meaningful, regardless of statistical significance.
 
 ### 3. Skipping Post-Hoc Tests After a Significant Omnibus Result
 
-A significant *H* statistic with three or more groups demands pairwise follow-up. Without post-hoc comparisons, readers cannot determine which specific groups differ. Always conduct Dunn's test (or an equivalent procedure) and report the adjusted *p* values.
+A significant *H* statistic with three or more groups demands pairwise follow-up. Without post-hoc comparisons, readers cannot determine which specific groups differ. Always conduct Dunn's test (or an equivalent procedure) and report the adjusted *p* values. The only exception is when you have only two groups, in which case the omnibus test is itself the pairwise comparison.
 
-### 4. Not Explaining Why a Nonparametric Test Was Used
+### 4. Incorrect Effect Size Calculations
+
+A common computational error is using the wrong formula for epsilon-squared. Some researchers mistakenly use the ANOVA eta-squared formula (SS~between~ / SS~total~), which requires raw data sums of squares that are not part of the Kruskal-Wallis output. The correct formula uses only the *H* statistic and total sample size: *e*^2^ = *H* / (*N* - 1).
+
+### 5. Not Reporting Exact Test When *n* < 20
+
+When sample sizes are very small (total *N* < 20 or any group *n* < 5), the chi-square approximation used by the standard Kruskal-Wallis test becomes unreliable. In these cases, you should use the exact permutation test and report it explicitly:
+
+> An exact Kruskal-Wallis test was conducted due to small group sizes (*n*~1~ = 4, *n*~2~ = 5, *n*~3~ = 4), *H*(2) = 7.65, exact *p* = .018.
+
+Most statistical software (SPSS, R, StatMate) can compute the exact test. If you used the asymptotic (chi-square) approximation with small samples, reviewers may flag this as a methodological concern.
+
+### 6. Confusing Kruskal-Wallis with Friedman Test
+
+Both the Kruskal-Wallis and Friedman tests are nonparametric alternatives for comparing three or more groups, but they serve different designs. The Kruskal-Wallis test is for **independent groups** (different participants in each group), while the Friedman test is for **repeated measures** (the same participants measured under all conditions). Using the wrong test is a fundamental design error, not merely a reporting problem.
+
+| Feature | Kruskal-Wallis | Friedman |
+|---------|---------------|----------|
+| Design | Independent groups | Repeated measures |
+| Parametric equivalent | One-way ANOVA | Repeated measures ANOVA |
+| Ranking | Ranks all observations together | Ranks within each participant |
+| Post-hoc | Dunn's test | Nemenyi test or Conover test |
+| Effect size | Epsilon-squared | Kendall's *W* |
+
+### 7. Not Explaining Why a Nonparametric Test Was Used
 
 Reviewers expect a brief justification. One sentence referencing the specific violated assumption is sufficient.
 
@@ -188,7 +291,7 @@ Reviewers expect a brief justification. One sentence referencing the specific vi
 **Strong:**
 > A Kruskal-Wallis test was used because pain ratings were not normally distributed in two of the three groups (Shapiro-Wilk *p* < .05).
 
-### 5. Forgetting to Specify the Correction Method
+### 8. Forgetting to Specify the Correction Method
 
 When reporting post-hoc pairwise comparisons, always state which multiple comparison correction was applied (e.g., Bonferroni, Holm, Benjamini-Hochberg). Without this information, readers cannot evaluate or replicate your analysis.
 
@@ -208,6 +311,41 @@ Use this checklist before submitting your manuscript:
 - [ ] Named the multiple comparison correction (e.g., Bonferroni)
 - [ ] Reported adjusted *p* values for each pairwise comparison
 - [ ] Stated the direction of group differences
+- [ ] Used exact test for small samples (*N* < 20)
+
+## Frequently Asked Questions
+
+### Can I use the Kruskal-Wallis test with only two groups?
+
+Technically, the Kruskal-Wallis test with two groups produces results equivalent to the Mann-Whitney U test. However, the Mann-Whitney U test is the standard choice for two-group comparisons because it provides additional statistics (the *U* statistic, rank-biserial correlation) that are more informative and familiar to reviewers. Use Kruskal-Wallis for three or more groups, and Mann-Whitney U for exactly two groups.
+
+### What descriptive statistics should I report alongside Kruskal-Wallis results?
+
+Report medians (*Mdn*) and interquartile ranges (IQR) as your primary descriptive statistics. You may also report mean ranks if they help clarify the group ordering. Avoid reporting means and standard deviations as the sole descriptive statistics because they assume a symmetric distribution, which contradicts your rationale for choosing a nonparametric test. If you wish to report means for context, present them alongside medians and explicitly note that the medians are the appropriate summary.
+
+### How many groups can a Kruskal-Wallis test compare?
+
+There is no theoretical upper limit on the number of groups. However, as the number of groups increases, the number of pairwise post-hoc comparisons grows rapidly (*k*(*k* - 1)/2 comparisons for *k* groups). With 5 groups, you have 10 pairwise comparisons; with 7 groups, you have 21. More comparisons mean stricter corrections and reduced power per comparison. If you have more than 5-6 groups, consider whether some groups can be combined or whether a different analytic approach (e.g., planned contrasts) is more appropriate.
+
+### What is the relationship between the Kruskal-Wallis H statistic and chi-square?
+
+The *H* statistic follows an approximate chi-square distribution with *k* - 1 degrees of freedom, where *k* is the number of groups. This approximation is adequate when each group has at least 5 observations. For smaller samples, the exact permutation distribution should be used instead. The chi-square approximation is the reason the *p* value is derived from the chi-square distribution table.
+
+### Should I report mean ranks or medians?
+
+Both are valid, but medians are more commonly expected in APA-style reporting because they are directly interpretable on the original measurement scale. Mean ranks indicate the average position of each group's observations in the overall ranking, which is what the Kruskal-Wallis test actually analyzes. When groups have similar distributions but different locations, mean ranks and medians will point to the same conclusions. When distributions differ in shape (not just location), mean ranks and medians may diverge, and you should report both.
+
+### How do I handle tied values in a Kruskal-Wallis test?
+
+Tied values receive the average of the ranks they would have occupied. For example, if two observations tie for ranks 5 and 6, both receive rank 5.5. Most software automatically applies a tie correction to the *H* statistic. The correction slightly increases the *H* value, making the test marginally more conservative. When many ties exist (common with ordinal data or rounded measurements), always verify that your software applied the tie correction, and note this in your report.
+
+### Can I use Kruskal-Wallis for ordinal data like Likert scales?
+
+Yes. The Kruskal-Wallis test is specifically designed for ordinal and non-normally distributed continuous data. For individual Likert items (e.g., a single 1-5 item), the Kruskal-Wallis test is appropriate because the data are ordinal. For composite Likert scales (averages or sums of multiple items), many researchers treat the composite as continuous and use ANOVA, though the Kruskal-Wallis test remains a valid choice if the composite is not normally distributed.
+
+### What do I do when the Kruskal-Wallis test is non-significant?
+
+Report the result in full, including the effect size: *H*(df) = X.XX, *p* = .XXX, *e*^2^ = .XX. State that no statistically significant differences were found. Do not conduct post-hoc comparisons because the omnibus test did not indicate any group differences. Report descriptive statistics (medians, IQRs) so readers can evaluate the magnitude of observed differences even in the absence of statistical significance. A non-significant result with a small effect size and adequate power provides useful evidence that the groups are similar.
 
 ## Try StatMate's Free Kruskal-Wallis Calculator
 
