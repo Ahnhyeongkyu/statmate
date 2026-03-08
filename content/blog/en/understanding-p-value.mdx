@@ -189,6 +189,249 @@ When interpreting your results, always ask three questions:
 
 A finding that satisfies all three is the strongest kind of evidence. A finding that satisfies only the first is the weakest.
 
+## The P-Value Controversy: ASA Statement and Beyond
+
+The debate over p-values reached a turning point in 2016 when the American Statistical Association (ASA) published its first-ever formal statement on statistical significance and p-values. This was unprecedented in the ASA's 177-year history and reflected deep concern about the widespread misuse of p-values across the sciences.
+
+### The ASA's Six Principles
+
+The ASA statement articulated six principles that every researcher should understand:
+
+1. **P-values can indicate how incompatible the data are with a specified statistical model.** The p-value quantifies the mismatch between the data and the null hypothesis, but it is conditional on the model being correct.
+
+2. **P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.** This addresses the most common misinterpretation directly.
+
+3. **Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.** A result should not be dismissed solely because *p* = .06, nor accepted solely because *p* = .04.
+
+4. **Proper inference requires full reporting and transparency.** Cherry-picking significant results, running analyses until significance is achieved (p-hacking), and selectively reporting outcomes all undermine the validity of p-values.
+
+5. **A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.** Small p-values can arise from trivial effects in large samples, and large p-values can occur with important effects in small samples.
+
+6. **By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.** Other approaches such as confidence intervals, Bayesian methods, and effect sizes should accompany the p-value.
+
+### Why p < .05 Is Arbitrary
+
+The .05 threshold has no mathematical derivation or scientific justification. Ronald Fisher initially proposed it as a loose guideline, writing that results below this level were worth a second look. Jerzy Neyman and Egon Pearson later formalized hypothesis testing with fixed error rates, and the two frameworks became conflated over time. The .05 cutoff is the result of historical convention, not scientific optimization.
+
+Several consequences of this arbitrary threshold are well documented. Researchers engage in *p-hacking*, adjusting analyses, sample sizes, or variables until the p-value crosses below .05. Publication bias favors significant results, leaving non-significant findings in the file drawer. And the replication crisis in psychology, medicine, and other fields has been attributed in part to the uncritical application of this threshold.
+
+In 2019, a group of more than 800 scientists published a call to abandon the term "statistically significant" entirely. They argued that the binary classification of results as significant or not significant leads to overconfident claims and overlooked evidence.
+
+### The Movement Toward Confidence Intervals and Effect Sizes
+
+In response to these concerns, many journals and professional organizations now require or strongly recommend reporting confidence intervals and effect sizes alongside (or instead of) p-values. The reasoning is straightforward:
+
+- **Confidence intervals** show the range of plausible values for the parameter of interest, providing information about both the direction and precision of the estimate. A 95% CI of [0.2, 4.8] tells you more than *p* = .03 alone.
+- **Effect sizes** quantify the magnitude of the observed phenomenon, independent of sample size. Cohen's *d* = 0.15 versus *d* = 1.20 tells you far more about practical importance than comparing p-values.
+- **The distinction between statistical and practical significance** is increasingly emphasized. A drug that lowers cholesterol by 0.1 mg/dL with *p* < .001 is statistically significant but clinically irrelevant. Conversely, a treatment with *d* = 0.80 and *p* = .07 in a small pilot study represents a large, potentially meaningful effect that warrants further investigation.
+
+The ASA statement did not call for abandoning p-values. Rather, it urged that p-values be used as one tool among many, never as the sole basis for scientific conclusions.
+
+## P-Values in Different Statistical Tests
+
+While the underlying concept is the same across all hypothesis tests, the mechanics of calculating a p-value differ depending on the test statistic and its reference distribution. Understanding these differences helps you interpret p-values more accurately and recognize what each one is actually testing.
+
+### T-Test: P-Value From the T-Distribution
+
+In a t-test, the test statistic is calculated as the difference between means divided by the standard error of that difference. This produces a *t* value, which follows a t-distribution with degrees of freedom determined by the sample size.
+
+The p-value is the area under the t-distribution curve at or beyond the observed *t* value. For a two-tailed test, this is the combined area in both tails. With large samples, the t-distribution approaches the standard normal distribution, and the p-values converge accordingly.
+
+For example, if *t*(28) = 2.45, the p-value is the probability of observing a *t* value of 2.45 or more extreme (in either direction) from a t-distribution with 28 degrees of freedom. This gives approximately *p* = .021.
+
+### ANOVA: P-Value From the F-Distribution
+
+In analysis of variance, the test statistic is the F-ratio, which compares between-group variance to within-group variance. If the groups have truly equal means, this ratio should be close to 1. Larger F-values indicate greater differences among group means relative to the variability within groups.
+
+The F-distribution is right-skewed and bounded at zero, meaning it only produces positive values. The p-value is the area under the F-distribution curve to the right of the observed F-value. Unlike the t-distribution, there is no "left tail" concern because the F-test is inherently directional (larger F = more evidence against H0).
+
+For example, *F*(3, 96) = 4.15 means the between-group variance is 4.15 times the within-group variance, with degrees of freedom 3 (groups minus 1) and 96 (total N minus number of groups). The resulting *p* = .008 indicates this ratio is unlikely if all group means are truly equal.
+
+### Chi-Square: P-Value From the Chi-Square Distribution
+
+The chi-square test compares observed frequencies in a contingency table to the frequencies expected under independence (or under a specified distribution for goodness-of-fit tests). The test statistic sums the squared differences between observed and expected values, each divided by the expected value.
+
+Like the F-distribution, the chi-square distribution is right-skewed and non-negative. Larger chi-square values reflect greater discrepancies between observed and expected data. The p-value is the probability of obtaining a chi-square value as large or larger than the one observed, given the degrees of freedom.
+
+For a 3x2 contingency table, df = (3 - 1)(2 - 1) = 2. If chi-square = 9.21, the p-value from the chi-square distribution with 2 df is approximately *p* = .010.
+
+### Correlation: P-Value From a T-Distribution Transformation
+
+For Pearson's correlation coefficient *r*, the p-value is not read directly from a correlation-specific distribution. Instead, *r* is transformed into a *t* statistic using the formula:
+
+*t* = *r* * sqrt((*n* - 2) / (1 - *r* squared))
+
+This transformation follows a t-distribution with *n* - 2 degrees of freedom under the null hypothesis that the population correlation is zero. The p-value is then obtained from this t-distribution, just as in a regular t-test.
+
+This explains why the same correlation coefficient can be significant in one study and not in another. With *r* = .25 and *n* = 100, *t* = 2.55 and *p* = .012. But with *r* = .25 and *n* = 20, *t* = 1.08 and *p* = .295. The correlation is identical, but the evidence against H0 depends heavily on sample size.
+
+### The Common Principle
+
+Despite these mechanical differences, every p-value answers the same fundamental question: *What is the probability of obtaining a result this extreme, or more extreme, if the null hypothesis is true?* The test statistic quantifies "how extreme" in a way appropriate to each test, and the reference distribution provides the probability scale. Whether you are comparing means, proportions, variances, or correlations, the logical framework is the same.
+
+## One-Tailed vs Two-Tailed P-Values
+
+The distinction between one-tailed and two-tailed tests is a common source of confusion, and the choice between them has real implications for your p-value and your conclusions.
+
+### What Is a Two-Tailed Test?
+
+A two-tailed test evaluates whether the observed effect differs from zero in *either direction*. It considers the possibility that Group A could score higher than Group B, or that Group B could score higher than Group A. The p-value includes the probability of obtaining the observed result or more extreme in both tails of the distribution.
+
+If your t-test yields *t* = 2.10, the two-tailed p-value counts the probability of observing *t* greater than or equal to 2.10 *and* the probability of observing *t* less than or equal to -2.10. This makes the two-tailed test more conservative.
+
+### What Is a One-Tailed Test?
+
+A one-tailed test evaluates whether the observed effect is in a *specific, pre-specified direction*. For example, you might predict that a new drug will lower blood pressure (not just change it). The p-value then only considers the probability in one tail of the distribution.
+
+The one-tailed p-value is exactly half the two-tailed p-value:
+
+**One-tailed *p* = Two-tailed *p* / 2**
+
+So if the two-tailed *p* = .06, the one-tailed *p* = .03. This means a result that is non-significant under a two-tailed test can become significant under a one-tailed test.
+
+### When to Use Each
+
+**Two-tailed tests are the default** in most research, and for good reason:
+
+- They are more conservative, reducing false positives.
+- They do not require you to specify a direction before data collection.
+- Most journals and reviewers expect two-tailed tests unless a strong justification is provided.
+- They protect against unexpected effects in the opposite direction.
+
+**One-tailed tests are appropriate** only when:
+
+- There is a strong theoretical or empirical basis for predicting the direction of the effect *before* seeing the data.
+- Effects in the opposite direction would be treated identically to null results (i.e., you genuinely do not care about the other direction).
+- The directional hypothesis was pre-registered before data collection.
+
+### APA Reporting Conventions
+
+APA 7th edition does not mandate one approach over the other, but it requires transparency. If you use a one-tailed test, state this explicitly in your method section and justify the directional prediction. Report the p-value as one-tailed.
+
+**Two-tailed example:**
+
+> The treatment group scored significantly higher, *t*(48) = 2.15, *p* = .037 (two-tailed), *d* = 0.61.
+
+**One-tailed example:**
+
+> As predicted, the treatment group scored significantly higher, *t*(48) = 2.15, *p* = .018 (one-tailed), *d* = 0.61.
+
+Using a one-tailed test after seeing the data to convert a non-significant result into a significant one is considered methodologically inappropriate and is a form of p-hacking.
+
+## Multiple Comparisons and P-Value Adjustment
+
+When you conduct a single hypothesis test at alpha = .05, you accept a 5% chance of a false positive. But what happens when you run 20 tests in the same study? The probability of at least one false positive rises dramatically, and this is the multiple comparisons problem.
+
+### The Familywise Error Rate Problem
+
+If each test has a 5% false positive rate and the tests are independent, the probability of making at least one Type I error across *k* tests is:
+
+**Familywise error rate = 1 - (1 - 0.05)^k**
+
+For 20 independent tests: 1 - (0.95)^20 = .64. That means a 64% chance of at least one false positive even when all null hypotheses are true. This is why running many uncorrected tests and reporting only the significant ones is misleading.
+
+### Bonferroni Correction
+
+The simplest and most widely known correction divides the per-test alpha by the number of comparisons:
+
+**Adjusted alpha = 0.05 / k**
+
+For 10 comparisons, each individual test would use alpha = .005. This strictly controls the familywise error rate but can be very conservative, especially with many tests, increasing the risk of missing real effects (Type II errors).
+
+**When to use Bonferroni:**
+- Small number of planned comparisons (3-10)
+- When controlling the familywise error rate is critical
+- Post-hoc pairwise comparisons in ANOVA
+
+### False Discovery Rate (Benjamini-Hochberg)
+
+For studies with many simultaneous tests (e.g., genomics with thousands of genes), Bonferroni becomes impractically strict. The Benjamini-Hochberg (BH) procedure controls the false discovery rate (FDR), which is the expected proportion of false positives among all rejected hypotheses, rather than the probability of any false positive at all.
+
+The BH procedure:
+1. Rank all p-values from smallest to largest.
+2. For each ranked p-value, calculate: (rank / total number of tests) * desired FDR (e.g., .05).
+3. Starting from the largest rank, find the first p-value that is less than or equal to its BH threshold. All p-values with smaller ranks are also considered significant.
+
+FDR control is less conservative than Bonferroni and is now standard in high-dimensional research such as gene expression studies, neuroimaging, and large-scale survey analyses.
+
+### When to Apply Corrections vs When Not To
+
+Not every situation with multiple tests requires a correction:
+
+- **Apply corrections** when testing multiple hypotheses on the same dataset and the tests address the same research question (e.g., pairwise comparisons after ANOVA, testing multiple dependent variables).
+- **Do not apply corrections** when the tests address genuinely independent research questions that happen to be in the same study. For example, testing the main effects and interaction in a factorial ANOVA does not require Bonferroni correction because each test addresses a distinct hypothesis.
+- **Pre-registration** of specific planned comparisons can justify not applying corrections, provided the number of comparisons is small and theory-driven.
+
+The key question is whether a false positive on one test would be interpreted in the context of the other tests. If so, correct. If not, correction may not be necessary.
+
+## Visualizing P-Values: What They Really Show
+
+One of the best ways to build intuition about p-values is to think visually. The p-value is fundamentally about where your observed result falls in a distribution of possible results, and how much of that distribution lies at or beyond your observation.
+
+### The Sampling Distribution Concept
+
+Before interpreting a p-value, you need to understand the sampling distribution. This is not the distribution of your raw data. It is the theoretical distribution of a test statistic (such as *t*, *F*, or chi-square) that you would obtain if you repeated the study infinitely many times when the null hypothesis is true.
+
+For a t-test with 30 degrees of freedom, the sampling distribution of *t* under H0 is a bell-shaped curve centered at 0. Most values cluster near zero (indicating no difference), with values far from zero becoming increasingly rare.
+
+### Where the Observed Statistic Falls
+
+Your actual study produces one test statistic, one point on this distribution. If the null hypothesis is true, you would expect this value to fall near the center. If it falls far into the tail, your data are inconsistent with H0.
+
+Consider these scenarios for a two-tailed t-test:
+- *t* = 0.5 falls well within the center of the distribution. This is an unremarkable result. The p-value is large.
+- *t* = 2.0 falls in the outer portion of the distribution. Fewer than 5% of random samples would produce a *t* this extreme under H0. The p-value is small.
+- *t* = 3.5 falls deep in the tail. This is an extremely unusual result under H0. The p-value is very small.
+
+### Area Under the Curve Equals the P-Value
+
+The p-value is literally the shaded area under the sampling distribution curve at and beyond your observed test statistic. For a two-tailed test, the shaded area includes both tails.
+
+This is why:
+- A *t* value closer to zero gives a larger shaded area and a larger p-value.
+- A *t* value farther from zero gives a smaller shaded area and a smaller p-value.
+- The alpha level (.05) defines a critical boundary: test statistics beyond this boundary are in the rejection region.
+
+### Why Extreme Values Give Small P-Values
+
+The tails of probability distributions contain very little area. In a standard normal distribution, only about 5% of the area lies beyond plus or minus 1.96, and only about 1% lies beyond plus or minus 2.58. Test statistics in these regions are rare under H0, which is precisely why they provide evidence against it.
+
+This visual framework also explains why sample size matters. Larger samples produce sampling distributions with less spread (smaller standard errors), meaning even modest differences between groups push the test statistic into the tails. This is why large-sample studies can find statistical significance for trivially small effects.
+
+## Frequently Asked Questions
+
+### Does p < .05 mean there is a 95% chance my result is true?
+
+No. This is one of the most common misunderstandings. The p-value is the probability of observing your data (or more extreme) if the null hypothesis is true. It does not tell you the probability that your hypothesis is correct. The probability of a hypothesis being true requires Bayesian analysis with prior probabilities, which is a fundamentally different framework.
+
+### What does p = .049 vs p = .051 really mean?
+
+Practically, there is no meaningful difference. The .05 threshold is an arbitrary convention. A p-value of .051 does not mean "no effect" while .049 means "real effect." Both indicate similar levels of evidence against the null hypothesis. The ASA and many leading statisticians recommend treating p-values as continuous measures of evidence rather than as pass/fail cutoffs.
+
+### Can a p-value be exactly 0?
+
+No. A p-value represents a probability and can never be exactly zero. When statistical software displays p = .000, it means the value is too small to display at the given decimal precision. In your manuscript, report it as *p* < .001. There is always some non-zero probability of observing the data under the null hypothesis, no matter how small.
+
+### Why do some journals require p < .01 instead of p < .05?
+
+Stricter thresholds reduce false positive rates. Fields with significant replication concerns (such as social psychology) or disciplines where multiple testing is common (such as genomics) may adopt more conservative thresholds. Some researchers have proposed *p* < .005 as a new default for claims of new discoveries, arguing this would reduce false positive rates from approximately 33% to 5%.
+
+### Should I report exact p-values or just p < .05?
+
+APA 7th edition requires exact p-values (e.g., *p* = .034) rather than inequality statements (*p* < .05). Exact values allow readers and meta-analysts to evaluate the strength of evidence for themselves. The only exception is for very small values, which should be reported as *p* < .001 rather than listing many decimal places.
+
+### What is the relationship between p-values and confidence intervals?
+
+They are complementary. If a 95% confidence interval for a mean difference does not include zero, the corresponding two-tailed p-value will be less than .05. Conversely, if the CI includes zero, the p-value will be greater than .05. Confidence intervals provide additional information that p-values alone cannot: the estimated magnitude of the effect and the precision of that estimate.
+
+### Can I compare p-values across different studies?
+
+No. P-values depend on sample size, effect size, variability, and study design. A *p* = .001 from a study with 10,000 participants does not necessarily indicate a larger or more important effect than *p* = .04 from a study with 30 participants. To compare findings across studies, use effect sizes (such as Cohen's *d* or *r*) and consider meta-analytic techniques.
+
+### What should I do if my p-value is .06?
+
+Report it honestly as non-significant at the .05 level. Discuss the effect size, confidence interval, and practical implications. Do not characterize the result as "marginally significant," "approaching significance," or "trending toward significance," as these phrases are widely viewed as euphemisms for non-significance and are considered a mild form of p-hacking. Instead, interpret the evidence as ambiguous and suggest that future research with greater statistical power may clarify the finding.
+
 ## Try StatMate's Free Calculators
 
 Every one of StatMate's 20 free calculators automatically computes p-values and formats them in APA 7th edition style. You do not need to look up formatting rules or worry about leading zeros, decimal places, or when to use *p* < .001. The output is ready to paste into your manuscript.

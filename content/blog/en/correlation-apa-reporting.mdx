@@ -190,6 +190,204 @@ Use this checklist before submitting your manuscript:
 - [ ] Added a table note defining significance asterisks and sample size
 - [ ] Used associational language (not causal) when describing results
 
+## Reporting Spearman's Correlation in APA Format
+
+While Pearson *r* measures linear relationships between continuous, normally distributed variables, **Spearman's rank-order correlation** (*r*_s) is designed for situations where those assumptions do not hold. Understanding when and how to report Spearman's correlation is essential for researchers working with ordinal data or non-normal distributions.
+
+### When Spearman Is the Right Choice
+
+Spearman correlation converts raw data to ranks before computing the correlation, making it robust in several situations. First, if one or both of your variables are measured on an **ordinal scale** — such as Likert-type items, satisfaction ratings, or class rankings — Spearman is the appropriate choice because Pearson *r* requires interval or ratio data. Second, when your continuous data contain **extreme outliers**, Spearman's rank-based approach is far less sensitive to these aberrant values. A single outlier can dramatically inflate or deflate a Pearson correlation while barely affecting the Spearman coefficient. Third, when the relationship between two variables is **monotonic but not strictly linear**, Spearman captures the association more accurately. For example, if income increases with education level but the rate of increase is not constant, Spearman better reflects this pattern.
+
+### APA Format for Spearman's Correlation
+
+The reporting template mirrors Pearson's, with one critical difference — the subscript *s*:
+
+> *r*_s(df) = .XX, *p* = .XXX
+
+**Complete reporting example:**
+
+> A Spearman rank-order correlation was computed to examine the relationship between pain severity ratings and daily physical activity levels. There was a statistically significant negative correlation, *r*_s(48) = -.38, *p* = .007. Participants who reported higher pain severity tended to engage in lower levels of physical activity.
+
+### Key Differences Between Pearson and Spearman
+
+| Feature | Pearson *r* | Spearman *r*_s |
+|---------|-------------|----------------|
+| Data type | Continuous (interval/ratio) | Ordinal or continuous |
+| Relationship type | Linear | Monotonic |
+| Distribution assumption | Normal (bivariate) | None |
+| Outlier sensitivity | High | Low |
+| Effect size interpretation | Same Cohen benchmarks | Same Cohen benchmarks |
+
+When in doubt, you can compute both coefficients. If Pearson and Spearman produce substantially different values, this suggests non-linearity or the presence of outliers, and the Spearman coefficient is likely the more trustworthy measure.
+
+## Partial Correlation: Controlling for Confounding Variables
+
+A **partial correlation** measures the relationship between two variables after statistically removing the influence of one or more additional variables. This technique is critical in observational research, where confounding variables can create the illusion of a relationship — or mask a real one.
+
+### Why Partial Correlations Matter
+
+Suppose you find a strong positive correlation between ice cream sales and drowning incidents. Before concluding that ice cream causes drowning, you should consider that **temperature** drives both variables. A partial correlation between ice cream sales and drowning, controlling for temperature, would likely approach zero, revealing that the original correlation was spurious.
+
+In behavioral research, common confounders include age, socioeconomic status, education level, and baseline ability. Failing to control for these variables can lead to misleading conclusions.
+
+### APA Format for Partial Correlations
+
+The format includes the type of correlation, degrees of freedom (now *N* - 2 - *k*, where *k* is the number of variables controlled), the coefficient, the *p* value, and a clear statement of which variables were controlled:
+
+> *r*(47) = .35, *p* = .014, controlling for age
+
+Note that the degrees of freedom decrease by one for each controlled variable. With 50 participants and one controlled variable: df = 50 - 2 - 1 = 47.
+
+**Complete reporting example:**
+
+> A partial correlation was computed to assess the relationship between weekly exercise hours and depression scores after controlling for age. There was a statistically significant negative partial correlation between exercise and depression, *r*(47) = -.35, *p* = .014. Greater exercise frequency was associated with lower depression scores, independent of participant age. The zero-order correlation between exercise and depression was *r*(48) = -.41, *p* = .003, suggesting that age accounted for a modest portion of the original relationship.
+
+### When to Report Partial vs. Zero-Order Correlations
+
+The **zero-order correlation** is the raw bivariate correlation without any controls. Report both the zero-order and partial correlations when a confounding variable is theoretically relevant. Comparing the two tells the reader how much the relationship changes after controlling for the confounder:
+
+- If the partial correlation is substantially smaller than the zero-order correlation, the controlled variable was a meaningful confounder.
+- If the partial correlation is similar to the zero-order correlation, the controlled variable had little influence on the relationship.
+- If the partial correlation is larger than the zero-order correlation (a suppression effect), the controlled variable was masking part of the true relationship.
+
+## Correlation Matrix in APA Table Format
+
+When a study involves multiple variables, presenting all pairwise correlations in a **correlation matrix** is far more efficient than describing each one individually in the text. APA format has well-established conventions for constructing these tables.
+
+### When to Use a Correlation Matrix
+
+Use a correlation matrix table when you have three or more variables and want to show all pairwise relationships. This is standard in studies involving scales, questionnaires, or any dataset with multiple measured constructs. If you have only two variables, report the correlation in the text instead.
+
+### Complete APA Correlation Matrix Example
+
+**Table 1**
+
+*Means, Standard Deviations, and Intercorrelations for Key Study Variables*
+
+| Variable | *M* | *SD* | 1 | 2 | 3 | 4 | 5 |
+|----------|------|------|-------|-------|-------|-------|---|
+| 1. Self-efficacy | 3.82 | 0.74 | — | | | | |
+| 2. Academic motivation | 4.15 | 0.68 | .52** | — | | | |
+| 3. Study hours per week | 16.40 | 6.20 | .38** | .45** | — | | |
+| 4. Test anxiety | 2.90 | 0.85 | -.41** | -.33** | -.18 | — | |
+| 5. Final GPA | 3.24 | 0.55 | .47** | .51** | .42** | -.39** | — |
+
+*Note.* *N* = 120.
+
+\* *p* < .05. \*\* *p* < .01. \*\*\* *p* < .001.
+
+### Key Formatting Conventions
+
+**Lower triangle only.** The correlation matrix is symmetric, so reporting both the upper and lower triangles is redundant. Present only the values below the diagonal and place an em dash (—) on the diagonal. Some journals accept reporting the diagonal as 1.00, but the dash convention is more common.
+
+**Significance asterisks.** Use a consistent asterisk system: one asterisk for *p* < .05, two for *p* < .01, and optionally three for *p* < .001. Every asterisk must be defined in the table note. Never mix asterisk conventions within a single manuscript.
+
+**Include descriptive statistics.** Adding *M* and *SD* columns saves the reader from hunting through the text. If your variables use different scales, also consider adding the range or the number of items for each measure.
+
+**Variable numbering.** Number the row variables (1, 2, 3, ...) and use those numbers as column headers. This keeps the table compact and immediately shows which correlation corresponds to which pair.
+
+**No leading zeros.** All correlation values in the table must follow APA's no-leading-zero convention (e.g., .52, not 0.52).
+
+**Bolding significant values.** Some journals and advisors prefer bolding significant correlations in addition to using asterisks. Check your target journal's guidelines.
+
+## Common Pitfalls in Correlation Reporting
+
+Even experienced researchers make errors when reporting correlations. Beyond the formatting mistakes covered earlier, there are several substantive pitfalls that can undermine the validity of your findings.
+
+### Confusing Correlation With Causation
+
+This is the most frequently cited error in statistics education, yet it continues to appear in published research. Saying "hours of screen time reduced reading comprehension" implies causation, but a correlation cannot establish a causal link. Perhaps children with lower reading comprehension are more drawn to screens, or a third variable (such as parental involvement) drives both. Always use associational language: "was associated with," "was related to," or "predicted" (in a statistical, not causal, sense).
+
+### Not Checking for Non-Linear Relationships
+
+Pearson *r* measures only **linear** relationships. If two variables have a strong curvilinear association — such as the inverted-U relationship between arousal and performance (the Yerkes-Dodson law) — the Pearson correlation could be near zero despite a strong relationship. Always examine your scatter plot before computing a correlation. If the pattern is clearly non-linear, consider transforming the data or using a non-linear association measure such as the distance correlation.
+
+### Ignoring Outlier Effects on r
+
+A single outlier can dramatically change a Pearson correlation. One aberrant data point in a small sample can swing *r* from near zero to above .50, or vice versa. Best practice is to report the correlation with and without the outlier. If removing one or two points substantially changes *r*, note this in your results section and discuss the implications. Spearman *r*_s is a useful alternative because its rank-based approach minimizes outlier influence.
+
+### Reporting Too Many Correlations Without Correction
+
+A correlation matrix with 10 variables produces 45 unique correlations. At alpha = .05, you would expect approximately two or three of these to reach statistical significance by chance alone. When examining many correlations simultaneously, consider applying a **Bonferroni correction** (dividing the alpha level by the number of comparisons) or reporting the findings as exploratory. Without correction, the risk of Type I errors (false positives) increases sharply.
+
+### Not Reporting Confidence Intervals
+
+APA 7th edition strongly recommends confidence intervals for correlation coefficients, yet many researchers omit them. A confidence interval provides critical information about the precision of your estimate. A correlation of *r* = .40 with a 95% CI of [.12, .62] tells a very different story than *r* = .40 with a CI of [.35, .45]. The former suggests considerable uncertainty; the latter indicates a highly precise estimate. See the next section for details on reporting CIs.
+
+## Confidence Intervals for Correlations
+
+APA 7th edition recommends reporting **confidence intervals** (CIs) alongside correlation coefficients. A CI communicates how precisely the correlation has been estimated and helps readers evaluate the practical significance of the finding beyond the binary significant/non-significant framework.
+
+### APA Format for Correlations With Confidence Intervals
+
+The recommended format integrates the CI directly into the report:
+
+> *r*(df) = .XX, 95% CI [.XX, .XX], *p* = .XXX
+
+**Complete reporting example:**
+
+> A Pearson correlation was computed to assess the relationship between mindfulness practice frequency and perceived stress. There was a statistically significant negative correlation, *r*(48) = -.42, 95% CI [-.63, -.16], *p* = .003. More frequent mindfulness practice was associated with lower perceived stress levels.
+
+### How Confidence Intervals Are Computed: Fisher z Transformation
+
+Correlation coefficients are bounded between -1 and +1, and their sampling distribution is skewed (especially for values far from zero). To construct a confidence interval, the correlation is first transformed using the **Fisher z transformation**, which normalizes the sampling distribution:
+
+> z = 0.5 × ln[(1 + *r*) / (1 - *r*)]
+
+The standard error of *z* is 1 / sqrt(*N* - 3). After computing the CI on the *z* scale, the endpoints are transformed back to the *r* scale. This procedure produces accurate CIs even when the true correlation is far from zero.
+
+You do not need to perform this transformation by hand — most statistical software and online calculators (including StatMate) handle it automatically.
+
+### Interpreting Wide vs. Narrow Confidence Intervals
+
+A **narrow CI** (e.g., *r* = .45, 95% CI [.38, .51]) indicates a precise estimate, usually resulting from a large sample size. Readers can be fairly confident that the true population correlation falls within this tight range.
+
+A **wide CI** (e.g., *r* = .45, 95% CI [.10, .70]) indicates substantial uncertainty. While the point estimate suggests a moderate correlation, the true value could be anywhere from small to large. Wide CIs typically result from small sample sizes and signal that the finding should be interpreted with caution and replicated with a larger sample.
+
+As a general guideline, CI width decreases as sample size increases. A correlation based on *N* = 30 will have a much wider CI than the same correlation based on *N* = 200.
+
+### Why Confidence Intervals Matter More Than p-Values
+
+A *p* value tells you only whether the correlation is statistically distinguishable from zero. A CI tells you the plausible range of the population correlation. Two studies might both find *r* = .30 with *p* < .05, but if one has a CI of [.05, .52] and the other has a CI of [.22, .37], the second study provides much stronger evidence for a meaningful effect. This is why APA 7th edition emphasizes CIs as a more informative complement to significance tests.
+
+## Frequently Asked Questions
+
+### What is the difference between Pearson and Spearman correlation?
+
+Pearson *r* measures the strength of a **linear** relationship between two continuous, normally distributed variables. It assumes interval or ratio measurement scales and is sensitive to outliers. Spearman *r*_s converts data to ranks and measures the strength of a **monotonic** relationship. It is appropriate for ordinal data, non-normal distributions, or when outliers are present. Both coefficients range from -1 to +1 and use the same Cohen benchmarks for interpretation. Choose Pearson when your data meet parametric assumptions and Spearman when they do not.
+
+### Can a correlation be exactly 0?
+
+In theory, *r* = 0 indicates no linear relationship whatsoever. In practice, sample correlations are almost never exactly zero because of random sampling variability. Even when two variables are completely unrelated in the population, a sample will typically produce a small, non-zero correlation (e.g., *r* = .03 or *r* = -.05). Such values are interpreted as no meaningful relationship, especially when paired with a non-significant *p* value.
+
+### How do I report a non-significant correlation?
+
+Use exactly the same format as for significant results. State the finding, report the statistics, and provide a brief interpretation:
+
+> There was no statistically significant correlation between daily water intake and exam scores, *r*(48) = .12, *p* = .410.
+
+Always include the effect size regardless of significance. Do not omit non-significant correlations from your results section or correlation matrix.
+
+### What sample size do I need for correlation analysis?
+
+The required sample size depends on the expected effect size and your desired statistical power. Using the standard conventions of alpha = .05 and power = .80: to detect a **large** correlation (*r* = .50), you need approximately **29 participants**; for a **medium** correlation (*r* = .30), approximately **85 participants**; for a **small** correlation (*r* = .10), approximately **782 participants**. These numbers illustrate why small effects require substantially larger samples. Always conduct a power analysis before data collection using tools like StatMate's [Sample Size Calculator](/calculators/sample-size).
+
+### Can I correlate categorical variables?
+
+Pearson and Spearman correlations require at least **ordinal** data. For two **nominal** (unordered categorical) variables, use **Cramer's V** or the **phi coefficient** from a chi-square test. For one **dichotomous** variable and one **continuous** variable, use the **point-biserial correlation** (*r*_pb), which is mathematically equivalent to Pearson *r* when one variable has exactly two categories. For one ordinal and one continuous variable, Spearman *r*_s is appropriate.
+
+### What does r-squared tell me that r does not?
+
+The coefficient of determination (*r*²) represents the proportion of **shared variance** between two variables. While *r* = .50 sounds like a moderate relationship, squaring it reveals that *r*² = .25, meaning only 25% of variance in one variable is explained by the other. This provides a more intuitive measure of practical significance. For example, *r* = .30 corresponds to *r*² = .09, indicating just 9% shared variance — which may or may not be practically meaningful depending on the research context.
+
+### Should I use one-tailed or two-tailed tests for correlation?
+
+Use **two-tailed** tests as the default unless you have a strong theoretical or empirical reason to predict the specific direction of the relationship **before** collecting data. One-tailed tests increase statistical power for detecting effects in the predicted direction but miss effects in the opposite direction entirely. Most journals expect two-tailed tests, and reviewers may question one-tailed tests unless the directional hypothesis is well-justified in the introduction.
+
+### How do I handle outliers in correlation analysis?
+
+Start by examining your **scatter plot** to visually identify potential outliers. If outliers are present, follow a multi-step approach. First, verify that the outlier is not a data entry error. Second, compute the correlation both with and without the outlier. If removing the outlier substantially changes *r*, report both values and discuss the implications. Third, consider using **Spearman's correlation**, which is far less sensitive to outliers because it operates on ranks rather than raw values. Never silently remove outliers without justification and transparent reporting.
+
 ## Try StatMate's Free Correlation Calculator
 
 Formatting correlation results by hand is tedious and error-prone. StatMate's [Correlation Calculator](/calculators/correlation) automates the entire process.
