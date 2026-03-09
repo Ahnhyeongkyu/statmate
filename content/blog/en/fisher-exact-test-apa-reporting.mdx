@@ -1,10 +1,18 @@
 ---
 title: "How to Report Fisher's Exact Test in APA Format: Odds Ratio, CI & Small Sample Guide"
-description: "Complete guide to reporting Fisher's exact test in APA 7th edition. Covers when to use it instead of chi-square, odds ratio interpretation, confidence intervals, and copy-ready examples."
+description: "Complete guide to reporting Fisher's exact test in APA 7th edition. Covers when to use it instead of chi-square, odds ratio interpretation, confidence intervals, effect sizes (phi, Cramer's V, relative risk), Freeman-Halton extension for R×C tables, mid-p adjustment, and copy-ready examples."
 date: "2026-03-07"
 category: "APA Reporting"
-tags: ["Fisher exact test APA", "Fisher exact test reporting", "small sample chi-square alternative", "odds ratio APA", "2x2 contingency table", "Fisher exact test example"]
+tags: ["Fisher exact test APA", "Fisher exact test reporting", "small sample chi-square alternative", "odds ratio APA", "2x2 contingency table", "Fisher exact test example", "Freeman-Halton extension", "phi coefficient", "Cramer's V", "relative risk", "mid-p adjustment", "effect size contingency table", "Fisher exact test vs chi-square", "one-tailed Fisher test"]
 ---
+
+## Why Reporting Fisher's Exact Test Correctly Matters
+
+Fisher's exact test is one of the most widely used statistical procedures in biomedical, behavioral, and social science research. It appears whenever researchers analyze categorical data in contingency tables with small samples, rare events, or unbalanced cell frequencies. Clinical trials with limited enrollment, pilot studies, case-control designs with uncommon exposures, and experimental studies with small groups all rely on this test.
+
+Despite its prevalence, Fisher's exact test is frequently misreported. Common errors include reporting a chi-square statistic that the test does not produce, omitting effect sizes, failing to specify one-tailed versus two-tailed testing, and neglecting confidence intervals. Each of these errors weakens the interpretability of findings and may lead to manuscript rejection during peer review.
+
+This guide covers every component required for a complete APA 7th edition write-up of Fisher's exact test. It walks through the decision between Fisher's exact test and chi-square, all relevant effect size measures (odds ratio, relative risk, phi coefficient, Cramer's *V*), the Freeman-Halton extension for larger tables, one-tailed versus two-tailed testing with mid-*p* adjustments, and the most common reporting mistakes.
 
 ## When to Use Fisher's Exact Test
 
@@ -100,13 +108,156 @@ With Fisher's exact test, confidence intervals are often wide because the test i
 
 > Fisher's exact test indicated a significant association, *p* = .041, OR = 4.20, 95% CI [1.05, 16.80]. Although the odds ratio suggests a substantial effect, the wide confidence interval reflects the limited sample size, and the lower bound approaches 1.00.
 
-## One-Tailed vs Two-Tailed Fisher's Test
+## Fisher's Exact Test vs Chi-Square: When to Choose
+
+The decision between Fisher's exact test and the chi-square test hinges on whether the large-sample approximation underlying chi-square is adequate for your data. This is not merely a technical detail; the wrong choice can produce misleading *p* values and jeopardize peer review.
+
+**The expected frequency rule.** The classical guideline, codified by Cochran (1954), states that the chi-square approximation is acceptable when no more than 20% of cells have expected frequencies below 5 and no cell has an expected frequency below 1. When these conditions are violated, the chi-square *p* value may be substantially too liberal (rejecting the null too often) or too conservative (failing to reject when the effect is real).
+
+**Sample size thresholds.** As a practical heuristic, Fisher's exact test should be the default when the total sample size *N* is below 20 for a 2x2 table, or when any row or column marginal is very small (below 5). For samples of 20 to 40, either test may be appropriate depending on the distribution of expected counts. Above *N* = 40 with balanced marginals, chi-square is generally reliable.
+
+**How to justify the choice in APA format:**
+
+> Because 50% of cells (2 of 4) had expected frequencies below 5, Fisher's exact test was used rather than Pearson's chi-square test (Agresti, 2007).
+
+> The sample size (*N* = 18) was insufficient for the chi-square approximation. Fisher's exact test was therefore used.
+
+> All expected cell frequencies exceeded 5, and the total sample size was 120. Pearson's chi-square test was used.
+
+**When both tests agree.** If you run both and the *p* values are similar, report chi-square because it is more familiar to most readers and includes a test statistic (*chi-square*(df) = X.XX) that conveys additional information. If the *p* values diverge meaningfully, trust Fisher's exact test because it does not rely on distributional approximations.
+
+**The conservative-test argument.** Some methodologists, particularly in clinical research, advocate using Fisher's exact test for all 2x2 tables regardless of sample size. The reasoning is that modern computing makes the exact calculation trivial, and exact *p* values are never less accurate than approximate ones. This position is defensible and increasingly common in medical journals. If you adopt it, state so explicitly in your methods section.
+
+| Criterion | Chi-Square | Fisher's Exact Test |
+|-----------|-----------|-------------------|
+| Expected frequencies | All cells >= 5 | Any cell < 5 |
+| Sample size | Generally *N* > 40 | Any sample size |
+| Table size | Any dimension | Any dimension (2x2 most common) |
+| Test statistic reported | chi-square(df) = X.XX | None (exact *p* only) |
+| Effect size (2x2) | Phi | Odds ratio |
+| Effect size (larger) | Cramer's *V* | Cramer's *V* |
+| Computation | Fast | Slower for large tables |
+| Accuracy | Approximate | Exact |
+
+## Effect Sizes for Fisher's Exact Test
+
+APA 7th edition requires an effect size for every inferential test, yet many Fisher's exact test reports include only the *p* value. This section covers four effect size measures relevant to contingency table analyses, when each is appropriate, and how to report them in APA format.
+
+### Odds Ratio (OR)
+
+The odds ratio is the primary effect size for 2x2 tables analyzed with Fisher's exact test. It quantifies the multiplicative change in odds between two groups. Unlike Cohen's *d* or *r*, the OR does not have a simple "small/medium/large" benchmark because its interpretation depends on the base rate of the outcome.
+
+**Rough benchmarks** (adapted from Chen et al., 2010):
+
+| OR | Interpretation |
+|----|---------------|
+| 1.0 | No effect |
+| 1.5 | Small |
+| 2.5 | Medium |
+| 4.3 | Large |
+
+Always report the 95% confidence interval alongside the OR. For Fisher's exact test, several methods exist for computing the CI (exact conditional, mid-*p*, Cornfield). The exact conditional method is the default in most software and is recommended for small-sample analyses.
+
+**APA format:**
+
+> OR = 3.47, 95% CI [1.12, 10.74]
+
+### Relative Risk (RR)
+
+Relative risk (also called the risk ratio) compares the probability of an outcome in one group to the probability in another. Unlike the odds ratio, RR has a direct probabilistic interpretation: RR = 2.0 means the outcome is twice as likely in the exposed group.
+
+RR is preferred in prospective studies (cohort, RCT) where incidence rates are meaningful. It is not appropriate for case-control designs, where the odds ratio should be used instead.
+
+**APA format:**
+
+> The relative risk of adverse events was 2.40, 95% CI [1.15, 5.01], indicating that participants in the experimental condition were 2.4 times more likely to experience the outcome.
+
+**Key distinction from OR:** When the outcome is rare (below 10% in both groups), OR approximates RR closely. When the outcome is common, OR exaggerates the effect relative to RR. If your outcome is common and you report only OR, readers may overestimate the practical impact.
+
+### Phi Coefficient
+
+The phi coefficient (*phi*) is equivalent to Pearson's *r* for a 2x2 table and ranges from 0 to 1 (or -1 to +1 when direction is assigned). It measures the strength of association on a familiar correlation-like scale.
+
+**Benchmarks (Cohen, 1988):**
+
+| Phi | Interpretation |
+|-----|---------------|
+| .10 | Small |
+| .30 | Medium |
+| .50 | Large |
+
+Phi is useful when you want to compare effect sizes across studies that use different table structures or when you need a standardized metric for meta-analysis. It is calculated as the square root of chi-square divided by *N*.
+
+**APA format:**
+
+> Fisher's exact test indicated a significant association, *p* = .023, *phi* = .38.
+
+### Cramer's *V*
+
+Cramer's *V* generalizes the phi coefficient to tables larger than 2x2. For a 2x2 table, Cramer's *V* equals phi. For larger tables, *V* ranges from 0 to 1, and its interpretation benchmarks depend on the degrees of freedom (df = min(rows - 1, columns - 1)).
+
+| df | Small | Medium | Large |
+|----|-------|--------|-------|
+| 1 | .10 | .30 | .50 |
+| 2 | .07 | .21 | .35 |
+| 3 | .06 | .17 | .29 |
+
+**APA format for an R x C table:**
+
+> Fisher's exact test (Freeman-Halton extension) indicated a significant association between treatment group and symptom category, *p* = .018, *V* = .31.
+
+### Choosing the Right Effect Size
+
+| Situation | Recommended Effect Size |
+|-----------|----------------------|
+| 2x2, case-control design | Odds ratio + 95% CI |
+| 2x2, prospective study (RCT, cohort) | Relative risk + 95% CI; also report OR |
+| 2x2, meta-analysis or cross-study comparison | Phi coefficient |
+| R x C table (any design) | Cramer's *V* |
+
+Report at least one effect size measure with a confidence interval. When in doubt for a 2x2 table, the odds ratio with 95% CI is the safest default because it is universally accepted and directly connected to Fisher's exact test.
+
+## Fisher's Exact Test for Larger Tables (R x C)
+
+Fisher's exact test is not limited to 2x2 tables. The **Freeman-Halton extension** generalizes the procedure to any R x C contingency table. This extension computes the exact probability of observing the given table (and all more extreme tables) under the null hypothesis of independence, conditional on fixed row and column marginals.
+
+### When to Use the Freeman-Halton Extension
+
+Use the Freeman-Halton extension when:
+
+- Your table is larger than 2x2 (e.g., 2x3, 3x3, 3x4)
+- Expected cell frequencies violate the Cochran guideline (more than 20% below 5)
+- The total sample size is small relative to the number of cells
+
+For a 3x3 table with 9 cells, maintaining adequate expected frequencies requires a substantially larger sample than for a 2x2 table with 4 cells. A total *N* of 45 might be adequate for a 2x2 table but insufficient for a 3x3 table.
+
+### Computational Considerations
+
+The exact computation becomes exponentially more demanding as the table grows. For tables beyond roughly 6x6 or with large marginals, most software employs **Monte Carlo simulation** to approximate the exact *p* value. When a simulated *p* is reported, note the number of replications.
+
+**APA format for Monte Carlo:**
+
+> The Freeman-Halton extension of Fisher's exact test, computed via Monte Carlo simulation (10,000 replications), indicated a significant association between diagnosis and treatment response, *p* = .008, 99% CI [.005, .011], *V* = .29.
+
+### APA Reporting Template for R x C Tables
+
+> A 3x4 contingency table was constructed to examine the association between [variable 1] (3 levels) and [variable 2] (4 levels). Because 58% of cells had expected frequencies below 5, the Freeman-Halton extension of Fisher's exact test was used. The test revealed a significant association, *p* = .014, *V* = .28 (medium effect). Post-hoc pairwise comparisons using Fisher's exact tests with Bonferroni correction identified significant differences between Level A and Level C (*p* = .003) and between Level B and Level C (*p* = .011).
+
+### Post-Hoc Comparisons for R x C Tables
+
+A significant omnibus Fisher's exact test for an R x C table tells you that an association exists but does not identify where. Follow up with pairwise 2x2 Fisher's exact tests, applying a correction for multiple comparisons (Bonferroni is the simplest; the Benjamini-Hochberg FDR correction is a more powerful alternative).
+
+## One-Tailed vs Two-Tailed Fisher's Exact Test
 
 Fisher's exact test can be run as either one-tailed or two-tailed. The choice depends on whether your hypothesis specifies a direction.
 
-**Two-tailed test (default):** Use when you are testing whether any association exists, regardless of direction. This is the standard in most research and should be the default unless you have a strong a priori reason for a directional hypothesis.
+### Two-Tailed Test (Default)
 
-**One-tailed test:** Use when your hypothesis predicts a specific direction of the association before data collection. For example, "the treatment group will have higher recovery rates than the control group."
+Use when you are testing whether any association exists, regardless of direction. This is the standard in most research and should be the default unless you have a strong a priori reason for a directional hypothesis.
+
+### One-Tailed Test
+
+Use when your hypothesis predicts a specific direction of the association before data collection. For example, "the treatment group will have higher recovery rates than the control group."
 
 **How to report the distinction:**
 
@@ -116,54 +267,61 @@ Fisher's exact test can be run as either one-tailed or two-tailed. The choice de
 
 If you use a one-tailed test, you must justify this choice in your method section. Using a one-tailed test purely because the two-tailed result was not significant (*p* = .07, so you switch to one-tailed to get *p* = .035) is a form of *p*-hacking and is not acceptable.
 
-## Fisher's Exact Test for Larger Tables (R x C)
+### The Mid-*p* Adjustment
 
-Fisher's exact test is not limited to 2x2 tables. It can be extended to any R x C (rows by columns) contingency table. The computation becomes intensive for larger tables, but modern statistical software handles this efficiently using Monte Carlo simulation or network algorithms.
+Fisher's exact test is sometimes criticized as overly conservative because it conditions on the observed marginals, which can make the test less powerful than necessary. The **mid-*p* adjustment** addresses this by computing the *p* value as half the probability of the observed table plus the probabilities of all more extreme tables.
 
-For tables larger than 2x2, the odds ratio is no longer a single number that summarizes the association. Instead, the appropriate effect size is **Cramer's *V***, which generalizes to tables of any dimension.
+The mid-*p* value is always less than or equal to the standard exact *p* value, making it slightly more liberal. It is recommended by several statisticians (Lancaster, 1961; Agresti, 2002) as a compromise between the conservative exact test and the liberal chi-square approximation.
 
-**APA example for a 3x3 table:**
+**APA format with mid-*p*:**
 
-> Fisher's exact test was performed because 44% of cells had expected frequencies below 5. The test indicated a significant association between education level and voting preference, *p* = .012, *V* = .34.
+> Fisher's exact test with mid-*p* adjustment indicated a significant association between vaccination status and infection, mid-*p* = .032, OR = 3.15, 95% CI [1.08, 9.17].
 
-**When extending to larger tables, keep in mind:**
+**When to use mid-*p*:** Consider the mid-*p* adjustment when the standard exact *p* is close to your significance threshold (e.g., *p* = .06) and you want a less conservative analysis. Always report which method you used. Do not switch between methods after seeing the results.
 
-- Report the exact *p* value from the Freeman-Halton extension of Fisher's test
-- Use Cramer's *V* as the effect size, with interpretation benchmarks that depend on the degrees of freedom
-- If your software reports a simulated *p* value (Monte Carlo), note the number of replications used
+### Directional Hypotheses: APA Justification
 
-## Fisher's Exact Test vs Chi-Square: Decision Guide
+When reporting a one-tailed test, the APA requires explicit justification. Include the directional prediction in your hypotheses section and reference it in the results:
 
-Choosing between Fisher's exact test and the chi-square test comes down to whether the chi-square approximation is reliable for your data.
+> Based on prior research demonstrating the efficacy of cognitive-behavioral interventions (Smith et al., 2023), we hypothesized that the treatment group would show higher remission rates. A one-tailed Fisher's exact test was therefore used to test this directional prediction. The result was significant, *p* = .021, OR = 4.80, 95% CI [1.25, 18.40].
 
-| Criterion | Chi-Square | Fisher's Exact Test |
-|-----------|-----------|-------------------|
-| Expected frequencies | All cells 5 or above | Any cell below 5 |
-| Sample size | Generally *N* > 20 | Any sample size |
-| Table size | Any dimension | Any dimension (2x2 most common) |
-| Test statistic reported | chi-square(df) = X.XX | None (exact *p* only) |
-| Effect size (2x2) | Phi | Odds ratio |
-| Effect size (larger) | Cramer's *V* | Cramer's *V* |
-| Computation | Fast | Slower for large tables |
-| Accuracy | Approximate | Exact |
+## Common Mistakes in Reporting Fisher's Exact Test
 
-**Rule of thumb:** If you are unsure, run both. If the results agree, report chi-square (it is more familiar to readers). If they disagree, trust Fisher's exact test because it does not rely on approximations.
+### Mistake 1: Using Chi-Square When Expected Frequencies Are Too Low
 
-Some methodologists argue that Fisher's exact test should always be preferred for 2x2 tables regardless of sample size, since modern computing makes the exact calculation trivial. This is a defensible position, particularly in clinical and experimental research where sample sizes are often modest.
+This is the most frequent error. If your contingency table has expected counts below 5, the chi-square *p* value may be inaccurate. Always check expected frequencies before deciding which test to use. Many software packages (SPSS, R, Python) report expected frequencies automatically. If you see the warning "1 cell (25.0%) has expected count less than 5," switch to Fisher's exact test.
 
-## Common Mistakes
+### Mistake 2: Reporting a Chi-Square Statistic for Fisher's Test
 
-**1. Using chi-square when expected frequencies are too low.** This is the most frequent error. If your contingency table has expected counts below 5, the chi-square *p* value may be inaccurate. Always check expected frequencies before deciding which test to use.
+Fisher's exact test does not produce a chi-square value. Writing "chi-square(1) = 4.52, Fisher's exact *p* = .038" conflates two different tests. This is a hybrid that no statistical procedure actually produces. Report the Fisher's exact *p* value on its own:
 
-**2. Reporting a chi-square statistic for Fisher's test.** Fisher's exact test does not produce a chi-square value. Writing "chi-square(1) = 4.52, Fisher's exact *p* = .038" conflates two different tests. Report the Fisher's exact *p* value on its own.
+> **Incorrect:** chi-square(1, *N* = 24) = 4.52, Fisher's exact *p* = .038
+>
+> **Correct:** Fisher's exact test, *p* = .038, OR = 3.75, 95% CI [1.05, 13.40]
 
-**3. Omitting the odds ratio.** A *p* value alone does not convey the strength or direction of an association. The odds ratio is essential for interpreting a 2x2 Fisher's exact test result.
+### Mistake 3: Omitting the Effect Size
 
-**4. Omitting the confidence interval.** Without a confidence interval, readers cannot judge the precision of the odds ratio estimate. This is especially important for small-sample studies where point estimates can be unstable.
+A *p* value alone does not convey the strength or direction of an association. The odds ratio is essential for interpreting a 2x2 Fisher's exact test result. Without it, readers cannot judge whether the statistically significant association is also practically meaningful. A significant *p* with OR = 1.05 means something very different from a significant *p* with OR = 8.50.
 
-**5. Switching to one-tailed after seeing the results.** If your pre-registered hypothesis was non-directional, you must report the two-tailed *p* value. Switching to one-tailed post hoc inflates the Type I error rate.
+### Mistake 4: Omitting the Confidence Interval
 
-**6. Ignoring the table of observed frequencies.** APA style recommends presenting the contingency table with observed counts and percentages. The table provides context that summary statistics alone cannot convey.
+Without a confidence interval, readers cannot judge the precision of the odds ratio estimate. This is especially important for small-sample studies where point estimates can be unstable. An OR = 6.00 with 95% CI [0.80, 45.00] tells a very different story from OR = 6.00 with 95% CI [2.10, 17.10].
+
+### Mistake 5: Switching to One-Tailed After Seeing Results
+
+If your pre-registered hypothesis was non-directional, you must report the two-tailed *p* value. Switching to one-tailed post hoc inflates the Type I error rate. This is a well-known form of *p*-hacking that reviewers will catch. If you have a directional hypothesis, state it before data collection and pre-register it.
+
+### Mistake 6: Ignoring the Contingency Table
+
+APA style recommends presenting the contingency table with observed counts and percentages. The table provides context that summary statistics alone cannot convey. Readers need to see the cell frequencies to verify the reported analysis and to understand the pattern of the association.
+
+### Mistake 7: Incorrect Interpretation of the Odds Ratio
+
+The odds ratio compares odds, not probabilities. Saying "patients in the treatment group were 3 times more likely to recover" when OR = 3.0 is technically incorrect. The correct statement is "the odds of recovery were 3 times higher in the treatment group." The distinction matters because odds and probability are different quantities, and they diverge substantially when the outcome is common.
+
+### Mistake 8: Not Specifying the Software and Method
+
+Different software packages may produce slightly different *p* values for Fisher's exact test due to differences in computational algorithms (exact enumeration, network algorithm, Monte Carlo simulation). Always state the software used and, for larger tables, whether the *p* value is based on exact computation or Monte Carlo simulation.
 
 ## Fisher's Exact Test APA Checklist
 
@@ -177,6 +335,41 @@ Before submitting your manuscript, verify that your Fisher's exact test report i
 - A contingency table showing observed frequencies (with percentages if helpful)
 - Plain-language interpretation of the direction and magnitude of the effect
 - No chi-square statistic reported alongside the Fisher's exact *p* value
+- Software and computational method specified (exact or Monte Carlo)
+
+## Frequently Asked Questions
+
+### What is Fisher's exact test used for?
+
+Fisher's exact test evaluates whether there is a statistically significant association between two categorical variables arranged in a contingency table. It calculates the exact probability of observing the data (or more extreme data) under the null hypothesis of independence. It is used instead of the chi-square test when sample sizes are small or when expected cell frequencies fall below the threshold required for the chi-square approximation to be reliable. The test is most commonly applied to 2x2 tables but can be extended to larger tables using the Freeman-Halton extension.
+
+### Can Fisher's exact test be used with large samples?
+
+Yes. Fisher's exact test produces valid results at any sample size. The test was originally developed for small samples because exact computation was expensive, but modern software handles even large tables efficiently. Some statisticians recommend Fisher's exact test as the universal default for all 2x2 tables. The only practical limitation is computational: for very large R x C tables, Monte Carlo simulation may be used instead of exact enumeration, and you should note this in your report.
+
+### What is the difference between Fisher's exact test and chi-square?
+
+The chi-square test calculates an approximate *p* value based on the chi-square distribution, which assumes large expected cell frequencies. Fisher's exact test calculates the exact *p* value by enumerating all possible tables with the same marginal totals. When expected frequencies are adequate (all cells >= 5), both tests produce similar results. When expected frequencies are low, the chi-square approximation becomes unreliable, and Fisher's exact test is preferred. Additionally, Fisher's exact test does not produce a test statistic, only an exact *p* value.
+
+### How do I calculate the odds ratio from a 2x2 table?
+
+For a 2x2 table with cells labeled a, b, c, d (where a and b are in row 1, c and d are in row 2), the odds ratio is calculated as OR = (a x d) / (b x c). For example, if a = 8, b = 2, c = 3, d = 7, then OR = (8 x 7) / (2 x 3) = 56 / 6 = 9.33. An OR greater than 1 indicates higher odds of the outcome in the first row group. An OR of exactly 1 indicates no association. Always report the 95% confidence interval alongside the point estimate.
+
+### What does a non-significant Fisher's exact test mean?
+
+A non-significant result (*p* > .05) means there is insufficient evidence to conclude that an association exists between the two variables. It does not prove that the variables are independent. With small samples, Fisher's exact test has limited statistical power, meaning it may fail to detect real associations. Report the effect size (OR and 95% CI) even for non-significant results, as this information is valuable for future meta-analyses and power calculations. A non-significant test with a wide confidence interval suggests that more data are needed.
+
+### Should I report Fisher's exact test if chi-square is also available?
+
+If your expected cell frequencies meet the Cochran guideline (no more than 20% below 5, none below 1), reporting the chi-square test is standard and preferred because it includes a test statistic and degrees of freedom. If expected frequencies are inadequate, Fisher's exact test should be reported instead. Some journals in clinical research expect Fisher's exact test for all 2x2 analyses regardless of sample size. If you run both and results diverge, report Fisher's exact test and note the discrepancy.
+
+### How do I report Fisher's exact test in SPSS output?
+
+In SPSS, Fisher's exact test appears in the Chi-Square Tests output table as "Fisher's Exact Test" with columns for Exact Sig. (2-sided) and Exact Sig. (1-sided). Report the two-sided value unless you have a justified directional hypothesis. SPSS does not directly output the odds ratio for Fisher's test; use the Risk Estimate table (which reports the odds ratio and its 95% CI) or compute it from the crosstabulation. Report as: Fisher's exact test, *p* = .XXX, OR = X.XX, 95% CI [X.XX, X.XX].
+
+### Can Fisher's exact test be used for tables larger than 2x2?
+
+Yes. The Freeman-Halton extension generalizes Fisher's exact test to any R x C table. Most modern software (R, Python, SAS, Stata) supports this extension. For tables beyond approximately 6x6 or with large marginals, the computation may require Monte Carlo simulation. When reporting, specify the table dimensions, the percentage of cells with expected frequencies below 5, the exact or simulated *p* value, and Cramer's *V* as the effect size. For simulated *p* values, report the number of Monte Carlo replications used.
 
 ## Try StatMate's Free Fisher's Exact Test Calculator
 

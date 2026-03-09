@@ -1,9 +1,9 @@
 ---
 title: "How to Report Two-Way ANOVA Results in APA Format: Main Effects, Interaction & Post-Hoc"
-description: "Step-by-step guide to reporting two-way (factorial) ANOVA in APA 7th edition. Covers main effects, interaction effects, partial eta-squared, simple effects analysis, and copy-ready examples."
+description: "Step-by-step guide to reporting two-way (factorial) ANOVA in APA 7th edition. Covers main effects, interaction effects, partial eta-squared, simple effects analysis, assumptions, and copy-ready examples."
 date: "2026-03-07"
 category: "APA Reporting"
-tags: ["two-way ANOVA APA", "factorial ANOVA reporting", "interaction effect APA", "main effect reporting", "partial eta squared", "two-way ANOVA example"]
+tags: ["two-way ANOVA APA", "factorial ANOVA reporting", "interaction effect APA", "main effect reporting", "partial eta squared", "two-way ANOVA example", "simple main effects", "ordinal disordinal interaction", "omega squared ANOVA", "Levene test factorial design"]
 ---
 
 ## When to Use a Two-Way ANOVA
@@ -144,25 +144,129 @@ For designs with many cells (e.g., 3 x 4), putting all means and *F*-tests in th
 
 In the text, summarize the key findings and direct the reader to the tables for full details. This approach prevents your results section from becoming a wall of numbers.
 
-## Common Mistakes
+## Understanding Interaction Effects
+
+The interaction effect is the hallmark of factorial ANOVA and the primary reason researchers choose a two-way design over separate one-way analyses. Understanding the type of interaction is critical for both interpretation and graphing.
+
+### Ordinal vs. Disordinal Interactions
+
+Interactions fall into two categories based on whether the factor levels maintain their rank order across all conditions.
+
+An **ordinal interaction** occurs when the rank order of one factor's levels remains the same across all levels of the other factor, but the magnitude of the difference changes. For example, active learning always produces higher scores than lecture, but the gap is larger in small classes than in large classes. On an interaction plot, the lines diverge or converge but never cross. The main effects remain interpretable in an ordinal interaction, though they must be qualified by the interaction pattern.
+
+> The interaction was ordinal: active learning consistently outperformed lecture across all class sizes, but the advantage was larger in small classes (mean difference = 11.70) than in large classes (mean difference = 5.90), *F*(2, 114) = 4.83, *p* = .010, partial eta-squared = .08.
+
+A **disordinal interaction** (also called a crossover interaction) occurs when the rank order reverses across levels. For example, Method A might outperform Method B in one condition but underperform Method B in another. The lines on an interaction plot cross. In this case, the main effects are essentially meaningless because the overall average conceals a reversal. You must rely entirely on simple effects to describe the data.
+
+> The interaction was disordinal: Method A produced higher scores than Method B in the low-anxiety condition (mean difference = 8.40), but lower scores than Method B in the high-anxiety condition (mean difference = -6.20), *F*(1, 76) = 15.33, *p* < .001, partial eta-squared = .17. Main effects were not interpreted due to the crossover pattern.
+
+### Graphing Interactions
+
+Always include an interaction plot (also called a profile plot or line graph) when reporting a two-way ANOVA. Place one factor on the x-axis, the dependent variable on the y-axis, and use separate lines for the levels of the other factor. Parallel lines indicate no interaction; non-parallel lines indicate an interaction. Crossing lines indicate a disordinal interaction. Include error bars (standard error or 95% confidence intervals) on the plot so readers can evaluate the precision of the means.
+
+## Simple Main Effects Analysis
+
+Simple main effects analysis is the standard follow-up procedure when a two-way ANOVA yields a significant interaction. This analysis decomposes the interaction by testing one factor at each level of the other factor.
+
+### When to Conduct Simple Main Effects
+
+Conduct simple main effects only when the interaction is statistically significant. If the interaction is not significant, interpret the main effects directly without decomposition. Running simple effects after a non-significant interaction increases the familywise error rate without theoretical justification.
+
+The choice of which factor to decompose depends on your research question. If your primary interest is whether teaching method works differently across class sizes, test the simple effect of teaching method at each class size. If your primary interest is how class size affects outcomes within each teaching method, test the simple effect of class size at each level of teaching method.
+
+### APA Format for Simple Main Effects
+
+Report each simple effect as a separate *F*-test with its own degrees of freedom, *p*-value, and effect size. Use the error term from the omnibus ANOVA (pooled error) rather than computing a separate error term for each simple effect, as this maintains consistency and uses the full sample information.
+
+> Simple main effects analysis was conducted to decompose the significant interaction. The effect of teaching method was tested at each level of class size. In small classes, active learning produced significantly higher scores than lecture, *F*(1, 114) = 24.30, *p* < .001, partial eta-squared = .18. In medium classes, the advantage of active learning was also significant, *F*(1, 114) = 21.05, *p* < .001, partial eta-squared = .16. In large classes, the difference was not statistically significant, *F*(1, 114) = 3.72, *p* = .056, partial eta-squared = .03.
+
+### Bonferroni Correction for Simple Main Effects
+
+When you test multiple simple effects, you are conducting multiple comparisons, which inflates the familywise Type I error rate. Apply Bonferroni correction by dividing the significance level by the number of simple effects tests. For example, testing teaching method at three class sizes requires an adjusted alpha of .05 / 3 = .017. Report both the unadjusted *p*-value and the adjusted significance criterion so readers can evaluate the results.
+
+> After Bonferroni correction for three simple effects (adjusted alpha = .017), the effect of teaching method remained significant in small classes (*p* < .001) and medium classes (*p* < .001), but was not significant in large classes (*p* = .056).
+
+## Effect Sizes for Two-Way ANOVA
+
+Effect sizes quantify the practical significance of your results and are required by APA 7th edition for every inferential test. Two measures are commonly used in factorial ANOVA.
+
+### Partial Eta-Squared per Factor and Interaction
+
+Partial eta-squared (partial eta-squared) represents the proportion of variance attributable to a given effect after removing variance attributable to other effects. It is calculated as:
+
+> partial eta-squared = SS_effect / (SS_effect + SS_error)
+
+Report partial eta-squared for all three effects (both main effects and the interaction), regardless of statistical significance. Use Cohen's (1988) benchmarks for interpretation: .01 (small), .06 (medium), .14 (large). In factorial designs, partial eta-squared is preferred over eta-squared because it isolates each effect from the others.
+
+**APA example:**
+
+> The main effect of teaching method was large, *F*(1, 114) = 28.45, *p* < .001, partial eta-squared = .20. The main effect of class size was also large, *F*(2, 114) = 12.67, *p* < .001, partial eta-squared = .18. The interaction effect was medium, *F*(2, 114) = 4.83, *p* = .010, partial eta-squared = .08.
+
+### Omega-Squared as an Alternative
+
+While partial eta-squared is the most commonly reported effect size, it is positively biased, especially in small samples. Omega-squared provides a less biased estimate of the population effect size. The formula for omega-squared in factorial designs is:
+
+> omega-squared = (SS_effect - df_effect x MS_error) / (SS_total + MS_error)
+
+Omega-squared values are always smaller than the corresponding partial eta-squared values. Some journals and reviewers prefer omega-squared for its reduced bias. If you report omega-squared, use Richardson's (2011) guidelines: .01 (small), .06 (medium), .14 (large). Report whichever measure your field or journal prefers, but be consistent across all effects.
+
+**APA example:**
+
+> The main effect of teaching method was significant, *F*(1, 114) = 28.45, *p* < .001, omega-squared = .17. The interaction was also significant, *F*(2, 114) = 4.83, *p* = .010, omega-squared = .05.
+
+## Assumptions and Violations
+
+A two-way ANOVA relies on several assumptions. Violations can bias results and lead to incorrect conclusions. Check all assumptions before interpreting the output.
+
+### Normality Within Each Cell
+
+The dependent variable should be approximately normally distributed within each cell (i.e., each combination of the two factors). For a 2 x 3 design, you have six cells, and normality should be checked in all six. Use Shapiro-Wilk tests for small samples or Q-Q plots for larger samples. ANOVA is robust to moderate normality violations when cell sizes are equal and exceed 15-20 observations. For severe non-normality, consider data transformation (log, square root) or the nonparametric aligned rank transform ANOVA.
+
+**APA reporting example:**
+
+> Shapiro-Wilk tests indicated that exam scores were approximately normally distributed within each cell (all *p*s > .05), satisfying the normality assumption.
+
+### Levene's Test for Homogeneity of Variance
+
+The assumption of homogeneity of variance (homoscedasticity) requires that the population variances are equal across all cells. Test this with Levene's test. A non-significant Levene's test (*p* > .05) supports the assumption. If Levene's test is significant, the standard ANOVA *F*-test may be liberal (too many false positives). Remedies include using Welch's ANOVA variant, applying a more conservative alpha level, or using robust standard errors.
+
+> Levene's test indicated that the assumption of homogeneity of variance was met, *F*(5, 114) = 1.23, *p* = .298.
+
+> Levene's test was significant, *F*(5, 114) = 3.45, *p* = .006, indicating heterogeneous variances. Results were verified using a robust Welch-type procedure, which yielded comparable conclusions.
+
+### Balanced vs. Unbalanced Designs
+
+A balanced design has equal sample sizes in every cell. Balanced designs are preferred because they make the *F*-tests independent of each other and robust to heterogeneity of variance. In unbalanced designs, the main effects and interaction are no longer orthogonal, and the choice of sum-of-squares type (Type I, II, or III) affects the results. Type III is the default in most software (SPSS, R with `car::Anova`) and is recommended for unbalanced designs because it tests each effect after adjusting for all other effects. Always report cell sizes and state which SS type you used if the design is unbalanced.
+
+> The design was unbalanced (cell sizes ranged from 15 to 25). Type III sums of squares were used to test all effects, adjusting for the unequal sample sizes.
+
+## Common Mistakes in Two-Way ANOVA Reporting
 
 ### 1. Interpreting Main Effects When the Interaction Is Significant
 
-This is the most frequent error in two-way ANOVA reporting. When a significant interaction is present, the main effects are misleading because they average across a pattern that is not uniform. Always prioritize the interaction and use simple effects to understand the data.
+This is the most frequent error in two-way ANOVA reporting. When a significant interaction is present, the main effects are misleading because they average across a pattern that is not uniform. Always prioritize the interaction and use simple effects to understand the data. For ordinal interactions, you may cautiously discuss main effects but must qualify them with the interaction pattern. For disordinal interactions, main effects are uninterpretable.
 
-### 2. Not Reporting Partial Eta-Squared for All Effects
+### 2. Using the Wrong Post-Hoc Procedure
+
+When the interaction is significant, the correct follow-up is simple main effects analysis, not post-hoc pairwise comparisons on the marginal means. Post-hoc tests like Tukey HSD on the main effect means ignore the interaction pattern. Within each simple effect that involves three or more levels, you may then apply pairwise comparisons with Bonferroni or Tukey correction. Also avoid using Fisher's LSD, which does not control the familywise error rate.
+
+### 3. Not Reporting Partial Eta-Squared for All Effects
 
 APA 7th edition requires an effect size for every test. Report partial eta-squared for both main effects and the interaction, even when an effect is not significant. A non-significant result with partial eta-squared = .12 tells a different story than one with partial eta-squared = .002.
 
-### 3. Confusing Eta-Squared With Partial Eta-Squared
+### 4. Confusing Eta-Squared With Partial Eta-Squared
 
 Eta-squared divides the effect sum of squares by the total sum of squares. Partial eta-squared divides by the effect sum of squares plus the error sum of squares. In factorial designs, partial eta-squared is the standard measure because it isolates each effect from the others. Most software (SPSS, R, JASP) reports partial eta-squared by default. Make sure you label it correctly; they are not interchangeable.
 
-### 4. Not Reporting Cell Means
+### 5. Reporting Main Effects When the Interaction Is Significant Without Simple Effects
+
+Some researchers report a significant interaction but then proceed to interpret the main effects without conducting simple effects analysis. This is incomplete and potentially misleading. When the interaction is significant, the simple effects are the primary results that should drive your interpretation. The main effects become secondary and must be qualified.
+
+### 6. Not Reporting Cell Means
 
 Reporting only marginal means obscures the interaction pattern. Always provide means for every cell combination, either in a table or in the text. Readers cannot evaluate your interaction interpretation without seeing the individual cell values.
 
-### 5. Omitting Degrees of Freedom or Sample Size
+### 7. Omitting Degrees of Freedom or Sample Size
 
 Always include both degrees of freedom in the *F*-ratio (between-groups and error). Also report cell sizes, especially if the design is unbalanced. Unequal sample sizes affect the choice of sum-of-squares type (Type I, II, or III) and must be acknowledged.
 
@@ -181,14 +285,51 @@ Use this checklist before submitting your manuscript:
 - [ ] If interaction is significant: report simple effects analysis
 - [ ] If main effect has 3+ levels: report post-hoc pairwise comparisons with correction
 - [ ] Interpret the direction and meaning of significant effects
+- [ ] Classify the interaction type (ordinal vs. disordinal) and include an interaction plot
 - [ ] Use partial eta-squared (not eta-squared) as the effect size measure
+- [ ] Report assumption checks (normality per cell, Levene's test)
+- [ ] State SS type (III recommended) for unbalanced designs
 - [ ] Include an ANOVA summary table for complex designs
 - [ ] Check that *p*-values have no leading zero (.010, not 0.010)
 - [ ] Check that partial eta-squared has no leading zero (.08, not 0.08)
 
+## Frequently Asked Questions
+
+### What is the difference between a two-way ANOVA and two separate one-way ANOVAs?
+
+A two-way ANOVA tests both main effects and their interaction simultaneously, which provides three key advantages. First, it detects interaction effects that separate one-way ANOVAs cannot detect. Second, it uses a single error term based on the full sample, giving greater statistical power. Third, it partitions variance more accurately by accounting for the other factor, reducing unexplained variance. Running two separate one-way ANOVAs inflates the familywise error rate, misses the interaction entirely, and uses a less efficient error term. Always prefer the two-way design when you have two factors.
+
+### How do I interpret a significant interaction but non-significant main effects?
+
+This pattern is more common than many researchers expect, especially with disordinal (crossover) interactions. When the factor levels reverse their ordering across conditions, the marginal means average out to similar values, producing non-significant main effects. The interaction is the meaningful result. Conduct simple effects analysis to determine where the differences lie, and report the simple effects as your primary findings. Do not conclude that neither factor has an effect simply because the main effects are not significant.
+
+### What is the difference between partial eta-squared and generalized eta-squared?
+
+Partial eta-squared is the most commonly reported effect size in factorial ANOVA and is computed as SS_effect / (SS_effect + SS_error). Generalized eta-squared (introduced by Olejnik & Algina, 2003) is computed differently and is recommended when comparing effect sizes across studies with different designs (between-subjects, within-subjects, or mixed). Generalized eta-squared accounts for the distinction between measured and manipulated factors. For standard between-subjects designs, the two measures are identical. If your field or journal prefers generalized eta-squared, report it alongside partial eta-squared for transparency.
+
+### Can I use a two-way ANOVA with unequal sample sizes?
+
+Yes, but unequal cell sizes introduce complications. When cells are unbalanced, the main effects and interaction are no longer independent (non-orthogonal), and the order in which effects are entered into the model matters. Use Type III sums of squares, which test each effect after adjusting for all others, regardless of entry order. Report cell sizes explicitly and acknowledge the unbalanced design. Severely unbalanced designs (e.g., cell sizes differing by a factor of 3 or more) also weaken the robustness of the ANOVA to violations of homogeneity of variance.
+
+### How many participants do I need per cell in a two-way ANOVA?
+
+The minimum recommended cell size depends on the expected effect size and the number of cells. As a general guideline, aim for at least 20 participants per cell for medium effects (partial eta-squared around .06) with 80% power. For small effects (partial eta-squared around .01), you may need 50 or more per cell. Use a priori power analysis (e.g., G*Power or StatMate's sample size calculator) to determine the exact number. With fewer than 10 per cell, the ANOVA becomes sensitive to assumption violations and has low power to detect the interaction.
+
+### Should I always interpret the interaction before the main effects?
+
+Yes. The interaction should be examined first because it determines how you interpret the main effects. If the interaction is significant, the main effects are qualified and cannot be taken at face value. If the interaction is not significant, the main effects can be interpreted independently. Many style guides and textbooks recommend a hierarchical approach: report the interaction first, then the main effects, with interpretation conditional on the interaction result. This logical flow prevents the most common reporting error in factorial ANOVA.
+
+### What should I do if the interaction is marginally significant (e.g., p = .06)?
+
+Report the exact *p*-value and let readers evaluate the evidence. Avoid the term "marginally significant" as it lacks a clear statistical definition. Instead, describe the result objectively: "The interaction did not reach conventional significance, *F*(2, 114) = 2.89, *p* = .060, partial eta-squared = .05." You may examine the interaction plot and descriptive statistics to evaluate whether the pattern is consistent with a meaningful interaction. If the effect size is non-trivial (e.g., partial eta-squared > .04), acknowledge this and suggest that future research with larger samples could clarify the result. Do not conduct simple effects analysis for a non-significant interaction.
+
+### How do I report a two-way ANOVA with both between-subjects and within-subjects factors?
+
+This design is called a mixed ANOVA (or split-plot ANOVA), not a standard two-way ANOVA. The reporting format is similar but includes additional elements: report Mauchly's test of sphericity for the within-subjects factor, apply Greenhouse-Geisser or Huynh-Feldt correction if sphericity is violated, and use the appropriate error terms for between-subjects and within-subjects effects. The interaction in a mixed design tests whether the within-subjects pattern differs across between-subjects groups. Example: "A 2 (group: treatment, control) x 3 (time: pre, mid, post) mixed ANOVA was conducted, with group as the between-subjects factor and time as the within-subjects factor."
+
 ## Try StatMate's Free Two-Way ANOVA Calculator
 
-Formatting two-way ANOVA results by hand is tedious and error-prone, especially when you need to compute partial eta-squared and organize simple effects. StatMate's Two-Way ANOVA Calculator handles the entire process automatically.
+Formatting two-way ANOVA results by hand is tedious and error-prone, especially when you need to compute partial eta-squared and organize simple effects. [StatMate's Two-Way ANOVA Calculator](https://statmate.org/en/calculators/two-way-anova) handles the entire process automatically.
 
 Enter your data, and StatMate returns:
 
@@ -199,4 +340,6 @@ Enter your data, and StatMate returns:
 - APA-formatted results ready to copy into your manuscript
 - One-click Word (.docx) and PDF export
 
-No manual formatting, no formula errors. Try it free at [statmate.org/calculators/two-way-anova](https://statmate.org/calculators/two-way-anova).
+No manual formatting, no formula errors. Paste your data, get APA-ready results, and copy them directly into your manuscript.
+
+[Try the Two-Way ANOVA Calculator](https://statmate.org/en/calculators/two-way-anova)

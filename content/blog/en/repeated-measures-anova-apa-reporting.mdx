@@ -1,9 +1,9 @@
 ---
 title: "How to Report Repeated Measures ANOVA in APA 7th Edition (With Partial Eta Squared)"
-description: "Step-by-step guide to reporting repeated measures ANOVA results in APA 7th edition format, including partial eta squared effect size, Mauchly's sphericity test, and Greenhouse-Geisser correction."
+description: "Step-by-step guide to reporting repeated measures ANOVA results in APA 7th edition format, including partial eta squared effect size, Mauchly's sphericity test, Greenhouse-Geisser correction, post-hoc pairwise comparisons, and mixed-design ANOVA."
 date: "2026-03-02"
 category: "APA Reporting"
-tags: ["repeated measures ANOVA", "APA 7th edition", "partial eta squared", "effect size", "sphericity", "Greenhouse-Geisser", "Mauchly test"]
+tags: ["repeated measures ANOVA", "APA 7th edition", "partial eta squared", "effect size", "sphericity", "Greenhouse-Geisser", "Mauchly test", "Huynh-Feldt", "mixed-design ANOVA", "pairwise comparisons", "Bonferroni correction", "generalized eta squared", "within-subjects design", "carryover effects"]
 ---
 
 ## Why Reporting Repeated Measures ANOVA Correctly Matters
@@ -11,6 +11,8 @@ tags: ["repeated measures ANOVA", "APA 7th edition", "partial eta squared", "eff
 Repeated measures ANOVA is the go-to method when comparing means across three or more conditions measured on the same participants. Whether you are tracking patient recovery across time points, comparing task performance under different experimental conditions, or measuring student learning at multiple intervals, this design appears in nearly every field of social and behavioral science.
 
 Yet reporting repeated measures ANOVA in APA format requires several elements that differ from a standard one-way ANOVA. You must address sphericity, potentially apply corrections like Greenhouse-Geisser, and report within-subjects effect sizes. Getting these details right is essential for manuscript acceptance.
+
+This guide covers every component of a complete APA 7th edition write-up for repeated measures ANOVA, from descriptive statistics and sphericity testing through post-hoc comparisons, effect sizes, mixed designs, and common reporting mistakes.
 
 ## Essential Components of APA Repeated Measures ANOVA Reporting
 
@@ -42,6 +44,14 @@ Begin with a table or in-text summary of means and standard deviations for each 
 In APA format, you can write:
 
 > Mean anxiety scores decreased from baseline (*M* = 62.50, *SD* = 12.30) to post-treatment (*M* = 48.75, *SD* = 11.85) and remained lower at 3-month follow-up (*M* = 45.20, *SD* = 13.10).
+
+### Including Confidence Intervals
+
+APA 7th edition encourages reporting 95% confidence intervals for means. When your design involves within-subjects comparisons, consider using Cousineau-Morey within-subjects confidence intervals, which remove between-subjects variability and allow meaningful visual comparison across conditions:
+
+> Baseline (*M* = 62.50, 95% CI [59.56, 65.44]), post-treatment (*M* = 48.75, 95% CI [45.92, 51.58]), and 3-month follow-up (*M* = 45.20, 95% CI [42.01, 48.39]).
+
+Standard between-subjects confidence intervals can be misleading in repeated measures designs because they include individual differences that the repeated measures design removes.
 
 ## Step 2: Report Mauchly's Test of Sphericity
 
@@ -114,28 +124,6 @@ Here is a full results section combining all elements:
 >
 > A repeated measures ANOVA revealed a statistically significant effect of time on anxiety scores, *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32. Post-hoc pairwise comparisons with Bonferroni correction showed that anxiety scores significantly decreased from baseline to post-treatment (*M*<sub>diff</sub> = 13.75, *p* < .001, *d* = 1.14) and from baseline to follow-up (*M*<sub>diff</sub> = 17.30, *p* < .001, *d* = 1.36). The difference between post-treatment and follow-up was not significant (*p* = .312).
 
-## Common Mistakes to Avoid
-
-### 1. Forgetting to Report Sphericity
-
-Reviewers will always check for sphericity reporting. Even when the assumption is met, state this explicitly.
-
-### 2. Reporting Eta Squared Instead of Partial Eta Squared
-
-In repeated measures designs, always use *&eta;*<sup>2</sup><sub>p</sub> (partial), not *&eta;*<sup>2</sup>. SPSS labels this as "Partial Eta Squared" in its output tables.
-
-### 3. Not Correcting Degrees of Freedom
-
-When sphericity is violated, you must use corrected (non-integer) degrees of freedom. Reporting uncorrected integer df when *&epsilon;* is low will inflate your Type I error rate.
-
-### 4. Omitting Post-Hoc Effect Sizes
-
-Report Cohen's *d* or other appropriate effect sizes for each pairwise comparison, not just the overall *&eta;*<sup>2</sup><sub>p</sub>.
-
-### 5. Using Wrong p Value Format
-
-APA 7th edition requires exact *p* values (e.g., *p* = .013), not inequality statements like *p* < .05. The exception is when *p* < .001, which can be stated as such rather than giving the exact value.
-
 ## Reporting in a Table
 
 For manuscripts with multiple dependent variables or complex designs, consider an ANOVA summary table:
@@ -152,10 +140,311 @@ If using Greenhouse-Geisser correction, include corrected df:
 | Time | 1.56 | 18.45 | < .001 | .32 | 0.78 |
 | Error | 60.84 | | | | |
 
+## Sphericity: What It Is and Why It Matters
+
+Sphericity is a mathematical assumption unique to repeated measures designs with three or more levels. Formally, it requires that the variances of all pairwise difference scores between conditions are equal. For example, with three time points (T1, T2, T3), sphericity holds when the variance of (T1 - T2) equals the variance of (T1 - T3) equals the variance of (T2 - T3).
+
+### Why Sphericity Matters
+
+When sphericity is violated, the F statistic becomes inflated, leading to an increased Type I error rate. In practice, this means you may conclude a significant effect exists when it does not. The severity of the inflation depends on the degree of violation, quantified by epsilon (*&epsilon;*). An epsilon of 1.00 indicates perfect sphericity, while lower values indicate greater violation. The lower bound of epsilon is 1/(k - 1), where k is the number of conditions.
+
+### Mauchly's Test in Detail
+
+Mauchly's test evaluates whether the sphericity assumption is met. A significant result (*p* < .05) indicates sphericity is violated. However, Mauchly's test has two important limitations. With small samples, it lacks power to detect violations, potentially leading you to assume sphericity when it does not hold. With large samples, it may flag trivial violations that have minimal practical impact on the F test. Some researchers recommend always applying a correction regardless of Mauchly's test outcome.
+
+### Epsilon Corrections Compared
+
+**Greenhouse-Geisser** is the more conservative correction. It adjusts both the numerator and denominator degrees of freedom by multiplying them by epsilon. This reduces the degrees of freedom, making the test harder to reach significance. It is the recommended default in most fields.
+
+**Huynh-Feldt** provides a less conservative correction. It tends to overcorrect less than Greenhouse-Geisser when the true epsilon is above 0.75. The standard recommendation is:
+
+> Use Greenhouse-Geisser when *&epsilon;* < .75. Use Huynh-Feldt when *&epsilon;* &ge; .75.
+
+**APA reporting for sphericity violations:**
+
+> Mauchly's test indicated that the assumption of sphericity was violated, *&chi;*<sup>2</sup>(2) = 8.41, *p* = .015. Degrees of freedom were corrected using Greenhouse-Geisser estimates (*&epsilon;* = .72). The corrected results showed a significant effect of condition, *F*(1.44, 56.16) = 14.23, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .27.
+
+Note that Mauchly's test can also be reported with the chi-square statistic and its degrees of freedom for additional detail. The chi-square degrees of freedom for Mauchly's test equal k(k - 1)/2 - 1, where k is the number of levels.
+
+### Multivariate Approach as an Alternative
+
+When sphericity is severely violated (*&epsilon;* < .60), the multivariate approach (MANOVA) provides F statistics that do not depend on the sphericity assumption. Most software outputs four multivariate test statistics: Pillai's Trace, Wilks' Lambda, Hotelling's Trace, and Roy's Largest Root. Pillai's Trace is the most robust.
+
+**APA format for the multivariate approach:**
+
+> Because sphericity was severely violated (*&epsilon;* = .52), multivariate tests were used. Using Pillai's Trace, there was a significant effect of condition, *V* = 0.61, *F*(2, 38) = 29.72, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .61.
+
+Note that the multivariate approach requires n > k (more participants than conditions), which may not always be feasible.
+
+## Post-Hoc Pairwise Comparisons: A Deeper Look
+
+When the omnibus repeated measures ANOVA is significant, post-hoc pairwise comparisons identify which specific conditions or time points differ. For repeated measures designs, these comparisons are typically conducted using paired-samples t-tests with a correction for multiple comparisons.
+
+### Bonferroni Correction
+
+The Bonferroni correction divides the significance threshold by the number of comparisons. With three conditions, there are 3 pairwise comparisons, so the adjusted alpha is .05 / 3 = .0167. Only comparisons with *p* < .0167 are considered significant.
+
+Alternatively, you can multiply each raw *p* value by the number of comparisons (capping at 1.0) and compare against .05. Most software reports the adjusted *p* values directly.
+
+### Organizing Results for Multiple Time Points
+
+With four or more time points, the number of pairwise comparisons grows quickly. Four conditions yield 6 comparisons; five yield 10. For clarity, present results in a pairwise comparison table:
+
+| Comparison | *M*<sub>diff</sub> | *SE* | *p*<sub>adj</sub> | *d* |
+|-----------|------|------|------|------|
+| T1 vs. T2 | 13.75 | 2.41 | < .001 | 1.14 |
+| T1 vs. T3 | 17.30 | 2.68 | < .001 | 1.36 |
+| T2 vs. T3 | 3.55 | 2.15 | .312 | 0.28 |
+
+### APA Format for Multiple Comparisons
+
+When reporting many pairwise comparisons in text, group them logically rather than listing every pair:
+
+> Bonferroni-corrected pairwise comparisons indicated that scores at Week 1 (*M* = 72.40) were significantly higher than at all subsequent time points (*p*s < .01). Scores at Week 4 (*M* = 51.20) and Week 8 (*M* = 48.90) did not differ significantly from each other (*p* = .418).
+
+This approach keeps the narrative readable while conveying the essential pattern. Include a supplementary table with all pairwise results for completeness.
+
+### Planned Contrasts vs. Post-Hoc Comparisons
+
+When you have specific hypotheses before data collection, planned contrasts (also called a priori contrasts) are more powerful than post-hoc tests because they do not require correction for all possible comparisons. Common planned contrasts for repeated measures include:
+
+- **Linear trend**: Tests whether scores increase or decrease linearly across equally spaced conditions
+- **Quadratic trend**: Tests whether scores follow a U-shaped or inverted-U pattern
+- **Helmert contrasts**: Each level is compared to the mean of subsequent levels
+
+**APA format for trend analysis:**
+
+> Polynomial contrasts revealed a significant linear trend, *F*(1, 39) = 34.12, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .47, indicating a steady decline in anxiety scores over time. The quadratic trend was not significant, *F*(1, 39) = 2.03, *p* = .162, *&eta;*<sup>2</sup><sub>p</sub> = .05.
+
+### Alternatives to Bonferroni
+
+While Bonferroni is the most common correction for repeated measures post-hoc tests, it can be overly conservative with many comparisons. Alternatives include:
+
+- **Holm-Bonferroni**: A step-down procedure that is uniformly more powerful than Bonferroni while controlling the family-wise error rate
+- **Sidak correction**: Slightly less conservative than Bonferroni, calculated as 1 - (1 - .05)^(1/k)
+- **False Discovery Rate (FDR)**: Controls the expected proportion of false discoveries rather than the family-wise error rate; appropriate for exploratory analyses
+
+Always name the correction method used in your report so readers can evaluate the stringency of your multiple comparison adjustment.
+
+## Effect Sizes for Repeated Measures: Beyond Partial Eta Squared
+
+While partial eta squared is the most commonly reported effect size for the omnibus repeated measures ANOVA, several other effect size measures provide complementary information.
+
+### Partial Eta Squared (*&eta;*<sup>2</sup><sub>p</sub>)
+
+Partial eta squared removes between-subjects variability from the denominator, making it the standard choice for within-subjects designs. It answers the question: of the variance not accounted for by individual differences, what proportion is explained by the experimental factor?
+
+> *&eta;*<sup>2</sup><sub>p</sub> = SS<sub>effect</sub> / (SS<sub>effect</sub> + SS<sub>error</sub>)
+
+**APA format:**
+
+> The effect of condition was significant with a large effect, *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32.
+
+### Generalized Eta Squared (*&eta;*<sup>2</sup><sub>G</sub>)
+
+Generalized eta squared (Olejnik & Algina, 2003; Bakeman, 2005) is designed for comparing effect sizes across studies with different designs. Unlike partial eta squared, it distinguishes between measured and manipulated factors, including only measured factors' variability in the denominator. This makes it more appropriate for meta-analytic comparisons.
+
+> *&eta;*<sup>2</sup><sub>G</sub> = SS<sub>effect</sub> / (SS<sub>effect</sub> + SS<sub>subjects</sub> + SS<sub>error</sub>)
+
+Because generalized eta squared includes subject variability in the denominator, its values are typically smaller than partial eta squared for the same data. There are no separate benchmarks; Cohen's (1988) guidelines for eta squared (.01, .06, .14) are used.
+
+**APA format:**
+
+> *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>G</sub> = .18.
+
+### Omega Squared (*&omega;*<sup>2</sup>)
+
+Omega squared is a less biased estimator of effect size than eta squared, especially in small samples. While partial eta squared tends to overestimate the population effect, omega squared applies a correction:
+
+> *&omega;*<sup>2</sup> = (SS<sub>effect</sub> - df<sub>effect</sub> * MS<sub>error</sub>) / (SS<sub>total</sub> + MS<sub>subjects</sub>)
+
+Omega squared is less commonly reported in published research but is valued for its accuracy. If you report it, use the same benchmarks as eta squared (.01, .06, .14).
+
+**APA format:**
+
+> *F*(2, 78) = 18.45, *p* < .001, *&omega;*<sup>2</sup> = .28.
+
+### Cohen's *d* for Paired Comparisons
+
+For individual pairwise comparisons, report Cohen's *d* using the standard deviation of the difference scores or the pooled within-condition standard deviation. The formula depends on the approach:
+
+- **d<sub>z</sub>** = *M*<sub>diff</sub> / *SD*<sub>diff</sub> (uses SD of difference scores; reflects paired design)
+- **d<sub>av</sub>** = *M*<sub>diff</sub> / average(*SD*<sub>1</sub>, *SD*<sub>2</sub>) (uses average of both conditions' SDs; more comparable across studies)
+
+d<sub>z</sub> tends to be larger than d<sub>av</sub> because the SD of difference scores is typically smaller than the individual condition SDs. Specify which formula you used:
+
+> The decrease from baseline to post-treatment was large, *d*<sub>av</sub> = 1.14.
+
+**Interpretation benchmarks for Cohen's *d*:**
+
+| *d* | Interpretation |
+|-----|---------------|
+| 0.20 | Small effect |
+| 0.50 | Medium effect |
+| 0.80 | Large effect |
+
+### Reporting Multiple Effect Sizes
+
+For a thorough report, include partial eta squared for the omnibus test and Cohen's *d* for each pairwise comparison:
+
+> The repeated measures ANOVA revealed a significant effect, *F*(2, 78) = 18.45, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .32. Pairwise comparisons showed large effects for baseline vs. post-treatment (*d* = 1.14) and baseline vs. follow-up (*d* = 1.36), but a small effect for post-treatment vs. follow-up (*d* = 0.28).
+
+## Mixed-Design ANOVA: Combining Between- and Within-Subjects Factors
+
+A mixed-design (or split-plot) ANOVA combines at least one between-subjects factor and one within-subjects factor. For example, you might compare two therapy groups (CBT vs. medication) across three time points (baseline, post-treatment, follow-up). This design is extremely common in clinical and educational research.
+
+### Key Components to Report
+
+A mixed-design ANOVA produces three effects:
+
+1. **Between-subjects main effect**: Differences between groups collapsed across time
+2. **Within-subjects main effect**: Differences across time collapsed across groups
+3. **Interaction effect**: Whether the pattern across time differs between groups
+
+### APA Reporting Format for Mixed Designs
+
+Report sphericity information for all within-subjects effects, then present each effect:
+
+> **Between-subjects effect (Group):**
+> There was no significant main effect of group, *F*(1, 38) = 2.14, *p* = .152, *&eta;*<sup>2</sup><sub>p</sub> = .05.
+
+> **Within-subjects effect (Time):**
+> Mauchly's test indicated that the assumption of sphericity was met for the main effect of time, *W* = 0.91, *p* = .245. There was a significant main effect of time on anxiety scores, *F*(2, 76) = 22.31, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .37.
+
+> **Interaction effect (Group x Time):**
+> The interaction between group and time was significant, *F*(2, 76) = 6.89, *p* = .002, *&eta;*<sup>2</sup><sub>p</sub> = .15, indicating that anxiety score trajectories differed between the CBT and medication groups.
+
+### Interpreting and Reporting Interaction Effects
+
+When the interaction is significant, the main effects become less meaningful because the effect of one factor depends on the level of the other. Follow up with:
+
+1. **Simple effects analysis**: Test the within-subjects effect separately at each level of the between-subjects factor
+2. **Pairwise comparisons**: Compare groups at each time point, or compare time points within each group
+
+**Example interaction follow-up:**
+
+> Simple effects analysis revealed that the CBT group showed a significant decrease in anxiety across time, *F*(2, 38) = 24.56, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .56, while the medication group showed a smaller but significant decrease, *F*(2, 38) = 5.12, *p* = .011, *&eta;*<sup>2</sup><sub>p</sub> = .21. At follow-up, the CBT group had significantly lower anxiety than the medication group, *t*(38) = 2.67, *p* = .011, *d* = 0.84.
+
+### Sphericity in Mixed Designs
+
+In mixed designs, sphericity applies only to within-subjects effects (main effect and interactions involving the within-subjects factor). Between-subjects effects do not require sphericity testing. Report Mauchly's test for each within-subjects effect separately.
+
+### Complete Mixed-Design Write-Up
+
+Here is a full results section for a mixed-design ANOVA:
+
+> **Results**
+>
+> A 2 (Group: CBT vs. medication) x 3 (Time: baseline, post-treatment, follow-up) mixed-design ANOVA was conducted on anxiety scores.
+>
+> Descriptive statistics are presented in Table 1. Mauchly's test indicated that sphericity was met for the main effect of time, *W* = 0.91, *p* = .245, and for the Group x Time interaction, *W* = 0.89, *p* = .198.
+>
+> There was no significant main effect of group, *F*(1, 38) = 2.14, *p* = .152, *&eta;*<sup>2</sup><sub>p</sub> = .05. There was a significant main effect of time, *F*(2, 76) = 22.31, *p* < .001, *&eta;*<sup>2</sup><sub>p</sub> = .37. The Group x Time interaction was significant, *F*(2, 76) = 6.89, *p* = .002, *&eta;*<sup>2</sup><sub>p</sub> = .15.
+>
+> Simple effects analysis revealed that the CBT group showed a larger decrease in anxiety across time (*&eta;*<sup>2</sup><sub>p</sub> = .56) than the medication group (*&eta;*<sup>2</sup><sub>p</sub> = .21). At follow-up, the CBT group reported significantly lower anxiety than the medication group, *t*(38) = 2.67, *p* = .011, *d* = 0.84.
+
+## Common Mistakes in Repeated Measures ANOVA Reporting
+
+### 1. Ignoring Sphericity Entirely
+
+The most common mistake is failing to mention sphericity at all. Even when sphericity is met, state this explicitly. Reviewers and readers need to know you checked.
+
+**Wrong:** "A repeated measures ANOVA showed a significant effect, *F*(2, 78) = 18.45, *p* < .001."
+
+**Correct:** Include Mauchly's test result before the F statistic.
+
+### 2. Not Reporting the Correction Applied
+
+When sphericity is violated, some authors report corrected degrees of freedom without naming the correction method. Always specify whether you used Greenhouse-Geisser or Huynh-Feldt, and report the epsilon value.
+
+**Wrong:** "*F*(1.56, 60.84) = 18.45, *p* < .001."
+
+**Correct:** "With a Greenhouse-Geisser correction (*&epsilon;* = .78), *F*(1.56, 60.84) = 18.45, *p* < .001."
+
+### 3. Using Wrong Error Terms
+
+In repeated measures designs, each within-subjects effect has its own error term. Do not use the total error term from a between-subjects ANOVA. The error degrees of freedom should equal (k - 1)(n - 1), where k is the number of conditions and n is the number of participants.
+
+### 4. Confusing With Paired t-Test for Two Levels
+
+When you have only two levels of a within-subjects factor, a repeated measures ANOVA and a paired-samples t-test yield identical results (*F* = *t*<sup>2</sup>). In this case, the paired t-test is simpler and preferred because sphericity is automatically satisfied with only two levels (there is only one difference score, so there is nothing to compare). Reserve repeated measures ANOVA for three or more conditions.
+
+### 5. Ignoring Carryover and Order Effects
+
+In within-subjects designs where participants experience all conditions, the order of conditions can influence results. Fatigue, practice, or sensitization effects may carry over from one condition to the next. Address this by:
+
+- Counterbalancing condition order across participants
+- Including order as a between-subjects factor in a mixed-design analysis
+- Reporting whether order effects were tested and found non-significant
+
+**Example:**
+
+> Condition order was counterbalanced across participants. A preliminary analysis including order as a between-subjects factor showed no significant main effect of order, *F*(2, 37) = 0.45, *p* = .641, and no significant Order x Condition interaction, *F*(4, 74) = 1.12, *p* = .354.
+
+### 6. Missing Effect Sizes for Pairwise Comparisons
+
+Reporting only the omnibus partial eta squared without effect sizes for individual pairwise comparisons leaves readers unable to assess which specific differences are practically meaningful. A significant omnibus test with *&eta;*<sup>2</sup><sub>p</sub> = .25 could reflect one large pairwise difference and several trivial ones. Always include Cohen's *d* for each comparison.
+
+### 7. Reporting Eta Squared Instead of Partial Eta Squared
+
+In repeated measures designs, always use *&eta;*<sup>2</sup><sub>p</sub> (partial), not *&eta;*<sup>2</sup>. SPSS labels this as "Partial Eta Squared" in its output tables. Regular eta squared includes between-subjects variability, which underestimates the within-subjects effect.
+
+### 8. Using Wrong p Value Format
+
+APA 7th edition requires exact *p* values (e.g., *p* = .013), not inequality statements like *p* < .05. The exception is when *p* < .001, which can be stated as such rather than giving the exact value. Never write *p* = .000.
+
+## SPSS, R, and JASP Output Interpretation
+
+### Reading SPSS Output
+
+SPSS produces a "Tests of Within-Subjects Effects" table containing four rows: Sphericity Assumed, Greenhouse-Geisser, Huynh-Feldt, and Lower-bound. First check Mauchly's test in the separate "Mauchly's Test of Sphericity" table. If sphericity is met (*p* > .05), report the "Sphericity Assumed" row. If violated, report the Greenhouse-Geisser row (or Huynh-Feldt if epsilon is above .75). The "Partial Eta Squared" column in the "Tests of Within-Subjects Effects" table provides your effect size directly.
+
+### Reading R Output
+
+In R, the `ezANOVA()` function from the `ez` package automatically provides Mauchly's test, Greenhouse-Geisser and Huynh-Feldt epsilon values, and corrected p-values. The `anova_test()` function from `rstatix` provides a similar output. For post-hoc comparisons, use `pairwise_t_test()` with `paired = TRUE` and `p.adjust.method = "bonferroni"`.
+
+### Reading JASP Output
+
+JASP presents results in a clean table format with sphericity corrections shown conditionally. Enable "Assumption Checks" in the options to see Mauchly's test. JASP also calculates generalized eta squared by default alongside partial eta squared, which is useful for meta-analytic reporting.
+
+## Frequently Asked Questions
+
+### What is the difference between repeated measures ANOVA and one-way ANOVA?
+
+One-way ANOVA compares means across groups of different participants (between-subjects design), while repeated measures ANOVA compares means across conditions or time points measured on the same participants (within-subjects design). Repeated measures ANOVA is more powerful because it removes individual differences from the error term, but it requires the additional sphericity assumption. Use one-way ANOVA when each group contains different participants; use repeated measures ANOVA when the same participants are measured multiple times.
+
+### Can I use repeated measures ANOVA with only two time points?
+
+Technically yes, but a paired-samples t-test is preferred for two time points. With only two conditions, sphericity is automatically satisfied (there is only one pair of difference scores), and the F statistic equals t-squared. The paired t-test is simpler to report and interpret. Reserve repeated measures ANOVA for three or more conditions where the sphericity assumption becomes relevant and post-hoc comparisons are needed.
+
+### What should I do if my data violates sphericity?
+
+Apply the Greenhouse-Geisser correction (recommended default) or the Huynh-Feldt correction (when epsilon is above .75). These corrections reduce the degrees of freedom, making the F test more conservative. Report the epsilon value and the correction method used. An alternative approach is to use multivariate tests (MANOVA), which do not assume sphericity, though they require larger sample sizes and have different power characteristics.
+
+### How do I handle missing data in repeated measures ANOVA?
+
+Traditional repeated measures ANOVA uses listwise deletion, removing any participant with a missing value at any time point. This can substantially reduce your sample size. Alternatives include multiple imputation before analysis, or switching to a linear mixed model (also called a multilevel model), which can handle missing data under the missing-at-random assumption without deleting cases. Report the amount of missing data and the method used to handle it.
+
+### What is the minimum sample size for repeated measures ANOVA?
+
+There is no absolute minimum, but power analysis should guide your decision. For three conditions with a medium effect (*f* = .25), alpha = .05, and power = .80, you need approximately 28 participants. The required sample size decreases as the number of conditions increases (because within-subjects designs gain power from correlated measurements) and as the correlation between conditions increases. Always conduct a formal power analysis using software such as G*Power.
+
+### Should I use MANOVA instead of repeated measures ANOVA?
+
+MANOVA (multivariate approach) does not assume sphericity and is appropriate when sphericity is severely violated. However, MANOVA requires a larger sample size (at least more participants than conditions) and has less power than the corrected univariate approach when sphericity is approximately met. The corrected univariate approach (Greenhouse-Geisser) is generally recommended as the default unless you have strong reasons to prefer MANOVA.
+
+### How do I report a non-significant repeated measures ANOVA?
+
+Use the same format as significant results, including the effect size. Example: A repeated measures ANOVA revealed no significant effect of time on anxiety scores, *F*(2, 78) = 1.24, *p* = .295, *&eta;*<sup>2</sup><sub>p</sub> = .03. Do not conduct post-hoc pairwise comparisons when the omnibus test is non-significant.
+
+### Can I use repeated measures ANOVA with unequal group sizes in a mixed design?
+
+Unequal group sizes in the between-subjects factor complicate the analysis but do not invalidate it. Use Type III sums of squares (the default in SPSS) for unbalanced designs. However, unequal group sizes reduce the power of the between-subjects tests and can make the F test sensitive to heterogeneity of variance-covariance matrices. Report the sample sizes for each group and consider whether the imbalance is substantial enough to warrant alternative approaches.
+
 ## Try It With Your Own Data
 
 You can calculate repeated measures ANOVA and get APA-formatted results automatically using our free [Repeated Measures ANOVA Calculator](/calculators/repeated-measures). It handles sphericity testing, Greenhouse-Geisser correction, partial eta squared, and post-hoc comparisons with Bonferroni adjustment.
 
 ## Summary
 
-Reporting repeated measures ANOVA in APA 7th edition format requires attention to several details beyond a standard ANOVA: test sphericity with Mauchly's test, apply corrections when needed, report corrected degrees of freedom, use partial eta squared for effect size, and include pairwise comparisons with effect sizes. Following the templates and examples in this guide ensures your results section meets journal standards on the first submission.
+Reporting repeated measures ANOVA in APA 7th edition format requires attention to several details beyond a standard ANOVA: test sphericity with Mauchly's test, apply corrections when needed, report corrected degrees of freedom, use partial eta squared for effect size, and include pairwise comparisons with effect sizes. For mixed designs, report all three effects (between-subjects, within-subjects, and interaction) with separate sphericity tests for within-subjects effects. Address carryover effects by reporting counterbalancing procedures, and always include Cohen's *d* for each pairwise comparison alongside the omnibus partial eta squared. Following the templates and examples in this guide ensures your results section meets journal standards on the first submission.
