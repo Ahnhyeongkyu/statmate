@@ -1,128 +1,381 @@
 ---
-title: "Which Statistical Test Should I Use? — A Complete Guide for Beginners"
-description: "Not sure which statistical test to use for your data? This beginner-friendly guide walks you through choosing the right test based on your data type, number of groups, and research design."
-date: "2026-02-17"
+title: "Which Statistical Test Should I Use? — A Complete Decision Guide"
+description: "Not sure which statistical test to use? This comprehensive guide provides a decision framework based on variable types, group counts, and research design, covering parametric tests, non-parametric alternatives, assumption checking, and common selection mistakes."
+date: "2026-03-09"
 category: "Statistics Basics"
-tags: ["statistical test", "choosing test", "t-test", "ANOVA", "chi-square", "non-parametric"]
+tags: ["statistical test selection", "choosing statistical test", "t-test vs ANOVA", "parametric vs nonparametric", "decision tree", "assumption checking", "chi-square", "regression"]
 ---
 
 ## The Most Common Question in Statistics
 
 You have collected your data, organized your spreadsheet, and now you are staring at your screen wondering: which statistical test should I use? This is arguably the most frequently asked question among students taking their first research methods course, and choosing the wrong test can undermine your entire analysis.
 
-The good news is that selecting a statistical test follows a logical decision process. By answering a few straightforward questions about your data, you can narrow down your options quickly. This guide walks you through that process step by step.
+The good news is that selecting a statistical test follows a logical decision process. By answering a few straightforward questions about your data, you can narrow down your options quickly. This guide walks you through that process systematically, from the initial decision framework through assumption checking, with concrete examples and a comprehensive reference table.
 
-## Step 1: Identify Your Research Question
+## The Decision Framework
 
-Before thinking about tests, clarify what you are trying to learn from your data. Most research questions fall into one of these categories:
+Choosing a statistical test comes down to three questions asked in sequence:
 
-- **Comparing groups:** Is there a difference between two or more groups?
-- **Examining relationships:** Is there an association between two variables?
-- **Predicting outcomes:** Can one or more variables predict another?
+1. **What type is your dependent variable?** (continuous, categorical, or ordinal)
+2. **What type is your independent variable?** (categorical with groups, or continuous)
+3. **How many groups or variables are involved?**
 
-The type of question you are asking determines the broad family of tests you need.
+The answers to these three questions eliminate most options and point you toward the correct test family. From there, you refine based on sample relationships (independent vs. paired) and whether your data meet the assumptions of parametric tests.
 
-## Step 2: Determine Your Variable Types
+### The Master Decision Table
 
-The single most important factor in choosing a statistical test is the type of data you have. Variables generally fall into two categories:
+| DV Type | IV Type | Groups/Variables | Independent | Paired | Non-Parametric Alt. |
+|---------|---------|-----------------|-------------|--------|---------------------|
+| Continuous | Categorical | 1 group vs. value | One-sample t-test | — | Wilcoxon signed-rank |
+| Continuous | Categorical | 2 groups | Independent t-test | Paired t-test | Mann-Whitney U / Wilcoxon |
+| Continuous | Categorical | 3+ groups | One-way ANOVA | Repeated measures ANOVA | Kruskal-Wallis / Friedman |
+| Continuous | 2 Categorical IVs | Factorial | Two-way ANOVA | Mixed ANOVA | — |
+| Continuous | Continuous | 2 variables | Pearson correlation | — | Spearman correlation |
+| Continuous | Continuous | 1 predictor | Simple regression | — | — |
+| Continuous | Mixed | 2+ predictors | Multiple regression | — | — |
+| Binary | Mixed | 1+ predictors | Logistic regression | — | — |
+| Categorical | Categorical | 2×2 or larger | Chi-square test | McNemar test | Fisher's exact test |
+| Ordinal | Categorical | 2 groups | — | — | Mann-Whitney U / Wilcoxon |
 
-**Continuous (quantitative) variables** are measured on a numeric scale where differences between values are meaningful. Examples include height, test scores, reaction time, and income.
+This table covers approximately 90% of the analyses you will encounter in undergraduate and graduate-level research.
 
-**Categorical (qualitative) variables** place observations into distinct groups or categories. Examples include gender, treatment condition, diagnosis type, and yes/no responses.
+## Comparison of Means Tests
 
-| Outcome Variable | Predictor Variable | Typical Tests |
-|------------------|--------------------|---------------|
-| Continuous | Categorical (2 groups) | t-test |
-| Continuous | Categorical (3+ groups) | ANOVA |
-| Continuous | Continuous | Correlation, Regression |
-| Categorical | Categorical | Chi-square test |
+### When to Use a t-Test
 
-## Step 3: Count Your Groups
+The t-test family compares means between exactly two conditions. The critical decision is whether the two sets of observations are independent or paired.
 
-If you are comparing groups, the number of groups matters:
+**Independent samples t-test** — Use when:
+- Two groups consist of different participants
+- No natural pairing exists between observations
+- Example: Comparing exam scores between a treatment group and a control group
 
-### Two Groups
+**Paired samples t-test** — Use when:
+- The same participants are measured twice
+- Participants are matched in pairs (e.g., twins, spouses)
+- Example: Comparing anxiety scores before and after an intervention
 
-When comparing exactly two groups, the **t-test** is your primary tool. But which type?
+**One-sample t-test** — Use when:
+- You are comparing a sample mean to a known population value or theoretical constant
+- Example: Testing whether your students' average IQ differs from 100
 
-- **Independent samples t-test:** The two groups consist of different participants. For example, comparing exam scores between a treatment group and a control group.
-- **Paired samples t-test:** The same participants are measured twice, or participants are matched in pairs. For example, comparing anxiety scores before and after an intervention.
+**Common mistake:** Using an independent t-test when data are paired (or vice versa). This gives incorrect degrees of freedom, wrong standard errors, and misleading p-values. Always ask: can I draw a one-to-one line connecting observations across the two conditions? If yes, the data are paired.
 
-### Three or More Groups
+### When to Use ANOVA
 
-When comparing three or more groups, use **Analysis of Variance (ANOVA)** instead of running multiple t-tests. Running several t-tests inflates your Type I error rate, meaning you become increasingly likely to find a difference that does not really exist.
+ANOVA extends the t-test to three or more groups. Running multiple t-tests instead of ANOVA inflates the family-wise Type I error rate. With 3 groups, three pairwise t-tests at α = .05 give you a 14.3% overall false-positive rate; with 5 groups, ten pairwise tests push it to 40.1%.
 
-- **One-way ANOVA:** One independent variable with three or more levels. For example, comparing test performance across three teaching methods.
-- **Repeated measures ANOVA:** The same participants are measured under three or more conditions.
-- **Two-way ANOVA:** Two independent variables examined simultaneously, allowing you to test for interaction effects.
+**One-way ANOVA** — Use when:
+- One independent variable with 3+ levels
+- Groups are independent
+- Example: Comparing test performance across three teaching methods
 
-## Step 4: Check Whether Your Data Are Paired or Independent
+**Two-way ANOVA** — Use when:
+- Two independent variables examined simultaneously
+- You want to test main effects and interaction effects
+- Example: Testing whether the effect of teaching method differs by student gender
 
-This distinction is critical and sometimes overlooked:
+**Repeated measures ANOVA** — Use when:
+- The same participants are measured under 3+ conditions
+- Example: Measuring pain levels at baseline, 1 week, and 4 weeks after treatment
 
-**Independent samples** means the observations in one group are completely unrelated to the observations in the other group. Different people, different subjects, no natural pairing.
+**Mixed ANOVA** — Use when:
+- You have both between-subjects and within-subjects factors
+- Example: Two treatment groups (between) measured at three time points (within)
 
-**Paired (dependent) samples** means each observation in one group has a specific counterpart in the other group. This happens when you measure the same person twice, when siblings or matched participants are split across groups, or when you compare two measurements taken from the same subject.
+After a significant ANOVA, you need **post-hoc tests** (Tukey HSD, Bonferroni, etc.) to determine which specific groups differ.
 
-Using an independent test on paired data (or vice versa) will give you incorrect results. When in doubt, ask yourself: can I draw a meaningful one-to-one line connecting observations across groups? If yes, your data are paired.
+### The t-Test vs. ANOVA Decision
 
-## Step 5: Consider Assumptions and Non-Parametric Alternatives
+| Situation | Test | Why |
+|-----------|------|-----|
+| 2 independent groups | Independent t-test | Simpler, equivalent to one-way ANOVA with 2 groups |
+| 2 paired conditions | Paired t-test | Accounts for within-subject correlation |
+| 3+ independent groups | One-way ANOVA | Controls family-wise error rate |
+| 3+ paired conditions | Repeated measures ANOVA | Accounts for repeated measurements |
+| 2+ IVs, no repeated measures | Two-way (or N-way) ANOVA | Tests main effects and interactions |
 
-Most of the tests discussed so far are **parametric tests**, which assume that your data meet certain conditions, particularly that the outcome variable is approximately normally distributed and that variances are roughly equal across groups.
+### Non-Parametric Alternatives for Means Comparisons
 
-When these assumptions are violated, you have two options: use a robust version of the parametric test, or switch to a **non-parametric alternative** that makes fewer distributional assumptions.
-
-### Common Parametric Tests and Their Non-Parametric Counterparts
+When your data violate normality assumptions or use ordinal scales, non-parametric tests provide valid alternatives:
 
 | Parametric Test | Non-Parametric Alternative | When to Switch |
 |-----------------|---------------------------|----------------|
-| Independent samples t-test | Mann-Whitney U test | Small samples, skewed distributions, ordinal data |
-| Paired samples t-test | Wilcoxon signed-rank test | Non-normal difference scores, ordinal data |
+| Independent t-test | Mann-Whitney U test | Small samples (n < 15/group), severe skew, ordinal data |
+| Paired t-test | Wilcoxon signed-rank test | Non-normal differences, ordinal data |
 | One-way ANOVA | Kruskal-Wallis H test | Non-normal data, unequal variances, ordinal data |
 | Repeated measures ANOVA | Friedman test | Non-normal data across repeated conditions |
-| Pearson correlation | Spearman rank correlation | Non-linear relationships, ordinal data, outliers |
 
-A practical rule of thumb: if your sample size is at least 30 per group and your data are not severely skewed, parametric tests are generally robust enough. For smaller samples or clearly non-normal distributions, non-parametric tests are a safer choice.
+Non-parametric tests compare ranks rather than raw values. They sacrifice some statistical power when assumptions are met, but they are more robust when assumptions are violated. For samples of 30+ per group with moderate skew, parametric tests are generally robust enough.
 
-## A Text-Based Decision Flowchart
+## Association and Relationship Tests
 
-Follow this path to identify the right test for your situation:
+### Correlation
 
-**What is your outcome (dependent) variable?**
+Correlation measures the strength and direction of a linear relationship between two continuous variables. Choose the type based on your data characteristics:
+
+**Pearson correlation (*r*)** — Use when:
+- Both variables are continuous and approximately normally distributed
+- The relationship is roughly linear
+- There are no extreme outliers
+
+**Spearman rank correlation (*r_s*)** — Use when:
+- One or both variables are ordinal
+- The relationship is monotonic but not necessarily linear
+- Data contain outliers or are skewed
+
+**Point-biserial correlation** — Use when:
+- One variable is continuous and the other is dichotomous (binary)
+- Mathematically equivalent to Pearson's r with a binary variable
+
+### Regression
+
+Regression predicts one variable from one or more others and quantifies the predictive relationship.
+
+**Simple linear regression** — One continuous predictor, one continuous outcome. Use when you want to quantify how much Y changes for a one-unit change in X.
+
+**Multiple linear regression** — Multiple predictors (continuous or coded categorical), one continuous outcome. Use when you want to examine the unique contribution of each predictor while controlling for others.
+
+**Logistic regression** — One or more predictors, one binary outcome (0/1). Use when your dependent variable is categorical with two levels (e.g., pass/fail, disease/healthy). Reports odds ratios instead of slope coefficients.
+
+**When to use correlation vs. regression:** If you simply want to describe the strength of association between two variables without implying direction, use correlation. If you want to predict one variable from another, quantify the effect in original units, or control for confounders, use regression.
+
+### Chi-Square and Related Tests
+
+For categorical variables, the chi-square family is the primary tool:
+
+**Chi-square test of independence** — Use when:
+- Both variables are categorical
+- You want to test whether the distribution of one variable differs across levels of the other
+- Expected cell frequencies are at least 5 in most cells
+
+**Chi-square goodness of fit** — Use when:
+- You have one categorical variable
+- You want to test whether observed frequencies match expected frequencies
+
+**Fisher's exact test** — Use when:
+- You have a 2×2 contingency table
+- One or more expected cell frequencies are below 5
+- Provides exact p-values rather than asymptotic approximations
+
+**McNemar test** — Use when:
+- You have paired categorical data (same participants measured twice on a binary variable)
+- Example: Testing whether the proportion of students passing changed from pre-test to post-test
+
+## Advanced Designs
+
+### Repeated Measures and Within-Subjects Designs
+
+Within-subjects designs measure the same participants under multiple conditions. They are more powerful than between-subjects designs because they eliminate individual differences as a source of variability.
+
+Key considerations:
+- **Order effects:** Counterbalance the order of conditions to prevent systematic bias
+- **Sphericity assumption:** Repeated measures ANOVA assumes sphericity (equal variances of differences between all pairs of conditions). Violating sphericity inflates Type I error. Use Mauchly's test to check, and apply Greenhouse-Geisser or Huynh-Feldt corrections if violated.
+- **Carryover effects:** If experiencing one condition changes how participants respond to subsequent conditions, within-subjects designs may be inappropriate
+
+### Mixed Designs
+
+Mixed designs combine between-subjects and within-subjects factors. A common example is a pre-post design with two treatment groups: the treatment/control factor is between-subjects, while the time factor is within-subjects. The key test of interest is usually the **interaction** — does the change over time differ between groups?
+
+### Factorial Designs
+
+Two-way and higher-order ANOVAs test:
+- **Main effects:** Does each factor independently affect the outcome?
+- **Interaction effects:** Does the effect of one factor depend on the level of another?
+
+When a significant interaction is present, main effects should be interpreted with caution. A significant main effect in the presence of an interaction can be misleading if the effect reverses direction across levels of the other factor.
+
+## When Sample Size Affects Test Choice
+
+Your sample size can influence which test is appropriate. Some tests require minimum sample sizes to produce reliable results:
+
+**Small samples (n < 15 per group):**
+- Prefer non-parametric tests (Mann-Whitney, Wilcoxon) over parametric alternatives
+- Use Fisher's exact test instead of chi-square
+- Be cautious with regression — unstable coefficient estimates with few observations per predictor
+
+**Moderate samples (15-30 per group):**
+- Parametric tests are generally acceptable if data are not severely non-normal
+- Check assumptions carefully — this is the "gray zone" where violations matter most
+- Welch's t-test is preferred over Student's t-test as a default
+
+**Large samples (n > 30 per group):**
+- Parametric tests are robust to most assumption violations
+- Formal normality tests (Shapiro-Wilk) become overly sensitive — use Q-Q plots instead
+- Consider effect sizes carefully, as trivially small effects become statistically significant
+
+**Very large samples (n > 500):**
+- Almost everything will be statistically significant
+- Focus on effect sizes and confidence intervals rather than p-values alone
+- Consider whether practical significance aligns with statistical significance
+
+## Assumption Checking Workflow
+
+Before running any parametric test, verify that your data meet the required assumptions. Here is the systematic workflow:
+
+### Step 1: Check Normality
+
+**Methods:**
+- **Shapiro-Wilk test:** Most powerful test for normality with n < 50. A significant result (p < .05) indicates non-normality. However, with large samples, trivial deviations become significant.
+- **Q-Q plot:** Visual inspection. Points should fall approximately along the diagonal reference line. More reliable than formal tests for large samples.
+- **Skewness and kurtosis:** Values between -2 and +2 are generally considered acceptable for parametric tests.
+
+**Decision:** If normality is violated and sample sizes are small (n < 30 per group), switch to the non-parametric alternative. If samples are large, parametric tests are generally robust to moderate non-normality.
+
+### Step 2: Check Homogeneity of Variance
+
+**Methods:**
+- **Levene's test:** Tests whether group variances are equal. A significant result indicates heterogeneity.
+- **Ratio rule of thumb:** If the largest group variance is more than 4× the smallest, heterogeneity is a concern.
+
+**Decision:** If variances are unequal, use Welch's t-test instead of Student's t-test (for two groups) or Welch's ANOVA (for three or more groups). These corrections are recommended as the default by many statisticians.
+
+### Step 3: Check Independence
+
+Observations must be independent of each other — one participant's response should not influence another's. This assumption is violated by:
+- Clustered data (students in classrooms, patients in hospitals)
+- Repeated measurements without a repeated-measures design
+- Social influence in group testing settings
+
+**Decision:** If independence is violated, use multilevel modeling (HLM/MLM) or generalized estimating equations (GEE) instead of standard tests.
+
+### Step 4: Select the Appropriate Test
+
+After checking assumptions, match your data to the correct test:
+
+**Assumptions met → Parametric test**
+**Normality violated with small samples → Non-parametric alternative**
+**Homogeneity violated → Welch's correction or non-parametric**
+**Independence violated → Multilevel modeling**
+
+## Effect Size Measures by Test Type
+
+Once you have selected the right test, you also need to report the appropriate effect size. APA 7th edition requires effect sizes for all inferential tests. Here is a quick reference:
+
+| Test | Effect Size Measure | Interpretation |
+|------|-------------------|----------------|
+| Independent t-test | Cohen's *d* | 0.20 small, 0.50 medium, 0.80 large |
+| Paired t-test | Cohen's *d_z* | Same benchmarks as *d* |
+| One-way ANOVA | Partial η² | .01 small, .06 medium, .14 large |
+| Two-way ANOVA | Partial η² | Same benchmarks |
+| Pearson correlation | *r* | .10 small, .30 medium, .50 large |
+| Multiple regression | *R²*, *f²* | *f²*: .02 small, .15 medium, .35 large |
+| Logistic regression | Odds ratio (OR) | OR 1.5 small, 2.5 medium, 4.3 large |
+| Chi-square | Cramer's *V* | Depends on df; .10 small, .30 medium, .50 large for 2×2 |
+| Mann-Whitney U | Rank-biserial *r* | Same as Pearson *r* benchmarks |
+| Kruskal-Wallis | Epsilon-squared (ε²) | Same as η² benchmarks |
+
+**Key principle:** Always report both the test result (test statistic and p-value) and the effect size with its confidence interval. A statistically significant result with a tiny effect size has different practical implications than one with a large effect size.
+
+## Common Mistakes in Test Selection
+
+### Using the Wrong Test for the Data Type
+
+The most fundamental error is using a test designed for one variable type on another. Running an ANOVA on a binary outcome variable, or using a chi-square test on continuous data that has been artificially categorized ("median split"), both produce suboptimal results. Median splits in particular discard information and reduce power — use regression on the continuous variable instead.
+
+### Running Multiple t-Tests Instead of ANOVA
+
+With 4 groups, 6 pairwise t-tests at α = .05 produce a 26.5% chance of at least one false positive. ANOVA controls this by testing the omnibus hypothesis first. Only proceed to pairwise comparisons after a significant ANOVA result, using proper post-hoc corrections.
+
+### Ignoring Paired Data Structure
+
+Using an independent-samples test when data are paired discards the within-subject correlation, inflating the standard error and reducing power. A paired t-test with n = 20 pairs often has more power than an independent t-test with n = 40 per group because individual differences are controlled.
+
+### Ignoring Assumptions Without Checking
+
+Running a parametric test without checking normality and homogeneity of variance is negligent but common. Even if you ultimately decide the test is robust enough (which it often is with adequate sample sizes), document that you checked assumptions and report the results.
+
+### Multiple Testing Without Correction
+
+When you run many tests on the same dataset — say, comparing 10 outcome variables between two groups — the probability of at least one false positive is 1 - (1 - 0.05)^10 = 40.1%. Apply Bonferroni correction (divide α by the number of tests), Holm's step-down procedure, or Benjamini-Hochberg false discovery rate control. Alternatively, use a multivariate test (MANOVA) as the omnibus analysis.
+
+### Confusing Correlation with Causation
+
+Correlation and regression quantify associations, not causal relationships. A significant correlation between ice cream sales and drowning rates does not mean ice cream causes drowning — both are influenced by temperature. Causal claims require experimental designs with random assignment and controlled conditions, not merely statistical associations.
+
+## Real-World Examples
+
+**Example 1:** A psychologist compares depression scores between patients receiving therapy and patients on a waiting list. The outcome is continuous (depression score), there are two independent groups, and the sample sizes are adequate. **Test: Independent samples t-test.** Check normality with Shapiro-Wilk and use Welch's correction by default.
+
+**Example 2:** A nutritionist measures blood pressure before and after a dietary change in the same 25 participants. The outcome is continuous, there are two measurements from the same people, and the sample is moderate. **Test: Paired samples t-test (or Wilcoxon if normality is questionable with n = 25).**
+
+**Example 3:** A market researcher wants to know whether product preference (Product A, B, or C) differs by age group (under 30, 30-50, over 50). Both variables are categorical. **Test: Chi-square test of independence.** If any expected cell frequency is below 5, consider Fisher's exact test.
+
+**Example 4:** An educator tests whether three different tutoring methods lead to different exam scores with 15 students per group. The outcome is continuous and there are three independent groups. **Test: One-way ANOVA (or Kruskal-Wallis if assumptions are violated).** Follow up with Tukey HSD if significant.
+
+**Example 5:** A medical researcher wants to predict whether patients develop a disease (yes/no) based on age, BMI, smoking status, and family history. The outcome is binary and there are multiple predictors. **Test: Logistic regression.** Report odds ratios with 95% confidence intervals.
+
+**Example 6:** A developmental psychologist measures children's reading ability at ages 6, 8, and 10. The same children are tested at each age. The outcome is continuous, there are three time points from the same participants. **Test: Repeated measures ANOVA (or Friedman if normality is violated).** Check sphericity with Mauchly's test and apply corrections if needed.
+
+## Quick Reference Flowchart
+
+Follow this path to identify the right test:
+
+**What is your dependent variable?**
 
 **If categorical:**
-- Comparing observed vs expected frequencies in one variable → **Chi-square goodness of fit**
-- Examining the relationship between two categorical variables → **Chi-square test of independence**
+- One variable, testing distribution → **Chi-square goodness of fit**
+- Two categorical variables, independent data → **Chi-square test of independence** (or Fisher's exact)
+- Two categorical variables, paired data → **McNemar test**
+- Binary outcome with predictors → **Logistic regression**
 
 **If continuous:**
 - **Are you comparing groups or examining a relationship?**
 
   **Comparing groups:**
-  - How many groups?
-    - **2 groups:**
-      - Independent → **Independent samples t-test** (or Mann-Whitney U)
-      - Paired → **Paired samples t-test** (or Wilcoxon signed-rank)
-    - **3+ groups:**
-      - Independent → **One-way ANOVA** (or Kruskal-Wallis)
-      - Paired → **Repeated measures ANOVA** (or Friedman)
+  - 1 group vs. a known value → **One-sample t-test** (or Wilcoxon signed-rank)
+  - 2 groups:
+    - Independent → **Independent t-test** (or Mann-Whitney U)
+    - Paired → **Paired t-test** (or Wilcoxon signed-rank)
+  - 3+ groups:
+    - Independent, 1 IV → **One-way ANOVA** (or Kruskal-Wallis)
+    - Independent, 2+ IVs → **Two-way ANOVA**
+    - Paired/repeated → **Repeated measures ANOVA** (or Friedman)
+    - Mixed (both) → **Mixed ANOVA**
 
   **Examining a relationship:**
-  - Between two continuous variables → **Pearson correlation** (or Spearman)
-  - Predicting one variable from another → **Linear regression**
-  - Predicting one variable from multiple predictors → **Multiple regression**
+  - Two continuous variables → **Pearson correlation** (or Spearman)
+  - Predicting Y from one X → **Simple regression**
+  - Predicting Y from multiple Xs → **Multiple regression**
 
-## Real-World Examples
+## Frequently Asked Questions
 
-**Example 1:** A psychologist compares depression scores between patients receiving therapy and patients on a waiting list. The outcome is continuous (depression score), there are two independent groups, and the sample sizes are adequate. **Test: Independent samples t-test.**
+### Can I use a parametric test if my data are not perfectly normal?
 
-**Example 2:** A nutritionist measures blood pressure before and after a dietary change in the same 25 participants. The outcome is continuous, there are two measurements from the same people, and the sample is moderate. **Test: Paired samples t-test (or Wilcoxon if normality is questionable with n = 25).**
+Yes, in most cases. Parametric tests (t-test, ANOVA) are robust to moderate violations of normality, especially when sample sizes are equal and reasonably large (n > 30 per group). The central limit theorem ensures that sampling distributions of means approach normality regardless of the population distribution. Switch to non-parametric alternatives only when samples are small and distributions are severely skewed or contain extreme outliers.
 
-**Example 3:** A market researcher wants to know whether product preference (Product A, B, or C) differs by age group (under 30, 30-50, over 50). Both variables are categorical. **Test: Chi-square test of independence.**
+### What is the difference between one-tailed and two-tailed tests, and when should I use each?
 
-**Example 4:** An educator tests whether three different tutoring methods lead to different exam scores with 15 students per group. The outcome is continuous and there are three independent groups. **Test: One-way ANOVA (or Kruskal-Wallis if assumptions are violated).**
+A two-tailed test checks for an effect in either direction (Group A could be higher or lower than Group B). A one-tailed test checks for an effect in only one specified direction. Use a two-tailed test by default — it is the standard in most fields. Only use a one-tailed test when you have a strong theoretical reason to predict the direction of the effect AND you would genuinely not care about or report an effect in the opposite direction. One-tailed tests have more power but are scrutinized heavily by reviewers.
+
+### When should I use MANOVA instead of multiple ANOVAs?
+
+Use MANOVA (Multivariate ANOVA) when you have multiple correlated dependent variables and want to test whether groups differ on the combination of outcomes. Running separate ANOVAs on each DV inflates the Type I error rate. MANOVA controls this by testing all DVs simultaneously. However, MANOVA has additional assumptions (multivariate normality, homogeneity of covariance matrices) and is harder to interpret. If your DVs are uncorrelated or you have a single primary outcome, separate ANOVAs with Bonferroni correction may be more appropriate.
+
+### How do I choose between chi-square and Fisher's exact test?
+
+Use chi-square when your expected cell frequencies meet the Cochran guideline: no more than 20% of cells should have expected frequencies below 5, and no cell should have an expected frequency below 1. If these conditions are not met, use Fisher's exact test. For 2×2 tables, many statisticians recommend always using Fisher's exact test because it provides exact p-values without relying on the chi-square approximation. For larger tables (3×3 or bigger), use the chi-square test when expected frequencies are adequate, or the Freeman-Halton extension of Fisher's test when they are not.
+
+### What test should I use for ordinal data (e.g., Likert scales)?
+
+This is debated. Strictly speaking, ordinal data violate the interval-level measurement assumption of parametric tests. Non-parametric tests (Mann-Whitney, Kruskal-Wallis, Spearman) are the theoretically correct choice. However, extensive simulation research shows that t-tests and ANOVAs perform well with 5+ point Likert scales when sample sizes are adequate and distributions are not heavily skewed. In practice, most researchers treat 5- or 7-point Likert scales as approximately interval and use parametric tests, reporting non-parametric results as a robustness check.
+
+### Can I use regression instead of ANOVA?
+
+Yes. ANOVA and regression are mathematically equivalent — ANOVA is a special case of regression with categorical predictors coded as dummy variables. Regression is more flexible because it can handle continuous and categorical predictors simultaneously, test for interactions, and accommodate unequal group sizes naturally. Many statisticians recommend using regression as the default framework and treating ANOVA as a convenient special case.
+
+### What if my study has both between-subjects and within-subjects factors?
+
+Use a mixed ANOVA (also called split-plot ANOVA). This design has at least one between-subjects factor (different groups of participants) and at least one within-subjects factor (repeated measures). The key advantage is that you can test the interaction between the between-subjects and within-subjects factors. For example, you can test whether the change over time differs between treatment and control groups.
+
+### How do I handle violations of sphericity in repeated measures ANOVA?
+
+Sphericity means that the variances of all pairwise differences between conditions are equal. Test it using Mauchly's test. If Mauchly's test is significant (sphericity is violated), apply a correction: use Greenhouse-Geisser when the epsilon estimate is below 0.75, and Huynh-Feldt when it is above 0.75. These corrections adjust the degrees of freedom downward, making the F test more conservative. Alternatively, use multivariate tests (Pillai's trace, Wilks' lambda), which do not assume sphericity.
 
 ## Let StatMate Help You Decide
 
-If you are still unsure which test fits your data, StatMate includes a test selection wizard that guides you through the decision process interactively. Answer a few questions about your variables and design, and StatMate recommends the appropriate test, checks assumptions for you, and runs the analysis with APA-formatted output.
+If you are still unsure which test fits your data, StatMate includes a [test selection wizard](/wizard) that guides you through the decision process interactively. Answer a few questions about your variables and design, and StatMate recommends the appropriate test, checks assumptions for you, and runs the analysis with APA-formatted output.
 
-Choosing the right statistical test does not have to be intimidating. Once you understand the logic behind the decision, it becomes a repeatable process that you can apply to any dataset.
+StatMate supports [20 statistical calculators](/calculators) covering t-tests, ANOVA, correlation, regression, chi-square, and all major non-parametric alternatives. Each calculator includes built-in assumption checking, effect size calculation, and one-click APA formatting.
+
+Choosing the right statistical test does not have to be intimidating. Once you understand the logic behind the decision — variable type, group count, sample relationship, and assumptions — it becomes a repeatable process that you can apply to any dataset.

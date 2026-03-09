@@ -41,15 +41,68 @@ There is no single perfect method for assessing normality. Best practice is to c
 
 **Kurtosis** measures the heaviness of the tails relative to a normal distribution. A normal distribution has a kurtosis of 3 (or excess kurtosis of 0). Higher values indicate heavier tails and more outlier-prone data.
 
-## Shapiro-Wilk Test
+## Visual Methods for Assessing Normality
+
+Visual inspection is the foundation of any normality assessment. While statistical tests provide a binary yes-or-no answer, graphical methods reveal the nature and severity of distributional deviations. Experienced researchers often trust visual methods more than formal tests, particularly with very small or very large samples.
+
+### Histograms
+
+A histogram divides the data range into bins and plots the frequency of observations in each bin. For normally distributed data, the histogram should resemble a symmetric, bell-shaped curve.
+
+**How to interpret:** Look for approximate symmetry, a single peak near the center, and gradually tapering tails. Common departures include multiple peaks (bimodality), a long tail on one side (skewness), or a flat shape with no clear peak (uniform distribution).
+
+**Limitations:** The appearance of a histogram depends heavily on the number of bins. Too few bins obscure the distribution shape; too many create a noisy, ragged appearance. With small samples (n less than 30), histograms are often unreliable because random variation dominates the shape.
+
+**APA reporting:** Histograms are typically referenced in the text rather than formally reported with statistics. For example: "Visual inspection of the histogram suggested an approximately normal distribution with slight positive skew."
+
+### Q-Q Plots
+
+The **quantile-quantile (Q-Q) plot** is the most diagnostic visual tool for assessing normality. It plots the ordered observed values against the corresponding expected values from a standard normal distribution. If the data are perfectly normal, all points fall exactly on the 45-degree reference line.
+
+**How to interpret:** Focus on systematic patterns rather than individual points. Random scatter around the line is expected. Look for consistent curvature, bending at the tails, or clusters of points that deviate from the line.
+
+**APA reporting:** Q-Q plots are often referenced as supporting evidence alongside a formal test result:
+
+> Visual inspection of the Q-Q plot confirmed that the data were approximately normally distributed, with no systematic deviations from the reference line.
+
+### Box Plots
+
+**Box plots** (box-and-whisker plots) display the median, interquartile range, and potential outliers. While not designed specifically for normality assessment, they provide quick information about symmetry and outliers.
+
+**How to interpret:** For a normal distribution, the median line should be centered within the box, the whiskers should be approximately equal in length, and there should be few or no outlier points beyond the whiskers. A skewed box plot -- with the median shifted toward one end and one whisker much longer than the other -- suggests non-normality.
+
+**Practical use:** Box plots are most useful when comparing distributions across groups. If one group shows a strongly asymmetric box plot while others are symmetric, this signals a potential normality problem in that specific group.
+
+### P-P Plots
+
+A **P-P plot** (probability-probability plot) is similar to a Q-Q plot but plots the cumulative probabilities rather than the quantiles. For normally distributed data, the points follow the diagonal line. P-P plots are more sensitive to deviations in the middle of the distribution, while Q-Q plots are more sensitive to deviations in the tails.
+
+**When to use:** P-P plots are less commonly used than Q-Q plots in published research but can be helpful when you want to assess how well the central portion of your distribution matches normality. If you are primarily concerned about tail behavior (outliers, heavy tails), prefer the Q-Q plot.
+
+### Combining Visual and Statistical Methods
+
+The best practice for normality assessment is to use visual and statistical methods together. No single method provides a complete picture:
+
+1. **Start with a histogram** to get a rough sense of the distribution shape.
+2. **Examine the Q-Q plot** for specific diagnostic information about the type and location of departures.
+3. **Run a formal test** (preferably Shapiro-Wilk) to obtain a quantitative measure.
+4. **Check skewness and kurtosis** values as effect-size indicators of non-normality.
+
+If all four indicators agree, you can be confident in your normality assessment. If they disagree -- for example, a significant Shapiro-Wilk test but a clean Q-Q plot -- give more weight to the visual evidence and the practical magnitude of skewness and kurtosis.
+
+## Statistical Tests for Normality
+
+Statistical tests provide an objective, quantitative assessment of normality. However, each test has different strengths, and the choice of test matters.
+
+### Shapiro-Wilk Test
 
 The **Shapiro-Wilk test** is the most recommended normality test in the statistical literature. It is available in every major statistics package and is the default normality test in many software programs.
 
-### When to Use It
+#### When to Use It
 
 Use the Shapiro-Wilk test when your sample size is between 3 and approximately 2,000. For most research scenarios -- thesis work, journal articles, class assignments -- this is the test you should use. It is more powerful than the Kolmogorov-Smirnov test for detecting non-normality, especially with small samples.
 
-### How to Interpret
+#### How to Interpret
 
 The test produces a *W* statistic that ranges from 0 to 1. A *W* value close to 1 indicates that the data closely follow a normal distribution. Lower values suggest greater departure from normality.
 
@@ -58,27 +111,64 @@ The decision rule is straightforward:
 - If *p* > .05, you do **not** reject the null hypothesis of normality. The data are consistent with a normal distribution.
 - If *p* less than or equal to .05, you reject normality. The data significantly deviate from a normal distribution.
 
-### Worked Example
+#### Worked Example
 
 Suppose you collected exam scores from 25 students: the Shapiro-Wilk test yields *W* = .964 with *p* = .498. Because *p* = .498 is greater than .05, you do not reject the null hypothesis. The data do not significantly deviate from normality, and you may proceed with parametric tests such as a t-test or ANOVA.
 
 In contrast, if the test yielded *W* = .871 with *p* = .005, the significant result (*p* less than .05) would indicate that the data depart meaningfully from a normal distribution.
 
-## Kolmogorov-Smirnov Test
+### Kolmogorov-Smirnov Test
 
 The **Kolmogorov-Smirnov (K-S) test** compares your sample distribution to a theoretical normal distribution by measuring the maximum absolute difference between the two cumulative distribution functions.
 
-### When to Use It
+#### When to Use It
 
 The K-S test is sometimes preferred for larger samples (n > 2,000) where the Shapiro-Wilk test may not be available. Some software packages default to the K-S test, particularly SPSS, which reports it alongside the Shapiro-Wilk test in its Explore procedure.
 
-### Limitations
+#### Limitations
 
 The K-S test has notably **less statistical power** than the Shapiro-Wilk test for small and moderate samples. This means it is more likely to miss genuine departures from normality. If both tests are available, the Shapiro-Wilk test is almost always the better choice.
 
-### Lilliefors Correction
+#### Lilliefors Correction
 
 The standard K-S test requires the mean and standard deviation to be specified in advance. When these parameters are estimated from the data (as is nearly always the case in practice), the **Lilliefors correction** must be applied. Without this correction, the test is overly conservative and will fail to detect non-normality. Most modern software applies the Lilliefors correction automatically.
+
+### Anderson-Darling Test
+
+The **Anderson-Darling test** is similar to the K-S test but places greater weight on the tails of the distribution. This makes it more sensitive to departures from normality in the extreme values, which is particularly important for detecting heavy-tailed or outlier-prone distributions.
+
+**When to use it:** The Anderson-Darling test is a good complement to the Shapiro-Wilk test, especially when tail behavior is important (e.g., financial data, extreme value analysis). It is available in R (`ad.test` in the nortest package), Python (scipy), and other statistical software.
+
+**APA reporting:**
+
+> The Anderson-Darling test indicated that the distribution of response times deviated significantly from normality, *A*^2 = 1.84, *p* = .003.
+
+### D'Agostino-Pearson Test
+
+The **D'Agostino-Pearson omnibus test** combines skewness and kurtosis into a single test statistic. It assesses whether the sample skewness and kurtosis jointly differ from what would be expected under normality.
+
+**When to use it:** This test is particularly useful when you suspect the non-normality is due to either skewness or kurtosis (or both), and you want a single test that captures both aspects. It requires a sample size of at least 20 and is most powerful with n > 50.
+
+**APA reporting:**
+
+> The D'Agostino-Pearson omnibus test indicated a significant departure from normality, *K*^2 = 12.46, *p* = .002, reflecting both positive skewness (*z* = 2.81) and excess kurtosis (*z* = 2.04).
+
+### Comparison of Normality Tests
+
+| Test | Best For | Sample Size Range | Sensitivity | Power |
+|---|---|---|---|---|
+| Shapiro-Wilk | General purpose | 3 to 2,000 | Overall shape | Highest for small-medium samples |
+| Kolmogorov-Smirnov (Lilliefors) | Large samples | Any (best > 2,000) | Central distribution | Lower than Shapiro-Wilk |
+| Anderson-Darling | Tail departures | Any | Tail behavior | Good for detecting heavy tails |
+| D'Agostino-Pearson | Skewness/kurtosis | 20+ (best > 50) | Skewness and kurtosis separately | Moderate |
+
+### Sample Size Considerations for Normality Tests
+
+Sample size profoundly affects the behavior of normality tests:
+
+- **Small samples (n less than 20):** All normality tests have low statistical power. A non-significant result does not mean the data are normal -- the test simply lacks the power to detect non-normality. Rely more heavily on Q-Q plots and subject-matter knowledge.
+- **Moderate samples (n = 20 to 100):** Normality tests are most useful in this range. They have reasonable power to detect meaningful departures while not being overly sensitive to trivial deviations.
+- **Large samples (n > 100):** Normality tests become overly sensitive. Even tiny, inconsequential departures from normality will produce significant results. In this range, focus on visual methods and effect-size measures of non-normality (e.g., skewness and kurtosis values) rather than *p*-values.
 
 ## Interpreting Q-Q Plots
 
@@ -146,21 +236,70 @@ In a methods or results section, you might write:
 
 Always specify which normality test you used, the sample size, and the test result. Reviewers expect this level of detail.
 
-## What to Do When Data Is Not Normal
+## When Normality Violations Don't Matter
 
-Detecting non-normality is only the first step. You need a strategy for dealing with it. There are three main approaches.
+Not every normality violation requires action. Understanding when parametric tests remain valid despite non-normality prevents unnecessary complexity in your analysis and avoids the loss of statistical power that comes with switching to nonparametric alternatives.
 
-### Option 1: Transform the Data
+### The Central Limit Theorem
+
+The **Central Limit Theorem (CLT)** is the single most important reason why normality violations often do not matter. The CLT states that the sampling distribution of the mean approaches normality as sample size increases, regardless of the shape of the population distribution. This means that the *p*-values from parametric tests based on means (t-tests, ANOVA, regression) become increasingly accurate with larger samples, even when the raw data are not normal.
+
+**Practical thresholds:**
+
+- **n > 30 per group:** The CLT provides reasonable protection for most symmetric or mildly skewed distributions.
+- **n > 50 per group:** Parametric tests are robust to substantial skewness and moderate kurtosis.
+- **n > 100 per group:** Even heavily skewed distributions produce reliable *p*-values for tests based on means.
+
+### Robustness of t-Tests and ANOVA
+
+Decades of simulation research have demonstrated that t-tests and ANOVA are remarkably **robust** to normality violations under specific conditions:
+
+- **Equal group sizes:** When groups have approximately equal *n*, both t-tests and ANOVA maintain accurate Type I error rates even with substantial non-normality. This is the single most important factor for robustness.
+- **Symmetric distributions:** Tests are more robust to heavy tails (excess kurtosis) than to skewness. Symmetric non-normal distributions rarely cause problems.
+- **Two-tailed tests:** Two-tailed tests are more robust than one-tailed tests because errors in the two tails tend to cancel out.
+
+**When non-normality does matter:** Small samples (n less than 15 per group), severely skewed distributions (skewness greater than 2), unequal group sizes combined with unequal variances, and one-tailed tests are the situations where normality violations most affect the validity of parametric results.
+
+### Regression and Correlation
+
+For **regression analysis**, the normality assumption applies to the residuals, not to the predictor or outcome variables themselves. A common misconception is testing normality of the raw variables before fitting the model. Even if both X and Y are non-normal, the residuals may be perfectly normal. Conversely, normally distributed variables can produce non-normal residuals if the model is misspecified.
+
+For **Pearson correlation**, the assumption is bivariate normality, which is needed for accurate significance testing. However, with n > 30, the significance test for Pearson's *r* is robust to moderate departures from bivariate normality. For severely non-normal data or small samples, use Spearman's rank correlation instead.
+
+### The "Practical Significance" Perspective
+
+Some methodologists argue that the question should not be "Is my data normal?" but rather "Is my data normal enough for my analysis to be valid?" This reframing shifts the focus from achieving perfect normality to evaluating whether the degree of non-normality is sufficient to meaningfully distort results. With this perspective, the emphasis moves from statistical tests to practical assessment of skewness, kurtosis, and visual inspection.
+
+### Sample Size Thresholds by Distribution Type
+
+| Distribution Shape | Safe n per Group | Recommendation |
+|---|---|---|
+| Symmetric, light tails | 10-15 | Parametric tests safe |
+| Symmetric, heavy tails | 20-30 | Parametric tests usually safe |
+| Mild skewness (less than 1) | 30-40 | CLT provides adequate protection |
+| Moderate skewness (1-2) | 50-100 | Use parametric with caution; report sensitivity check |
+| Severe skewness (greater than 2) | 100+ or nonparametric | Consider transformation or nonparametric alternative |
+
+## What to Do When Data Aren't Normal
+
+Detecting non-normality is only the first step. You need a strategy for dealing with it. There are three main approaches, and the choice depends on the nature and severity of the violation.
+
+### Data Transformations
 
 **Data transformations** can sometimes normalize a skewed distribution. Common transformations include:
 
-- **Log transformation** -- effective for right-skewed data (e.g., reaction times, income).
-- **Square root transformation** -- useful for moderately right-skewed count data.
-- **Box-Cox transformation** -- a family of power transformations that finds the optimal normalizing transformation.
+- **Log transformation** (Y' = ln(Y)) -- effective for right-skewed data with a floor effect (e.g., reaction times, income, biological concentrations). All values must be positive; add a constant if zeros are present.
+- **Square root transformation** (Y' = sqrt(Y)) -- useful for moderately right-skewed count data. Milder than the log transformation and preserves zeros.
+- **Box-Cox transformation** -- a family of power transformations that finds the optimal normalizing transformation using maximum likelihood. The parameter lambda determines the specific transformation (lambda = 0 is log, lambda = 0.5 is square root).
+- **Reciprocal transformation** (Y' = 1/Y) -- useful for strongly right-skewed data, but reverses the order of values and cannot handle zeros.
 
 After transforming, re-run the normality test on the transformed variable. If the transformation succeeds, you can analyze the transformed data with parametric tests. However, interpretation becomes less intuitive because results are on the transformed scale.
 
-### Option 2: Use Nonparametric Alternatives
+**APA reporting of transformed data:**
+
+> Due to significant positive skewness in reaction time data (skewness = 2.14), a natural log transformation was applied. The transformed variable satisfied the normality assumption, *W*(45) = .972, *p* = .348. All subsequent analyses were conducted on the log-transformed data.
+
+### Nonparametric Alternatives
 
 When transformation does not help or is not appropriate, switch to a **nonparametric test** that does not assume normality:
 
@@ -171,9 +310,27 @@ When transformation does not help or is not appropriate, switch to a **nonparame
 | One-way ANOVA | Kruskal-Wallis H test |
 | Repeated measures ANOVA | Friedman test |
 
-Nonparametric tests rank the data rather than using raw values, making them robust to distributional violations. The tradeoff is slightly reduced statistical power when the normality assumption actually holds.
+Nonparametric tests rank the data rather than using raw values, making them robust to distributional violations. The tradeoff is slightly reduced statistical power when the normality assumption actually holds -- typically around 5-15% loss in power for moderate sample sizes.
 
-### Option 3: Proceed with Parametric Tests (Large Samples)
+### Choosing Between Transformation and Nonparametric Tests
+
+The decision between transformation and nonparametric alternatives depends on several factors:
+
+- **Use transformation when:** The transformed scale has a natural interpretation (e.g., log-transformed reaction times), the transformation normalizes the data effectively, or you need to maintain the ability to estimate means and confidence intervals.
+- **Use nonparametric tests when:** No transformation normalizes the data, the research question concerns medians or ranks rather than means, or the data contain true outliers that should not be removed but should not drive the results.
+- **Report both when:** You are uncertain which approach is more appropriate. If parametric and nonparametric analyses yield the same conclusion, this strengthens confidence in the results. If they disagree, the nonparametric result is generally more trustworthy for non-normal data.
+
+### Bootstrapping
+
+**Bootstrap methods** offer a modern alternative that does not require normality or rank-based statistics. Bootstrapping generates thousands of resampled datasets from your original data and uses the empirical distribution of the test statistic to derive *p*-values and confidence intervals.
+
+**Advantages:** Bootstrapping works with any distribution shape, preserves the original measurement scale, and can be applied to virtually any statistic. It is increasingly accepted in peer-reviewed journals and recommended by the APA.
+
+**APA reporting:**
+
+> Because the normality assumption was violated, bootstrap confidence intervals (10,000 samples, bias-corrected and accelerated) were computed. The mean difference between groups was 4.72, 95% BCa CI [2.15, 7.84], *p* = .003.
+
+### Proceeding with Parametric Tests (Large Samples)
 
 The **Central Limit Theorem** states that with sufficiently large samples, the sampling distribution of the mean approaches normality regardless of the population distribution. As a general guideline:
 
@@ -185,9 +342,13 @@ If you proceed despite non-normality, acknowledge this in your paper and conside
 
 ## Common Mistakes
 
-### Relying Only on the Significance Test
+### Over-Relying on Tests with Large Samples
 
-A Shapiro-Wilk *p*-value tells you whether the deviation from normality is statistically significant, but it does not tell you how severe the deviation is. With large samples, even tiny, inconsequential deviations produce significant results. Always combine formal tests with visual inspection of histograms and Q-Q plots.
+A Shapiro-Wilk *p*-value tells you whether the deviation from normality is statistically significant, but it does not tell you how severe the deviation is. With large samples (n > 200), even tiny, inconsequential deviations produce significant results. A dataset with 500 observations and skewness of 0.15 will often yield a significant Shapiro-Wilk test, yet this level of non-normality has virtually no impact on parametric test validity. Always combine formal tests with visual inspection of histograms and Q-Q plots, and evaluate skewness and kurtosis values as effect-size indicators of non-normality.
+
+### Ignoring Visual Methods
+
+Some researchers report only the Shapiro-Wilk *p*-value without ever examining a histogram or Q-Q plot. This is problematic because the *p*-value does not reveal the nature of the non-normality. Knowing whether the violation is caused by skewness, heavy tails, outliers, or bimodality is essential for choosing the right remedy. A Q-Q plot takes seconds to generate and provides far more diagnostic information than any single test statistic.
 
 ### Using K-S When Shapiro-Wilk Is More Appropriate
 
@@ -197,9 +358,77 @@ The Kolmogorov-Smirnov test is less powerful than the Shapiro-Wilk test for smal
 
 A non-significant Shapiro-Wilk result (*p* > .05) means you failed to find evidence against normality. It does not prove the data are normally distributed. This distinction matters, especially with small samples where the test has limited power to detect departures from normality.
 
+### Transforming Without Justification
+
+Applying a log or square root transformation without explaining why is a common methodological error. Transformations should be justified by the nature of the data (e.g., reaction times are known to be log-normally distributed) or by the specific pattern of non-normality observed. Always report the rationale, the specific transformation applied, and whether the transformed data satisfy the normality assumption. Avoid trying multiple transformations and reporting only the one that "worked" without disclosing the others.
+
 ### Not Reporting Which Test Was Used
 
 Simply writing "data were normally distributed" without specifying the test, sample size, and result is insufficient. Reviewers and readers need to evaluate the evidence for themselves. Always report the test name, test statistic, sample size, and *p*-value.
+
+## Normality Testing in Different Software
+
+Different statistical software packages offer different normality testing options. Here is a quick reference:
+
+**SPSS:** The Explore procedure (Analyze > Descriptive Statistics > Explore) automatically reports both Shapiro-Wilk and Kolmogorov-Smirnov tests, along with Q-Q plots and descriptive statistics including skewness and kurtosis. Check the "Plots" button and select "Normality plots with tests."
+
+**R:** Use `shapiro.test(x)` for the Shapiro-Wilk test. For Q-Q plots, use `qqnorm(x)` followed by `qqline(x)`. The `nortest` package provides Anderson-Darling (`ad.test`) and other normality tests. For a comprehensive normality assessment, the `ggpubr` package offers `ggqqplot()` with confidence bands.
+
+**Python:** Use `scipy.stats.shapiro(x)` for Shapiro-Wilk and `scipy.stats.kstest(x, 'norm')` for K-S. For Q-Q plots, use `scipy.stats.probplot(x, plot=plt)` or `statsmodels.graphics.gofplots.qqplot()`.
+
+**StatMate:** Normality testing is built into all parametric calculators. Simply enter your data and the Shapiro-Wilk test runs automatically for each group, with results included in APA-formatted output.
+
+## Step-by-Step Decision Guide
+
+When faced with a normality question, follow this systematic process:
+
+**Step 1: Determine what needs to be normal.** Identify whether the assumption applies to raw data (t-test, ANOVA groups) or residuals (regression). Test the correct variable.
+
+**Step 2: Assess visually.** Generate a Q-Q plot and histogram. Look for systematic patterns: skewness, heavy tails, outliers, or multimodality.
+
+**Step 3: Run a formal test.** Use Shapiro-Wilk for n less than 2,000. Record the *W* statistic and *p*-value.
+
+**Step 4: Check skewness and kurtosis.** Compare values against the West, Finch, and Curran (1995) thresholds (skewness less than 2, kurtosis less than 7).
+
+**Step 5: Consider your sample size.** With n > 50 per group, moderate non-normality is unlikely to affect parametric test validity. With n less than 15, even visual methods may be unreliable -- consider nonparametric tests as a default.
+
+**Step 6: Choose your strategy.** If normality holds, proceed with parametric tests. If violated, decide between transformation, nonparametric alternatives, or bootstrapping based on the severity and nature of the violation.
+
+**Step 7: Report transparently.** Document which test you used, the results, and your rationale for proceeding with your chosen analysis strategy.
+
+## Frequently Asked Questions
+
+### Which normality test should I use: Shapiro-Wilk or Kolmogorov-Smirnov?
+
+For most research purposes, use the **Shapiro-Wilk test**. It has greater statistical power than the Kolmogorov-Smirnov test for sample sizes up to 2,000, meaning it is better at detecting genuine departures from normality. The K-S test (with Lilliefors correction) is an acceptable alternative only when your sample exceeds 2,000 observations or when the Shapiro-Wilk test is not available in your software.
+
+### What sample size do I need for a reliable normality test?
+
+There is no minimum sample size for running a normality test, but the test's statistical power increases with sample size. With fewer than 20 observations, normality tests have very low power and may fail to detect substantial non-normality. In this range, rely primarily on Q-Q plots and theoretical expectations about your variable's distribution. With 20-100 observations, normality tests are most informative. Above 100, tests become overly sensitive and should be supplemented with effect-size measures (skewness, kurtosis).
+
+### Should I test normality on raw data or on residuals?
+
+It depends on the analysis. For **t-tests and ANOVA**, test normality within each group separately -- the assumption is that the dependent variable is normally distributed within each group. For **regression**, the normality assumption applies to the **residuals**, not the raw predictor or outcome variables. A common mistake is testing the raw outcome variable for normality when the relevant assumption concerns the residuals after model fitting.
+
+### What if the Shapiro-Wilk test is significant but the Q-Q plot looks normal?
+
+This discrepancy typically occurs with large samples, where the Shapiro-Wilk test detects trivial deviations that have no practical consequence. In such cases, the visual evidence from the Q-Q plot is more informative than the *p*-value. Report both results and explain that the departure from normality, while statistically significant, is negligible in magnitude. You may proceed with parametric tests.
+
+### Can I use normality tests with ordinal or Likert-scale data?
+
+Technically, normality tests can be applied to any numerical data, but their interpretation is questionable for ordinal or Likert-scale data. Discrete data with limited response options (e.g., a 5-point Likert scale) will almost always fail a normality test because the data cannot form a smooth, continuous distribution. For Likert-scale data, focus instead on the skewness and kurtosis of the distribution, and consider whether the total score (sum of multiple items) is approximately normal, which is more relevant for most analyses.
+
+### Do I need to test normality for every variable in my study?
+
+No. Test normality only for the variables involved in parametric analyses that assume it. For t-tests and ANOVA, check the dependent variable within each group. For regression, check the residuals. Independent variables in regression do not need to be normal. Categorical variables, obviously, are exempt. Testing every variable wastes time and inflates the risk of false positives from multiple testing.
+
+### How do I report normality results when I have many groups or variables?
+
+When testing normality across many groups, summarize the results rather than reporting each test individually. For example: "Shapiro-Wilk tests confirmed that the dependent variable was normally distributed in all six groups (all *W*s > .94, all *p*s > .10). Skewness values ranged from -0.42 to 0.67." If normality is violated in some but not all groups, specify which groups showed non-normality and describe the nature of the violation.
+
+### Is there a normality test that works well for all sample sizes?
+
+No single test is optimal across all sample sizes. The Shapiro-Wilk test offers the best overall performance for samples between 3 and 2,000. For very large samples, no formal test is ideal because all tests become overly sensitive. The best approach for large samples is to combine visual methods (Q-Q plots, histograms) with descriptive measures of non-normality (skewness and kurtosis values), using the thresholds of West, Finch, and Curran (1995) as guidelines.
 
 ## Check Normality with StatMate
 

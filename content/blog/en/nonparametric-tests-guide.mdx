@@ -1,71 +1,388 @@
 ---
-title: "When to Use Nonparametric Tests: A Practical Guide"
-description: "Learn when to choose nonparametric tests over parametric alternatives. Covers Mann-Whitney U, Wilcoxon, Kruskal-Wallis, and Friedman tests with real examples."
+title: "When to Use Nonparametric Tests: A Complete Practical Guide"
+description: "Learn when to choose nonparametric tests over parametric alternatives. Covers Mann-Whitney U, Wilcoxon signed-rank, Kruskal-Wallis, Friedman, and Spearman correlation with APA reporting examples, effect sizes, and common mistakes."
 date: "2026-02-19"
 category: "Analysis Methods"
-tags: ["nonparametric", "Mann-Whitney", "Wilcoxon", "Kruskal-Wallis", "Friedman", "assumptions"]
+tags: ["nonparametric", "Mann-Whitney", "Wilcoxon", "Kruskal-Wallis", "Friedman", "Spearman", "assumptions"]
 ---
 
 ## When Parametric Tests Fall Short
 
-Parametric tests like the t-test and ANOVA are powerful tools, but they come with assumptions: normally distributed data, interval or ratio measurement scales, and homogeneity of variances. When your data violate these assumptions, nonparametric tests provide robust alternatives that make fewer distributional assumptions.
+Parametric tests like the t-test and ANOVA are the workhorses of inferential statistics. They are powerful, well-understood, and widely taught. However, they rest on a set of assumptions: normally distributed data, interval or ratio measurement scales, homogeneity of variances, and independence of observations. When your data violate one or more of these assumptions, nonparametric tests provide robust alternatives that make fewer distributional assumptions.
 
-This guide helps you decide which nonparametric test to use and when it is the right choice over its parametric counterpart.
+This guide covers everything researchers need to know about nonparametric tests: when they are truly necessary, how to choose the right one, how to report results in APA format, and how to avoid the most common mistakes. Whether you are analyzing ordinal survey data, working with small samples, or dealing with severely skewed distributions, this guide will help you make informed decisions about your statistical approach.
 
-## The Parametric vs. Nonparametric Decision
+## When to Use Nonparametric Tests
 
-The key question is not whether your data are perfectly normal, but whether assumption violations are severe enough to invalidate parametric results. Consider nonparametric tests when:
+The decision to use nonparametric tests should not be taken lightly, nor should it be the default choice out of excessive caution. The key question is not whether your data are perfectly normal — no real-world data ever are — but whether assumption violations are severe enough to invalidate parametric results.
 
-- **Small sample sizes** (n less than 30 per group) make normality hard to assess
-- **Ordinal data** such as Likert scales or rankings
-- **Severe skewness** or heavy outliers that resist transformation
-- **Non-normal distributions** confirmed by Shapiro-Wilk test (p less than .05)
+### Primary Reasons to Choose Nonparametric Tests
 
-## Choosing the Right Nonparametric Test
+**1. Ordinal data.** When your dependent variable is measured on an ordinal scale, such as Likert-type items, pain severity ratings, or educational attainment levels, parametric tests are inappropriate because the intervals between response categories are not necessarily equal. A rating of 4 is not necessarily twice as much as a rating of 2. Nonparametric tests operate on ranks rather than raw values, making them suitable for ordinal data.
 
-| Research Question | Parametric | Nonparametric |
-|---|---|---|
-| Compare 2 independent groups | Independent t-test | Mann-Whitney U |
-| Compare 2 paired/matched groups | Paired t-test | Wilcoxon signed-rank |
-| Compare 3+ independent groups | One-way ANOVA | Kruskal-Wallis H |
-| Compare 3+ related conditions | Repeated measures ANOVA | Friedman test |
+**2. Severe violations of normality.** While parametric tests are generally robust to moderate departures from normality (especially with larger samples), severe skewness, heavy tails, or multimodal distributions can distort p-values and confidence intervals. Use the Shapiro-Wilk test alongside visual inspection (histograms, Q-Q plots) to assess normality. If the distribution is clearly non-normal and data transformations (log, square root, reciprocal) fail to remedy the problem, nonparametric tests are warranted.
+
+**3. Small sample sizes.** With fewer than 15–20 observations per group, the Central Limit Theorem provides little protection, and the sampling distribution of the mean may not approximate normality. In such cases, the validity of parametric test statistics becomes questionable, and nonparametric tests offer a safer alternative.
+
+**4. Outliers that cannot be removed.** Extreme values disproportionately affect means and variances, inflating or deflating parametric test statistics. When outliers are genuine data points (not measurement errors) and cannot be legitimately removed, nonparametric tests based on ranks are far less sensitive to their influence.
+
+**5. Ranked or preference data.** When participants rank items, judge preferences, or produce data that are inherently ordinal, nonparametric tests are the natural choice.
+
+### Decision Criteria: A Practical Checklist
+
+Before defaulting to a nonparametric test, work through this checklist:
+
+1. Is your dependent variable at least interval-level? If not (ordinal data), use nonparametric.
+2. Run the Shapiro-Wilk test. Is p < .05? If yes, inspect visually.
+3. Examine histograms and Q-Q plots. Is the departure from normality severe?
+4. Can data transformations (log, square root) normalize the distribution?
+5. Is your sample size large enough (n > 30 per group) for the Central Limit Theorem to apply?
+6. Are there extreme outliers that affect the mean substantially?
+
+If you answer "yes" to multiple red flags and transformations do not help, use the nonparametric alternative. If only one mild violation exists and your sample is reasonably large, the parametric test is likely still valid.
+
+## Complete Nonparametric Equivalents Table
+
+The following table maps each common parametric test to its nonparametric counterpart, along with the appropriate effect size measure for each:
+
+| Research Design | Parametric Test | Nonparametric Equivalent | Effect Size |
+|---|---|---|---|
+| Two independent groups | Independent samples t-test | Mann-Whitney U test | r = Z / sqrt(N) |
+| Two paired/matched groups | Paired samples t-test | Wilcoxon signed-rank test | r = Z / sqrt(N) |
+| Three or more independent groups | One-way ANOVA | Kruskal-Wallis H test | eta-squared (H) |
+| Three or more related conditions | Repeated measures ANOVA | Friedman test | Kendall's W |
+| Bivariate association (continuous) | Pearson correlation (r) | Spearman rank correlation (rho) | rho itself |
+| 2x2 contingency table (small n) | Chi-square test | Fisher's exact test | Odds ratio, phi |
+
+Understanding these pairings is essential for selecting the correct test. The parametric and nonparametric versions address the same research question but differ in their assumptions and the type of data they analyze.
 
 ## Mann-Whitney U Test
 
-Use this when comparing two independent groups on an ordinal or non-normal continuous variable. The test compares the rank distributions of the two groups.
+### When to Use
 
-**APA format example:**
-A Mann-Whitney U test indicated that satisfaction scores were significantly higher for Group A (Mdn = 4.50) than Group B (Mdn = 3.00), U = 45.00, p = .012, r = .38.
+The Mann-Whitney U test (also called the Wilcoxon rank-sum test) compares two independent groups when the dependent variable is ordinal or when a continuous variable severely violates the normality assumption. It tests whether one group tends to have larger values than the other by comparing the rank distributions.
+
+### Assumptions
+
+Despite being "assumption-free" in common parlance, the Mann-Whitney U test does have assumptions:
+
+- The observations must be independent between and within groups.
+- The dependent variable must be at least ordinal.
+- The distributions of the two groups should have the same shape (for interpreting the test as a comparison of medians). If shapes differ, the test compares stochastic dominance rather than central tendency.
+
+### APA Reporting Format
+
+The standard APA format for the Mann-Whitney U test is:
+
+> A Mann-Whitney U test indicated that satisfaction scores were significantly higher for the experimental group (*Mdn* = 4.50) than the control group (*Mdn* = 3.00), *U* = 45.00, *z* = -2.52, *p* = .012, *r* = .38.
+
+Key elements to include:
+- Medians (and interquartile ranges) for each group, not means
+- The U statistic
+- The z-approximation (especially for larger samples)
+- The exact p-value
+- An effect size, typically r = Z / sqrt(N)
+
+### Effect Size Interpretation
+
+The effect size r for the Mann-Whitney U test follows the same conventions as Pearson's r:
+
+| r Value | Interpretation |
+|---|---|
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+
+Calculate r by dividing the z-statistic by the square root of the total sample size: r = |Z| / sqrt(N). This provides a standardized measure of the magnitude of the difference between groups.
 
 ## Wilcoxon Signed-Rank Test
 
-The paired equivalent of Mann-Whitney. Use this for before-after comparisons or matched pairs when the difference scores are non-normal.
+### When to Use
 
-**APA format example:**
-A Wilcoxon signed-rank test showed a significant increase in scores from pre-test (Mdn = 65) to post-test (Mdn = 78), T = 12.00, p = .003, r = .52.
+The Wilcoxon signed-rank test is the nonparametric alternative to the paired samples t-test. Use it when you have two related measurements (e.g., pre-test and post-test, or two matched conditions) and the distribution of difference scores violates normality. It tests whether the median difference between pairs is significantly different from zero.
+
+### How It Works
+
+The test operates on the differences between paired observations:
+1. Calculate the difference for each pair.
+2. Rank the absolute differences (excluding zero differences).
+3. Assign the sign of the original difference to each rank.
+4. Sum the positive and negative ranks separately.
+5. The test statistic T is the smaller of these two sums.
+
+### APA Reporting Format
+
+> A Wilcoxon signed-rank test showed a significant increase in pain scores from pre-intervention (*Mdn* = 65.00) to post-intervention (*Mdn* = 78.00), *T* = 12.00, *z* = -2.98, *p* = .003, *r* = .52.
+
+Key elements:
+- Medians for both conditions
+- The T statistic (sum of ranks for the less frequent sign)
+- The z-approximation
+- The exact or asymptotic p-value
+- Effect size r = |Z| / sqrt(N), where N is the number of non-zero differences
+
+### Effect Size
+
+The same r metric used for the Mann-Whitney U test applies here. An r of .52, as in the example above, represents a large effect. Always report effect sizes because statistical significance alone does not convey the practical importance of the finding. With very large samples, even trivially small differences can be statistically significant.
+
+### Special Considerations
+
+- **Tied ranks:** When multiple difference scores have the same absolute value, they receive the average of the ranks they would have occupied. Most software handles this automatically.
+- **Zero differences:** Pairs with identical pre and post scores are excluded from the analysis, reducing the effective sample size.
+- **Exact vs. asymptotic p-values:** For small samples (n < 25), request exact p-values rather than relying on the normal approximation.
 
 ## Kruskal-Wallis H Test
 
-The nonparametric alternative to one-way ANOVA. Use this when comparing three or more independent groups.
+### When to Use
 
-**APA format example:**
-A Kruskal-Wallis H test showed a significant difference in performance across teaching methods, H(2) = 12.45, p = .002, eta-squared = .15.
+The Kruskal-Wallis H test is the nonparametric alternative to one-way ANOVA. Use it when comparing three or more independent groups on an ordinal or non-normal continuous dependent variable. Like ANOVA, it tests the null hypothesis that all groups come from the same population, but it operates on ranks rather than means.
 
-Follow up with Dunn's post-hoc test with Bonferroni correction to identify which groups differ.
+### Assumptions
+
+- Observations are independent between and within groups.
+- The dependent variable is at least ordinal.
+- The distributions of all groups have the same shape (for median comparison interpretation).
+
+### APA Reporting Format
+
+> A Kruskal-Wallis H test showed a statistically significant difference in patient satisfaction across the three treatment conditions, *H*(2) = 12.45, *p* = .002, *eta*^2^~*H*~ = .15.
+
+Key elements:
+- The H statistic with degrees of freedom (number of groups minus 1)
+- The p-value
+- Effect size: eta-squared for the H statistic, calculated as eta^2_H = (H - k + 1) / (N - k), where k is the number of groups
+
+### Post-Hoc Testing with Dunn's Test
+
+A significant Kruskal-Wallis result tells you that at least one group differs, but not which groups differ. Follow up with Dunn's test using Bonferroni correction (or Holm correction) to identify specific pairwise differences.
+
+Report post-hoc results like this:
+
+> Dunn's post-hoc tests with Bonferroni correction revealed that Group A (*Mdn* = 8.50) scored significantly higher than Group C (*Mdn* = 5.00), *p* = .001, but did not differ significantly from Group B (*Mdn* = 7.00), *p* = .142.
+
+### Effect Size Interpretation
+
+| eta-squared (H) | Interpretation |
+|---|---|
+| .01 | Small effect |
+| .06 | Medium effect |
+| .14 | Large effect |
+
+These thresholds follow Cohen's benchmarks for eta-squared, which are the same as those used in ANOVA.
 
 ## Friedman Test
 
-Use this for repeated measures designs with three or more conditions when the normality assumption is violated.
+### When to Use
 
-**APA format example:**
-A Friedman test indicated a significant difference across the four time points, chi-square(3) = 18.60, p less than .001, W = .62.
+The Friedman test is the nonparametric alternative to repeated measures ANOVA. Use it when the same participants are measured under three or more conditions (or time points) and the data are ordinal or violate normality. It tests whether the distributions across conditions are identical.
+
+### How It Works
+
+The Friedman test ranks each participant's scores across conditions (within-subject ranking). It then tests whether the mean ranks differ significantly across conditions. This approach accounts for individual differences by ranking within each participant.
+
+### APA Reporting Format
+
+> A Friedman test indicated a statistically significant difference in symptom severity across the four time points, *chi*^2^(3) = 18.60, *p* < .001, *W* = .62.
+
+Key elements:
+- The chi-square statistic with degrees of freedom (number of conditions minus 1)
+- The p-value
+- Kendall's W as the effect size (ranges from 0 to 1)
+
+### Post-Hoc Comparisons
+
+When the Friedman test is significant, conduct pairwise comparisons using the Nemenyi test or Wilcoxon signed-rank tests with Bonferroni correction. The Nemenyi test is specifically designed for post-hoc comparisons following the Friedman test and controls the family-wise error rate.
+
+Report post-hoc results:
+
+> Post-hoc Wilcoxon signed-rank tests with Bonferroni correction (adjusted alpha = .008) indicated significant improvements between Baseline and Week 8 (*p* = .002) and between Baseline and Week 12 (*p* < .001), but not between Week 4 and Week 8 (*p* = .089).
+
+### Effect Size: Kendall's W
+
+| W Value | Interpretation |
+|---|---|
+| .10 | Small effect (weak agreement) |
+| .30 | Medium effect (moderate agreement) |
+| .50 | Large effect (strong agreement) |
+
+Kendall's W can also be interpreted as a measure of concordance: a W of .62 means that 62% of the maximum possible agreement among the within-subject rankings exists across conditions.
+
+## Spearman's Rank Correlation
+
+### When to Use
+
+Spearman's rank-order correlation coefficient (rho, denoted as r_s) measures the strength and direction of the monotonic relationship between two variables. Use it when:
+
+- One or both variables are ordinal.
+- The relationship between variables is monotonic but not necessarily linear.
+- The continuous variables violate normality.
+- There are significant outliers that would distort Pearson's r.
+
+### How It Differs from Pearson's r
+
+Pearson's r measures the linear relationship between two continuous variables that are at least interval-level and approximately normal. Spearman's rho ranks both variables first, then calculates Pearson's r on the ranks. This makes it:
+
+- Robust to outliers (because ranks compress extreme values).
+- Appropriate for ordinal data.
+- Sensitive to any monotonic relationship, not just linear ones.
+
+However, when all assumptions for Pearson's r are met, Pearson's r is more powerful and should be preferred.
+
+### APA Reporting Format
+
+> There was a strong, positive monotonic relationship between years of experience and job satisfaction, *r*~*s*~(48) = .72, *p* < .001.
+
+Key elements:
+- Specify that it is Spearman's correlation (r_s, not r)
+- Report degrees of freedom (N - 2) in parentheses
+- The correlation coefficient
+- The p-value
+- Optionally, the coefficient of determination (r_s squared)
+
+### Interpretation
+
+Spearman's rho uses the same scale as Pearson's r:
+
+| |r_s| Value | Interpretation |
+|---|---|
+| .10–.29 | Small/weak |
+| .30–.49 | Medium/moderate |
+| .50–1.00 | Large/strong |
+
+### Comparison with Pearson's r
+
+| Feature | Pearson's r | Spearman's rho |
+|---|---|---|
+| Data level | Interval/ratio | Ordinal or higher |
+| Relationship type | Linear | Monotonic |
+| Distributional assumption | Bivariate normal | None |
+| Sensitivity to outliers | High | Low |
+| Statistical power | Higher (when assumptions met) | Lower |
+
+## Power and Limitations of Nonparametric Tests
+
+### The Power Trade-Off
+
+The most significant limitation of nonparametric tests is lower statistical power compared to their parametric counterparts when parametric assumptions are fully met. Power refers to the probability of detecting a true effect when one exists.
+
+For normally distributed data:
+- The Mann-Whitney U test has approximately 95% of the power of the independent t-test (asymptotic relative efficiency = 0.955).
+- The Wilcoxon signed-rank test has approximately 95% of the power of the paired t-test.
+- The Kruskal-Wallis test has similar relative efficiency compared to ANOVA.
+
+This means that if data are truly normal, you would need a slightly larger sample to achieve the same power with a nonparametric test. However, when data are non-normal, nonparametric tests can actually be more powerful than parametric tests because the parametric test's assumptions are violated.
+
+### Sample Size Considerations
+
+Because nonparametric tests have slightly lower power, you may need larger samples to detect the same effects. As a rough guideline, increase your planned sample size by approximately 5–15% when you anticipate using nonparametric tests. Formal power analyses for nonparametric tests are available in software like G*Power.
+
+Minimum recommended sample sizes:
+- Mann-Whitney U: At least 10–15 per group for the normal approximation to be adequate.
+- Wilcoxon signed-rank: At least 10–15 pairs.
+- Kruskal-Wallis: At least 5 per group (but more is better).
+- Friedman: At least 10–15 participants across conditions.
+
+### What Nonparametric Tests Cannot Do
+
+- They do not easily extend to multifactorial designs. There is no direct nonparametric equivalent of two-way ANOVA or ANCOVA.
+- They do not test specific distributional parameters (means, variances) — they test rank distributions.
+- They provide less information about the data than parametric tests (ranks lose magnitude information).
+- Confidence intervals for medians are less precise than for means.
 
 ## Common Mistakes to Avoid
 
-1. **Do not default to nonparametric tests out of caution.** When assumptions are met, parametric tests have more statistical power.
-2. **Check effect sizes.** Nonparametric tests have their own effect size measures (r for Mann-Whitney and Wilcoxon, eta-squared for Kruskal-Wallis, Kendall's W for Friedman).
-3. **Report medians, not means.** When using nonparametric tests, report medians and interquartile ranges rather than means and standard deviations.
+### Mistake 1: Using Nonparametric Tests Unnecessarily
+
+The most frequent error is switching to nonparametric tests at the first sign of non-normality, even when the violation is mild and the sample is large. Parametric tests, particularly the t-test and ANOVA, are remarkably robust to moderate violations of normality, especially when:
+
+- Sample sizes are equal across groups.
+- The total sample size exceeds 30–40.
+- The distribution is unimodal and only moderately skewed.
+
+Running a nonparametric test "just to be safe" sacrifices statistical power without meaningful benefit.
+
+### Mistake 2: Reporting Means Instead of Medians
+
+When you use a nonparametric test, you are making a statement about rank distributions, not means. Reporting means and standard deviations alongside a Mann-Whitney U test is internally inconsistent. Report medians and interquartile ranges (IQR) instead:
+
+- Incorrect: *M* = 4.25, *SD* = 1.32
+- Correct: *Mdn* = 4.50, IQR = 3.00–5.25
+
+Some reviewers accept reporting both, but the primary descriptive statistics should be medians and IQR.
+
+### Mistake 3: Omitting Effect Sizes
+
+Many researchers report only the test statistic and p-value for nonparametric tests, omitting effect sizes entirely. This is a significant omission. APA Style and most journal guidelines require effect sizes for all statistical tests. Each nonparametric test has an appropriate effect size measure:
+
+- Mann-Whitney U and Wilcoxon: r = |Z| / sqrt(N)
+- Kruskal-Wallis: eta-squared (H)
+- Friedman: Kendall's W
+- Spearman: rho itself serves as the effect size
+
+### Mistake 4: Not Conducting Post-Hoc Tests
+
+For omnibus tests like Kruskal-Wallis and Friedman, a significant result only tells you that at least one group or condition differs. You must follow up with appropriate post-hoc comparisons (Dunn's test for Kruskal-Wallis, Nemenyi or corrected Wilcoxon for Friedman) to identify which specific groups differ.
+
+### Mistake 5: Treating Ordinal Data as Continuous
+
+Researchers sometimes apply parametric tests to Likert scale data (e.g., 1–5 ratings), arguing that the data are "close enough" to interval. This practice is debated, but when individual Likert items (not composite scales) are the dependent variable, nonparametric tests are more appropriate. Composite Likert scales (sums or means of multiple items) tend toward normality by the Central Limit Theorem and may justify parametric analysis.
+
+### Mistake 6: Ignoring the Shape Assumption
+
+The Mann-Whitney U test is often described as comparing medians, but this is only accurate when the two distributions have the same shape (just shifted). If the distributions have different shapes (e.g., one is skewed left and the other right), the test compares stochastic dominance, not medians. Check distribution shapes with histograms or density plots before interpreting results as a median comparison.
+
+## Practical Workflow for Choosing Between Parametric and Nonparametric
+
+Follow this decision tree when analyzing your data:
+
+1. **Examine your measurement scale.** If ordinal, use nonparametric. If interval/ratio, proceed to step 2.
+2. **Assess normality.** Run the Shapiro-Wilk test and create Q-Q plots and histograms. If p > .05 and plots look reasonable, use parametric. If p < .05, proceed to step 3.
+3. **Evaluate severity.** Is the departure from normality severe (strong skew, outliers, bimodal)? Or mild? With n > 30 per group and mild violations, parametric tests remain valid.
+4. **Try transformations.** Log, square root, or reciprocal transformations can normalize many distributions. If a transformation works, use parametric tests on the transformed data.
+5. **Consider sample size.** With very small samples (n < 15 per group), even moderate non-normality warrants nonparametric tests.
+6. **Make your decision.** If violations are severe, transformations fail, and the sample is small, use the appropriate nonparametric test. Otherwise, the parametric test is likely fine.
 
 ## Try It Yourself
 
-StatMate offers free calculators for all four nonparametric tests with APA-formatted results, effect sizes, and post-hoc comparisons. Try the Mann-Whitney U, Wilcoxon, Kruskal-Wallis, or Friedman calculator to analyze your data instantly.
+StatMate offers free calculators for all major nonparametric tests with APA-formatted results, effect sizes, and post-hoc comparisons:
+
+- **[Mann-Whitney U Test Calculator](/calculators/mann-whitney)** — Compare two independent groups with automatic effect size calculation
+- **[Wilcoxon Signed-Rank Test Calculator](/calculators/wilcoxon)** — Analyze paired data with exact and asymptotic p-values
+- **[Kruskal-Wallis H Test Calculator](/calculators/kruskal-wallis)** — Compare three or more groups with Dunn's post-hoc tests
+- **[Friedman Test Calculator](/calculators/friedman)** — Analyze repeated measures data with Nemenyi post-hoc comparisons
+
+Each calculator provides complete APA-formatted output that you can copy directly into your manuscript, along with appropriate effect sizes and detailed interpretation guidance.
+
+## Frequently Asked Questions
+
+### Can I use nonparametric tests with large samples?
+
+Yes, you can use nonparametric tests with any sample size. However, with large samples (n > 30 per group), the Central Limit Theorem often ensures that parametric test statistics are valid even with non-normal data. In such cases, parametric tests are generally preferred because they have slightly higher statistical power. The main exception is when your data are ordinal — nonparametric tests are appropriate regardless of sample size for ordinal data.
+
+### Is it acceptable to run both parametric and nonparametric tests and report whichever is significant?
+
+No. This constitutes a form of p-hacking. You should decide which test to use based on your data characteristics and assumptions before examining the results. If you run both tests as a sensitivity analysis, report both results and note their agreement or disagreement. Do not selectively report only the test that produces a significant result.
+
+### How do I handle ties in nonparametric tests?
+
+Ties (identical values) are common, especially with ordinal data. Most nonparametric tests handle ties by assigning the average of the ranks that the tied values would have occupied. For example, if two values are tied at positions 3 and 4, both receive a rank of 3.5. Modern statistical software handles ties automatically. When ties are extensive (more than 15–20% of the data), consider using a correction factor or reporting exact p-values rather than asymptotic approximations.
+
+### Should I report the z-approximation or the exact p-value for Mann-Whitney U?
+
+For small samples (total N less than 40), exact p-values are preferred because the normal approximation may not be accurate. For larger samples, the z-approximation is standard and computationally practical. Many journals and reviewers prefer seeing the z-statistic reported alongside U because it facilitates effect size calculation (r = Z / sqrt(N)). Report both when possible: U = 45.00, z = -2.52, p = .012.
+
+### Can nonparametric tests detect interaction effects?
+
+Standard nonparametric tests like the Kruskal-Wallis and Friedman tests are designed for one-factor designs and cannot directly test interaction effects. For factorial designs with interaction terms, there is no widely accepted nonparametric equivalent of two-way ANOVA. Options include the Scheirer-Ray-Hare test (which has limitations) or aligned rank transform (ART) ANOVA. In practice, many researchers use parametric ANOVA for factorial designs even with non-normal data, relying on the robustness of ANOVA.
+
+### What is the difference between the Mann-Whitney U test and the Wilcoxon rank-sum test?
+
+They are the same test. The Mann-Whitney U test and the Wilcoxon rank-sum test are mathematically equivalent and always produce the same p-value. The difference is historical: Mann and Whitney developed one formulation, while Wilcoxon independently developed another. Some textbooks and software use one name, some use the other, and some use "Mann-Whitney-Wilcoxon." Do not confuse the Wilcoxon rank-sum test (for independent samples) with the Wilcoxon signed-rank test (for paired samples) — these are different tests.
+
+### When should I use Spearman's rho instead of Pearson's r?
+
+Use Spearman's rho when one or both variables are ordinal, when the relationship between variables is monotonic but not linear, when there are significant outliers, or when the bivariate normality assumption is violated. If both variables are continuous, approximately normally distributed, and the relationship appears linear in a scatterplot, Pearson's r is preferred because it has greater statistical power. For Likert scale data, rankings, and percentile scores, Spearman's rho is the appropriate choice.
+
+### How do I determine sample size for nonparametric tests?
+
+Power analysis for nonparametric tests requires specifying the expected effect size, desired power (typically .80), and significance level (typically .05). Software such as G*Power can compute sample sizes for the Mann-Whitney U test, Wilcoxon signed-rank test, and other nonparametric tests. As a general rule of thumb, increase your parametric sample size estimate by 5–15% to account for the lower asymptotic relative efficiency of nonparametric tests. For example, if a t-test requires n = 64 per group to detect a medium effect, a Mann-Whitney U test would require approximately n = 67–74 per group.
