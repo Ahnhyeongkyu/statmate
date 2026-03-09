@@ -1,9 +1,9 @@
 ---
 title: "How to Report Exploratory Factor Analysis (EFA) Results in APA Format"
-description: "Complete guide to reporting exploratory factor analysis results in APA 7th edition format. Includes KMO, Bartlett's test, factor loadings, variance explained, and copy-paste templates."
+description: "Complete guide to reporting exploratory factor analysis results in APA 7th edition format. Covers EFA vs CFA, rotation methods, factor retention criteria, loading tables, CFA fit indices, and common mistakes with copy-paste templates."
 date: "2026-03-04"
 category: "APA Reporting"
-tags: ["factor analysis", "EFA", "APA format", "KMO", "Bartlett's test", "factor loadings", "statistical reporting"]
+tags: ["factor analysis", "EFA", "CFA", "APA format", "KMO", "Bartlett's test", "factor loadings", "rotation methods", "scree plot", "parallel analysis", "model fit", "statistical reporting"]
 ---
 
 ## When You Need Exploratory Factor Analysis
@@ -100,27 +100,381 @@ Present a clean factor loading table showing only significant loadings (typicall
 >
 > Three factors with eigenvalues exceeding 1.0 were retained, explaining 62.4% of the total variance. Factor 1 (Cognitive Engagement, 4 items) explained 28.3% of the variance, Factor 2 (Emotional Engagement, 3 items) explained 19.7%, and Factor 3 (Behavioral Engagement, 3 items) explained 14.4%. All items loaded above .40 on their primary factor with no cross-loadings exceeding .30 (see Table 1). Internal consistency was good for all factors (*&alpha;* = .76-.84).
 
+## EFA vs CFA: Key Differences
+
+Exploratory factor analysis (EFA) and confirmatory factor analysis (CFA) serve fundamentally different purposes, yet researchers frequently confuse them or apply them inappropriately. Understanding the distinction is critical for both study design and APA reporting.
+
+**EFA** is data-driven: you allow the data to determine the number of factors and which items load on which factor. It is used when you have no strong theoretical basis for the factor structure, when developing a new instrument, or when exploring the dimensionality of an existing scale in a new population. EFA does not test a specific model; it generates one.
+
+**CFA**, by contrast, is theory-driven: you specify the exact factor structure in advance (which items belong to which factor, whether factors correlate, whether cross-loadings are allowed) and test whether the observed data fit this pre-specified model. CFA is used when you have a theoretically grounded or previously established factor structure to confirm.
+
+### When to Use Each
+
+| Criterion | EFA | CFA |
+|-----------|-----|-----|
+| Research stage | Scale development, initial exploration | Scale validation, replication |
+| Model specification | None required; data-driven | Full model specified a priori |
+| Factor-item assignment | Determined by analysis | Fixed by the researcher |
+| Cross-loadings | Freely estimated | Typically constrained to zero |
+| Fit indices reported | KMO, variance explained | CFI, TLI, RMSEA, SRMR |
+| Typical software | SPSS, R (psych), Stata | Mplus, AMOS, R (lavaan) |
+
+### APA Reporting Differences
+
+For EFA, report the extraction method, rotation method, factor retention criteria, and the resulting loading matrix. For CFA, report the hypothesized model, estimation method (typically maximum likelihood), model fit indices, standardized factor loadings, and any post-hoc modifications with theoretical justification.
+
+**EFA example:**
+
+> An exploratory factor analysis using principal axis factoring with promax rotation was conducted to examine the underlying structure of the 20-item scale.
+
+**CFA example:**
+
+> A confirmatory factor analysis was conducted using maximum likelihood estimation in Mplus 8.6 to test the hypothesized three-factor model derived from prior EFA results (Author, 2024).
+
+A common best practice is the **EFA-CFA split-sample approach**: randomly divide your sample, conduct EFA on one half to identify the factor structure, and then confirm it with CFA on the other half. This approach requires a sufficiently large total sample (typically *N* > 400) to maintain adequate power in both analyses.
+
+### Common Pitfalls in EFA-CFA Transition
+
+Several errors frequently occur when researchers move from EFA to CFA:
+
+**Using EFA terminology in CFA reports.** In CFA, do not say factors were "extracted" or items "emerged." Instead, use confirmatory language: the model was "specified," items were "assigned" to factors, and the model was "tested."
+
+**Not accounting for method effects.** In CFA, items sharing a common method (e.g., all negatively worded items) may need correlated residuals. EFA cannot detect method effects because it does not model error covariances.
+
+**Over-relying on modification indices.** While modification indices can improve CFA fit, each data-driven modification reduces the confirmatory nature of the analysis. Limit modifications to those with clear theoretical justification and report all modifications transparently.
+
+**Ignoring measurement invariance.** When comparing factor structures across groups (e.g., gender, culture), CFA should test configural, metric, and scalar invariance sequentially. Simply running separate EFAs for each group is insufficient for demonstrating cross-group equivalence.
+
+## Rotation Methods Explained
+
+Rotation transforms the initial factor solution to produce a simpler, more interpretable structure. Without rotation, items often load substantially on multiple factors, making interpretation difficult. The choice between orthogonal and oblique rotation has meaningful consequences for your results and their interpretation.
+
+### Orthogonal Rotation
+
+Orthogonal rotations constrain factors to be uncorrelated (r = 0 between factors). The most common orthogonal methods are:
+
+**Varimax** maximizes the variance of squared loadings within each factor, producing factors where each has a few large loadings and many near-zero loadings. It is the most widely used rotation and works well when factors are truly independent. However, in social and behavioral sciences, truly uncorrelated constructs are rare.
+
+**Quartimax** maximizes the variance of squared loadings across factors for each variable, tending to produce a general factor on which most variables load. It is rarely used in practice because it often fails to produce simple structure. The general factor phenomenon is particularly problematic in scale development, where researchers typically seek distinct, well-defined subscales rather than a single dominant dimension.
+
+**Equamax** is a compromise between varimax and quartimax, combining their criteria with a weighting function. It is seldom used and offers no clear advantage over varimax in most applications. Some methodologists recommend avoiding equamax entirely because it can produce unstable solutions when the number of factors is uncertain.
+
+### Oblique Rotation
+
+Oblique rotations allow factors to correlate, which is more realistic for most psychological and social science constructs. The most common oblique methods are:
+
+**Promax** first obtains a varimax solution and then allows factors to correlate by raising the loadings to a power (kappa, typically 4). It is computationally efficient and widely recommended as the default oblique rotation. When factors are truly uncorrelated, promax produces results similar to varimax.
+
+**Direct Oblimin** (with delta = 0) directly minimizes cross-products of loadings across factors. It provides a mathematically cleaner oblique solution but can sometimes produce highly correlated factors or factor collapse. The delta parameter controls the degree of permitted correlation: negative values constrain correlation more strictly, while positive values allow more correlation. Setting delta = 0 (the default) imposes no constraint beyond the mathematical optimization, which is appropriate for most research applications.
+
+**Geomin** rotation is used primarily in Mplus and other SEM software. It allows small cross-loadings rather than forcing them to zero, which can produce more realistic solutions when items have minor secondary loadings. Geomin is increasingly recommended for CFA models where zero cross-loading constraints are too restrictive.
+
+### How to Choose and Report
+
+Tabachnick and Fidell (2019) recommend starting with oblique rotation because if factors are truly uncorrelated, the oblique solution will resemble the orthogonal one, but if factors are correlated, only the oblique solution is appropriate. Check the factor correlation matrix after oblique rotation: if all correlations are below .32, orthogonal rotation is justified.
+
+**APA reporting example:**
+
+> Promax rotation (oblique) was employed because psychological constructs are rarely orthogonal (Tabachnick & Fidell, 2019). The factor correlation matrix confirmed moderate intercorrelations (*r* = .28-.41), supporting the use of oblique rotation. The pattern matrix is reported because it represents the unique contribution of each factor to each item, controlling for factor intercorrelations.
+
+When using oblique rotation, report the **pattern matrix** (partial correlations between items and factors) rather than the structure matrix (zero-order correlations). The pattern matrix is preferred for interpretation because it shows each factor's unique contribution to each item. Also report the factor correlation matrix to justify the oblique approach.
+
+### Rotation Method Decision Flowchart
+
+1. **Start with oblique rotation** (promax or direct oblimin) as the default
+2. **Examine the factor correlation matrix** from the oblique solution
+3. If all factor correlations are **below .32**, orthogonal rotation (varimax) is justified and produces a simpler interpretation
+4. If any factor correlation **exceeds .32**, retain the oblique solution and report the pattern matrix
+5. If factor correlations **exceed .70**, consider whether those factors should be combined, as very high correlations suggest they may represent a single construct
+
+## Determining the Number of Factors
+
+Deciding how many factors to retain is the most consequential decision in EFA. Extracting too many factors splits meaningful constructs and capitalizes on noise; extracting too few forces distinct constructs together. APA guidelines recommend using multiple criteria and reporting convergence (or lack thereof) among methods.
+
+### Kaiser Criterion (Eigenvalue > 1)
+
+The Kaiser criterion retains all factors with eigenvalues greater than 1.0, reasoning that a factor should explain at least as much variance as a single item. While straightforward and widely used, it tends to over-extract factors, especially with many items (20+), and is considered the least accurate retention method.
+
+**APA example:**
+
+> Application of Kaiser's criterion (eigenvalue > 1.0) suggested retaining four factors with eigenvalues of 4.82, 2.67, 1.53, and 1.12, collectively explaining 50.7% of the total variance.
+
+### Scree Plot
+
+Cattell's scree plot graphs eigenvalues in descending order. The "elbow" where the curve bends from steep to shallow indicates the number of meaningful factors. Factors above the elbow are retained; those below represent noise. The method is subjective, especially when no clear elbow exists, and inter-rater agreement on the elbow location is often low.
+
+**APA example:**
+
+> Visual inspection of the scree plot revealed a clear inflection point after the third component, suggesting a three-factor solution.
+
+### Parallel Analysis
+
+Parallel analysis (Horn, 1965) compares observed eigenvalues against eigenvalues generated from random data of the same sample size and number of variables. Factors are retained only when their observed eigenvalue exceeds the corresponding random eigenvalue. It is widely considered the most accurate retention method and is now the recommended standard.
+
+**APA example:**
+
+> Parallel analysis based on 1000 random permutations of the raw data indicated that only the first three eigenvalues exceeded the 95th percentile of random eigenvalues, supporting a three-factor solution.
+
+### Minimum Average Partial (MAP) Test
+
+Velicer's MAP test (1976) computes the average squared partial correlation after extracting each successive factor. The number of factors is determined at the point where the average squared partial correlation reaches its minimum. MAP tends to under-extract slightly but is more objective than scree plot interpretation.
+
+**APA example:**
+
+> Velicer's Minimum Average Partial test indicated the minimum average squared partial correlation at three factors (average partial r<sup>2</sup> = .012), converging with the parallel analysis results.
+
+### Very Simple Structure (VSS) and Other Criteria
+
+In addition to the four primary methods above, several supplementary criteria can strengthen factor retention decisions:
+
+**Very Simple Structure (VSS)** (Revelle & Rocklin, 1979) evaluates how well a simplified factor solution (where each item loads on only one factor) reproduces the correlation matrix. The VSS criterion identifies the number of factors at which the simplified model achieves maximum fit.
+
+**Bayesian Information Criterion (BIC)** penalizes model complexity and can be used to compare models with different numbers of factors. Lower BIC values indicate better fit. BIC is available in R's psych and nFactors packages and is particularly useful when other criteria disagree.
+
+**Comparison Data (CD)** (Ruscio & Roche, 2012) improves upon parallel analysis by generating comparison data that better matches the observed correlation structure, reducing both over- and under-extraction.
+
+### Reporting Convergence
+
+Best practice is to use at least two methods and report whether they converge:
+
+> The number of factors to retain was determined using multiple criteria. Parallel analysis indicated three factors, consistent with the scree plot elbow and MAP test results. Although Kaiser's criterion suggested four factors, the fourth factor had an eigenvalue only marginally above 1.0 (1.12) and contained only two items with substantial loadings, providing insufficient basis for retention. A three-factor solution was therefore adopted.
+
+## Reporting Factor Loadings in APA
+
+The factor loading table is the centerpiece of any EFA report. A well-constructed table allows readers to evaluate item quality, factor definition, and the overall clarity of the factor structure at a glance.
+
+### Pattern vs. Structure Matrix
+
+When using oblique rotation, the analysis produces two matrices. The **pattern matrix** contains partial regression coefficients showing each factor's unique contribution to each item. The **structure matrix** contains zero-order correlations between items and factors, which include shared variance among correlated factors. For interpretation and reporting, the pattern matrix is standard.
+
+> Factor loadings from the pattern matrix after promax rotation are presented in Table 2. The structure matrix and factor correlation matrix are available in the supplementary materials.
+
+### Setting the Suppression Threshold
+
+Suppress (blank out) loadings below a chosen threshold to improve readability. The most common thresholds are .30 and .40. Stevens (2002) suggests using a threshold based on sample size: .40 for *N* = 150, .30 for *N* = 300, .21 for *N* = 600. Always state the threshold you used.
+
+> Loadings below .40 were suppressed for clarity following Stevens (2002).
+
+### Handling Cross-Loadings
+
+A cross-loading occurs when an item loads substantially on two or more factors. Common approaches include:
+
+- **Remove the item** if it loads above the threshold on multiple factors and the difference between primary and secondary loadings is less than .20
+- **Retain the item** on the factor with the highest loading if the difference exceeds .20
+- **Report the cross-loading** and discuss its theoretical implications
+
+**APA example:**
+
+> Item 12 ("I feel excited about learning new concepts") cross-loaded on Factor 1 (Cognitive Engagement, loading = .52) and Factor 2 (Emotional Engagement, loading = .38). Given the primary-secondary loading difference of .14 and the item's conceptual relevance to both constructs, it was removed from the final solution. Re-analysis without Item 12 produced a cleaner three-factor structure with no cross-loadings above .30.
+
+### Reporting Communalities
+
+Communalities (*h*<sup>2</sup>) represent the proportion of each item's variance explained by the extracted factors. Low communalities (below .30 or .40) indicate items that do not share much variance with other items and may be candidates for removal.
+
+**APA example:**
+
+> Communalities ranged from .42 to .78 (*M* = .58), indicating that the three-factor solution captured a substantial proportion of variance for all items. No item had a communality below the recommended threshold of .40 (Costello & Osborne, 2005).
+
+### Interpreting Loading Magnitude
+
+The strength of factor loadings determines how well each item represents its factor. General guidelines for interpreting loading magnitude:
+
+| Loading | Interpretation | Recommendation |
+|---------|---------------|----------------|
+| &ge; .71 | Excellent | Item is a strong marker of the factor |
+| .63-.70 | Very good | Item clearly belongs to the factor |
+| .55-.62 | Good | Item is a solid contributor |
+| .45-.54 | Fair | Item is acceptable but not ideal |
+| .32-.44 | Poor | Consider removal unless theoretically essential |
+| < .32 | Not meaningful | Should be suppressed from the table |
+
+These benchmarks correspond approximately to the percentage of variance shared between the item and factor: a loading of .71 represents approximately 50% shared variance, while .32 represents approximately 10%.
+
+### Complete Loading Table Format
+
+A well-formatted loading table should include:
+
+1. Items listed in order of their primary factor loading magnitude (highest first within each factor)
+2. Suppressed (blank) cells for loadings below the threshold
+3. Bold primary loadings for visual clarity
+4. A communality column
+5. Eigenvalues and variance explained for each factor at the bottom
+6. A note stating the extraction method, rotation method, and suppression threshold
+7. Factor correlations (for oblique rotation) either in the same table or a separate table
+
+## Model Fit Indices for CFA
+
+When transitioning from EFA to CFA, or when reporting CFA results to validate a factor structure, model fit indices replace the EFA-specific statistics (KMO, Bartlett's test, variance explained). CFA fit indices evaluate how well the hypothesized factor structure reproduces the observed correlation or covariance matrix.
+
+### Chi-Square Test of Model Fit
+
+The chi-square test (*&chi;*<sup>2</sup>) tests the null hypothesis that the model-implied covariance matrix equals the observed covariance matrix. A non-significant result (*p* > .05) indicates acceptable fit. However, chi-square is highly sensitive to sample size: with *N* > 200, even trivially misspecified models are rejected. Therefore, chi-square is reported but rarely used as the sole criterion.
+
+**APA example:**
+
+> The chi-square test of model fit was significant, *&chi;*<sup>2</sup>(32) = 58.74, *p* = .003, which was expected given the sample size (*N* = 412).
+
+### Comparative Fit Index (CFI) and Tucker-Lewis Index (TLI)
+
+CFI and TLI compare the hypothesized model against a null (independence) model. Both range from 0 to 1, with values closer to 1 indicating better fit. Hu and Bentler (1999) recommend CFI &ge; .95 and TLI &ge; .95 for good fit, though values above .90 are often considered acceptable.
+
+### Root Mean Square Error of Approximation (RMSEA)
+
+RMSEA estimates the discrepancy per degree of freedom between the model and the population covariance matrix. Values below .06 indicate close fit, values between .06 and .08 indicate reasonable fit, and values above .10 indicate poor fit. Always report the 90% confidence interval for RMSEA.
+
+### Standardized Root Mean Square Residual (SRMR)
+
+SRMR is the average standardized difference between observed and predicted correlations. Values below .08 indicate good fit. SRMR tends to be lower (better) with more parameters and larger samples.
+
+### Complete CFA Fit Reporting
+
+Report at minimum: chi-square with degrees of freedom and *p* value, CFI, TLI, RMSEA with 90% CI, and SRMR.
+
+**APA example:**
+
+> The hypothesized three-factor model demonstrated acceptable fit to the data: *&chi;*<sup>2</sup>(32) = 58.74, *p* = .003, CFI = .97, TLI = .96, RMSEA = .045, 90% CI [.024, .065], SRMR = .038. All standardized factor loadings were statistically significant and ranged from .54 to .86 (all *p*s < .001).
+
+### When CFA Fit Is Poor
+
+When the hypothesized model does not achieve acceptable fit, several options exist:
+
+1. **Examine modification indices** to identify misspecified paths (e.g., cross-loadings or error covariances that should be freed). Only add paths that are theoretically justifiable.
+2. **Re-specify the model** by removing poorly fitting items (standardized residuals > 2.58) or allowing theoretically justified cross-loadings.
+3. **Consider alternative models** such as a bifactor model or a hierarchical (second-order) model if the data suggest a general factor plus specific factors.
+4. **Report the poor fit transparently** and discuss implications for the measurement model. Do not engage in extensive post-hoc modification without cross-validation.
+
+**APA example for poor fit:**
+
+> The initial three-factor model showed inadequate fit, *&chi;*<sup>2</sup>(32) = 142.56, *p* < .001, CFI = .88, TLI = .84, RMSEA = .092, 90% CI [.076, .108], SRMR = .071. Examination of modification indices suggested freeing the error covariance between Items 3 and 7, which share similar wording. The re-specified model demonstrated improved fit, *&chi;*<sup>2</sup>(31) = 78.43, *p* < .001, CFI = .95, TLI = .93, RMSEA = .061, 90% CI [.043, .079], SRMR = .042.
+
+### Fit Index Summary Table
+
+| Index | Good Fit | Acceptable Fit | Poor Fit |
+|-------|----------|----------------|----------|
+| CFI | &ge; .95 | .90-.94 | < .90 |
+| TLI | &ge; .95 | .90-.94 | < .90 |
+| RMSEA | &le; .06 | .06-.08 | > .10 |
+| SRMR | &le; .08 | .08-.10 | > .10 |
+| *&chi;*<sup>2</sup>/*df* | &le; 2.0 | 2.0-3.0 | > 5.0 |
+
 ## Common Mistakes to Avoid
 
 ### 1. Omitting KMO and Bartlett's Test
 
-Reviewers expect evidence that your data is suitable for factor analysis. Always report both.
+Reviewers expect evidence that your data is suitable for factor analysis. Always report both. A KMO below .60 or a non-significant Bartlett's test raises serious concerns about whether EFA should be conducted at all. If these prerequisites are not met, reconsider whether factor analysis is appropriate for your data.
 
 ### 2. Not Justifying Rotation Choice
 
-Explain why you chose orthogonal vs. oblique rotation. Do not default to varimax without justification.
+Explain why you chose orthogonal vs. oblique rotation. Do not default to varimax without justification. In the social and behavioral sciences, factors are almost always correlated, making oblique rotation the more defensible default. If you chose varimax, provide a theoretical rationale or cite evidence from the factor correlation matrix (all *r* < .32) to support orthogonality.
 
-### 3. Reporting All Loadings
+### 3. Extracting Too Many or Too Few Factors
 
-Suppress loadings below .30 or .40 to improve table readability. State your suppression threshold.
+Relying solely on the Kaiser criterion (eigenvalue > 1) typically over-extracts factors, especially with more than 20 items. Conversely, extracting too few factors forces distinct constructs together, inflating reliability artificially and masking multidimensionality. Use parallel analysis as the primary criterion and triangulate with at least one additional method (scree plot, MAP test).
 
-### 4. Ignoring Cross-Loadings
+### 4. Reporting All Loadings
 
-Items that load substantially (> .30) on multiple factors may be problematic. Address these in your results.
+Suppress loadings below .30 or .40 to improve table readability. State your suppression threshold. A table filled with small loadings obscures the factor structure and makes it difficult for readers to identify the pattern. Blank cells communicate "negligible loading" more effectively than displaying ".12" or ".08".
 
-### 5. Confusing EFA With CFA
+### 5. Ignoring Cross-Loadings
 
-EFA is exploratory and data-driven. Confirmatory factor analysis (CFA) tests a pre-specified model. Do not use EFA language when conducting CFA, and vice versa.
+Items that load substantially (> .30) on multiple factors may be problematic. Address these in your results. Cross-loading items often measure the overlap between two constructs rather than a single, distinct factor. Document how you handled them: removal, retention with justification, or theoretical discussion of why the overlap is expected.
+
+### 6. Ignoring Communalities
+
+Communalities below .30-.40 indicate that an item does not share sufficient variance with other items. Low-communality items may reflect measurement error, content that is peripheral to the constructs being measured, or idiosyncratic item wording. Consider removing such items and re-running the analysis, reporting the rationale for their exclusion.
+
+### 7. Inadequate Sample Size
+
+Minimum sample size recommendations vary, but Comrey and Lee (1992) suggest *N* = 300 is good and *N* = 500 is very good. The item-to-participant ratio should be at least 5:1, and ideally 10:1 or higher. With fewer than 150 participants, factor solutions are typically unstable and unlikely to replicate. Report your sample size and item-to-participant ratio, and acknowledge any limitations if the sample falls below these benchmarks.
+
+### 8. Confusing EFA With CFA
+
+EFA is exploratory and data-driven. Confirmatory factor analysis (CFA) tests a pre-specified model. Do not use EFA language when conducting CFA, and vice versa. A common error is conducting EFA and CFA on the same data to "confirm" the exploratory results, which is circular. Confirmation requires a separate sample or a pre-registered model specification.
+
+## Software Comparison for Factor Analysis
+
+Different statistical software packages handle EFA and CFA with varying capabilities and default settings. Understanding these differences is important for reproducibility.
+
+| Software | EFA | CFA | Default Rotation | Parallel Analysis |
+|----------|-----|-----|-----------------|-------------------|
+| SPSS | Yes | No (AMOS needed) | Varimax | Not built-in |
+| R (psych) | Yes | No (lavaan needed) | Oblimin | Yes (fa.parallel) |
+| R (lavaan) | No | Yes | N/A | N/A |
+| Mplus | Yes (ESEM) | Yes | Geomin | Yes |
+| jamovi | Yes | Yes (via jmv) | Oblimin | Yes |
+| JASP | Yes | Yes | Oblimin | Yes |
+| Stata | Yes | Yes | Varimax | Not built-in |
+
+**Note on SPSS:** SPSS defaults to varimax rotation, which may not be appropriate for social science research. Always change the rotation to promax or direct oblimin when factors are expected to correlate. SPSS also uses PCA as the default extraction method; change this to principal axis factoring for true factor analysis.
+
+**Note on R:** The `psych` package's `fa()` function provides comprehensive EFA output including parallel analysis, MAP test, VSS, and multiple rotation options. For CFA, use the `lavaan` package with `cfa()`. The combination of psych + lavaan covers the full EFA-CFA workflow.
+
+## Frequently Asked Questions
+
+### What is the minimum sample size for factor analysis?
+
+There is no single correct answer. Guidelines range from a minimum of 100 observations to 10-20 participants per item. Comrey and Lee (1992) suggest *N* = 100 is poor, 200 is fair, 300 is good, 500 is very good, and 1000 is excellent. The stability of the factor solution also depends on communalities: with high communalities (> .60) and well-determined factors (3-4 items per factor), smaller samples may suffice. Report your sample size and the item-to-participant ratio in the method section.
+
+### Should I use principal component analysis (PCA) or factor analysis?
+
+PCA and EFA are mathematically distinct. PCA reduces variables into composites without distinguishing shared variance from unique variance. EFA models latent constructs by analyzing only shared variance. For scale development and testing theoretical constructs, EFA (principal axis factoring or maximum likelihood) is preferred. PCA is acceptable for data reduction when latent constructs are not of theoretical interest, but many journals in psychology now require EFA.
+
+### What is the difference between the pattern matrix and the structure matrix?
+
+The pattern matrix shows partial regression coefficients (each factor's unique contribution to each item, controlling for other factors). The structure matrix shows zero-order correlations (the total relationship between each item and factor, including shared variance from correlated factors). When factors are uncorrelated, the two matrices are identical. With oblique rotation, report the pattern matrix for interpretation and the factor correlation matrix to justify the oblique approach.
+
+### How do I handle items that do not load on any factor?
+
+Items with no loading above the threshold (e.g., .40) on any factor may have poor communalities, measure something outside the domain of interest, or be poorly worded. Remove these items and re-run the analysis. Report the removal and the rationale. After removing items, check that the remaining factor structure is stable and that KMO and variance explained have not deteriorated.
+
+### Can I conduct EFA and CFA on the same sample?
+
+This practice is methodologically problematic because it is circular: you are "confirming" a structure on the data that generated it. The recommended approach is to split your sample randomly (requiring *N* > 400), conduct EFA on one half, and CFA on the other half. If your sample is too small to split, conduct EFA and recommend CFA in a future study with an independent sample.
+
+### How many items should load on each factor?
+
+A minimum of three items per factor is generally required for a factor to be considered well-determined. Factors with only two items are unstable and may not replicate. Factors with four to six items are ideal, providing adequate reliability while keeping the scale parsimonious. If a factor has only two items, consider whether those items should be dropped or whether additional items need to be developed.
+
+### What does negative factor loading mean?
+
+A negative loading indicates that the item is inversely related to the factor. This is common with reverse-coded items. For example, in a factor measuring "anxiety," the item "I feel calm and relaxed" would be expected to load negatively. Check that the sign makes conceptual sense. If all items on a factor load negatively, the factor is simply reflected (multiply loadings by -1 for interpretation).
+
+### How do I report EFA results from SPSS?
+
+In SPSS, run EFA via Analyze > Dimension Reduction > Factor. Report the KMO and Bartlett's test from the initial output, eigenvalues from the Total Variance Explained table, and loadings from the Rotated Factor Matrix (orthogonal) or Pattern Matrix (oblique). Suppress small loadings using the "Suppress small coefficients" option (set to .40). Communalities come from the Communalities table (Extraction column). Transfer these to an APA-formatted table rather than copying the SPSS output directly.
+
+## APA Reporting Checklist for Factor Analysis
+
+Use this checklist to verify your EFA or CFA report is complete before submission:
+
+### EFA Checklist
+
+- [ ] Sample size and item-to-participant ratio reported
+- [ ] KMO value reported with interpretation
+- [ ] Bartlett's test reported with *&chi;*<sup>2</sup>, *df*, and *p*
+- [ ] Extraction method identified and justified
+- [ ] Rotation method identified and justified (with factor correlation matrix if oblique)
+- [ ] Factor retention criteria described (at least two methods)
+- [ ] Number of factors retained stated with eigenvalues
+- [ ] Total and individual factor variance explained reported
+- [ ] Factor loading table with suppression threshold stated
+- [ ] Cross-loadings addressed (if any)
+- [ ] Communalities reported or available in supplementary materials
+- [ ] Cronbach's alpha (or omega) for each factor reported
+- [ ] Factor names/labels provided with conceptual justification
+
+### CFA Checklist
+
+- [ ] Hypothesized model described with theoretical basis
+- [ ] Estimation method specified (e.g., ML, WLSMV)
+- [ ] Chi-square with *df* and *p* reported
+- [ ] CFI and TLI reported
+- [ ] RMSEA with 90% CI reported
+- [ ] SRMR reported
+- [ ] Standardized factor loadings reported
+- [ ] Factor correlations reported (if multi-factor model)
+- [ ] Any model modifications described with theoretical justification
+- [ ] Measurement invariance tested (if comparing groups)
 
 ## Try It With Your Own Data
 

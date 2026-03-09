@@ -1,9 +1,9 @@
 ---
 title: "How to Report Cohen's d in APA Format (With Examples and Benchmarks)"
-description: "Complete guide to reporting Cohen's d effect size in APA 7th edition format. Includes interpretation benchmarks, formulas, copy-paste templates for t-tests and ANOVA post-hoc comparisons."
+description: "Complete guide to reporting Cohen's d effect size in APA 7th edition format. Includes interpretation benchmarks, Glass's delta, Hedges' g, confidence intervals, conversion formulas, and copy-paste templates for t-tests and ANOVA post-hoc comparisons."
 date: "2026-03-04"
 category: "APA Reporting"
-tags: ["Cohen's d", "effect size", "APA format", "t-test", "statistical reporting", "practical significance"]
+tags: ["Cohen's d", "effect size", "APA format", "t-test", "statistical reporting", "practical significance", "Hedges' g", "Glass's delta", "confidence interval", "effect size conversion"]
 ---
 
 ## Why Report Cohen's d?
@@ -90,6 +90,208 @@ When conducting pairwise comparisons after a significant ANOVA, report *d* for e
 
 > Bonferroni-corrected post-hoc comparisons revealed that Group A (*M* = 78.30) scored significantly higher than Group C (*M* = 65.10), *p* < .001, *d* = 1.12. The difference between Group A and Group B (*M* = 73.50) was not significant, *p* = .089, *d* = 0.41. Group B scored significantly higher than Group C, *p* = .003, *d* = 0.72.
 
+## Why Effect Size Matters Beyond p-Values
+
+### The APA Mandate
+
+The Publication Manual of the American Psychological Association (7th edition, Section 6.5) states that "for each primary outcome, an effect size and confidence interval should be reported." This is not a suggestion but a requirement for manuscripts submitted to APA journals. The emphasis reflects decades of methodological criticism that *p* values alone are insufficient for evaluating research findings.
+
+### Statistical Significance vs. Practical Significance
+
+A statistically significant result (*p* < .05) does not guarantee practical importance. With a sufficiently large sample, even trivially small differences become statistically significant. For example, a study with *n* = 10,000 per group might find *p* < .001 for a mean difference of 0.3 points on a 100-point scale. The *p* value is impressive, but the difference is negligible in any practical context.
+
+Cohen's *d* resolves this problem by expressing the difference in standard deviation units, independent of sample size. A *d* of 0.03 reveals the difference is trivial regardless of how many participants were tested. Conversely, a non-significant result with *d* = 0.60 from a small sample suggests a meaningful effect that the study lacked power to detect.
+
+### Why Reviewers and Journals Demand Effect Sizes
+
+Effect sizes serve several functions that *p* values cannot. They enable cross-study comparison, allowing readers to evaluate whether a treatment effect is consistent across different populations and settings. They are essential for meta-analysis, which synthesizes findings by pooling effect sizes rather than *p* values. They inform power analysis, helping future researchers determine how many participants are needed to detect similar effects. Finally, they communicate results to non-statisticians, clinicians, and policymakers who need to know whether an intervention is worth implementing.
+
+> The tutoring program significantly improved exam scores, *t*(58) = 3.43, *p* = .001, *d* = 0.88, 95% CI [0.34, 1.41]. The large effect size suggests the program produces a practically meaningful improvement equivalent to nearly one standard deviation.
+
+## Variants of Cohen's d
+
+Cohen's *d* is not a single formula but a family of standardized mean difference measures. Choosing the correct variant depends on your research design and the assumptions you are willing to make.
+
+### Glass's Delta (&Delta;)
+
+Glass's delta uses only the control group's standard deviation as the standardizer:
+
+> &Delta; = (*M*<sub>treatment</sub> - *M*<sub>control</sub>) / *SD*<sub>control</sub>
+
+**When to use:** When the treatment is expected to change both the mean *and* the variability of the outcome. If a therapy reduces depression scores but also reduces individual differences in depression, pooling the standard deviations would underestimate the pre-treatment variability. Glass's delta preserves the untreated group's natural variability as the reference.
+
+**APA reporting example:**
+
+> The therapy group (*M* = 12.40, *SD* = 4.80) showed significantly lower depression scores than the control group (*M* = 22.60, *SD* = 8.10), *t*(48) = 5.32, *p* < .001, Glass's &Delta; = 1.26, 95% CI [0.82, 1.69].
+
+### Hedges' g
+
+Hedges' *g* applies a small-sample correction to Cohen's *d*:
+
+> *g* = *d* &times; (1 - 3 / (4(*n*<sub>1</sub> + *n*<sub>2</sub>) - 9))
+
+This correction factor (often called *J*) removes the upward bias that Cohen's *d* exhibits in small samples. The bias is negligible when total *N* exceeds 40, but for smaller studies, Hedges' *g* provides a more accurate estimate.
+
+**When to use:** For meta-analyses (where small-study bias matters), studies with *n* < 20 per group, or whenever you want the least biased estimate. Many meta-analytic software packages convert all effect sizes to Hedges' *g* by default.
+
+**APA reporting example:**
+
+> Children in the intervention group (*M* = 78.90, *SD* = 11.20) outperformed those in the control group (*M* = 72.30, *SD* = 10.80) on reading comprehension, *t*(18) = 2.31, *p* = .033, Hedges' *g* = 0.60, 95% CI [0.05, 1.14].
+
+### Choosing Among Variants
+
+| Variant | Standardizer | Bias Correction | Best For |
+|---------|-------------|----------------|----------|
+| Cohen's *d* | Pooled *SD* | No | General use, equal variances |
+| Glass's &Delta; | Control *SD* | No | Unequal variances, treatment affects variability |
+| Hedges' *g* | Pooled *SD* | Yes | Small samples, meta-analysis |
+
+When in doubt, report Cohen's *d* with its 95% confidence interval. If your total sample is below 40, consider reporting Hedges' *g* instead or alongside *d*.
+
+## Confidence Intervals for Cohen's d
+
+### Why Confidence Intervals Are Essential
+
+A point estimate of *d* = 0.50 tells you the best guess for the effect size, but nothing about its precision. The 95% confidence interval quantifies the range of plausible values for the population effect size. APA 7th edition strongly recommends reporting CIs for all effect sizes, and many journals now require them.
+
+### The Noncentral t Distribution Method
+
+The most accurate method for constructing CIs around Cohen's *d* uses the noncentral *t* distribution. The observed *t* statistic follows a noncentral *t* distribution with noncentrality parameter &lambda; = *d* &times; &radic;(*n*<sub>1</sub> &times; *n*<sub>2</sub> / (*n*<sub>1</sub> + *n*<sub>2</sub>)). To find the 95% CI for *d*, you find the two values of &lambda; for which the observed *t* falls at the 2.5th and 97.5th percentiles, then convert back to *d*.
+
+This is computationally intensive but implemented in most modern software (R's `MBESS` package, Python's `scipy`, and online calculators including StatMate).
+
+### The Bootstrap Method
+
+Bootstrap confidence intervals offer an alternative that makes fewer distributional assumptions. The procedure resamples the data with replacement thousands of times (typically 10,000), computes *d* for each resample, and uses the 2.5th and 97.5th percentiles of the bootstrap distribution as the CI bounds. Bootstrap CIs are particularly useful for small samples, non-normal data, or complex designs where the noncentral *t* approach may be inaccurate.
+
+### APA Reporting With Confidence Intervals
+
+Always place the CI immediately after the effect size value:
+
+> The intervention group scored significantly higher than the control group, *t*(58) = 3.43, *p* = .001, *d* = 0.88, 95% CI [0.34, 1.41].
+
+A CI that excludes zero indicates the effect is statistically significant at the corresponding alpha level. A narrow CI indicates a precise estimate; a wide CI warns that the true effect size could be substantially different from the point estimate.
+
+**Interpreting CI width:**
+
+| Total *N* | Approximate 95% CI Width for *d* = 0.50 |
+|-----------|----------------------------------------|
+| 20 | [&minus;0.40, 1.40] |
+| 60 | [0.00, 1.00] |
+| 120 | [0.14, 0.86] |
+| 200 | [0.22, 0.78] |
+
+These values demonstrate why adequate sample size is critical: with only 20 participants, the CI spans nearly two full *d* units, providing almost no precision.
+
+## Converting Between Effect Size Measures
+
+Researchers sometimes need to convert between effect size measures for meta-analysis, cross-study comparison, or when different analyses produce different metrics. Below are the most commonly needed conversions.
+
+### Cohen's d to Pearson's r
+
+> *r* = *d* / &radic;(*d*<sup>2</sup> + 4)
+
+This formula assumes equal group sizes. For unequal groups:
+
+> *r* = *d* / &radic;(*d*<sup>2</sup> + (*N*<sup>2</sup> / (*n*<sub>1</sub> &times; *n*<sub>2</sub>)))
+
+**Example:** *d* = 0.80 converts to *r* = 0.80 / &radic;(0.64 + 4) = 0.80 / 2.15 = .37.
+
+**APA reporting:** When converting for meta-analysis, state: "Cohen's *d* = 0.80 was converted to *r* = .37 for meta-analytic pooling using the formula *r* = *d* / &radic;(*d*<sup>2</sup> + 4)."
+
+### Cohen's d to Odds Ratio
+
+For logistic regression or clinical studies reporting odds ratios:
+
+> ln(OR) = *d* &times; &pi; / &radic;3
+
+> OR = exp(*d* &times; 1.814)
+
+**Example:** *d* = 0.50 converts to OR = exp(0.50 &times; 1.814) = exp(0.907) = 2.48.
+
+This conversion assumes logistic distributions in both groups. It is approximate but widely used in medical research and meta-analyses that combine experimental and observational studies.
+
+### Eta-Squared to Cohen's d
+
+For converting ANOVA effect sizes to pairwise comparisons:
+
+> *d* = 2 &times; &radic;(*&eta;*<sup>2</sup> / (1 - *&eta;*<sup>2</sup>))
+
+**Example:** *&eta;*<sup>2</sup> = .06 (medium ANOVA effect) converts to *d* = 2 &times; &radic;(.06 / .94) = 2 &times; 0.253 = 0.51.
+
+Note: This formula applies to two-group comparisons. For multi-group ANOVA, *&eta;*<sup>2</sup> reflects the overall effect, not pairwise differences.
+
+### Conversion Quick Reference
+
+| From | To | Formula |
+|------|-----|---------|
+| *d* | *r* | *r* = *d* / &radic;(*d*<sup>2</sup> + 4) |
+| *r* | *d* | *d* = 2*r* / &radic;(1 - *r*<sup>2</sup>) |
+| *d* | OR | OR = exp(*d* &times; &pi; / &radic;3) |
+| OR | *d* | *d* = ln(OR) &times; &radic;3 / &pi; |
+| *&eta;*<sup>2</sup> | *d* | *d* = 2&radic;(*&eta;*<sup>2</sup> / (1 - *&eta;*<sup>2</sup>)) |
+| *d* | *&eta;*<sup>2</sup> | *&eta;*<sup>2</sup> = *d*<sup>2</sup> / (*d*<sup>2</sup> + 4) |
+
+## Cohen's d for Different Study Designs
+
+The formula for Cohen's *d* varies by study design. Using the wrong formula is one of the most common errors in effect size reporting.
+
+### Independent Samples Design
+
+The standard formula uses the pooled standard deviation:
+
+> *d* = (*M*<sub>1</sub> - *M*<sub>2</sub>) / *SD*<sub>pooled</sub>
+
+Where *SD*<sub>pooled</sub> = &radic;[((*n*<sub>1</sub> - 1)*SD*<sub>1</sub><sup>2</sup> + (*n*<sub>2</sub> - 1)*SD*<sub>2</sub><sup>2</sup>) / (*n*<sub>1</sub> + *n*<sub>2</sub> - 2)]
+
+**APA example:**
+
+> Participants in the experimental condition (*M* = 85.20, *SD* = 12.40, *n* = 35) outperformed those in the control condition (*M* = 78.60, *SD* = 11.80, *n* = 35), *t*(68) = 2.27, *p* = .026, *d* = 0.54, 95% CI [0.06, 1.02].
+
+### Paired Samples Design
+
+Three common standardizers exist, each producing a different *d* value:
+
+**Option 1: SD of difference scores** (Cohen's *d*<sub>z</sub>)
+
+> *d*<sub>z</sub> = *M*<sub>diff</sub> / *SD*<sub>diff</sub>
+
+This is mathematically equivalent to the paired *t* statistic divided by &radic;*n*. It is the simplest to compute but produces larger values than the other options because the within-subject correlation reduces *SD*<sub>diff</sub>.
+
+**Option 2: Pooled SD of both time points** (Cohen's *d*<sub>av</sub>)
+
+> *d*<sub>av</sub> = *M*<sub>diff</sub> / *SD*<sub>av</sub>
+
+Where *SD*<sub>av</sub> = &radic;[(*SD*<sub>pre</sub><sup>2</sup> + *SD*<sub>post</sub><sup>2</sup>) / 2]
+
+This is preferred for meta-analysis because it is comparable to independent-samples *d*.
+
+**Option 3: Pre-test SD only** (Glass's &Delta;)
+
+> &Delta; = *M*<sub>diff</sub> / *SD*<sub>pre</sub>
+
+Use this when the intervention is expected to change variability.
+
+**APA example (specifying the standardizer):**
+
+> Pain scores decreased significantly from baseline (*M* = 7.20, *SD* = 2.10) to post-treatment (*M* = 4.80, *SD* = 1.90), *t*(29) = 5.44, *p* < .001, *d*<sub>av</sub> = 1.20, 95% CI [0.72, 1.67]. Cohen's *d* was computed using the average of the two standard deviations as the standardizer.
+
+### One-Sample Design
+
+> *d* = (*M* - &mu;<sub>0</sub>) / *SD*
+
+Where &mu;<sub>0</sub> is the hypothesized population mean.
+
+**APA example:**
+
+> The sample mean (*M* = 107.30, *SD* = 14.50) was significantly above the population norm of 100, *t*(49) = 3.57, *p* < .001, *d* = 0.50, 95% CI [0.21, 0.80].
+
+### Repeated Measures With Multiple Conditions
+
+For repeated measures ANOVA with post-hoc pairwise comparisons, compute *d* for each pair of conditions using the pooled *SD* of those two conditions (not the *SD* of the difference scores) to maintain comparability with between-subjects designs:
+
+> Post-hoc comparisons revealed that performance at Time 3 (*M* = 92.10) exceeded Time 1 (*M* = 78.40), *p* < .001, *d*<sub>av</sub> = 1.05. The difference between Time 2 (*M* = 86.30) and Time 1 was also significant, *p* = .008, *d*<sub>av</sub> = 0.61.
+
 ## Cohen's d vs. Other Effect Sizes
 
 | Effect Size | Used With | Range | When to Use |
@@ -103,25 +305,63 @@ Use Cohen's *d* for pairwise comparisons and *&eta;*<sup>2</sup><sub>p</sub> for
 
 ## Common Mistakes to Avoid
 
-### 1. Omitting the Effect Size Entirely
+### 1. Using Pooled SD When Variances Are Unequal
 
-APA 7th edition requires effect sizes. Never report only *t* and *p* values without *d*.
+The standard Cohen's *d* formula assumes equal population variances. When group variances differ substantially (ratio > 2:1), the pooled *SD* misrepresents both groups. In such cases, use Glass's delta with the control group's *SD* as the standardizer, or report Welch's *t*-test alongside the effect size and note the variance difference. Checking Levene's test before selecting your standardizer is good practice.
 
-### 2. Using Wrong Benchmarks
+### 2. Ignoring Sample Size When Interpreting Effect Sizes
 
-Cohen's benchmarks (.20, .50, .80) apply to *d*, not to *r* or *&eta;*<sup>2</sup>. Each effect size has its own benchmarks.
+A *d* = 1.50 from *n* = 8 per group is far less trustworthy than *d* = 0.40 from *n* = 200 per group. Small samples produce unstable estimates with wide confidence intervals. Always report the CI alongside the point estimate. If your 95% CI spans from 0.10 to 2.90, the data are consistent with anything from a negligible to a very large effect, and strong conclusions are unwarranted.
 
-### 3. Not Specifying the Formula
+### 3. Reporting Only the Absolute Value
 
-For paired designs, different formulas yield different *d* values. State which standardizer you used (pooled *SD*, pre-test *SD*, or *SD* of differences).
+Cohen's *d* has a sign that conveys the direction of the difference. Reporting |*d*| = 0.65 without specifying which group scored higher removes important information. Always state the direction clearly in the text: "The treatment group scored higher (*d* = 0.65)" is informative; "*d* = 0.65" alone is ambiguous.
 
-### 4. Ignoring Confidence Intervals
+### 4. Not Reporting Confidence Intervals
 
-A point estimate of *d* = 0.50 is less informative than *d* = 0.50, 95% CI [0.05, 0.95]. Include CIs when your software provides them.
+APA 7th edition requires CIs for effect sizes. A point estimate without a CI tells readers nothing about precision. Many researchers omit CIs because their software does not provide them. Use a dedicated calculator (such as StatMate's t-test calculator) that outputs *d* with its 95% CI automatically.
 
-### 5. Over-Interpreting Small Samples
+### 5. Confusing d Variants Across Studies
 
-Effect sizes from small samples have wide confidence intervals. A *d* of 1.20 from *n* = 10 per group is much less reliable than *d* = 0.50 from *n* = 200 per group.
+Comparing *d*<sub>z</sub> (from a paired design) directly with *d* (from an independent design) is misleading because *d*<sub>z</sub> is inflated by the within-subject correlation. When comparing effect sizes across designs, convert paired *d*<sub>z</sub> to *d*<sub>av</sub> or specify the variant used. In meta-analyses, this distinction is critical for avoiding systematic bias.
+
+### 6. Omitting the Effect Size Entirely
+
+APA 7th edition requires effect sizes for all primary outcomes. Reporting only *t* and *p* without *d* is incomplete and may result in a desk rejection. Even non-significant results should include the effect size and CI to support future meta-analyses and power calculations.
+
+## Frequently Asked Questions
+
+### What is the difference between Cohen's d and Hedges' g?
+
+Cohen's *d* and Hedges' *g* both measure the standardized mean difference between two groups. The key difference is that Hedges' *g* includes a small-sample correction factor that removes the slight upward bias inherent in Cohen's *d*. For samples with total *N* above 40, the two measures are nearly identical (the correction factor exceeds 0.99). For smaller samples, Hedges' *g* provides a less biased estimate. Most meta-analysis software uses Hedges' *g* by default to ensure unbiased pooling across studies of varying sizes.
+
+### Can Cohen's d be negative?
+
+Yes. The sign of Cohen's *d* indicates the direction of the difference. A negative *d* means the second group's mean is higher than the first group's mean. The convention depends on how you define the groups. In treatment studies, *d* is typically calculated as treatment minus control, so a positive *d* indicates the treatment group scored higher. When reporting, always specify which group is higher rather than relying solely on the sign.
+
+### What is a "good" Cohen's d value?
+
+There is no universally "good" value. Cohen's benchmarks (0.20 small, 0.50 medium, 0.80 large) are widely cited but were intended as rough guidelines, not standards. What matters is practical significance in context. In education, *d* = 0.40 may represent a meaningful gain in student achievement. In medicine, *d* = 0.20 for a life-saving intervention is highly important. In psychotherapy, the average treatment effect is approximately *d* = 0.80. Always compare your effect size to published benchmarks in your specific field.
+
+### How do I calculate Cohen's d from means and standard deviations?
+
+For two independent groups: subtract the means (*M*<sub>1</sub> - *M*<sub>2</sub>) and divide by the pooled standard deviation. The pooled *SD* = &radic;[(*SD*<sub>1</sub><sup>2</sup> + *SD*<sub>2</sub><sup>2</sup>) / 2] for equal group sizes, or &radic;[((*n*<sub>1</sub>-1)*SD*<sub>1</sub><sup>2</sup> + (*n*<sub>2</sub>-1)*SD*<sub>2</sub><sup>2</sup>) / (*n*<sub>1</sub>+*n*<sub>2</sub>-2)] for unequal group sizes. For example, if *M*<sub>1</sub> = 82, *SD*<sub>1</sub> = 10, *M*<sub>2</sub> = 76, *SD*<sub>2</sub> = 12: *d* = (82 - 76) / &radic;[(100 + 144) / 2] = 6 / 11.05 = 0.54.
+
+### Should I report Cohen's d for non-significant results?
+
+Yes, always. APA 7th edition requires effect sizes for all inferential tests regardless of statistical significance. Non-significant results with reported effect sizes and confidence intervals are valuable for several reasons: they contribute to meta-analyses, inform power analyses for future studies, and help distinguish between a true null effect (*d* near zero with a narrow CI) and an underpowered study (*d* moderate but CI includes zero).
+
+### How does sample size affect Cohen's d?
+
+Cohen's *d* itself is mathematically independent of sample size because it divides the mean difference by the standard deviation, not by the standard error. However, sample size affects the *precision* of the estimate. Small samples produce highly variable *d* estimates with wide confidence intervals, meaning the observed *d* may deviate substantially from the true population effect. Additionally, Cohen's *d* has a slight upward bias in small samples, which Hedges' *g* corrects.
+
+### Can I use Cohen's d for non-parametric tests?
+
+Cohen's *d* is designed for comparing means and assumes approximately normal distributions. For non-parametric tests like the Mann-Whitney U or Wilcoxon signed-rank test, the appropriate effect size is the rank-biserial correlation *r* = *Z* / &radic;*N*. If you must convert, you can approximate *d* from *r* using *d* = 2*r* / &radic;(1 - *r*<sup>2</sup>), but note this conversion assumes normality and equal variances.
+
+### What software calculates Cohen's d with confidence intervals?
+
+Most major statistical packages can compute Cohen's *d*: R (via the `effsize` or `MBESS` packages), Python (via `scipy` or `pingouin`), JASP, and jamovi all provide *d* with 95% CIs. SPSS does not compute Cohen's *d* automatically; you must calculate it manually or use syntax. Online tools like [StatMate's t-test calculator](/calculators/t-test) compute *d*, its 95% CI, and an APA-formatted results sentence automatically, making the process error-free.
 
 ## Try It With Your Own Data
 
