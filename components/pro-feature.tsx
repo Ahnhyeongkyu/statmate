@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -114,14 +113,19 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
               {t("ctaSubtitle")}
             </p>
-            <Link href="/pricing" onClick={() => trackProCtaClick("ai_interpret")}>
+            <a
+              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackProCtaClick("ai_interpret")}
+            >
               <Button
                 size="sm"
                 className="mt-3 bg-purple-600 hover:bg-purple-700"
               >
                 {t("ctaButton")}
               </Button>
-            </Link>
+            </a>
           </div>
         </CardContent>
       </Card>
@@ -286,11 +290,16 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
               {t("exportCtaSubtitle")}
             </p>
           </div>
-          <Link href="/pricing" onClick={() => trackProCtaClick("word_export")}>
+          <a
+            href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackProCtaClick("word_export")}
+          >
             <Button className="bg-purple-600 hover:bg-purple-700">
               {t("exportCtaButton")}
             </Button>
-          </Link>
+          </a>
         </CardContent>
       </Card>
     );

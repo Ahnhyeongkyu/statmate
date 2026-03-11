@@ -25,6 +25,7 @@ import { DataTextarea } from "@/components/data-textarea";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeDescriptive, decodeDescriptive, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: number[] }) {
   const t = useTranslations("calculator");
@@ -192,6 +193,9 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
           <Boxplot data={data} result={result} />
         </CardContent>
       </Card>
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

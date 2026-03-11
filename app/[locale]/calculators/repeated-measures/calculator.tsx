@@ -32,6 +32,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 // --- URL encode/decode for Repeated Measures (defined in calculator file) ---
 type ParamMap = Record<string, string>;
@@ -343,6 +344,8 @@ function ResultsDisplay({
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="repeated-measures" groups={groupsData.map((g) => g.values)} />
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

@@ -29,6 +29,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeRegression, decodeRegression, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
@@ -373,6 +374,9 @@ function ResultsDisplay({
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="regression" groups={[xData, yData]} />
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

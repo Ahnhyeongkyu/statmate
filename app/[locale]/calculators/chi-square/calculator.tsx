@@ -34,6 +34,7 @@ import { GoodnessBarChart, IndependenceBarChart } from "@/components/charts/chi-
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeChiSquare, decodeChiSquare, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceResult }) {
   const t = useTranslations("calculator");
@@ -203,6 +204,9 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
         </CardContent>
       </Card>
 
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
+
       {/* AI Interpretation */}
       <AiInterpretation
         testType="chi-square"
@@ -358,6 +362,9 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
           />
         </CardContent>
       </Card>
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

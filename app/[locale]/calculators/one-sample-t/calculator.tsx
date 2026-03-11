@@ -31,6 +31,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeOneSampleT, decodeOneSampleT, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: number[] }) {
   const t = useTranslations("calculator");
@@ -188,6 +189,9 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="one-sample-t" groups={[data]} />
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

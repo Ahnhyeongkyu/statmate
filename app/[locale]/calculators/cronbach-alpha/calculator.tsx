@@ -28,6 +28,7 @@ import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeCronbachAlpha, decodeCronbachAlpha, useShareUrl, useUrlParams } from "@/lib/url-params";
 import { ItemAnalysisChart } from "@/components/charts/item-analysis-chart";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
   const t = useTranslations("calculator");
@@ -196,6 +197,8 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
           <ItemAnalysisChart items={result.itemStats} alpha={result.alpha} />
         </CardContent>
       </Card>
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

@@ -34,6 +34,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 // --- URL encode/decode for Two-Way ANOVA (defined in calculator file) ---
 type ParamMap = Record<string, string>;
@@ -311,6 +312,8 @@ function ResultsDisplay({
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="anova" groups={groupsData.map((g) => g.values)} />
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

@@ -35,6 +35,7 @@ import {
   useShareUrl,
   useUrlParams,
 } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function formatPValue(p: number): string {
   if (p < 0.001) return "< .001";
@@ -321,6 +322,8 @@ function ResultsDisplay({ result }: { result: LogisticRegressionResult }) {
           <OddsRatioChart coefficients={result.coefficients} />
         </CardContent>
       </Card>
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

@@ -27,6 +27,7 @@ import { PowerCurve } from "@/components/charts/power-curve";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeSampleSize, decodeSampleSize, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 const TEST_TYPES: { value: SampleSizeTestType; labelKey: string }[] = [
   { value: "two-sample-t", labelKey: "twoSampleT" },
@@ -138,6 +139,9 @@ function ResultsDisplay({ result }: { result: SampleSizeResult }) {
           />
         </CardContent>
       </Card>
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       <AiInterpretation
         testType="descriptive"

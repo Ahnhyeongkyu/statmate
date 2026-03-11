@@ -33,6 +33,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeAnova, decodeAnova, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsData: { label: string; values: number[] }[] }) {
   const t = useTranslations("calculator");
@@ -214,6 +215,9 @@ function ResultsDisplay({ result, groupsData }: { result: AnovaResult; groupsDat
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="anova" groups={groupsData.map(g => g.values)} />
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

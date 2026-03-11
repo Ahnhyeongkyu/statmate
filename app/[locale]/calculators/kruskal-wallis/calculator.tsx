@@ -33,6 +33,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeAnova, decodeAnova, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, groupsData }: { result: KruskalWallisResult; groupsData: { label: string; values: number[] }[] }) {
   const t = useTranslations("calculator");
@@ -219,6 +220,8 @@ function ResultsDisplay({ result, groupsData }: { result: KruskalWallisResult; g
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="kruskal-wallis" groups={groupsData.map(g => g.values)} />
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

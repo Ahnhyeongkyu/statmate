@@ -34,6 +34,7 @@ import {
   useShareUrl,
   useUrlParams,
 } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result }: { result: FisherExactResult }) {
   const t = useTranslations("calculator");
@@ -242,6 +243,8 @@ function ResultsDisplay({ result }: { result: FisherExactResult }) {
           <IndependenceBarChart observed={result.observed} />
         </CardContent>
       </Card>
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

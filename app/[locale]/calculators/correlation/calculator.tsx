@@ -32,6 +32,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeCorrelation, decodeCorrelation, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ScatterPlot({ x, y }: { x: number[]; y: number[] }) {
   const width = 300;
@@ -216,6 +217,9 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="correlation" groups={[xData, yData]} />
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

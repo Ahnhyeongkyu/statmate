@@ -35,6 +35,7 @@ import { AssumptionChecks } from "@/components/assumption-checks";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeTTest, decodeTTest, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResult; group1Data: number[]; group2Data: number[] }) {
   const t = useTranslations("calculator");
@@ -238,6 +239,9 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
 
       {/* Assumption Checks */}
       <AssumptionChecks testType="t-test" groups={[group1Data, group2Data]} />
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

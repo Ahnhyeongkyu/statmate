@@ -33,6 +33,7 @@ import {
   useShareUrl,
   useUrlParams,
 } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 /* ---------- Results Display ---------- */
 
@@ -407,6 +408,8 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
           <ScreePlot eigenvalues={result.eigenvalues} nFactors={result.nFactors} />
         </CardContent>
       </Card>
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

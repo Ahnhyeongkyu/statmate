@@ -28,6 +28,7 @@ import { PairedChart } from "@/components/charts/paired-chart";
 import { ShareButton } from "@/components/share-button";
 import { ExampleScenario } from "@/components/example-scenario";
 import { encodeWilcoxon, decodeWilcoxon, useShareUrl, useUrlParams } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result, preData, postData }: { result: WilcoxonResult; preData: number[]; postData: number[] }) {
   const t = useTranslations("calculator");
@@ -165,6 +166,9 @@ function ResultsDisplay({ result, preData, postData }: { result: WilcoxonResult;
           />
         </CardContent>
       </Card>
+
+      {/* Pro Conversion Banner */}
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation

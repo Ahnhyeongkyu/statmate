@@ -34,6 +34,7 @@ import {
   useShareUrl,
   useUrlParams,
 } from "@/lib/url-params";
+import { ProConversionBanner } from "@/components/pro-conversion-banner";
 
 function ResultsDisplay({ result }: { result: McNemarResult }) {
   const t = useTranslations("calculator");
@@ -233,6 +234,8 @@ function ResultsDisplay({ result }: { result: McNemarResult }) {
           <McNemarChart observed={result.observed} rowLabels={[tc("prePositive"), tc("preNegative")]} colLabels={[tc("postPositive"), tc("postNegative")]} />
         </CardContent>
       </Card>
+
+      <ProConversionBanner />
 
       {/* AI Interpretation */}
       <AiInterpretation
