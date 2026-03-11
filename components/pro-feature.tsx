@@ -2,11 +2,34 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression } from "@/lib/analytics";
+import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression, trackFreeTrialUsed } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
 import { FeedbackPrompt } from "@/components/feedback-prompt";
+
+// --- Free Trial Helpers ---
+
+function canUseFreeTrial(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const stored = localStorage.getItem("statmate_free_trial");
+    if (!stored) return true;
+    const data = JSON.parse(stored);
+    return !data.used;
+  } catch {
+    return true;
+  }
+}
+
+function markFreeTrialUsed(testType: string): void {
+  try {
+    localStorage.setItem(
+      "statmate_free_trial",
+      JSON.stringify({ used: true, usedAt: new Date().toISOString(), testType })
+    );
+  } catch { /* ignore */ }
+}
 
 // --- AI Interpretation Component ---
 
@@ -28,27 +51,42 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<InterpretResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [trialAvailable, setTrialAvailable] = useState(false);
 
-  async function handleInterpret() {
-    if (!isPro) return;
+  // Check free trial availability on mount
+  useEffect(() => {
+    if (!isPro) {
+      setTrialAvailable(canUseFreeTrial());
+    }
+  }, [isPro]);
+
+  async function handleInterpret(isFreeTrial = false) {
+    if (!isPro && !isFreeTrial) return;
     setLoading(true);
     setError(null);
 
     try {
       // Get license key from localStorage for server-side validation
       let licenseKey = "";
-      try {
-        const stored = localStorage.getItem("statmate_pro");
-        if (stored) {
-          const data = JSON.parse(stored);
-          licenseKey = data.licenseKey || "";
-        }
-      } catch { /* ignore */ }
+      if (!isFreeTrial) {
+        try {
+          const stored = localStorage.getItem("statmate_pro");
+          if (stored) {
+            const data = JSON.parse(stored);
+            licenseKey = data.licenseKey || "";
+          }
+        } catch { /* ignore */ }
+      }
 
       const res = await fetch("/api/interpret", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ testType, results, language: locale, licenseKey }),
+        body: JSON.stringify({
+          testType,
+          results,
+          language: locale,
+          ...(isFreeTrial ? { freeTrial: true } : { licenseKey }),
+        }),
       });
 
       if (!res.ok) {
@@ -57,7 +95,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
       }
 
       setData(await res.json());
-      trackAiInterpret(testType);
+
+      if (isFreeTrial) {
+        markFreeTrialUsed(testType);
+        setTrialAvailable(false);
+        trackFreeTrialUsed(testType);
+      } else {
+        trackAiInterpret(testType);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to get interpretation");
     } finally {
@@ -72,7 +117,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
     }
   }, [isPro, testType]);
 
-  // Free user: show readable preview with CTA below
+  // Free user: show preview + free trial or upgrade CTA
   if (!isPro) {
     return (
     <>
@@ -89,44 +134,111 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {/* Paper Ready — fully readable to show value */}
-          <div>
-            <p className="text-xs font-semibold text-gray-500">
-              {t("paperReady")}
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-gray-700">
-              {t(`preview.${testType}.paperReady`)}
-            </p>
-          </div>
-          {/* Plain Language — first sentence visible, rest blurred */}
-          <div className="relative">
-            <p className="text-xs font-semibold text-gray-500">
-              {t("plainLanguage")}
-            </p>
-            <PlainLanguagePreview text={t(`preview.${testType}.plainLanguage`)} />
-          </div>
-          {/* CTA card below content */}
-          <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
-            <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
-              {t("ctaTitle")}
-            </p>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              {t("ctaSubtitle")}
-            </p>
-            <a
-              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackProCtaClick("ai_interpret")}
-            >
-              <Button
-                size="sm"
-                className="mt-3 bg-purple-600 hover:bg-purple-700"
-              >
-                {t("ctaButton")}
-              </Button>
-            </a>
-          </div>
+          {/* If AI result already loaded (from free trial), show it */}
+          {data ? (
+            <div className="space-y-4 text-sm">
+              <div>
+                <p className="font-semibold text-purple-900">{t("paperReady")}</p>
+                <p className="mt-1 leading-relaxed text-gray-800">{data.paperReady}</p>
+                <button
+                  onClick={() => navigator.clipboard.writeText(data.paperReady)}
+                  className="mt-1 text-xs text-purple-600 hover:text-purple-800"
+                >
+                  {t("copy")}
+                </button>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-900">{t("plainLanguage")}</p>
+                <p className="mt-1 leading-relaxed text-gray-700">{data.interpretation}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-900">{t("caveats")}</p>
+                <p className="mt-1 leading-relaxed text-gray-600">{data.caveats}</p>
+              </div>
+              {/* Post-trial upgrade CTA */}
+              <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+                <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
+                  {t("freeTrialUsedDesc")}
+                </p>
+                <a
+                  href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackProCtaClick("ai_interpret_post_trial")}
+                >
+                  <Button
+                    size="sm"
+                    className="mt-3 bg-purple-600 hover:bg-purple-700"
+                  >
+                    {t("ctaButton")}
+                  </Button>
+                </a>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Paper Ready — fully readable to show value */}
+              <div>
+                <p className="text-xs font-semibold text-gray-500">
+                  {t("paperReady")}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-gray-700">
+                  {t(`preview.${testType}.paperReady`)}
+                </p>
+              </div>
+              {/* Plain Language — first sentence visible, rest blurred */}
+              <div className="relative">
+                <p className="text-xs font-semibold text-gray-500">
+                  {t("plainLanguage")}
+                </p>
+                <PlainLanguagePreview text={t(`preview.${testType}.plainLanguage`)} />
+              </div>
+
+              {error && (
+                <p className="text-sm text-red-600">{error}</p>
+              )}
+
+              {/* Free trial available: show trial button */}
+              {trialAvailable ? (
+                <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center dark:border-green-800 dark:bg-green-950/20">
+                  <Button
+                    onClick={() => handleInterpret(true)}
+                    disabled={loading}
+                    size="sm"
+                    className="w-full bg-green-600 hover:bg-green-700"
+                  >
+                    {loading ? t("analyzing") : t("freeTrialButton")}
+                  </Button>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    {t("ctaSubtitle")}
+                  </p>
+                </div>
+              ) : (
+                /* Free trial used: show upgrade CTA */
+                <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                    {t("freeTrialUsed")}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-purple-900 dark:text-purple-200">
+                    {t("freeTrialUsedDesc")}
+                  </p>
+                  <a
+                    href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackProCtaClick("ai_interpret_post_trial")}
+                  >
+                    <Button
+                      size="sm"
+                      className="mt-3 bg-purple-600 hover:bg-purple-700"
+                    >
+                      {t("ctaButton")}
+                    </Button>
+                  </a>
+                </div>
+              )}
+            </>
+          )}
         </CardContent>
       </Card>
       <FeedbackPrompt calculatorId={testType} />
@@ -152,7 +264,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
             <p className="mb-3 text-sm text-red-600">{error}</p>
           )}
           <Button
-            onClick={handleInterpret}
+            onClick={() => handleInterpret()}
             disabled={loading}
             className="w-full bg-purple-600 hover:bg-purple-700"
           >

@@ -4,11 +4,23 @@ import { validateLicense } from "@/lib/license";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
 
+// In-memory rate limit for free trial (IP -> timestamp)
+const freeTrialUsage = new Map<string, number>();
+
+// Clean up old entries every hour
+setInterval(() => {
+  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  for (const [ip, ts] of freeTrialUsage) {
+    if (ts < oneDayAgo) freeTrialUsage.delete(ip);
+  }
+}, 60 * 60 * 1000);
+
 interface InterpretRequest {
   testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "multiple-regression" | "cronbach-alpha" | "logistic-regression" | "factor-analysis" | "kruskal-wallis" | "repeated-measures" | "two-way-anova" | "friedman" | "fisher-exact" | "mcnemar";
   results: Record<string, unknown>;
-  language: "en" | "ko";
+  language: "en" | "ko" | "ja";
   licenseKey?: string;
+  freeTrial?: boolean;
 }
 
 interface InterpretResponse {
@@ -21,6 +33,8 @@ function buildPrompt(req: InterpretRequest): string {
   const langInstruction =
     req.language === "ko"
       ? "Respond entirely in Korean. Use formal academic Korean (합니다체)."
+      : req.language === "ja"
+      ? "Respond entirely in Japanese. Use formal academic Japanese (です・ます体)."
       : "Respond entirely in English.";
 
   const testNames: Record<string, string> = {
@@ -103,20 +117,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Server-side Pro license validation
-    if (!body.licenseKey) {
-      return NextResponse.json(
-        { error: "Pro license required" },
-        { status: 403 }
-      );
-    }
+    // Free trial: allow 1 request per IP per day
+    if (body.freeTrial) {
+      const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+        || request.headers.get("x-real-ip")
+        || "unknown";
+      const lastUsed = freeTrialUsage.get(ip);
+      if (lastUsed && Date.now() - lastUsed < 24 * 60 * 60 * 1000) {
+        return NextResponse.json(
+          { error: "Free trial already used. Upgrade to Pro for unlimited access." },
+          { status: 403 }
+        );
+      }
+      freeTrialUsage.set(ip, Date.now());
+    } else {
+      // Server-side Pro license validation
+      if (!body.licenseKey) {
+        return NextResponse.json(
+          { error: "Pro license required" },
+          { status: 403 }
+        );
+      }
 
-    const isValidLicense = await validateLicense(body.licenseKey);
-    if (!isValidLicense) {
-      return NextResponse.json(
-        { error: "Invalid or expired license" },
-        { status: 403 }
-      );
+      const isValidLicense = await validateLicense(body.licenseKey);
+      if (!isValidLicense) {
+        return NextResponse.json(
+          { error: "Invalid or expired license" },
+          { status: 403 }
+        );
+      }
     }
 
     const prompt = buildPrompt(body);
