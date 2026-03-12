@@ -34,8 +34,12 @@ export function trackCopyResult(testType: string) {
 }
 
 // Pro feature events
-export function trackProCtaClick(source: string) {
-  gtag({ action: "pro_cta_click", category: "conversion", label: source });
+export function trackProCtaClick(source: string, testType?: string) {
+  gtag({ action: "pro_cta_click", category: "conversion", label: testType ? `${source}:${testType}` : source });
+}
+
+export function trackFreeTrialExhausted(testType: string) {
+  gtag({ action: "free_trial_exhausted", category: "conversion", label: testType });
 }
 
 export function trackAiInterpret(testType: string) {

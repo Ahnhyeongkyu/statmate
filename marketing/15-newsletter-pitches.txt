@@ -1,0 +1,120 @@
+# Newsletter Pitch Emails (5 targets)
+# Ready to send — personalize greeting if possible
+
+================================================================
+## 1. Console.dev (console.dev/submit)
+================================================================
+
+Subject: StatMate — Free APA statistics calculator built with Next.js (zero server-side computation)
+
+Hi Console team,
+
+I built StatMate (https://statmate.org), a free statistics calculator that runs 20 statistical tests entirely client-side and auto-formats results in APA 7th edition style.
+
+Why it might interest your readers:
+- Zero-dependency stats engine in TypeScript (no R/Python backend)
+- All computation runs in the browser — no data leaves the user's machine
+- Next.js 16 + Turbopack, trilingual (EN/KO/JA), full PWA support
+- Open source: https://github.com/Ahnhyeongkyu/statmate
+
+Used by 470+ weekly active users, mostly grad students and researchers who need quick APA-formatted output without SPSS.
+
+Thanks for considering!
+— Hyeongkyu Ahn
+
+================================================================
+## 2. TLDR Startup (advertise@tldrnewsletter.com)
+================================================================
+
+Subject: Show TLDR: Free SPSS alternative with 20 statistical tests
+
+Hi TLDR team,
+
+I'm a solo developer who built StatMate (https://statmate.org) — a free web-based statistics calculator targeting the 4M+ grad students who can't afford SPSS ($99/mo).
+
+Key numbers:
+- 20 statistical tests (t-test, ANOVA, regression, chi-square, etc.)
+- Auto APA 7th edition formatting (copy-paste into papers)
+- AI-powered result interpretation (Claude Sonnet) as Pro feature
+- 470+ WAU after 2 weeks, zero marketing spend
+- Monetization: Pro at $5.99/mo (AI interpretation + Word export)
+
+Built solo with Next.js, TypeScript, deployed on Vercel. Happy to share more details.
+
+Best,
+Hyeongkyu Ahn
+
+================================================================
+## 3. Ben's Bites (bens@bensbites.com)
+================================================================
+
+Subject: AI meets academic statistics — StatMate interprets your results in APA format
+
+Hi Ben,
+
+StatMate (https://statmate.org) is a free statistics calculator that uses Claude AI to interpret statistical results and write publication-ready paragraphs.
+
+The AI angle: After running any of 20 statistical tests, users get a one-click AI interpretation that produces:
+1. APA 7th edition paper-ready paragraph
+2. Plain language explanation
+3. Caveats and limitations
+
+It's like having a stats tutor who also formats your results. Free tier gives 3 AI interpretations; Pro unlocks unlimited.
+
+470+ weekly active users, mostly researchers and grad students. Would love to be featured.
+
+Cheers,
+Hyeongkyu Ahn
+
+================================================================
+## 4. The Neuron (tips@theneurondaily.com)
+================================================================
+
+Subject: Claude-powered statistics interpreter for academic research
+
+Hi Neuron team,
+
+I built StatMate (https://statmate.org), a statistics calculator that pairs 20 statistical tests with Claude AI interpretation.
+
+What makes it different from ChatGPT for stats:
+- Validated computation engine (cross-verified against R 4.3)
+- Structured output: APA paper-ready text + plain language + caveats
+- Domain-specific prompts for each test type (not generic "explain this")
+- Privacy-first: raw data never leaves the browser; only results go to AI
+
+Growing at 470+ WAU with researchers who want reliable stats + AI explanation in one tool.
+
+Best,
+Hyeongkyu Ahn
+
+================================================================
+## 5. Hacker Newsletter (submission@hackernewsletter.com)
+================================================================
+
+Subject: Show HN pick — StatMate: Free APA statistics calculator (client-side, 20 tests)
+
+Hi,
+
+StatMate (https://statmate.org) was recently featured on Show HN. It's a free, browser-based statistics calculator with 20 tests, APA 7th edition auto-formatting, and AI-powered interpretation.
+
+Technical highlights:
+- Full stats engine in TypeScript — no R/Python/server computation
+- Matrix operations, iterative MLE, and numerical optimization in the browser
+- Next.js 16, trilingual (EN/KO/JA), PWA with offline support
+- Cross-validated against R 4.3 for all 20 tests
+
+Show HN post: [link to your HN post]
+Live: https://statmate.org
+GitHub: https://github.com/Ahnhyeongkyu/statmate
+
+Thanks for considering!
+— Hyeongkyu Ahn
+
+================================================================
+# Submission URLs
+================================================================
+1. Console.dev: https://console.dev/submit
+2. TLDR: advertise@tldrnewsletter.com (or https://tldr.tech/startup)
+3. Ben's Bites: bens@bensbites.com
+4. The Neuron: tips@theneurondaily.com (or website submission form)
+5. Hacker Newsletter: https://hackernewsletter.com/ (submit via site)

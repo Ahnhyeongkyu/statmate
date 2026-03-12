@@ -1,0 +1,157 @@
+# University Library & Professor Outreach Plan
+# Target: 20 US/UK libraries + 30 Korean professors
+
+================================================================
+## PART 1: US/UK University Libraries (20 targets)
+================================================================
+
+### How to find Research Support emails:
+1. Google: "[university name] library research support statistics"
+2. Look for "Research Data Services", "Research Support", or "Digital Scholarship"
+3. Most have a generic email like research-support@library.[university].edu
+4. Alternative: use library chat/contact form
+
+### Target List (Tier 1 — Large research universities)
+
+| # | University | Department to Contact | How to Find Email |
+|---|-----------|----------------------|-------------------|
+| 1 | Harvard | Research Data Management Program | library.harvard.edu → Research Support |
+| 2 | Stanford | Center for Interdisciplinary Digital Research | library.stanford.edu → Research Tools |
+| 3 | MIT | Libraries Data Services | libraries.mit.edu → Research Support |
+| 4 | UC Berkeley | Research Data Management | lib.berkeley.edu → Research IT |
+| 5 | Columbia | Digital Scholarship | library.columbia.edu → Research Support |
+| 6 | University of Michigan | Research Data Services | lib.umich.edu → Research → Data |
+| 7 | University of Washington | Research Commons | lib.uw.edu → Research Commons |
+| 8 | UCLA | Data Science Center | library.ucla.edu → Research |
+| 9 | NYU | Data Services | library.nyu.edu → Research → Data Services |
+| 10 | University of Chicago | Research Computing Center | lib.uchicago.edu → Research |
+| 11 | University of Oxford | Bodleian Libraries Research Support | bodleian.ox.ac.uk → Research support |
+| 12 | University of Cambridge | Research Data Facility | lib.cam.ac.uk → Research support |
+| 13 | UCL | Research Data Services | ucl.ac.uk/library → Research support |
+| 14 | University of Edinburgh | Research Data Service | ed.ac.uk/information-services → Research |
+| 15 | University of Toronto | Data & GIS | library.utoronto.ca → Research |
+| 16 | Penn State | Libraries Research Data Services | libraries.psu.edu → Research Data |
+| 17 | University of Wisconsin | Research Data Services | library.wisc.edu → Research |
+| 18 | University of Minnesota | Data Management | lib.umn.edu → Research Support |
+| 19 | Duke University | Data & Visualization Services | library.duke.edu → Data |
+| 20 | Johns Hopkins | Data Services | library.jhu.edu → Research Data |
+
+### Email Template (English)
+
+Subject: Free Statistics Tool for Students — StatMate (20 Tests, APA Formatting)
+
+Dear [Library/Research Support Team],
+
+I'm writing to share StatMate (https://statmate.org), a free web-based statistics calculator designed for students and researchers.
+
+StatMate offers:
+- 20 statistical tests (t-test, ANOVA, chi-square, regression, and more)
+- Automatic APA 7th edition formatting (copy-paste ready)
+- PDF export for all results
+- No installation, no account required — works in any browser
+- Complete privacy — all computations run client-side
+
+Many students struggle with both running statistics and formatting results correctly. StatMate handles both in one step. It's been cross-validated against R 4.3 for accuracy.
+
+It could be a helpful addition to your research tools guide or statistics resources page. Would you be open to reviewing it?
+
+Best regards,
+Hyeongkyu Ahn
+Developer, StatMate
+https://statmate.org
+
+================================================================
+## PART 2: Korean University Professors (30 targets)
+================================================================
+
+### Target Departments:
+- 심리학과 (Psychology) — 통계 필수
+- 교육학과 (Education) — 연구방법론
+- 사회학과 (Sociology) — 양적연구
+- 경영학과 (Business) — 마케팅/조직행동
+- 간호학과 (Nursing) — 임상연구
+- 체육학과 (Kinesiology) — 스포츠과학
+
+### How to find professor emails:
+1. Google: "[대학교] [학과] 교수진"
+2. 대학교 학과 홈페이지 → 교수진 소개 → 이메일
+3. 연구방법론/통계 강의 담당 교수 우선 타겟
+
+### Target Universities (학과 선택 기준: 연구방법론/통계 수업 개설 학과)
+
+| # | 대학교 | 학과 | 비고 |
+|---|--------|------|------|
+| 1-3 | 서울대 | 심리학, 교육학, 경영학 | 연구방법론 강의 교수 |
+| 4-6 | 연세대 | 심리학, 교육학, 간호학 | |
+| 7-9 | 고려대 | 심리학, 교육학, 경영학 | |
+| 10-12 | 성균관대 | 심리학, 사회학, 경영학 | |
+| 13-15 | 한양대 | 교육학, 심리학, 체육학 | |
+| 16-18 | 중앙대 | 심리학, 교육학, 간호학 | |
+| 19-21 | 이화여대 | 심리학, 교육학, 사회복지학 | |
+| 22-24 | 경북대 | 심리학, 교육학, 간호학 | 지방거점 |
+| 25-27 | 부산대 | 심리학, 교육학, 사회학 | 지방거점 |
+| 28-30 | 전남대 | 교육학, 간호학, 심리학 | 지방거점 |
+
+### Email Template (Korean)
+
+제목: 무료 통계 도구 StatMate 소개 — 학생 연구방법론 수업 활용 제안
+
+[교수님 성함] 교수님께,
+
+안녕하세요. 통계 웹 도구 StatMate(https://statmate.org)를 개발한 안형규입니다.
+
+StatMate는 학생들이 통계 분석과 APA 결과 보고를 한 번에 할 수 있는 무료 웹 도구입니다.
+
+주요 기능:
+- t-test, ANOVA, 회귀분석, 카이제곱 등 20개 통계 검정
+- APA 7판 형식 자동 포맷 (복사 → 논문에 붙여넣기)
+- PDF 내보내기 무료
+- 설치 불필요, 회원가입 불필요 — 브라우저에서 바로 사용
+- 한국어/영어/일본어 지원
+
+학생들이 SPSS 없이도 기본 통계분석을 수행하고, APA 형식으로 결과를 바로 보고할 수 있어 연구방법론 수업에서 활용하시기 좋습니다. R 4.3과 교차검증을 완료하여 정확도도 검증되어 있습니다.
+
+혹시 수업이나 연구실에서 사용해 보실 의향이 있으시면 말씀해 주십시오.
+
+감사합니다.
+안형규 드림
+StatMate 개발자
+https://statmate.org
+
+================================================================
+## PART 3: Outreach Schedule
+================================================================
+
+### Week 1 (Day 1-3): Libraries
+- Day 1: Send to #1-7 (top US universities)
+- Day 2: Send to #8-14 (US + UK universities)
+- Day 3: Send to #15-20 (remaining)
+
+### Week 1 (Day 4-5): Professors
+- Day 4: Send to #1-15 (서울 소재 대학)
+- Day 5: Send to #16-30 (나머지)
+
+### Week 3: Follow-up
+- No reply after 2 weeks → send one follow-up
+- Follow-up subject: "Re: [original subject]" (same thread)
+- Follow-up body: 2-3 sentences max, "Just following up on my previous email. Would love to hear your thoughts."
+
+### Tracking
+- Use a simple spreadsheet: University | Contact | Date Sent | Response | Follow-up Date
+- Goal: 10% response rate (5 libraries + 3 professors)
+- Success metric: Even 1 university adding StatMate to their tools page = long-term SEO + traffic
+
+================================================================
+## PART 4: Newsletter Submission Schedule
+================================================================
+
+### Immediate (this week):
+1. Console.dev — submit via form
+2. Hacker Newsletter — submit via site
+3. Ben's Bites — email directly
+
+### Next week:
+4. TLDR Startup — email
+5. The Neuron — email
+
+### Follow-up: 1 week after submission, if no response

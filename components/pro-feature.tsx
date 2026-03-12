@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression, trackFreeTrialUsed } from "@/lib/analytics";
+import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression, trackFreeTrialUsed, trackFreeTrialExhausted } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
@@ -63,9 +63,13 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   // Check free trial availability on mount
   useEffect(() => {
     if (!isPro) {
-      setTrialRemaining(FREE_TRIAL_MAX - getTrialCount());
+      const remaining = FREE_TRIAL_MAX - getTrialCount();
+      setTrialRemaining(remaining);
+      if (remaining === 0) {
+        trackFreeTrialExhausted(testType);
+      }
     }
-  }, [isPro]);
+  }, [isPro, testType]);
 
   async function handleInterpret(isFreeTrial = false) {
     if (!isPro && !isFreeTrial) return;
@@ -178,7 +182,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                     href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackProCtaClick("ai_interpret_post_trial")}
+                    onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
                   >
                     <Button
                       size="sm"
@@ -244,7 +248,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                     href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackProCtaClick("ai_interpret_post_trial")}
+                    onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
                   >
                     <Button
                       size="sm"
@@ -427,7 +431,7 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
             href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackProCtaClick("word_export")}
+            onClick={() => trackProCtaClick("word_export", testName)}
           >
             <Button className="bg-purple-600 hover:bg-purple-700">
               {t("exportCtaButton")}
