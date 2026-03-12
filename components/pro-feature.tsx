@@ -174,25 +174,36 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   </p>
                 </div>
               ) : (
-                <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+                <div className="rounded-lg border border-purple-200 bg-gradient-to-b from-purple-50 to-blue-50 p-5 text-center dark:from-purple-950/20 dark:to-blue-950/20">
                   <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
                     {t("freeTrialUsedDesc")}
                   </p>
-                  <a
-                    href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
-                  >
-                    <Button
-                      size="sm"
-                      className="mt-3 bg-purple-600 hover:bg-purple-700"
+                  <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
+                    SPSS: $99/mo
+                  </p>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <a
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
+                    >
+                      <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
+                        {t("ctaButtonAnnual")}
+                      </Button>
+                    </a>
+                    <a
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
+                      className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
                     >
                       {t("ctaButton")}
-                    </Button>
-                  </a>
-                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    {t("ctaSubtitle")}
+                    </a>
+                  </div>
+                  <p className="mt-3 text-[10px] text-gray-400 dark:text-gray-500">
+                    {t("socialProof")}
                   </p>
                 </div>
               )}
@@ -222,12 +233,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 
               {/* Free trial available: show trial button */}
               {trialRemaining > 0 ? (
-                <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center dark:border-green-800 dark:bg-green-950/20">
+                <div className="rounded-lg border-2 border-green-300 bg-green-50 p-4 text-center dark:border-green-700 dark:bg-green-950/20">
+                  <p className="mb-2 text-xs font-medium text-green-700 dark:text-green-300">
+                    {t("freeTrialHook")}
+                  </p>
                   <Button
                     onClick={() => handleInterpret(true)}
                     disabled={loading}
-                    size="sm"
-                    className="w-full bg-green-600 hover:bg-green-700"
+                    className="w-full animate-pulse bg-green-600 text-base font-semibold hover:bg-green-700"
                   >
                     {loading ? t("analyzing") : t("freeTrialButton", { remaining: trialRemaining })}
                   </Button>
@@ -236,29 +249,40 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   </p>
                 </div>
               ) : (
-                /* Free trial used: show upgrade CTA */
-                <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+                /* Free trial used: show upgrade CTA with price anchoring */
+                <div className="rounded-lg border border-purple-200 bg-gradient-to-b from-purple-50 to-blue-50 p-5 text-center dark:from-purple-950/20 dark:to-blue-950/20">
                   <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
                     {t("freeTrialUsed")}
                   </p>
                   <p className="mt-1 text-sm font-semibold text-purple-900 dark:text-purple-200">
                     {t("freeTrialUsedDesc")}
                   </p>
-                  <a
-                    href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
-                  >
-                    <Button
-                      size="sm"
-                      className="mt-3 bg-purple-600 hover:bg-purple-700"
+                  <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
+                    SPSS: $99/mo
+                  </p>
+                  <div className="mt-3 flex flex-col gap-2">
+                    <a
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
+                    >
+                      <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
+                        {t("ctaButtonAnnual")}
+                      </Button>
+                    </a>
+                    <a
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
+                      className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
                     >
                       {t("ctaButton")}
-                    </Button>
-                  </a>
-                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    {t("ctaSubtitle")}
+                    </a>
+                  </div>
+                  <p className="mt-3 text-[10px] text-gray-400 dark:text-gray-500">
+                    {t("socialProof")}
                   </p>
                 </div>
               )}
@@ -418,25 +442,30 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
   if (!isPro) {
     return (
       <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
-        <CardContent className="flex items-center justify-between py-4">
-          <div>
-            <p className="font-semibold text-purple-900">
-              {t("exportCtaTitle")}
-            </p>
-            <p className="text-sm text-purple-700">
-              {t("exportCtaSubtitle")}
-            </p>
+        <CardContent className="py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-semibold text-purple-900">
+                {t("exportCtaTitle")}
+              </p>
+              <p className="text-sm text-purple-700">
+                {t("exportCtaSubtitle")}
+              </p>
+            </div>
+            <a
+              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackProCtaClick("word_export", testName)}
+            >
+              <Button className="bg-purple-600 hover:bg-purple-700">
+                {t("exportCtaButton")}
+              </Button>
+            </a>
           </div>
-          <a
-            href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackProCtaClick("word_export", testName)}
-          >
-            <Button className="bg-purple-600 hover:bg-purple-700">
-              {t("exportCtaButton")}
-            </Button>
-          </a>
+          <p className="mt-2 text-[10px] text-gray-400">
+            {t("priceAnchorShort")}
+          </p>
         </CardContent>
       </Card>
     );
