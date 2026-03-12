@@ -525,7 +525,7 @@
   },
   "pricing": {
     "metaTitle": "StatMate Pro Pricing — AI Interpretation & Word Export from $4.99/mo",
-    "metaDescription": "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Free 20+ calculators. Pro from $4.99/mo with 7-day free trial.",
+    "metaDescription": "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Free 20+ calculators. Pro from $4.99/mo.",
     "badge": "Pricing",
     "headline": "Start Free.",
     "headlineHighlight": "Go Pro When You Need It.",
@@ -550,7 +550,7 @@
         "name": "Pro Monthly",
         "period": "/month",
         "description": "For active researchers and students",
-        "cta": "Start 7-Day Free Trial",
+        "cta": "Get Pro — $5.99/mo",
         "features": [
           "Everything in Free",
           "APA Word export (unlimited)",
@@ -565,7 +565,7 @@
         "period": "/month",
         "description": "Best value — save 30%",
         "subtext": "Billed $49.99/year",
-        "cta": "Start 7-Day Free Trial",
+        "cta": "Get Pro — $4.99/mo",
         "features": [
           "Everything in Pro Monthly",
           "Early access to new features",
@@ -632,11 +632,11 @@
       },
       {
         "q": "Do you offer student discounts?",
-        "a": "We're planning student pricing soon. For now, the 7-day free trial and pay-per-use option ($2.99/export) make it affordable for any student."
+        "a": "We're planning student pricing soon. For now, the 3 free AI trials and pay-per-use option ($2.99/export) make it affordable for any student."
       }
     ],
     "ctaTitle": "Ready to save hours on formatting?",
-    "ctaDescription": "Start your 7-day free trial. No credit card required.",
+    "ctaDescription": "Try 3 free AI interpretations. No credit card required.",
     "ctaButton": "Start Free Trial",
     "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
   },

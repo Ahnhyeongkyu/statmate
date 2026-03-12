@@ -78,8 +78,8 @@ export default async function TermsPage() {
               Squeezy.
             </li>
             <li>
-              A 7-day free trial is available for new subscribers. You will not
-              be charged during the trial period.
+              3 free AI interpretation trials are available for new users. No
+              credit card required.
             </li>
             <li>
               You may cancel your subscription at any time. Access continues

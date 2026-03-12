@@ -525,7 +525,7 @@
   },
   "pricing": {
     "metaTitle": "StatMate Pro 요금제 — AI 해석 & Word 내보내기 월 $4.99부터",
-    "metaDescription": "StatMate Pro: APA 표를 Word로 내보내고, AI 기반 해석을 받고, 출판 준비된 결과를 생성하세요. 20개 무료 계산기 + Pro 7일 무료 체험.",
+    "metaDescription": "StatMate Pro: APA 표를 Word로 내보내고, AI 기반 해석을 받고, 출판 준비된 결과를 생성하세요. 20개 무료 계산기 + Pro 월 $4.99부터.",
     "badge": "요금제",
     "headline": "무료로 시작.",
     "headlineHighlight": "필요할 때 Pro로.",
@@ -550,7 +550,7 @@
         "name": "Pro 월간",
         "period": "/월",
         "description": "활발한 연구자와 학생을 위한",
-        "cta": "7일 무료 체험",
+        "cta": "Pro 시작 — $5.99/월",
         "features": [
           "무료 플랜의 모든 기능",
           "APA Word 내보내기 (무제한)",
@@ -565,7 +565,7 @@
         "period": "/월",
         "description": "최고 가성비 — 30% 할인",
         "subtext": "연간 $49.99 일시 결제",
-        "cta": "7일 무료 체험",
+        "cta": "Pro 시작 — $4.99/월",
         "features": [
           "Pro 월간의 모든 기능",
           "신기능 조기 액세스",
@@ -632,11 +632,11 @@
       },
       {
         "q": "학생 할인이 있나요?",
-        "a": "학생 가격을 곧 계획 중입니다. 현재는 7일 무료 체험과 건당 결제 옵션($2.99/건)으로 모든 학생이 부담 없이 이용할 수 있습니다."
+        "a": "학생 가격을 곧 계획 중입니다. 현재는 무료 AI 해석 3회와 건당 결제 옵션($2.99/건)으로 모든 학생이 부담 없이 이용할 수 있습니다."
       }
     ],
     "ctaTitle": "포맷팅에 드는 시간을 절약하세요",
-    "ctaDescription": "7일 무료 체험을 시작하세요. 신용카드가 필요 없습니다.",
+    "ctaDescription": "무료 AI 해석 3회 제공. 신용카드가 필요 없습니다.",
     "ctaButton": "무료 체험 시작",
     "studentDiscount": "🎓 학생 할인: .edu 또는 .ac.kr 이메일로 50% 할인 — 월 $2.99 또는 연 $29.99"
   },
