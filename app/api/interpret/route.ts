@@ -4,14 +4,15 @@ import { validateLicense } from "@/lib/license";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
 
-// In-memory rate limit for free trial (IP -> timestamp)
-const freeTrialUsage = new Map<string, number>();
+// In-memory rate limit for free trial (IP -> { count, firstUsed })
+const FREE_TRIAL_MAX = 3;
+const freeTrialUsage = new Map<string, { count: number; firstUsed: number }>();
 
 // Clean up old entries every hour
 setInterval(() => {
   const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
-  for (const [ip, ts] of freeTrialUsage) {
-    if (ts < oneDayAgo) freeTrialUsage.delete(ip);
+  for (const [ip, data] of freeTrialUsage) {
+    if (data.firstUsed < oneDayAgo) freeTrialUsage.delete(ip);
   }
 }, 60 * 60 * 1000);
 
@@ -117,19 +118,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Free trial: allow 1 request per IP per day
+    // Free trial: allow 3 requests per IP per day
     if (body.freeTrial) {
       const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
         || request.headers.get("x-real-ip")
         || "unknown";
-      const lastUsed = freeTrialUsage.get(ip);
-      if (lastUsed && Date.now() - lastUsed < 24 * 60 * 60 * 1000) {
+      const usage = freeTrialUsage.get(ip);
+      if (usage && Date.now() - usage.firstUsed < 24 * 60 * 60 * 1000 && usage.count >= FREE_TRIAL_MAX) {
         return NextResponse.json(
-          { error: "Free trial already used. Upgrade to Pro for unlimited access." },
+          { error: "Free trial limit reached. Upgrade to Pro for unlimited access." },
           { status: 403 }
         );
       }
-      freeTrialUsage.set(ip, Date.now());
+      const current = freeTrialUsage.get(ip);
+      if (current && Date.now() - current.firstUsed < 24 * 60 * 60 * 1000) {
+        current.count += 1;
+      } else {
+        freeTrialUsage.set(ip, { count: 1, firstUsed: Date.now() });
+      }
     } else {
       // Server-side Pro license validation
       if (!body.licenseKey) {

@@ -10,23 +10,30 @@ import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- Free Trial Helpers ---
 
-function canUseFreeTrial(): boolean {
-  if (typeof window === "undefined") return false;
+const FREE_TRIAL_MAX = 3;
+
+function getTrialCount(): number {
+  if (typeof window === "undefined") return FREE_TRIAL_MAX;
   try {
     const stored = localStorage.getItem("statmate_free_trial");
-    if (!stored) return true;
+    if (!stored) return 0;
     const data = JSON.parse(stored);
-    return !data.used;
+    return typeof data.count === "number" ? data.count : (data.used ? FREE_TRIAL_MAX : 0);
   } catch {
-    return true;
+    return 0;
   }
+}
+
+function canUseFreeTrial(): boolean {
+  return getTrialCount() < FREE_TRIAL_MAX;
 }
 
 function markFreeTrialUsed(testType: string): void {
   try {
+    const count = getTrialCount() + 1;
     localStorage.setItem(
       "statmate_free_trial",
-      JSON.stringify({ used: true, usedAt: new Date().toISOString(), testType })
+      JSON.stringify({ count, usedAt: new Date().toISOString(), testType })
     );
   } catch { /* ignore */ }
 }
@@ -51,12 +58,12 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<InterpretResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [trialAvailable, setTrialAvailable] = useState(false);
+  const [trialRemaining, setTrialRemaining] = useState(0);
 
   // Check free trial availability on mount
   useEffect(() => {
     if (!isPro) {
-      setTrialAvailable(canUseFreeTrial());
+      setTrialRemaining(FREE_TRIAL_MAX - getTrialCount());
     }
   }, [isPro]);
 
@@ -98,7 +105,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 
       if (isFreeTrial) {
         markFreeTrialUsed(testType);
-        setTrialAvailable(false);
+        setTrialRemaining(FREE_TRIAL_MAX - getTrialCount());
         trackFreeTrialUsed(testType);
       } else {
         trackAiInterpret(testType);
@@ -155,25 +162,36 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                 <p className="font-semibold text-purple-900">{t("caveats")}</p>
                 <p className="mt-1 leading-relaxed text-gray-600">{data.caveats}</p>
               </div>
-              {/* Post-trial upgrade CTA */}
-              <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
-                <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
-                  {t("freeTrialUsedDesc")}
-                </p>
-                <a
-                  href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackProCtaClick("ai_interpret_post_trial")}
-                >
-                  <Button
-                    size="sm"
-                    className="mt-3 bg-purple-600 hover:bg-purple-700"
+              {/* Post-trial: show remaining trials or upgrade CTA */}
+              {trialRemaining > 0 ? (
+                <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center dark:border-green-800 dark:bg-green-950/20">
+                  <p className="text-sm text-green-800 dark:text-green-200">
+                    {t("freeTrialRemaining", { remaining: trialRemaining, total: FREE_TRIAL_MAX })}
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-purple-200 bg-purple-50 p-4 text-center dark:bg-purple-950/20">
+                  <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
+                    {t("freeTrialUsedDesc")}
+                  </p>
+                  <a
+                    href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackProCtaClick("ai_interpret_post_trial")}
                   >
-                    {t("ctaButton")}
-                  </Button>
-                </a>
-              </div>
+                    <Button
+                      size="sm"
+                      className="mt-3 bg-purple-600 hover:bg-purple-700"
+                    >
+                      {t("ctaButton")}
+                    </Button>
+                  </a>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    {t("ctaSubtitle")}
+                  </p>
+                </div>
+              )}
             </div>
           ) : (
             <>
@@ -199,7 +217,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
               )}
 
               {/* Free trial available: show trial button */}
-              {trialAvailable ? (
+              {trialRemaining > 0 ? (
                 <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-center dark:border-green-800 dark:bg-green-950/20">
                   <Button
                     onClick={() => handleInterpret(true)}
@@ -207,10 +225,10 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                     size="sm"
                     className="w-full bg-green-600 hover:bg-green-700"
                   >
-                    {loading ? t("analyzing") : t("freeTrialButton")}
+                    {loading ? t("analyzing") : t("freeTrialButton", { remaining: trialRemaining })}
                   </Button>
                   <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    {t("ctaSubtitle")}
+                    {t("freeTrialRemaining", { remaining: trialRemaining, total: FREE_TRIAL_MAX })}
                   </p>
                 </div>
               ) : (
@@ -235,6 +253,9 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       {t("ctaButton")}
                     </Button>
                   </a>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    {t("ctaSubtitle")}
+                  </p>
                 </div>
               )}
             </>
