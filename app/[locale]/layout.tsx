@@ -18,6 +18,7 @@ import { FeedbackButton } from "@/components/feedback-button";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { AuthProvider } from "@/components/auth-provider";
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
+import { LemonSqueezyOverlay } from "@/components/lemonsqueezy";
 import "../globals.css";
 
 const inter = Inter({
@@ -255,6 +256,7 @@ export default async function LocaleLayout({
           <Analytics />
           <SpeedInsights />
           <ServiceWorkerRegister />
+          <LemonSqueezyOverlay />
 
           {/* Footer */}
           <footer className="border-t bg-gray-50 dark:border-gray-700 dark:bg-gray-900">

@@ -35,11 +35,11 @@ export async function generateMetadata({
 
 const CHECKOUT_URLS = {
   proMonthly:
-    "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb",
+    "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1",
   proAnnual:
-    "https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339",
+    "https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1",
   studentPro:
-    "https://statmate.lemonsqueezy.com/checkout/buy/1dfd20c1-4f9a-4b53-81e4-e30702998539",
+    "https://statmate.lemonsqueezy.com/checkout/buy/1dfd20c1-4f9a-4b53-81e4-e30702998539?embed=1",
 };
 
 export default async function PricingPage() {

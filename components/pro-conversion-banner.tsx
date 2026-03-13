@@ -5,7 +5,7 @@ import { useIsPro } from "@/components/activate-pro";
 import { trackProCtaClick } from "@/lib/analytics";
 
 const CHECKOUT_MONTHLY =
-  "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb";
+  "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1";
 
 export function ProConversionBanner() {
   const isPro = useIsPro();
@@ -49,8 +49,6 @@ export function ProConversionBanner() {
         <div className="flex flex-col items-center gap-1.5">
           <a
             href={CHECKOUT_MONTHLY}
-            target="_blank"
-            rel="noopener noreferrer"
             onClick={() => trackProCtaClick("inline_banner")}
             className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-purple-700 shadow-md transition hover:bg-purple-50 hover:shadow-lg"
           >

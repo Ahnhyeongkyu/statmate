@@ -183,9 +183,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   </p>
                   <div className="mt-3 flex flex-col gap-2">
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                     >
                       <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
@@ -193,9 +191,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       </Button>
                     </a>
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
                       className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
                     >
@@ -210,14 +206,12 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
             </div>
           ) : (
             <>
-              {/* Paper Ready — fully readable to show value */}
+              {/* Paper Ready — first sentence visible, rest blurred */}
               <div>
                 <p className="text-xs font-semibold text-gray-500">
                   {t("paperReady")}
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-gray-700">
-                  {t(`preview.${testType}.paperReady`)}
-                </p>
+                <PlainLanguagePreview text={t(`preview.${testType}.paperReady`)} />
               </div>
               {/* Plain Language — first sentence visible, rest blurred */}
               <div className="relative">
@@ -262,9 +256,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   </p>
                   <div className="mt-3 flex flex-col gap-2">
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                     >
                       <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
@@ -272,9 +264,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       </Button>
                     </a>
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
                       className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
                     >
@@ -453,9 +443,7 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
               </p>
             </div>
             <a
-              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
               onClick={() => trackProCtaClick("word_export", testName)}
             >
               <Button className="bg-purple-600 hover:bg-purple-700">
