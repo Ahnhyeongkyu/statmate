@@ -364,23 +364,40 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 // --- Plain Language Preview (first sentence visible, rest blurred) ---
 
 function PlainLanguagePreview({ text }: { text: string }) {
-  const firstDot = text.indexOf(". ");
-  if (firstDot === -1) {
-    // Single sentence — show with gradient fade
+  // Show ~60% of sentences visible, blur the rest (conclusion)
+  const sentences = text.split(/(?<=\. )/);
+  if (sentences.length <= 2) {
+    // Short text — show first sentence, blur rest
+    const firstDot = text.indexOf(". ");
+    if (firstDot === -1) {
+      return (
+        <div className="relative">
+          <p className="mt-1 text-sm leading-relaxed text-gray-700">{text}</p>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
+        </div>
+      );
+    }
+    const visible = text.slice(0, firstDot + 1);
+    const blurred = text.slice(firstDot + 2);
     return (
       <div className="relative">
-        <p className="mt-1 text-sm leading-relaxed text-gray-700">{text}</p>
+        <p className="mt-1 text-sm leading-relaxed text-gray-700">
+          {visible}{" "}
+          <span className="select-none blur-[4px]">{blurred}</span>
+        </p>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
       </div>
     );
   }
-  const visible = text.slice(0, firstDot + 1);
-  const blurred = text.slice(firstDot + 2);
+  // Show 60% of sentences, blur the final conclusion
+  const visibleCount = Math.ceil(sentences.length * 0.6);
+  const visible = sentences.slice(0, visibleCount).join("");
+  const blurred = sentences.slice(visibleCount).join("");
   return (
     <div className="relative">
       <p className="mt-1 text-sm leading-relaxed text-gray-700">
-        {visible}{" "}
-        <span className="select-none blur-[4px]">{blurred}</span>
+        {visible}
+        {blurred && <span className="select-none blur-[4px]">{blurred}</span>}
       </p>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
     </div>
