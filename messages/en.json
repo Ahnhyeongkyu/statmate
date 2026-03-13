@@ -269,7 +269,7 @@
     "faqs": {
       "0": {
         "q": "Is StatMate really free?",
-        "a": "Yes! All 20 statistical calculators are completely free with no sign-up required. Pro features like AI interpretation and Word export are available for $9.99/month."
+        "a": "Yes! All 20 statistical calculators are completely free with no sign-up required. Pro features like AI interpretation and Word export are available for $5.99/month."
       },
       "1": {
         "q": "Is my data safe?",
@@ -1963,7 +1963,7 @@
     "features": {
       "price": {
         "label": "Price",
-        "statmate": "Free (Pro $9.99/mo)",
+        "statmate": "Free (Pro $5.99/mo)",
         "spss": "$99/mo (academic)",
         "r": "Free (open source)",
         "excel": "$6.99/mo (Microsoft 365)"

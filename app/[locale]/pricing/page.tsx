@@ -203,8 +203,6 @@ export default async function PricingPage() {
               {plan.external ? (
                 <a
                   href={plan.ctaHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="mt-6 block"
                 >
                   <Button
@@ -235,7 +233,7 @@ export default async function PricingPage() {
       </div>
 
       {/* Student Discount */}
-      <a href={CHECKOUT_URLS.studentPro} target="_blank" rel="noopener noreferrer" className="mt-4 block rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/30 dark:hover:bg-blue-950/50">
+      <a href={CHECKOUT_URLS.studentPro} className="mt-4 block rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/30 dark:hover:bg-blue-950/50">
         <p className="text-sm font-medium text-blue-700 dark:text-blue-300">{t("studentDiscount")}</p>
       </a>
 
@@ -305,7 +303,7 @@ export default async function PricingPage() {
       <section className="mt-20 w-full max-w-xl rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
         <h2 className="text-2xl font-bold">{t("ctaTitle")}</h2>
         <p className="mt-2 text-blue-100">{t("ctaDescription")}</p>
-        <a href={CHECKOUT_URLS.proMonthly} target="_blank" rel="noopener noreferrer">
+        <a href={CHECKOUT_URLS.proMonthly}>
           <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
             {t("ctaButton")}
           </Button>
