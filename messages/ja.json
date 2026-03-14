@@ -632,11 +632,11 @@
       },
       {
         "q": "学生割引はありますか？",
-        "a": "学生料金は近日中に導入予定です。現在は、無料AI解釈3回と従量課金（$2.99/エクスポート）をご利用いただけます。"
+        "a": "学生料金は近日中に導入予定です。現在は、無料AI解釈1回とお手頃なProプラン（$5.99/月）をご利用いただけます。"
       }
     ],
     "ctaTitle": "フォーマット作業の時間を節約しませんか？",
-    "ctaDescription": "無料AI解釈3回をお試しください。クレジットカードは不要です。",
+    "ctaDescription": "無料AI解釈1回をお試しください。クレジットカードは不要です。",
     "ctaButton": "無料トライアルを始める",
     "studentDiscount": "🎓 学生割引: .edu/.ac.jpメールで50%オフ — 月額$2.99または年額$29.99"
   },
@@ -804,9 +804,9 @@
     "checkoutSuccessTitle": "お支払い完了！",
     "checkoutSuccessDesc": "ライセンスキーをメールで送信しました。下に貼り付けてProを有効化してください。",
     "bannerTitle": "AI分析機能をアンロック",
-    "bannerDesc": "結果をわかりやすく解釈 + APA形式のWordテーブルにエクスポート",
+    "bannerDesc": "AIが結果をわかりやすく解釈してくれます",
     "bannerFeature1": "AI解釈",
-    "bannerFeature2": "Word出力",
+    "bannerFeature2": "APA文章生成",
     "bannerFeature3": "広告非表示",
     "bannerCta": "無料トライアル開始",
     "bannerPrice": "$5.99/月 · いつでも解約可能",
@@ -817,7 +817,7 @@
     "freeTrialButton": "✨ 無料でAI解釈を試す（残り{remaining}回）",
     "freeTrialHook": "あなたのデータをAIが分析 — 無料・登録不要",
     "freeTrialRemaining": "無料体験 {total}回中{remaining}回残り",
-    "freeTrialUsed": "無料AI解釈3回をすべて使用しました",
+    "freeTrialUsed": "無料AI解釈が使用されました",
     "freeTrialUsedDesc": "論文に必要な無制限AI分析を引き続きご利用ください。",
     "priceAnchor": "SPSSは月額$99。StatMate Proは月額$5.99。",
     "priceAnchorShort": "SPSS $99/月 → StatMate $5.99/月",

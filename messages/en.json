@@ -632,11 +632,11 @@
       },
       {
         "q": "Do you offer student discounts?",
-        "a": "We're planning student pricing soon. For now, the 3 free AI trials and pay-per-use option ($2.99/export) make it affordable for any student."
+        "a": "We're planning student pricing soon. For now, the free AI trial and affordable Pro plan ($5.99/mo) make it accessible for any student."
       }
     ],
     "ctaTitle": "Ready to save hours on formatting?",
-    "ctaDescription": "Try 3 free AI interpretations. No credit card required.",
+    "ctaDescription": "Try 1 free AI interpretation. No credit card required.",
     "ctaButton": "Start Free Trial",
     "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
   },
@@ -804,9 +804,9 @@
     "checkoutSuccessTitle": "Payment Successful!",
     "checkoutSuccessDesc": "Your license key has been sent to your email. Paste it below to activate Pro.",
     "bannerTitle": "Unlock AI-Powered Analysis",
-    "bannerDesc": "Get plain-language interpretation of your results + export as APA Word tables",
+    "bannerDesc": "Get plain-language interpretation of your results by AI",
     "bannerFeature1": "AI interpretation",
-    "bannerFeature2": "Word export",
+    "bannerFeature2": "APA sentences",
     "bannerFeature3": "No ads",
     "bannerCta": "Start Free Trial",
     "bannerPrice": "$5.99/mo · Cancel anytime",
@@ -817,7 +817,7 @@
     "freeTrialButton": "✨ Get Free AI Interpretation ({remaining} left)",
     "freeTrialHook": "See what AI finds in YOUR data — free, no signup",
     "freeTrialRemaining": "{remaining} of {total} free trials remaining",
-    "freeTrialUsed": "Your 3 free AI interpretations are used",
+    "freeTrialUsed": "Your free AI interpretation has been used",
     "freeTrialUsedDesc": "Continue with unlimited AI analysis for all your research papers.",
     "priceAnchor": "SPSS costs $99/mo. StatMate Pro is $5.99/mo.",
     "priceAnchorShort": "SPSS $99/mo → StatMate $5.99/mo",
