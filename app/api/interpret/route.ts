@@ -5,7 +5,7 @@ const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
 
 // In-memory rate limit for free trial (IP -> { count, firstUsed })
-const FREE_TRIAL_MAX = 3;
+const FREE_TRIAL_MAX = 1;
 const freeTrialUsage = new Map<string, { count: number; firstUsed: number }>();
 
 // Clean up old entries every hour

@@ -10,7 +10,7 @@ import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- Free Trial Helpers ---
 
-const FREE_TRIAL_MAX = 3;
+const FREE_TRIAL_MAX = 1;
 
 function getTrialCount(): number {
   if (typeof window === "undefined") return FREE_TRIAL_MAX;
@@ -412,68 +412,17 @@ interface ExportButtonProps {
 }
 
 export function ExportButton({ onExport, testName }: ExportButtonProps) {
-  const isPro = useIsPro();
   const t = useTranslations("pro");
   const [exporting, setExporting] = useState(false);
 
   async function handleExport() {
-    if (!isPro) return;
     setExporting(true);
     try {
-      // Server-side license verification before export
-      let licenseKey = "";
-      try {
-        const stored = localStorage.getItem("statmate_pro");
-        if (stored) licenseKey = JSON.parse(stored).licenseKey || "";
-      } catch { /* ignore */ }
-
-      const verifyRes = await fetch("/api/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ licenseKey }),
-      });
-      const verifyData = await verifyRes.json();
-      if (!verifyData.valid) {
-        localStorage.removeItem("statmate_pro");
-        window.location.reload();
-        return;
-      }
-
       await onExport();
       trackWordExport(testName);
     } finally {
       setExporting(false);
     }
-  }
-
-  if (!isPro) {
-    return (
-      <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
-        <CardContent className="py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-semibold text-purple-900">
-                {t("exportCtaTitle")}
-              </p>
-              <p className="text-sm text-purple-700">
-                {t("exportCtaSubtitle")}
-              </p>
-            </div>
-            <a
-              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
-              onClick={() => trackProCtaClick("word_export", testName)}
-            >
-              <Button className="bg-purple-600 hover:bg-purple-700">
-                {t("exportCtaButton")}
-              </Button>
-            </a>
-          </div>
-          <p className="mt-2 text-[10px] text-gray-400">
-            {t("priceAnchorShort")}
-          </p>
-        </CardContent>
-      </Card>
-    );
   }
 
   return (
