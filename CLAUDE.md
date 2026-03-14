@@ -240,106 +240,43 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 
 ---
 
-## Marketing Progress (2026-02-24 기준)
+## Marketing Progress (2026-03-13 기준)
 
-마케팅 파일: `marketing/` 디렉토리 (14개 파일), 런치 가이드: `marketing/14-launch-guide.txt`
+마케팅 파일: `marketing/` 디렉토리 (16개 파일)
 
-### 완료된 항목
+### 완료된 마케팅 채널 — 전부 소진
 
-| 채널 | 파일 | 상태 | 비고 |
-|------|------|------|------|
-| Hacker News (Show HN) | 9-hackernews.txt | ✅ 완료 | 이전 세션에서 게시 |
-| AlternativeTo | 12-directories.txt §1 | ✅ 완료 | SPSS/GraphPad/JASP 대안으로 등록 |
-| SaaSHub | 12-directories.txt §2 | ✅ 완료 | |
-| SideProjectors | 12-directories.txt §7 | ✅ 완료 | 리뷰 대기 중 (2-3 영업일) |
-| 김박사넷 | 4-kimbaksanet.txt | ✅ 완료 | phdkim.net/board/free/77519 |
-| Twitter/X Thread 1 (런치) | 11-twitter-threads.txt | ✅ 완료 | 5트윗 스레드 게시 완료 |
-| Twitter/X Thread 2 (문제/해결) | 11-twitter-threads.txt | ✅ 완료 | 4트윗 스레드 게시 완료 |
-| LinkedIn 포스트 | 직접 작성 | ✅ 완료 | "I built..." 스토리 + 첫 댓글에 링크 |
-| Threads | 직접 작성 | ✅ 완료 | @houng8087, OG 카드 포함 |
-| 네이버 블로그 1 | 6-naver-blog-1.txt | ✅ 완료 | blog.naver.com/houng8087/224192215089, t-test APA 보고법 |
-| 네이버 블로그 2 | 7-naver-blog-2.txt | ✅ 완료 | blog.naver.com/houng8087/224192240263, 무료 통계 프로그램 추천 |
-| 네이버 블로그 3 | 8-naver-blog-3.txt | ✅ 완료 | blog.naver.com/houng8087/224192243754, ANOVA APA 가이드 |
-| Launching Next | — | ✅ 완료 | ID: 126506, 무료 리뷰 대기 (최대 4개월) |
-| Uneed | — | ✅ 완료 | uneed.best/tool/statmate, 로고만 추가 필요 |
-| OpenAlternative | — | ✅ 완료 | SPSS/GraphPad/JASP 대안으로 제출, GitHub 연결 |
-| DevHunt | — | ⚠️ 부분 | 프로필+기본정보 입력 완료, 스크린샷 3장+런치 주 선택 필요 |
-| Fazier | — | ⚠️ 보류 | 댓글 3개+링크 입력 완료, 배지 임베드 필요 (fazier.com/launch) |
-| Quora 답변 18개 | — | ✅ 완료 | SPSS 대안 3건 + 통계 주제별 15건 답변 (chi-square/sample-size/correlation/ANOVA APA/Cronbach's alpha/logistic regression/EFA vs CFA/t-test vs Mann-Whitney/multiple regression/repeated measures ANOVA/two-way ANOVA/Kruskal-Wallis/power analysis/one-sample vs independent vs paired t-test) |
-| Twitter/X Thread 3 (기술) | 11-twitter-threads.txt | ✅ 완료 | 4트윗 기술 스레드 게시 완료 |
-| Facebook 그룹 5곳 | — | ✅ 완료 | Statistics Expert(10.1만), Statistics Help(1.4만), Statistics help class(7.4천), Statistics and Probability(4.2만), Statistics and Econometrics Experts(2.3만) |
-| Dev.to 기술 블로그 | — | ✅ 완료 | dev.to/ahnhyeongkyu/...-4ic6, #nextjs #javascript #webdev #opensource |
-| Medium 블로그 | — | ✅ 완료 | medium.com/p/e104c6cc5564, "5 Free SPSS Alternatives..." #Statistics #DataScience #Research |
-| Hashnode 블로그 | — | ✅ 완료 | statmate.hashnode.dev/free-apa-statistics-calculator-nextjs, "How I Built..." #NextJs #JavaScript #WebDev #OpenSource |
-| HackerNoon 블로그 | — | ✅ 완료 | "Why I Built a Free Statistics Calculator That Formats Results in APA Style" 에디터 리뷰 제출 완료 |
+| 카테고리 | 채널 | 상태 |
+|---------|------|------|
+| **디렉토리 (25+)** | AlternativeTo, SaaSHub, SideProjectors, Launching Next, Uneed, OpenAlternative, DevHunt, Fazier, FinancesOnline, Tiny Startups 등 | ✅ 전부 완료 |
+| **Product Hunt** | 2026-03-11 런치 완료 | ✅ 완료 |
+| **Quora** | 24개 답변, 20개 계산기 전부 백링크 | ✅ 완료 |
+| **Facebook** | 28개 그룹 게시 (47개 가입) | ✅ 완료 |
+| **블로그** | Dev.to, Medium, Hashnode, HackerNoon, 네이버 3개 | ✅ 완료 |
+| **SNS** | Twitter 3스레드, LinkedIn, Threads | ✅ 완료 |
+| **커뮤니티** | Hacker News (Show HN), 김박사넷, 에브리타임 | ✅ 완료 |
+| **SEO** | 블로그 25개 확장, 메타 태그 최적화 2차, GSC 재색인 전부 | ✅ 완료 |
 
 ### 유료/접근불가로 스킵
 
-| 채널 | 파일 | 상태 | 비고 |
-|------|------|------|------|
-| BetaList | 12-directories.txt §5 | ❌ 스킵 | $39~$999 유료만 가능 |
-| Toolify.ai | 12-directories.txt §3 | ❌ 스킵 | $99 유료만 가능 |
-| There's An AI For That | 12-directories.txt §4 | ❌ 스킵 | $49~$347 유료만 가능 |
-| StartupBase | 12-directories.txt §6 | ❌ 스킵 | 가입 중단 상태 (리노베이션) |
-| MicroLaunch | 12-directories.txt §8 | ❌ 스킵 | 대기열 마감 |
-| Indie Hackers | 10-indiehackers.txt | ❌ 스킵 | 신규 계정 포스팅 권한 없음 (커뮤니티 참여 또는 Plus 구독 필요) |
-| ResearchGate | 13-academic-outreach.txt §1 | ❌ 스킵 | 기관 이메일(.edu/.ac.kr) 필요, Gmail 불가 |
-| Academia.edu | 13-academic-outreach.txt §2 | ❌ 스킵 | 기관 이메일 필요 (ResearchGate와 동일) |
-| SaasHunt | — | ❌ 스킵 | 서버 다운 (522 Connection Timed Out) |
-| Tiny Startups | — | ⚠️ 보류 | 폼 작성 완료, 로고+스크린샷 업로드 필요 (tally.so/r/npZLWP) |
-| ToolPilot.ai | — | ❌ 스킵 | /submit 페이지 404 Not Found |
-| 1000.tools | — | ❌ 스킵 | /submit 페이지 404 Not Found |
-| Peerlist | — | ❌ 스킵 | 계정 생성 필요 (peerlist.io/launchpad) |
+BetaList ($39+), Toolify.ai ($99), There's An AI For That ($49+), StartupBase (리노베이션), MicroLaunch (마감), Indie Hackers (권한 없음), ResearchGate/Academia.edu (기관 이메일 필요), SaasHunt (서버 다운), ToolPilot.ai/1000.tools (404), Peerlist (계정 필요)
 
-### 🔴 다음 세션 시작점 (2026-02-24 기준)
+### 🔴 남은 작업 (2026-03-13 기준)
 
 핵심 지시: "계속진행하자. 유입이 최대한 되어야돼. 빨리 돈을 벌어야돼"
 
-**바로 이어서 할 작업 (Claude가 브라우저로 직접 가능):**
+**템플릿 작성 완료, 발송만 남음:**
 
-1. **Quora 추가 답변** — 18개 완료. 아직 안 다룬 계산기: descriptive stats, simple regression, McNemar, Friedman, Wilcoxon (Quora에 관련 질문 적음 — 다른 키워드로 재검색 필요)
-2. **Hashnode 마크다운 수정** — statmate.hashnode.dev 글 렌더링 이슈 있음. 탭 열려있음: tabId 1002629404 (hashnode.com/edit/...)
-3. **Facebook 추가 그룹** — 통계/연구방법론 관련 그룹 더 찾아서 가입+게시
-4. **Fazier 배지 임베드** — footer에 Fazier 배지 코드 추가 → git commit → Vercel 배포 → fazier.com에서 제출 완료
+1. **뉴스레터 피칭 5건** — marketing/15-newsletter-pitches.txt (Console.dev, TLDR, Ben's Bites, The Neuron, Hacker Newsletter)
+2. **대학 도서관 이메일 20곳** — marketing/16-outreach-targets.txt
+3. **교수님 이메일 30명** — marketing/16-outreach-targets.txt
 
-**사용자가 직접 해야 할 작업:**
+**전환율 개선 (핵심 과제):**
 
-5. **에브리타임** — 모바일 앱에서 자유게시판 글쓰기 (marketing/3-everytime.txt 참조)
-6. **DevHunt 완료** — 스크린샷 3장 업로드 + 런치 주 선택 필요
-7. **Tiny Startups 완료** — 로고+스크린샷 업로드 필요 (tally.so/r/npZLWP)
-8. **Product Hunt** — 화~목 런치 권장. 로고/스크린샷/Maker 코멘트 준비 필요
-
-**장기 작업:**
-
-9. **뉴스레터 피칭** — Console.dev, TLDR, Ben's Bites, The Neuron, Hacker Newsletter
-10. **대학 도서관 이메일** — 영어 템플릿, 목표 20개 대학 (13-academic-outreach.txt §3)
-11. **교수님 이메일** — 한국어 템플릿, 목표 30명 (13-academic-outreach.txt §4)
-12. **블로그 SEO 추가** — 추가 키워드 타겟 포스트
+4. **GA4 퍼널 데이터 분석** — free_trial_exhausted, pro_cta_click 이벤트 분석으로 병목 식별
+5. **전환 UX 개선** — 471 WAU, 362 AI 프리뷰 노출 → 전환 0건 문제 해결
 
 **❌ 절대 금지:** Reddit 전체 — 계정 BANNED
-
-### Quora 답변 상세 (18개, 커버된 계산기)
-
-| # | 질문 키워드 | 타겟 계산기 URL |
-|---|-----------|---------------|
-| 1-3 | SPSS alternatives (3건) | 일반 statmate.org |
-| 4 | two-sample t-test | /calculators/t-test |
-| 5 | chi-square independence | /calculators/chi-square |
-| 6 | sample size determination | /calculators/sample-size |
-| 7 | Pearson correlation | /calculators/correlation |
-| 8 | ANOVA APA reporting | /calculators/anova |
-| 9 | Cronbach's alpha | /calculators/cronbach-alpha |
-| 10 | logistic regression odds ratio | /calculators/logistic-regression |
-| 11 | EFA vs CFA | /calculators/factor-analysis |
-| 12 | t-test vs Mann-Whitney | /calculators/t-test + /calculators/mann-whitney |
-| 13 | multiple regression dummy vars | /calculators/multiple-regression |
-| 14 | repeated measures ANOVA interpret | /calculators/repeated-measures |
-| 15 | two-way ANOVA no interaction | /calculators/two-way-anova |
-| 16 | Kruskal-Wallis interpret | /calculators/kruskal-wallis |
-| 17 | power analysis sample size | /calculators/sample-size |
-| 18 | one-sample vs independent vs paired t-test | /calculators/one-sample-t + /calculators/t-test |
-
-**아직 미커버 계산기:** descriptive, regression (simple), wilcoxon, friedman, fisher-exact, mcnemar
 
 ### 계정 정보
 
@@ -360,21 +297,11 @@ npm run build  # Turbopack, generates 60+ static + dynamic pages
 
 ## Recently Completed
 
-- [x] Quora 답변 #14~#18 — repeated measures ANOVA, two-way ANOVA interaction, Kruskal-Wallis interpretation, power analysis/sample size, one-sample vs independent vs paired t-test (2026-02-24)
-- [x] HackerNoon 블로그 제출 — "Why I Built a Free Statistics Calculator That Formats Results in APA Style" 에디터 리뷰 제출 (2026-02-24)
-- [x] Quora 답변 #5~#13 — chi-square, sample size, correlation, ANOVA APA, Cronbach's alpha, logistic regression OR, EFA vs CFA, t-test vs Mann-Whitney, multiple regression dummy vars (2026-02-24)
-- [x] Hashnode 블로그 게시 — "How I Built a Free APA Statistics Calculator With Next.js and Zero Dependencies" (statmate.hashnode.dev) (2026-02-24)
-- [x] Medium 블로그 게시 — "5 Free SPSS Alternatives That Actually Work for Academic Research" (medium.com/p/e104c6cc5564) (2026-02-23)
-- [x] Dev.to 기술 블로그 게시 — "I Built a Free Statistics Calculator with Next.js" (dev.to/ahnhyeongkyu) (2026-02-23)
-- [x] Facebook 그룹 5곳 게시 — Statistics Expert(10.1만), Statistics Help(1.4만), Statistics help class(7.4천) (2026-02-23) + Statistics and Probability(4.2만), Statistics and Econometrics Experts(2.3만) (2026-02-24)
-- [x] Quora 답변 3개 게시 — SPSS 대안 질문 3건 답변, statmate.org 백링크 (2026-02-23)
-- [x] Fazier 댓글+링크 완료 — 3개 댓글+프로덕트 링크 입력, 배지 임베드 후 제출 가능 (2026-02-23)
-- [x] Twitter/X Thread 1 게시 — 5트윗 런치 스레드 @an_hyoung (2026-02-22)
-- [x] Twitter/X Thread 2 게시 — 4트윗 문제/해결 스레드 @an_hyoung (2026-02-22)
-- [x] Twitter/X Thread 3 게시 — 4트윗 기술 스레드 @an_hyoung 게시 완료 (2026-02-23)
-- [x] 네이버 블로그 3개 게시 — t-test APA, 무료 통계 프로그램, ANOVA APA 가이드 (2026-02-23)
-- [x] LinkedIn 포스트 + 첫 댓글 — "I built..." 스토리, 댓글에 statmate.org 링크 (2026-02-22)
-- [x] Threads 게시 — @houng8087, OG 카드 포함 (2026-02-23)
-- [x] 마케팅 디렉토리 등록 — AlternativeTo, SaaSHub, SideProjectors 완료 (2026-02-22)
-- [x] 김박사넷 게시 — 자유게시판 정보공유 글 (phdkim.net/board/free/77519) (2026-02-22)
-- [x] (이전 세션) 개발 완료 — Sprint 1~4 전체, 20개 계산기, i18n 3개국어, SEO, pSEO, 다크모드, PWA, Supabase, 가격최적화 등 (상세: 위 Sprint 섹션 참조)
+- [x] GA4 전환 퍼널 이벤트 강화 + 뉴스레터/아웃리치 템플릿 작성 + GSC 재색인 4개 (2026-03-13)
+- [x] 무료 체험 3회 확장 + CTA 문구 수정 (2026-03-13)
+- [x] GSC 키워드 기반 메타 태그 최적화 2차 — 6개 블로그 × 3개 언어 (2026-03-12)
+- [x] Product Hunt 런치 (2026-03-11)
+- [x] /ja/ 로케일 버그 수정 + GSC 재색인 23개 (2026-03-11)
+- [x] 블로그 25개 전체 확장 완료 (2026-03-07~09)
+- [x] AdSense 광고 단위 수정 + 블로그 광고 추가 (2026-03-05)
+- [x] 무료 마케팅 채널 전부 소진: 디렉토리 25+, Facebook 28그룹, Quora 24답변, 블로그 7개, SNS 5채널 (2026-02~03)

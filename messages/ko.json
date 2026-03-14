@@ -801,6 +801,8 @@
     "activatedSuccess": "Pro가 활성화되었습니다!",
     "reloading": "새로고침 중...",
     "networkError": "네트워크 오류입니다. 다시 시도해주세요.",
+    "checkoutSuccessTitle": "결제 완료!",
+    "checkoutSuccessDesc": "라이선스 키가 이메일로 발송되었습니다. 아래에 붙여넣어 Pro를 활성화하세요.",
     "bannerTitle": "AI 분석 기능 잠금 해제",
     "bannerDesc": "결과를 쉬운 말로 해석 + APA Word 테이블로 내보내기",
     "bannerFeature1": "AI 해석",

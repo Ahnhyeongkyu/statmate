@@ -71,9 +71,11 @@ export function deactivatePro() {
 export function ActivateProModal({
   open,
   onClose,
+  postCheckout,
 }: {
   open: boolean;
   onClose: () => void;
+  postCheckout?: boolean;
 }) {
   const t = useTranslations("pro");
   const [key, setKey] = useState("");
@@ -143,9 +145,21 @@ export function ActivateProModal({
             </div>
           ) : (
             <>
-              <p className="text-sm text-gray-500">
-                {t("activateDescription")}
-              </p>
+              {postCheckout && (
+                <div className="rounded-md bg-blue-50 p-4 mb-2">
+                  <p className="font-semibold text-blue-800">
+                    {t("checkoutSuccessTitle")}
+                  </p>
+                  <p className="mt-1 text-sm text-blue-600">
+                    {t("checkoutSuccessDesc")}
+                  </p>
+                </div>
+              )}
+              {!postCheckout && (
+                <p className="text-sm text-gray-500">
+                  {t("activateDescription")}
+                </p>
+              )}
               <input
                 type="text"
                 placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"

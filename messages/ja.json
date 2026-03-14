@@ -801,6 +801,8 @@
     "activatedSuccess": "Proの有効化に成功しました！",
     "reloading": "リロード中...",
     "networkError": "ネットワークエラーです。もう一度お試しください。",
+    "checkoutSuccessTitle": "お支払い完了！",
+    "checkoutSuccessDesc": "ライセンスキーをメールで送信しました。下に貼り付けてProを有効化してください。",
     "bannerTitle": "AI分析機能をアンロック",
     "bannerDesc": "結果をわかりやすく解釈 + APA形式のWordテーブルにエクスポート",
     "bannerFeature1": "AI解釈",

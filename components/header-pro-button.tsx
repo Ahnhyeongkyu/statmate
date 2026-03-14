@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useIsPro, ActivateProModal, deactivatePro } from "@/components/activate-pro";
@@ -9,7 +9,18 @@ import { trackProCtaClick } from "@/lib/analytics";
 export function HeaderProButton() {
   const isPro = useIsPro();
   const [showActivate, setShowActivate] = useState(false);
+  const [checkoutSuccess, setCheckoutSuccess] = useState(false);
   const t = useTranslations("layout");
+
+  // Auto-open activation modal after Lemon Squeezy checkout success
+  useEffect(() => {
+    function handleCheckoutSuccess() {
+      setCheckoutSuccess(true);
+      setShowActivate(true);
+    }
+    window.addEventListener("lemon:checkout-success", handleCheckoutSuccess);
+    return () => window.removeEventListener("lemon:checkout-success", handleCheckoutSuccess);
+  }, []);
 
   if (isPro) {
     return (
@@ -57,7 +68,11 @@ export function HeaderProButton() {
 
       <ActivateProModal
         open={showActivate}
-        onClose={() => setShowActivate(false)}
+        onClose={() => {
+          setShowActivate(false);
+          setCheckoutSuccess(false);
+        }}
+        postCheckout={checkoutSuccess}
       />
     </>
   );

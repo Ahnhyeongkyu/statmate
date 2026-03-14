@@ -801,6 +801,8 @@
     "activatedSuccess": "Pro activated successfully!",
     "reloading": "Reloading...",
     "networkError": "Network error. Please try again.",
+    "checkoutSuccessTitle": "Payment Successful!",
+    "checkoutSuccessDesc": "Your license key has been sent to your email. Paste it below to activate Pro.",
     "bannerTitle": "Unlock AI-Powered Analysis",
     "bannerDesc": "Get plain-language interpretation of your results + export as APA Word tables",
     "bannerFeature1": "AI interpretation",
