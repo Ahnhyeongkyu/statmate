@@ -132,14 +132,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   if (!isPro) {
     return (
     <>
-      <Card className="overflow-hidden border-purple-200">
+      <Card className="overflow-hidden border-blue-200 dark:border-blue-900">
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-base text-purple-900">
-            <span className="flex h-5 w-5 items-center justify-center rounded bg-purple-600 text-[10px] font-bold text-white">
+          <CardTitle className="flex items-center gap-2 text-base text-gray-900 dark:text-white">
+            <span className="flex h-5 w-5 items-center justify-center rounded-md bg-blue-600 text-[10px] font-bold text-white">
               AI
             </span>
             {t("aiTitle")}
-            <span className="rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-semibold text-purple-700">
+            <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-semibold text-blue-700 dark:bg-blue-900 dark:text-blue-300">
               PRO
             </span>
           </CardTitle>
@@ -149,21 +149,21 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           {data ? (
             <div className="space-y-4 text-sm">
               <div>
-                <p className="font-semibold text-purple-900">{t("paperReady")}</p>
+                <p className="font-semibold text-gray-900 dark:text-white">{t("paperReady")}</p>
                 <p className="mt-1 leading-relaxed text-gray-800">{data.paperReady}</p>
                 <button
                   onClick={() => navigator.clipboard.writeText(data.paperReady)}
-                  className="mt-1 text-xs text-purple-600 hover:text-purple-800"
+                  className="mt-1 text-xs text-blue-600 hover:text-blue-800"
                 >
                   {t("copy")}
                 </button>
               </div>
               <div>
-                <p className="font-semibold text-purple-900">{t("plainLanguage")}</p>
+                <p className="font-semibold text-gray-900 dark:text-white">{t("plainLanguage")}</p>
                 <p className="mt-1 leading-relaxed text-gray-700">{data.interpretation}</p>
               </div>
               <div>
-                <p className="font-semibold text-purple-900">{t("caveats")}</p>
+                <p className="font-semibold text-gray-900 dark:text-white">{t("caveats")}</p>
                 <p className="mt-1 leading-relaxed text-gray-600">{data.caveats}</p>
               </div>
               {/* Post-trial: show remaining trials or upgrade CTA */}
@@ -174,8 +174,8 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   </p>
                 </div>
               ) : (
-                <div className="rounded-lg border border-purple-200 bg-gradient-to-b from-purple-50 to-blue-50 p-5 text-center dark:from-purple-950/20 dark:to-blue-950/20">
-                  <p className="text-sm font-semibold text-purple-900 dark:text-purple-200">
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 text-center dark:border-blue-800 dark:bg-blue-950/20">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-200">
                     {t("freeTrialUsedDesc")}
                   </p>
                   <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
@@ -186,14 +186,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                     >
-                      <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
+                      <Button className="w-full bg-blue-600 font-semibold hover:bg-blue-700">
                         {t("ctaButtonAnnual")}
                       </Button>
                     </a>
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
-                      className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
+                      className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
                       {t("ctaButton")}
                     </a>
@@ -227,14 +227,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 
               {/* Free trial available: show trial button */}
               {trialRemaining > 0 ? (
-                <div className="rounded-lg border-2 border-green-300 bg-green-50 p-4 text-center dark:border-green-700 dark:bg-green-950/20">
-                  <p className="mb-2 text-xs font-medium text-green-700 dark:text-green-300">
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 text-center dark:border-blue-800 dark:bg-blue-950/20">
+                  <p className="mb-2 text-xs font-medium text-gray-600 dark:text-gray-300">
                     {t("freeTrialHook")}
                   </p>
                   <Button
                     onClick={() => handleInterpret(true)}
                     disabled={loading}
-                    className="w-full animate-pulse bg-green-600 text-base font-semibold hover:bg-green-700"
+                    className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700"
                   >
                     {loading ? t("analyzing") : t("freeTrialButton", { remaining: trialRemaining })}
                   </Button>
@@ -244,11 +244,11 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                 </div>
               ) : (
                 /* Free trial used: show upgrade CTA with price anchoring */
-                <div className="rounded-lg border border-purple-200 bg-gradient-to-b from-purple-50 to-blue-50 p-5 text-center dark:from-purple-950/20 dark:to-blue-950/20">
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 text-center dark:border-blue-800 dark:bg-blue-950/20">
                   <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
                     {t("freeTrialUsed")}
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-purple-900 dark:text-purple-200">
+                  <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-200">
                     {t("freeTrialUsedDesc")}
                   </p>
                   <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
@@ -259,14 +259,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                     >
-                      <Button className="w-full bg-purple-600 font-semibold hover:bg-purple-700">
+                      <Button className="w-full bg-blue-600 font-semibold hover:bg-blue-700">
                         {t("ctaButtonAnnual")}
                       </Button>
                     </a>
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
-                      className="text-xs text-purple-600 underline hover:text-purple-800 dark:text-purple-400"
+                      className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
                       {t("ctaButton")}
                     </a>
@@ -289,10 +289,10 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   if (!data) {
     return (
     <>
-      <Card className="border-purple-200">
+      <Card className="border-blue-200 dark:border-blue-900">
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-base text-purple-900">
-            <span className="flex h-5 w-5 items-center justify-center rounded bg-purple-600 text-[10px] font-bold text-white">
+          <CardTitle className="flex items-center gap-2 text-base text-gray-900 dark:text-white">
+            <span className="flex h-5 w-5 items-center justify-center rounded bg-blue-600 text-[10px] font-bold text-white">
               AI
             </span>
             {t("aiTitle")}
@@ -305,7 +305,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           <Button
             onClick={() => handleInterpret()}
             disabled={loading}
-            className="w-full bg-purple-600 hover:bg-purple-700"
+            className="w-full bg-blue-600 hover:bg-blue-700"
           >
             {loading ? t("analyzing") : t("generateAI")}
           </Button>
@@ -318,10 +318,10 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 
   return (
   <>
-    <Card className="border-purple-200 bg-purple-50">
+    <Card className="border-blue-200 dark:border-blue-900 bg-blue-50">
       <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-base text-purple-900">
-          <span className="flex h-5 w-5 items-center justify-center rounded bg-purple-600 text-[10px] font-bold text-white">
+        <CardTitle className="flex items-center gap-2 text-base text-gray-900 dark:text-white">
+          <span className="flex h-5 w-5 items-center justify-center rounded bg-blue-600 text-[10px] font-bold text-white">
             AI
           </span>
           {t("aiTitle")}
@@ -329,7 +329,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
       </CardHeader>
       <CardContent className="space-y-4 text-sm">
         <div>
-          <p className="font-semibold text-purple-900">
+          <p className="font-semibold text-gray-900 dark:text-white">
             {t("paperReady")}
           </p>
           <p className="mt-1 leading-relaxed text-gray-800">
@@ -337,13 +337,13 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           </p>
           <button
             onClick={() => navigator.clipboard.writeText(data.paperReady)}
-            className="mt-1 text-xs text-purple-600 hover:text-purple-800"
+            className="mt-1 text-xs text-blue-600 hover:text-blue-800"
           >
             {t("copy")}
           </button>
         </div>
         <div>
-          <p className="font-semibold text-purple-900">
+          <p className="font-semibold text-gray-900 dark:text-white">
             {t("plainLanguage")}
           </p>
           <p className="mt-1 leading-relaxed text-gray-700">
@@ -351,7 +351,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
           </p>
         </div>
         <div>
-          <p className="font-semibold text-purple-900">{t("caveats")}</p>
+          <p className="font-semibold text-gray-900 dark:text-white">{t("caveats")}</p>
           <p className="mt-1 leading-relaxed text-gray-600">{data.caveats}</p>
         </div>
       </CardContent>

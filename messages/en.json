@@ -529,7 +529,7 @@
     "badge": "Pricing",
     "headline": "Start Free.",
     "headlineHighlight": "Go Pro When You Need It.",
-    "subheadline": "All calculators are free forever. Upgrade to Pro for APA Word export, AI-powered interpretation, and publication-ready results.",
+    "subheadline": "All calculators and Word export are free forever. Upgrade to Pro for AI-powered interpretation and publication-ready results.",
     "plans": {
       "free": {
         "name": "Free",
@@ -553,11 +553,11 @@
         "cta": "Get Pro — $5.99/mo",
         "features": [
           "Everything in Free",
-          "APA Word export (unlimited)",
-          "AI result interpretation (EN/KR)",
+          "Unlimited AI interpretation",
+          "Publication-ready APA sentences",
           "Ad-free experience",
           "Priority email support",
-          "Publication-ready sentences"
+          "Analysis history saving"
         ]
       },
       "proAnnual": {
