@@ -574,7 +574,8 @@
       }
     },
     "mostPopular": "인기",
-    "payPerUse": "몇 번만 필요하세요? 5회 $4.99, 15회 $9.99, 50회 $24.99로 이용하세요.",
+    "payPerUse": "구독이 부담되세요? AI 크레딧 구매: 5회 $4.99, 15회 $9.99, 50회 $24.99.",
+    "payPerUseButton": "크레딧 구매",
     "comparisonTitle": "기능 비교",
     "featureLabel": "기능",
     "freeLabel": "무료",
@@ -823,6 +824,7 @@
     "freeTrialUsedDesc": "논문 작성에 필요한 무제한 AI 분석을 계속 이용하세요.",
     "priceAnchor": "SPSS는 월 $99. StatMate Pro는 월 $5.99.",
     "priceAnchorShort": "SPSS $99/월 → StatMate $5.99/월",
+    "orCredits": "또는 $4.99부터 크레딧 구매 (구독 없음)",
     "socialProof": "SPSS $99/월 → StatMate $5.99/월 — 94% 절약",
     "exportCtaTitle": "APA Word 표로 내보내기",
     "exportCtaSubtitle": "완벽한 서식의 .docx — 논문에 바로 사용",

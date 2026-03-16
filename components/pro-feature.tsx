@@ -219,7 +219,13 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       {t("ctaButton")}
                     </a>
                   </div>
-                  <p className="mt-3 text-[10px] text-gray-400 dark:text-gray-500">
+                  <a
+                    href="/pricing"
+                    className="mt-2 block text-xs text-gray-500 underline hover:text-gray-700 dark:text-gray-400"
+                  >
+                    {t("orCredits")}
+                  </a>
+                  <p className="mt-2 text-[10px] text-gray-400 dark:text-gray-500">
                     {t("socialProof")}
                   </p>
                 </div>
@@ -292,7 +298,13 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       {t("ctaButton")}
                     </a>
                   </div>
-                  <p className="mt-3 text-[10px] text-gray-400 dark:text-gray-500">
+                  <a
+                    href="/pricing"
+                    className="mt-2 block text-xs text-gray-500 underline hover:text-gray-700 dark:text-gray-400"
+                  >
+                    {t("orCredits")}
+                  </a>
+                  <p className="mt-2 text-[10px] text-gray-400 dark:text-gray-500">
                     {t("socialProof")}
                   </p>
                 </div>

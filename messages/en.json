@@ -574,7 +574,8 @@
       }
     },
     "mostPopular": "Most Popular",
-    "payPerUse": "Need just a few exports? Get 5 exports for $4.99, 15 for $9.99, or 50 for $24.99.",
+    "payPerUse": "Don't need a subscription? Buy AI credits: 5 for $4.99, 15 for $9.99, or 50 for $24.99.",
+    "payPerUseButton": "Buy Credits",
     "comparisonTitle": "Feature Comparison",
     "featureLabel": "Feature",
     "freeLabel": "Free",
@@ -823,6 +824,7 @@
     "freeTrialUsedDesc": "Continue with unlimited AI analysis for all your research papers.",
     "priceAnchor": "SPSS costs $99/mo. StatMate Pro is $5.99/mo.",
     "priceAnchorShort": "SPSS $99/mo → StatMate $5.99/mo",
+    "orCredits": "or buy credits from $4.99 (no subscription)",
     "socialProof": "SPSS $99/mo → StatMate $5.99/mo — save 94%",
     "exportCtaTitle": "Export as APA Word Table",
     "exportCtaSubtitle": "Perfectly formatted .docx — ready for your paper",

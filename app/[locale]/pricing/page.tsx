@@ -228,8 +228,13 @@ export default async function PricingPage() {
       </div>
 
       {/* Pay-per-use */}
-      <div className="mt-8 rounded-lg border bg-gray-50 px-6 py-4 text-center dark:border-gray-700 dark:bg-gray-800">
-        <p className="text-sm text-gray-600 dark:text-gray-400">{t("payPerUse")}</p>
+      <div className="mt-8 flex w-full max-w-5xl items-center justify-between rounded-lg border border-amber-200 bg-amber-50 px-6 py-4 dark:border-amber-800 dark:bg-amber-950/20">
+        <p className="text-sm text-gray-700 dark:text-gray-300">{t("payPerUse")}</p>
+        <a href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1">
+          <Button variant="outline" className="ml-4 shrink-0 border-amber-300 text-amber-700 hover:bg-amber-100 dark:border-amber-700 dark:text-amber-300">
+            {t("payPerUseButton")}
+          </Button>
+        </a>
       </div>
 
       {/* Student Discount */}

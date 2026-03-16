@@ -574,7 +574,8 @@
       }
     },
     "mostPopular": "人気No.1",
-    "payPerUse": "数回だけ必要ですか？5回$4.99、15回$9.99、50回$24.99でご利用いただけます。",
+    "payPerUse": "サブスクリプション不要？AIクレジット購入：5回$4.99、15回$9.99、50回$24.99。",
+    "payPerUseButton": "クレジット購入",
     "comparisonTitle": "機能比較",
     "featureLabel": "機能",
     "freeLabel": "無料",
@@ -823,6 +824,7 @@
     "freeTrialUsedDesc": "論文に必要な無制限AI分析を引き続きご利用ください。",
     "priceAnchor": "SPSSは月額$99。StatMate Proは月額$5.99。",
     "priceAnchorShort": "SPSS $99/月 → StatMate $5.99/月",
+    "orCredits": "または$4.99からクレジット購入（サブスク不要）",
     "socialProof": "SPSS $99/月 → StatMate $5.99/月 — 94%節約",
     "exportCtaTitle": "APA形式のWord表にエクスポート",
     "exportCtaSubtitle": "完璧なフォーマットの.docx — 論文にそのまま使用可能",
