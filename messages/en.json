@@ -636,7 +636,7 @@
       }
     ],
     "ctaTitle": "Ready to save hours on formatting?",
-    "ctaDescription": "Try 1 free AI interpretation. No credit card required.",
+    "ctaDescription": "Try 3 free AI interpretations across different calculators. No credit card required.",
     "ctaButton": "Start Free Trial",
     "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
   },
@@ -816,8 +816,10 @@
     "ctaButtonAnnual": "Annual — $4.99/mo (save 30%)",
     "freeTrialButton": "✨ Get Free AI Interpretation ({remaining} left)",
     "freeTrialHook": "See what AI finds in YOUR data — free, no signup",
+    "freeTrialUsedForThis": "You've already used your free trial for this calculator. Try a different one!",
+    "freeTrialTryOther": "Try a different calculator",
     "freeTrialRemaining": "{remaining} of {total} free trials remaining",
-    "freeTrialUsed": "Your free AI interpretation has been used",
+    "freeTrialUsed": "Your 3 free AI interpretations have been used",
     "freeTrialUsedDesc": "Continue with unlimited AI analysis for all your research papers.",
     "priceAnchor": "SPSS costs $99/mo. StatMate Pro is $5.99/mo.",
     "priceAnchorShort": "SPSS $99/mo → StatMate $5.99/mo",

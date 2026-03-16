@@ -632,11 +632,11 @@
       },
       {
         "q": "学生割引はありますか？",
-        "a": "学生料金は近日中に導入予定です。現在は、無料AI解釈1回とお手頃なProプラン（$5.99/月）をご利用いただけます。"
+        "a": "学生料金は近日中に導入予定です。現在は、無料AI解釈3回とお手頃なProプラン（$5.99/月）をご利用いただけます。"
       }
     ],
     "ctaTitle": "フォーマット作業の時間を節約しませんか？",
-    "ctaDescription": "無料AI解釈1回をお試しください。クレジットカードは不要です。",
+    "ctaDescription": "3つの異なる計算ツールで無料AI解釈をお試しください。クレジットカード不要。",
     "ctaButton": "無料トライアルを始める",
     "studentDiscount": "🎓 学生割引: .edu/.ac.jpメールで50%オフ — 月額$2.99または年額$29.99"
   },
@@ -816,8 +816,10 @@
     "ctaButtonAnnual": "年間プラン — $4.99/月（30%オフ）",
     "freeTrialButton": "✨ 無料でAI解釈を試す（残り{remaining}回）",
     "freeTrialHook": "あなたのデータをAIが分析 — 無料・登録不要",
+    "freeTrialUsedForThis": "この計算ツールの無料体験は使用済みです。他の計算ツールでお試しください！",
+    "freeTrialTryOther": "他の計算ツールで試す",
     "freeTrialRemaining": "無料体験 {total}回中{remaining}回残り",
-    "freeTrialUsed": "無料AI解釈が使用されました",
+    "freeTrialUsed": "無料AI解釈3回をすべて使用しました",
     "freeTrialUsedDesc": "論文に必要な無制限AI分析を引き続きご利用ください。",
     "priceAnchor": "SPSSは月額$99。StatMate Proは月額$5.99。",
     "priceAnchorShort": "SPSS $99/月 → StatMate $5.99/月",

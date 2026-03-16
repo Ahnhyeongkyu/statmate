@@ -10,18 +10,35 @@ import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- Free Trial Helpers ---
 
-const FREE_TRIAL_MAX = 1;
+const FREE_TRIAL_MAX = 3;
 
-function getTrialCount(): number {
-  if (typeof window === "undefined") return FREE_TRIAL_MAX;
+interface TrialData {
+  count: number;
+  usedTypes: string[];
+  usedAt?: string;
+}
+
+function getTrialData(): TrialData {
+  if (typeof window === "undefined") return { count: FREE_TRIAL_MAX, usedTypes: [] };
   try {
     const stored = localStorage.getItem("statmate_free_trial");
-    if (!stored) return 0;
+    if (!stored) return { count: 0, usedTypes: [] };
     const data = JSON.parse(stored);
-    return typeof data.count === "number" ? data.count : (data.used ? FREE_TRIAL_MAX : 0);
+    return {
+      count: typeof data.count === "number" ? data.count : (data.used ? FREE_TRIAL_MAX : 0),
+      usedTypes: Array.isArray(data.usedTypes) ? data.usedTypes : (data.testType ? [data.testType] : []),
+    };
   } catch {
-    return 0;
+    return { count: 0, usedTypes: [] };
   }
+}
+
+function getTrialCount(): number {
+  return getTrialData().count;
+}
+
+function hasUsedTrialForType(testType: string): boolean {
+  return getTrialData().usedTypes.includes(testType);
 }
 
 function canUseFreeTrial(): boolean {
@@ -30,10 +47,11 @@ function canUseFreeTrial(): boolean {
 
 function markFreeTrialUsed(testType: string): void {
   try {
-    const count = getTrialCount() + 1;
+    const prev = getTrialData();
+    const usedTypes = prev.usedTypes.includes(testType) ? prev.usedTypes : [...prev.usedTypes, testType];
     localStorage.setItem(
       "statmate_free_trial",
-      JSON.stringify({ count, usedAt: new Date().toISOString(), testType })
+      JSON.stringify({ count: prev.count + 1, usedTypes, usedAt: new Date().toISOString() })
     );
   } catch { /* ignore */ }
 }
@@ -59,10 +77,12 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
   const [data, setData] = useState<InterpretResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [trialRemaining, setTrialRemaining] = useState(0);
+  const [alreadyUsedForThis, setAlreadyUsedForThis] = useState(false);
 
   // Check free trial availability on mount
   useEffect(() => {
     if (!isPro) {
+      setAlreadyUsedForThis(hasUsedTrialForType(testType));
       const remaining = FREE_TRIAL_MAX - getTrialCount();
       setTrialRemaining(remaining);
       if (remaining === 0) {
@@ -110,6 +130,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
       if (isFreeTrial) {
         markFreeTrialUsed(testType);
         setTrialRemaining(FREE_TRIAL_MAX - getTrialCount());
+        setAlreadyUsedForThis(true);
         trackFreeTrialUsed(testType);
       } else {
         trackAiInterpret(testType);
@@ -229,14 +250,14 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
               {trialRemaining > 0 ? (
                 <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 text-center dark:border-blue-800 dark:bg-blue-950/20">
                   <p className="mb-2 text-xs font-medium text-gray-600 dark:text-gray-300">
-                    {t("freeTrialHook")}
+                    {alreadyUsedForThis ? t("freeTrialUsedForThis") : t("freeTrialHook")}
                   </p>
                   <Button
                     onClick={() => handleInterpret(true)}
-                    disabled={loading}
+                    disabled={loading || alreadyUsedForThis}
                     className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700"
                   >
-                    {loading ? t("analyzing") : t("freeTrialButton", { remaining: trialRemaining })}
+                    {loading ? t("analyzing") : alreadyUsedForThis ? t("freeTrialTryOther") : t("freeTrialButton", { remaining: trialRemaining })}
                   </Button>
                   <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                     {t("freeTrialRemaining", { remaining: trialRemaining, total: FREE_TRIAL_MAX })}
