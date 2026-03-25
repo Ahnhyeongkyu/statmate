@@ -19,6 +19,7 @@ import { NewsletterSignup } from "@/components/newsletter-signup";
 import { AuthProvider } from "@/components/auth-provider";
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
 import { LemonSqueezyOverlay } from "@/components/lemonsqueezy";
+import { SpeculationRules } from "@/components/speculation-rules";
 import "../globals.css";
 
 const inter = Inter({
@@ -176,6 +177,7 @@ export default async function LocaleLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />
+        <SpeculationRules />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googleadservices.com" />

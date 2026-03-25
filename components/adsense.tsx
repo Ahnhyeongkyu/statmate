@@ -8,20 +8,26 @@ const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 /** Actual AdSense ad unit slot IDs */
 export const AD_SLOTS = {
-  /** Display ad for calculator pages */
+  /** Display ad for calculator pages (after calculator) */
   calculator: "4914141943",
   /** In-article ad for blog pages */
   blog: "7939760535",
+  /** Above calculator (leaderboard) */
+  aboveCalculator: "4914141943",
+  /** After results / between sections */
+  afterResults: "4914141943",
+  /** Multiplex ad for content bottom */
+  multiplex: "4914141943",
 } as const;
 
-/** Google AdSense script loader — lazy-loads after page idle */
+/** Google AdSense script loader — loads after page interactive for better ad fill */
 export function AdSenseScript() {
   if (!ADSENSE_ID) return null;
 
   return (
     <Script
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-      strategy="lazyOnload"
+      strategy="afterInteractive"
       crossOrigin="anonymous"
     />
   );

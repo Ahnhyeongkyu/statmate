@@ -92,9 +92,11 @@ export default async function AnovaPage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
+      <AdUnit slot="4914141943" format="auto" className="my-4" />
+
       <AnovaCalculator />
 
-      <AdUnit slot="4914141943" format="auto" />
+      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -648,6 +650,8 @@ export default async function AnovaPage({
         </div>
       </section>
       )}
+
+      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/anova" />
       <RelatedBlogs current="anova" />

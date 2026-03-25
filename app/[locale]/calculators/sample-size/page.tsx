@@ -94,9 +94,11 @@ export default async function SampleSizePage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
+      <AdUnit slot="4914141943" format="auto" className="my-4" />
+
       <SampleSizeCalculator />
 
-      <AdUnit slot="4914141943" format="auto" />
+      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -370,6 +372,8 @@ export default async function SampleSizePage({
         </div>
       </section>
       )}
+
+      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/sample-size" />
       <RelatedBlogs current="sample-size" />

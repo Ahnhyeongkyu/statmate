@@ -92,9 +92,11 @@ export default async function TTestPage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
+      <AdUnit slot="4914141943" format="auto" className="my-4" />
+
       <TTestCalculator />
 
-      <AdUnit slot="4914141943" format="auto" />
+      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -381,6 +383,8 @@ export default async function TTestPage({
         </div>
       </section>
       )}
+
+      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/t-test" />
       <RelatedBlogs current="t-test" />

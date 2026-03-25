@@ -21,6 +21,15 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_MEASUREMENT_ID}', {
             page_path: window.location.pathname,
           });
+          window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+              gtag('event', 'page_view', {
+                page_path: window.location.pathname,
+                page_title: document.title,
+                bfcache_restored: true,
+              });
+            }
+          });
         `}
       </Script>
     </>

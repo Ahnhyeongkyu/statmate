@@ -92,9 +92,11 @@ export default async function ChiSquarePage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
+      <AdUnit slot="4914141943" format="auto" className="my-4" />
+
       <ChiSquareCalculator />
 
-      <AdUnit slot="4914141943" format="auto" />
+      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -480,6 +482,8 @@ export default async function ChiSquarePage({
         </div>
       </section>
       )}
+
+      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/chi-square" />
       <RelatedBlogs current="chi-square" />

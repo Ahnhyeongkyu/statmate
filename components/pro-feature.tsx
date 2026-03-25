@@ -10,7 +10,7 @@ import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- Free Trial Helpers ---
 
-const FREE_TRIAL_MAX = 3;
+const FREE_TRIAL_MAX = 1;
 
 interface TrialData {
   count: number;
@@ -199,33 +199,27 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   <p className="text-sm font-semibold text-gray-900 dark:text-gray-200">
                     {t("freeTrialUsedDesc")}
                   </p>
-                  <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
-                    SPSS: $99/mo
-                  </p>
                   <div className="mt-3 flex flex-col gap-2">
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
-                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+                      onClick={() => trackProCtaClick("credits_3_post_trial", testType)}
                     >
-                      <Button className="w-full bg-blue-600 font-semibold hover:bg-blue-700">
-                        {t("ctaButtonAnnual")}
+                      <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
+                        3 Credits — $1.99
                       </Button>
                     </a>
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
-                      onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                       className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
-                      {t("ctaButton")}
+                      {t("ctaButtonAnnual")}
                     </a>
                   </div>
-                  <a
-                    href="/pricing"
-                    className="mt-2 block text-xs text-gray-500 underline hover:text-gray-700 dark:text-gray-400"
-                  >
-                    {t("orCredits")}
-                  </a>
-                  <p className="mt-2 text-[10px] text-gray-400 dark:text-gray-500">
+                  <p className="mt-2 text-xs text-red-600 line-through decoration-red-400">
+                    SPSS: $99/mo
+                  </p>
+                  <p className="mt-1 text-[10px] text-gray-400 dark:text-gray-500">
                     {t("socialProof")}
                   </p>
                 </div>
@@ -278,33 +272,27 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-200">
                     {t("freeTrialUsedDesc")}
                   </p>
-                  <p className="mt-2 text-xs font-medium text-red-600 line-through decoration-red-400">
-                    SPSS: $99/mo
-                  </p>
                   <div className="mt-3 flex flex-col gap-2">
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
-                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+                      onClick={() => trackProCtaClick("credits_3_post_trial", testType)}
                     >
-                      <Button className="w-full bg-blue-600 font-semibold hover:bg-blue-700">
-                        {t("ctaButtonAnnual")}
+                      <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
+                        3 Credits — $1.99
                       </Button>
                     </a>
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
-                      onClick={() => trackProCtaClick("ai_interpret_post_trial", testType)}
+                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+                      onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                       className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
-                      {t("ctaButton")}
+                      {t("ctaButtonAnnual")}
                     </a>
                   </div>
-                  <a
-                    href="/pricing"
-                    className="mt-2 block text-xs text-gray-500 underline hover:text-gray-700 dark:text-gray-400"
-                  >
-                    {t("orCredits")}
-                  </a>
-                  <p className="mt-2 text-[10px] text-gray-400 dark:text-gray-500">
+                  <p className="mt-2 text-xs text-red-600 line-through decoration-red-400">
+                    SPSS: $99/mo
+                  </p>
+                  <p className="mt-1 text-[10px] text-gray-400 dark:text-gray-500">
                     {t("socialProof")}
                   </p>
                 </div>
@@ -397,42 +385,26 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 // --- Plain Language Preview (first sentence visible, rest blurred) ---
 
 function PlainLanguagePreview({ text }: { text: string }) {
-  // Show ~60% of sentences visible, blur the rest (conclusion)
+  // Show first 2 sentences clearly, lock the rest behind paywall
   const sentences = text.split(/(?<=\. )/);
-  if (sentences.length <= 2) {
-    // Short text — show first sentence, blur rest
-    const firstDot = text.indexOf(". ");
-    if (firstDot === -1) {
-      return (
-        <div className="relative">
-          <p className="mt-1 text-sm leading-relaxed text-gray-700">{text}</p>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
-        </div>
-      );
-    }
-    const visible = text.slice(0, firstDot + 1);
-    const blurred = text.slice(firstDot + 2);
-    return (
-      <div className="relative">
-        <p className="mt-1 text-sm leading-relaxed text-gray-700">
-          {visible}{" "}
-          <span className="select-none blur-[4px]">{blurred}</span>
-        </p>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
-      </div>
-    );
-  }
-  // Show 60% of sentences, blur the final conclusion
-  const visibleCount = Math.ceil(sentences.length * 0.6);
+  const visibleCount = Math.min(2, sentences.length);
   const visible = sentences.slice(0, visibleCount).join("");
-  const blurred = sentences.slice(visibleCount).join("");
+  const hasMore = sentences.length > visibleCount;
+
   return (
     <div className="relative">
       <p className="mt-1 text-sm leading-relaxed text-gray-700">
         {visible}
-        {blurred && <span className="select-none blur-[4px]">{blurred}</span>}
+        {hasMore && (
+          <span className="select-none text-gray-400"> [...]</span>
+        )}
       </p>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-white dark:from-gray-900" />
+      {hasMore && (
+        <div className="mt-1 rounded bg-gray-100 px-3 py-2 text-center text-xs text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+          <svg className="mx-auto mb-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+          Unlock full interpretation
+        </div>
+      )}
     </div>
   );
 }

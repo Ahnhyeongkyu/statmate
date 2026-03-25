@@ -94,9 +94,11 @@ export default async function OneSampleTPage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
+      <AdUnit slot="4914141943" format="auto" className="my-4" />
+
       <OneSampleTCalculator />
 
-      <AdUnit slot="4914141943" format="auto" />
+      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -431,6 +433,8 @@ export default async function OneSampleTPage({
         </div>
       </section>
       )}
+
+      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/one-sample-t" />
       <RelatedBlogs current="one-sample-t" />
