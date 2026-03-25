@@ -1,223 +1,151 @@
 ---
-title: "How to Report Logistic Regression in APA Format: Odds Ratios, Model Fit & Tables"
-description: "Complete guide to reporting binary logistic regression in APA 7th edition. Includes odds ratio interpretation, model fit statistics, classification tables, and copy-ready reporting examples."
-date: "2026-03-07"
+title: "How to Report Logistic Regression in APA 7th Edition — Odds Ratio, Wald Test & Model Fit"
+description: "Step-by-step guide to reporting binary logistic regression in APA 7th edition format. Odds ratios with confidence intervals, Wald chi-square, Nagelkerke R², classification accuracy, and copy-paste APA templates."
+date: "2026-03-26"
 category: "APA Reporting"
-tags: ["logistic regression APA", "odds ratio interpretation", "binary logistic regression reporting", "logistic regression table APA", "Nagelkerke R-squared", "APA 7th edition logistic regression", "Hosmer-Lemeshow test", "logistic regression assumptions", "multinomial logistic regression", "ordinal logistic regression", "logistic regression confidence intervals", "Wald chi-square test"]
+tags: ["logistic regression", "APA format", "APA 7th edition", "odds ratio", "Wald test", "binary logistic", "Nagelkerke R²", "model fit", "classification accuracy", "ROC curve"]
 ---
 
-## Why Logistic Regression Reporting Is Challenging
+## Why Logistic Regression Reporting Requires Extra Care
 
-Logistic regression is one of the most widely used statistical techniques in health sciences, psychology, and education research. Unlike a t-test or ANOVA, where you report a single test statistic and an effect size, logistic regression produces a complex array of output that must be organized into a coherent narrative.
+Logistic regression is the go-to method for predicting a binary outcome in fields ranging from psychology to epidemiology to education. Unlike a t-test or ANOVA, where you report one test statistic and one effect size, logistic regression produces a layered set of outputs: overall model fit, pseudo R-squared values, classification accuracy, and individual predictor statistics that include *B* coefficients, standard errors, Wald chi-square values, *p* values, odds ratios, and confidence intervals.
 
-A complete logistic regression write-up involves overall model fit statistics, pseudo R-squared values, classification accuracy, and individual predictor statistics including *B* coefficients, standard errors, Wald statistics, *p* values, odds ratios, and confidence intervals. Missing any one of these elements is a common reason for revision requests from journal reviewers.
+The reporting challenge is not just volume. Each statistic in logistic regression has a distinct interpretation that differs from its linear regression counterpart. The *B* coefficient is a log-odds value rather than a slope in original units. The pseudo R-squared is not the same quantity as the R-squared from ordinary least squares regression. And the odds ratio, the central effect size measure, is routinely misinterpreted as a probability ratio.
 
-This guide walks through every component step by step, with concrete APA 7th edition examples you can adapt for your own manuscript.
+Missing any one element from a logistic regression write-up is among the most frequent reasons for revision requests. Misinterpreting odds ratios is another. This guide provides a complete, step-by-step approach to reporting binary logistic regression results in APA 7th edition format. Every template can be copied directly into your manuscript and adapted with your own numbers.
 
-## The Key Statistics to Report
+## When to Use Logistic Regression
 
-Before diving into the reporting templates, here is a summary of the statistics that belong in a logistic regression write-up.
+### Binary Outcome Variable
 
-**Overall model fit:**
-- Omnibus chi-square test (model chi-square)
-- Degrees of freedom and *p* value
-- **Pseudo R-squared** values: Nagelkerke *R*² and Cox & Snell *R*²
+Logistic regression is appropriate when your dependent variable has exactly two categories: yes/no, pass/fail, diagnosed/healthy, graduated/dropped out. If you find yourself coding a continuous outcome into two groups just to use logistic regression, reconsider whether linear regression or another technique is more appropriate.
 
-**Classification performance:**
-- Overall classification accuracy (percentage correct)
-- Sensitivity (true positive rate) and specificity (true negative rate)
+The outcome variable does not need to be naturally dichotomous. Researchers sometimes dichotomize continuous outcomes (e.g., "high" versus "low" depression scores) to create a binary variable. This practice discards information and reduces statistical power, so it should be justified on substantive grounds rather than convenience.
 
-**Individual predictors:**
-- *B* (unstandardized logistic regression coefficient)
-- *SE* (standard error of *B*)
-- **Wald** chi-square statistic
-- *p* value
-- **OR** (odds ratio, also labeled Exp(*B*) in SPSS output)
-- 95% CI for the odds ratio
+### Multiple Predictors (Continuous and Categorical)
 
-Each of these plays a distinct role. The model fit statistics tell readers whether the set of predictors collectively distinguishes between the two outcome groups. The classification table shows how well the model performs in practice. The individual predictor statistics reveal which variables drive the prediction and by how much.
+Logistic regression handles both continuous predictors (age, GPA, income) and categorical predictors (gender, treatment group, education level) in the same model. Categorical predictors with more than two levels are entered as dummy-coded variables, with one category serving as the reference group.
 
-## Step 1: Report Overall Model Fit
+This flexibility makes logistic regression one of the most widely used multivariate techniques. A single model can simultaneously examine whether GPA (continuous), study hours (continuous), and attendance status (categorical: regular versus irregular) predict graduation.
 
-The omnibus test of model coefficients evaluates whether the full model with predictors fits significantly better than a null model with only the intercept. This is reported as a chi-square test.
+### Comparison With Linear Regression
 
-**APA template:**
+Linear regression predicts a continuous outcome and assumes normally distributed residuals with constant variance. When the outcome is binary, these assumptions are fundamentally violated. Logistic regression resolves this by modeling the log-odds of the outcome rather than the outcome itself, producing predicted probabilities bounded between 0 and 1.
 
-> A binary logistic regression was performed to examine the effects of [predictors] on [outcome]. The overall model was statistically significant, *chi-square*(*df*) = X.XX, *p* = .XXX, indicating that the predictors, as a set, reliably distinguished between [group 1] and [group 2]. The model explained XX.X% (Nagelkerke *R*²) of the variance in [outcome].
+The key differences in reporting:
 
-**Example:**
+| Feature | Linear Regression | Logistic Regression |
+|---------|-------------------|---------------------|
+| Outcome variable | Continuous | Binary (0/1) |
+| Coefficient interpretation | Change in Y per unit X | Change in log-odds per unit X |
+| Primary effect size | *B* or *beta* | Odds ratio (OR) |
+| Model fit | *R*², adjusted *R*² | Nagelkerke *R*², classification accuracy |
+| Overall model test | *F*-statistic | Chi-square (likelihood ratio) |
+| Residual assumptions | Normality, homoscedasticity | Linearity of logit |
 
-> A binary logistic regression was performed to examine the effects of GPA, weekly study hours, and class attendance on graduation status. The overall model was statistically significant, *chi-square*(3) = 34.72, *p* < .001, indicating that the predictors, as a set, reliably distinguished between students who graduated and those who did not. The model explained 31.5% (Nagelkerke *R*²) of the variance in graduation status.
+## The Basic APA Format for Logistic Regression
 
-### Understanding Pseudo R-Squared
+Before walking through a full example, here is the template for each component.
 
-Unlike ordinary least squares regression, logistic regression does not produce a true *R*² value. Instead, it offers **pseudo R-squared** measures that approximate the proportion of variance explained.
+### Overall Model Fit
 
-| Measure | Range | Notes |
-|---------|-------|-------|
-| Cox & Snell *R*² | 0 to < 1 | Cannot reach 1.0; tends to underestimate |
-| Nagelkerke *R*² | 0 to 1 | Adjusted version of Cox & Snell; preferred for reporting |
+> The overall model was statistically significant, *chi-square*(*df*) = X.XX, *p* = .XXX, Nagelkerke *R*² = .XX.
 
-Most APA-style articles report **Nagelkerke *R*²** because its upper bound is 1.0, making it more interpretable. Some researchers report both values for transparency. Either approach is acceptable, but always label which pseudo R-squared you are using.
+The chi-square here is the omnibus likelihood ratio test comparing the full model (with all predictors) to a null model (intercept only). Report the degrees of freedom (equal to the number of predictors), the chi-square value to two decimal places, and the exact *p* value.
 
-## Step 2: Report the Classification Table
+### Individual Predictors
 
-The classification table summarizes how accurately the model assigns cases to the correct outcome group. This is a practical measure of model performance that complements the statistical significance tests.
+> *B* = X.XX, *SE* = X.XX, Wald *chi-square*(1) = X.XX, *p* = .XXX, OR = X.XX, 95% CI [X.XX, X.XX]
 
-**APA template:**
+Each predictor receives its own line of statistics. The Wald chi-square has 1 degree of freedom for a single predictor (more for multi-level categorical variables). The odds ratio (OR) is the exponentiated *B* coefficient: OR = e^*B*. The 95% confidence interval is for the odds ratio, not for *B*.
 
-> The model correctly classified XX.X% of cases overall, with a sensitivity of XX.X% (correctly predicted [positive outcome]) and a specificity of XX.X% (correctly predicted [negative outcome]).
+## Reporting Logistic Regression: Step by Step
 
-**Example:**
+### Research Scenario
 
-> The model correctly classified 78.3% of cases overall, with a sensitivity of 82.1% (correctly predicted graduation) and a specificity of 71.4% (correctly predicted non-graduation).
+A university researcher examines whether three variables predict graduation status (graduated vs. did not graduate) among 200 undergraduate students:
 
-### Classification Table Format
+- **GPA** (continuous, 0.00 to 4.00 scale)
+- **Weekly study hours** (continuous, hours per week)
+- **Class attendance** (continuous, percentage 0-100)
 
-| Observed | Predicted: Did Not Graduate | Predicted: Graduated | Percentage Correct |
-|----------|----------------------------|---------------------|--------------------|
-| Did Not Graduate | 45 | 18 | 71.4% |
-| Graduated | 15 | 69 | 82.1% |
-| Overall | | | 78.3% |
+The outcome variable is graduation status, coded as 1 = graduated and 0 = did not graduate. Of the 200 students, 128 (64%) graduated and 72 (36%) did not.
 
-When interpreting classification accuracy, consider the **base rate**. If 70% of students in your sample graduated, a model that simply predicts everyone graduates would achieve 70% accuracy with no predictors. Your model's accuracy should be evaluated against this baseline.
+### Step 1: Report Model Fit Statistics
 
-## Step 3: Report Individual Predictors
+The first paragraph of your results section establishes whether the model as a whole is meaningful.
 
-Individual predictor results are best presented in a table followed by a narrative description. The APA-formatted table for logistic regression includes columns for *B*, *SE*, Wald chi-square, *p*, odds ratio (OR), and the 95% confidence interval for the odds ratio.
+**APA example:**
 
-### Logistic Regression Coefficients Table
+> A binary logistic regression was conducted to examine whether GPA, weekly study hours, and class attendance predicted graduation status among 200 undergraduate students. The omnibus test of model coefficients indicated that the full model was statistically significant, *chi-square*(3) = 42.86, *p* < .001. The model explained 28.4% of the variance in graduation status (Nagelkerke *R*² = .284) and correctly classified 79.5% of cases, with a sensitivity of 84.4% (correctly identified graduates) and a specificity of 70.8% (correctly identified non-graduates). The Hosmer-Lemeshow test indicated adequate model fit, *chi-square*(8) = 5.73, *p* = .678.
+
+This single paragraph covers four model fit indices: the omnibus chi-square, Nagelkerke *R*², classification accuracy (with sensitivity and specificity), and the Hosmer-Lemeshow test. Reviewers can immediately determine that the model is statistically significant and practically meaningful.
+
+### Step 2: Present the Coefficient Table
+
+For three or more predictors, a table is clearer than embedding every number in the text.
 
 | Predictor | *B* | *SE* | Wald *chi-square* | *p* | OR | 95% CI for OR |
-|-----------|------|------|-----------|------|------|---------------|
-| (Constant) | -8.42 | 2.15 | 15.33 | < .001 | -- | -- |
-| GPA | 1.63 | 0.52 | 9.82 | .002 | 5.10 | [1.84, 14.15] |
-| Study hours | 0.18 | 0.07 | 6.61 | .010 | 1.20 | [1.04, 1.37] |
-| Attendance (%) | 0.04 | 0.02 | 4.00 | .045 | 1.04 | [1.00, 1.08] |
+|-----------|------|------|-------------------|------|------|---------------|
+| (Constant) | -9.15 | 2.34 | 15.30 | < .001 | -- | -- |
+| GPA | 1.74 | 0.48 | 13.14 | < .001 | 5.70 | [2.23, 14.57] |
+| Study hours | 0.16 | 0.06 | 7.11 | .008 | 1.17 | [1.04, 1.32] |
+| Attendance (%) | 0.04 | 0.02 | 4.00 | .046 | 1.04 | [1.00, 1.08] |
 
-### Writing Up the Individual Predictors
+*Note.* Nagelkerke *R*² = .284. Model *chi-square*(3) = 42.86, *p* < .001. Classification accuracy = 79.5%.
 
-> GPA was a significant predictor of graduation status, *B* = 1.63, *SE* = 0.52, Wald *chi-square*(1) = 9.82, *p* = .002, OR = 5.10, 95% CI [1.84, 14.15]. For each one-point increase in GPA, the odds of graduating were approximately 5.10 times greater. Weekly study hours also significantly predicted graduation, *B* = 0.18, *SE* = 0.07, Wald *chi-square*(1) = 6.61, *p* = .010, OR = 1.20, 95% CI [1.04, 1.37]. Each additional hour of weekly study was associated with a 20% increase in the odds of graduating. Class attendance percentage was a marginally significant predictor, *B* = 0.04, *SE* = 0.02, Wald *chi-square*(1) = 4.00, *p* = .045, OR = 1.04, 95% CI [1.00, 1.08].
+### Step 3: Write the APA Narrative
 
-Note that the Wald chi-square has 1 degree of freedom for each individual predictor (assuming the predictor is not a multi-category variable with dummy coding). Always include the degrees of freedom in parentheses.
+> GPA was the strongest predictor of graduation status, *B* = 1.74, *SE* = 0.48, Wald *chi-square*(1) = 13.14, *p* < .001, OR = 5.70, 95% CI [2.23, 14.57]. For each one-point increase in GPA, the odds of graduating were approximately 5.70 times greater, holding other variables constant. Weekly study hours also significantly predicted graduation, *B* = 0.16, *SE* = 0.06, Wald *chi-square*(1) = 7.11, *p* = .008, OR = 1.17, 95% CI [1.04, 1.32]. Each additional hour of weekly study was associated with a 17% increase in the odds of graduating. Class attendance made a smaller but statistically significant contribution, *B* = 0.04, *SE* = 0.02, Wald *chi-square*(1) = 4.00, *p* = .046, OR = 1.04, 95% CI [1.00, 1.08].
+
+This narrative follows a consistent pattern: state the predictor, give the full statistics, then interpret the odds ratio in plain language. Ordering predictors from strongest to weakest effect helps readers grasp the relative importance of each variable.
 
 ## Interpreting Odds Ratios
 
-The **odds ratio** (OR) is the primary effect size measure in logistic regression. It tells you how the odds of the outcome change with a one-unit increase in the predictor, holding all other predictors constant.
+The **odds ratio** (OR) is the primary effect size in logistic regression. It tells you how the odds of the outcome change with a one-unit increase in the predictor, holding all other predictors constant.
 
-### Odds Ratio Reference Guide
+### OR Greater Than 1: Increased Odds
 
-| OR Value | Interpretation |
-|----------|---------------|
-| OR = 1.00 | No effect; predictor does not change the odds |
-| OR > 1.00 | Increased odds of the outcome |
-| OR < 1.00 | Decreased odds of the outcome |
+An OR of 5.70 means that for every one-unit increase in the predictor, the odds of the outcome are 5.70 times greater. To express this as a percentage increase: (5.70 - 1) x 100 = 470% increase in odds.
 
-**Concrete example:** An OR of 2.45 means that for a one-unit increase in the predictor, the odds of the outcome occurring are **2.45 times greater** (or 145% higher). An OR of 0.60 means that for a one-unit increase, the odds **decrease by 40%** (calculated as 1 - 0.60 = 0.40).
+For continuous predictors, the unit matters. If study hours are measured per week, OR = 1.17 means each additional hour per week increases the odds by 17%. If you rescaled to "per 10 hours," the OR would be 1.17^10 = 4.81, which may be more interpretable.
 
-### Continuous vs. Categorical Predictors
+### OR Less Than 1: Decreased Odds
 
-For **continuous predictors**, the OR reflects a one-unit change on the original measurement scale. If study hours is measured in hours per week, OR = 1.20 means each additional hour increases the odds by 20%. Be mindful of the unit: if the variable were measured in minutes, the OR would be much smaller per unit and harder to interpret. Consider rescaling continuous predictors (e.g., per 10-hour increase) if the per-unit OR is very close to 1.00.
+An OR of 0.65 means that a one-unit increase in the predictor decreases the odds by 35%, calculated as (1 - 0.65) x 100. You can equivalently take the reciprocal: 1/0.65 = 1.54, meaning the absence of the factor (or a one-unit decrease) is associated with 1.54 times the odds.
 
-For **categorical predictors** (dummy coded), the OR compares the odds of the outcome in the coded group to the reference group. If treatment group (coded 1) versus control group (coded 0) has OR = 3.20, the treatment group has 3.20 times the odds of the outcome compared to the control group.
+### OR Equal to 1: No Effect
 
-### Important Distinction: Odds Are Not Probabilities
+An OR of exactly 1.00 means the predictor has no association with the outcome. In practice, an OR very close to 1.00 (e.g., 1.02 or 0.98) with a wide confidence interval typically indicates a trivial or non-significant effect.
 
-A common error is interpreting an odds ratio as a probability ratio. Saying "patients in the treatment group were 3.20 times more likely to recover" is technically imprecise. The correct phrasing is "the odds of recovery were 3.20 times greater in the treatment group." When the outcome is rare (less than 10% prevalence), the odds ratio approximates the risk ratio, but for common outcomes, the two diverge substantially.
+### Confidence Intervals Crossing 1
 
-## Complete APA Reporting Example
+The 95% CI for the odds ratio is the key indicator of statistical significance at the .05 level. If the interval contains 1.00, the predictor is not statistically significant. An OR of 1.80 with a CI of [0.72, 4.50] means the true effect could range from a 28% decrease in odds to a 350% increase, providing no clear directional evidence.
 
-Below is a full write-up combining all elements from the previous sections. This example uses the graduation prediction scenario with three predictors.
+Conversely, an OR of 1.80 with a CI of [1.15, 2.82] excludes 1.00 entirely, indicating a statistically significant positive association.
 
-> A binary logistic regression was conducted to predict graduation status (graduated vs. did not graduate) from GPA, weekly study hours, and class attendance percentage among 147 undergraduate students. The overall model was statistically significant, *chi-square*(3) = 34.72, *p* < .001, Nagelkerke *R*² = .32, indicating that the set of predictors reliably distinguished between students who graduated and those who did not. The model correctly classified 78.3% of cases, with a sensitivity of 82.1% and a specificity of 71.4%.
->
-> GPA was the strongest predictor of graduation, *B* = 1.63, *SE* = 0.52, Wald *chi-square*(1) = 9.82, *p* = .002, OR = 5.10, 95% CI [1.84, 14.15]. For each one-point increase in GPA, the odds of graduating were approximately five times greater. Weekly study hours also significantly predicted graduation, *B* = 0.18, *SE* = 0.07, Wald *chi-square*(1) = 6.61, *p* = .010, OR = 1.20, 95% CI [1.04, 1.37], with each additional hour associated with a 20% increase in odds. Class attendance made a smaller but statistically significant contribution, *B* = 0.04, *SE* = 0.02, Wald *chi-square*(1) = 4.00, *p* = .045, OR = 1.04, 95% CI [1.00, 1.08].
+**Important distinction:** Odds are not probabilities. Saying "students with higher GPAs were 5.70 times more likely to graduate" is technically imprecise. The correct phrasing is "the odds of graduating were 5.70 times greater." When the outcome is rare (less than 10% prevalence), the odds ratio approximates the risk ratio. When the outcome is common, the two diverge substantially.
 
-This example follows a clear structure: state the analysis and sample, report overall model fit and classification accuracy, then describe each predictor with its full set of statistics. Reviewers can quickly locate every required piece of information.
+## Model Fit Indices
 
-## Common Mistakes to Avoid
+### -2 Log Likelihood
 
-### Reporting B Coefficients Without Odds Ratios
+The -2 Log Likelihood (-2LL) is the baseline measure of model fit. It quantifies how well the model reproduces the observed data, with lower values indicating better fit. On its own, -2LL is not easily interpretable. Its primary use is in comparing nested models: the difference in -2LL between two models follows a chi-square distribution, which is the basis for the omnibus test.
 
-The *B* coefficient in logistic regression is a log-odds value, which is not intuitively interpretable. Always convert *B* to the odds ratio (OR = e^*B*) and report both. The odds ratio is the effect size that readers and reviewers expect to see.
+> The -2 log likelihood for the null model was 258.34 and decreased to 215.48 for the full model, a reduction of 42.86, *chi-square*(3) = 42.86, *p* < .001.
 
-### Omitting Confidence Intervals for Odds Ratios
+### Cox & Snell R-Squared vs. Nagelkerke R-Squared
 
-The 95% confidence interval for the OR is essential. It communicates the precision of the odds ratio estimate and reveals whether the effect could be trivially small or substantially large. An OR of 2.50 with a 95% CI of [0.85, 7.35] crosses 1.00 and would not be statistically significant, whereas an OR of 2.50 with a CI of [1.40, 4.46] provides much stronger evidence.
+Neither measure is a true R-squared. Both are pseudo R-squared approximations designed to give a familiar metric for explained variance.
 
-### Confusing Odds Ratios With Probabilities
+| Measure | Range | Key Property |
+|---------|-------|--------------|
+| Cox & Snell *R*² | 0 to < 1 | Cannot reach a maximum of 1.0, which makes its upper bound ambiguous |
+| Nagelkerke *R*² | 0 to 1 | Rescales Cox & Snell so the maximum is 1.0; more interpretable |
 
-As noted above, odds and probabilities are mathematically different. An OR of 3.00 does not mean the outcome is "three times as likely." It means the odds are three times greater. This distinction matters most when the outcome prevalence is high.
+**Nagelkerke *R*²** is the standard choice for APA reporting because it has a clear upper bound. Some authors report both values for transparency. Either way, always label which pseudo R-squared you are using. Writing "*R*² = .28" without specifying Nagelkerke is ambiguous and may mislead readers into thinking it is an OLS R-squared.
 
-### Not Reporting Model Fit Statistics
-
-Some researchers jump directly to individual predictors without reporting the omnibus model test, Nagelkerke *R*², or classification accuracy. Without these, readers cannot evaluate whether the overall model is meaningful before examining individual effects.
-
-### Using R-Squared Instead of Pseudo R-Squared
-
-Logistic regression does not produce a traditional *R*² value. Reporting *R*² = .32 without specifying that it is Nagelkerke *R*² (or Cox & Snell *R*²) is misleading. Always label the type of pseudo R-squared you are reporting.
-
-### Ignoring the Hosmer-Lemeshow Test
-
-The **Hosmer-Lemeshow goodness-of-fit test** evaluates whether the model fits the data well. A non-significant result (*p* > .05) indicates adequate fit. While not always required, reporting this test strengthens your write-up, especially when reviewers are concerned about model calibration.
-
-## Reporting Odds Ratios With Confidence Intervals
-
-The odds ratio alone communicates only a point estimate. Without a confidence interval, readers cannot assess the precision of the effect or determine whether the true population odds ratio might be trivially small or dramatically large. APA 7th edition explicitly requires confidence intervals for effect size measures, and in logistic regression, the 95% CI for each odds ratio serves this role.
-
-### APA Format for Odds Ratios With Confidence Intervals
-
-The standard format integrates the OR and its CI into a single clause within the results narrative:
-
-> Predictor *X* was a significant predictor of the outcome, OR = 3.42, 95% CI [1.87, 6.25], *p* < .001.
-
-When presenting odds ratios in a table, the confidence interval is placed in its own column using square brackets:
-
-| Predictor | OR | 95% CI |
-|-----------|------|--------|
-| Age | 1.08 | [1.03, 1.14] |
-| Gender (female) | 2.31 | [1.15, 4.63] |
-| Education (college+) | 0.54 | [0.28, 1.04] |
-
-### Interpreting the Confidence Interval
-
-The 95% CI tells you the range within which the true population odds ratio is likely to fall with 95% confidence. Two key interpretation rules apply:
-
-**Rule 1: Does the interval cross 1.00?** If the lower bound is below 1.00 and the upper bound is above 1.00, the odds ratio is not statistically significant at the .05 level. An OR of 1.80 with a CI of [0.72, 4.50] means the effect could range from a 28% decrease to a 350% increase in odds, providing no clear evidence of a directional effect.
-
-**Rule 2: How wide is the interval?** A narrow CI (e.g., [2.10, 2.90]) indicates a precise estimate, whereas a wide CI (e.g., [0.50, 12.40]) suggests considerable uncertainty. Wide intervals typically result from small sample sizes or low event rates.
-
-### Forest Plots for Visualizing Odds Ratios
-
-A **forest plot** is the standard visual display for odds ratios and their confidence intervals. Each predictor is shown as a row with a point estimate (the OR) and a horizontal line (the CI). A vertical reference line at OR = 1.00 marks the null hypothesis of no effect.
-
-Forest plots are particularly valuable when reporting models with many predictors because they allow readers to immediately see which predictors have confidence intervals that exclude 1.00 (significant effects) and which have intervals that cross the reference line (non-significant effects).
-
-In APA-style manuscripts, forest plots are presented as figures with a caption that describes the model and outcome variable. Label the x-axis as "Odds Ratio (95% CI)" and use a logarithmic scale when odds ratios span a wide range.
-
-### Adjusted vs. Unadjusted Odds Ratios
-
-An **unadjusted** (crude) odds ratio comes from a bivariate analysis with a single predictor. An **adjusted** odds ratio comes from a multivariable model that controls for other covariates. In most research contexts, you should report adjusted odds ratios because they account for confounding.
-
-When your study involves both unadjusted and adjusted analyses, present them in parallel columns:
-
-| Predictor | Unadjusted OR [95% CI] | Adjusted OR [95% CI] |
-|-----------|------------------------|----------------------|
-| Smoking | 3.12 [1.85, 5.26] | 2.74 [1.52, 4.94] |
-| BMI (per unit) | 1.09 [1.04, 1.15] | 1.06 [1.00, 1.12] |
-| Exercise (weekly) | 0.68 [0.49, 0.94] | 0.75 [0.52, 1.08] |
-
-This comparison reveals how confounding variables influence each predictor's relationship with the outcome.
-
-## Model Fit Statistics in Detail
-
-Reporting individual predictor results without establishing that the overall model fits the data is a common omission that weakens a logistic regression write-up. Model fit statistics answer a fundamental question: does this set of predictors, collectively, do a meaningfully better job of predicting the outcome than chance alone?
-
-### Nagelkerke R-Squared
-
-Nagelkerke *R*² is the most commonly reported pseudo R-squared in APA-style logistic regression. It adjusts the Cox & Snell *R*² so that its maximum possible value is 1.0, making it more interpretable. However, its absolute values are typically lower than the *R*² values seen in ordinary linear regression.
-
-**Interpreting Nagelkerke R-squared:**
+Approximate benchmarks for Nagelkerke *R*²:
 
 | Nagelkerke *R*² | Rough Interpretation |
 |-----------------|---------------------|
@@ -225,271 +153,132 @@ Nagelkerke *R*² is the most commonly reported pseudo R-squared in APA-style log
 | .13 to .25 | Medium effect |
 | .26 and above | Large effect |
 
-These benchmarks are approximate and domain-dependent. A Nagelkerke *R*² of .15 may be impressive in a field where prediction is inherently difficult (e.g., predicting rare diseases from demographic variables) but modest in a field where high accuracy is expected (e.g., predicting diagnosis from clinical biomarkers).
+These benchmarks are domain-dependent. A Nagelkerke *R*² of .15 may be impressive when predicting rare diseases from demographic variables but modest when predicting diagnosis from clinical biomarkers.
 
-**APA reporting format:**
+### Hosmer-Lemeshow Test
 
-> The model explained 28.4% of the variance in treatment response (Nagelkerke *R*² = .284).
+The Hosmer-Lemeshow goodness-of-fit test evaluates whether predicted probabilities match observed outcomes across decile subgroups. A **non-significant** result (*p* > .05) indicates adequate model fit. A **significant** result (*p* < .05) suggests the model does not calibrate well.
 
-### Hosmer-Lemeshow Goodness-of-Fit Test
+> The Hosmer-Lemeshow test indicated adequate model fit, *chi-square*(8) = 5.73, *p* = .678.
 
-The **Hosmer-Lemeshow test** evaluates how well the predicted probabilities match the observed outcomes across subgroups of the data. The test divides cases into decile groups based on predicted probabilities and compares observed and expected frequencies within each group using a chi-square statistic.
+**Caveats:** The test is sensitive to sample size. Large samples (N > 500) may flag trivial deviations as significant. Small samples lack power to detect genuine lack of fit. Some methodologists recommend supplementing with calibration plots, especially for prediction-focused studies.
 
-A **non-significant** result (*p* > .05) indicates adequate model fit, meaning the model's predictions align reasonably well with observed outcomes. A **significant** result (*p* < .05) suggests that the model does not fit the data well and that predicted probabilities deviate substantially from observed proportions.
+### Classification Accuracy Table
 
-**APA reporting format:**
+The classification table (also called the confusion matrix) shows how well the model assigns cases to the correct outcome group at a default probability cutoff of .50.
 
-> The Hosmer-Lemeshow test indicated adequate model fit, *chi-square*(8) = 6.42, *p* = .600.
+| Observed | Predicted: Did Not Graduate | Predicted: Graduated | Percentage Correct |
+|----------|----------------------------|---------------------|--------------------|
+| Did Not Graduate | 51 | 21 | 70.8% |
+| Graduated | 20 | 108 | 84.4% |
+| Overall | | | 79.5% |
 
-**Important caveats:** The Hosmer-Lemeshow test is sensitive to sample size. With very large samples (N > 500), the test may flag trivial deviations as significant, leading to rejection of an otherwise adequate model. With very small samples, the test has low power and may fail to detect genuine lack of fit. Some methodologists recommend supplementing it with calibration plots.
+Always compare your classification accuracy to the **base rate**. In this example, 64% of students graduated. A model that predicts "graduated" for every student would achieve 64% accuracy with zero predictors. The model's 79.5% accuracy represents a 15.5 percentage-point improvement over that naive baseline.
 
-### Classification Accuracy and the Confusion Matrix
+Report sensitivity (correctly predicted positives) and specificity (correctly predicted negatives) alongside overall accuracy. A model with 90% overall accuracy but 20% sensitivity for the minority class is not practically useful.
 
-Classification accuracy is the most intuitive model fit measure: what percentage of cases does the model classify correctly? However, it must be interpreted in context.
+### AUC-ROC
 
-**Complete classification metrics to report:**
+The Area Under the Receiver Operating Characteristic Curve (AUC-ROC) provides a threshold-independent measure of discrimination. Unlike classification accuracy, which depends on a single cutoff, the AUC evaluates the model across all possible cutoffs.
 
-| Metric | Formula | Interpretation |
-|--------|---------|---------------|
-| Overall accuracy | (TP + TN) / N | Percentage of all cases correctly classified |
-| Sensitivity | TP / (TP + FN) | Correctly predicted positive outcomes |
-| Specificity | TN / (TN + FP) | Correctly predicted negative outcomes |
-| Positive predictive value | TP / (TP + FP) | Among predicted positives, how many are true |
-| Negative predictive value | TN / (TN + FN) | Among predicted negatives, how many are true |
-
-Where TP = true positives, TN = true negatives, FP = false positives, FN = false negatives.
-
-**APA reporting format for classification:**
-
-> The model correctly classified 81.2% of cases (sensitivity = 76.5%, specificity = 85.3%). The positive predictive value was 79.6%, and the negative predictive value was 83.1%. This represents a 15.2 percentage-point improvement over the base rate classification of 66.0%.
-
-Always compare your model's accuracy to the **base rate** (the percentage of the majority class). A model that achieves 80% accuracy is uninformative if 80% of cases belong to one category, because simply predicting the majority class for every case would achieve the same accuracy with no predictors.
-
-### AUC-ROC: The Area Under the Receiver Operating Characteristic Curve
-
-The **AUC** (Area Under the Curve) from a **ROC** (Receiver Operating Characteristic) analysis provides a threshold-independent measure of model discrimination. Unlike classification accuracy, which depends on a single cutoff (usually .50), the AUC evaluates the model's ability to distinguish between outcomes across all possible cutoff values.
-
-| AUC Value | Discrimination |
-|-----------|---------------|
-| .50 | No discrimination (chance level) |
+| AUC Value | Discrimination Level |
+|-----------|---------------------|
+| .50 | No better than chance |
 | .60 - .69 | Poor |
 | .70 - .79 | Acceptable |
 | .80 - .89 | Excellent |
 | .90+ | Outstanding |
 
-**APA reporting format:**
+> The area under the ROC curve was .83, 95% CI [.77, .89], indicating excellent discrimination between graduates and non-graduates.
 
-> The area under the ROC curve was .84, 95% CI [.78, .90], indicating excellent discrimination between treatment responders and non-responders.
+## Common Mistakes to Avoid
 
-## Multiple Predictors in Logistic Regression
+### Reporting Unstandardized B Without the Odds Ratio
 
-Most applied logistic regression models include multiple predictors simultaneously. Reporting these results clearly requires careful organization to prevent readers from losing track of the individual contributions.
+The *B* coefficient in logistic regression is a log-odds value. Unlike the *B* in linear regression, it has no direct intuitive interpretation. A reader cannot grasp what "*B* = 1.74" means without converting it to the odds ratio (OR = e^1.74 = 5.70). Always report both *B* and OR. The odds ratio is the effect size that reviewers and readers expect.
 
-### Reporting Multiple Odds Ratios
+**Incomplete:** "GPA significantly predicted graduation, *B* = 1.74, *p* < .001."
 
-When reporting three or more predictors, use a table as the primary presentation format rather than embedding every statistic in the text. The narrative should then highlight the most important findings without repeating every number from the table.
+**Complete:** "GPA significantly predicted graduation, *B* = 1.74, *SE* = 0.48, Wald *chi-square*(1) = 13.14, *p* < .001, OR = 5.70, 95% CI [2.23, 14.57]."
 
-**APA table format for multiple predictors:**
+### Not Including Confidence Intervals for Odds Ratios
 
-| Predictor | *B* | *SE* | Wald | *p* | OR | 95% CI |
-|-----------|------|------|------|------|------|--------|
-| (Constant) | -4.21 | 1.08 | 15.19 | < .001 | | |
-| Age (years) | 0.06 | 0.02 | 9.00 | .003 | 1.06 | [1.02, 1.10] |
-| Gender (female) | 0.89 | 0.34 | 6.85 | .009 | 2.44 | [1.25, 4.75] |
-| Income (per $10k) | -0.15 | 0.08 | 3.52 | .061 | 0.86 | [0.74, 1.01] |
-| Education (college+) | 0.72 | 0.31 | 5.39 | .020 | 2.05 | [1.12, 3.77] |
-| Smoking status | 1.23 | 0.38 | 10.48 | .001 | 3.42 | [1.62, 7.21] |
+An odds ratio without a confidence interval is a point estimate with no indication of precision. An OR of 2.50 with a 95% CI of [0.85, 7.35] crosses 1.00 and is not statistically significant. An OR of 2.50 with a CI of [1.40, 4.46] is significant and has a much narrower range of uncertainty. APA 7th edition explicitly requires confidence intervals for effect size measures, and in logistic regression, the 95% CI for each odds ratio fills this role.
 
-**Narrative for the table:**
+### Using R-Squared From Linear Regression
 
-> Table 2 presents the logistic regression coefficients. Smoking status was the strongest predictor of cardiovascular events, OR = 3.42, 95% CI [1.62, 7.21], *p* = .001, indicating that smokers had 3.42 times the odds of experiencing a cardiovascular event compared to non-smokers. Female gender, OR = 2.44, 95% CI [1.25, 4.75], and college education, OR = 2.05, 95% CI [1.12, 3.77], were also significant predictors. Income was not statistically significant at the .05 level, OR = 0.86, 95% CI [0.74, 1.01], *p* = .061.
+Logistic regression does not produce a traditional R-squared. Writing "*R*² = .28" without specifying that it is Nagelkerke *R*² (or Cox & Snell *R*²) misleads readers into thinking you are reporting explained variance in the ordinary least squares sense. Nagelkerke *R*² values tend to be lower than OLS R-squared values for comparable data, so the distinction matters for interpretation.
 
-### Hierarchical (Block) Entry
+Always label the specific pseudo R-squared:
 
-In hierarchical logistic regression, predictors are entered in sequential blocks to test whether adding a new set of variables significantly improves model fit beyond the previous block.
+> The model explained 28.4% of the variance in graduation status (Nagelkerke *R*² = .284).
 
-**APA reporting format for hierarchical models:**
+### Ignoring Multicollinearity
 
-> In Step 1, demographic variables (age and gender) were entered. The model was statistically significant, *chi-square*(2) = 14.32, *p* < .001, Nagelkerke *R*² = .12. In Step 2, behavioral variables (smoking and exercise) were added. The change in model fit was significant, *chi-square*(2) = 18.65, *p* < .001, and Nagelkerke *R*² increased from .12 to .27. The addition of behavioral variables explained an additional 15% of the variance in the outcome.
+When two or more predictors are highly correlated, standard errors inflate, individual Wald tests lose power, and coefficient signs can flip. Run a linear regression with the same predictors and inspect the Variance Inflation Factor (VIF). VIF values below 5 are generally acceptable. Values above 10 indicate severe multicollinearity requiring remedial action: remove one of the correlated predictors, combine them into a composite, or use ridge regression.
 
-### Handling Categorical Predictors With Multiple Levels
+> Multicollinearity was assessed using variance inflation factors. All VIF values were below 2.5 (range: 1.08 to 2.34), indicating no problematic multicollinearity among the predictors.
 
-When a categorical predictor has more than two levels (e.g., education: high school, college, graduate), it is represented by *k* - 1 dummy variables. Report the overall Wald chi-square for the variable as a set, followed by the individual comparisons.
+### Interpreting Odds Ratios as Probability Ratios
 
-> Education level was a significant predictor of treatment adherence, Wald *chi-square*(2) = 11.84, *p* = .003. Relative to high school education (reference), participants with college education had 2.15 times the odds of adherence, OR = 2.15, 95% CI [1.18, 3.92], *p* = .013, and those with graduate education had 3.40 times the odds, OR = 3.40, 95% CI [1.55, 7.45], *p* = .002.
+This is the single most common interpretive error in logistic regression reporting. Odds and probabilities are mathematically different quantities.
 
-## Assumptions of Logistic Regression
+**Incorrect:** "Students with a one-point higher GPA were 5.70 times more likely to graduate."
 
-Logistic regression does not share the assumptions of linear regression (normality, homoscedasticity, linear relationship between predictors and outcome). However, it has its own set of assumptions that must be verified and reported.
+**Correct:** "For each one-point increase in GPA, the odds of graduating were 5.70 times greater."
 
-### Assumption 1: Linearity of the Logit
+When the outcome is rare (prevalence below 10%), the odds ratio closely approximates the relative risk. When the outcome is common (as in the graduation example, where 64% graduated), the odds ratio substantially overestimates the relative risk.
 
-Logistic regression assumes a linear relationship between each continuous predictor and the **log-odds** (logit) of the outcome. This does not mean the relationship between the predictor and the outcome probability is linear; rather, the relationship between the predictor and the log-transformed odds must be linear.
+### Not Specifying the Reference Category
 
-**How to test:** The standard approach is the Box-Tidwell test, which adds interaction terms between each continuous predictor and its natural logarithm to the model. A significant interaction suggests a violation of linearity.
+For categorical predictors, the odds ratio compares a coded group to its reference category. Failing to state the reference makes the results uninterpretable.
 
-**APA reporting format:**
-
-> The linearity of the continuous variables with respect to the logit of the dependent variable was assessed via the Box-Tidwell procedure. All continuous independent variables were found to be linearly related to the logit of the dependent variable (all *p*s > .05).
-
-If a violation is detected, consider transforming the variable (e.g., log transformation, polynomial terms) or categorizing it into meaningful groups.
-
-### Assumption 2: Absence of Multicollinearity
-
-When two or more predictors are highly correlated, the model becomes unstable: standard errors inflate, coefficients become unreliable, and individual predictor significance tests lose power.
-
-**How to test:** Run a linear regression with the same predictors and inspect the **Variance Inflation Factor** (VIF) for each predictor.
-
-| VIF Value | Interpretation |
-|-----------|---------------|
-| 1.0 | No collinearity |
-| 1.0 - 5.0 | Moderate; generally acceptable |
-| 5.0 - 10.0 | High; warrants investigation |
-| > 10.0 | Severe; remedial action needed |
-
-**APA reporting format:**
-
-> Multicollinearity was assessed using variance inflation factors (VIF). All VIF values were below 2.5 (range: 1.08 - 2.34), indicating no problematic multicollinearity among the predictors.
-
-**Remedies for multicollinearity:** Remove one of the correlated predictors, combine them into a composite variable, or use principal component regression.
-
-### Assumption 3: Independence of Observations
-
-Each case in the dataset must be independent of every other case. Violations occur with repeated measures, clustered data (e.g., students nested within classrooms), or matched designs.
-
-If your data has a hierarchical structure, standard logistic regression is inappropriate. Use **multilevel logistic regression** (mixed-effects logistic regression) or **generalized estimating equations** (GEE) instead.
-
-### Assumption 4: Adequate Sample Size
-
-Logistic regression requires sufficient cases in both outcome categories for stable coefficient estimation. The classic rule of thumb is a minimum of 10 events per predictor variable (EPV), where "events" refers to cases in the less frequent outcome category.
-
-| Number of Predictors | Minimum Events Needed (EPV = 10) | If minority class = 30% of N |
-|---------------------|--------------------------------|-------------------------------|
-| 3 | 30 | N = 100 |
-| 5 | 50 | N = 167 |
-| 8 | 80 | N = 267 |
-| 10 | 100 | N = 334 |
-
-More recent simulation research suggests that **EPV = 20** provides more reliable estimates, and some authors recommend even higher thresholds for models with categorical predictors with many levels.
-
-**APA reporting format:**
-
-> The sample included 312 participants, of whom 94 (30.1%) experienced the outcome event. With five predictors in the model, the events-per-variable ratio was 18.8, exceeding the recommended minimum of 10.
-
-### Assumption 5: No Influential Outliers
-
-Outliers in logistic regression are cases that the model predicts very poorly. These are identified through diagnostic statistics such as **Cook's distance**, **leverage values**, and **standardized residuals**.
-
-Cases with standardized residuals exceeding 2.5 (or 3.0 in some references) or Cook's distance greater than 1.0 should be examined individually. However, removal of outliers should be based on substantive reasons, not solely on statistical criteria.
-
-## Common Mistakes in Logistic Regression Reporting
-
-Even experienced researchers make preventable errors when reporting logistic regression results. The following mistakes appear frequently in submitted manuscripts and are among the most common reasons for revision requests.
-
-### Mistake 1: Interpreting B Coefficients as Linear Effects
-
-The *B* coefficient in logistic regression represents the change in **log-odds** per one-unit increase in the predictor. Unlike linear regression, where *B* represents a constant change in the outcome, the effect of a one-unit change in the predictor on the probability of the outcome varies depending on the baseline probability.
-
-**Incorrect:** "For each additional year of age, the probability of disease increased by 0.06."
-
-**Correct:** "For each additional year of age, the log-odds of disease increased by 0.06, corresponding to an odds ratio of 1.06."
-
-The odds ratio is the exponentiated *B* coefficient (OR = e^*B*) and is the appropriate effect size to report and interpret.
-
-### Mistake 2: Ignoring Model Fit Statistics
-
-Jumping directly to individual predictor results without first establishing that the overall model is significant is a structural error. The omnibus test, pseudo R-squared, and classification accuracy establish the foundation. If the overall model is not significant, individual predictor tests should be interpreted with great caution.
-
-**A complete model fit section includes:**
-1. Omnibus chi-square test with degrees of freedom and *p* value
-2. Nagelkerke *R*² (and optionally Cox & Snell *R*²)
-3. Hosmer-Lemeshow test
-4. Classification accuracy with sensitivity and specificity
-5. Comparison to the base rate
-
-### Mistake 3: Missing Confidence Intervals for Odds Ratios
-
-An odds ratio without a confidence interval is like a mean without a standard deviation. The point estimate tells you the most likely value, but the CI reveals how much uncertainty surrounds that estimate. Reviewers will almost always request CIs if they are missing.
-
-### Mistake 4: Reporting Odds Ratios as Probability Ratios
-
-This remains the most common interpretive error. The statement "patients who exercised were 2.5 times more likely to recover" implies a probability ratio, which is what a relative risk (RR) measures. The correct statement is "patients who exercised had 2.5 times the odds of recovery." When the outcome is common (prevalence > 10%), odds ratios substantially overestimate relative risks.
-
-### Mistake 5: Not Specifying the Reference Category
-
-For categorical predictors, the odds ratio compares a coded group to the reference category. Failing to specify which group serves as the reference makes the results uninterpretable. Always state the reference explicitly:
-
-> Compared to participants with high school education (reference), those with college education had 2.15 times the odds of adherence.
-
-### Mistake 6: Reporting Percentage Change Incorrectly
-
-When converting an OR to a percentage change, use (OR - 1) x 100 for increased odds and (1 - OR) x 100 for decreased odds.
-
-**Incorrect:** "OR = 1.35 represents a 35% increase" is sometimes stated without showing the calculation, leading readers to assume the percentage refers to probability rather than odds.
-
-**Correct:** "For each additional unit of X, the odds of the outcome increased by 35% (OR = 1.35)." Be explicit that the percentage change refers to odds, not probability.
-
-### Mistake 7: Omitting Assumption Checks
-
-Not mentioning assumption verification (linearity of logit, multicollinearity, sample size adequacy) is a growing concern among reviewers. Even a brief statement such as "assumptions of logistic regression were examined and met" is better than silence, though providing specific test results is preferred.
-
-## Frequently Asked Questions
-
-### What is the difference between binary, multinomial, and ordinal logistic regression?
-
-Binary logistic regression predicts a dichotomous outcome (two categories). Multinomial logistic regression predicts an outcome with three or more unordered categories (e.g., preferred transportation: car, bus, bicycle). Ordinal logistic regression predicts an outcome with ordered categories (e.g., disease severity: mild, moderate, severe). Each type produces odds ratios, but the interpretation and model structure differ. Binary is the most common and forms the foundation for the other variants.
-
-### How do I interpret an odds ratio less than 1?
-
-An OR less than 1.00 indicates that the predictor is associated with decreased odds of the outcome. To express the decrease as a percentage, calculate (1 - OR) x 100. For example, OR = 0.65 means that a one-unit increase in the predictor is associated with a 35% decrease in the odds of the outcome (1 - 0.65 = 0.35, or 35%). Some researchers take the reciprocal (1/0.65 = 1.54) and report it as the protective factor having 1.54 times the odds compared to the risk factor.
-
-### What is the minimum sample size for logistic regression?
-
-The classic guideline is at least 10 events per predictor variable (EPV), where events are cases in the less frequent outcome category. For a model with five predictors and a 30% event rate, you would need at least 50 events, requiring a total sample of approximately 167 participants. More recent research recommends EPV of 20 or higher for stable coefficient estimates, especially when predictors include multi-category variables.
-
-### Should I use forward, backward, or enter method?
-
-The **Enter** (forced entry) method is generally recommended for confirmatory research because it tests the specific set of predictors dictated by theory. **Forward** and **backward** stepwise methods are exploratory and capitalize on sample-specific characteristics, leading to models that may not replicate. If you use stepwise methods, report them as exploratory and validate the final model on an independent sample.
-
-### How do I report logistic regression with interaction terms?
-
-Report the main effects first, then the interaction term. An interaction in logistic regression means the effect of one predictor on the outcome depends on the level of another predictor. Report the interaction OR and explain what it means substantively. For example: "The interaction between treatment and gender was significant, OR = 2.18, 95% CI [1.12, 4.24], *p* = .022, indicating that the treatment effect on recovery was stronger for female participants than for male participants."
-
-### Can I use R-squared to compare logistic regression models?
-
-Pseudo R-squared values (such as Nagelkerke *R*²) can be compared across nested models (where one model is a subset of the other) fitted to the same dataset. However, they should not be compared across different datasets or different outcome variables because the values depend on the base rate and sample characteristics. For model comparison, use the likelihood ratio test, AIC, or BIC instead.
-
-### What is the Wald test and how does it differ from the likelihood ratio test?
-
-The Wald test evaluates whether each individual predictor's coefficient is significantly different from zero. It uses the ratio of the coefficient to its standard error. The likelihood ratio test compares the fit of two nested models (with and without the predictor). The likelihood ratio test is generally more reliable, especially for large coefficients where the Wald test can be conservative (the Hauck-Donner effect). For overall model evaluation, the omnibus likelihood ratio chi-square is preferred.
-
-### How do I handle missing data in logistic regression?
-
-Logistic regression with standard estimation (listwise deletion) drops all cases with any missing value on any variable, which can substantially reduce sample size and introduce bias. Consider multiple imputation if missingness exceeds 5% on any variable. Always report the amount of missing data and the method used to handle it. For example: "Of the original 450 participants, 412 (91.6%) had complete data on all variables and were included in the analysis."
+> Compared to students with irregular attendance (reference), students with regular attendance had 2.35 times the odds of graduating, OR = 2.35, 95% CI [1.12, 4.93].
 
 ## Logistic Regression APA Checklist
 
 Before submitting your manuscript, verify that your logistic regression results include:
 
-- The type of logistic regression performed (binary, multinomial, ordinal)
+- The type of logistic regression (binary, multinomial, ordinal)
 - Sample size and outcome group frequencies
-- Overall model chi-square with degrees of freedom and *p* value
-- Pseudo R-squared (Nagelkerke *R*² preferred) clearly labeled
-- Classification accuracy (overall percentage, sensitivity, specificity)
+- Omnibus chi-square with degrees of freedom and *p* value
+- Nagelkerke *R*² clearly labeled as pseudo R-squared
+- Classification accuracy with sensitivity and specificity
+- Comparison to the base rate
 - A coefficients table with *B*, *SE*, Wald *chi-square*, *p*, OR, and 95% CI for OR
-- The intercept (constant) row in the coefficients table
-- Narrative interpretation of odds ratios for significant predictors
-- Odds ratios interpreted correctly (not as probabilities)
-- All statistical symbols in italics (*B*, *SE*, *p*, *chi-square*, *R*²)
-- Exact *p* values (or *p* < .001 for very small values)
-- Assumption checks mentioned (linearity of logit, multicollinearity, outliers)
+- The intercept (constant) row in the table
+- Odds ratios interpreted as odds, not probabilities
+- Reference categories specified for categorical predictors
+- Confidence intervals for every odds ratio
+- All statistical symbols italicized (*B*, *SE*, *p*, *chi-square*, *R*²)
+- Assumption checks mentioned (linearity of logit, multicollinearity, sample size)
 
-## Try StatMate's Free Logistic Regression Calculator
+## Frequently Asked Questions
 
-Assembling all these statistics from SPSS or R output and formatting them correctly is time-consuming and error-prone. StatMate's logistic regression calculator handles the entire process automatically.
+### What is the difference between binary, multinomial, and ordinal logistic regression?
 
-Enter your binary outcome and predictor variables, and StatMate computes the omnibus model test, Nagelkerke *R*², classification table, and individual predictor statistics including *B*, *SE*, Wald chi-square, *p*, odds ratios, and 95% confidence intervals. The results are formatted in APA 7th edition style, ready to copy directly into your manuscript.
+Binary logistic regression predicts a dichotomous outcome (two categories). Multinomial logistic regression predicts an outcome with three or more unordered categories (e.g., preferred transportation: car, bus, bicycle). Ordinal logistic regression predicts an outcome with ordered categories (e.g., disease severity: mild, moderate, severe). Each type produces odds ratios, but the interpretation and model structure differ. Binary logistic regression is the most common and is the foundation for the other variants.
 
-The calculator also generates an odds ratio forest plot that visually displays each predictor's OR with its confidence interval, making it easy to identify which predictors have the strongest effects and whether their intervals cross 1.00. You can export the complete results to Word with one click.
+### How do I interpret an odds ratio less than 1?
 
-By letting StatMate handle the calculations and formatting, you eliminate common errors like missing confidence intervals, unlabeled pseudo R-squared values, or incorrectly computed odds ratios, and focus your time on interpreting your findings.
+An OR less than 1.00 indicates decreased odds of the outcome. Calculate (1 - OR) x 100 for the percentage decrease. For example, OR = 0.65 means a 35% decrease in odds per one-unit increase in the predictor. Some researchers report the reciprocal (1/OR = 1.54) to frame the finding as increased odds in the opposite direction.
+
+### What is the minimum sample size for logistic regression?
+
+The classic guideline is at least 10 events per predictor variable (EPV), where events are cases in the less frequent outcome category. For five predictors with a 30% event rate, you need at least 50 events, requiring a total sample of approximately 167. More recent simulation research recommends EPV of 20 or higher for stable coefficient estimates.
+
+### What is the Hosmer-Lemeshow test and when should I report it?
+
+The Hosmer-Lemeshow test evaluates whether predicted probabilities match observed outcomes across subgroups. A non-significant result (*p* > .05) indicates adequate model fit. Report it to strengthen your write-up, but note it is sensitive to sample size: large samples may flag trivial deviations, while small samples may miss genuine lack of fit.
+
+### What is the difference between the Wald test and the likelihood ratio test?
+
+The Wald test evaluates individual predictor coefficients using the coefficient-to-standard-error ratio. The likelihood ratio test compares nested models by examining the change in -2 log likelihood. The likelihood ratio test is generally more reliable, especially for large coefficients where the Wald test can be conservative due to the Hauck-Donner effect. For overall model evaluation, the omnibus likelihood ratio chi-square is preferred.
+
+## Calculation Accuracy
+
+Assembling model fit statistics, odds ratios, confidence intervals, and classification tables from SPSS or R output and formatting them into APA 7th edition style is tedious and error-prone. StatMate's [logistic regression calculator](/en/calculators/logistic-regression) handles the entire process automatically.
+
+Enter your binary outcome and predictor variables, and StatMate computes the omnibus model test, Nagelkerke *R*², classification table with sensitivity and specificity, and individual predictor statistics including *B*, *SE*, Wald chi-square, *p*, odds ratios, and 95% confidence intervals. The results are formatted in APA 7th edition style, ready to copy directly into your manuscript.
+
+The calculator also generates an odds ratio chart that visually displays each predictor's OR with its confidence interval, making it easy to identify which predictors have effects that exclude 1.00 and which do not. Export the complete results to Word or PDF with one click.

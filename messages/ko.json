@@ -1591,6 +1591,10 @@
       "title": "Cronbach's Alpha: 완전한 신뢰도 가이드",
       "description": "문항 분석, 수용 가능 값, 보고 방법"
     },
+    "cronbachAlphaApa": {
+      "title": "Cronbach's Alpha를 APA 7판 형식으로 보고하는 방법",
+      "description": "문항 분석과 해석 기준을 포함한 신뢰도 보고"
+    },
     "factorAnalysisApa": {
       "title": "요인분석 결과를 APA 형식으로 보고하는 방법",
       "description": "고유값, 요인적재량, 회전"
@@ -1630,6 +1634,10 @@
     "fisherExactApa": {
       "title": "Fisher 정확검정 결과를 APA 형식으로 보고하는 방법",
       "description": "소표본 범주형 데이터 분석"
+    },
+    "fisherExactApa7th": {
+      "title": "Fisher 정확검정 APA 7판 — 효과크기 및 보고 예시",
+      "description": "사용 시점, 오즈비, Cramér's V, 단계별 보고 방법"
     }
   },
   "relatedCalculators": {

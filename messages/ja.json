@@ -1510,6 +1510,10 @@
       "title": "Cronbach's Alpha：完全な信頼性ガイド",
       "description": "項目分析、許容値、報告方法"
     },
+    "cronbachAlphaApa": {
+      "title": "Cronbach's AlphaをAPA第7版形式で報告する方法",
+      "description": "項目分析と解釈基準を含む信頼性報告"
+    },
     "factorAnalysisApa": {
       "title": "因子分析の結果をAPA形式で報告する方法",
       "description": "固有値、因子負荷量、回転"
@@ -1549,6 +1553,10 @@
     "fisherExactApa": {
       "title": "Fisher正確検定の結果をAPA形式で報告する方法",
       "description": "小標本カテゴリカルデータ分析"
+    },
+    "fisherExactApa7th": {
+      "title": "Fisher正確検定 APA第7版 — 効果量と報告例",
+      "description": "使用時期、オッズ比、Cramér's V、ステップバイステップの報告方法"
     }
   },
   "relatedCalculators": {

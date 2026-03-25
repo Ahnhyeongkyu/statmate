@@ -55,6 +55,7 @@ const CALCULATOR_BLOG_MAP: Record<string, { slug: string; titleKey: string }[]> 
     { slug: "simple-vs-multiple-regression", titleKey: "simpleVsMultipleRegression" },
   ],
   "cronbach-alpha": [
+    { slug: "cronbach-alpha-apa-reporting", titleKey: "cronbachAlphaApa" },
     { slug: "reliability-cronbach-alpha", titleKey: "reliabilityCronbach" },
     { slug: "factor-analysis-apa-reporting", titleKey: "factorAnalysisApa" },
   ],
@@ -85,6 +86,7 @@ const CALCULATOR_BLOG_MAP: Record<string, { slug: string; titleKey: string }[]> 
   ],
   "fisher-exact": [
     { slug: "fisher-exact-test-apa-reporting", titleKey: "fisherExactApa" },
+    { slug: "fisher-exact-apa-reporting", titleKey: "fisherExactApa7th" },
     { slug: "chi-square-vs-fisher-exact", titleKey: "chiSquareVsFisher" },
   ],
   "mcnemar": [

@@ -1510,6 +1510,10 @@
       "title": "Cronbach's Alpha: A Complete Reliability Guide",
       "description": "Item analysis, acceptable values, and reporting"
     },
+    "cronbachAlphaApa": {
+      "title": "How to Report Cronbach's Alpha in APA 7th Edition",
+      "description": "Reliability reporting with item analysis and interpretation benchmarks"
+    },
     "factorAnalysisApa": {
       "title": "How to Report Factor Analysis in APA Format",
       "description": "Eigenvalues, factor loadings, and rotation"
@@ -1549,6 +1553,10 @@
     "fisherExactApa": {
       "title": "How to Report Fisher's Exact Test in APA Format",
       "description": "Small sample categorical data analysis"
+    },
+    "fisherExactApa7th": {
+      "title": "Fisher's Exact Test APA 7th Edition — Effect Sizes & Examples",
+      "description": "When to use, odds ratio, Cramer's V, and step-by-step reporting"
     }
   },
   "relatedCalculators": {
