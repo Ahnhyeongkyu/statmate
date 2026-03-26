@@ -83,6 +83,7 @@ const CALCULATOR_BLOG_MAP: Record<string, { slug: string; titleKey: string }[]> 
     { slug: "how-to-run-anova", titleKey: "howToRunAnova" },
   ],
   "friedman": [
+    { slug: "friedman-apa-reporting", titleKey: "friedmanApa" },
     { slug: "nonparametric-tests-guide", titleKey: "nonparametricGuide" },
     { slug: "anova-vs-kruskal-wallis", titleKey: "anovaVsKruskalWallis" },
   ],
@@ -92,6 +93,7 @@ const CALCULATOR_BLOG_MAP: Record<string, { slug: string; titleKey: string }[]> 
     { slug: "chi-square-vs-fisher-exact", titleKey: "chiSquareVsFisher" },
   ],
   "mcnemar": [
+    { slug: "mcnemar-apa-reporting", titleKey: "mcnemarApa" },
     { slug: "chi-square-apa-reporting", titleKey: "chiSquareApa" },
     { slug: "nonparametric-tests-guide", titleKey: "nonparametricGuide" },
   ],

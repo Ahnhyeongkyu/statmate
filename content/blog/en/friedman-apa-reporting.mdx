@@ -1,0 +1,312 @@
+---
+title: "How to Report Friedman Test in APA 7th Edition — Effect Size, Post-Hoc & Examples"
+description: "Step-by-step guide to reporting Friedman test results in APA 7th edition. Kendall's W effect size, Nemenyi/Conover post-hoc tests, and copy-paste APA templates with a free calculator."
+date: "2026-03-26"
+category: "APA Reporting"
+tags: ["Friedman test", "APA format", "APA 7th edition", "nonparametric", "repeated measures", "Kendall W", "post-hoc", "ordinal data"]
+---
+
+## When to Use the Friedman Test vs. Repeated Measures ANOVA
+
+The Friedman test is the nonparametric alternative to one-way repeated measures ANOVA. It compares three or more related groups (the same participants measured under multiple conditions or time points) without requiring the data to be normally distributed or measured on an interval scale.
+
+Choose the Friedman test when any of the following apply:
+
+- **Ordinal dependent variable.** Your outcome is measured on an ordinal scale, such as Likert-type ratings, preference rankings, or severity categories. Repeated measures ANOVA requires interval or ratio data; the Friedman test works with ranks.
+- **Non-normal distributions.** The Shapiro-Wilk test on residuals is significant or Q-Q plots reveal severe departures from normality within conditions. While repeated measures ANOVA is moderately robust to non-normality, severe violations (skewness, heavy tails, floor/ceiling effects) warrant the Friedman test.
+- **Small sample sizes.** With fewer than 15-20 participants, the normality assumption is difficult to verify, and the Central Limit Theorem provides minimal protection.
+- **Violation of sphericity.** While the Greenhouse-Geisser or Huynh-Feldt corrections can address sphericity violations in repeated measures ANOVA, the Friedman test avoids the issue entirely because it operates on ranks within each participant.
+
+The Friedman test works by ranking the scores within each participant across conditions, then comparing the sum of ranks across conditions. If one condition consistently produces higher scores, its mean rank will be notably higher than the others.
+
+### Statistical Power Comparison
+
+Under perfect normality and sphericity, repeated measures ANOVA has greater statistical power than the Friedman test. The asymptotic relative efficiency is approximately 0.955 for three conditions, meaning you need roughly 5% more participants with the Friedman test to achieve the same power. However, when normality or sphericity is violated, the Friedman test can outperform repeated measures ANOVA because it is not distorted by extreme values or violated assumptions.
+
+| Decision Factor | Repeated Measures ANOVA | Friedman Test |
+|----------------|------------------------|---------------|
+| Normally distributed data | Yes | Either |
+| Ordinal measurement scale | -- | Yes |
+| Non-normal distributions | -- | Yes |
+| Sphericity assumption met | Yes | Not required |
+| Sample size > 20, mild violations | Yes (with corrections) | Either |
+| Sample size < 15, normality uncertain | -- | Yes |
+
+Try it yourself with the [Friedman test calculator](/calculators/friedman).
+
+## The APA Reporting Template
+
+APA 7th edition requires the test statistic, degrees of freedom, p-value, and an effect size measure for every inferential test. The Friedman test uses a chi-square approximation, so the standard format is:
+
+> A Friedman test indicated a statistically significant difference in [outcome] across the [number] conditions, *chi-sq*(*k* - 1) = X.XX, *p* = .XXX, *W* = .XX.
+
+### Essential Components
+
+Every Friedman test report must include:
+
+1. **Full test name** on first mention (Friedman test).
+2. **Number of participants** (*N*) and number of conditions (*k*).
+3. **Descriptive statistics:** Medians and IQRs (or mean ranks) for each condition.
+4. **Test statistic:** Chi-square value with degrees of freedom (*k* - 1).
+5. **Exact p-value** (or *p* < .001).
+6. **Effect size:** Kendall's *W*.
+7. **Post-hoc comparisons** when the omnibus test is significant.
+
+### Template for Significant Results
+
+> A Friedman test showed a statistically significant difference in pain ratings across the three treatment conditions (*N* = 25), *chi-sq*(2) = 18.42, *p* < .001, *W* = .37. Median pain ratings were 7.00 (IQR = 6.00-8.00) for placebo, 5.00 (IQR = 3.00-6.00) for low-dose, and 3.00 (IQR = 2.00-5.00) for high-dose.
+
+### Template for Non-Significant Results
+
+> A Friedman test did not reveal a statistically significant difference in satisfaction ratings across the three time points (*N* = 30), *chi-sq*(2) = 3.24, *p* = .198, *W* = .05. Median satisfaction ratings were similar at baseline (*Mdn* = 4.00), 6 weeks (*Mdn* = 4.00), and 12 weeks (*Mdn* = 5.00).
+
+## Kendall's W Effect Size
+
+The standard effect size for the Friedman test is Kendall's coefficient of concordance (*W*), which measures the degree of agreement or consistency in rankings across participants.
+
+### How to Calculate Kendall's W
+
+*W* = *chi-sq*_Friedman / (*N* * (*k* - 1))
+
+where *N* is the number of participants and *k* is the number of conditions.
+
+**Example:** With *chi-sq* = 18.42, *N* = 25, and *k* = 3:
+
+*W* = 18.42 / (25 * 2) = 18.42 / 50 = 0.37
+
+### Interpreting Kendall's W
+
+Kendall's *W* ranges from 0 to 1:
+
+| *W* Value | Interpretation |
+|-----------|---------------|
+| .00 | No agreement; rankings are random |
+| .10 | Small effect |
+| .30 | Medium effect |
+| .50 | Large effect |
+| 1.00 | Perfect agreement; all participants rank conditions identically |
+
+These benchmarks correspond approximately to Cohen's conventions. A *W* of .37 in the example above represents a medium-to-large effect, indicating substantial consistency in how participants ranked the three treatment conditions.
+
+### Alternative Effect Size: Friedman's Chi-Square to r
+
+Some researchers convert the Friedman chi-square to an *r*-family effect size for comparability with other nonparametric tests:
+
+*r* = sqrt(*chi-sq* / (*N* * (*k* - 1)))
+
+This produces the same value as sqrt(*W*).
+
+### APA Format for Effect Size
+
+Report the effect size immediately after the p-value:
+
+> *chi-sq*(2) = 18.42, *p* < .001, *W* = .37
+
+If you want to be explicit:
+
+> *chi-sq*(2) = 18.42, *p* < .001, Kendall's *W* = .37
+
+## Step-by-Step Reporting Example
+
+### Scenario
+
+A physical therapist evaluates pain levels (0-10 numerical rating scale) in 25 patients under three conditions: no treatment (baseline), a standard physical therapy protocol, and an experimental electrostimulation protocol. All 25 patients experience all three conditions in randomized order with washout periods.
+
+### Step 1: Report Descriptive Statistics
+
+Present medians and interquartile ranges for each condition:
+
+| Condition | *Mdn* | IQR | Mean Rank |
+|-----------|-------|-----|-----------|
+| No treatment | 7.00 | 6.00-8.00 | 2.68 |
+| Standard PT | 5.00 | 3.00-6.00 | 1.92 |
+| Electrostimulation | 3.00 | 2.00-5.00 | 1.40 |
+
+> Pain ratings had a median of 7.00 (IQR = 6.00-8.00) under no treatment, 5.00 (IQR = 3.00-6.00) under standard physical therapy, and 3.00 (IQR = 2.00-5.00) under electrostimulation.
+
+### Step 2: Justify the Nonparametric Choice
+
+> Because pain was measured on a bounded ordinal-like scale with substantial floor effects in the electrostimulation condition, and the Shapiro-Wilk test indicated non-normality for two of three conditions (both *p* < .01), the Friedman test was selected instead of repeated measures ANOVA.
+
+### Step 3: Report the Omnibus Result
+
+> A Friedman test indicated a statistically significant difference in pain ratings across the three treatment conditions (*N* = 25), *chi-sq*(2) = 18.42, *p* < .001, *W* = .37.
+
+### Step 4: Report Post-Hoc Comparisons
+
+When the Friedman test is significant, conduct pairwise comparisons:
+
+> Post-hoc pairwise Wilcoxon signed-rank tests with Bonferroni correction (adjusted alpha = .017) revealed that pain ratings were significantly lower under electrostimulation compared to no treatment (*Z* = -3.89, *p* < .001, *r* = .78) and compared to standard PT (*Z* = -2.67, *p* = .008, *r* = .53). The difference between standard PT and no treatment was also significant (*Z* = -2.82, *p* = .005, *r* = .56).
+
+### Complete APA Paragraph
+
+> The Friedman test was used to compare pain ratings across three treatment conditions (*N* = 25). The nonparametric test was selected because pain was measured on a bounded scale with floor effects and the normality assumption was violated for two conditions (Shapiro-Wilk *p* < .01). Pain ratings differed significantly across conditions, *chi-sq*(2) = 18.42, *p* < .001, *W* = .37. Median pain was 7.00 (IQR = 6.00-8.00) under no treatment, 5.00 (IQR = 3.00-6.00) under standard physical therapy, and 3.00 (IQR = 2.00-5.00) under electrostimulation. Post-hoc Wilcoxon signed-rank tests with Bonferroni correction (adjusted alpha = .017) indicated that electrostimulation produced significantly lower pain than both no treatment (*Z* = -3.89, *p* < .001, *r* = .78) and standard PT (*Z* = -2.67, *p* = .008, *r* = .53). Standard PT also produced significantly lower pain than no treatment (*Z* = -2.82, *p* = .005, *r* = .56). All pairwise effect sizes were large, indicating clinically meaningful differences between all three conditions.
+
+## Post-Hoc Tests for the Friedman Test
+
+When the omnibus Friedman test is significant, you need post-hoc pairwise comparisons to determine which specific conditions differ. Three common approaches exist.
+
+### 1. Pairwise Wilcoxon Signed-Rank Tests with Bonferroni Correction
+
+The most common approach. Conduct a Wilcoxon signed-rank test for each pair of conditions and adjust alpha for the number of comparisons.
+
+For *k* = 3 conditions: 3 pairwise comparisons, adjusted alpha = .05 / 3 = .017.
+
+For *k* = 4 conditions: 6 pairwise comparisons, adjusted alpha = .05 / 6 = .008.
+
+**Advantages:** Produces individual effect sizes (*r*) for each pair. Widely understood.
+
+**Disadvantages:** Re-ranks data for each comparison, losing the original ranking from the omnibus test. Bonferroni can be overly conservative with many comparisons.
+
+### 2. Nemenyi Test
+
+A nonparametric analogue of Tukey's HSD. Compares mean ranks across all pairs simultaneously.
+
+> Nemenyi post-hoc tests revealed significant differences between no treatment (mean rank = 2.68) and electrostimulation (mean rank = 1.40, *p* = .001) and between no treatment and standard PT (mean rank = 1.92, *p* = .014). The difference between standard PT and electrostimulation was not significant (*p* = .087).
+
+**Advantages:** Uses the original rankings from the Friedman test. Less conservative than Bonferroni with many groups.
+
+**Disadvantages:** Does not provide individual effect sizes. Less commonly reported in social science journals.
+
+### 3. Conover Test
+
+Uses the F-distribution to compare pairs after the Friedman test is significant. More powerful than Nemenyi but less widely known.
+
+> Conover post-hoc tests with Holm adjustment indicated significant pairwise differences between all three conditions (all adjusted *p* < .05).
+
+### Which Post-Hoc Test to Choose
+
+| Method | Best For | Reported In |
+|--------|----------|-------------|
+| Pairwise Wilcoxon + Bonferroni | Individual effect sizes needed | Most journals |
+| Nemenyi | Many conditions (k > 4) | Medical/biological research |
+| Conover | Maximum power | Some clinical trials |
+
+In most behavioral and social science research, pairwise Wilcoxon signed-rank tests with Bonferroni correction are the standard choice because they provide individual effect sizes for each comparison.
+
+## Reporting With More Than Three Conditions
+
+When you have four or more related conditions, the reporting structure remains the same but the post-hoc section expands:
+
+> A Friedman test indicated a statistically significant difference in task completion time across four interface designs (*N* = 32), *chi-sq*(3) = 28.73, *p* < .001, *W* = .30. Post-hoc pairwise Wilcoxon signed-rank tests with Bonferroni correction (adjusted alpha = .008) revealed that Design D (mean rank = 1.44) produced significantly faster times than Design A (mean rank = 3.22, *p* < .001) and Design B (mean rank = 2.89, *p* < .001), but not Design C (mean rank = 2.45, *p* = .012). No other pairwise comparisons reached significance at the corrected alpha level.
+
+Note: with *k* = 4 conditions and 6 pairwise comparisons, the corrected alpha is .05/6 = .008. The comparison between D and C (*p* = .012) is not significant at this threshold.
+
+## Reporting Non-Significant Friedman Results
+
+> A Friedman test was conducted to examine whether participants' motivation ratings differed across the three intervention phases (baseline, mid-point, and completion; *N* = 22). The test did not reveal a statistically significant difference, *chi-sq*(2) = 3.18, *p* = .204, *W* = .07. Median motivation was 5.00 at baseline (IQR = 4.00-6.00), 5.50 at mid-point (IQR = 4.75-6.25), and 5.00 at completion (IQR = 4.00-6.00). The small effect size (*W* = .07) suggests minimal variation in motivation across intervention phases.
+
+Key principles for non-significant results:
+
+- Report the exact p-value.
+- Still include and interpret the effect size.
+- Do not conduct post-hoc tests (they are only appropriate after a significant omnibus test).
+- Avoid language implying "no difference exists." State that the test did not detect a significant difference.
+
+## Friedman Test for Longitudinal Designs
+
+The Friedman test is commonly used in longitudinal studies where the same participants are measured at three or more time points. Additional reporting considerations for longitudinal designs include:
+
+### Reporting Time Course Trends
+
+> The Friedman test revealed a significant change in depression scores across four assessment points (baseline, 4 weeks, 8 weeks, 12 weeks; *N* = 35), *chi-sq*(3) = 42.67, *p* < .001, *W* = .41. Median BDI-II scores showed a monotonic decline: 28.00 at baseline, 22.00 at 4 weeks, 17.00 at 8 weeks, and 14.00 at 12 weeks. The medium-to-large effect size suggests a clinically meaningful trajectory of improvement.
+
+### Handling Attrition
+
+The Friedman test requires complete data across all time points (listwise deletion). Report attrition:
+
+> Of the 42 participants enrolled, 35 completed all four assessments (83.3% retention). Participants who dropped out did not differ from completers on baseline BDI-II scores (Mann-Whitney *U* = 98, *p* = .374).
+
+### Combining with Clinical Significance
+
+> Post-hoc analyses indicated that 26 of 35 participants (74.3%) met the criterion for reliable clinical improvement (BDI-II decrease of 8 or more points from baseline to 12 weeks), while 7 (20.0%) showed no reliable change and 2 (5.7%) showed reliable deterioration.
+
+## Common Mistakes in Friedman Test Reporting
+
+### 1. Reporting Means Instead of Medians
+
+Like all nonparametric tests, the Friedman test operates on ranks. Report medians and IQRs as primary descriptive statistics. You may include means as supplementary information, but medians must be present.
+
+### 2. Omitting the Effect Size
+
+Many published papers report only the chi-square statistic and p-value. APA 7th edition requires an effect size. For the Friedman test, use Kendall's *W*.
+
+### 3. Conducting Post-Hoc Tests After a Non-Significant Omnibus Result
+
+Post-hoc pairwise comparisons are only appropriate when the omnibus Friedman test is statistically significant. Testing pairs after a non-significant omnibus test inflates the Type I error rate.
+
+### 4. Failing to Correct for Multiple Comparisons
+
+When conducting pairwise post-hoc tests, apply Bonferroni, Holm, or another correction method. Without correction, you are performing multiple tests at alpha = .05 each, substantially inflating the family-wise error rate.
+
+### 5. Confusing the Friedman Test with Kruskal-Wallis
+
+The Friedman test is for **related** (within-subjects) groups. The Kruskal-Wallis test is for **independent** (between-subjects) groups. Both are nonparametric alternatives to ANOVA, but they test different designs.
+
+### 6. Using the Friedman Test with Only Two Conditions
+
+For two related conditions, use the Wilcoxon signed-rank test. The Friedman test is designed for three or more conditions. With two conditions, the Friedman test reduces to the sign test, which has less power than the Wilcoxon signed-rank test.
+
+### 7. Not Reporting Mean Ranks
+
+While medians are the primary descriptive statistic, mean ranks can clarify the ordering of conditions, especially when medians are tied. Include them in a descriptive statistics table.
+
+## Friedman Test APA Checklist
+
+Before submitting, verify your results include:
+
+- Full test name on first mention (Friedman test)
+- Number of participants (*N*) and conditions (*k*)
+- Medians and IQRs for each condition
+- Mean ranks for each condition (in table or text)
+- Chi-square statistic with degrees of freedom (*k* - 1)
+- Exact p-value (or *p* < .001)
+- Effect size: Kendall's *W* with interpretation
+- Justification for choosing the nonparametric test
+- Post-hoc pairwise comparisons with correction method (if omnibus is significant)
+- Individual effect sizes for each pairwise comparison
+- Direction of differences stated explicitly
+
+## Frequently Asked Questions
+
+### What is the correct APA format for reporting a Friedman test?
+
+The standard format is: *chi-sq*(df) = X.XX, *p* = .XXX, *W* = .XX. For example: *chi-sq*(2) = 18.42, *p* < .001, *W* = .37. Include descriptive statistics (medians and IQRs), the justification for choosing a nonparametric test, and post-hoc comparisons when the omnibus test is significant.
+
+### What is Kendall's W and how do I interpret it?
+
+Kendall's *W* (coefficient of concordance) measures the degree of agreement in rankings across participants. It ranges from 0 (no agreement) to 1 (perfect agreement). Benchmarks: .10 = small, .30 = medium, .50 = large. Calculate it as *W* = *chi-sq* / (*N* * (*k* - 1)).
+
+### Which post-hoc test should I use after a significant Friedman test?
+
+Pairwise Wilcoxon signed-rank tests with Bonferroni correction are the most commonly used approach in social and behavioral science. They provide individual effect sizes for each comparison. The Nemenyi test is an alternative that uses the original Friedman rankings and is less conservative with many groups.
+
+### What is the difference between the Friedman test and Kruskal-Wallis test?
+
+The Friedman test compares three or more **related** groups (same participants across conditions). The Kruskal-Wallis test compares three or more **independent** groups (different participants). Friedman is the nonparametric equivalent of repeated measures ANOVA; Kruskal-Wallis is the nonparametric equivalent of one-way between-subjects ANOVA.
+
+### Can I use the Friedman test with only two conditions?
+
+Technically yes, but it is not recommended. With two conditions, the Friedman test reduces to the sign test, which has less statistical power than the Wilcoxon signed-rank test. Use the Wilcoxon test for two related conditions and reserve the Friedman test for three or more.
+
+### What sample size do I need for a Friedman test?
+
+There is no strict minimum, but at least 6-8 participants are needed for the test to have reasonable power. For adequate power (.80) to detect a medium effect (*W* = .30) with three conditions, aim for approximately 20-25 participants. Power increases with both sample size and the number of conditions.
+
+### How do I handle missing data in the Friedman test?
+
+The Friedman test requires complete data across all conditions (it uses listwise deletion). If a participant is missing data for any condition, that participant is excluded entirely. Report the number of excluded participants. If missing data are substantial, consider multiple imputation or switching to a linear mixed model with nonparametric bootstrap.
+
+## Try StatMate's Free Friedman Test Calculator
+
+Formatting Friedman test results manually requires computing the chi-square statistic, Kendall's *W*, and then running separate post-hoc tests with corrections. [StatMate's Friedman test calculator](/calculators/friedman) automates everything:
+
+- **Instant APA output.** Enter your repeated-measures data and get a publication-ready results paragraph with chi-square, *p*, and Kendall's *W* formatted to APA 7th edition.
+- **Automatic effect size.** Kendall's *W* is computed and interpreted.
+- **Post-hoc comparisons.** Pairwise Wilcoxon tests with Bonferroni correction, including individual effect sizes.
+- **Visual output.** Box plots and rank distribution charts for each condition.
+- **One-click export.** Copy to clipboard, PDF, or APA-formatted Word document (Pro).
+
+No manual rank calculations, no correction formulas to remember.
+
+[Open the Friedman Test Calculator](/calculators/friedman)

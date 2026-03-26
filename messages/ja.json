@@ -1561,6 +1561,14 @@
     "howToReportPValueApa": {
       "title": "APA第7版でp値を報告する方法",
       "description": "正確なp値、四捨五入ルール、コピペ用例文"
+    },
+    "friedmanApa": {
+      "title": "APA第7版でFriedman検定を報告する方法",
+      "description": "KendallのW、事後検定、ステップバイステップ例"
+    },
+    "mcnemarApa": {
+      "title": "APA第7版でMcNemar検定を報告する方法",
+      "description": "対応する比率、オッズ比、APAテンプレート"
     }
   },
   "relatedCalculators": {

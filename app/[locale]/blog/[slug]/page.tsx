@@ -45,6 +45,8 @@ const BLOG_CALCULATOR_MAP: Record<string, string> = {
   "sample-size-determination": "sample-size",
   "descriptive-statistics-apa-reporting": "descriptive",
   "cohen-d-apa-reporting": "t-test",
+  "friedman-apa-reporting": "friedman",
+  "mcnemar-apa-reporting": "mcnemar",
   "understanding-effect-size": "anova",
   "understanding-p-value": "t-test",
   "how-to-report-p-value-apa": "t-test",
@@ -406,6 +408,20 @@ const FAQ_DATA: Record<string, { question: string; answer: string }[]> = {
     { question: "Do I report exact p-values or just write p < .05?", answer: "APA 7th edition requires exact p-values rounded to two or three decimal places (e.g., p = .032, p = .007). Writing only p < .05 is no longer acceptable. The single exception is for very small values: when p is below .001, report p < .001. Exact p-values allow readers and meta-analysts to evaluate the strength of evidence for themselves." },
     { question: "How do I report a p-value for a non-significant result?", answer: "Report the exact p-value, effect size, and descriptive statistics, just as you would for a significant result. For example: t(58) = 1.14, p = .259, d = 0.30. Do not describe the result as 'insignificant' (which implies unimportant) — write 'not statistically significant.' Never omit non-significant p-values or replace them with 'n.s.'" },
     { question: "Should I always report effect sizes alongside p-values?", answer: "Yes. APA 7th edition requires effect sizes for all inferential tests, regardless of whether results are statistically significant. Use Cohen's d for t-tests, partial eta-squared for ANOVA, Cramér's V for chi-square, r or R-squared for correlation and regression, and rank-biserial r for Mann-Whitney U. Effect sizes provide information about practical significance that p-values cannot." },
+  ],
+  "friedman-apa-reporting": [
+    { question: "What is the correct APA format for reporting a Friedman test?", answer: "The standard format is: chi-sq(df) = X.XX, p = .XXX, W = .XX. For example: chi-sq(2) = 18.42, p < .001, W = .37. Include descriptive statistics with medians and IQRs, the justification for choosing a nonparametric test, and post-hoc comparisons when the omnibus test is significant." },
+    { question: "What is Kendall's W and how do I interpret it?", answer: "Kendall's W (coefficient of concordance) measures the degree of agreement in rankings across participants. It ranges from 0 (no agreement) to 1 (perfect agreement). Benchmarks: .10 = small effect, .30 = medium effect, .50 = large effect. Calculate it as W = chi-sq / (N * (k - 1)), where N is the number of participants and k is the number of conditions." },
+    { question: "Which post-hoc test should I use after a significant Friedman test?", answer: "Pairwise Wilcoxon signed-rank tests with Bonferroni correction are the most commonly used approach. They provide individual effect sizes (r) for each comparison. The Nemenyi test is an alternative that uses the original Friedman rankings and is less conservative with many groups. The Conover test offers maximum power but is less widely known." },
+    { question: "What is the difference between the Friedman test and Kruskal-Wallis test?", answer: "The Friedman test compares three or more related groups (same participants across conditions), making it the nonparametric equivalent of repeated measures ANOVA. The Kruskal-Wallis test compares three or more independent groups (different participants), making it the nonparametric equivalent of one-way between-subjects ANOVA." },
+    { question: "What sample size do I need for a Friedman test?", answer: "There is no strict minimum, but at least 6-8 participants are needed for reasonable power. For adequate power (.80) to detect a medium effect (W = .30) with three conditions, aim for approximately 20-25 participants. Power increases with both sample size and the number of conditions." },
+  ],
+  "mcnemar-apa-reporting": [
+    { question: "What is the McNemar test used for?", answer: "The McNemar test evaluates whether the proportion of a binary outcome changes between two related measurements from the same participants. It is used for before-after studies with dichotomous outcomes, diagnostic test comparisons, and matched case-control studies." },
+    { question: "What is the difference between the McNemar test and the chi-square test?", answer: "The chi-square test of independence is for two independent groups. The McNemar test is for paired (related) observations from the same participants. Using a chi-square test on paired data violates the independence assumption and produces incorrect p-values." },
+    { question: "When should I use the exact McNemar test vs. the chi-square approximation?", answer: "Use the exact binomial test when the total number of discordant pairs (b + c) is fewer than 25. Use the chi-square approximation when b + c exceeds 25. The approximation becomes unreliable with small numbers of discordant pairs." },
+    { question: "How do I calculate and interpret the odds ratio for the McNemar test?", answer: "The odds ratio is OR = b / c, where b and c are the discordant cells. An OR of 1.00 means equal change in both directions. An OR greater than 1 means more participants changed from the first category to the second. Benchmarks: OR of 1.5 is small, 2.5 is medium, 4.3 is large." },
+    { question: "What is the minimum sample size for the McNemar test?", answer: "The McNemar test requires sufficient discordant pairs (b + c), not just a large total sample. With b + c less than 6, the exact test cannot achieve significance at alpha = .05. For adequate power (.80) to detect a medium effect (OR = 2.5), aim for at least 25-30 discordant pairs." },
   ],
 };
 

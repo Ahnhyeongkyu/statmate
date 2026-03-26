@@ -1,0 +1,335 @@
+---
+title: "How to Report McNemar Test in APA 7th Edition — Paired Proportions & Examples"
+description: "Complete guide to reporting McNemar test for paired nominal data in APA 7th edition. Exact vs asymptotic test, odds ratio, and copy-paste APA templates with a free calculator."
+date: "2026-03-26"
+category: "APA Reporting"
+tags: ["McNemar test", "APA format", "APA 7th edition", "paired proportions", "nominal data", "before-after", "odds ratio", "exact test"]
+---
+
+## When to Use the McNemar Test
+
+The McNemar test evaluates whether the proportion of a binary outcome changes between two related measurements from the same participants. It is the paired-samples analogue for categorical data, just as the paired t-test is for continuous data and the Wilcoxon signed-rank test is for ordinal data.
+
+Use the McNemar test when all three conditions are met:
+
+- **Paired design.** The same participants are measured at two time points (before/after) or under two conditions (treatment A/treatment B).
+- **Dichotomous outcome.** The dependent variable has exactly two categories (yes/no, pass/fail, present/absent, positive/negative).
+- **Research question about change.** You want to know whether the proportion in one category differs between the two measurements.
+
+### Common Applications
+
+The McNemar test appears frequently in clinical trials, educational research, and program evaluation:
+
+- **Before-after treatment studies.** Did the proportion of patients with symptom X decrease after the intervention?
+- **Diagnostic test comparison.** Do two diagnostic methods produce different positive rates when applied to the same patients?
+- **Attitude change research.** Did the proportion of respondents endorsing a position change after exposure to information?
+- **Matched case-control studies.** Among matched pairs, is the exposure status discordant in a particular direction?
+
+### McNemar vs. Chi-Square vs. Cochran's Q
+
+| Design | Number of Groups | Data Type | Correct Test |
+|--------|-----------------|-----------|-------------|
+| Two independent groups, binary outcome | 2 independent | Nominal | Chi-square / Fisher's exact |
+| Same participants, two time points, binary | 2 related | Nominal | McNemar test |
+| Same participants, 3+ time points, binary | 3+ related | Nominal | Cochran's Q test |
+
+The chi-square test of independence is for **independent** groups. The McNemar test is specifically for **paired** binary data. Using a chi-square test on paired data violates the independence assumption and produces incorrect p-values.
+
+Try it yourself with the [McNemar test calculator](/calculators/mcnemar).
+
+## Understanding the 2x2 Contingency Table
+
+The McNemar test is built on a 2x2 table that cross-tabulates each participant's response at two time points:
+
+|  | Post: Positive | Post: Negative |
+|--|---------------|----------------|
+| **Pre: Positive** | a (concordant) | b (discordant) |
+| **Pre: Negative** | c (discordant) | d (concordant) |
+
+- **Cell a:** Positive at both time points (no change).
+- **Cell d:** Negative at both time points (no change).
+- **Cell b:** Changed from positive to negative (discordant).
+- **Cell c:** Changed from negative to positive (discordant).
+
+The McNemar test examines only the **discordant pairs** (cells b and c). If the intervention had no effect, the number of people switching from positive to negative (b) should approximately equal the number switching from negative to positive (c).
+
+### The McNemar Test Statistic
+
+**Chi-square approximation (large samples):**
+
+*chi-sq* = (|b - c| - 1)² / (b + c)
+
+The -1 is the continuity correction, which improves the approximation for small samples. Some software omits it:
+
+*chi-sq* = (b - c)² / (b + c)
+
+**Exact test (small samples):**
+
+When the total number of discordant pairs (b + c) is small (typically < 25), the exact binomial test is preferred. It tests whether b follows a binomial distribution with p = 0.5 and n = b + c.
+
+## The APA Reporting Template
+
+### For the Chi-Square Approximation (Large Samples)
+
+> A McNemar test indicated a statistically significant change in [outcome] from [time 1] to [time 2], *chi-sq*(1, *N* = XX) = X.XX, *p* = .XXX, OR = X.XX.
+
+### For the Exact Test (Small Samples)
+
+> A McNemar exact test indicated a statistically significant change in [outcome] from [time 1] to [time 2], *p* = .XXX, OR = X.XX, 95% CI [X.XX, X.XX].
+
+Note: The exact test does not produce a chi-square statistic. Report only the p-value and effect size.
+
+### Essential Components
+
+Every McNemar test report must include:
+
+1. **Full test name** on first mention (McNemar test or McNemar exact test).
+2. **Sample size** (*N*).
+3. **Proportions** at each time point.
+4. **The 2x2 table** or at minimum the discordant cell counts.
+5. **Test statistic** (*chi-sq* with df = 1 for the approximation, or none for exact).
+6. **Exact p-value** (or *p* < .001).
+7. **Effect size:** Odds ratio (OR) with 95% confidence interval.
+8. **Direction of change** stated explicitly.
+
+## Step-by-Step Example: Before-After Treatment (Binary Outcome)
+
+### Scenario
+
+A clinical researcher evaluates whether a smoking cessation program changes smoking status. Sixty participants are assessed at baseline (before program) and at 12-week follow-up (after program). Smoking status is binary: smoker or non-smoker.
+
+### Step 1: Present the 2x2 Table
+
+|  | Follow-up: Smoker | Follow-up: Non-smoker | Total |
+|--|-------------------|----------------------|-------|
+| **Baseline: Smoker** | 18 (a) | 22 (b) | 40 |
+| **Baseline: Non-smoker** | 5 (c) | 15 (d) | 20 |
+| **Total** | 23 | 37 | 60 |
+
+> At baseline, 40 of 60 participants (66.7%) were current smokers. At 12-week follow-up, 23 of 60 participants (38.3%) were current smokers.
+
+### Step 2: Identify the Discordant Pairs
+
+The key information for the McNemar test is in the off-diagonal cells:
+
+- **22 participants** changed from smoker to non-smoker (b = 22).
+- **5 participants** changed from non-smoker to smoker (c = 5).
+- Total discordant pairs: b + c = 27.
+
+### Step 3: Report the Test Result
+
+> A McNemar test revealed a statistically significant change in smoking status from baseline to 12-week follow-up, *chi-sq*(1, *N* = 60) = 9.48, *p* = .002, OR = 4.40, 95% CI [1.66, 14.60]. The proportion of smokers decreased from 66.7% at baseline to 38.3% at follow-up. Among the 27 participants who changed status, 22 quit smoking while 5 began smoking, yielding an odds ratio of 4.40 in favor of cessation.
+
+### Step 4: Compute the Odds Ratio
+
+The odds ratio for the McNemar test is:
+
+OR = b / c = 22 / 5 = 4.40
+
+This means participants were 4.40 times more likely to change from smoker to non-smoker than from non-smoker to smoker, indicating a substantial effect of the cessation program.
+
+### Complete APA Paragraph
+
+> The McNemar test was used to evaluate whether a 12-week smoking cessation program changed smoking status (*N* = 60). At baseline, 40 participants (66.7%) were current smokers. At follow-up, 23 participants (38.3%) were current smokers. Among participants who changed status, 22 transitioned from smoker to non-smoker and 5 transitioned from non-smoker to smoker. The McNemar test indicated a statistically significant change in smoking status, *chi-sq*(1, *N* = 60) = 9.48, *p* = .002, OR = 4.40, 95% CI [1.66, 14.60]. Participants were 4.40 times more likely to quit smoking than to start smoking, indicating that the cessation program produced a meaningful reduction in smoking prevalence.
+
+## Effect Size: The Odds Ratio
+
+The standard effect size for the McNemar test is the odds ratio (OR), calculated from the discordant cells:
+
+OR = b / c
+
+### Interpreting the Odds Ratio
+
+| OR Value | Interpretation |
+|----------|---------------|
+| 1.00 | No difference in change rates; equal switching in both directions |
+| > 1.00 | More participants changed from category 1 to category 2 (cell b > cell c) |
+| < 1.00 | More participants changed from category 2 to category 1 (cell c > cell b) |
+
+The further the OR is from 1.00, the stronger the effect. Chen et al. (2010) suggested the following benchmarks for odds ratios:
+
+| OR | Interpretation |
+|----|---------------|
+| 1.5 | Small effect |
+| 2.5 | Medium effect |
+| 4.3 | Large effect |
+
+An OR of 4.40 in the smoking example represents a large effect.
+
+### Confidence Interval for the Odds Ratio
+
+Always report the 95% CI for the OR. The interval provides information about the precision of the estimate:
+
+- If the CI **excludes 1.00**, the result is statistically significant.
+- If the CI **includes 1.00**, the result is not significant.
+- **Narrow CI**: Precise estimate.
+- **Wide CI**: Imprecise estimate; more data needed.
+
+> OR = 4.40, 95% CI [1.66, 14.60]
+
+The interval excludes 1.00, confirming statistical significance. However, the wide interval (1.66 to 14.60) reflects uncertainty about the exact magnitude, suggesting that a larger sample would improve precision.
+
+## Exact vs. Chi-Square Approximation: When to Use Which
+
+### Exact Binomial Test (Small Samples)
+
+Use the exact McNemar test when the total number of discordant pairs (b + c) is small, typically fewer than 25. The exact test directly computes the probability under the binomial distribution.
+
+> A McNemar exact test indicated a statistically significant change in diagnostic outcome, *p* = .039, OR = 5.00, 95% CI [1.05, 56.15]. Of the 11 discordant pairs, 10 changed from negative to positive and 1 changed from positive to negative.
+
+### Chi-Square Approximation (Large Samples)
+
+Use the chi-square approximation when b + c > 25. Include the continuity correction for moderate samples (25-40 discordant pairs):
+
+> *chi-sq*(1, *N* = 80) = 12.57, *p* < .001, OR = 3.20, 95% CI [1.78, 6.31]
+
+Without continuity correction (recommended for larger samples):
+
+> *chi-sq*(1, *N* = 150) = 15.43, *p* < .001, OR = 2.85, 95% CI [1.72, 4.93]
+
+### Decision Guide
+
+| Discordant Pairs (b + c) | Method | Reason |
+|---------------------------|--------|--------|
+| < 25 | Exact binomial | Chi-square approximation unreliable |
+| 25-40 | Chi-square with continuity correction | Correction improves approximation |
+| > 40 | Chi-square (with or without correction) | Approximation is accurate |
+
+Always specify which method you used.
+
+## Reporting Non-Significant McNemar Results
+
+> A McNemar test was conducted to determine whether a media literacy workshop changed participants' ability to identify misinformation (*N* = 45). At pre-test, 28 of 45 participants (62.2%) correctly identified the misinformation item. At post-test, 31 of 45 participants (68.9%) did so. The McNemar test did not reveal a statistically significant change, *chi-sq*(1, *N* = 45) = 1.29, *p* = .257, OR = 1.67, 95% CI [0.62, 5.15]. Although the proportion identifying misinformation increased by 6.7 percentage points, this change was not statistically significant. The confidence interval for the odds ratio includes 1.00, indicating insufficient evidence of a meaningful shift.
+
+Key principles:
+
+- Report the exact p-value (not "p = n.s.").
+- Include and interpret the effect size and its confidence interval.
+- Describe the observed direction of change.
+- Avoid claiming the intervention "had no effect."
+
+## McNemar for Diagnostic Test Comparison
+
+A common application compares two diagnostic procedures applied to the same patients:
+
+### Scenario
+
+A radiologist evaluates whether MRI and CT scans produce different positive rates for detecting a specific lesion in 100 patients. Both scans are performed on all patients.
+
+|  | CT: Positive | CT: Negative | Total |
+|--|-------------|-------------|-------|
+| **MRI: Positive** | 35 (a) | 18 (b) | 53 |
+| **MRI: Negative** | 7 (c) | 40 (d) | 47 |
+| **Total** | 42 | 58 | 100 |
+
+> Both MRI and CT scans were performed on all 100 patients. MRI detected lesions in 53 patients (53.0%), while CT detected lesions in 42 patients (42.0%). A McNemar test indicated a statistically significant difference in detection rates between the two methods, *chi-sq*(1, *N* = 100) = 4.00, *p* = .046, OR = 2.57, 95% CI [1.07, 7.27]. MRI was significantly more likely to detect lesions that CT missed (18 cases) than vice versa (7 cases).
+
+## Reporting McNemar with Multiple Binary Outcomes
+
+When you have several binary outcomes measured before and after an intervention, conduct separate McNemar tests with a correction for multiple comparisons:
+
+> McNemar tests with Bonferroni correction (adjusted alpha = .017 for three tests) were conducted for each symptom. The intervention significantly reduced the prevalence of insomnia (*p* = .003, OR = 4.50) and headaches (*p* = .008, OR = 3.20), but not fatigue (*p* = .125, OR = 1.80).
+
+## Assumptions and Limitations
+
+The McNemar test requires:
+
+1. **Paired observations.** Each participant must be measured at both time points.
+2. **Dichotomous outcome.** The dependent variable must have exactly two categories.
+3. **Independent pairs.** Different participants' paired observations must be independent of each other.
+
+Limitations to note:
+
+- **No effect size for concordant pairs.** The test uses only discordant pairs (b and c). Concordant pairs (a and d) contribute no information about change.
+- **Low power with few discordant pairs.** If most participants do not change status, the test has limited power regardless of sample size. Power depends on b + c, not on N.
+- **Binary outcomes only.** For ordinal paired data, use the Wilcoxon signed-rank test. For nominal data with 3+ categories, use the Stuart-Maxwell test or Bhapkar test.
+
+## Common Mistakes in McNemar Test Reporting
+
+### 1. Using Chi-Square Test of Independence Instead of McNemar
+
+The most critical error. The chi-square test of independence assumes independent observations. Paired data violate this assumption. Using chi-square on paired data ignores the within-subject correlation and produces incorrect p-values. Always use the McNemar test for paired binary data.
+
+### 2. Omitting the Contingency Table
+
+Without the 2x2 table (or at minimum the discordant cell counts), readers cannot evaluate the pattern of change. Always present the full table or report b and c explicitly.
+
+### 3. Reporting Only Marginal Proportions
+
+Stating that "65% were positive at pre-test and 45% at post-test" without the cross-tabulation obscures the pattern. Two participants can change in opposite directions: some from positive to negative and others from negative to positive. The 2x2 table reveals this bidirectional change.
+
+### 4. Forgetting the Effect Size
+
+APA 7th edition requires an effect size for every inferential test. For the McNemar test, report the odds ratio with a 95% confidence interval.
+
+### 5. Not Specifying Exact vs. Approximation
+
+Always state whether you used the exact binomial test or the chi-square approximation, especially for small samples where the choice matters.
+
+### 6. Ignoring Low Power with Few Discordant Pairs
+
+If b + c is very small (e.g., fewer than 10), the test has minimal power. A non-significant result in this case should be interpreted cautiously, and the low power should be acknowledged.
+
+### 7. Applying McNemar to Non-Binary Outcomes
+
+The McNemar test is strictly for 2x2 tables. For ordinal outcomes with two time points, use the Wilcoxon signed-rank test. For binary outcomes with three or more time points, use Cochran's Q test.
+
+## McNemar Test APA Checklist
+
+Before submitting, verify your results include:
+
+- Full test name on first mention (McNemar test or McNemar exact test)
+- Total sample size (*N*)
+- The 2x2 contingency table with labeled cells
+- Proportions at each time point
+- Discordant cell counts (b and c)
+- Test statistic (*chi-sq* with df = 1 for approximation, or none for exact)
+- Whether exact or asymptotic method was used
+- Exact p-value (or *p* < .001)
+- Effect size: odds ratio (OR) with 95% confidence interval
+- Direction of change stated explicitly
+- Interpretation of the OR magnitude
+
+## Frequently Asked Questions
+
+### What is the McNemar test used for?
+
+The McNemar test evaluates whether the proportion of a binary outcome changes between two related measurements from the same participants. It is used for before-after studies, diagnostic test comparisons, and matched case-control studies with dichotomous outcomes.
+
+### What is the difference between McNemar test and chi-square test?
+
+The chi-square test of independence is for two independent groups. The McNemar test is for paired (related) observations from the same participants. Using a chi-square test on paired data violates the independence assumption and produces incorrect results.
+
+### When should I use the exact McNemar test vs. the chi-square approximation?
+
+Use the exact binomial test when the total number of discordant pairs (b + c) is fewer than 25. Use the chi-square approximation when b + c exceeds 25. The approximation is unreliable with small numbers of discordant pairs.
+
+### How do I calculate and interpret the odds ratio for the McNemar test?
+
+The odds ratio is OR = b / c, where b and c are the discordant cells. An OR of 1.00 means equal change in both directions. An OR > 1 means more participants changed from the first category to the second. Benchmarks: OR of 1.5 is small, 2.5 is medium, 4.3 is large.
+
+### What should I do if both b and c are zero?
+
+If there are no discordant pairs, the McNemar test cannot be conducted because there is no change to analyze. Report that all participants maintained the same status across time points. This is a substantive finding worth reporting.
+
+### Can I use the McNemar test with more than two time points?
+
+Not directly. For binary outcomes measured at three or more time points, use Cochran's Q test as the omnibus test, followed by pairwise McNemar tests with Bonferroni correction as post-hoc comparisons.
+
+### What is the minimum sample size for the McNemar test?
+
+The McNemar test requires sufficient discordant pairs (b + c), not just a large total sample. With b + c < 6, the exact test cannot achieve significance at alpha = .05. For adequate power (.80) to detect a medium effect (OR = 2.5), aim for at least 25-30 discordant pairs.
+
+## Try StatMate's Free McNemar Test Calculator
+
+Computing the McNemar test manually requires building the contingency table, identifying discordant pairs, choosing between exact and asymptotic methods, and calculating the odds ratio with confidence intervals. [StatMate's McNemar test calculator](/calculators/mcnemar) automates the entire process:
+
+- **Instant APA output.** Enter your 2x2 data and get a publication-ready results paragraph formatted to APA 7th edition.
+- **Automatic method selection.** StatMate chooses between exact and chi-square approximation based on your discordant pair count.
+- **Effect size with CI.** The odds ratio and 95% confidence interval are computed automatically.
+- **Visual output.** Flow diagrams showing the pattern of change between conditions.
+- **One-click export.** Copy to clipboard, PDF, or APA-formatted Word document (Pro).
+
+No manual cell counting, no binomial tables to consult.
+
+[Open the McNemar Test Calculator](/calculators/mcnemar)

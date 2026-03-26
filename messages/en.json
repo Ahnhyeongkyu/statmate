@@ -1561,6 +1561,14 @@
     "howToReportPValueApa": {
       "title": "How to Report P-Values in APA 7th Edition",
       "description": "Exact p-values, rounding rules, and copy-paste examples"
+    },
+    "friedmanApa": {
+      "title": "How to Report Friedman Test in APA 7th Edition",
+      "description": "Kendall's W, post-hoc tests, and step-by-step examples"
+    },
+    "mcnemarApa": {
+      "title": "How to Report McNemar Test in APA 7th Edition",
+      "description": "Paired proportions, odds ratio, and APA templates"
     }
   },
   "relatedCalculators": {
