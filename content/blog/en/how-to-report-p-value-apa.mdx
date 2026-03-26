@@ -1,0 +1,409 @@
+---
+title: "How to Report P-Values in APA 7th Edition — Rules, Examples & Common Mistakes"
+description: "Complete guide to reporting p-values in APA 7th edition format. Exact p-values vs p < .001, leading zeros, rounding rules, and copy-paste examples for t-tests, ANOVA, chi-square, correlation, and regression."
+date: "2026-03-26"
+category: "APA Reporting"
+tags: ["p-value", "APA format", "APA 7th edition", "statistical significance", "reporting statistics", "p < .001", "exact p-value", "alpha level", "significance testing"]
+---
+
+## Why P-Value Reporting Matters in APA
+
+Every quantitative research paper includes p-values, yet they remain one of the most frequently misreported statistics in academic writing. Journals reject manuscripts for incorrect formatting. Reviewers flag papers that write *p* = .000 or add a leading zero before the decimal. Readers lose confidence in authors who confuse statistical significance with practical importance.
+
+The American Psychological Association addressed these problems by establishing precise rules in the *Publication Manual of the American Psychological Association, 7th Edition* (2020). These rules are not arbitrary style preferences. They exist to ensure clarity, consistency, and accurate communication of statistical evidence across the behavioral, social, and health sciences.
+
+Getting p-value reporting right matters for three reasons:
+
+1. **Reproducibility.** When you report exact p-values, other researchers can evaluate the strength of evidence for themselves rather than relying on a binary significant/not-significant label.
+2. **Meta-analysis.** Researchers who pool findings across studies need exact p-values and effect sizes. Reporting only *p* < .05 destroys information that future meta-analysts need.
+3. **Publication standards.** Major journals in psychology, education, nursing, and public health enforce APA formatting. Incorrect p-value reporting signals unfamiliarity with scholarly conventions and can delay or prevent publication.
+
+This guide covers every rule, every common test, and every mistake you need to know about reporting p-values in APA 7th edition format.
+
+## The Core APA Rules for P-Values
+
+The APA Publication Manual (Section 6.36) specifies exactly how to present p-values. There are five rules, and all five are non-negotiable.
+
+### Rule 1: Report Exact P-Values to Two or Three Decimal Places
+
+APA 7th edition requires exact p-values rounded to two or three decimal places. Three decimal places is the most common convention and provides the most information.
+
+- Correct: *p* = .032
+- Correct: *p* = .007
+- Incorrect: *p* = .03 (imprecise)
+- Incorrect: *p* < .05 (not exact)
+
+Reporting the exact value allows readers to evaluate the evidence themselves. A result with *p* = .048 tells a very different story than *p* = .002, even though both are "significant at the .05 level."
+
+### Rule 2: Use *p* < .001 When the Value Is Below .001
+
+When the p-value is smaller than .001, do not report the exact value. Write *p* < .001 instead.
+
+- Correct: *p* < .001
+- Incorrect: *p* = .000 (probability is never exactly zero)
+- Incorrect: *p* = .0001 (too many decimal places)
+- Incorrect: *p* = 0.000 (two errors: leading zero and impossible value)
+
+Statistical software such as SPSS often displays "Sig. = .000" in its output. This is a rounding artifact, not an actual probability of zero. The true p-value might be .00004 or .0000001, but APA format simply requires *p* < .001.
+
+### Rule 3: No Leading Zero Before the Decimal
+
+Because p-values are bounded between 0 and 1 and can never equal or exceed 1.0, APA style omits the leading zero.
+
+- Correct: *p* = .042
+- Incorrect: *p* = 0.042
+
+This rule applies to all statistics that cannot exceed 1.0 in absolute value, including p-values, correlation coefficients (*r*), proportions, and Cronbach's alpha. It does not apply to statistics that can exceed 1.0, such as Cohen's *d*, means, or standard deviations.
+
+### Rule 4: Italicize the Letter *p*
+
+In APA format, statistical symbols derived from population parameters or serving as conventional abbreviations are italicized. The *p* in p-value is always italicized.
+
+- Correct: *p* = .017
+- Incorrect: p = .017 (not italicized)
+
+Other statistical symbols that must be italicized include *t*, *F*, *r*, *R*², *d*, *M*, *SD*, *N*, *n*, *df*, and Greek letters used as statistics (such as partial eta-squared, written as *η*p²).
+
+### Rule 5: Use Spaces Around Operators
+
+Place a space before and after the equals sign or inequality sign.
+
+- Correct: *p* = .032
+- Correct: *p* < .001
+- Incorrect: *p*=.032 (no spaces)
+- Incorrect: *p*<.001 (no spaces)
+
+This applies to all mathematical operators in APA style, including =, <, >, and the minus sign.
+
+### Summary: Correct vs. Incorrect P-Value Formatting
+
+| Correct | Incorrect | Why It Is Wrong |
+|---------|-----------|----------------|
+| *p* = .032 | p = .032 | *p* must be italicized |
+| *p* = .032 | *p* = 0.032 | No leading zero for values that cannot exceed 1 |
+| *p* = .032 | *p* = .03 | Round to three decimal places |
+| *p* < .001 | *p* = .000 | Probability is never exactly zero |
+| *p* < .001 | *p* = .0001 | Use *p* < .001 for very small values |
+| *p* = .032 | *p*=.032 | Spaces required around = |
+| *p* = .871 | *p* = n.s. | Report the exact value, even when not significant |
+
+## P-Value Reporting for Every Common Test
+
+Each statistical test has its own APA reporting template. Below are concrete numerical examples for the seven most common tests. Every example includes the test statistic, degrees of freedom, exact p-value, and effect size, because APA 7th edition requires all four.
+
+### Independent Samples T-Test
+
+**Template:** *t*(df) = X.XX, *p* = .XXX, *d* = X.XX
+
+**Example (significant):**
+
+> Students in the intervention group (*M* = 82.4, *SD* = 11.3) scored significantly higher than the control group (*M* = 74.1, *SD* = 12.7), *t*(78) = 3.12, *p* = .003, *d* = 0.70.
+
+**Example (non-significant):**
+
+> There was no statistically significant difference in reaction time between the caffeine group (*M* = 312 ms, *SD* = 45) and the placebo group (*M* = 319 ms, *SD* = 51), *t*(62) = 0.61, *p* = .544, *d* = 0.15.
+
+Note that Cohen's *d* uses a leading zero because it can exceed 1.0.
+
+### Paired Samples T-Test
+
+**Template:** *t*(df) = X.XX, *p* = .XXX, *d* = X.XX
+
+**Example:**
+
+> Anxiety scores decreased significantly from pre-test (*M* = 38.2, *SD* = 8.4) to post-test (*M* = 31.7, *SD* = 7.9), *t*(44) = 4.58, *p* < .001, *d* = 0.68.
+
+The degrees of freedom for a paired t-test equal *n* - 1, where *n* is the number of pairs.
+
+### One-Way ANOVA
+
+**Template:** *F*(df1, df2) = X.XX, *p* = .XXX, *η*p² = .XX
+
+**Example:**
+
+> There was a statistically significant difference in job satisfaction across the three departments, *F*(2, 87) = 5.94, *p* = .004, *η*p² = .12.
+
+The first degree of freedom (2) is the number of groups minus one. The second (87) is the total sample size minus the number of groups. When the omnibus F is significant, follow with post-hoc comparisons.
+
+### Chi-Square Test of Independence
+
+**Template:** *χ*²(df, *N* = XXX) = X.XX, *p* = .XXX, *V* = .XX
+
+**Example:**
+
+> There was a significant association between gender and preferred learning style, *χ*²(2, *N* = 180) = 8.74, *p* = .013, *V* = .22.
+
+Always include the total sample size *N* with chi-square results because the test statistic is directly influenced by sample size.
+
+### Pearson Correlation
+
+**Template:** *r*(df) = .XX, *p* = .XXX
+
+**Example:**
+
+> There was a strong positive correlation between study hours and exam performance, *r*(88) = .62, *p* < .001.
+
+The degrees of freedom for correlation equal *N* - 2. Note that *r* never has a leading zero because it ranges from -1 to 1. Report *r*² when you want to communicate variance explained: *r*² = .38, meaning study hours accounted for 38% of the variance in exam scores.
+
+### Simple and Multiple Regression
+
+**Template for overall model:** *F*(df1, df2) = X.XX, *p* = .XXX, *R*² = .XX
+
+**Template for individual predictor:** *β* = X.XX, *t*(df) = X.XX, *p* = .XXX
+
+**Example:**
+
+> The regression model was statistically significant, *F*(3, 96) = 14.82, *p* < .001, *R*² = .32. Hours of practice (*β* = .41, *t*(96) = 4.23, *p* < .001) and years of experience (*β* = .28, *t*(96) = 2.87, *p* = .005) were significant predictors, while age was not (*β* = .09, *t*(96) = 0.91, *p* = .365).
+
+Report standardized coefficients (*β*) for comparing relative predictor importance and unstandardized coefficients (*B*) for practical interpretation.
+
+### Mann-Whitney U Test
+
+**Template:** *U* = XXX, *z* = X.XX, *p* = .XXX, *r* = .XX
+
+**Example:**
+
+> Satisfaction ratings were significantly higher in the treatment group (*Mdn* = 4.5) than the control group (*Mdn* = 3.0), *U* = 245, *z* = -2.89, *p* = .004, *r* = .36.
+
+Report medians and interquartile ranges as descriptive statistics for Mann-Whitney U, not means and standard deviations. The effect size *r* is calculated as *z* / sqrt(*N*).
+
+## Significant vs. Non-Significant Results
+
+### Reporting Significant Results (*p* < .05)
+
+When your p-value falls below the predetermined alpha level (typically .05), report the result as "statistically significant." Use the exact p-value and pair it with the effect size.
+
+> The difference was statistically significant, *t*(58) = 2.41, *p* = .019, *d* = 0.63.
+
+Avoid language that overstates the finding. Do not write "the hypothesis was proven" or "the treatment definitely works." Statistical significance means the observed data are unlikely under the null hypothesis. It does not prove the alternative hypothesis is true.
+
+### Reporting Non-Significant Results (*p* > .05)
+
+When the p-value exceeds alpha, report the result as "not statistically significant." Still report the exact p-value and the effect size.
+
+> The difference was not statistically significant, *t*(58) = 1.14, *p* = .259, *d* = 0.30.
+
+**Critical terminology:** Do not describe non-significant results as "insignificant." In everyday English, "insignificant" means "unimportant," which is not what statistical non-significance means. A non-significant result could reflect a real but small effect that your study lacked the power to detect.
+
+Also avoid:
+- "The results proved the null hypothesis" (you cannot prove a null)
+- "There was no effect" (absence of evidence is not evidence of absence)
+- "The groups were the same" (non-significance does not demonstrate equivalence)
+
+Instead, write: "There was no statistically significant difference" or "The results did not reach statistical significance."
+
+### Marginally Significant Results (*p* = .05 to .10)
+
+Results with p-values between .05 and .10 occupy contested territory. Some researchers describe these as "marginally significant" or "approaching significance." This practice is controversial.
+
+**The case against "marginally significant":** The .05 threshold is arbitrary. Calling *p* = .06 "marginally significant" while calling *p* = .049 "significant" implies a meaningful boundary where none exists. Many methodologists and journal editors view this language as a form of soft p-hacking that inflates the appearance of support for the hypothesis.
+
+**The case for acknowledging trends:** In small-sample studies, a result with *p* = .07 and a medium effect size may reflect a real effect that needs a larger sample to detect. Ignoring such results entirely can be wasteful.
+
+**Recommended approach:** Report the exact p-value, the effect size, and the confidence interval. Let the data speak for themselves without applying a subjective label.
+
+> The difference did not reach statistical significance, *t*(28) = 1.89, *p* = .069, *d* = 0.71, 95% CI [-0.05, 1.46].
+
+Notice how the effect size (*d* = 0.71) and the confidence interval (which nearly excludes zero) tell a richer story than the p-value alone.
+
+### Always Include Effect Sizes
+
+APA 7th edition (Section 6.36) is unambiguous: "For the reader to appreciate the magnitude or importance of a study's findings, it is almost always necessary to include some measure of effect size."
+
+Report the appropriate effect size for every inferential test, whether the result is significant or not:
+
+| Test | Effect Size | Small | Medium | Large |
+|------|------------|-------|--------|-------|
+| T-test | Cohen's *d* | 0.20 | 0.50 | 0.80 |
+| ANOVA | Partial *η*² | .01 | .06 | .14 |
+| Chi-square | Cramer's *V* | .10 | .30 | .50 |
+| Correlation | *r* | .10 | .30 | .50 |
+| Regression | *R*² | .02 | .13 | .26 |
+| Mann-Whitney U | *r* | .10 | .30 | .50 |
+
+## One-Tailed vs. Two-Tailed P-Values
+
+### When to Use Each
+
+A **two-tailed test** evaluates whether the effect exists in either direction. It is the default in virtually all research contexts.
+
+A **one-tailed test** evaluates whether the effect exists in one specific, pre-specified direction. It has more statistical power (approximately 20-25% smaller required sample size) but can only detect effects in the predicted direction.
+
+### How to Report in APA
+
+When using a one-tailed test, you must state this explicitly and justify the directional prediction.
+
+**Two-tailed (default, no special notation needed):**
+
+> *t*(58) = 2.41, *p* = .019, *d* = 0.63.
+
+**One-tailed (must be declared):**
+
+> Based on previous findings that the intervention increases reading speed, we used a one-tailed test. The intervention group read significantly faster, *t*(58) = 1.82, *p* = .037 (one-tailed), *d* = 0.47.
+
+### What Most Journals Expect
+
+The vast majority of journals expect two-tailed tests unless the researcher provides a strong theoretical justification for the directional hypothesis *before* data collection. Switching from a two-tailed to a one-tailed test after seeing the results to "rescue" a non-significant finding is a form of p-hacking and violates research ethics.
+
+If you pre-registered a one-tailed test, cite the pre-registration. If you did not pre-register, use a two-tailed test.
+
+## Common Mistakes to Avoid
+
+### 1. Writing *p* = .000
+
+This is the single most common p-value error. SPSS, Excel, and many other programs display .000 when the p-value rounds to zero at three decimal places. The actual p-value is some very small positive number. Write *p* < .001.
+
+### 2. Adding a Leading Zero
+
+Writing *p* = 0.042 instead of *p* = .042 violates APA style. The leading zero is omitted for any statistic that cannot be greater than 1.0 in absolute value.
+
+### 3. Not Reporting Exact P-Values
+
+Writing *p* < .05 without the exact value was acceptable under older APA editions but is no longer sufficient. APA 7th edition requires exact values (e.g., *p* = .032). The only exception is when *p* < .001.
+
+### 4. Saying the Hypothesis Was "Proved"
+
+Statistical tests do not prove hypotheses. They evaluate whether observed data are consistent with a null hypothesis. Write "the results supported the hypothesis" or "the null hypothesis was rejected," not "the hypothesis was proved."
+
+### 5. Reporting Only the Significance Label
+
+Writing "the result was significant" without providing the test statistic, degrees of freedom, exact p-value, and effect size leaves readers unable to evaluate your evidence. Every significance claim must include the full statistical output.
+
+### 6. Not Italicizing *p*
+
+In APA manuscripts, *p* is always italicized. This applies to the manuscript text, tables, and figures. Most journals enforce this strictly.
+
+### 7. Confusing Statistical Significance with Practical Importance
+
+A result with *p* = .001 and *d* = 0.08 is statistically significant but practically trivial. Conversely, a result with *p* = .08 and *d* = 0.75 is not statistically significant but suggests a substantial effect that was likely underpowered. Always interpret p-values alongside effect sizes.
+
+### 8. Not Reporting Effect Sizes
+
+APA 7th edition mandates effect sizes for all inferential tests. Omitting them is a style violation and, more importantly, deprives readers of the information they need to evaluate practical significance.
+
+### 9. Using "Marginally Significant" Without Justification
+
+If you describe a result as "marginally significant," be prepared for reviewers to challenge you. Many editors consider this language unacceptable. If you use it, provide the effect size, confidence interval, and a clear rationale.
+
+### 10. Writing "Approaching Significance"
+
+This phrase is even more problematic than "marginally significant." P-values do not "approach" anything. The value is what it is. Report the exact number and let the reader decide.
+
+## P-Value Thresholds: Alpha = .05, .01, .001
+
+### What Each Threshold Means
+
+The alpha level (denoted *α*) is the criterion for statistical significance that you set *before* analyzing data.
+
+- ***α* = .05** means you accept a 5% chance of a Type I error (falsely rejecting a true null hypothesis). This is the standard in most social and behavioral sciences.
+- ***α* = .01** means you accept a 1% chance. Used in fields or situations requiring more conservative evidence.
+- ***α* = .001** means you accept a 0.1% chance. Applied in contexts with very high standards of evidence, such as genome-wide association studies or particle physics.
+
+### When to Use Stricter Thresholds
+
+You should consider using a threshold stricter than .05 in these situations:
+
+**Multiple comparisons.** When you run many tests on the same dataset, the probability of at least one false positive increases. Bonferroni correction divides alpha by the number of comparisons. If you run 10 tests, each individual comparison uses *α* = .005.
+
+**High-stakes decisions.** Clinical trials for drug approval, safety-critical engineering decisions, or studies with major policy implications may warrant *α* = .01 or stricter.
+
+**Replication concerns.** Benjamin et al. (2018) proposed redefining statistical significance as *p* < .005 for new claims of discovery, reserving the term "suggestive" for results between .005 and .05. This proposal remains debated but reflects growing concern about false positive rates in published research.
+
+**Exploratory analyses.** When analyses were not pre-registered, a stricter threshold provides a partial safeguard against data-driven findings.
+
+### How to Report the Threshold
+
+State the alpha level in your Method section and apply it consistently.
+
+> Statistical significance was evaluated at *α* = .05 for all analyses. For post-hoc pairwise comparisons, a Bonferroni-adjusted alpha of .017 was used (.05 / 3 comparisons).
+
+## The APA 7th Edition Stance on P-Values
+
+### P-Values Alone Are Insufficient
+
+The APA Publication Manual (Section 6.36) is explicit that p-values should never be the sole indicator of a study's findings. The manual states:
+
+> "It is almost always necessary to include some measure of effect size in the Results section."
+
+This guidance reflects decades of methodological criticism of null hypothesis significance testing (NHST). A p-value tells you whether an effect is likely to be non-zero but says nothing about how large or important the effect is.
+
+### Effect Sizes and Confidence Intervals Are Essential
+
+APA 7th edition recommends reporting:
+
+1. **Effect sizes** for every inferential test (Cohen's *d*, *η*², *r*, *R*², Cramer's *V*, odds ratios, etc.)
+2. **Confidence intervals** for effect sizes and parameter estimates, typically at the 95% level
+
+A well-reported result looks like this:
+
+> The treatment group improved significantly more than the control group, *t*(78) = 3.12, *p* = .003, *d* = 0.70, 95% CI [0.24, 1.15].
+
+This sentence gives the reader everything: the test statistic, the evidence against the null (*p* = .003), the size of the effect (*d* = 0.70, a medium-to-large effect), and the precision of the estimate (the true effect likely falls between 0.24 and 1.15 standard deviations).
+
+### The Ongoing Debate About Statistical Significance
+
+The field is in transition. Several developments have shaped current thinking:
+
+- **The ASA Statement on P-Values (2016)** warned against using p < .05 as a binary decision rule and emphasized that p-values do not measure the probability that the hypothesis is true.
+- **The "Redefine Statistical Significance" paper (Benjamin et al., 2018)** proposed *p* < .005 as the new threshold for discovery claims.
+- **The "Retire Statistical Significance" editorial (Amrhein et al., 2019)** in *Nature*, signed by over 800 scientists, called for abandoning the concept of statistical significance entirely.
+- **APA 7th edition (2020)** takes a moderate position: keep reporting p-values but always pair them with effect sizes and confidence intervals. Do not treat .05 as a bright line.
+
+In practice, this means you should report exact p-values, effect sizes, and confidence intervals for every analysis. Let readers evaluate the totality of evidence rather than relying on a single threshold.
+
+## Quick Reference Table
+
+Use this table as a template when writing your Results section. Copy the format exactly, replacing the numbers with your own values.
+
+| Statistical Test | APA Template | Complete Example |
+|-----------------|-------------|-----------------|
+| Independent *t*-test | *t*(df) = X.XX, *p* = .XXX, *d* = X.XX | *t*(78) = 3.12, *p* = .003, *d* = 0.70 |
+| Paired *t*-test | *t*(df) = X.XX, *p* = .XXX, *d* = X.XX | *t*(44) = 4.58, *p* < .001, *d* = 0.68 |
+| One-sample *t*-test | *t*(df) = X.XX, *p* = .XXX, *d* = X.XX | *t*(29) = 2.73, *p* = .011, *d* = 0.50 |
+| One-way ANOVA | *F*(df1, df2) = X.XX, *p* = .XXX, *η*p² = .XX | *F*(2, 87) = 5.94, *p* = .004, *η*p² = .12 |
+| Two-way ANOVA | *F*(df1, df2) = X.XX, *p* = .XXX, *η*p² = .XX | *F*(1, 76) = 8.31, *p* = .005, *η*p² = .10 |
+| Repeated measures ANOVA | *F*(df1, df2) = X.XX, *p* = .XXX, *η*p² = .XX | *F*(2, 58) = 7.12, *p* = .002, *η*p² = .20 |
+| Chi-square | *χ*²(df, *N* = XXX) = X.XX, *p* = .XXX, *V* = .XX | *χ*²(2, *N* = 180) = 8.74, *p* = .013, *V* = .22 |
+| Fisher's exact test | Fisher's exact test, *p* = .XXX, OR = X.XX | Fisher's exact test, *p* = .031, OR = 3.42 |
+| Pearson correlation | *r*(df) = .XX, *p* = .XXX | *r*(88) = .62, *p* < .001 |
+| Simple regression (model) | *F*(df1, df2) = X.XX, *p* = .XXX, *R*² = .XX | *F*(1, 98) = 22.41, *p* < .001, *R*² = .19 |
+| Multiple regression (predictor) | *β* = X.XX, *t*(df) = X.XX, *p* = .XXX | *β* = .41, *t*(96) = 4.23, *p* < .001 |
+| Mann-Whitney U | *U* = XXX, *z* = X.XX, *p* = .XXX, *r* = .XX | *U* = 245, *z* = -2.89, *p* = .004, *r* = .36 |
+| Wilcoxon signed-rank | *T* = XXX, *z* = X.XX, *p* = .XXX, *r* = .XX | *T* = 18, *z* = -2.67, *p* = .008, *r* = .42 |
+| Kruskal-Wallis H | *H*(df) = X.XX, *p* = .XXX, *ε*² = .XX | *H*(2) = 12.38, *p* = .002, *ε*² = .21 |
+| Friedman test | *χ*²(df) = X.XX, *p* = .XXX, *W* = .XX | *χ*²(2) = 9.64, *p* = .008, *W* = .32 |
+| Logistic regression | OR = X.XX, 95% CI [X.XX, X.XX], *p* = .XXX | OR = 2.14, 95% CI [1.23, 3.72], *p* = .007 |
+
+## Checklist Before Submitting Your Paper
+
+Before you submit, run through this checklist for every p-value in your manuscript:
+
+- Is *p* italicized?
+- Is there a space before and after = or <?
+- Is the value reported to three decimal places?
+- Did you write *p* < .001 instead of *p* = .000?
+- Is there no leading zero before the decimal?
+- Did you report the exact p-value (not just *p* < .05)?
+- Is an effect size reported alongside the p-value?
+- Did you include descriptive statistics (means, SDs, or medians)?
+- Did you include degrees of freedom with the test statistic?
+- Did you avoid language like "proved," "insignificant," or "approaching significance"?
+
+If you checked every box, your p-value reporting meets APA 7th edition standards.
+
+## Tools That Format P-Values Automatically
+
+Formatting p-values by hand is tedious and error-prone. Several tools can help:
+
+- **StatMate** ([statmate.org](https://statmate.org)) generates APA-formatted results sentences automatically for 20 statistical tests, including t-tests, ANOVA, chi-square, correlation, and regression. Enter your data, and the calculator produces a publication-ready sentence with the correct p-value formatting, effect size, and confidence interval. You can copy the result directly into your manuscript.
+- **R** with the `apa_print()` function from the `papaja` package outputs formatted statistics.
+- **JASP** and **jamovi** include APA-formatted tables in their default output.
+- **SPSS** does not format p-values in APA style. You must manually convert "Sig. = .000" to *p* < .001 and remove leading zeros.
+
+## Summary
+
+Reporting p-values in APA 7th edition format requires five things: exact values to three decimal places, *p* < .001 for very small values, no leading zero, italicized *p*, and spaces around operators. Beyond formatting, APA emphasizes that p-values must always be accompanied by effect sizes and, ideally, confidence intervals.
+
+The most important principle is this: p-values are one piece of evidence, not the whole story. A properly reported result includes descriptive statistics, the test statistic with degrees of freedom, the exact p-value, the effect size, and the confidence interval. Together, these elements give readers everything they need to evaluate your findings.
+
+**Reference:** American Psychological Association. (2020). *Publication manual of the American Psychological Association* (7th ed.). https://doi.org/10.1037/0000165-000

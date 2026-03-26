@@ -1557,6 +1557,10 @@
     "fisherExactApa7th": {
       "title": "Fisher's Exact Test APA 7th Edition — Effect Sizes & Examples",
       "description": "When to use, odds ratio, Cramer's V, and step-by-step reporting"
+    },
+    "howToReportPValueApa": {
+      "title": "How to Report P-Values in APA 7th Edition",
+      "description": "Exact p-values, rounding rules, and copy-paste examples"
     }
   },
   "relatedCalculators": {
@@ -1656,8 +1660,19 @@
     "unequal": "Unequal"
   },
   "wizard": {
+    "metaTitle": "Which Statistical Test Should I Use? — Free Decision Tree & Flowchart",
+    "metaDescription": "Find the right statistical test for your data with our interactive decision tree. Answer 4 simple questions to get a recommendation — t-test, ANOVA, chi-square, correlation, regression, and 15 more tests.",
+    "h1": "Which Statistical Test Should I Use?",
+    "breadcrumb": "Statistical Test Guide",
     "title": "Which Test Should I Use?",
-    "subtitle": "Answer a few questions and we'll recommend the right statistical test.",
+    "subtitle": "Answer a few simple questions about your data and research goal. Our decision tree covers 20 statistical tests — from t-tests and ANOVA to chi-square, correlation, and non-parametric alternatives.",
+    "faqHeading": "Frequently Asked Questions About Choosing a Statistical Test",
+    "seoHeading": "How to Choose the Right Statistical Test: A Complete Guide",
+    "seoH3tests": "20 Statistical Tests Covered in Our Decision Tree",
+    "seoH3how": "How the Statistical Test Selection Flowchart Works",
+    "seoP1": "Choosing the right statistical test is one of the most common challenges in data analysis. The correct test depends on your research question, the type of data you have, and the number of groups or variables involved. Using the wrong test can lead to invalid conclusions — either false positives (Type I error) or missed real effects (Type II error). Our interactive decision tree simplifies this process by guiding you through a series of straightforward questions about your data.",
+    "seoP2": "StatMate's decision tree covers a comprehensive range of statistical tests: Independent and Paired t-Tests for two-group comparisons, One-Way ANOVA and Two-Way ANOVA for multi-group designs, Kruskal-Wallis and Friedman tests as non-parametric alternatives, Repeated Measures ANOVA for within-subjects designs, Chi-Square and Fisher's Exact Test for categorical data, McNemar Test for paired binary outcomes, Correlation and Regression for relationship analysis, plus Descriptive Statistics and Sample Size calculators. Each recommendation links directly to a free, interactive calculator with APA-formatted results.",
+    "seoP3": "Start by selecting your research goal: comparing groups, examining relationships, describing data, or planning a study. The flowchart then asks about the number of groups, whether measurements are independent or paired, your data type (continuous vs. categorical), and whether normality assumptions are met. In just 2-4 clicks, you get a specific test recommendation with a direct link to run the analysis — no software installation required.",
     "recommendation": "Recommended Test",
     "goToCalculator": "Go to Calculator",
     "startOver": "Start Over",

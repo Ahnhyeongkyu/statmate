@@ -47,6 +47,7 @@ const BLOG_CALCULATOR_MAP: Record<string, string> = {
   "cohen-d-apa-reporting": "t-test",
   "understanding-effect-size": "anova",
   "understanding-p-value": "t-test",
+  "how-to-report-p-value-apa": "t-test",
   "normality-test-guide": "t-test",
   "nonparametric-tests-guide": "mann-whitney",
   "choosing-statistical-test": "t-test",
@@ -398,6 +399,13 @@ const FAQ_DATA: Record<string, { question: string; answer: string }[]> = {
     { question: "Do I need to test normality for every variable in my study?", answer: "No. Test normality only for variables involved in parametric analyses that assume it. For t-tests and ANOVA, check the dependent variable within each group. For regression, check the residuals. Independent variables in regression do not need to be normal. Testing every variable wastes time and inflates the risk of false positives from multiple testing." },
     { question: "How do I report normality results when I have many groups or variables?", answer: "Summarize the results rather than reporting each test individually. For example: Shapiro-Wilk tests confirmed that the dependent variable was normally distributed in all six groups (all Ws > .94, all ps > .10). Skewness values ranged from -0.42 to 0.67. If normality is violated in some groups, specify which and describe the nature of the violation." },
     { question: "Is there a normality test that works well for all sample sizes?", answer: "No single test is optimal across all sample sizes. The Shapiro-Wilk test offers the best overall performance for samples between 3 and 2,000. For very large samples, all formal tests become overly sensitive. The best approach for large samples is to combine visual methods (Q-Q plots, histograms) with descriptive measures of non-normality (skewness and kurtosis values)." },
+  ],
+  "how-to-report-p-value-apa": [
+    { question: "Should I write p = .000 when SPSS shows Sig. = .000?", answer: "No. SPSS displays .000 as a rounding artifact, not an actual probability of zero. A probability can never be exactly zero. Report it as p < .001 in your manuscript. This is one of the most common APA formatting errors and is explicitly addressed in the APA 7th edition Publication Manual." },
+    { question: "Why does APA require no leading zero before p-values?", answer: "APA omits the leading zero for statistics that cannot exceed 1.0 in absolute value. Since p-values range from 0 to 1 and can never equal or exceed 1, the zero before the decimal is unnecessary. This rule also applies to correlation coefficients, proportions, and Cronbach's alpha. Statistics that can exceed 1.0, such as Cohen's d, means, and standard deviations, retain the leading zero." },
+    { question: "Do I report exact p-values or just write p < .05?", answer: "APA 7th edition requires exact p-values rounded to two or three decimal places (e.g., p = .032, p = .007). Writing only p < .05 is no longer acceptable. The single exception is for very small values: when p is below .001, report p < .001. Exact p-values allow readers and meta-analysts to evaluate the strength of evidence for themselves." },
+    { question: "How do I report a p-value for a non-significant result?", answer: "Report the exact p-value, effect size, and descriptive statistics, just as you would for a significant result. For example: t(58) = 1.14, p = .259, d = 0.30. Do not describe the result as 'insignificant' (which implies unimportant) — write 'not statistically significant.' Never omit non-significant p-values or replace them with 'n.s.'" },
+    { question: "Should I always report effect sizes alongside p-values?", answer: "Yes. APA 7th edition requires effect sizes for all inferential tests, regardless of whether results are statistically significant. Use Cohen's d for t-tests, partial eta-squared for ANOVA, Cramér's V for chi-square, r or R-squared for correlation and regression, and rank-biserial r for Mann-Whitney U. Effect sizes provide information about practical significance that p-values cannot." },
   ],
 };
 

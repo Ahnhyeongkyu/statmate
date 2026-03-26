@@ -8,11 +8,13 @@ const CALCULATOR_BLOG_MAP: Record<string, { slug: string; titleKey: string }[]> 
     { slug: "t-test-apa-reporting", titleKey: "tTestApa" },
     { slug: "how-to-run-t-test", titleKey: "howToRunTTest" },
     { slug: "understanding-p-value", titleKey: "understandingPValue" },
+    { slug: "how-to-report-p-value-apa", titleKey: "howToReportPValueApa" },
   ],
   "anova": [
     { slug: "anova-apa-reporting", titleKey: "anovaApa" },
     { slug: "how-to-run-anova", titleKey: "howToRunAnova" },
     { slug: "understanding-effect-size", titleKey: "understandingEffectSize" },
+    { slug: "how-to-report-p-value-apa", titleKey: "howToReportPValueApa" },
   ],
   "chi-square": [
     { slug: "chi-square-apa-reporting", titleKey: "chiSquareApa" },
