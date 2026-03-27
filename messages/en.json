@@ -51,19 +51,20 @@
       "university": "University License",
       "compare": "vs SPSS / R / Excel",
       "validation": "Validation Evidence",
-      "copyright": "© {year} StatMate. All rights reserved."
+      "copyright": "© {year} StatMate. All rights reserved.",
+      "alsoByMaker": "Also by the maker:"
     },
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "home": {
     "badge": "Free · No sign-up required",
-    "heroTitle1": "Statistics Made Simple.",
-    "heroTitle2": "APA-Ready Results.",
-    "heroDescription": "Run statistical tests instantly and get results formatted in APA 7th edition. Export to Word with one click. Built by statisticians, for researchers.",
+    "heroTitle1": "Statistics Homework Due Tomorrow?",
+    "heroTitle2": "APA-Ready Results in Seconds.",
+    "heroDescription": "Stop struggling with SPSS. Run statistical tests instantly and get results formatted in APA 7th edition — ready to paste into your paper. Export to Word with one click. Built by statisticians, trusted by 500+ researchers.",
     "ctaTry": "Try T-Test Calculator",
     "ctaViewAll": "View All Calculators",
-    "wizardCta": "Not sure which test to use? Try the Decision Wizard",
+    "wizardCta": "Not sure which test to use? → Try our Decision Guide",
     "wizardCtaSub": "Answer a few simple questions and get a recommendation →",
     "demo": {
       "title": "See It In Action — 3 Simple Steps",

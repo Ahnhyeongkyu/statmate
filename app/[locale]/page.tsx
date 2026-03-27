@@ -119,6 +119,12 @@ export default async function Home({
             {t("ctaViewAll")}
           </a>
         </div>
+        <Link
+          href="/wizard"
+          className="text-sm text-blue-600 hover:text-blue-800 underline dark:text-blue-400 dark:hover:text-blue-300"
+        >
+          {t("wizardCta")}
+        </Link>
       </section>
 
       {/* See It In Action */}

@@ -416,6 +416,14 @@ export default async function LocaleLayout({
                 <a href="https://dang.ai" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">Dang.ai</a>
                 <a href="https://www.listyourtool.com" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">ListYourTool</a>
               </div>
+              <div className="mt-6 border-t pt-4 dark:border-gray-700">
+                <p className="text-center text-xs text-gray-400 dark:text-gray-500">
+                  {t("footer.alsoByMaker")}{" "}
+                  <a href="https://roastsite.site" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">RoastSite</a>
+                  {" · "}
+                  <a href="https://restinlight.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">RestInLight</a>
+                </p>
+              </div>
               <div className="mt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
                 {t("footer.copyright", { year: new Date().getFullYear() })}
               </div>

@@ -51,19 +51,20 @@
       "university": "大学ライセンス",
       "compare": "vs SPSS / R / Excel",
       "validation": "検証の根拠",
-      "copyright": "© {year} StatMate. All rights reserved."
+      "copyright": "© {year} StatMate. All rights reserved.",
+      "alsoByMaker": "同じ開発者の他のサービス："
     },
     "openMenu": "メニューを開く",
     "closeMenu": "メニューを閉じる"
   },
   "home": {
     "badge": "無料・登録不要",
-    "heroTitle1": "統計をもっとシンプルに。",
-    "heroTitle2": "APA形式の結果をすぐに。",
-    "heroDescription": "統計検定を即座に実行し、APA第7版形式の結果を取得できます。ワンクリックでWordにエクスポート。統計の専門家が研究者のために開発しました。",
+    "heroTitle1": "統計の課題、自信ありますか？",
+    "heroTitle2": "APA形式の結果を即座に。",
+    "heroDescription": "統計検定の実行からAPA第7版形式の結果まで、ワンクリック。SPSSなしでも論文にそのまま貼り付けられる結果を取得。統計学者が作った、研究者のための無料ツール。",
     "ctaTry": "t検定計算ツールを試す",
     "ctaViewAll": "すべての計算ツールを見る",
-    "wizardCta": "どの検定を使うべきかわからない？検定選択ウィザードをお試しください",
+    "wizardCta": "どの検定を使うべきかわからない場合 →",
     "wizardCtaSub": "いくつかの質問に答えるだけで、最適な検定を提案します →",
     "demo": {
       "title": "実際の動作をご覧ください — 3つの簡単なステップ",
