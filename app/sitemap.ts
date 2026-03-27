@@ -69,6 +69,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Add pSEO field-specific calculator pages (100 combinations)
+  const pseoFields = ["psychology", "biology", "marketing", "education", "healthcare"];
+  for (const calc of calculators) {
+    for (const field of pseoFields) {
+      pages.push({
+        path: `/calculators/${calc}/for/${field}`,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      });
+    }
+  }
+
   // Add blog post pages (use ko slugs as canonical set)
   const blogSlugs = getAllSlugs("ko");
   for (const slug of blogSlugs) {
