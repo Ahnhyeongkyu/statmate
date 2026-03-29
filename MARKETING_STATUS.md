@@ -20,11 +20,11 @@
 - [x] pSEO 100페이지 추가 (20계산기 × 5분야: psychology, biology, marketing, education, healthcare)
 - [x] 온보딩 카피: "통계 과제, 자신 있으세요?" + Wizard CTA
 - [x] 교차 홍보 footer (RoastSite + RestInLight)
-- [ ] GSC-GA4 연결 — 브라우저 필요, CEO 직접 실행
+- [x] GSC-GA4 연결 (2026-03-30 완료)
 - [x] Weekly Log W1 작성
 - [x] LAUNCH COMPLETE 기록
 
-## 초기 마케팅 완료: [x] (날짜: 2026-03-27, GSC-GA4 연결만 잔여)
+## 초기 마케팅 완료: [x] (날짜: 2026-03-30, 전 항목 ✅)
 
 ## GSC-GA4 연결 방법 (CEO 직접)
 1. GA4 (analytics.google.com) → StatMate 속성 → 홈
