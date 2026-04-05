@@ -422,6 +422,8 @@ export default async function LocaleLayout({
                   <a href="https://roastsite.site" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">RoastSite</a>
                   {" · "}
                   <a href="https://restinlight.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">RestInLight</a>
+                  {" · "}
+                  <a href="https://trustfolio.dev" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 dark:hover:text-gray-300">Trustfolio</a>
                 </p>
               </div>
               <div className="mt-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
