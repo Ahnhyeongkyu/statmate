@@ -94,7 +94,6 @@ export default async function DescriptivePage({
         <p className="mt-2 text-gray-500">{t("description")}</p>
       </div>
 
-      <AdUnit slot="4914141943" format="auto" className="my-4" />
 
       <DescriptiveCalculator />
 
