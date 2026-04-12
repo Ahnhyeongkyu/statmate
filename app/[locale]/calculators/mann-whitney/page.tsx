@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { MannWhitneyCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { RelatedBlogs } from "@/components/related-blogs";
-import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -97,7 +96,6 @@ export default async function MannWhitneyPage({
 
       <MannWhitneyCalculator />
 
-      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -378,7 +376,6 @@ export default async function MannWhitneyPage({
       </section>
       )}
 
-      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/mann-whitney" />
       <RelatedBlogs current="mann-whitney" />

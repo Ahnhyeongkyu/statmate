@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { CronbachAlphaCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { RelatedBlogs } from "@/components/related-blogs";
-import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -96,7 +95,6 @@ export default async function CronbachAlphaPage({
 
       <CronbachAlphaCalculator />
 
-      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -335,7 +333,6 @@ export default async function CronbachAlphaPage({
       </section>
       )}
 
-      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/cronbach-alpha" />
       <RelatedBlogs current="cronbach-alpha" />

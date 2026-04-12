@@ -5,7 +5,6 @@ import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { RelatedBlogs } from "@/components/related-blogs";
-import { AdUnit } from "@/components/adsense";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { BreadcrumbSchema } from "@/components/breadcrumb-schema";
@@ -97,7 +96,6 @@ export default async function SampleSizePage({
 
       <SampleSizeCalculator />
 
-      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -372,7 +370,6 @@ export default async function SampleSizePage({
       </section>
       )}
 
-      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/sample-size" />
       <RelatedBlogs current="sample-size" />

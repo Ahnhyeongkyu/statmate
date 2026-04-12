@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { WilcoxonCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { RelatedBlogs } from "@/components/related-blogs";
-import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -95,7 +94,6 @@ export default async function WilcoxonPage({
 
       <WilcoxonCalculator />
 
-      <AdUnit slot="4914141943" format="rectangle" />
 
       {/* SEO Content */}
       {locale === "ko" ? <SeoContentKo /> : locale === "ja" ? <SeoContentJa /> : (
@@ -410,7 +408,6 @@ export default async function WilcoxonPage({
       </section>
       )}
 
-      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/wilcoxon" />
       <RelatedBlogs current="wilcoxon" />

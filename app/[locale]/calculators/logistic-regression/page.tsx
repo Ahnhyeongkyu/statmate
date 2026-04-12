@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { LogisticRegressionCalculator } from "./calculator";
 import { RelatedCalculators } from "@/components/related-calculators";
 import { RelatedBlogs } from "@/components/related-blogs";
-import { AdUnit } from "@/components/adsense";
 import { SeoContentKo } from "./seo-ko";
 import { SeoContentJa } from "./seo-ja";
 import { FaqSchema, type FaqItem } from "@/components/faq-schema";
@@ -98,7 +97,6 @@ export default async function LogisticRegressionPage({
 
       <LogisticRegressionCalculator />
 
-      <AdUnit slot="4914141943" format="rectangle" />
 
       {locale === "ko" ? (
         <SeoContentKo />
@@ -222,7 +220,6 @@ export default async function LogisticRegressionPage({
         </section>
       )}
 
-      <AdUnit slot="4914141943" format="auto" />
 
       <RelatedCalculators current="/calculators/logistic-regression" />
       <RelatedBlogs current="logistic-regression" />
