@@ -25,6 +25,8 @@ import {
   AiInterpretation,
   ExportButton,
   CopyToast,
+  CopyPaywall,
+  CopyRemainingBadge,
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
@@ -41,11 +43,12 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
   const t = useTranslations("calculator");
   const tt = useTranslations("ttest");
   const apa = formatAPA(result);
-  const { show, copy } = useCopyToast();
+  const { show, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   return (
     <div className="space-y-6">
       <CopyToast show={show} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
 
       {/* APA Result */}
       <Card className="border-blue-200 bg-blue-50">
@@ -65,7 +68,7 @@ function ResultsDisplay({ result, group1Data, group2Data }: { result: TTestResul
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>

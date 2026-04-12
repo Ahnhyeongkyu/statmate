@@ -94,3 +94,7 @@ export function trackFeedbackVote(calculatorId: string, vote: "up" | "down") {
 export function trackFreeTrialUsed(testType: string) {
   gtag({ action: "free_trial_used", category: "pro_feature", label: testType });
 }
+
+export function trackCopyPaywallShown(testType?: string) {
+  gtag({ action: "copy_paywall_shown", category: "conversion", label: testType || "unknown" });
+}

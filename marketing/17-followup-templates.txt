@@ -1,0 +1,69 @@
+==========================================
+아웃리치 팔로업 메시지 (2026-04-12)
+==========================================
+원본 발송: 2026-03-13
+팔로업 시점: 4주 후 (예정 3/27 → 실제 4/12)
+
+==========================================
+1. 대학 도서관 팔로업 (English)
+==========================================
+
+Subject: Re: Free Statistics Tool for Students — StatMate (20 Tests, APA Formatting)
+
+Hi [Library Team],
+
+I wanted to follow up on my previous email about StatMate — the free statistics calculator with APA formatting.
+
+Since my last message, we've added:
+- 100+ field-specific landing pages (psychology, biology, marketing, education, healthcare)
+- 17 APA reporting guides with copy-paste templates
+- A statistical test decision guide (statmate.org/wizard)
+
+Over 2,200 researchers use StatMate monthly. It requires no installation, no account, and all data stays in the browser.
+
+Would it be worth adding to your statistics resources page? Happy to provide any additional information.
+
+Best,
+Hyeongkyu Ahn
+https://statmate.org
+
+==========================================
+2. 한국 교수 팔로업 (Korean)
+==========================================
+
+제목: Re: 무료 통계 도구 StatMate 소개 — 학생 연구방법론 수업 활용 제안
+
+교수님께,
+
+지난달 보내드린 StatMate 소개 메일에 대해 다시 한번 안내드립니다.
+
+StatMate는 학생들이 SPSS 없이도 통계 분석과 APA 7판 결과 보고를 한 번에 할 수 있는 무료 웹 도구입니다.
+
+최근 업데이트:
+- 분야별 맞춤 페이지 추가 (심리학, 교육학, 경영학, 간호학, 생물학)
+- APA 보고 가이드 17개 (각 검정별 예시 포함)
+- 통계 검정 선택 가이드 (어떤 분석을 써야 할지 모르는 학생용)
+
+현재 월 2,200명 이상의 연구자가 사용 중이며, 설치나 회원가입 없이 브라우저에서 바로 사용 가능합니다.
+
+연구방법론 수업에서 학생들에게 안내해 주실 의향이 있으시면 편하게 말씀해 주십시오.
+
+감사합니다.
+안형규 드림
+https://statmate.org
+
+==========================================
+3. 발송 체크리스트
+==========================================
+
+[ ] US/UK 대학 도서관 16곳 — 영어 팔로업
+    Harvard, Stanford, MIT, UC Berkeley, Columbia,
+    U Michigan, U Washington, UCLA, NYU, U Chicago,
+    Oxford, Cambridge, UCL, Edinburgh, U Toronto,
+    Penn State
+
+[ ] 한국 교수 15명 — 한국어 팔로업
+    서울대(3), 연세대(3), 고려대(3), 성균관대(3), 한양대(3)
+
+발송 방법: 원본 이메일에 Reply (같은 스레드 유지)
+핵심: 2-3줄 이내로 짧게. 성과 수치(2,200 MAU) 포함.

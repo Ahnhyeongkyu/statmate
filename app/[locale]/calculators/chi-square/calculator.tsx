@@ -26,6 +26,8 @@ import {
   AiInterpretation,
   ExportButton,
   CopyToast,
+  CopyPaywall,
+  CopyRemainingBadge,
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
@@ -40,11 +42,12 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
   const t = useTranslations("calculator");
   const tc = useTranslations("chiSquare");
   const apa = formatChiSquareAPA(result);
-  const { show, copy } = useCopyToast();
+  const { show, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   return (
     <div className="space-y-6">
       <CopyToast show={show} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
       <Card className="border-blue-200 bg-blue-50">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-blue-900">
@@ -62,7 +65,7 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>
@@ -251,7 +254,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
   const t = useTranslations("calculator");
   const tc = useTranslations("chiSquare");
   const apa = formatChiSquareAPA(result);
-  const { show: showToast, copy } = useCopyToast();
+  const { show: showToast, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   if (result.type === "independence") {
     return <IndependenceResultsDisplay result={result} />;
@@ -260,6 +263,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
   return (
     <div className="space-y-6">
       <CopyToast show={showToast} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
       <Card className="border-blue-200 bg-blue-50">
         <CardHeader className="pb-3">
           <CardTitle className="text-base text-blue-900">
@@ -275,7 +279,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>

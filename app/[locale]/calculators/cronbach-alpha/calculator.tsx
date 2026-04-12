@@ -20,6 +20,8 @@ import {
 import {
   AiInterpretation,
   CopyToast,
+  CopyPaywall,
+  CopyRemainingBadge,
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
@@ -34,7 +36,7 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
   const t = useTranslations("calculator");
   const ts = useTranslations("cronbachAlpha");
   const apa = formatCronbachAlphaAPA(result);
-  const { show, copy } = useCopyToast();
+  const { show, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   const interpretationColor =
     result.alpha >= 0.8
@@ -46,6 +48,7 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
   return (
     <div className="space-y-6">
       <CopyToast show={show} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
 
       {/* APA Result Card */}
       <Card className="border-blue-200 bg-blue-50">
@@ -62,7 +65,7 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>

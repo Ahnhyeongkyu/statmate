@@ -24,6 +24,8 @@ import {
   AiInterpretation,
   ExportButton,
   CopyToast,
+  CopyPaywall,
+  CopyRemainingBadge,
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
@@ -126,7 +128,7 @@ function ResultsDisplay({
   const t = useTranslations("calculator");
   const tw = useTranslations("twoWayAnova");
   const apa = formatTwoWayAnovaAPA(result, factorAName, factorBName);
-  const { show, copy } = useCopyToast();
+  const { show, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   const renderEffectRow = (label: string, e: EffectResult) => (
     <tr key={label}>
@@ -145,6 +147,7 @@ function ResultsDisplay({
   return (
     <div className="space-y-6">
       <CopyToast show={show} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
 
       {/* APA Results */}
       <Card className="border-blue-200 bg-blue-50">
@@ -178,7 +181,7 @@ function ResultsDisplay({
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>

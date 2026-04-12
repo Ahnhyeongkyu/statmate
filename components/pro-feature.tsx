@@ -453,18 +453,61 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
   );
 }
 
+// --- Copy Limit Helpers ---
+
+const COPY_LIMIT = 3;
+const COPY_STORAGE_KEY = "statmate_copy_count";
+
+function getCopyCount(): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    return parseInt(localStorage.getItem(COPY_STORAGE_KEY) || "0", 10);
+  } catch { return 0; }
+}
+
+function incrementCopyCount(): void {
+  try {
+    localStorage.setItem(COPY_STORAGE_KEY, String(getCopyCount() + 1));
+  } catch { /* ignore */ }
+}
+
+function canCopyFree(): boolean {
+  return getCopyCount() < COPY_LIMIT;
+}
+
 // --- Copy Toast Component ---
 
 export function useCopyToast() {
+  const isPro = useIsPro();
   const [show, setShow] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [remaining, setRemaining] = useState(COPY_LIMIT);
+
+  useEffect(() => {
+    setRemaining(Math.max(0, COPY_LIMIT - getCopyCount()));
+  }, []);
 
   function copy(text: string) {
-    navigator.clipboard.writeText(text);
-    setShow(true);
-    setTimeout(() => setShow(false), 2000);
+    if (isPro || canCopyFree()) {
+      navigator.clipboard.writeText(text);
+      if (!isPro) {
+        incrementCopyCount();
+        const newRemaining = Math.max(0, COPY_LIMIT - getCopyCount());
+        setRemaining(newRemaining);
+      }
+      setShow(true);
+      setTimeout(() => setShow(false), 2000);
+    } else {
+      setShowPaywall(true);
+      trackProCtaClick("copy_paywall_triggered");
+    }
   }
 
-  return { show, copy };
+  function dismissPaywall() {
+    setShowPaywall(false);
+  }
+
+  return { show, copy, showPaywall, remaining, dismissPaywall, isPro };
 }
 
 export function CopyToast({ show }: { show: boolean }) {
@@ -477,5 +520,67 @@ export function CopyToast({ show }: { show: boolean }) {
         {t("copied")}
       </div>
     </div>
+  );
+}
+
+export function CopyPaywall({ onDismiss }: { onDismiss: () => void }) {
+  const t = useTranslations("calculator");
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={onDismiss}>
+      <div
+        className="mx-4 w-full max-w-sm rounded-xl border border-blue-200 bg-white p-6 shadow-2xl dark:border-blue-800 dark:bg-gray-900"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mb-4 text-center">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+            <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <p className="text-lg font-semibold text-gray-900 dark:text-white">
+            {t("copyLimitReached")}
+          </p>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {t("copyLimitDesc")}
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <a
+            href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+            onClick={() => trackProCtaClick("copy_paywall_credits")}
+          >
+            <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
+              {t("copyCreditsButton")}
+            </Button>
+          </a>
+          <a
+            href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+            onClick={() => trackProCtaClick("copy_paywall_pro")}
+            className="text-center text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
+          >
+            {t("copyProUpgrade")}
+          </a>
+        </div>
+        <button
+          onClick={onDismiss}
+          className="mt-3 w-full text-center text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500"
+        >
+          {t("copyDismiss")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export function CopyRemainingBadge({ remaining, isPro }: { remaining: number; isPro: boolean }) {
+  const t = useTranslations("calculator");
+  if (isPro || remaining > COPY_LIMIT) return null;
+  if (remaining <= 0) return null;
+
+  return (
+    <span className="ml-2 text-xs text-gray-400 dark:text-gray-500">
+      ({t("copyRemaining", { remaining, total: COPY_LIMIT })})
+    </span>
   );
 }

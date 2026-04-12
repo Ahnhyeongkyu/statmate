@@ -20,6 +20,8 @@ import {
 import {
   AiInterpretation,
   CopyToast,
+  CopyPaywall,
+  CopyRemainingBadge,
   useCopyToast,
 } from "@/components/pro-feature";
 import { trackCalculate, trackLoadExample } from "@/lib/analytics";
@@ -41,7 +43,7 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
   const t = useTranslations("calculator");
   const ts = useTranslations("factorAnalysis");
   const apa = formatFactorAnalysisAPA(result);
-  const { show, copy } = useCopyToast();
+  const { show, copy, showPaywall, remaining, dismissPaywall, isPro } = useCopyToast();
 
   const kmoVal = result.kmo.overall;
   const kmoColor =
@@ -56,6 +58,7 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
   return (
     <div className="space-y-6">
       <CopyToast show={show} />
+      {showPaywall && <CopyPaywall onDismiss={dismissPaywall} />}
 
       {/* APA Result Card */}
       <Card className="border-blue-200 bg-blue-50">
@@ -70,7 +73,7 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
-            {t("copyToClipboard")}
+            {t("copyToClipboard")}<CopyRemainingBadge remaining={remaining} isPro={isPro} />
           </button>
         </CardContent>
       </Card>
