@@ -69,21 +69,28 @@ export default async function ExpertReviewPage() {
         {t("description")}
       </p>
 
-      {/* Price Card */}
-      <div className="mt-12 w-full max-w-md rounded-xl border-2 border-blue-500 bg-white p-8 text-center shadow-lg dark:border-blue-400 dark:bg-gray-800">
-        <div className="text-4xl font-bold text-gray-900 dark:text-white">{t("price")}</div>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t("priceNote")}</p>
+      {/* Price Card — Coming Soon (ADR-0023: Pivoting to AI Statistical Validator) */}
+      <div className="mt-12 w-full max-w-md rounded-xl border-2 border-amber-300 bg-amber-50 p-8 text-center shadow-lg dark:border-amber-700 dark:bg-amber-950">
+        <div className="mb-2 inline-block rounded-full bg-amber-200 px-3 py-1 text-xs font-semibold text-amber-900 dark:bg-amber-800 dark:text-amber-100">
+          Coming Soon
+        </div>
+        <div className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
+          AI Statistical Validator
+        </div>
+        <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          We are building a fully automated statistical analysis review tool powered by AI. Upload your data, get instant validation + APA write-up — no waiting, no manual review.
+        </p>
+        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+          Expected launch: 1-2 weeks. Want to be notified?
+        </p>
         <a
-          href="https://statmate.lemonsqueezy.com/checkout/buy/11f930b9-8866-46d3-82ba-925aa1910d14?embed=1"
-          className="lemonsqueezy-button mt-6 block"
+          href="mailto:houng8087@gmail.com?subject=Notify%20me%3A%20AI%20Statistical%20Validator&body=Please%20notify%20me%20when%20the%20AI%20Statistical%20Validator%20launches."
+          className="mt-4 inline-block"
         >
-          <Button className="w-full bg-blue-600 hover:bg-blue-700">
-            {t("cta")}
+          <Button className="bg-amber-600 hover:bg-amber-700 text-white">
+            Notify me on launch
           </Button>
         </a>
-        <Link href="/expert-review/request" className="mt-3 block text-xs text-gray-500 hover:text-blue-600 dark:text-gray-400">
-          Need to discuss first? Contact us →
-        </Link>
       </div>
 
       {/* Features */}
@@ -190,16 +197,15 @@ export default async function ExpertReviewPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="mt-16 w-full max-w-xl rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
-        <h2 className="text-2xl font-bold">{t("ctaBottom")}</h2>
-        <p className="mt-2 text-blue-100">{t("ctaBottomSub")}</p>
-        <a
-          href="https://statmate.lemonsqueezy.com/checkout/buy/11f930b9-8866-46d3-82ba-925aa1910d14?embed=1"
-          className="lemonsqueezy-button"
-        >
-          <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
-            {t("cta")}
+      {/* Bottom CTA — Coming Soon (ADR-0023) */}
+      <section className="mt-16 w-full max-w-xl rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 p-8 text-center text-white">
+        <h2 className="text-2xl font-bold">AI Statistical Validator — Coming Soon</h2>
+        <p className="mt-2 text-amber-100">
+          Fully automated review. Upload data, get instant results. Launching in 1-2 weeks.
+        </p>
+        <a href="mailto:houng8087@gmail.com?subject=Notify%20me%3A%20AI%20Statistical%20Validator">
+          <Button className="mt-6 bg-white text-amber-700 hover:bg-amber-50">
+            Notify me on launch
           </Button>
         </a>
       </section>
