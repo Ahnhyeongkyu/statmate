@@ -73,10 +73,16 @@ export default async function ExpertReviewPage() {
       <div className="mt-12 w-full max-w-md rounded-xl border-2 border-blue-500 bg-white p-8 text-center shadow-lg dark:border-blue-400 dark:bg-gray-800">
         <div className="text-4xl font-bold text-gray-900 dark:text-white">{t("price")}</div>
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t("priceNote")}</p>
-        <Link href="/expert-review/request" className="mt-6 block">
+        <a
+          href="https://statmate.lemonsqueezy.com/checkout/buy/11f930b9-8866-46d3-82ba-925aa1910d14?embed=1"
+          className="lemonsqueezy-button mt-6 block"
+        >
           <Button className="w-full bg-blue-600 hover:bg-blue-700">
             {t("cta")}
           </Button>
+        </a>
+        <Link href="/expert-review/request" className="mt-3 block text-xs text-gray-500 hover:text-blue-600 dark:text-gray-400">
+          Need to discuss first? Contact us →
         </Link>
       </div>
 
@@ -188,11 +194,14 @@ export default async function ExpertReviewPage() {
       <section className="mt-16 w-full max-w-xl rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
         <h2 className="text-2xl font-bold">{t("ctaBottom")}</h2>
         <p className="mt-2 text-blue-100">{t("ctaBottomSub")}</p>
-        <Link href="/expert-review/request">
+        <a
+          href="https://statmate.lemonsqueezy.com/checkout/buy/11f930b9-8866-46d3-82ba-925aa1910d14?embed=1"
+          className="lemonsqueezy-button"
+        >
           <Button className="mt-6 bg-white text-blue-600 hover:bg-blue-50">
             {t("cta")}
           </Button>
-        </Link>
+        </a>
       </section>
     </div>
   );
