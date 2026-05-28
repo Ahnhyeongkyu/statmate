@@ -162,6 +162,7 @@ export function ActivateProModal({
               )}
               <input
                 type="text"
+                data-ime-form="activate-pro"
                 placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                 value={key}
                 onChange={(e) => setKey(e.target.value)}

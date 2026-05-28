@@ -20,6 +20,7 @@ import { AuthProvider } from "@/components/auth-provider";
 import { ServiceWorkerRegister } from "@/components/service-worker-register";
 import { LemonSqueezyOverlay } from "@/components/lemonsqueezy";
 import { SpeculationRules } from "@/components/speculation-rules";
+import { ImeTrackProvider } from "@/components/ime-track-provider";
 import "../globals.css";
 
 const inter = Inter({
@@ -253,6 +254,7 @@ export default async function LocaleLayout({
 
           <AdSenseScript />
           <GoogleAnalytics />
+          <ImeTrackProvider />
           <ErrorBoundaryInit />
           <FeedbackButton />
           <Analytics />

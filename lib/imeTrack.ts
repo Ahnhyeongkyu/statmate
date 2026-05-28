@@ -1,0 +1,222 @@
+"use client";
+
+// Minimal client-side IME-1 tracker for statmate.
+// Mirrors @ahdr/ime-track conventions but vendored to avoid cross-repo dep.
+// Events: landing_view, cta_click, signup_started, paid_conversion (server-side).
+
+import posthog from "posthog-js";
+
+const SAAS = "statmate";
+const UTM_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+] as const;
+const UTM_STORAGE_KEY = "ime_utm_v1";
+const UTM_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30d
+const DEFAULT_HOST = "https://us.i.posthog.com";
+
+type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+
+interface State {
+  initialized: boolean;
+  utm: Utm;
+  signupFired: WeakSet<Element>;
+  ctaFired: WeakSet<Element>;
+  debug: boolean;
+}
+
+const state: State = {
+  initialized: false,
+  utm: {},
+  signupFired: new WeakSet(),
+  ctaFired: new WeakSet(),
+  debug: false,
+};
+
+function readUtmFromLocation(): Utm {
+  const out: Utm = {};
+  if (typeof window === "undefined") return out;
+  const sp = new URLSearchParams(window.location.search);
+  for (const k of UTM_KEYS) {
+    const v = sp.get(k);
+    if (v && v.length > 0 && v.length <= 256) out[k] = v;
+  }
+  return out;
+}
+
+function readUtmFromStorage(): Utm {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = window.localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as { ts?: number; utm?: Utm };
+    if (!parsed.ts || Date.now() - parsed.ts > UTM_TTL_MS) return {};
+    return parsed.utm ?? {};
+  } catch {
+    return {};
+  }
+}
+
+function writeUtmToStorage(utm: Utm): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(
+      UTM_STORAGE_KEY,
+      JSON.stringify({ ts: Date.now(), utm }),
+    );
+  } catch {
+    /* quota / private mode — drop silently */
+  }
+}
+
+export function getPersistedUtm(): Utm {
+  return { ...state.utm };
+}
+
+function commonProps(extra?: Record<string, unknown>): Record<string, unknown> {
+  return { saas: SAAS, ...state.utm, ...(extra ?? {}) };
+}
+
+function capture(event: string, extra?: Record<string, unknown>): void {
+  if (!state.initialized) return;
+  try {
+    posthog.capture(event, commonProps(extra));
+  } catch (err) {
+    if (state.debug) console.warn("[imeTrack] capture failed", err);
+  }
+}
+
+function rewriteLemonSqueezyHref(a: HTMLAnchorElement): void {
+  if (!a.href || !a.href.includes("statmate.lemonsqueezy.com/checkout/")) return;
+  if (a.dataset.imeUtmApplied === "1") return;
+  const utm = state.utm;
+  if (Object.keys(utm).length === 0) {
+    a.dataset.imeUtmApplied = "1";
+    return;
+  }
+  try {
+    const u = new URL(a.href);
+    for (const [k, v] of Object.entries(utm)) {
+      if (v) u.searchParams.set(`checkout[custom][${k}]`, v);
+    }
+    a.href = u.toString();
+    a.dataset.imeUtmApplied = "1";
+  } catch {
+    /* malformed URL — leave as-is */
+  }
+}
+
+function wireCheckoutLinks(): void {
+  if (typeof document === "undefined") return;
+  // Apply on first user interaction so we catch links added after SSR hydration.
+  const sweep = () => {
+    document
+      .querySelectorAll<HTMLAnchorElement>(
+        'a[href*="statmate.lemonsqueezy.com/checkout/"]',
+      )
+      .forEach(rewriteLemonSqueezyHref);
+  };
+  sweep();
+  document.addEventListener("click", sweep, true);
+}
+
+function matchAncestor(target: EventTarget | null, sel: string): HTMLElement | null {
+  let el = target as HTMLElement | null;
+  while (el && el.nodeType === 1) {
+    if (typeof el.matches === "function" && el.matches(sel)) return el;
+    el = el.parentElement;
+  }
+  return null;
+}
+
+function wireCtaClicks(): void {
+  if (typeof document === "undefined") return;
+  document.addEventListener(
+    "click",
+    (ev) => {
+      const el = matchAncestor(ev.target, "[data-ime-cta]");
+      if (!el || state.ctaFired.has(el)) return;
+      state.ctaFired.add(el);
+      const label =
+        el.getAttribute("data-ime-cta") || el.textContent?.trim().slice(0, 64) || "";
+      const href = (el as HTMLAnchorElement).href || null;
+      capture("cta_click", { cta_label: label, cta_href: href });
+    },
+    true,
+  );
+}
+
+function wireSignupFocus(): void {
+  if (typeof document === "undefined") return;
+  document.addEventListener(
+    "focusin",
+    (ev) => {
+      const el = matchAncestor(ev.target, "[data-ime-form]");
+      if (!el || state.signupFired.has(el)) return;
+      state.signupFired.add(el);
+      const formId = el.getAttribute("data-ime-form") || el.id || null;
+      capture("signup_started", { form_id: formId });
+    },
+    true,
+  );
+}
+
+export function init(opts: { posthogKey?: string; posthogHost?: string; debug?: boolean } = {}): void {
+  if (state.initialized) return;
+  if (typeof window === "undefined") return;
+
+  state.debug = opts.debug ?? false;
+
+  // Resolve UTMs: querystring wins, else persisted storage.
+  const fromUrl = readUtmFromLocation();
+  if (Object.keys(fromUrl).length > 0) {
+    state.utm = fromUrl;
+    writeUtmToStorage(fromUrl);
+  } else {
+    state.utm = readUtmFromStorage();
+  }
+
+  const key = opts.posthogKey ?? process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  if (!key) {
+    if (state.debug) console.warn("[imeTrack] no posthog key — SDK no-op");
+    state.initialized = true; // still wire link rewrites
+    wireCheckoutLinks();
+    wireCtaClicks();
+    wireSignupFocus();
+    return;
+  }
+
+  try {
+    posthog.init(key, {
+      api_host: opts.posthogHost ?? process.env.NEXT_PUBLIC_POSTHOG_HOST ?? DEFAULT_HOST,
+      capture_pageview: false,
+      capture_pageleave: false,
+      autocapture: false,
+      disable_session_recording: true,
+      disable_surveys: true,
+      persistence: "localStorage+cookie",
+      request_batching: false,
+      // Smoke tests run in headless Chromium (bot UA). Real bot traffic still
+      // gets $browser_type=bot from PostHog server-side, so this is safe.
+      opt_out_useragent_filter: true,
+    });
+  } catch (err) {
+    if (state.debug) console.warn("[imeTrack] posthog.init failed", err);
+  }
+
+  state.initialized = true;
+  wireCheckoutLinks();
+  wireCtaClicks();
+  wireSignupFocus();
+}
+
+export function landingView(path: string): void {
+  capture("landing_view", { path });
+}
+
+export function track(event: string, props?: Record<string, unknown>): void {
+  capture(event, props);
+}

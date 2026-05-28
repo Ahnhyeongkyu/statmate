@@ -203,6 +203,7 @@ export default async function PricingPage() {
               {plan.external ? (
                 <a
                   href={plan.ctaHref}
+                  data-ime-cta={`pricing-${plan.name.toLowerCase().replace(/\s+/g, "-")}`}
                   className="mt-6 block"
                 >
                   <Button
@@ -230,7 +231,10 @@ export default async function PricingPage() {
       {/* Pay-per-use */}
       <div className="mt-8 flex w-full max-w-5xl items-center justify-between rounded-lg border border-amber-200 bg-amber-50 px-6 py-4 dark:border-amber-800 dark:bg-amber-950/20">
         <p className="text-sm text-gray-700 dark:text-gray-300">{t("payPerUse")}</p>
-        <a href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1">
+        <a
+          href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
+          data-ime-cta="pricing-pay-per-use"
+        >
           <Button variant="outline" className="ml-4 shrink-0 border-amber-300 text-amber-700 hover:bg-amber-100 dark:border-amber-700 dark:text-amber-300">
             {t("payPerUseButton")}
           </Button>
@@ -238,7 +242,11 @@ export default async function PricingPage() {
       </div>
 
       {/* Student Discount */}
-      <a href={CHECKOUT_URLS.studentPro} className="mt-4 block rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/30 dark:hover:bg-blue-950/50">
+      <a
+        href={CHECKOUT_URLS.studentPro}
+        data-ime-cta="pricing-student-pro"
+        className="mt-4 block rounded-lg border border-blue-200 bg-blue-50 px-6 py-4 text-center transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/30 dark:hover:bg-blue-950/50"
+      >
         <p className="text-sm font-medium text-blue-700 dark:text-blue-300">{t("studentDiscount")}</p>
       </a>
 
