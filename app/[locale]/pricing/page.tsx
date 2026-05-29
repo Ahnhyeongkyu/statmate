@@ -11,7 +11,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { PricingTracker } from "@/components/pricing-tracker";
 import { PricingVariantProvider, TrackBPlanGrid } from "@/components/pricing-variant";
-import { PricingLeakDetector } from "@/components/pricing-leak-detector";
 
 export async function generateMetadata({
   params,
@@ -156,12 +155,8 @@ export default async function PricingPage() {
       </p>
 
       {/* Pricing Cards \u2014 CMP-129 Track B variant switcher */}
-      <PricingVariantProvider>
-        {(arm) => (
-          <>
-            <PricingLeakDetector renderedArm={arm} />
-            {arm === "track_b_v1" ? (
-            /* Track B: Free / $9.99/mo / $59/yr */
+      <PricingVariantProvider
+        trackB={
             <TrackBPlanGrid
               labels={{
                 freeName: t("plans.free.name"),
@@ -193,7 +188,8 @@ export default async function PricingPage() {
                 ],
               }}
             />
-          ) : (
+        }
+        control={
             /* Control: existing plans (legacy $5.99/mo) \u2014 existing paid users only */
             <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
               {plans.map((plan) => (
@@ -268,10 +264,8 @@ export default async function PricingPage() {
                 </Card>
               ))}
             </div>
-          )}
-          </>
-        )}
-      </PricingVariantProvider>
+        }
+      />
 
       {/* Pay-per-use */}
       <div className="mt-8 flex w-full max-w-5xl items-center justify-between rounded-lg border border-amber-200 bg-amber-50 px-6 py-4 dark:border-amber-800 dark:bg-amber-950/20">

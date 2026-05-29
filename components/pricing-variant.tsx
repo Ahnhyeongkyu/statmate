@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getPricingArm, isExistingPaidUser, type PricingArm } from "@/lib/pricing-eligibility";
+import { PricingLeakDetector } from "@/components/pricing-leak-detector";
 import { track } from "@/lib/imeTrack";
 
 // Checkout URLs — env vars let the chairman hot-swap LS products without a deploy.
@@ -185,13 +186,18 @@ export function TrackBPlanGrid({ labels }: TrackBPlanGridProps) {
 }
 
 /**
- * Client component that fires the pricing_variant_view event on mount
- * and exposes the resolved arm to children via a render prop.
+ * Fires pricing_variant_view on mount and renders the control or track_b slot
+ * based on the resolved arm. Slots are passed as ReactNode (NOT a render-prop
+ * function) — a function child crosses the Server→Client Component boundary and
+ * throws "Functions cannot be passed directly to Client Components" (CMP-129
+ * /pricing SSR crash root cause).
  */
 export function PricingVariantProvider({
-  children,
+  control,
+  trackB,
 }: {
-  children: (arm: PricingArm) => React.ReactNode;
+  control: React.ReactNode;
+  trackB: React.ReactNode;
 }) {
   const [arm, setArm] = useState<PricingArm>("track_b_v1"); // SSR default = variant
 
@@ -207,5 +213,10 @@ export function PricingVariantProvider({
     });
   }, []);
 
-  return <>{children(arm)}</>;
+  return (
+    <>
+      <PricingLeakDetector renderedArm={arm} />
+      {arm === "track_b_v1" ? trackB : control}
+    </>
+  );
 }
