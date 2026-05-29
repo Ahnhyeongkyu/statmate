@@ -113,5 +113,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // Embeddable widgets (English-market feature — EN canonical only)
+  const widgetSlugs = ["t-test", "correlation", "chi-square", "descriptive", "sample-size"];
+  entries.push({
+    url: `${BASE_URL}/widgets`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  });
+  for (const slug of widgetSlugs) {
+    entries.push({
+      url: `${BASE_URL}/widgets/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    });
+  }
+
   return entries;
 }
