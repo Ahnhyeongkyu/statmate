@@ -558,6 +558,7 @@
         "period": "/month",
         "description": "For active researchers and students",
         "cta": "Get Pro — $5.99/mo",
+        "ctaV2": "Get Pro — $9.99/mo",
         "features": [
           "Everything in Free",
           "Unlimited AI interpretation",

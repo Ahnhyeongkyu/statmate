@@ -165,7 +165,7 @@ export default async function PricingPage() {
                 freeCtaHref: "/calculators/t-test",
                 monthlyName: t("plans.proMonthly.name"),
                 monthlyDesc: t("plans.proMonthly.description"),
-                monthlyCta: t("plans.proMonthly.cta"),
+                monthlyCta: t("plans.proMonthly.ctaV2"),
                 annualName: t("plans.proAnnual.name"),
                 annualDesc: t("plans.proAnnual.description"),
                 annualCta: t("plans.proAnnual.cta"),
