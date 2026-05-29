@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PricingTracker } from "@/components/pricing-tracker";
+import { PricingVariantProvider, TrackBPlanGrid } from "@/components/pricing-variant";
+import { PricingLeakDetector } from "@/components/pricing-leak-detector";
 
 export async function generateMetadata({
   params,
@@ -153,80 +155,123 @@ export default async function PricingPage() {
         {t("subheadline")}
       </p>
 
-      {/* Pricing Cards */}
-      <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
-        {plans.map((plan) => (
-          <Card
-            key={plan.name}
-            className={
-              plan.highlight
-                ? "relative border-2 border-blue-500 shadow-lg"
-                : ""
-            }
-          >
-            {plan.highlight && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <Badge className="bg-blue-600 text-white">
-                  {t("mostPopular")}
-                </Badge>
-              </div>
-            )}
-            <CardHeader className="text-center">
-              <CardTitle className="text-lg">{plan.name}</CardTitle>
-              <p className="text-sm text-gray-500">{plan.description}</p>
-              <div className="mt-4">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="text-gray-500">{plan.period}</span>
-              </div>
-              {"subtext" in plan && plan.subtext && (
-                <p className="mt-1 text-xs font-medium text-green-600">
-                  {plan.subtext}
-                </p>
-              )}
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2.5 text-sm">
-                {plan.features.map((f, i) => (
-                  <li
-                    key={i}
-                    className={`flex items-start gap-2 ${f.included ? "" : "text-gray-400"}`}
-                  >
-                    <span
-                      className={`mt-0.5 shrink-0 ${f.included ? "text-green-600" : "text-gray-300"}`}
-                    >
-                      {f.included ? "\u2713" : "\u2715"}
-                    </span>
-                    {f.text}
-                  </li>
-                ))}
-              </ul>
-              {plan.external ? (
-                <a
-                  href={plan.ctaHref}
-                  data-ime-cta={`pricing-${plan.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="mt-6 block"
+      {/* Pricing Cards \u2014 CMP-129 Track B variant switcher */}
+      <PricingVariantProvider>
+        {(arm) => (
+          <>
+            <PricingLeakDetector renderedArm={arm} />
+            {arm === "track_b_v1" ? (
+            /* Track B: Free / $9.99/mo / $59/yr */
+            <TrackBPlanGrid
+              labels={{
+                freeName: t("plans.free.name"),
+                freeDesc: t("plans.free.description"),
+                freeCta: t("plans.free.cta"),
+                freeCtaHref: "/calculators/t-test",
+                monthlyName: t("plans.proMonthly.name"),
+                monthlyDesc: t("plans.proMonthly.description"),
+                monthlyCta: t("plans.proMonthly.cta"),
+                annualName: t("plans.proAnnual.name"),
+                annualDesc: t("plans.proAnnual.description"),
+                annualCta: t("plans.proAnnual.cta"),
+                annualSubtext: t("plans.proAnnual.subtext"),
+                mostPopular: t("mostPopular"),
+                freeFeatures: [
+                  t("plans.free.features.0"),
+                  t("plans.free.features.1"),
+                  t("plans.free.features.2"),
+                  t("plans.free.features.3"),
+                  t("plans.free.features.4"),
+                ],
+                proFeatures: [
+                  t("plans.proMonthly.features.0"),
+                  t("plans.proMonthly.features.1"),
+                  t("plans.proMonthly.features.2"),
+                  t("plans.proMonthly.features.3"),
+                  t("plans.proMonthly.features.4"),
+                  t("plans.proMonthly.features.5"),
+                ],
+              }}
+            />
+          ) : (
+            /* Control: existing plans (legacy $5.99/mo) \u2014 existing paid users only */
+            <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+              {plans.map((plan) => (
+                <Card
+                  key={plan.name}
+                  className={
+                    plan.highlight
+                      ? "relative border-2 border-blue-500 shadow-lg"
+                      : ""
+                  }
                 >
-                  <Button
-                    variant={plan.ctaVariant}
-                    className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
-                  >
-                    {plan.cta}
-                  </Button>
-                </a>
-              ) : (
-                <Link href={plan.ctaHref} className="mt-6 block">
-                  <Button
-                    variant={plan.ctaVariant}
-                    className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
-                  >
-                    {plan.cta}
-                  </Button>
-                </Link>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+                  {plan.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <Badge className="bg-blue-600 text-white">
+                        {t("mostPopular")}
+                      </Badge>
+                    </div>
+                  )}
+                  <CardHeader className="text-center">
+                    <CardTitle className="text-lg">{plan.name}</CardTitle>
+                    <p className="text-sm text-gray-500">{plan.description}</p>
+                    <div className="mt-4">
+                      <span className="text-4xl font-bold">{plan.price}</span>
+                      <span className="text-gray-500">{plan.period}</span>
+                    </div>
+                    {"subtext" in plan && plan.subtext && (
+                      <p className="mt-1 text-xs font-medium text-green-600">
+                        {plan.subtext}
+                      </p>
+                    )}
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2.5 text-sm">
+                      {plan.features.map((f, i) => (
+                        <li
+                          key={i}
+                          className={`flex items-start gap-2 ${f.included ? "" : "text-gray-400"}`}
+                        >
+                          <span
+                            className={`mt-0.5 shrink-0 ${f.included ? "text-green-600" : "text-gray-300"}`}
+                          >
+                            {f.included ? "\u2713" : "\u2715"}
+                          </span>
+                          {f.text}
+                        </li>
+                      ))}
+                    </ul>
+                    {plan.external ? (
+                      <a
+                        href={plan.ctaHref}
+                        data-ime-cta={`pricing-ctrl-${plan.name.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="mt-6 block"
+                      >
+                        <Button
+                          variant={plan.ctaVariant}
+                          className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
+                        >
+                          {plan.cta}
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link href={plan.ctaHref} className="mt-6 block">
+                        <Button
+                          variant={plan.ctaVariant}
+                          className={`w-full ${plan.highlight ? "bg-blue-600 hover:bg-blue-700" : ""}`}
+                        >
+                          {plan.cta}
+                        </Button>
+                      </Link>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+          </>
+        )}
+      </PricingVariantProvider>
 
       {/* Pay-per-use */}
       <div className="mt-8 flex w-full max-w-5xl items-center justify-between rounded-lg border border-amber-200 bg-amber-50 px-6 py-4 dark:border-amber-800 dark:bg-amber-950/20">
