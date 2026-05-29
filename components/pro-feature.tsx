@@ -202,14 +202,19 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   <div className="mt-3 flex flex-col gap-2">
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+                      data-ime-cta="ai-paywall-apa-writeup"
                       onClick={() => trackProCtaClick("credits_3_post_trial", testType)}
                     >
                       <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
-                        3 Credits — $1.99
+                        {t("aiPaywallCta")}
                       </Button>
                     </a>
+                    <p className="text-[11px] font-medium text-gray-600 dark:text-gray-400">
+                      {t("socialProofUsage")}
+                    </p>
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+                      data-ime-cta="ai-paywall-annual"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                       className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
@@ -275,14 +280,19 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                   <div className="mt-3 flex flex-col gap-2">
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+                      data-ime-cta="ai-paywall-apa-writeup"
                       onClick={() => trackProCtaClick("credits_3_post_trial", testType)}
                     >
                       <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
-                        3 Credits — $1.99
+                        {t("aiPaywallCta")}
                       </Button>
                     </a>
+                    <p className="text-[11px] font-medium text-gray-600 dark:text-gray-400">
+                      {t("socialProofUsage")}
+                    </p>
                     <a
                       href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+                      data-ime-cta="ai-paywall-annual"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                       className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
                     >
