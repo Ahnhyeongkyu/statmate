@@ -10,7 +10,7 @@ import { FeedbackPrompt } from "@/components/feedback-prompt";
 
 // --- Free Trial Helpers ---
 
-const FREE_TRIAL_MAX = 1;
+const FREE_TRIAL_MAX = 0; // free full AI interpretation disabled — 1-sentence preview then paywall
 
 interface TrialData {
   count: number;
@@ -385,9 +385,9 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
 // --- Plain Language Preview (first sentence visible, rest blurred) ---
 
 function PlainLanguagePreview({ text }: { text: string }) {
-  // Show first 2 sentences clearly, lock the rest behind paywall
+  // Show first sentence only, lock the rest behind paywall
   const sentences = text.split(/(?<=\. )/);
-  const visibleCount = Math.min(2, sentences.length);
+  const visibleCount = Math.min(1, sentences.length);
   const visible = sentences.slice(0, visibleCount).join("");
   const hasMore = sentences.length > visibleCount;
 
@@ -418,6 +418,7 @@ interface ExportButtonProps {
 
 export function ExportButton({ onExport, testName }: ExportButtonProps) {
   const t = useTranslations("pro");
+  const isPro = useIsPro();
   const [exporting, setExporting] = useState(false);
 
   async function handleExport() {
@@ -428,6 +429,30 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
     } finally {
       setExporting(false);
     }
+  }
+
+  // Word/DOCX export is Pro-only. Free users get an upgrade CTA, never the file.
+  if (!isPro) {
+    return (
+      <Card className="border-green-200 bg-green-50">
+        <CardContent className="flex items-center justify-between py-4">
+          <div>
+            <p className="font-semibold text-green-900">{t("exportTitle")}</p>
+            <p className="text-sm text-green-700">{t("exportDescPro")}</p>
+          </div>
+          <a
+            href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
+            data-ime-cta="word-export-paywall"
+            onClick={() => trackProCtaClick("word_export_paywall", testName)}
+            className="shrink-0"
+          >
+            <Button className="bg-green-600 hover:bg-green-700">
+              {t("exportUpgradeCta")}
+            </Button>
+          </a>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (

@@ -4,18 +4,6 @@ import { validateLicense } from "@/lib/license";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5-20250929";
 
-// In-memory rate limit for free trial (IP -> { count, firstUsed })
-const FREE_TRIAL_MAX = 3;
-const freeTrialUsage = new Map<string, { count: number; firstUsed: number }>();
-
-// Clean up old entries every hour
-setInterval(() => {
-  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
-  for (const [ip, data] of freeTrialUsage) {
-    if (data.firstUsed < oneDayAgo) freeTrialUsage.delete(ip);
-  }
-}, 60 * 60 * 1000);
-
 interface InterpretRequest {
   testType: "t-test" | "anova" | "chi-square" | "correlation" | "descriptive" | "regression" | "sample-size" | "one-sample-t" | "mann-whitney" | "wilcoxon" | "multiple-regression" | "cronbach-alpha" | "logistic-regression" | "factor-analysis" | "kruskal-wallis" | "repeated-measures" | "two-way-anova" | "friedman" | "fisher-exact" | "mcnemar";
   results: Record<string, unknown>;
@@ -118,40 +106,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Free trial: allow 3 requests per IP per day
-    if (body.freeTrial) {
-      const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
-        || request.headers.get("x-real-ip")
-        || "unknown";
-      const usage = freeTrialUsage.get(ip);
-      if (usage && Date.now() - usage.firstUsed < 24 * 60 * 60 * 1000 && usage.count >= FREE_TRIAL_MAX) {
-        return NextResponse.json(
-          { error: "Free trial limit reached. Upgrade to Pro for unlimited access." },
-          { status: 403 }
-        );
-      }
-      const current = freeTrialUsage.get(ip);
-      if (current && Date.now() - current.firstUsed < 24 * 60 * 60 * 1000) {
-        current.count += 1;
-      } else {
-        freeTrialUsage.set(ip, { count: 1, firstUsed: Date.now() });
-      }
-    } else {
-      // Server-side Pro license validation
-      if (!body.licenseKey) {
-        return NextResponse.json(
-          { error: "Pro license required" },
-          { status: 403 }
-        );
-      }
+    // AI interpretation is Pro-only (free trial removed — paywall after the
+    // 1-sentence preview). Always require a valid Pro license; ignore any
+    // client-sent freeTrial flag.
+    if (!body.licenseKey) {
+      return NextResponse.json(
+        { error: "Pro license required" },
+        { status: 403 }
+      );
+    }
 
-      const isValidLicense = await validateLicense(body.licenseKey);
-      if (!isValidLicense) {
-        return NextResponse.json(
-          { error: "Invalid or expired license" },
-          { status: 403 }
-        );
-      }
+    const isValidLicense = await validateLicense(body.licenseKey);
+    if (!isValidLicense) {
+      return NextResponse.json(
+        { error: "Invalid or expired license" },
+        { status: 403 }
+      );
     }
 
     const prompt = buildPrompt(body);
