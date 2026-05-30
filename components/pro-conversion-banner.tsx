@@ -6,6 +6,9 @@ import { useIsPro } from "@/components/activate-pro";
 import { trackProCtaClick } from "@/lib/analytics";
 import { getVariant, trackABConversion } from "@/lib/ab-test";
 
+// 5/31 P0-B: 일회성 크레딧을 1차·전면(오디언스=task-intent, 유일하게 팔린 게 $1.99 크레딧·구독 0).
+const CHECKOUT_CREDITS =
+  "https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1";
 const CHECKOUT_MONTHLY =
   "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1";
 
@@ -25,8 +28,9 @@ export function ProConversionBanner() {
   const isValueVariant = variant === "B";
   const title = isValueVariant ? t("bannerTitleValue") : t("bannerTitle");
   const desc = isValueVariant ? t("bannerDescValue") : t("bannerDesc");
-  const cta = isValueVariant ? t("bannerCtaValue") : t("bannerCta");
-  const price = isValueVariant ? t("bannerPriceValue") : t("bannerPrice");
+  // 5/31 P0-B: CTA/가격은 A/B 무관하게 일회성 크레딧 1차로 통일. title/desc만 copy A/B 유지.
+  const cta = t("bannerCreditCta");
+  const price = t("bannerCreditPrice");
 
   return (
     <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-5 dark:border-blue-900 dark:bg-blue-950/20">
@@ -61,9 +65,10 @@ export function ProConversionBanner() {
 
         <div className="flex flex-col items-center gap-1.5">
           <a
-            href={CHECKOUT_MONTHLY}
+            href={CHECKOUT_CREDITS}
+            data-ime-cta="inline-banner-credits"
             onClick={() => {
-              trackProCtaClick("inline_banner");
+              trackProCtaClick("inline_banner_credits");
               trackABConversion("paywall_copy_v1", "checkout_click");
             }}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
@@ -72,6 +77,13 @@ export function ProConversionBanner() {
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
           </a>
           <span className="text-[11px] text-gray-400">{price}</span>
+          <a
+            href={CHECKOUT_MONTHLY}
+            onClick={() => trackProCtaClick("inline_banner_sub_secondary")}
+            className="text-[11px] text-gray-400 underline underline-offset-2 transition hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            {t("bannerSubSecondary")}
+          </a>
         </div>
       </div>
     </div>
