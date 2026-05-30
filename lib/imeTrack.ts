@@ -17,12 +17,16 @@ const UTM_KEYS = [
 const UTM_STORAGE_KEY = "ime_utm_v1";
 const UTM_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30d
 const DEFAULT_HOST = "https://us.i.posthog.com";
+// 유통 v2 (5/31): first-touch source — utm_source OR referrer 도출(chatgpt/direct 등).
+//   ChatGPT/direct 같은 referrer 기반 task-intent 유입을 paid_conversion에 귀속하기 위함.
+const SOURCE_STORAGE_KEY = "ime_source_v1";
 
 type Utm = Partial<Record<(typeof UTM_KEYS)[number], string>>;
 
 interface State {
   initialized: boolean;
   utm: Utm;
+  source: string;
   signupFired: WeakSet<Element>;
   ctaFired: WeakSet<Element>;
   debug: boolean;
@@ -31,10 +35,50 @@ interface State {
 const state: State = {
   initialized: false,
   utm: {},
+  source: "",
   signupFired: new WeakSet(),
   ctaFired: new WeakSet(),
   debug: false,
 };
+
+// 유통 v2: first-touch source 결정 (utm_source 우선, 없으면 referrer 도메인 → chatgpt/google/copilot/perplexity/direct).
+//   localStorage에 first-touch 보존(이후 방문은 최초 소스 유지).
+function resolveFirstTouchSource(): string {
+  if (typeof window !== "undefined") {
+    try {
+      const stored = window.localStorage.getItem(SOURCE_STORAGE_KEY);
+      if (stored) return stored;
+    } catch {
+      /* private mode */
+    }
+  }
+  let src = "direct";
+  if (state.utm.utm_source) {
+    src = state.utm.utm_source.slice(0, 64);
+  } else if (typeof document !== "undefined" && document.referrer) {
+    try {
+      const h = new URL(document.referrer).hostname.replace(/^www\./, "");
+      if (/(chatgpt\.com|chat\.openai\.com|openai\.com)/.test(h)) src = "chatgpt";
+      else if (/(copilot\.microsoft\.com|bing\.com)/.test(h)) src = "copilot";
+      else if (/perplexity\.ai/.test(h)) src = "perplexity";
+      else if (/google\./.test(h)) src = "google";
+      else if (/duckduckgo\.com/.test(h)) src = "duckduckgo";
+      else if (/(t\.co|twitter\.com|x\.com)/.test(h)) src = "twitter";
+      else if (h.includes("statmate.org")) src = "direct"; // 내부 네비게이션은 first-touch 아님
+      else src = h.slice(0, 64);
+    } catch {
+      /* malformed referrer */
+    }
+  }
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.setItem(SOURCE_STORAGE_KEY, src);
+    } catch {
+      /* private mode */
+    }
+  }
+  return src;
+}
 
 function readUtmFromLocation(): Utm {
   const out: Utm = {};
@@ -77,7 +121,7 @@ export function getPersistedUtm(): Utm {
 }
 
 function commonProps(extra?: Record<string, unknown>): Record<string, unknown> {
-  return { saas: SAAS, ...state.utm, ...(extra ?? {}) };
+  return { saas: SAAS, source: state.source || "direct", ...state.utm, ...(extra ?? {}) };
 }
 
 function capture(event: string, extra?: Record<string, unknown>): void {
@@ -93,15 +137,13 @@ function rewriteLemonSqueezyHref(a: HTMLAnchorElement): void {
   if (!a.href || !a.href.includes("statmate.lemonsqueezy.com/checkout/")) return;
   if (a.dataset.imeUtmApplied === "1") return;
   const utm = state.utm;
-  if (Object.keys(utm).length === 0) {
-    a.dataset.imeUtmApplied = "1";
-    return;
-  }
   try {
     const u = new URL(a.href);
     for (const [k, v] of Object.entries(utm)) {
       if (v) u.searchParams.set(`checkout[custom][${k}]`, v);
     }
+    // 유통 v2: utm이 없어도(ChatGPT/direct) source는 항상 부착 → 웹훅 paid_conversion 소스 귀속.
+    if (state.source) u.searchParams.set("checkout[custom][source]", state.source);
     a.href = u.toString();
     a.dataset.imeUtmApplied = "1";
   } catch {
@@ -178,6 +220,8 @@ export function init(opts: { posthogKey?: string; posthogHost?: string; debug?: 
   } else {
     state.utm = readUtmFromStorage();
   }
+  // 유통 v2: first-touch source (utm_source가 우선, state.utm 결정 후 호출).
+  state.source = resolveFirstTouchSource();
 
   const key = opts.posthogKey ?? process.env.NEXT_PUBLIC_POSTHOG_KEY;
   if (!key) {

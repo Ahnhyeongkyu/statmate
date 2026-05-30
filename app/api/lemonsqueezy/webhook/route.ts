@@ -123,12 +123,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, ignored: eventName });
   }
 
-  const utmSource = payload.meta?.custom_data ?? {};
+  const customData = payload.meta?.custom_data ?? {};
   const utm: Record<string, string> = {};
   for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const) {
-    const v = utmSource[k];
+    const v = customData[k];
     if (typeof v === "string" && v.length > 0) utm[k] = v;
   }
+  // 유통 v2 (5/31): first-touch source (utm OR referrer 도출 — chatgpt/direct 등) → paid_conversion 귀속.
+  const src = customData.source;
+  if (typeof src === "string" && src.length > 0) utm.source = src.slice(0, 64);
 
   await postPaidConversion({
     amount: typeof attrs.total === "number" ? attrs.total / 100 : 0,
