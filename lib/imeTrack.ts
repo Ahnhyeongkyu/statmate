@@ -264,3 +264,12 @@ export function landingView(path: string): void {
 export function track(event: string, props?: Record<string, unknown>): void {
   capture(event, props);
 }
+
+// #13 (6/2): 퍼널 보강 — 중간 단계 측정으로 누수 지점 식별.
+// landing_view → calculation_done → paywall_view → cta_click → paid_conversion (PostHog 443488).
+export function calculationDone(props?: Record<string, unknown>): void {
+  capture("calculation_done", props);
+}
+export function paywallView(props?: Record<string, unknown>): void {
+  capture("paywall_view", props);
+}

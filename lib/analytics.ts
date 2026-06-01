@@ -20,9 +20,17 @@ function gtag(event: GTagEvent) {
   });
 }
 
+// #13 (6/2): GA4(gtag)와 별개로 PostHog 443488 IME-1 퍼널에도 핵심 단계 발화.
+//   클라 전용 동적 import — analytics.ts가 서버 컴포넌트에 import돼도 posthog-js를 서버 번들에 끌고오지 않게.
+function imeFunnel(fn: "calculationDone" | "paywallView", props?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  void import("./imeTrack").then((m) => m[fn](props)).catch(() => {});
+}
+
 // Calculator events
 export function trackCalculate(testType: string) {
   gtag({ action: "calculate", category: "calculator", label: testType });
+  imeFunnel("calculationDone", { calculator: testType });
 }
 
 export function trackLoadExample(testType: string) {
@@ -71,6 +79,7 @@ export function trackPricingPageView(source?: string) {
 
 export function trackProPreviewImpression(testType: string) {
   gtag({ action: "pro_preview_impression", category: "conversion", label: testType });
+  imeFunnel("paywallView", { calculator: testType });
 }
 
 // Purchase / activation events
