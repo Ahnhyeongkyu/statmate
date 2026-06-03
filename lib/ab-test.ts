@@ -17,10 +17,15 @@ export const activeTests: Record<string, ABTest> = {
     name: "Pricing CTA Copy",
     variants: ["Get Pro Now", "Start Free Trial"],
   },
-  // ADR-0010: 4주 전환 실험 (2026-04-27 ~ 2026-05-25)
+  // ADR-0010: 4주 전환 실험 (2026-04-27 ~ 2026-05-25) — 종료
   paywall_copy_v1: {
     name: "Paywall copy: price vs value",
     variants: ["control_price", "value_focused"],
+  },
+  // 6/4: 일회성 오퍼 손실회피 실험 — paywall→cta 리프트 측정. A=중립 카피, B=손실회피.
+  result_offer_v1: {
+    name: "Result-unlock offer: neutral vs loss-aversion",
+    variants: ["control", "loss_aversion"],
   },
 };
 

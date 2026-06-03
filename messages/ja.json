@@ -817,6 +817,8 @@
     "checkoutSuccessDesc": "ライセンスキーをメールで送信しました。下に貼り付けてProを有効化してください。",
     "bannerTitle": "AI分析機能をアンロック",
     "bannerDesc": "AIが結果をわかりやすく解釈してくれます",
+    "offerBannerTitle": "今計算したこの結果、閉じると消えます",
+    "offerBannerDesc": "AI解釈・APA文章・Wordエクスポートを今すぐアンロック",
     "bannerFeature1": "AI解釈",
     "bannerFeature2": "APA文章生成",
     "bannerFeature3": "広告非表示",

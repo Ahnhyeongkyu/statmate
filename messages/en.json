@@ -817,6 +817,8 @@
     "checkoutSuccessDesc": "Your license key has been sent to your email. Paste it below to activate Pro.",
     "bannerTitle": "Unlock AI-Powered Analysis",
     "bannerDesc": "Get plain-language interpretation of your results by AI",
+    "offerBannerTitle": "The result you just calculated is gone if you leave",
+    "offerBannerDesc": "Unlock the AI interpretation, APA write-up, and Word export now",
     "bannerFeature1": "AI interpretation",
     "bannerFeature2": "APA sentences",
     "bannerFeature3": "No ads",

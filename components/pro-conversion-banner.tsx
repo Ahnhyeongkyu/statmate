@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useIsPro } from "@/components/activate-pro";
 import { trackProCtaClick } from "@/lib/analytics";
 import { getVariant, trackABConversion } from "@/lib/ab-test";
+import { track } from "@/lib/imeTrack";
 
 // 5/31 P0-B: 일회성 크레딧을 1차·전면(오디언스=task-intent, 유일하게 팔린 게 $1.99 크레딧·구독 0).
 const CHECKOUT_CREDITS =
@@ -15,20 +16,23 @@ const CHECKOUT_MONTHLY =
 export function ProConversionBanner() {
   const isPro = useIsPro();
   const t = useTranslations("pro");
-  const [variant, setVariant] = useState<"A" | "B">("A");
+  const [offerArm, setOfferArm] = useState<"A" | "B">("A");
 
-  // ADR-0010: paywall_copy_v1 — 4주 전환 실험 (price vs value)
-  // SSR mismatch 방지: client mount 후 variant 결정
+  // 6/4 result_offer_v1: 손실회피 오퍼 A/B. client mount 후 arm 결정(SSR mismatch 방지) +
+  // paywall_offer_view를 arm 태그해 발화 → paywall→cta 리프트를 PostHog에서 arm별 분해.
   useEffect(() => {
-    setVariant(getVariant("paywall_copy_v1"));
+    const arm = getVariant("result_offer_v1");
+    setOfferArm(arm);
+    track("paywall_offer_view", { offer_arm: arm === "B" ? "loss_aversion" : "control" });
   }, []);
 
   if (isPro) return null;
 
-  const isValueVariant = variant === "B";
-  const title = isValueVariant ? t("bannerTitleValue") : t("bannerTitle");
-  const desc = isValueVariant ? t("bannerDescValue") : t("bannerDesc");
-  // 5/31 P0-B: CTA/가격은 A/B 무관하게 일회성 크레딧 1차로 통일. title/desc만 copy A/B 유지.
+  const isOffer = offerArm === "B";
+  // B(손실회피) = "방금 계산한 이 결과가 사라진다" 프레이밍, A(control) = 기존 중립 카피.
+  const title = isOffer ? t("offerBannerTitle") : t("bannerTitle");
+  const desc = isOffer ? t("offerBannerDesc") : t("bannerDesc");
+  // CTA/가격은 arm 무관 일회성 크레딧($1.99 3-Pack) 1차 통일. arm은 data-ime-cta에 인코딩 → cta_click 분해.
   const cta = t("bannerCreditCta");
   const price = t("bannerCreditPrice");
 
@@ -66,10 +70,10 @@ export function ProConversionBanner() {
         <div className="flex flex-col items-center gap-1.5">
           <a
             href={CHECKOUT_CREDITS}
-            data-ime-cta="inline-banner-credits"
+            data-ime-cta={`inline-banner-credits-${offerArm}`}
             onClick={() => {
               trackProCtaClick("inline_banner_credits");
-              trackABConversion("paywall_copy_v1", "checkout_click");
+              trackABConversion("result_offer_v1", "checkout_click");
             }}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
           >
