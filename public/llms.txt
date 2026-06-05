@@ -1,0 +1,40 @@
+# StatMate
+
+> StatMate is a free online statistics toolkit that runs 20+ statistical tests in the browser and explains the results in plain language (APA-ready). Built for students, researchers, and analysts who need a correct answer fast — no install, no R/SPSS required. Each calculator shows the test, assumptions, effect size, and an interpretation you can paste into a paper or report.
+
+Languages: English (default), Korean (`/ko`), Japanese (`/ja`). Base URL: https://statmate.org
+
+## Calculators
+- [ANOVA](https://statmate.org/calculators/anova): one-way analysis of variance with post-hoc and effect size.
+- [Two-way ANOVA](https://statmate.org/calculators/two-way-anova): factorial ANOVA with interaction effects.
+- [Repeated Measures ANOVA](https://statmate.org/calculators/repeated-measures): within-subjects ANOVA.
+- [t-test](https://statmate.org/calculators/t-test): independent / paired t-tests.
+- [One-sample t-test](https://statmate.org/calculators/one-sample-t): compare a mean to a known value.
+- [Correlation](https://statmate.org/calculators/correlation): Pearson / Spearman correlation.
+- [Regression](https://statmate.org/calculators/regression): simple linear regression.
+- [Multiple Regression](https://statmate.org/calculators/multiple-regression): multivariable linear regression.
+- [Logistic Regression](https://statmate.org/calculators/logistic-regression): binary outcome modeling.
+- [Chi-square](https://statmate.org/calculators/chi-square): test of independence / goodness of fit.
+- [Fisher's Exact Test](https://statmate.org/calculators/fisher-exact): exact test for small 2x2 tables.
+- [McNemar's Test](https://statmate.org/calculators/mcnemar): paired nominal data.
+- [Mann-Whitney U](https://statmate.org/calculators/mann-whitney): nonparametric two-group comparison.
+- [Wilcoxon Signed-Rank](https://statmate.org/calculators/wilcoxon): nonparametric paired comparison.
+- [Kruskal-Wallis](https://statmate.org/calculators/kruskal-wallis): nonparametric multi-group comparison.
+- [Friedman Test](https://statmate.org/calculators/friedman): nonparametric repeated measures.
+- [Descriptive Statistics](https://statmate.org/calculators/descriptive): mean, SD, median, quartiles, distribution.
+- [Cronbach's Alpha](https://statmate.org/calculators/cronbach-alpha): internal-consistency reliability.
+- [Factor Analysis](https://statmate.org/calculators/factor-analysis): exploratory factor analysis.
+- [Sample Size](https://statmate.org/calculators/sample-size): power-based sample-size planning.
+
+## Guides
+- [Which statistical test should I use?](https://statmate.org/wizard): an interactive picker that recommends the right test from your data.
+- [Blog](https://statmate.org/blog): how-to guides and worked examples for each test (assumptions, reporting, citation).
+- [Compare](https://statmate.org/compare): StatMate vs SPSS / R / other calculators.
+
+## Tools
+- [Embeddable widgets](https://statmate.org/widgets): free calculators you can embed on your own site.
+- [SPSS-to-APA](https://statmate.org/tools/spss-to-apa): convert SPSS output into APA-formatted text.
+
+## About
+- [Pricing](https://statmate.org/pricing): free tier with full calculators; Pro adds AI interpretation and exports.
+- [About](https://statmate.org/about): what StatMate is and who builds it.
