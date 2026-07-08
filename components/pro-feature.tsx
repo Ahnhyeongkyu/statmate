@@ -442,24 +442,41 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
   }
 
   // Word/DOCX export is Pro-only. Free users get an upgrade CTA, never the file.
+  // ★수확 실험 P0-B: 오퍼를 팔린 형태(일회성 단건)로 정렬 — 결제 CTA 1개(Gumroad 단건)만 노출,
+  //   Pro 구독은 secondary 텍스트 링크로 강등. cta 라벨(word-export-paywall)은 퍼널 연속성 위해 보존.
+  //   Gumroad 체크아웃 URL은 NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL(회장 상품 생성 후 주입). 미설정 시 기존 LS로 graceful fallback(비파괴).
   if (!isPro) {
+    const oneTimeCheckoutUrl =
+      process.env.NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL ||
+      "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1";
     return (
       <Card className="border-green-200 bg-green-50">
-        <CardContent className="flex items-center justify-between py-4">
-          <div>
-            <p className="font-semibold text-green-900">{t("exportTitle")}</p>
-            <p className="text-sm text-green-700">{t("exportDescPro")}</p>
+        <CardContent className="py-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="font-semibold text-green-900">{t("exportTitle")}</p>
+              <p className="text-sm text-green-700">{t("exportDescPro")}</p>
+            </div>
+            <a
+              href={oneTimeCheckoutUrl}
+              data-ime-cta="word-export-paywall"
+              onClick={() => trackProCtaClick("word_export_paywall", testName)}
+              className="shrink-0"
+            >
+              <Button className="bg-green-600 hover:bg-green-700">
+                {t("exportOneTimeCta")}
+              </Button>
+            </a>
           </div>
-          <a
-            href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
-            data-ime-cta="word-export-paywall"
-            onClick={() => trackProCtaClick("word_export_paywall", testName)}
-            className="shrink-0"
-          >
-            <Button className="bg-green-600 hover:bg-green-700">
-              {t("exportUpgradeCta")}
-            </Button>
-          </a>
+          <p className="mt-2 text-center text-xs text-green-700/80">
+            <a
+              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
+              onClick={() => trackProCtaClick("word_export_pro_secondary", testName)}
+              className="underline hover:text-green-900"
+            >
+              {t("exportGoProSecondary")}
+            </a>
+          </p>
         </CardContent>
       </Card>
     );
