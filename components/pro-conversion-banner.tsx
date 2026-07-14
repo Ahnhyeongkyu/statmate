@@ -23,7 +23,8 @@ export function ProConversionBanner() {
   useEffect(() => {
     const arm = getVariant("result_offer_v1");
     setOfferArm(arm);
-    track("paywall_offer_view", { offer_arm: arm === "B" ? "loss_aversion" : "control" });
+    // offer_v2(결과물 피벗) 계측 — D+7 앵커. 오퍼-과업 미스매치 처방(Q-260714-08 #1·#5).
+    track("paywall_offer_view", { offer_arm: arm === "B" ? "loss_aversion" : "control", offer_version: "v2_report" });
   }, []);
 
   if (isPro) return null;
@@ -70,9 +71,9 @@ export function ProConversionBanner() {
         <div className="flex flex-col items-center gap-1.5">
           <a
             href={CHECKOUT_CREDITS}
-            data-ime-cta={`inline-banner-credits-${offerArm}`}
+            data-ime-cta={`offer-v2-report-${offerArm}`}
             onClick={() => {
-              trackProCtaClick("inline_banner_credits");
+              trackProCtaClick("offer_v2_click");
               trackABConversion("result_offer_v1", "checkout_click");
             }}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
