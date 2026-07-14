@@ -17,6 +17,24 @@ export function ProConversionBanner() {
   const isPro = useIsPro();
   const t = useTranslations("pro");
   const [offerArm, setOfferArm] = useState<"A" | "B">("A");
+  // 이메일 캡처(처방 #2) — 결제 부담 유저를 리드로 확보(LLM 유입=리드 전환 강함·충동구매 약함).
+  const [email, setEmail] = useState("");
+  const [captured, setCaptured] = useState(false);
+  const [sending, setSending] = useState(false);
+  async function submitEmail(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email || sending) return;
+    setSending(true);
+    try {
+      await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+      track("email_capture", { source: "paywall_banner", offer_version: "v2_report" });
+      trackABConversion("result_offer_v1", "email_capture");
+      setCaptured(true);
+    } catch {
+      /* 캡처 실패는 조용히 — UX 차단하지 않음 */
+    }
+    setSending(false);
+  }
 
   // 6/4 result_offer_v1: 손실회피 오퍼 A/B. client mount 후 arm 결정(SSR mismatch 방지) +
   // paywall_offer_view를 arm 태그해 발화 → paywall→cta 리프트를 PostHog에서 arm별 분해.
@@ -89,7 +107,39 @@ export function ProConversionBanner() {
           >
             {t("bannerSubSecondary")}
           </a>
+          <div className="mt-1 text-center text-[10px] leading-tight text-gray-400">
+            {t("trustMaker")}
+            <br />
+            {t("trustRefund")}
+          </div>
         </div>
+      </div>
+
+      <div className="mt-4 border-t border-blue-100 pt-3 dark:border-blue-900">
+        {captured ? (
+          <p className="text-center text-xs font-medium text-blue-700 dark:text-blue-300">{t("emailCaptureDone")}</p>
+        ) : (
+          <form onSubmit={submitEmail} className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <span className="text-xs text-gray-600 dark:text-gray-400">{t("emailCaptureLabel")}</span>
+            <div className="flex flex-1 gap-2">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("emailCapturePlaceholder")}
+                className="min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+              <button
+                type="submit"
+                disabled={sending}
+                className="whitespace-nowrap rounded-lg border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-600 hover:text-white disabled:opacity-50 dark:text-blue-300"
+              >
+                {t("emailCaptureCta")}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

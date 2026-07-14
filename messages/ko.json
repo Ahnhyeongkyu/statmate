@@ -932,7 +932,14 @@
       }
     },
     "exportOneTimeCta": "Word로 내보내기 — 단건 ($2.99)",
-    "exportGoProSecondary": "또는 Pro 구독으로 무제한"
+    "exportGoProSecondary": "또는 Pro 구독으로 무제한",
+    "emailCaptureLabel": "결제가 부담되면 — 결과를 이메일로 받으세요 (무료)",
+    "emailCapturePlaceholder": "이메일 주소",
+    "emailCaptureCta": "결과 받기",
+    "emailCaptureDone": "등록됐어요 — 곧 이메일로 결과 리포트 안내를 보내드릴게요.",
+    "trustMaker": "제작자 안형규 · 실명 운영",
+    "trustRefund": "구매 후 불만족 시 무조건 환불",
+    "reviewPrompt": "이 계산기가 도움이 됐다면 한 줄 후기를 남겨주세요"
   },
   "privacy": {
     "metaTitle": "개인정보처리방침",

@@ -932,7 +932,14 @@
       }
     },
     "exportOneTimeCta": "Export to Word — one-time ($2.99)",
-    "exportGoProSecondary": "Or go unlimited with Pro"
+    "exportGoProSecondary": "Or go unlimited with Pro",
+    "emailCaptureLabel": "Not ready to buy? Get your results by email (free)",
+    "emailCapturePlaceholder": "Email address",
+    "emailCaptureCta": "Email me",
+    "emailCaptureDone": "You are in — we will email your results report guide shortly.",
+    "trustMaker": "Built by Hyungkyu Ahn · real-name operator",
+    "trustRefund": "Unconditional refund if you are not satisfied",
+    "reviewPrompt": "If this calculator helped, leave a one-line review"
   },
   "privacy": {
     "metaTitle": "Privacy Policy",

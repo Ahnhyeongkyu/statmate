@@ -932,7 +932,14 @@
       }
     },
     "exportOneTimeCta": "Wordで書き出す — 単発 ($2.99)",
-    "exportGoProSecondary": "またはProで無制限に"
+    "exportGoProSecondary": "またはProで無制限に",
+    "emailCaptureLabel": "購入はまだですか？結果をメールで受け取る（無料）",
+    "emailCapturePlaceholder": "メールアドレス",
+    "emailCaptureCta": "メールで受け取る",
+    "emailCaptureDone": "登録完了 — 結果レポートのご案内を追ってメールでお送りします。",
+    "trustMaker": "制作者 Hyungkyu Ahn・実名運営",
+    "trustRefund": "ご購入後、満足いただけなければ無条件返金",
+    "reviewPrompt": "この計算機が役立ったら、一言レビューをお願いします"
   },
   "privacy": {
     "metaTitle": "プライバシーポリシー",
