@@ -26,12 +26,15 @@ export function ProConversionBanner() {
     if (!email || sending) return;
     setSending(true);
     try {
-      await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
-      track("email_capture", { source: "paywall_banner", offer_version: "v2_report" });
-      trackABConversion("result_offer_v1", "email_capture");
-      setCaptured(true);
+      const res = await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, source: "paywall_banner" }) });
+      // 실제 영속 성공(2xx)일 때만 완료 표시 — 500/503에 거짓 "구독 완료" 금지(캡처 극장 방지).
+      if (res.ok) {
+        track("email_capture", { source: "paywall_banner", offer_version: "v2_report" });
+        trackABConversion("result_offer_v1", "email_capture");
+        setCaptured(true);
+      }
     } catch {
-      /* 캡처 실패는 조용히 — UX 차단하지 않음 */
+      /* 네트워크 실패는 조용히 — UX 차단하지 않음(폼 유지, 재시도 가능) */
     }
     setSending(false);
   }

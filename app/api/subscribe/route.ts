@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { createClient } from "@supabase/supabase-js";
 
 const RATE_LIMIT_MAP = new Map<string, { count: number; resetTime: number }>();
 
@@ -32,45 +31,45 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  let email: string | undefined;
+  let source = "paywall_banner";
   try {
-    const { email } = (await request.json()) as { email?: string };
-
-    if (!email || !isValidEmail(email)) {
-      return NextResponse.json(
-        { error: "Please provide a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    const dataDir = path.join(process.cwd(), "data");
-    const filePath = path.join(dataDir, "subscribers.json");
-
-    await fs.mkdir(dataDir, { recursive: true });
-
-    let subscribers: { email: string; subscribedAt: string }[] = [];
-    try {
-      const data = await fs.readFile(filePath, "utf-8");
-      subscribers = JSON.parse(data);
-    } catch {
-      // File doesn't exist yet
-    }
-
-    if (subscribers.some((s) => s.email === email)) {
-      return NextResponse.json({ success: true });
-    }
-
-    subscribers.push({
-      email,
-      subscribedAt: new Date().toISOString(),
-    });
-
-    await fs.writeFile(filePath, JSON.stringify(subscribers, null, 2));
-
-    return NextResponse.json({ success: true });
+    const body = (await request.json()) as { email?: string; source?: string };
+    email = body.email;
+    if (typeof body.source === "string" && body.source.length <= 64) source = body.source;
   } catch {
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  if (!email || !isValidEmail(email)) {
+    return NextResponse.json(
+      { error: "Please provide a valid email address." },
+      { status: 400 }
+    );
+  }
+
+  // Vercel 서버리스 FS는 읽기전용(EROFS) → 로컬 파일 저장 불가. Supabase 영속 저장(익명 insert).
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    return NextResponse.json(
+      { error: "Subscription service is not configured." },
+      { status: 503 }
+    );
+  }
+
+  const supabase = createClient(url, key, { auth: { persistSession: false } });
+  const { error } = await supabase
+    .from("email_subscribers")
+    .insert({ email: email.toLowerCase(), source });
+
+  // 23505 = unique_violation(이미 구독) → 멱등 성공 처리.
+  if (error && error.code !== "23505") {
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }
     );
   }
+
+  return NextResponse.json({ success: true });
 }
