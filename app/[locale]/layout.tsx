@@ -264,6 +264,22 @@ export default async function LocaleLayout({
 
           {/* Footer */}
           <footer className="border-t bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
+            {/* paperstat 교차 프로모 — 논문 통계 대행(자사 트래픽 재활용, Q-260720-05). utm_source=statmate로 유입 측정. 푸터라 pro_preview 전환 A/B 무오염. */}
+            <a
+              href="https://paperstat.vercel.app/?utm_source=statmate&utm_medium=footer_banner&utm_campaign=cross_promo"
+              target="_blank"
+              rel="noopener"
+              className="block border-b border-blue-200 bg-blue-50 transition-colors hover:bg-blue-100 dark:border-blue-900 dark:bg-blue-950/40 dark:hover:bg-blue-950/60"
+            >
+              <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 px-4 py-4 text-center sm:flex-row">
+                <span className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                  {t("footer.paperstatPromo")}
+                </span>
+                <span className="whitespace-nowrap rounded-full bg-blue-600 px-4 py-1.5 text-xs font-bold text-white">
+                  {t("footer.paperstatCta")}
+                </span>
+              </div>
+            </a>
             <div className="mx-auto max-w-6xl px-4 py-12">
               <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                 <div>

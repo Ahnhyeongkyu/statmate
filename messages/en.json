@@ -38,6 +38,8 @@
     "proLabel": "Pro",
     "haveLicenseKey": "Have a license key? Activate here",
     "footer": {
+      "paperstatPromo": "Statistics for your paper too much? Get an expert to run and interpret it for you",
+      "paperstatCta": "Done-for-you paper stats →",
       "calculators": "Calculators",
       "calculatorSuffix": "Calculator",
       "product": "Product",

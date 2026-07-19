@@ -38,6 +38,8 @@
     "proLabel": "Pro",
     "haveLicenseKey": "ライセンスキーをお持ちですか？こちらで有効化",
     "footer": {
+      "paperstatPromo": "論文の統計、自分で回すのが大変ですか？専門家が代わりに分析・解釈します",
+      "paperstatCta": "論文統計の代行 →",
       "calculators": "計算ツール",
       "calculatorSuffix": "計算ツール",
       "product": "製品",
