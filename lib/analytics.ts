@@ -77,9 +77,9 @@ export function trackPricingPageView(source?: string) {
   gtag({ action: "pricing_page_view", category: "conversion", label: source || "direct" });
 }
 
-export function trackProPreviewImpression(testType: string) {
+export function trackProPreviewImpression(testType: string, extra?: Record<string, unknown>) {
   gtag({ action: "pro_preview_impression", category: "conversion", label: testType });
-  imeFunnel("paywallView", { calculator: testType });
+  imeFunnel("paywallView", { calculator: testType, ...extra });
 }
 
 // Purchase / activation events

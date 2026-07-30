@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
 import { FeedbackPrompt } from "@/components/feedback-prompt";
+import { formatApaLine } from "@/lib/apa-line";
+import { getOfferArmV2, CHECKOUT_CREDITS, CHECKOUT_MONTHLY, CHECKOUT_ANNUAL, REPORT_CHECKOUT_URL, REPORT_PRICE } from "@/lib/offer";
+import { trackABConversion } from "@/lib/ab-test";
 
 // --- Free Trial Helpers ---
 
@@ -142,12 +145,22 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
     }
   }
 
-  // Track preview impression for free users
+  // result_offer_v2 arm — client-only (cookie). Stays "A" until the report product exists.
+  const [offerArm, setOfferArm] = useState<"A" | "B">("A");
+
+  // Track preview impression for free users. Arm rides on the existing paywall_view
+  // event so the IME-1 funnel stays intact but is now segmentable by offer.
   useEffect(() => {
     if (!isPro) {
-      trackProPreviewImpression(testType);
+      const arm = getOfferArmV2();
+      setOfferArm(arm);
+      trackProPreviewImpression(testType, { offer_arm_v2: arm });
     }
   }, [isPro, testType]);
+
+  // The user's own APA line, computed locally — no AI call, so it can be shown
+  // before payment. null = unknown result shape → fall back to the sample text.
+  const apaLine = formatApaLine(testType, results);
 
   // Free user: show preview + free trial or upgrade CTA
   if (!isPro) {
@@ -232,17 +245,29 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
             </div>
           ) : (
             <>
+              {/* The buyer's OWN numbers, formatted locally — the preview used to be
+                  a hard-coded sample, so nobody saw what they were paying for. */}
+              {apaLine && (
+                <div className="rounded-md border border-blue-200 bg-blue-50/60 p-3 dark:border-blue-800 dark:bg-blue-950/30">
+                  <p className="text-xs font-semibold text-gray-500">
+                    {t("yourApaLine")}
+                  </p>
+                  <p className="mt-1 font-mono text-sm font-semibold text-gray-900 dark:text-white">
+                    {apaLine}
+                  </p>
+                </div>
+              )}
               {/* Paper Ready — first sentence visible, rest blurred */}
               <div>
                 <p className="text-xs font-semibold text-gray-500">
-                  {t("paperReady")}
+                  {apaLine ? t("paperReadySample") : t("paperReady")}
                 </p>
                 <PlainLanguagePreview text={t(`preview.${testType}.paperReady`)} />
               </div>
               {/* Plain Language — first sentence visible, rest blurred */}
               <div className="relative">
                 <p className="text-xs font-semibold text-gray-500">
-                  {t("plainLanguage")}
+                  {apaLine ? t("plainLanguageSample") : t("plainLanguage")}
                 </p>
                 <PlainLanguagePreview text={t(`preview.${testType}.plainLanguage`)} />
               </div>
@@ -268,18 +293,48 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                     {t("freeTrialRemaining", { remaining: trialRemaining, total: FREE_TRIAL_MAX })}
                   </p>
                 </div>
-              ) : (
-                /* Free trial used: show upgrade CTA with price anchoring */
-                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 text-center dark:border-blue-800 dark:bg-blue-950/20">
-                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                    {t("freeTrialUsed")}
+              ) : offerArm === "B" ? (
+                /* B: one-time report. One price, named deliverables, refund line. */
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 dark:border-blue-800 dark:bg-blue-950/20">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {t("reportOfferTitle")}
                   </p>
+                  <ul className="mt-2 space-y-1 text-xs leading-relaxed text-gray-700 dark:text-gray-300">
+                    <li>· {t("reportOfferItem1")}</li>
+                    <li>· {t("reportOfferItem2")}</li>
+                    <li>· {t("reportOfferItem3")}</li>
+                  </ul>
+                  <a
+                    href={REPORT_CHECKOUT_URL}
+                    data-ime-cta="ai-paywall-report-9"
+                    onClick={() => {
+                      trackProCtaClick("report_onetime", testType);
+                      trackABConversion("result_offer_v2", "cta_click");
+                    }}
+                    className="mt-4 block"
+                  >
+                    <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
+                      {t("reportOfferCta", { price: REPORT_PRICE })}
+                    </Button>
+                  </a>
+                  <p className="mt-2 text-center text-[11px] text-gray-600 dark:text-gray-400">
+                    {t("reportOfferOnce", { price: REPORT_PRICE })}
+                  </p>
+                  <p className="mt-1 text-center text-[11px] font-medium text-green-700 dark:text-green-400">
+                    {t("trustRefund")}
+                  </p>
+                </div>
+              ) : (
+                /* A (control): existing credits offer, unchanged except the false
+                   "free trial used" line — FREE_TRIAL_MAX is 0, so no visitor ever
+                   had a trial to use up. */
+                <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 text-center dark:border-blue-800 dark:bg-blue-950/20">
                   <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-200">
                     {t("freeTrialUsedDesc")}
                   </p>
                   <div className="mt-3 flex flex-col gap-2">
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+                      href={CHECKOUT_CREDITS}
                       data-ime-cta="ai-paywall-apa-writeup"
                       onClick={() => trackProCtaClick("credits_3_post_trial", testType)}
                     >
@@ -291,7 +346,7 @@ export function AiInterpretation({ testType, results }: AiInterpretationProps) {
                       {t("socialProofUsage")}
                     </p>
                     <a
-                      href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+                      href={CHECKOUT_ANNUAL}
                       data-ime-cta="ai-paywall-annual"
                       onClick={() => trackProCtaClick("ai_interpret_post_trial_annual", testType)}
                       className="text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
@@ -430,6 +485,11 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
   const t = useTranslations("pro");
   const isPro = useIsPro();
   const [exporting, setExporting] = useState(false);
+  const [armV2, setArmV2] = useState<"A" | "B">("A");
+
+  useEffect(() => {
+    setArmV2(getOfferArmV2());
+  }, []);
 
   async function handleExport() {
     setExporting(true);
@@ -442,13 +502,22 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
   }
 
   // Word/DOCX export is Pro-only. Free users get an upgrade CTA, never the file.
-  // ★수확 실험 P0-B: 오퍼를 팔린 형태(일회성 단건)로 정렬 — 결제 CTA 1개(Gumroad 단건)만 노출,
-  //   Pro 구독은 secondary 텍스트 링크로 강등. cta 라벨(word-export-paywall)은 퍼널 연속성 위해 보존.
-  //   Gumroad 체크아웃 URL은 NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL(회장 상품 생성 후 주입). 미설정 시 기존 LS로 graceful fallback(비파괴).
+  // ★수확 실험 P0-B: 오퍼를 팔린 형태(일회성 단건)로 정렬 — 결제 CTA 1개만 노출.
+  //   Gumroad 단건 URL은 NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL(회장 상품 생성 후 주입).
+  // ★Q-260730-03 라이브 실측 수리: 그 URL이 비어 있는 동안 "단건 ($2.99)" 문구가 $5.99/월 구독
+  //   체크아웃(CHECKOUT_MONTHLY)으로 향해 문구와 장바구니가 어긋났다. 미설정이면 구독 문구를 쓴다.
+  //   arm B(=$9 리포트)에서는 .docx가 이미 리포트에 포함되므로 같은 산출물을 더 싸게 파는
+  //   두 번째 가격을 없애고 리포트 CTA 하나로 합친다.
   if (!isPro) {
-    const oneTimeCheckoutUrl =
-      process.env.NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL ||
-      "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1";
+    const gumroadOneTime = (process.env.NEXT_PUBLIC_GUMROAD_WORD_EXPORT_URL || "").trim();
+    const isReportArm = armV2 === "B";
+    const checkoutUrl = isReportArm ? REPORT_CHECKOUT_URL : gumroadOneTime || CHECKOUT_MONTHLY;
+    // 문구는 목적지 상품과 일치해야 한다: 리포트 $9 / Gumroad 단건 $2.99 / LS 구독 $5.99월.
+    const ctaLabel = isReportArm
+      ? t("reportOfferCta", { price: REPORT_PRICE })
+      : gumroadOneTime
+        ? t("exportOneTimeCta")
+        : t("exportCtaButton");
     return (
       <Card className="border-green-200 bg-green-50">
         <CardContent className="py-4">
@@ -458,25 +527,32 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
               <p className="text-sm text-green-700">{t("exportDescPro")}</p>
             </div>
             <a
-              href={oneTimeCheckoutUrl}
-              data-ime-cta="word-export-paywall"
-              onClick={() => trackProCtaClick("word_export_paywall", testName)}
+              href={checkoutUrl}
+              data-ime-cta={isReportArm ? "word-export-report-9" : "word-export-paywall"}
+              onClick={() => {
+                trackProCtaClick("word_export_paywall", testName);
+                if (isReportArm) trackABConversion("result_offer_v2", "checkout_click");
+              }}
               className="shrink-0"
             >
               <Button className="bg-green-600 hover:bg-green-700">
-                {t("exportOneTimeCta")}
+                {ctaLabel}
               </Button>
             </a>
           </div>
-          <p className="mt-2 text-center text-xs text-green-700/80">
-            <a
-              href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
-              onClick={() => trackProCtaClick("word_export_pro_secondary", testName)}
-              className="underline hover:text-green-900"
-            >
-              {t("exportGoProSecondary")}
-            </a>
-          </p>
+          {/* secondary 구독 링크는 primary가 이미 구독일 때 중복이고, 리포트 arm에서는
+              단일 가격 원칙을 깬다 — Gumroad 단건일 때만 남긴다. */}
+          {!isReportArm && gumroadOneTime && (
+            <p className="mt-2 text-center text-xs text-green-700/80">
+              <a
+                href={CHECKOUT_MONTHLY}
+                onClick={() => trackProCtaClick("word_export_pro_secondary", testName)}
+                className="underline hover:text-green-900"
+              >
+                {t("exportGoProSecondary")}
+              </a>
+            </p>
+          )}
         </CardContent>
       </Card>
     );

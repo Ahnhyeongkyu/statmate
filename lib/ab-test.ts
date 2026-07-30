@@ -27,6 +27,12 @@ export const activeTests: Record<string, ABTest> = {
     name: "Result-unlock offer: neutral vs loss-aversion",
     variants: ["control", "loss_aversion"],
   },
+  // 7/30 Q-260730-03: paywall_view 914 → cta_click 10(1.1%). A=현행 크레딧 오퍼(대조군),
+  // B=$9 일회성 리포트(본인 결과 미리보기+환불 보장+단일 CTA).
+  result_offer_v2: {
+    name: "Result-unlock offer: credits vs one-time report",
+    variants: ["control_credits", "report_9"],
+  },
 };
 
 function getCookie(name: string): string | null {

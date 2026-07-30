@@ -6,17 +6,14 @@ import { useIsPro } from "@/components/activate-pro";
 import { trackProCtaClick } from "@/lib/analytics";
 import { getVariant, trackABConversion } from "@/lib/ab-test";
 import { track } from "@/lib/imeTrack";
-
-// 5/31 P0-B: 일회성 크레딧을 1차·전면(오디언스=task-intent, 유일하게 팔린 게 $1.99 크레딧·구독 0).
-const CHECKOUT_CREDITS =
-  "https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1";
-const CHECKOUT_MONTHLY =
-  "https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1";
+import { CHECKOUT_CREDITS, CHECKOUT_MONTHLY, getOfferArmV2 } from "@/lib/offer";
 
 export function ProConversionBanner() {
   const isPro = useIsPro();
   const t = useTranslations("pro");
   const [offerArm, setOfferArm] = useState<"A" | "B">("A");
+  // result_offer_v2 B에서는 이 배너가 $9 리포트와 가격 경쟁을 하므로 유료 CTA를 접는다.
+  const [armV2, setArmV2] = useState<"A" | "B">("A");
   // 이메일 캡처(처방 #2) — 결제 부담 유저를 리드로 확보(LLM 유입=리드 전환 강함·충동구매 약함).
   const [email, setEmail] = useState("");
   const [captured, setCaptured] = useState(false);
@@ -44,11 +41,45 @@ export function ProConversionBanner() {
   useEffect(() => {
     const arm = getVariant("result_offer_v1");
     setOfferArm(arm);
+    const v2 = getOfferArmV2();
+    setArmV2(v2);
     // offer_v2(결과물 피벗) 계측 — D+7 앵커. 오퍼-과업 미스매치 처방(Q-260714-08 #1·#5).
-    track("paywall_offer_view", { offer_arm: arm === "B" ? "loss_aversion" : "control", offer_version: "v2_report" });
+    track("paywall_offer_view", { offer_arm: arm === "B" ? "loss_aversion" : "control", offer_version: "v2_report", offer_arm_v2: v2 });
   }, []);
 
   if (isPro) return null;
+
+  // B arm: 결제 오퍼는 paywall 카드($9 리포트) 하나로 단일화하고, 여기서는 리드만 받는다.
+  if (armV2 === "B") {
+    return (
+      <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-4 dark:border-blue-900 dark:bg-blue-950/20">
+        {captured ? (
+          <p className="text-center text-xs font-medium text-blue-700 dark:text-blue-300">{t("emailCaptureDone")}</p>
+        ) : (
+          <form onSubmit={submitEmail} className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <span className="text-xs text-gray-600 dark:text-gray-400">{t("emailCaptureLabel")}</span>
+            <div className="flex flex-1 gap-2">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("emailCapturePlaceholder")}
+                className="min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+              />
+              <button
+                type="submit"
+                disabled={sending}
+                className="whitespace-nowrap rounded-lg border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-600 hover:text-white disabled:opacity-50 dark:text-blue-300"
+              >
+                {t("emailCaptureCta")}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    );
+  }
 
   const isOffer = offerArm === "B";
   // B(손실회피) = "방금 계산한 이 결과가 사라진다" 프레이밍, A(control) = 기존 중립 카피.
