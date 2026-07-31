@@ -950,7 +950,10 @@
     "reportOfferItem2": "その数値が何を意味するかのわかりやすい解釈",
     "reportOfferItem3": "査読者に聞かれる前提チェックと注意点",
     "reportOfferCta": "レポートを受け取る — {price}",
-    "reportOfferOnce": "{price} 一回のみのお支払い。サブスクではありません。"
+    "reportOfferOnce": "{price} 一回のみのお支払い。サブスクではありません。",
+    "blogOfferTitle": "上の例ではなく、ご自身の数値を報告する場合は",
+    "blogOfferBody": "無料の計算ツールにデータを貼り付ければ、APA形式の一文がすぐに返ってきます。結果表・わかりやすい解釈・査読者に聞かれる前提チェックまで揃った完成形が必要なら、一回払いのレポートが論文にそのまま貼り付けられる.docxでお届けします。",
+    "blogOfferFree": "まず無料の計算ツールで試す →"
   },
   "privacy": {
     "metaTitle": "プライバシーポリシー",

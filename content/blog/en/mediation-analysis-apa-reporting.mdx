@@ -1,0 +1,224 @@
+---
+title: "How to Report Mediation Analysis in APA 7th Edition — Indirect Effects, Bootstrapping & Paths"
+description: "Complete guide to reporting mediation analysis in APA 7th edition format. Covers the a, b, c and c′ paths, bootstrapped confidence intervals for the indirect effect, why Baron and Kenny is outdated, effect sizes, and copy-paste APA templates."
+date: "2026-07-31"
+category: "APA Reporting"
+tags: ["mediation analysis", "indirect effect", "bootstrapping", "APA format", "APA 7th edition", "PROCESS macro", "Sobel test", "path analysis"]
+---
+
+## Quick Answer — Copy-Paste APA Mediation Templates
+
+**Indirect effect (the headline result):**
+
+> The indirect effect of [X] on [Y] through [M] was significant, *ab* = X.XX, *SE* = X.XX, 95% bootstrap CI [X.XX, X.XX].
+
+**Full path report:**
+
+> [X] significantly predicted [M], *a* = X.XX, *SE* = X.XX, *p* < .001, and [M] significantly predicted [Y] controlling for [X], *b* = X.XX, *SE* = X.XX, *p* = .XXX. The total effect was *c* = X.XX (*p* = .XXX) and the direct effect was *c*′ = X.XX (*p* = .XXX).
+
+**Non-significant indirect effect:**
+
+> The indirect effect was not significant, *ab* = X.XX, *SE* = X.XX, 95% bootstrap CI [−X.XX, X.XX], as the interval contained zero.
+
+**Method sentence:**
+
+> Mediation was tested using [software] with 5,000 bootstrap resamples and bias-corrected 95% confidence intervals.
+
+**Rules:** the confidence interval — not a *p* value — determines significance for the indirect effect; report all four paths; state the number of resamples; never claim "full mediation" from a non-significant direct effect.
+
+## What Is Mediation, and What Question Does It Answer?
+
+Mediation asks *how* an effect happens. You already believe X influences Y; a mediation analysis proposes that it does so by first changing M, which in turn changes Y. Stress influences health through sleep quality. A teaching method influences exam scores through study time. The mediator is the mechanism.
+
+The model has four named quantities, and APA reporting requires all of them.
+
+- **Path *a*** — the effect of X on M
+- **Path *b*** — the effect of M on Y, controlling for X
+- **Path *c*** — the total effect of X on Y, ignoring M
+- **Path *c*′** — the direct effect of X on Y, controlling for M
+
+The product *ab* is the indirect effect: how much of X's influence travels through M. In a simple linear model, *c* = *c*′ + *ab*, which is why the total effect decomposes cleanly into a direct and an indirect part.
+
+Everything in the modern approach to reporting mediation follows from one shift: the indirect effect is the result, and the individual paths are supporting detail.
+
+## Why Is the Baron and Kenny Approach Now Considered Outdated?
+
+For decades, mediation was tested with the causal steps procedure: show X predicts Y, show X predicts M, show M predicts Y controlling for X, and then check whether X's effect on Y shrinks. If it dropped to non-significance, you claimed "full mediation."
+
+Methodologists have since identified three problems with that sequence. First, it never tests the indirect effect directly — it tests a series of other things and infers mediation from the pattern. Second, requiring a significant total effect excludes genuine cases where competing indirect paths cancel out, leaving no total effect despite real mechanisms. Third, "full versus partial mediation" hinges on whether *c*′ crosses an arbitrary significance threshold, which depends heavily on sample size.
+
+The current standard is to estimate *ab* directly and put a bootstrapped confidence interval around it. Reviewers in psychology, education, and health sciences now expect this, and a manuscript built on causal steps alone will usually be asked to reanalyse.
+
+## Why Do You Need Bootstrapping?
+
+The sampling distribution of a product of two coefficients is not normal — it is skewed, especially in small samples. Methods that assume normality, most notably the Sobel test, therefore produce confidence intervals that are the wrong shape and tests that are underpowered.
+
+Bootstrapping avoids the assumption entirely. The procedure resamples your data with replacement several thousand times, recomputes *ab* in each resample, and uses the resulting empirical distribution to form an interval. If that interval excludes zero, the indirect effect is significant at the corresponding alpha level.
+
+> Mediation was tested using 5,000 bootstrap resamples with bias-corrected and accelerated 95% confidence intervals.
+
+Report the number of resamples and the interval type. Five thousand is the usual minimum; ten thousand is increasingly standard and costs nothing but a few seconds of computation. Percentile, bias-corrected, and bias-corrected-and-accelerated intervals can differ at the margins, so naming the one you used lets readers reproduce your result exactly.
+
+## How Do You Report the Indirect Effect?
+
+This is your headline sentence, and it should appear before the individual paths.
+
+> The indirect effect of perceived stress on physical health through sleep quality was significant, *ab* = −0.18, *SE* = 0.06, 95% bootstrap CI [−0.31, −0.07].
+
+Three details matter. The interval is the test — do not attach a *p* value to *ab* and do not describe it as significant based on a Sobel *z*. The standard error here is the bootstrapped standard error, not an analytic one. And the interval should be reported to the same number of decimals as the coefficient, with a comma between bounds inside square brackets.
+
+If your interval contains zero, say so plainly: "the indirect effect was not significant, 95% CI [−0.04, 0.21], as the interval included zero." The phrase "included zero" is the standard justification and reviewers look for it rather than inferring the conclusion from the numbers.
+
+## How Do You Report the Individual Paths?
+
+After the indirect effect, walk readers through the components. Unstandardized coefficients are the APA default because they preserve the outcome's units.
+
+> Perceived stress significantly predicted sleep quality, *a* = −0.42, *SE* = 0.09, *p* < .001. Sleep quality in turn predicted physical health while controlling for stress, *b* = 0.43, *SE* = 0.11, *p* < .001. The total effect of stress on health was significant, *c* = −0.35, *SE* = 0.10, *p* < .001, and the direct effect remained significant with sleep quality in the model, *c*′ = −0.17, *SE* = 0.10, *p* = .091.
+
+Each path deserves a coefficient, a standard error, and an exact *p* value. Confidence intervals for the individual paths are optional but increasingly expected — APA 7th edition favours intervals throughout, and adding them costs one bracket per path.
+
+A path diagram with the coefficients labelled on the arrows is the conventional companion to this paragraph and is usually the fastest way for a reader to understand the model.
+
+## Should You Claim Full or Partial Mediation?
+
+No. The distinction has fallen out of favour and using it invites criticism.
+
+The problem is that "full mediation" means only that *c*′ failed to reach significance, which is a statement about your statistical power rather than about the mechanism. Double the sample and the same data can produce "partial mediation" instead. A non-significant direct effect is not evidence that the direct effect is zero.
+
+Describe what you found instead:
+
+> Sleep quality accounted for a substantial portion of the association between stress and health, although a direct association remained.
+
+That sentence is accurate regardless of where *c*′ falls relative to .05. If you want to quantify how much of the total effect travels through the mediator, report a proportion-mediated or a standardized indirect effect and let readers judge the magnitude, rather than compressing it into a binary label.
+
+## What Effect Size Should You Report for Mediation?
+
+The unstandardized *ab* is the primary quantity, but it is scale-dependent and hard to compare across studies. Several standardized options exist, each with limitations you should acknowledge.
+
+- **Completely standardized indirect effect (*ab*cs)** — the indirect effect in standard deviation units, the most widely recommended option
+- **Proportion mediated (*ab*/*c*)** — intuitive, but unstable when *c* is small and nonsensical when direct and indirect effects have opposite signs
+- **Kappa-squared** — once popular, but subsequently shown to have computational problems and now generally avoided
+- **Ratio of indirect to direct effect** — occasionally seen, and unstable for the same reason as proportion mediated
+
+> The completely standardized indirect effect was *ab*cs = −0.14, 95% bootstrap CI [−0.24, −0.05].
+
+Whichever you choose, name it explicitly and report its confidence interval. Reporting a bare proportion mediated of "51%" with no interval and no caveat is one of the more common weak spots in published mediation write-ups.
+
+## How Do You Report Multiple Mediators?
+
+When several mediators operate in parallel, you gain two kinds of quantity: the specific indirect effect through each mediator, and the total indirect effect through all of them.
+
+> The total indirect effect was significant, *ab* = −0.29, 95% CI [−0.44, −0.15]. Examining specific indirect effects, the path through sleep quality was significant, *ab*₁ = −0.18, 95% CI [−0.31, −0.07], whereas the path through physical activity was not, *ab*₂ = −0.11, 95% CI [−0.24, 0.02].
+
+Report every specific indirect effect you estimated, including the non-significant ones. Selecting only the significant paths for presentation is a form of selective reporting that pre-registration is designed to prevent.
+
+Two further points are worth a sentence each in your write-up. Specific indirect effects in a parallel model are estimated controlling for the other mediators, which changes their meaning relative to separate single-mediator models. And if you formally compare two indirect effects, that contrast has its own bootstrapped interval and should be reported as such.
+
+## What Assumptions and Limitations Must You Acknowledge?
+
+Mediation is a causal model fitted to data that usually cannot establish causation. APA reporting expects you to be candid about that gap.
+
+- **Temporal ordering** — the model assumes X precedes M precedes Y. Cross-sectional data cannot establish this, and the same correlations fit several alternative orderings equally well
+- **No unmeasured confounding** of the M–Y relationship, which randomising X does not guarantee, because M is never randomised
+- **Linearity and additivity** of the paths, unless you have explicitly modelled a moderated mediation
+- **Reliable measurement of the mediator** — unreliability in M attenuates *b* and biases the indirect effect downward
+- **No reverse causation** between M and Y
+
+A single honest limitations sentence covers the most important of these:
+
+> Because the data were cross-sectional, the mediation model represents a theoretically motivated interpretation rather than a demonstration of causal sequence.
+
+Reviewers respond much better to that sentence than to its absence.
+
+## What Sample Size Does Mediation Require?
+
+Mediation needs more participants than the pairwise correlations it is built from, because detecting a product term requires both component paths to be estimated well.
+
+Simulation work suggests roughly 400 to 500 participants to detect an indirect effect built from two small paths with 80% power, dropping to around 70 to 80 when both paths are medium-sized. The commonly cited rule of thumb — 50 participants, or ten per parameter — is far too optimistic for the small-to-medium effects typical in applied research.
+
+> A sensitivity analysis indicated that the present sample of 214 provided 80% power to detect an indirect effect composed of two medium-sized paths.
+
+Bias-corrected bootstrap intervals have somewhat higher power than percentile intervals, though they can be slightly liberal in small samples — a trade-off worth one clause if your sample is under about 100. Reporting a power or sensitivity analysis converts a null indirect effect from an uninformative result into a meaningful one.
+
+## How Do You Report Serial Mediation?
+
+A serial model chains mediators: X affects M₁, which affects M₂, which affects Y. It differs from a parallel model in that the mediators are ordered, and that ordering is a theoretical claim your data usually cannot verify.
+
+The model produces several indirect paths, and all of them need reporting. With two serial mediators there are three: through M₁ alone, through M₂ alone, and through both in sequence.
+
+> The serial indirect effect through sleep quality and then fatigue was significant, *ab* = −0.07, 95% CI [−0.14, −0.02]. The indirect effect through sleep quality alone was also significant, 95% CI [−0.19, −0.04], whereas the path through fatigue alone was not, 95% CI [−0.09, 0.03].
+
+Two cautions belong in the text. Serial models multiply three coefficients rather than two, so their indirect effects are typically small and require larger samples to detect. And the ordering must be defended on theoretical or temporal grounds — reversing M₁ and M₂ often fits cross-sectional data equally well, which readers will notice if you do not address it.
+
+## How Do You Report Moderated Mediation?
+
+Moderated mediation asks whether the indirect effect itself differs across levels of a fourth variable. The modern standard is to test that question directly rather than to compare separate models for each subgroup.
+
+> The index of moderated mediation was significant, index = 0.09, 95% bootstrap CI [0.02, 0.18], indicating that the indirect effect differed across levels of social support. The conditional indirect effect was significant at low support (−1 *SD*), *ab* = −0.26, 95% CI [−0.41, −0.12], and at mean support, *ab* = −0.15, 95% CI [−0.27, −0.05], but not at high support (+1 *SD*), *ab* = −0.04, 95% CI [−0.15, 0.06].
+
+The index of moderated mediation is the test; the conditional effects are description. A common error is to report only the conditional effects and infer moderation because one was significant and another was not — a comparison of significance is not a significance test of the difference, and reviewers increasingly flag it.
+
+## What Should Your Method Section Say?
+
+Mediation write-ups are judged partly on what was decided before the data were analysed, so the method section carries real weight.
+
+State the hypothesised model in full, naming X, M, and Y and the direction of each path, and say whether it was pre-registered. State the temporal structure of measurement — whether X, M, and Y were measured on the same occasion or in sequence — because that determines how strongly the model can be interpreted. Name the estimation software and version, since bootstrap implementations differ in their default interval type.
+
+> The hypothesised mediation model was pre-registered. Predictor and mediator were measured at baseline and the outcome six weeks later.
+
+Also state how missing data were handled. Bootstrapping resamples complete cases by default, so listwise deletion can quietly shrink your effective sample. If you used multiple imputation or full-information estimation instead, say so and report the resulting *n*.
+
+## Frequently Asked Questions
+
+**Do I need a significant total effect to test mediation?**
+No. That requirement came from the causal steps approach and has been abandoned. Competing indirect paths with opposite signs can produce a null total effect alongside genuine mediation.
+
+**Should I report the Sobel test?**
+Not as your primary evidence. It assumes a normal sampling distribution for *ab*, which does not hold. Some journals still ask for it as a supplement; report the bootstrap interval as the test either way.
+
+**What is moderated mediation?**
+A model in which the strength of the indirect effect depends on another variable. It is reported with an index of moderated mediation and its own bootstrap confidence interval, alongside conditional indirect effects at specific moderator values.
+
+**Can I run mediation with a binary outcome?**
+Yes, using logistic regression for the path to Y, but the coefficients are on different scales and the simple *c* = *c*′ + *ab* decomposition no longer holds. Counterfactual mediation methods handle this properly.
+
+**How many decimal places should path coefficients have?**
+Two is standard for coefficients and standard errors, three for *p* values. Keep the confidence interval bounds at the same precision as the estimate they bracket.
+
+## What Are the Most Common Mediation Reporting Mistakes?
+
+The errors that draw revision requests are consistent across journals and easy to avoid once listed.
+
+- **Testing the indirect effect with a Sobel test** and reporting it as the primary evidence, despite the known non-normality of *ab*
+- **Attaching a *p* value to *ab*** instead of letting the bootstrap interval carry the inference
+- **Omitting the number of resamples** or the interval type, making the result unreproducible
+- **Claiming full mediation** because *c*′ fell above .05
+- **Reporting only the significant specific indirect effects** in a multiple-mediator model
+- **Requiring a significant total effect** before proceeding, which the causal steps approach demanded and current practice does not
+- **Using causal language** — "X caused Y through M" — for a cross-sectional design
+
+Each is a reporting habit rather than an estimation error, which is why they persist in otherwise well-conducted analyses.
+
+## APA Mediation Reporting Checklist
+
+- Model specified with X, M, and Y named, ideally with a path diagram
+- Estimation method stated, including software and number of bootstrap resamples
+- Confidence interval type named (percentile, bias-corrected, or BCa)
+- Indirect effect *ab* reported first, with *SE* and bootstrap CI
+- All four paths reported: *a*, *b*, *c*, and *c*′, each with *SE* and exact *p*
+- A standardized effect size for the indirect effect, with its interval
+- Every specific indirect effect reported in multiple-mediator models, including null ones
+- No "full versus partial mediation" language
+- Causal assumptions and design limitations acknowledged explicitly
+- Sample size justified by a power or sensitivity analysis
+- No *p* = .000; no leading zeros; statistical symbols italicized
+
+## Calculating Mediation With StatMate
+
+StatMate does not currently offer a dedicated mediation calculator — the bootstrapping required for a proper indirect-effect interval sits outside what the current calculator set does. The closest tools are the [simple regression calculator](/calculators/regression) for path *a* and the total effect *c*, and the [multiple regression calculator](/calculators/multiple-regression) for the model containing both X and M, which yields paths *b* and *c*′ together.
+
+That gets you the coefficients and their standard errors, which you can pair with a bootstrapping routine in R, Python, or a macro such as PROCESS to obtain the interval around *ab*. What StatMate handles either way is the write-up: each calculator emits a correctly formatted APA line, so the italics, decimals, and effect-size placement match the conventions above without manual assembly.
+
+## Summary
+
+Modern mediation reporting has one organising principle: the indirect effect is the result. Estimate *ab* directly, bracket it with a bootstrapped confidence interval from at least 5,000 resamples, and lead your results paragraph with it. Report all four paths with standard errors and exact *p* values, add a standardized effect size with its own interval, and present every specific indirect effect in a multiple-mediator model rather than only the significant ones. Drop the full-versus-partial language, name your causal assumptions, and justify your sample size. A mediation write-up that does those things is difficult to criticise on methodological grounds, whatever the result turns out to be.

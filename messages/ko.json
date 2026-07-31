@@ -789,6 +789,12 @@
     "tryAgain": "다시 시도",
     "goHome": "홈으로 이동"
   },
+  "downsell": {
+    "title": "여기까지 나왔는데, 논문에 어떻게 쓸지 막막하다면",
+    "body": "데이터 정리부터 분석·결과표·해석 문장까지 전문가가 대신 해드립니다. 파일만 보내주시면 논문에 그대로 넣을 수 있는 형태로 받아보실 수 있습니다.",
+    "cta": "논문 통계 대행 알아보기 →",
+    "note": "statmate 계산기는 계속 무료로 쓰실 수 있습니다."
+  },
   "pro": {
     "aiTitle": "AI 해석",
     "paperReady": "논문용 문장",
@@ -950,7 +956,10 @@
     "reportOfferItem2": "이 숫자가 무슨 뜻인지 쉬운 말 해석",
     "reportOfferItem3": "심사자가 물어볼 전제 검토·주의사항",
     "reportOfferCta": "리포트 받기 — {price}",
-    "reportOfferOnce": "{price} 한 번 결제. 구독 아닙니다."
+    "reportOfferOnce": "{price} 한 번 결제. 구독 아닙니다.",
+    "blogOfferTitle": "위 예시가 아니라 내 숫자를 보고해야 한다면",
+    "blogOfferBody": "무료 계산기에 데이터를 붙여넣으면 APA 한 줄이 바로 나옵니다. 결과표·쉬운 말 해석·심사자가 물어볼 전제 검토까지 완성된 형태로 필요하면, 일회성 리포트가 논문에 그대로 붙여넣을 수 있는 .docx로 드립니다.",
+    "blogOfferFree": "먼저 무료 계산기로 돌려보기 →"
   },
   "privacy": {
     "metaTitle": "개인정보처리방침",

@@ -1,0 +1,218 @@
+---
+title: "How to Report ANCOVA in APA 7th Edition — Adjusted Means, Covariates & Assumptions"
+description: "Complete guide to reporting an analysis of covariance (ANCOVA) in APA 7th edition format. Covers the adjusted (estimated marginal) means, covariate effects, homogeneity of regression slopes, partial eta squared, and copy-paste APA templates."
+date: "2026-07-31"
+category: "APA Reporting"
+tags: ["ANCOVA", "analysis of covariance", "APA format", "APA 7th edition", "covariate", "adjusted means", "estimated marginal means", "partial eta squared", "homogeneity of regression slopes"]
+---
+
+## Quick Answer — Copy-Paste APA ANCOVA Templates
+
+**Main ANCOVA result:**
+
+> After controlling for [covariate], the effect of [factor] on [outcome] was significant, *F*(2, XX) = X.XX, *p* = .XXX, ηp² = .XX.
+
+**With adjusted means:**
+
+> The adjusted mean was X.XX (*SE* = X.XX) for the treatment group and X.XX (*SE* = X.XX) for the control group.
+
+**Covariate effect:**
+
+> [Covariate] was significantly related to [outcome], *F*(1, XX) = X.XX, *p* < .001, ηp² = .XX.
+
+**Homogeneity of regression slopes check:**
+
+> The [factor] × [covariate] interaction was not significant, *F*(2, XX) = X.XX, *p* = .XXX, supporting the assumption of homogeneity of regression slopes.
+
+**Non-significant ANCOVA:**
+
+> After adjusting for [covariate], the groups did not differ significantly, *F*(2, XX) = X.XX, *p* = .XXX, ηp² = .XX.
+
+**Rules:** report adjusted (estimated marginal) means with standard errors, not raw means; report the covariate's own effect; state the homogeneity-of-slopes check before the main result; never write *p* = .000.
+
+## What Does ANCOVA Actually Do?
+
+Analysis of covariance combines ANOVA and regression. It tests whether groups differ on an outcome after statistically removing the variance that a continuous covariate explains. In practice, it answers a conditional question: if every participant had the same score on the covariate, would the groups still differ?
+
+The two motivations for running one are distinct, and confusing them is the source of most ANCOVA criticism. The first is **precision**: a covariate correlated with the outcome shrinks the error term, so the same group difference becomes easier to detect. In a randomised experiment, adjusting for baseline scores is the standard example and is statistically uncontroversial.
+
+The second is **adjustment for pre-existing differences** in non-randomised designs. Here ANCOVA is doing much heavier lifting — it assumes the covariate captures the confounding fully and linearly. It rarely does. APA reporting expects you to be explicit about which purpose your covariate serves.
+
+## What Does APA 7th Edition Require for ANCOVA?
+
+Every ANCOVA write-up needs six components. Missing any of them is the most common reason a methods reviewer asks for a revision.
+
+- **Unadjusted descriptive statistics** — raw means and standard deviations per group
+- **Adjusted means** (estimated marginal means) with standard errors
+- **The *F* test for the factor**, with both degrees of freedom, exact *p*, and an effect size
+- **The *F* test for the covariate**, reported in the same format
+- **Assumption checks**, especially homogeneity of regression slopes
+- **A statement of why the covariate was chosen**, ideally justified before the data were seen
+
+The covariate justification matters more than most authors expect. Covariates selected after inspecting the data — chosen because they made the result significant — constitute a researcher degree of freedom that pre-registration and open-science reviewers actively look for.
+
+## How Do You Report Both Raw and Adjusted Means?
+
+Readers need both. Raw means describe what actually happened in your sample; adjusted means describe the model's estimate of what would have happened at a common covariate value.
+
+> Before adjustment, post-test scores were higher in the treatment group (*M* = 32.40, *SD* = 6.11) than the control group (*M* = 28.75, *SD* = 6.44). After adjusting for baseline score, the adjusted means were 31.82 (*SE* = 0.92) and 29.33 (*SE* = 0.92), respectively.
+
+Two formatting conventions apply. Adjusted means take standard errors, not standard deviations, because they are model estimates rather than sample descriptions. And adjusted means for different groups often share an identical standard error, which is a property of the model rather than an error in your table.
+
+The gap between raw and adjusted means is informative on its own: a large shift tells readers the covariate was unbalanced across groups, which is exactly the situation where ANCOVA's assumptions deserve scrutiny.
+
+## How Do You Report the Main ANCOVA Result?
+
+Name the covariate in the sentence itself. A bare *F* statistic leaves readers unsure what was adjusted for.
+
+> A one-way ANCOVA controlling for baseline anxiety revealed a significant effect of condition on post-test anxiety, *F*(2, 86) = 6.41, *p* = .003, ηp² = .13.
+
+The first degrees-of-freedom value is the number of groups minus one. The second is the residual df, which is reduced by one for each covariate you include — this is why an ANCOVA has one fewer error df than the equivalent ANOVA on the same data. Reviewers occasionally check that arithmetic, so make sure your reported df match your sample size and model.
+
+Follow the statistic with a plain-language reading and, if there are more than two groups, with the pairwise comparisons that locate the difference. Those comparisons should be run on the adjusted means, not the raw ones.
+
+## Should You Report the Covariate's Own Effect?
+
+Yes, and many authors omit it. The covariate's *F* test tells readers whether the adjustment did anything at all, and it is the evidence that your precision argument holds.
+
+> Baseline anxiety was a significant predictor of post-test anxiety, *F*(1, 86) = 54.02, *p* < .001, ηp² = .39.
+
+A large covariate effect justifies the design: it shows the covariate absorbed real error variance, which is exactly why the group test gained power. A non-significant covariate effect is worth reporting honestly too, because it means the adjustment cost you a degree of freedom and bought nothing — and it invites the question of why that covariate was chosen.
+
+Some authors additionally report the unstandardized regression coefficient for the covariate, which conveys the slope's direction and magnitude in the outcome's units. It is optional but adds interpretive value at almost no cost in space.
+
+## What Is Homogeneity of Regression Slopes, and How Do You Test It?
+
+This is the assumption that distinguishes ANCOVA from ordinary ANOVA, and the one most often skipped. It requires that the relationship between the covariate and the outcome be the same in every group — that the regression lines are parallel.
+
+If the slopes differ, the group difference depends on the covariate value, and a single adjusted difference misrepresents the data entirely. Testing it means fitting a model that includes the factor × covariate interaction and checking whether that term is significant.
+
+> Preliminary analysis confirmed homogeneity of regression slopes: the condition × baseline interaction was not significant, *F*(2, 84) = 0.71, *p* = .494.
+
+The word "preliminary" is doing real work. This model is fitted first and discarded; the interaction term is not part of your final ANCOVA. Reporting the check and then reporting the main effects from the interaction-free model is the correct sequence.
+
+## What Do You Do If the Slopes Are Not Homogeneous?
+
+A significant factor × covariate interaction is a finding, not a failure. It means the treatment effect varies as a function of the covariate — often more interesting than the average effect you set out to test.
+
+You have three defensible responses, and you should state which one you chose.
+
+- **Report the interaction as a moderation result** and abandon the ANCOVA framing, describing how the group difference changes across covariate values
+- **Use the Johnson-Neyman technique** to identify the range of covariate values over which the groups differ significantly, and report those boundaries
+- **Switch to a moderated regression** with a centred covariate and an interaction term, which is the same model expressed in a form built for this question
+
+What you should not do is proceed with the standard ANCOVA and mention the violated assumption in a limitations paragraph. The adjusted means from that model are estimates of a quantity that does not exist in your data.
+
+## What Other Assumptions Should You Check?
+
+ANCOVA carries the ANOVA assumptions plus several of its own. A compact preliminary-analyses paragraph covers all of them.
+
+- **Linearity** between covariate and outcome, within each group — check the scatterplots, not just the overall correlation
+- **Independence of the covariate from the treatment**, which in a randomised design follows from the design and in a quasi-experiment does not
+- **Reliability of the covariate** — measurement error in the covariate biases the adjustment, and unlike most assumption violations, this one does not go away with a large sample
+- **Homogeneity of error variance** across groups, via Levene's test on the outcome
+- **Normality of the residuals**, not of the raw outcome
+
+The covariate-independence point deserves emphasis. When the covariate is itself affected by the treatment — a variable measured after randomisation — adjusting for it removes part of the treatment effect you are trying to estimate. Baseline measures taken before assignment are safe; mid-study measures usually are not.
+
+## How Do You Report Pairwise Comparisons on Adjusted Means?
+
+With three or more groups, a significant ANCOVA needs follow-up comparisons, and those must use the adjusted means with a correction for multiple tests.
+
+> Pairwise comparisons with a Bonferroni adjustment indicated that the treatment group scored significantly lower than the control group (mean difference = −3.62, *SE* = 1.14, *p* = .007, 95% CI [−6.41, −0.83]), and lower than the waitlist group (mean difference = −2.98, *SE* = 1.14, *p* = .032, 95% CI [−5.77, −0.19]). The control and waitlist groups did not differ, *p* = .999.
+
+APA 7th edition strongly favours confidence intervals around mean differences, and for adjusted comparisons they are more informative than the *p* values alone. Note that Tukey's HSD is not generally appropriate for adjusted means — Bonferroni or Sidak corrections applied to the estimated marginal means are the standard choice, and most software offers exactly those options.
+
+## How Do You Report a Non-Significant ANCOVA?
+
+Report it fully and resist the temptation to reframe. A non-significant adjusted result after a significant unadjusted one is a real and reportable outcome, not something to bury.
+
+> After adjusting for baseline severity, the effect of condition was not significant, *F*(2, 86) = 1.22, *p* = .301, ηp² = .03, although the unadjusted group difference had been significant, *F*(2, 87) = 4.10, *p* = .020, ηp² = .09. This pattern indicates that the raw difference was largely attributable to pre-existing differences in severity.
+
+That last sentence is the interpretation readers need. When adjustment removes an effect, the covariate was carrying the difference — which in a quasi-experimental design is precisely the confounding you ran ANCOVA to detect. Present both models rather than only the one that survived, and report the effect size in both cases so meta-analysts can use your data either way.
+
+## What Are the Most Common ANCOVA Reporting Mistakes?
+
+The recurring errors are specific and easy to avoid once named.
+
+- **Reporting raw means alongside an adjusted *F* test**, so the numbers in the text do not correspond to the model being tested
+- **Skipping the homogeneity-of-slopes check** entirely, or testing it and proceeding regardless of the result
+- **Using a post-randomisation covariate**, which removes part of the treatment effect
+- **Adjusting for a covariate chosen after seeing the results**, without disclosing the selection
+- **Attaching *SD* to adjusted means** instead of *SE*
+- **Omitting the covariate's *F* test**, leaving readers unable to judge whether adjustment helped
+- **Claiming causal control** from ANCOVA in an observational design — statistical adjustment is not randomisation
+
+The last point is the one most likely to draw a critical reviewer comment. Language like "controlling for X" describes an arithmetic operation, not an experimental control, and careful write-ups keep that distinction visible.
+
+## What Should Your Method Section Say About the Covariate?
+
+The credibility of an ANCOVA rests on decisions made before the analysis, and those decisions live in the method section. Three sentences carry most of the weight.
+
+Say when the covariate was measured, relative to group assignment. A baseline measure taken before randomisation is safe; anything measured afterwards may have been affected by the treatment, which turns the adjustment into a partial erasure of your own effect. Say why that covariate and not another, grounding the choice in prior evidence or theory rather than in the correlations you observed. And say whether the choice was pre-registered.
+
+> Baseline anxiety was measured before random assignment and selected a priori as a covariate on the basis of prior trials reporting strong baseline–outcome associations.
+
+Also report the covariate's reliability. Measurement error attenuates the adjustment in a way no sample size fixes, so a scale with α = .68 supports a much weaker adjustment claim than one with α = .92, and readers cannot evaluate that without the number.
+
+## How Do You Present ANCOVA Results in a Table?
+
+Two tables serve an ANCOVA better than one crowded grid, and journals generally expect both when the design has more than two groups.
+
+The first is the ANCOVA source table, listing each effect with its degrees of freedom, *F*, exact *p*, and partial eta squared. The covariate gets its own row, placed above the factor, because it enters the model first.
+
+| Source | *df* | *F* | *p* | ηp² |
+| --- | --- | --- | --- | --- |
+| Baseline anxiety | 1, 86 | 54.02 | < .001 | .39 |
+| Condition | 2, 86 | 6.41 | .003 | .13 |
+| Error | 86 | | | |
+
+The second table pairs unadjusted means and standard deviations with adjusted means and standard errors, one row per group. Putting them side by side lets readers see immediately how much the adjustment moved each group, which is information no *F* statistic conveys. Add a table note stating which covariate value the adjusted means were evaluated at.
+
+## What Is the Relationship Between ANCOVA and Regression?
+
+They are the same model wearing different labels, and recognising that resolves several recurring confusions.
+
+An ANCOVA is a multiple regression with the outcome predicted by a continuous covariate plus a set of dummy-coded group indicators. The *F* test for the factor is a test that all the dummy coefficients equal zero. The adjusted mean difference between two groups is the coefficient of the corresponding dummy variable. The homogeneity-of-slopes check is a test of the dummy × covariate interaction terms.
+
+This equivalence has a practical payoff. If your software offers no ANCOVA routine, a regression calculator gets you the same numbers: enter the covariate and dummy variables as predictors, and the group coefficients are your adjusted differences with their standard errors. It also explains why "controlling for" language should be used carefully — it describes a regression adjustment, which is the same arithmetic whether the design was experimental or observational.
+
+## Frequently Asked Questions
+
+**Can I use more than one covariate?**
+Yes. Each additional covariate costs one residual degree of freedom and needs its own justification, linearity check, and reported *F* test. Two or three is common; adding many is usually a sign the design should have been a regression.
+
+**Should the covariate be centred?**
+For a standard ANCOVA the adjusted means are computed at the grand mean of the covariate regardless, so centring is not required. It becomes important when you test an interaction, because uncentred interaction terms make the lower-order effects hard to interpret.
+
+**Is ANCOVA better than analysing change scores?**
+For randomised designs, ANCOVA on post-test scores with baseline as covariate is generally more powerful than a *t* test on change scores. For non-randomised groups the two approaches can give different answers — a phenomenon known as Lord's paradox — and neither is automatically correct.
+
+**Can the covariate be categorical?**
+Not as a covariate. A categorical variable belongs in the model as an additional factor, which makes the analysis a factorial ANOVA rather than an ANCOVA.
+
+**How large a sample do I need?**
+The same rules as ANOVA, with one fewer error df per covariate. A power analysis based on the expected partial eta squared, reported in your method section, is what reviewers ask for.
+
+## APA ANCOVA Reporting Checklist
+
+- Covariate named and its selection justified before the analysis
+- Raw means and standard deviations per group
+- Adjusted (estimated marginal) means with standard errors
+- Homogeneity-of-regression-slopes check reported before the main result
+- Factor effect with *F*, both *df*, exact *p*, and ηp²
+- Covariate effect reported in the same format
+- Pairwise comparisons on adjusted means with a stated correction and confidence intervals
+- Assumption checks: linearity, homogeneity of variance, residual normality, covariate reliability
+- Non-significant results reported with effect sizes, not dismissed
+- No *p* = .000; no leading zeros on *p* or effect sizes; symbols italicized
+
+## Calculating ANCOVA With StatMate
+
+StatMate does not currently offer a dedicated ANCOVA calculator. The closest tool is the [multiple regression calculator](/calculators/multiple-regression), which fits the same underlying model — a continuous covariate plus dummy-coded group predictors is mathematically an ANCOVA, and the coefficient for a group dummy is the adjusted mean difference. The [ANOVA calculator](/calculators/anova) gives you the unadjusted comparison for the side-by-side contrast that a good write-up includes.
+
+If you fit your ANCOVA elsewhere, StatMate's value is in the write-up: each calculator produces a correctly formatted APA results line with the right italics, decimal places, and effect-size placement, so the reporting conventions above are applied for you rather than assembled by hand.
+
+## Summary
+
+ANCOVA answers a conditional question, and APA reporting exists to keep that condition visible. Name the covariate in the sentence, report both raw and adjusted means, give the adjusted ones standard errors, and always report the covariate's own *F* test so readers can see whether the adjustment did anything. Check homogeneity of regression slopes before the main analysis and treat a violation as a moderation finding rather than a nuisance. Above all, keep the language honest: adjusting for a variable is arithmetic, and in a non-randomised design it does not deliver the causal control that randomisation would.

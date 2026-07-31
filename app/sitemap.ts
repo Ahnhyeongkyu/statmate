@@ -81,16 +81,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Add blog post pages (use ko slugs as canonical set)
-  const blogSlugs = getAllSlugs("ko");
-  for (const slug of blogSlugs) {
-    pages.push({
-      path: `/blog/${slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    });
-  }
-
   const entries: MetadataRoute.Sitemap = [];
 
   for (const page of pages) {
@@ -109,6 +99,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
             "x-default": `${BASE_URL}${page.path}`,
           },
         },
+      });
+    }
+  }
+
+  // Blog posts are authored per locale, so they cannot ride the loop above: it
+  // emits every path under all three prefixes. Previously the ko slugs were used
+  // as the canonical set, which meant an English-only post never entered the
+  // sitemap and a Korean-only post produced two 404 URLs. Emit each locale's own
+  // files and restrict hreflang alternates to the locales that actually have one.
+  const slugsByLocale = new Map(locales.map((l) => [l, new Set(getAllSlugs(l))]));
+  for (const locale of locales) {
+    const prefix = locale === "en" ? "" : `/${locale}`;
+    for (const slug of slugsByLocale.get(locale) ?? []) {
+      const languages: Record<string, string> = {};
+      for (const alt of locales) {
+        if (!slugsByLocale.get(alt)?.has(slug)) continue;
+        languages[alt] = `${BASE_URL}${alt === "en" ? "" : `/${alt}`}/blog/${slug}`;
+      }
+      if (languages.en) languages["x-default"] = languages.en;
+      entries.push({
+        url: `${BASE_URL}${prefix}/blog/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+        alternates: { languages },
       });
     }
   }

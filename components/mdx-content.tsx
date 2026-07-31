@@ -1,4 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { BlogInlineOffer } from "@/components/blog-inline-offer";
 
 const components = {
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -44,10 +45,49 @@ const components = {
   ),
 };
 
-export function MdxContent({ source }: { source: string }) {
+/**
+ * Split the body at a top-level "## " heading near the middle so an offer can be
+ * placed mid-article. Fenced code blocks are tracked because a "## " inside a
+ * fence is a comment, not a heading — splitting there would leave an unclosed
+ * fence and break the MDX parse.
+ */
+function splitAtMiddleHeading(source: string): [string, string] {
+  const lines = source.split("\n");
+  const offsets: number[] = [];
+  let fenced = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    if (/^\s*(```|~~~)/.test(lines[i])) fenced = !fenced;
+    else if (!fenced && /^## /.test(lines[i])) offsets.push(i);
+  }
+
+  // Needs at least one heading before and after the break to be worth splitting.
+  if (offsets.length < 3) return [source, ""];
+
+  const cut = offsets[Math.floor(offsets.length / 2)];
+  return [lines.slice(0, cut).join("\n"), lines.slice(cut).join("\n")];
+}
+
+export function MdxContent({
+  source,
+  calculator,
+}: {
+  source: string;
+  calculator?: string;
+}) {
+  const [head, tail] = calculator
+    ? splitAtMiddleHeading(source)
+    : [source, ""];
+
   return (
     <article className="prose-statmate">
-      <MDXRemote source={source} components={components} />
+      <MDXRemote source={head} components={components} />
+      {calculator && tail && (
+        <>
+          <BlogInlineOffer calculator={calculator} />
+          <MDXRemote source={tail} components={components} />
+        </>
+      )}
     </article>
   );
 }

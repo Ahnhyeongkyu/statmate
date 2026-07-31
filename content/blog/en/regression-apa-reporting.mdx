@@ -2,9 +2,30 @@
 title: "How to Report Linear Regression in APA 7th Edition — R², Beta, F-Test & Examples"
 description: "Complete guide to reporting simple and multiple linear regression in APA 7th edition. R-squared, standardized beta coefficients, F-test, assumption checks, and copy-paste APA templates."
 date: "2026-03-26"
+updated: "2026-07-31"
 category: "APA Reporting"
 tags: ["linear regression", "APA format", "APA 7th edition", "R-squared", "beta coefficient", "F-test", "regression assumptions", "multiple regression"]
 ---
+
+## Quick Answer — Copy-Paste APA Regression Templates
+
+**Simple linear regression:**
+
+> A simple linear regression was conducted to predict [outcome] from [predictor]. The model was statistically significant, *F*(1, df) = X.XX, *p* = .XXX, *R*² = .XXX. The regression equation was ŷ = X.XX + X.XXx.
+
+**Multiple regression (overall model):**
+
+> A multiple regression was run to predict [outcome] from [predictor 1], [predictor 2], and [predictor 3]. The model significantly predicted [outcome], *F*(3, df) = X.XX, *p* < .001, *R*² = .XXX, adjusted *R*² = .XXX.
+
+**Individual predictor:**
+
+> [Predictor] significantly predicted [outcome], *B* = X.XX, *SE* = X.XX, β = .XX, *t* = X.XX, *p* = .XXX, 95% CI [X.XX, X.XX].
+
+**Non-significant model:**
+
+> The model did not significantly predict [outcome], *F*(1, df) = X.XX, *p* = .XXX, *R*² = .XXX.
+
+Rules: report *R*² to three decimals with no leading zero; give both *B* (unstandardized) and β (standardized); report *p* < .001 rather than *p* = .000. Generate all of these from your own data with the [StatMate regression calculator](/calculators/regression).
 
 ## Why Proper Regression Reporting Matters
 
@@ -66,7 +87,7 @@ An educational psychologist investigates whether weekly study hours predict seme
 | *t* | 7.79 | t-statistic for the coefficient |
 | 95% CI | [0.06, 0.10] | Confidence interval for *B* |
 
-## Interpreting R-Squared
+## What Does R² Actually Tell You?
 
 *R*² represents the proportion of variance in the outcome explained by the predictor(s). In the example above, *R*² = .34 means study hours explain 34% of the variation in GPA.
 
@@ -92,7 +113,7 @@ Adjusted *R*² penalizes for adding predictors that do not meaningfully improve 
 
 The difference between .52 and .51 is small, indicating that all three predictors contribute meaningfully.
 
-## Beta Coefficients: Standardized vs. Unstandardized
+## Should You Report Standardized or Unstandardized Coefficients?
 
 ### Unstandardized Coefficients (B)
 
@@ -231,7 +252,7 @@ Use inline text for simple regression with one predictor. Use a table for two or
 - Report *B* and *SE* to two decimal places; *beta* to two decimal places without a leading zero
 - Include a table number and descriptive title
 
-## Non-Significant Regression Results
+## How Do You Report a Non-Significant Regression?
 
 Report the same components regardless of significance:
 

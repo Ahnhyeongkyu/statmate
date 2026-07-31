@@ -8,6 +8,8 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string;
+  /** Set only when the body was materially revised. Drives dateModified. */
+  updated?: string;
   category: string;
   tags: string[];
   readingTime: string;
@@ -67,6 +69,7 @@ export function getPost(locale: string, slug: string): BlogPost | null {
     title: data.title || slug,
     description: data.description || "",
     date: data.date || "",
+    updated: data.updated || undefined,
     category: data.category || "",
     tags: data.tags || [],
     readingTime: rt.text,

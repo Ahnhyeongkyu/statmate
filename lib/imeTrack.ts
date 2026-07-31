@@ -41,7 +41,7 @@ const state: State = {
   debug: false,
 };
 
-// 유통 v2: first-touch source 결정 (utm_source 우선, 없으면 referrer 도메인 → chatgpt/google/copilot/perplexity/direct).
+// 유통 v2: first-touch source 결정 (utm_source 우선, 없으면 referrer 도메인 → chatgpt/google/copilot/bing/perplexity/direct).
 //   localStorage에 first-touch 보존(이후 방문은 최초 소스 유지).
 function resolveFirstTouchSource(): string {
   if (typeof window !== "undefined") {
@@ -59,7 +59,10 @@ function resolveFirstTouchSource(): string {
     try {
       const h = new URL(document.referrer).hostname.replace(/^www\./, "");
       if (/(chatgpt\.com|chat\.openai\.com|openai\.com)/.test(h)) src = "chatgpt";
-      else if (/(copilot\.microsoft\.com|bing\.com)/.test(h)) src = "copilot";
+      // bing.com 리퍼러는 대부분 일반 Bing 웹검색이라 copilot(AI 서피스)으로 접으면
+      // AI 유입 세그먼트가 부풀려진다(28일 실측: copilot 2,197 중 copilot.com은 36).
+      else if (/copilot\.(microsoft\.)?com/.test(h)) src = "copilot";
+      else if (/bing\.com/.test(h)) src = "bing";
       else if (/perplexity\.ai/.test(h)) src = "perplexity";
       else if (/google\./.test(h)) src = "google";
       else if (/duckduckgo\.com/.test(h)) src = "duckduckgo";

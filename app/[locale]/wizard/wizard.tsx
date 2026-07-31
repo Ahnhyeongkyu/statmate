@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
+import { PaperstatDownsell } from "@/components/paperstat-downsell";
 import {
   Card,
   CardContent,
@@ -371,6 +372,8 @@ export function DecisionTreeWizard() {
               {t("startOver")}
             </Button>
           </div>
+
+          <PaperstatDownsell surface="wizard" />
         </CardContent>
       </Card>
     );

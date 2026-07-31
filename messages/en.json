@@ -950,7 +950,10 @@
     "reportOfferItem2": "Plain-language interpretation of what your numbers mean",
     "reportOfferItem3": "Assumption checks and caveats a reviewer will ask about",
     "reportOfferCta": "Get the report — {price}",
-    "reportOfferOnce": "{price} once. Not a subscription."
+    "reportOfferOnce": "{price} once. Not a subscription.",
+    "blogOfferTitle": "Reporting your own numbers, not the examples above?",
+    "blogOfferBody": "Paste your data into the free calculator and the APA line comes back instantly. If you want the finished write-up — the results table, a plain-language interpretation, and the assumption checks a reviewer will ask about — the one-time report delivers it as a .docx you can paste straight into your paper.",
+    "blogOfferFree": "Run the free calculator first →"
   },
   "privacy": {
     "metaTitle": "Privacy Policy",

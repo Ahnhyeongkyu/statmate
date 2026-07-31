@@ -7,6 +7,7 @@ import { trackProCtaClick } from "@/lib/analytics";
 import { getVariant, trackABConversion } from "@/lib/ab-test";
 import { track } from "@/lib/imeTrack";
 import { CHECKOUT_CREDITS, CHECKOUT_MONTHLY, getOfferArmV2 } from "@/lib/offer";
+import { PaperstatDownsell } from "@/components/paperstat-downsell";
 
 export function ProConversionBanner() {
   const isPro = useIsPro();
@@ -52,6 +53,7 @@ export function ProConversionBanner() {
   // B arm: 결제 오퍼는 paywall 카드($9 리포트) 하나로 단일화하고, 여기서는 리드만 받는다.
   if (armV2 === "B") {
     return (
+      <>
       <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-4 dark:border-blue-900 dark:bg-blue-950/20">
         {captured ? (
           <p className="text-center text-xs font-medium text-blue-700 dark:text-blue-300">{t("emailCaptureDone")}</p>
@@ -78,6 +80,8 @@ export function ProConversionBanner() {
           </form>
         )}
       </div>
+      <PaperstatDownsell surface="result" />
+      </>
     );
   }
 
@@ -90,6 +94,7 @@ export function ProConversionBanner() {
   const price = t("bannerCreditPrice");
 
   return (
+    <>
     <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-5 dark:border-blue-900 dark:bg-blue-950/20">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex-1">
@@ -176,5 +181,7 @@ export function ProConversionBanner() {
         )}
       </div>
     </div>
+    <PaperstatDownsell surface="result" />
+    </>
   );
 }

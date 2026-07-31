@@ -53,6 +53,11 @@ const BLOG_CALCULATOR_MAP: Record<string, string> = {
   "normality-test-guide": "t-test",
   "nonparametric-tests-guide": "mann-whitney",
   "choosing-statistical-test": "t-test",
+  // No dedicated calculator exists for these three designs — each maps to the
+  // closest tool that computes part of the model, and the posts say so explicitly.
+  "mixed-anova-apa-reporting": "repeated-measures",
+  "ancova-apa-reporting": "multiple-regression",
+  "mediation-analysis-apa-reporting": "multiple-regression",
 };
 
 function getRelatedCalculator(slug: string): string {
@@ -480,6 +485,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.updated || post.date,
     author: { "@type": "Organization", name: "StatMate" },
     publisher: { "@type": "Organization", name: "StatMate" },
   };
@@ -550,6 +556,15 @@ export default async function BlogPostPage({
           )}
           <span className="text-sm text-gray-400">{post.readingTime}</span>
           <span className="text-sm text-gray-400">{post.date}</span>
+          {post.updated && (
+            <span className="text-sm font-medium text-gray-500">
+              {locale === "ko"
+                ? `${post.updated} 갱신`
+                : locale === "ja"
+                  ? `${post.updated} 更新`
+                  : `Updated ${post.updated}`}
+            </span>
+          )}
         </div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           {post.title}
@@ -557,7 +572,7 @@ export default async function BlogPostPage({
         <p className="mt-2 text-lg text-gray-500">{post.description}</p>
       </header>
 
-      <MdxContent source={post.content} />
+      <MdxContent source={post.content} calculator={relatedCalc} />
 
       <AdUnit slot={AD_SLOTS.blog} format="fluid" layout="in-article" />
 

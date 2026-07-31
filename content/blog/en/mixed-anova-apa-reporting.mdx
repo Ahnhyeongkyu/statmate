@@ -1,0 +1,219 @@
+---
+title: "How to Report Mixed ANOVA in APA 7th Edition — Interaction, Sphericity & Simple Effects"
+description: "Complete guide to reporting a mixed (split-plot) ANOVA in APA 7th edition format. Covers the between-within interaction, Greenhouse-Geisser correction, partial eta squared, simple effects follow-ups, and copy-paste APA templates."
+date: "2026-07-31"
+category: "APA Reporting"
+tags: ["mixed ANOVA", "split-plot ANOVA", "APA format", "APA 7th edition", "repeated measures", "interaction effect", "sphericity", "partial eta squared", "simple effects"]
+---
+
+## Quick Answer — Copy-Paste APA Mixed ANOVA Templates
+
+**Interaction (the effect you usually care about):**
+
+> A 2 × 3 mixed ANOVA revealed a significant Group × Time interaction, *F*(2, XX) = X.XX, *p* = .XXX, ηp² = .XX.
+
+**Between-subjects main effect:**
+
+> The main effect of [group] was not significant, *F*(1, XX) = X.XX, *p* = .XXX, ηp² = .XX.
+
+**Within-subjects main effect:**
+
+> The main effect of [time] was significant, *F*(2, XX) = X.XX, *p* < .001, ηp² = .XX.
+
+**With a sphericity correction:**
+
+> Mauchly's test indicated a violation of sphericity, χ²(2) = X.XX, *p* = .XXX, so Greenhouse-Geisser corrected values are reported (ε = .XX), *F*(1.XX, XX.XX) = X.XX, *p* = .XXX, ηp² = .XX.
+
+**Simple effect follow-up:**
+
+> Simple effects analyses showed that the groups differed at [time 3], *F*(1, XX) = X.XX, *p* = .XXX, but not at baseline, *F*(1, XX) = X.XX, *p* = .XXX.
+
+## What Is a Mixed ANOVA, and When Do You Need One?
+
+A mixed ANOVA — also called a split-plot ANOVA or a between-within ANOVA — is used when your design contains at least one between-subjects factor and at least one within-subjects factor. The classic case is an intervention study: participants are assigned to a treatment or control condition (between-subjects), and everyone is measured before, immediately after, and at follow-up (within-subjects).
+
+The design is popular because it answers the question researchers usually care about most: did the groups change *differently* over time? That question lives in the interaction term, not in either main effect. A treatment group and a control group can both improve, producing a large main effect of time and no evidence at all that the treatment worked. Only the Group × Time interaction tells you whether the trajectories diverged.
+
+Because the design mixes two kinds of factors, the output mixes two kinds of error terms, and APA reporting has to keep them straight.
+
+## What Does APA 7th Edition Require You to Report?
+
+APA 7th edition asks for enough detail that a reader could reconstruct your analysis and judge its credibility. For a mixed ANOVA, that means five components for every effect you report.
+
+- **The *F* statistic** with both degrees of freedom: *F*(df effect, df error)
+- **The exact *p* value**, reported to three decimals without a leading zero
+- **An effect size**, conventionally partial eta squared (ηp²) for factorial designs
+- **Descriptive statistics** — cell means and standard deviations for every group at every measurement occasion
+- **Assumption checks**, especially sphericity for within-subjects factors with three or more levels
+
+Two details separate a clean mixed ANOVA write-up from a messy one. First, the between-subjects and within-subjects effects use *different* error degrees of freedom, so the second number in your *F* parentheses changes from line to line. Second, the interaction should be reported and interpreted *before* the main effects, because a significant interaction changes how the main effects should be read.
+
+## How Do You Report the Cell Means First?
+
+Before any inferential statistic, give readers the descriptive picture. A mixed design produces a grid of cells — every level of the between-subjects factor crossed with every level of the within-subjects factor — and the reader cannot interpret an interaction without seeing that grid.
+
+In text, for a small design:
+
+> At baseline, the treatment group (*M* = 24.10, *SD* = 5.32) and the control group (*M* = 23.85, *SD* = 5.11) reported similar symptom scores. At post-test, the treatment group had declined (*M* = 17.42, *SD* = 4.98) while the control group was largely unchanged (*M* = 22.90, *SD* = 5.40).
+
+For anything larger than a 2 × 2, use a table with rows for groups and columns for time points, and put means and standard deviations in each cell. This is not optional decoration: reviewers routinely reject manuscripts where a significant interaction is reported without the means that would let a reader see its direction.
+
+## How Do You Report the Interaction Effect?
+
+The interaction is the reason you ran a mixed ANOVA, so it belongs at the front of your results paragraph, not buried after two main effects.
+
+> A 2 (group: treatment, control) × 3 (time: baseline, post-test, follow-up) mixed ANOVA revealed a significant Group × Time interaction, *F*(2, 96) = 8.74, *p* < .001, ηp² = .15.
+
+Notice the structure. The design is named with its factor levels, both factors are labelled, the interaction is named with a multiplication sign, and the effect size follows the *p* value. The first degrees-of-freedom value (2) comes from the within-subjects factor with three levels; the second (96) is the within-subjects error term.
+
+After stating the statistic, describe the pattern in plain language: which group changed, in which direction, and between which occasions. Readers should be able to picture the plot from your sentence alone.
+
+## What Do You Do With Main Effects When the Interaction Is Significant?
+
+Report them, but frame them carefully. A significant interaction means the effect of one factor depends on the level of the other, so an unqualified main effect statement can actively mislead.
+
+> The main effect of time was significant, *F*(2, 96) = 21.30, *p* < .001, ηp² = .31, although this effect was qualified by the interaction reported above. The main effect of group was not significant, *F*(1, 48) = 2.11, *p* = .153, ηp² = .04.
+
+The phrase "qualified by the interaction" is the standard APA hedge, and reviewers look for it. In an intervention study, a non-significant group main effect is entirely expected — averaging across baseline, where the groups should be equivalent, dilutes any post-treatment difference. Reporting that null result without explanation invites the misreading that the intervention failed, when the interaction says the opposite.
+
+## How Do You Handle a Sphericity Violation?
+
+Sphericity is the assumption that the variances of the differences between all pairs of within-subjects levels are equal. It applies only to within-subjects factors with three or more levels, so a two-level factor never needs it, and the between-subjects factor never needs it either.
+
+Mauchly's test evaluates the assumption. When it is significant, the uncorrected *F* test becomes too liberal — you reject the null hypothesis more often than your alpha level promises. The fix is to multiply the degrees of freedom by an epsilon (ε) correction factor.
+
+> Mauchly's test indicated that the assumption of sphericity had been violated, χ²(2) = 9.82, *p* = .007, so degrees of freedom were corrected using Greenhouse-Geisser estimates of sphericity (ε = .82), *F*(1.64, 78.72) = 18.05, *p* < .001, ηp² = .27.
+
+The convention is to use Greenhouse-Geisser when ε is below .75 and Huynh-Feldt when it is above, though many journals accept Greenhouse-Geisser throughout as the conservative default. Corrected degrees of freedom are fractional — report them to two decimals rather than rounding them to integers.
+
+## Which Effect Size Should You Report?
+
+Partial eta squared (ηp²) is the standard effect size for factorial ANOVA designs and the one most statistical packages print by default. It expresses the proportion of variance in the outcome attributable to an effect, after removing variance explained by the other effects in the model.
+
+Cohen's conventional benchmarks are .01 (small), .06 (medium), and .14 (large), but treat them as loose anchors rather than thresholds. What counts as a meaningful effect depends on your outcome and your field: a small ηp² for a low-cost public-health intervention delivered at scale can matter far more than a large one in a laboratory task.
+
+One caution specific to mixed designs: partial eta squared values do not sum to 1 across effects, because each is computed against a different error term. Never present them as a variance breakdown that adds up. If you want additive proportions, report generalized eta squared instead and say explicitly which one you used.
+
+## How Do You Follow Up a Significant Interaction?
+
+A significant interaction tells you the trajectories differ; it does not tell you where. Simple effects analyses answer that by testing one factor at each level of the other.
+
+There are two directions, and you should choose the one that matches your research question rather than running both. To ask whether the groups differed at each occasion:
+
+> Simple effects analyses with a Bonferroni correction showed that the groups did not differ at baseline, *F*(1, 48) = 0.03, *p* = .862, but the treatment group scored significantly lower at post-test, *F*(1, 48) = 14.22, *p* < .001, and at follow-up, *F*(1, 48) = 11.06, *p* = .002.
+
+To ask whether each group changed over time, run the within-subjects effect separately within each group and report it the same way. State which correction you applied for the family of comparisons, since uncorrected simple effects inflate the error rate exactly as uncorrected post-hoc tests do.
+
+## How Do You Report a Non-Significant Interaction?
+
+Non-significant interactions are common and entirely reportable. What you must avoid is the language of proof — a *p* value above .05 is not evidence that the trajectories were identical.
+
+> The Group × Time interaction was not significant, *F*(2, 96) = 1.34, *p* = .266, ηp² = .03, indicating that the two groups did not change at detectably different rates.
+
+Report the effect size anyway. A ηp² of .03 with a small sample is compatible with a real but undetected effect, and readers conducting a meta-analysis need the number regardless of significance. When the interaction is non-significant, the main effects become interpretable without qualification, so proceed to them directly and drop the "qualified by" hedge.
+
+If your study was designed to detect a specific effect size, this is the place to mention the power analysis that justified your sample, so that a null interaction can be read as informative rather than merely inconclusive.
+
+## What Assumptions Should You Check and Report?
+
+A mixed ANOVA inherits assumptions from both of its halves, and APA expects you to say that you checked them.
+
+- **Normality** of the residuals within each cell, usually via skewness and kurtosis or a Shapiro-Wilk test
+- **Homogeneity of variance** across the between-subjects groups at each measurement occasion, via Levene's test
+- **Sphericity** for any within-subjects factor with three or more levels, via Mauchly's test
+- **Homogeneity of covariance matrices** across groups, via Box's M test
+- **Independence** of participants, which is a design property rather than something you test
+
+A compact assumptions sentence covers the lot:
+
+> Preliminary checks indicated that residuals were approximately normal within each cell, Levene's test was non-significant at all three occasions (all *p*s > .18), and Box's *M* was non-significant, *p* = .214.
+
+Box's M is notoriously sensitive with large samples; many methodologists suggest interpreting it at *p* < .001 rather than .05, and saying so in your write-up is better than silently ignoring a significant result.
+
+## How Do You Present a Mixed ANOVA in an APA Table?
+
+Long results paragraphs become unreadable once you have more than three effects. An APA table separates the effects cleanly and is preferred by most journals for factorial designs.
+
+| Source | *df* | *F* | *p* | ηp² |
+| --- | --- | --- | --- | --- |
+| Group | 1, 48 | 2.11 | .153 | .04 |
+| Time | 1.64, 78.72 | 18.05 | < .001 | .27 |
+| Group × Time | 1.64, 78.72 | 8.74 | < .001 | .15 |
+
+Format notes that reviewers check: the table has no vertical rules, statistical symbols are italicized, degrees of freedom for corrected within-subjects effects are fractional and given to two decimals, and a table note states which correction produced them. Add a second table with cell means and standard deviations rather than crowding them into the same grid.
+
+## What Are the Most Common Mixed ANOVA Reporting Mistakes?
+
+The errors that generate revision requests cluster into a short list.
+
+- **Reporting main effects first** and treating the interaction as an afterthought, which inverts the logic of the design
+- **Using one error term for everything**, so the same df error appears on the between-subjects and within-subjects rows
+- **Ignoring sphericity** entirely, or reporting Mauchly's test and then quoting the uncorrected *F* anyway
+- **Omitting cell means**, leaving readers unable to see the direction of the interaction
+- **Interpreting a non-significant interaction as equivalence**, rather than as an absence of detected difference
+- **Running every possible simple effect** without correction, then reporting only the significant ones
+- **Writing *p* = .000**, which no *p* value ever equals; report *p* < .001
+
+Each of these is a formatting habit rather than a statistical misunderstanding, which is why they survive into submitted manuscripts so often.
+
+## What Should Your Method Section Say About the Design?
+
+The results section reports numbers; the method section has to make the design legible before any number appears. For a mixed ANOVA, four sentences usually suffice.
+
+State how participants were assigned to the between-subjects factor, and whether that assignment was random. State how many times each participant was measured and at what intervals, because "post-test" and "follow-up" mean nothing without a timeline. State the software and version used, since packages differ in their default sphericity correction and in whether they print partial or generalized eta squared. Finally, state the planned analysis before the results appear:
+
+> A 2 (condition) × 3 (time) mixed ANOVA was conducted, with condition as a between-subjects factor and time as a within-subjects factor.
+
+Attrition belongs here too. Mixed ANOVA drops any participant missing a single occasion, so the *n* entering the analysis is often smaller than the *n* recruited. Reporting both, with a sentence on whether dropouts differed from completers, is what separates a transparent write-up from one that quietly loses participants between sections.
+
+## How Do You Report a Three-Factor Mixed Design?
+
+Adding a third factor multiplies the effects you must report: three main effects, three two-way interactions, and one three-way interaction. A results paragraph cannot carry that load, so the standard solution is a table for the full model and prose reserved for the effects you actually interpret.
+
+Interpretation runs from the highest-order effect downward. If the three-way interaction is significant, it governs everything below it, and the two-way interactions should be decomposed within levels of the third factor rather than interpreted on their own.
+
+> The Group × Time × Gender interaction was significant, *F*(2, 92) = 4.11, *p* = .020, ηp² = .08. Decomposing this effect, the Group × Time interaction was significant for women, *F*(2, 92) = 9.03, *p* < .001, but not for men, *F*(2, 92) = 0.52, *p* = .596.
+
+If the three-way interaction is non-significant, say so explicitly and then interpret the two-way interactions, which is the same downward logic applied one level lower.
+
+## Frequently Asked Questions
+
+**Is a mixed ANOVA the same as a repeated measures ANOVA?**
+No. A repeated measures ANOVA has only within-subjects factors. A mixed ANOVA adds at least one between-subjects factor, which is what makes the interaction between the two possible.
+
+**Do I report Mauchly's test if my within-subjects factor has two levels?**
+No. Sphericity is automatically satisfied with two levels because there is only one pair of differences, so most packages will not even print the test.
+
+**Should I report eta squared or partial eta squared?**
+Partial eta squared is the convention for factorial designs and the default output of most software. Whichever you choose, name it explicitly, because the two can differ substantially.
+
+**What if my groups have very unequal sample sizes?**
+Unbalanced designs are analysable, but they make the homogeneity assumptions matter more. Report the *n* per group and check Levene's and Box's tests carefully.
+
+**Can I run a mixed ANOVA with missing data at one time point?**
+Standard mixed ANOVA uses listwise deletion, so a participant missing any occasion is dropped entirely. With substantial missingness, a linear mixed model is the better choice, and you should say why you switched.
+
+## APA Mixed ANOVA Reporting Checklist
+
+Before submitting, confirm that each item below appears somewhere in your results section.
+
+- Design named with both factors and all levels (for example, "2 × 3 mixed ANOVA")
+- Cell means and standard deviations for every group at every occasion
+- Interaction reported first, with *F*, both *df*, exact *p*, and ηp²
+- Both main effects reported, with the interaction qualification where relevant
+- Sphericity test result and, if violated, the correction used with its ε value
+- Fractional degrees of freedom given to two decimals after correction
+- Simple effects for a significant interaction, with a stated correction method
+- Assumption checks for normality, homogeneity of variance, and covariance matrices
+- No *p* = .000 anywhere; no leading zeros on *p* values or effect sizes
+- Statistical symbols italicized: *F*, *p*, *M*, *SD*, η
+
+## Calculating a Mixed ANOVA With StatMate
+
+StatMate does not currently offer a dedicated mixed ANOVA calculator. Its closest tool is the [repeated measures ANOVA calculator](/calculators/repeated-measures), which handles the within-subjects half of the design, and the [two-way ANOVA calculator](/calculators/two-way-anova), which handles two between-subjects factors. If your design is genuinely mixed, run it in a package that supports split-plot designs and use those calculators to check individual components of your output.
+
+What StatMate can do for a mixed design is turn the numbers you already have into correctly formatted APA sentences. Every calculator produces a copy-ready results line with the right italics, decimal places, and effect size placement, so you can paste it into your manuscript and edit the variable names rather than rebuilding the formatting by hand.
+
+## Summary
+
+A mixed ANOVA answers whether groups change differently over time, and the interaction carries that answer. Report the interaction first, qualify the main effects around it, and give readers the cell means that make the pattern visible. Check sphericity whenever a within-subjects factor has three or more levels, and report the corrected fractional degrees of freedom rather than the uncorrected ones. Pair every *F* with partial eta squared, follow a significant interaction with corrected simple effects, and describe a non-significant interaction as undetected rather than absent. Doing those six things consistently removes almost every statistical revision request a mixed ANOVA write-up attracts.
