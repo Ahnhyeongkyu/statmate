@@ -533,8 +533,8 @@
     "exampleScenario": "A teacher collected math test scores (out of 100) from a class of 15 students to understand the overall performance distribution."
   },
   "pricing": {
-    "metaTitle": "StatMate Pro Pricing — AI Interpretation & Word Export from $4.99/mo",
-    "metaDescription": "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Free 20+ calculators. Pro from $4.99/mo.",
+    "metaTitle": "StatMate Pro Pricing — AI Interpretation & Word Export",
+    "metaDescription": "StatMate Pro: Export APA tables to Word, get AI-powered interpretation, and publication-ready result sentences. Free 20+ calculators, or buy AI credits from $1.99 one-time.",
     "badge": "Pricing",
     "headline": "Start Free.",
     "headlineHighlight": "Go Pro When You Need It.",
@@ -574,8 +574,11 @@
         "name": "Pro Annual",
         "period": "/month",
         "description": "Best value — save 30%",
+        "descriptionV2": "Best value — save 51%",
         "subtext": "Billed $49.99/year",
-        "cta": "Get Pro — $4.99/mo",
+        "subtextV2": "≈ $4.92/mo, billed annually",
+        "cta": "Get Pro — $4.17/mo",
+        "ctaV2": "Get Pro Annual — $59/yr",
         "features": [
           "Everything in Pro Monthly",
           "Early access to new features",
@@ -584,7 +587,7 @@
       }
     },
     "mostPopular": "Most Popular",
-    "payPerUse": "Don't need a subscription? Buy AI credits: 5 for $4.99, 15 for $9.99, or 50 for $24.99.",
+    "payPerUse": "Don't need a subscription? Buy 3 AI credits for $1.99 — one-time, no renewal.",
     "payPerUseButton": "Buy Credits",
     "comparisonTitle": "Feature Comparison",
     "featureLabel": "Feature",
@@ -643,13 +646,13 @@
       },
       {
         "q": "Do you offer student discounts?",
-        "a": "We're planning student pricing soon. For now, the free AI trial and affordable Pro plan ($5.99/mo) make it accessible for any student."
+        "a": "Yes — Student Pro is $2.99/mo with a valid .edu email. The free AI trial is open to everyone, no card required."
       }
     ],
     "ctaTitle": "Ready to save hours on formatting?",
     "ctaDescription": "Try 3 free AI interpretations across different calculators. No credit card required.",
     "ctaButton": "Start Free Trial",
-    "studentDiscount": "🎓 Students: Get 50% off with a valid .edu email — just $2.99/mo or $29.99/year."
+    "studentDiscount": "🎓 Students: Verify with a valid .edu email and get Pro for $2.99/mo."
   },
   "feedbackPrompt": {
     "question": "Was this calculator helpful?",

@@ -59,7 +59,7 @@ export function ControlMonthlyCta({ highlight, label, imeCta }: PricingCtaProps)
   );
 }
 
-/** Control-arm CTA button (legacy $4.99/mo annual) */
+/** Control-arm CTA button (legacy annual: $49.99/yr = $4.17/mo) */
 export function ControlAnnualCta({ highlight, label, imeCta }: PricingCtaProps) {
   return (
     <a href={CHECKOUT_URLS.control.annual} data-ime-cta={imeCta} className="mt-6 block">

@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { PricingTracker } from "@/components/pricing-tracker";
 import { PricingVariantProvider, TrackBPlanGrid } from "@/components/pricing-variant";
+import { CHECKOUT_CREDITS } from "@/lib/offer";
 
 export async function generateMetadata({
   params,
@@ -88,7 +89,7 @@ export default async function PricingPage() {
     },
     {
       name: t("plans.proAnnual.name"),
-      price: "$4.99",
+      price: "$4.17",
       period: t("plans.proAnnual.period"),
       description: t("plans.proAnnual.description"),
       subtext: t("plans.proAnnual.subtext"),
@@ -167,9 +168,9 @@ export default async function PricingPage() {
                 monthlyDesc: t("plans.proMonthly.description"),
                 monthlyCta: t("plans.proMonthly.ctaV2"),
                 annualName: t("plans.proAnnual.name"),
-                annualDesc: t("plans.proAnnual.description"),
-                annualCta: t("plans.proAnnual.cta"),
-                annualSubtext: t("plans.proAnnual.subtext"),
+                annualDesc: t("plans.proAnnual.descriptionV2"),
+                annualCta: t("plans.proAnnual.ctaV2"),
+                annualSubtext: t("plans.proAnnual.subtextV2"),
                 mostPopular: t("mostPopular"),
                 freeFeatures: [
                   t("plans.free.features.0"),
@@ -271,7 +272,7 @@ export default async function PricingPage() {
       <div className="mt-8 flex w-full max-w-5xl items-center justify-between rounded-lg border border-amber-200 bg-amber-50 px-6 py-4 dark:border-amber-800 dark:bg-amber-950/20">
         <p className="text-sm text-gray-700 dark:text-gray-300">{t("payPerUse")}</p>
         <a
-          href="https://statmate.lemonsqueezy.com/checkout/buy/e4313d17-ad33-432b-87a1-d53d01fb2ebb?embed=1"
+          href={CHECKOUT_CREDITS}
           data-ime-cta="pricing-pay-per-use"
         >
           <Button variant="outline" className="ml-4 shrink-0 border-amber-300 text-amber-700 hover:bg-amber-100 dark:border-amber-700 dark:text-amber-300">

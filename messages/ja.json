@@ -533,8 +533,8 @@
     "exampleScenario": "教師が15名の生徒の数学テスト（100点満点）の成績を収集し、全体的な成績分布を把握しようとしました。"
   },
   "pricing": {
-    "metaTitle": "StatMate Pro 料金プラン — AI解釈 & Wordエクスポート 月$4.99から",
-    "metaDescription": "StatMate Pro：APA形式の表をWordにエクスポート、AI搭載の結果解釈、出版対応の結果文。20以上の無料計算ツール + Pro 月$4.99から。",
+    "metaTitle": "StatMate Pro 料金プラン — AI解釈 & Wordエクスポート",
+    "metaDescription": "StatMate Pro：APA形式の表をWordにエクスポート、AI搭載の結果解釈、出版対応の結果文。20以上の無料計算ツール + AIクレジット一回払い$1.99から。",
     "badge": "料金プラン",
     "headline": "無料で始めましょう。",
     "headlineHighlight": "必要に応じてProへ。",
@@ -574,8 +574,11 @@
         "name": "Pro 年額",
         "period": "/月",
         "description": "最もお得 — 30%割引",
+        "descriptionV2": "最もお得 — 51%割引",
         "subtext": "年間$49.99一括払い",
-        "cta": "Pro開始 — $4.99/月",
+        "subtextV2": "月あたり約$4.92・年間一括払い",
+        "cta": "Pro開始 — $4.17/月",
+        "ctaV2": "Pro年額開始 — $59/年",
         "features": [
           "Pro月額プランのすべて",
           "新機能への早期アクセス",
@@ -584,7 +587,7 @@
       }
     },
     "mostPopular": "人気No.1",
-    "payPerUse": "サブスクリプション不要？AIクレジット購入：5回$4.99、15回$9.99、50回$24.99。",
+    "payPerUse": "サブスクリプション不要？AIクレジット3回$1.99 — 一回払い、自動更新なし。",
     "payPerUseButton": "クレジット購入",
     "comparisonTitle": "機能比較",
     "featureLabel": "機能",
@@ -643,13 +646,13 @@
       },
       {
         "q": "学生割引はありますか？",
-        "a": "学生料金は近日中に導入予定です。現在は、無料AI解釈3回とお手頃なProプラン（$5.99/月）をご利用いただけます。"
+        "a": "はい — .edu/.ac.jpメールで認証すると Student Pro を月額$2.99でご利用いただけます。無料AI解釈3回はカード登録なしでどなたでもご利用可能です。"
       }
     ],
     "ctaTitle": "フォーマット作業の時間を節約しませんか？",
     "ctaDescription": "3つの異なる計算ツールで無料AI解釈をお試しください。クレジットカード不要。",
     "ctaButton": "無料トライアルを始める",
-    "studentDiscount": "🎓 学生割引: .edu/.ac.jpメールで50%オフ — 月額$2.99または年額$29.99"
+    "studentDiscount": "🎓 学生割引: .edu/.ac.jpメールで認証すると Pro 月額$2.99"
   },
   "feedbackPrompt": {
     "question": "この計算ツールは役に立ちましたか？",
