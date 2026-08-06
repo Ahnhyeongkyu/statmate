@@ -546,6 +546,7 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
             <p className="mt-2 text-center text-xs text-green-700/80">
               <a
                 href={CHECKOUT_MONTHLY}
+                data-ime-cta="word-export-sub-secondary"
                 onClick={() => trackProCtaClick("word_export_pro_secondary", testName)}
                 className="underline hover:text-green-900"
               >
@@ -676,6 +677,7 @@ export function CopyPaywall({ onDismiss }: { onDismiss: () => void }) {
         <div className="flex flex-col gap-2">
           <a
             href="https://statmate.lemonsqueezy.com/checkout/buy/4ed009d2-951e-417b-8042-01281876d8dd?embed=1"
+            data-ime-cta="copy-paywall-credits"
             onClick={() => trackProCtaClick("copy_paywall_credits")}
           >
             <Button className="w-full bg-blue-600 text-base font-semibold hover:bg-blue-700">
@@ -684,6 +686,7 @@ export function CopyPaywall({ onDismiss }: { onDismiss: () => void }) {
           </a>
           <a
             href="https://statmate.lemonsqueezy.com/checkout/buy/11ac7ea9-a760-42bd-b500-137699a9f339?embed=1"
+            data-ime-cta="copy-paywall-pro"
             onClick={() => trackProCtaClick("copy_paywall_pro")}
             className="text-center text-xs text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
           >

@@ -123,6 +123,7 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
             , <em>p</em> {formatPValue(result.pValue)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -238,6 +239,7 @@ function ResultsDisplay({ result, xData, yData }: { result: CorrelationResult; x
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportCorrelationPdf } = await import("@/lib/export-pdf");

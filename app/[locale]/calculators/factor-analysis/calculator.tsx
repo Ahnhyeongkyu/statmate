@@ -70,6 +70,7 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
         <CardContent>
           <p className="font-serif text-lg text-blue-900">{apa}</p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -428,6 +429,7 @@ function ResultsDisplay({ result }: { result: FactorAnalysisResult }) {
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportFactorAnalysisPdf } = await import(

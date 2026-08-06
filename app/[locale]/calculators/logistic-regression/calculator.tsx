@@ -70,6 +70,7 @@ function ResultsDisplay({ result }: { result: LogisticRegressionResult }) {
             {result.nagelkerkeR2.toFixed(3)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -342,6 +343,7 @@ function ResultsDisplay({ result }: { result: LogisticRegressionResult }) {
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportLogisticRegressionPdf } = await import(

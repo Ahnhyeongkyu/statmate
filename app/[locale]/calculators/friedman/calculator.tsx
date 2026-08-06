@@ -61,6 +61,7 @@ function ResultsDisplay({ result, groupsData }: { result: FriedmanResult; groups
             {result.kendallW.toFixed(2)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -244,6 +245,7 @@ function ResultsDisplay({ result, groupsData }: { result: FriedmanResult; groups
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportFriedmanPdf } = await import("@/lib/export-pdf");

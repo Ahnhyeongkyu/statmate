@@ -62,6 +62,7 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
             {result.cramersV.toFixed(2)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -224,6 +225,7 @@ function IndependenceResultsDisplay({ result }: { result: ChiSquareIndependenceR
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportChiSquarePdf } = await import("@/lib/export-pdf");
@@ -276,6 +278,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
             <em>p</em> {formatPValue(result.pValue)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -384,6 +387,7 @@ function ResultsDisplay({ result }: { result: ChiSquareResult }) {
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportChiSquarePdf } = await import("@/lib/export-pdf");

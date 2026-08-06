@@ -141,6 +141,7 @@ export function ProConversionBanner() {
           <span className="text-[11px] text-gray-400">{price}</span>
           <a
             href={CHECKOUT_MONTHLY}
+            data-ime-cta="offer-v2-sub-secondary"
             onClick={() => trackProCtaClick("inline_banner_sub_secondary")}
             className="text-[11px] text-gray-400 underline underline-offset-2 transition hover:text-gray-600 dark:hover:text-gray-300"
           >

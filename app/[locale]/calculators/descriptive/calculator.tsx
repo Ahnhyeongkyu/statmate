@@ -214,6 +214,7 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportDescriptivePdf } = await import("@/lib/export-pdf");

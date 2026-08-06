@@ -64,6 +64,7 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
             , <em>d</em> = {result.cohensD.toFixed(2)}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -210,6 +211,7 @@ function ResultsDisplay({ result, data }: { result: OneSampleTResult; data: numb
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportOneSampleTPdf } = await import("@/lib/export-pdf");

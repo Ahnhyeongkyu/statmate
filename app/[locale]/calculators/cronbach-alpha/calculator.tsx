@@ -62,6 +62,7 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
             Cronbach&apos;s <em>&alpha;</em> = {result.alpha.toFixed(2)}, {result.nItems} items, <em>N</em> = {result.nCases}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -217,6 +218,7 @@ function ResultsDisplay({ result }: { result: CronbachAlphaResult }) {
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportCronbachAlphaPdf } = await import("@/lib/export-pdf");

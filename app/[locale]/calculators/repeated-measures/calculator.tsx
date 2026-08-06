@@ -111,6 +111,7 @@ function ResultsDisplay({
             )}
           </p>
           <button
+            data-ime-cta="free-copy-apa"
             onClick={() => copy(apa)}
             className="mt-2 text-sm text-blue-600 hover:text-blue-800"
           >
@@ -364,6 +365,7 @@ function ResultsDisplay({
             <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
           </div>
           <Button
+            data-ime-cta="free-pdf-download"
             variant="outline"
             onClick={async () => {
               const { exportRepeatedMeasuresPdf } = await import("@/lib/export-pdf");
