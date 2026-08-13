@@ -27,7 +27,9 @@ export function ProConversionBanner() {
       const res = await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, source: "paywall_banner" }) });
       // 실제 영속 성공(2xx)일 때만 완료 표시 — 500/503에 거짓 "구독 완료" 금지(캡처 극장 방지).
       if (res.ok) {
-        track("email_capture", { source: "paywall_banner", offer_version: "v2_report" });
+        // armV2 B는 유료 CTA가 없어 email_capture가 그 arm의 유일한 성과 이벤트다. arm을 안 실으면
+        // PostHog에 arm=null로만 남아 A/B 판정이 불가능하다(2026-08-14 실측: 14일치 1건 전부 null).
+        track("email_capture", { source: "paywall_banner", offer_version: "v2_report", offer_arm_v2: armV2 });
         trackABConversion("result_offer_v1", "email_capture");
         setCaptured(true);
       }
