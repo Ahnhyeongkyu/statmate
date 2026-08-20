@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { trackAiInterpret, trackWordExport, trackProCtaClick, trackProPreviewImpression, trackFreeTrialUsed, trackFreeTrialExhausted } from "@/lib/analytics";
+import { trackAiInterpret, trackWordExport, trackPdfExport, trackProCtaClick, trackProPreviewImpression, trackFreeTrialUsed, trackFreeTrialExhausted } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useIsPro } from "@/components/activate-pro";
@@ -576,6 +576,94 @@ export function ExportButton({ onExport, testName }: ExportButtonProps) {
           className="bg-green-600 hover:bg-green-700"
         >
           {exporting ? t("exporting") : t("download")}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+// --- PDF Export Button (paid) ---
+
+interface PdfExportButtonProps {
+  onExport: () => Promise<void>;
+  testName: string;
+}
+
+/**
+ * Q-260730-03 유료화 지점 이동(회장 판정 2026-08-20, ca:sm-ab-verdict).
+ *
+ * 14일 실측(PostHog 443488 · 7/31~8/14)에서 cta_click 25건 중 20건이 무료 산출물이었고
+ * (APA 복사 12 · PDF 8) 결제는 0이었다 — 사용자가 무료로 과업을 끝내고 나간다.
+ * 그래서 완성 산출물인 PDF만 잠그고, APA 한 줄 복사는 유입 미끼로 무료로 남긴다.
+ *
+ * 잠금은 Word 익스포트와 같은 라이선스 게이트(useIsPro)다. 결제 목적지는 최저 진입가인
+ * 크레딧 3팩이고 URL·문구를 각각 lib/offer.ts와 copyCreditsButton에서 가져와
+ * 문구↔장바구니 금액 불일치가 다시 생기지 않게 한다.
+ */
+export function PdfExportButton({ onExport, testName }: PdfExportButtonProps) {
+  const t = useTranslations("calculator");
+  const isPro = useIsPro();
+  const [exporting, setExporting] = useState(false);
+
+  async function handleExport() {
+    setExporting(true);
+    try {
+      await onExport();
+      trackPdfExport(testName);
+    } finally {
+      setExporting(false);
+    }
+  }
+
+  if (!isPro) {
+    return (
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="py-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+              <p className="text-sm text-gray-600">{t("pdfPaywallDesc")}</p>
+            </div>
+            <a
+              href={CHECKOUT_CREDITS}
+              data-ime-cta="pdf-export-paywall"
+              onClick={() => trackProCtaClick("pdf_export_paywall", testName)}
+              className="shrink-0"
+            >
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                {t("copyCreditsButton")}
+              </Button>
+            </a>
+          </div>
+          <p className="mt-2 text-center text-xs text-gray-500">
+            <a
+              href={CHECKOUT_ANNUAL}
+              data-ime-cta="pdf-export-annual"
+              onClick={() => trackProCtaClick("pdf_export_annual", testName)}
+              className="underline hover:text-gray-700"
+            >
+              {t("copyProUpgrade")}
+            </a>
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="border-gray-200 bg-gray-50">
+      <CardContent className="flex items-center justify-between py-4">
+        <div>
+          <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
+          <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
+        </div>
+        <Button
+          data-ime-cta="pdf-download-pro"
+          variant="outline"
+          onClick={handleExport}
+          disabled={exporting}
+        >
+          {exporting ? t("exporting") : t("downloadPdf")}
         </Button>
       </CardContent>
     </Card>

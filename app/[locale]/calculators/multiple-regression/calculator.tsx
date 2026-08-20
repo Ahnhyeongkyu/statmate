@@ -19,6 +19,7 @@ import {
 } from "@/lib/statistics/multiple-regression";
 import {
   AiInterpretation,
+  PdfExportButton,
   CopyToast,
   CopyPaywall,
   CopyRemainingBadge,
@@ -321,32 +322,21 @@ function ResultsDisplay({ result }: { result: MultipleRegressionResult }) {
         results={result as unknown as Record<string, unknown>}
       />
 
-      {/* Free PDF Export */}
-      <Card className="border-gray-200 bg-gray-50">
-        <CardContent className="flex items-center justify-between py-4">
-          <div>
-            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
-            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
-          </div>
-          <Button
-            data-ime-cta="free-pdf-download"
-            variant="outline"
-            onClick={async () => {
-              const { exportMultipleRegressionPdf } = await import(
-                "@/lib/export-pdf"
-              );
-              const blob = exportMultipleRegressionPdf(result, apa);
-              const { downloadBlob } = await import("@/lib/export-docx");
-              downloadBlob(
-                blob,
-                `statmate-multiple-regression-${Date.now()}.pdf`
-              );
-            }}
-          >
-            {t("downloadPdf")}
-          </Button>
-        </CardContent>
-      </Card>
+      {/* PDF Export — 유료(Q-260730-03) */}
+      <PdfExportButton
+        testName="multiple-regression"
+        onExport={async () => {
+          const { exportMultipleRegressionPdf } = await import(
+            "@/lib/export-pdf"
+          );
+          const blob = exportMultipleRegressionPdf(result, apa);
+          const { downloadBlob } = await import("@/lib/export-docx");
+          downloadBlob(
+            blob,
+            `statmate-multiple-regression-${Date.now()}.pdf`
+          );
+        }}
+      />
     </div>
   );
 }

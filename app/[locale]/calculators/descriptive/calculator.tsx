@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { descriptiveStats, type DescriptiveResult } from "@/lib/statistics/descriptive";
 import {
   AiInterpretation,
+  PdfExportButton,
   ExportButton,
   CopyToast,
   CopyPaywall,
@@ -206,27 +207,16 @@ function ResultsDisplay({ result, data }: { result: DescriptiveResult; data: num
         results={result as unknown as Record<string, unknown>}
       />
 
-      {/* Free PDF Export */}
-      <Card className="border-gray-200 bg-gray-50">
-        <CardContent className="flex items-center justify-between py-4">
-          <div>
-            <p className="font-semibold text-gray-900">{t("pdfExportTitle")}</p>
-            <p className="text-sm text-gray-600">{t("pdfExportDesc")}</p>
-          </div>
-          <Button
-            data-ime-cta="free-pdf-download"
-            variant="outline"
-            onClick={async () => {
-              const { exportDescriptivePdf } = await import("@/lib/export-pdf");
-              const blob = exportDescriptivePdf(result);
-              const { downloadBlob } = await import("@/lib/export-docx");
-              downloadBlob(blob, `statmate-descriptive-${Date.now()}.pdf`);
-            }}
-          >
-            {t("downloadPdf")}
-          </Button>
-        </CardContent>
-      </Card>
+      {/* PDF Export — 유료(Q-260730-03) */}
+      <PdfExportButton
+        testName="descriptive"
+        onExport={async () => {
+          const { exportDescriptivePdf } = await import("@/lib/export-pdf");
+          const blob = exportDescriptivePdf(result);
+          const { downloadBlob } = await import("@/lib/export-docx");
+          downloadBlob(blob, `statmate-descriptive-${Date.now()}.pdf`);
+        }}
+      />
 
       {/* Export Button */}
       <ExportButton
