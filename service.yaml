@@ -32,7 +32,7 @@ spec:
     gsc_impressions_2mo: 36200
     uptime_24h: 100
     uptime_7d: 100
-    avg_response_time_ms: 293
+    avg_response_time_ms: 261
     revenue_lifetime: 28.35
     purchases_lifetime: 5
   dependencies:
@@ -60,6 +60,7 @@ spec:
       new_file_dirs:
         - statmate/content/blog/en/
         - statmate/content/blog/ko/
+      mdx_check: true
       frontmatter_required:
         - title
         - description
@@ -73,4 +74,4 @@ spec:
     channels:
       external:
         - 통계·연구방법 커뮤니티(에이전트 상황 판단)
-  last_data_refresh: "2026-09-02T17:21:02.194Z"
+  last_data_refresh: "2026-09-03T15:54:18.653Z"
