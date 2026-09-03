@@ -13,14 +13,9 @@ spec:
   owner: CTO
   lifecycle: production
   payment:
-    # 회장 5/15 영구 룰: LemonSqueezy + Paddle 영구 제외 (신규 서비스)
-    # statmate = LS로 $6.59 MRR LIVE → 5/29 회장 옵션 C 결정 (병행 이관)
-    # - LS 기존 매출 유지 (이관 cost 회피)
-    # - Gumroad 병행 페이지 추가 (회장 룰 통일)
-    # - 자연 이관 (LS 매출 감소 시 Gumroad full migration)
-    provider: Lemon Squeezy  # GRANDFATHERED (5/15 룰 이전 setup, $6.59 MRR LIVE)
-    provider_next: Gumroad  # 병행 추가 (회장 5/29 결정 권장)
-    blacklist_exception: "statmate만 (이전 setup)"
+    provider: Lemon Squeezy
+    provider_next: Gumroad
+    blacklist_exception: statmate만 (이전 setup)
     pricing:
       - $0 Free (20 calculators, PDF export, clipboard, ads)
       - $5.99/mo Pro (AI 해석, Word export, ad-free)
@@ -37,9 +32,9 @@ spec:
     gsc_impressions_2mo: 36200
     uptime_24h: 100
     uptime_7d: 100
-    avg_response_time_ms: 260
-    revenue_lifetime: 26.36
-    purchases_lifetime: 2
+    avg_response_time_ms: 293
+    revenue_lifetime: 28.35
+    purchases_lifetime: 5
   dependencies:
     - vercel
     - i18n-routing
@@ -59,4 +54,23 @@ spec:
   links:
     repo: ./statmate
     catalog: ./statmate/MARKETING_STATUS.md
-  last_data_refresh: "2026-05-26T20:36:20.888Z"
+  ops:
+    repo_dir: statmate
+    blog:
+      new_file_dirs:
+        - statmate/content/blog/en/
+        - statmate/content/blog/ko/
+      frontmatter_required:
+        - title
+        - description
+        - date
+        - category
+    constraints:
+      - 통계 수치·공식·보고 형식은 표준 교과/APA 7판 근거만 — 자유 생성 금지(환각0)
+      - 영어 글 우선(실측 유입=영어권 AI 검색 인용). 한국어는 번역이 아니라 별도 글
+      - 글은 질문에 끝까지 답하는 완결 콘텐츠 — 서비스 언급은 각주
+      - 기존 글과 주제 중복 금지(content/blog/en 47편·ko 44편 기존)
+    channels:
+      external:
+        - 통계·연구방법 커뮤니티(에이전트 상황 판단)
+  last_data_refresh: "2026-09-02T17:21:02.194Z"
